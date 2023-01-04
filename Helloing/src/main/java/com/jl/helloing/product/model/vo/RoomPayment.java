@@ -14,4 +14,5 @@ public class RoomPayment {
 	private int accommNo; // "ACCOMM_NO"	NUMBER		NOT NULL,
 	private int roomNo; // "ROOM_NO"	NUMBER		NOT NULL,
     private String paymentDate; // "PAYMENT_DATE" DATE DEFAULT SYSDATE,
+    
 }
