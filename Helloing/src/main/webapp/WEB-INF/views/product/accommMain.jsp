@@ -94,7 +94,7 @@
 	
 	<div class="inner">
         <div class="top-content">
-            <form action="" method="">
+            <form action="search.accomm" method="">
                 <h1>어떤 숙소 찾으세요?</h1>
                 <div id="searchbox">
                     <div>

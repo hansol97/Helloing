@@ -12,6 +12,12 @@ public class ProductController {
 		return "product/accommMain";
 	}
 	
+	// 숙소 검색
+	@RequestMapping("search.accomm")
+	public String searchAccomm() {
+		return "product/accommSearch";
+	}
+	
 	// 액티비티 메인
 	@RequestMapping("activity")
 	public String activityMain() {
