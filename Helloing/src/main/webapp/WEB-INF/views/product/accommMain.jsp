@@ -54,6 +54,7 @@ div{
 </style>
 </head>
 <body>
+	<jsp:include page="../common/menubar_user.jsp"/>
 	<div class="outer">
         <div class="top-content">
             <form action="" method="">
@@ -79,7 +80,7 @@ div{
         <h3>최근 본 숙소</h3> <!-- 쿠키 사용해서 뿌려줄 것 / 쿠키가 없다면 최근 본 숙소도 없음 -->
         <div class="recentlyAccom">
             <div style="display: flex; justify-content: flex-start;">
-                <div><img src="IMG-5743.jpg" width="200"></div>
+                <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
                     <span class="accommName">호텔이름 1</span><br>
@@ -88,7 +89,7 @@ div{
                 </div>
             </div>
             <div style="display: flex; justify-content: flex-start;">
-                <div><img src="IMG-5743.jpg" width="200"></div>
+                <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
                         <span class="accommName">호텔이름 1</span><br>
@@ -97,7 +98,7 @@ div{
                 </div>
             </div>
             <div style="display: flex; justify-content: flex-start;">
-                <div><img src="IMG-5743.jpg" width="200"></div>
+                <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
                         <span class="accommName">호텔이름 1</span><br>
@@ -111,70 +112,70 @@ div{
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
                 ⭐ 4.5 (10)<br>
@@ -185,70 +186,70 @@ div{
         <h3>인기 펜션</h3>
         <div class="hot" id="hot-pension">
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>펜션<br>
                 <span class="accommName">펜션이름</span><br>
                 ⭐ 4.5 (10)<br>
@@ -259,70 +260,70 @@ div{
         <h3>인기 풀빌라</h3>
         <div class="hot" id="hot-poolVilla">
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>풀빌라<br>
                 <span class="accommName">풀빌라이름</span><br>
                 ⭐ 4.5 (10)<br>
@@ -333,70 +334,70 @@ div{
         <h3>인기 게스트하우스</h3>
         <div class="hot" id="hot-guestHouse">
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="IMG-5743.jpg" width="150"><br>
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
                 ⭐ 4.5 (10)<br>
