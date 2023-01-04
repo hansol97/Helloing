@@ -178,7 +178,7 @@
     <div class="inner">
       <!-- 로고(홈) -->
       <a href="#" class="logo"><!--/은 현재 index파일로 이동-->
-        <img src="/KakaoTalk_20230102_143005076-removebg-preview.png" alt="logo" >
+        <img src="/helloing/resources/img/logo_outline.png" alt="logo" >
       </a>
 
       <div class="sub-menu">
@@ -241,7 +241,7 @@
             <form action="#" method="get">
               <input type="text" name="keyword" placeholder="숙소명이나 액티비티명을 입력해주세요.">
               
-              <span id="searchImg"><button type="submit" style="cursor: pointer;"><img  src="/search.png"></button></span>
+              <span id="searchImg"><button type="submit" style="cursor: pointer;"><img  src="/helloing/resources/img/search.png"></button></span>
             </form>
           </div>
 
