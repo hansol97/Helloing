@@ -6,17 +6,6 @@
 <meta charset="UTF-8">
 <title>Helloing</title>
 <style>
-/* 최근 본 숙소 */
-.recentlyAccom{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-.recentlyAccom>div{
-    width: 350px;
-}
-/* 최근본 숙소 끝 */
-
 /* 검색창 */
 #searchbox{
     background-color: rgb(237, 237, 237);
@@ -159,7 +148,6 @@ input[class="price"]::-webkit-inner-spin-button {
     height: 250px;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
 }
 .productbox>div{
     margin-right: 20px;

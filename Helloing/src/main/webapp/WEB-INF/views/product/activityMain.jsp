@@ -60,7 +60,7 @@
 
 	<div class="inner">
         <div class="top-content">
-            <form action="" method="">
+            <form action="search.activity" method="">
                 <input type="text" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요"><button>검색</button>
             </form>
         </div>

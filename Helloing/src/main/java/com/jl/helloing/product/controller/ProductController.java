@@ -23,4 +23,10 @@ public class ProductController {
 	public String activityMain() {
 		return "product/activityMain";
 	}
+	
+	// 액티비티 검색
+	@RequestMapping("search.activity")
+	public String searchActivity() {
+		return "product/activitySearch";
+	}
 }
