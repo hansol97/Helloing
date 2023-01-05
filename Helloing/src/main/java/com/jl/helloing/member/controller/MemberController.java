@@ -12,7 +12,10 @@ public class MemberController {
 		return "member/login";
 	}
 	//아이디찾기
-	@RequestMapping("")
+	@RequestMapping("findIdForm")
+	public String findId() {
+		return "member/findIdForm";
+	}
 	
 	//혜진
 	//마이페이지 메인
