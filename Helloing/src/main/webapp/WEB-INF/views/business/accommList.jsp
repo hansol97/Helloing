@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>등록한 숙소 조회</title>
-<link href="../../../resources/css/accommList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
+<style>
 
+</style>
 
 
 </head>
@@ -17,10 +19,12 @@
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <div class="photo" style="background-image: url(https://images.unsplash.com/photo-1520333789090-1afc82db536a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=300)"></div>
+                <!--<img src="resources/img/business_logo.png" alt="첫번째 호텔 사진">-->
+                <div class="photo" style="background-image: url(resources/img/business_logo.png)"></div>
+                <div class="photo" style="background-image: url(../../../../webapp/resources/img/admin_logo.png)"></div>
               </div>
               <div class="description">
-                <h1>Lorem ipsum dolor sit amet</h1>
+                <h1>정말로 비싼 바로 그 호텔</h1>
                 <h2 class="pt-1 pb-4">Sed venenatis elit id ligula cursus sollicitudin</h2>
                 <p class="read-more">
                   <a href="#" target="_blank">Click Here</a>
@@ -31,10 +35,10 @@
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <div class="photo" style="background-image: url(https://images.unsplash.com/photo-1556557286-bf3be5fd9d06?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=400)"></div>
+                <div class="photo" style="background-image: url()"></div>
               </div>
               <div class="description">
-                <h1>Lorem ipsum dolor sit amet</h1>
+                <h1>제발 좀 먹어라</h1>
                 <h2 class="pt-1 pb-4">Sed venenatis elit id ligula cursus sollicitudin</h2>
                 <p class="read-more">
                   <a href="#" target="_blank">Click Here</a>
@@ -45,7 +49,7 @@
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <div class="photo" style="background-image: url(https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=300)"></div>
+                <div class="photo" style="background-image: url()"></div>
               </div>
               <div class="description">
                 <h1>Lorem ipsum dolor sit amet</h1>
