@@ -16,11 +16,6 @@
         <div class="admin-innerOuter" align="center">
             <br>
             <table>
-                <tr id="admin-menu2">
-                    <td><p><a href="boardList.ad">게시물 조회</a></p></td>
-                    <td width="300"></td>
-                    <td><p><a href="replyList.ad">댓글 조회</a></p></td>
-                </tr>
                 <tr>
                     <td><br><br></td>
                 </tr>
@@ -30,8 +25,8 @@
                             <form id="searchForm" action="" method="get">
                                 <td>
                                     <select class="admin-search_form" name="" id="">
-                                        <option value="">회원아이디</option>
-                                        <option value="">제목</option>
+                                        <option value="">키워드명</option>
+                                        <option value="">내용</option>
                                     </select>
                                 </td>
                                 <td>
@@ -43,10 +38,12 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="610">
+                            <td width="420">
                                 
                             </td>
-                            <td><button id="admin-delete">삭제</button></td>
+                            <td><button class="admin-grey">등록</button></td>
+                            <td><button class="admin-grey">삭제</button></td>
+                            <td><button class="admin-grey">수정</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -58,11 +55,8 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="100">댓글번호</th>
-                                <th width="260">게시글 제목</th>
-                                <th width="300">댓글 내용</th>
-                                <th width="120">회원 아이디</th>
-                                <th width="150">작성일자</th>
+                                <th width="200">키워드명</th>
+                                <th width="700">키워드 답변용</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,9 +66,6 @@
                                 </td>
                                 <td>2</td>
                                 <td>제주도 여행</td>
-                                <td>재밌겠다</td>
-                                <td>user01</td>
-                                <td>2023.01.03</td>
                             </tr>
                             <tr>
                                 <tr>
@@ -83,9 +74,6 @@
                                     </td>
                                     <td>2</td>
                                     <td>제주도 여행</td>
-                                    <td>재밌겠다</td>
-                                    <td>user01</td>
-                                    <td>2023.01.03</td>
                                 </tr>
                             </tr>
                         </tbody>
