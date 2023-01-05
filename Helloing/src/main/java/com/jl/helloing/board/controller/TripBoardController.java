@@ -18,6 +18,7 @@ public class TripBoardController {
 	
 	@RequestMapping("selectTripBoard")
 	public String selectTripBoard() {
+		System.out.println(123);
 		return "board/selectTripBoard";
 	}
 	
