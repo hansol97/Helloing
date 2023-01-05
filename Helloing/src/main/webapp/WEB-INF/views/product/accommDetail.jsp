@@ -84,9 +84,30 @@
 /* 객실 상품들 */
 .accommbox{
 	border: 1px solid gray;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.first{
+	display: flex;
+	align-items: center;
+}
+.second{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.second button{
+	width: 60px;
+	height: 40px;
+	border: 0;
+	border-radius: 3px;
+	background-color: #053E99;
+	color: white;
+	font-weight: bold;
 }
 /* 객실 상품들 끝 */
 /* 메인 끝 */
+
 </style>
 
 </head>
@@ -131,19 +152,69 @@
 					</table>
 				</div>
 
-				<div class="accommbox">
-					<div>
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<p><span>슈페리어 트윈</span><br>
-							기준 2인 / 최대 2인</p>
+				<div>
+					<div class="accommbox"><!-- 객실 포문 돌리기~ -->
+						<div class="first">
+							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+							<p><span>슈페리어 트윈</span><br>
+								기준 2인 / 최대 2인</p>
+						</div>
+						<hr>
+						<div class="second">
+							<h1>01 슈페리어 트윈 객실 <br>
+								65,000원</h1>
+							<button>예약</button>
+						</div>
+					</div>
+					<div class="accommbox">
+						<div class="first">
+							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+							<p><span>슈페리어 트윈</span><br>
+								기준 2인 / 최대 2인</p>
+						</div>
+						<hr>
+						<div class="second">
+							<h1>01 슈페리어 트윈 객실 <br>
+								65,000원</h1>
+							<button>예약</button>
+						</div>
+					</div>
+					<div class="accommbox">
+						<div class="first">
+							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+							<p><span>슈페리어 트윈</span><br>
+								기준 2인 / 최대 2인</p>
+						</div>
+						<hr>
+						<div class="second">
+							<h1>01 슈페리어 트윈 객실 <br>
+								65,000원</h1>
+							<button>예약</button>
+						</div>
+					</div>
+					<div class="accommbox">
+						<div class="first">
+							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+							<p><span>슈페리어 트윈</span><br>
+								기준 2인 / 최대 2인</p>
+						</div>
+						<hr>
+						<div class="second">
+							<h1>01 슈페리어 트윈 객실 <br>
+								65,000원</h1>
+							<button>예약</button>
+						</div>
 					</div>
 				</div>
+
+				<hr>
+
 			</div>
 
 			<div class="side-bar">
 				<div class="accommselectbox">
 					<p>1박 <span>65,000원 ~</span></p>
-					<button>객실 선택하기</button>
+					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 				</div>
 			</div>
 		</div>
