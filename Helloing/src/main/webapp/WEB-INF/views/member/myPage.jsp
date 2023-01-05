@@ -9,8 +9,9 @@
 <style>
 
 	.sidebar{
-		width : 800px;
-		
+		width : 1200px;
+		height: 100%;
+		margin: auto;
 	}
 	.outer{
 		width : 200px;
@@ -19,8 +20,8 @@
 	}
     .outer h2{
         font-weight: 600;
-        font-size: 30px;
-        
+        font-size: 25px;
+        padding : 10px;
     }
     .outer .category{
     	padding-bottom :10px;
@@ -28,7 +29,9 @@
     .outer ul li{
     	padding : 5px;
     }
-    
+	.outer .sidebar ul li a{
+	 font-size : 15px;
+	}    
 </style>
 </head>
 <body>
