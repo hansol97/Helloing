@@ -13,47 +13,47 @@ public class AdminController {
 	
 	@RequestMapping("actPay.ad")
 	public String activityPaymentViewList() {
-		return "temp/activityPaymentListView";
+		return "admin/activityPaymentListView";
 	}
 	
 	@RequestMapping("businessList.ad")
 	public String adminBusinessListView() {
-		return "temp/adminBusinessListView";
+		return "admin/adminBusinessListView";
 	}
 	
 	@RequestMapping("boardList.ad")
 	public String adminBoardListView() {
-		return "temp/adminBoardListView";
+		return "admin/adminBoardListView";
 	}
 	
 	@RequestMapping("memList.ad")
 	public String adminMemberListView() {
-		return "temp/adminMemberListView";
+		return "admin/adminMemberListView";
 	}
 	
 	@RequestMapping("replyList.ad")
 	public String adminReplyListView() {
-		return "temp/adminReplyListView";
+		return "admin/adminReplyListView";
 	}
 
 	@RequestMapping("businessPayList.ad")
 	public String businessPaymentListView() {
-		return "temp/businessPaymentListView";
+		return "admin/businessPaymentListView";
 	}
 	
 	@RequestMapping("chatBotList.ad")
 	public String chatBotListView() {
-		return "temp/chatBotListView";
+		return "admin/chatBotListView";
 	}
 	
 	@RequestMapping("reportList.ad")
 	public String reportListView() {
-		return "temp/reportListView";
+		return "admin/reportListView";
 	}
 	
 	@RequestMapping("roomPay.ad")
 	public String roomPaymentListView() {
-		return "temp/roomPaymentListView";
+		return "admin/roomPaymentListView";
 	}
 
 }
