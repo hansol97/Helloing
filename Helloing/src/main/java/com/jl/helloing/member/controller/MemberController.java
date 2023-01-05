@@ -21,7 +21,7 @@ public class MemberController {
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
 	public String myPage() {
-		return "member/myPage";
+		return "member/scheduled";
 	}
 	
 	@RequestMapping("scheduled.hj")
