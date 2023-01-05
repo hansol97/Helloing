@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>Helloing</title>
 <style>
-.inner div{
-    border: 1px solid black;
-}
 .middle-content{
     display: flex;
     justify-content: space-between;
