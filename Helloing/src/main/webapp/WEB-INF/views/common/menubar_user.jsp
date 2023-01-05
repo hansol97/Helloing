@@ -253,7 +253,7 @@
           <div class="item__name"><a href="accomm">🏡숙소</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="#">🎫액티비티</a></div>
+          <div class="item__name"><a href="activity">🎫액티비티</a></div>
         </li>
         <li class="item">
           <div class="item__name" ><a href="#" >🍽️전라맛집</a></div>

@@ -6,22 +6,19 @@
 <meta charset="UTF-8">
 <title>Helloing</title>
 <style>
-div{
-	border: 1px solid pink;
-}
-.outer{
-	width: 1200px;
-	margin: auto;
-}
+
+/* 최근 본 숙소 */
 .recentlyAccom{
     display: flex;
     justify-content: space-between;
-
     margin-bottom: 30px;
 }
 .recentlyAccom>div{
     width: 350px;
 }
+/* 최근본 숙소 끝 */
+
+/* 검색창 */
 .top-content input[type=radio]{
     opacity: 0;
 }
@@ -32,32 +29,72 @@ div{
 }
 .top-content input[type=radio]:checked+label{
     font-weight: bold;
+    color: #053E99;
 }
-
 #searchbox{
-    background-color: rgb(233, 233, 233);
-    padding: 0px 10px;
+    background-color: rgb(237, 237, 237);
+    padding: 20px 15px;
+    margin-top: 10px;
 }
+#searchbox table{
+	width: 100%;
+}
+#searchbox table input{
+	width: 90%;
+	height: 30px;
+}
+#searchbox table div{
+	width: 90%;
+	height: 30px;
+	background: white;
+	padding: 0px 5px;
+	box-sizing: border-box;
+    border: 1px solid rgb(105, 105, 105);
+}
+#searchbox table button{
+	width: 100%;
+	height: 30px;
+    font-weight: bold;
+    color: white;
+    background-color: #053E99;
+    border: 0;
+    border-radius: 3px;
+}
+/* 검색창 끝*/
+
+
 .accommName{
     font-size: 22px;
     font-weight: bold;
 }
 .hot{
     display: flex;
-
     margin-bottom: 50px;
 }
 .productbox{
     margin-right: 20px;
 }
 
+
+.inner h1{
+	font-size: 30px;	
+	font-weight: bold;
+}
+.inner h3{
+	font-size: 25px;
+	font-weight: bold;
+	margin: 20px 0px;
+}
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar_user.jsp"/>
-	<div class="outer">
+	<jsp:include page="../common/menubar_user.jsp"/> <!-- 헤더를 넣으니까 검색창이 헤더 밑으로 간다... relative, absolute 속성 때문일까? -->
+	
+	<div style="height: 70px;"></div>
+	
+	<div class="inner">
         <div class="top-content">
-            <form action="" method="">
+            <form action="search.accomm" method="">
                 <h1>어떤 숙소 찾으세요?</h1>
                 <div id="searchbox">
                     <div>
@@ -67,17 +104,29 @@ div{
                         <input type="radio" name="category" id="guestHouse"><label for="guestHouse">게스트하우스</label>
                     </div>
                     <hr>
-                    <div>
-                        <input type="text" name="keyword" placeholder="전주">
-                        <input type="date" name="" min="2023-01-03" max="2023-02-01" /> <!-- 스크립트로 min=오늘날짜, max=오늘+한달후날짜 계산해서 집어넣기 -->
-                        <!--https://wooncloud.tistory.com/26 : 날짜 여러개 픽하는 플러그인 참고!-->
-                        <input type="number" name="" >
-                        <button type="submit">검색</button>
+                    <div style="padding: 0px 18px;">
+                    	<table>
+                    		<tr>
+                    			<td width="300">이름</td>
+                    			<td width="400">날짜</td>
+                    			<td width="200">인원</td>
+                    			
+                    		</tr>
+                    		<tr height="30">
+                    			<!-- 스크립트로 min=오늘날짜, max=오늘+한달후날짜 계산해서 집어넣기 --> 
+                    			<!--https://wooncloud.tistory.com/26 : 날짜 여러개 픽하는 플러그인 참고!-->
+                    			<td><input type="text" name="keyword" placeholder="전주"></td>
+                    			<td><input type="date" name="" min="2023-01-03" max="2023-02-01" /></td>
+                    			<td><div><a>-</a>&nbsp&nbsp<span>0</span>&nbsp&nbsp<a>+</a></div></td>
+                    			<td rowspan="2"><button type="submit">검색</button></td>
+                    		</tr>
+                    	</table>
                     </div>
                 </div>
             </form>
         </div>
         <h3>최근 본 숙소</h3> <!-- 쿠키 사용해서 뿌려줄 것 / 쿠키가 없다면 최근 본 숙소도 없음 -->
+                              <!-- N글자 이상이면 ... 하는것도 만들기 -->
         <div class="recentlyAccom">
             <div style="display: flex; justify-content: flex-start;">
                 <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
