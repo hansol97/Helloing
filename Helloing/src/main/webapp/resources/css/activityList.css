@@ -11,7 +11,7 @@
   }
 
 .body {
-  background: #f9fbff;
+  background: #03102b;
 }
 a:hover {
   text-decoration: none;
@@ -216,6 +216,7 @@ a:hover {
   }
   .nomore{
     text-align: center;
+    color: wheat;
   }
 
 /* 등록숙소조회페이지입니다 표시 */
