@@ -7,15 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 조회</title>
 <style>
-    @font-face {
-     font-family: 'S-CoreDream-3Light';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
-  }
-    .admin-content>*{
-        font-family: 'S-CoreDream-3Light';
-    }
+    
     .admin-content {
         background-color:rgb(255, 255, 255);
         width:1500px;

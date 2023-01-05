@@ -111,7 +111,7 @@
   }
   header .main-menu .item .item__name{
       padding: 20px 40px 20px;
-      width: 150px;
+      width: 110px;
       font-size: 17px;
       font-weight: 600;
       text-align: center;
@@ -186,13 +186,16 @@
           <div class="item__name"><a href="memList.ad">👤회원 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="activity">📄게시글 관리</a></div>
+          <div class="item__name"><a href="boardList.ad">📄게시글 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >💬챗봇관리</a></div>
+          <div class="item__name" ><a href="chatBotList.ad" >💬챗봇관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >💰결제관리</a></div>
+          <div class="item__name" ><a href="businessPayList.ad" >💰결제관리</a></div>
+        </li>       
+        <li class="item">
+          <div class="item__name" ><a href="#" >💑1:1문의</a></div>
         </li>       
       </ul>
 
