@@ -5,38 +5,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>액티비티 결제</title>
 <style>
     .content {
         background-color:rgb(247, 245, 245);
-        width:80%;
+        width:1500px;
         margin:auto;
     }
     .innerOuter {
         border:1px solid lightgray;
-        width:80%;
+        width:1200px;
         margin:auto;
-        padding:5% 10%;
+        padding:50px 100px;
         background-color:white;
+        word-break:break-all;
     }
 
     /* 리스트 스타일 */
-    #boardList {text-align:center;}
+    #boardList {
+        text-align:center;
+    }
     #boardList>tbody>tr:hover {cursor:pointer;}
 
     #pagingArea {width:fit-content; margin:auto;}
     
     #searchForm {
-        width:80%;
+        width:60%;
         margin:auto;
     }
     #searchForm>* {
         float:left;
         margin:5px;
     }
-    .select {width:20%;}
-    .text {width:53%;}
-    .searchBtn {width:20%;}
+
+    /* 페이지 설정 */
+    #adminRoomName{
+        color:rgb(95, 95, 95);
+        font-size:13px;
+    }
+    
 </style>
 </head>
 <body>
@@ -44,29 +51,48 @@
     <div class="content">
 
         <div class="innerOuter">
-            <form action="roomPaySearch.ad">
-                <input type="text" placeholder="회원아이디 입력">
-                <button>검색</button>
-            </form>
-            <table id="boardList" align="center">
+
+            <table>
+                <form id="searchForm" action="" method="get">
+                    <tr>
+                        <td>
+                            <div class="text">
+                                <input type="text" class="form-control" name="keyword">
+                            </div>        
+                        </td>
+                        <td>
+                            &nbsp;<button type="submit" class="searchBtn btn btn-secondary">검색</button>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+            
+            <br><br>
+            
+            <table id="boardList" class="table table-hover" align="center">
                 <thead>
                     <tr>
-                        <th>예약번호</th>
-                        <th>회원아이디</th>
-                        <th>숙소명</th>
-                        <th>객실명</th>
-                        <th>인원수</th>
-                        <th>가격</th>
-                        <th>예약기간</th>
-                        <th>결제일자</th>
+                        <th width="100">예약번호</th>
+                        <th width="120">회원아이디</th>
+                        <th width="230">
+                            숙소명/객실명
+                        </th>
+                        <th width="80">인원수</th>
+                        <th width="120">가격</th>
+                        <th width="200">예약기간</th>
+                        <th width="110">결제일자</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>user02</td>
-                        <td>신라호텔</td>
-                        <td>스위트룸</td>
+                        <td>
+                               신라호텔 <br>
+                            
+                                <span id="adminRoomName">- 스위트룸</span>
+                            
+                        </td>
                         <td>3</td>
                         <td>44,500원</td>
                         <td>2023.01.06 ~ 2023.01.08</td>
@@ -75,8 +101,10 @@
                     <tr>
                         <td>1</td>
                         <td>user02</td>
-                        <td>신라호텔</td>
-                        <td>스위트룸</td>
+                        <td>
+                            신라호텔 <br>
+                            스위트룸
+                        </td>
                         <td>3</td>
                         <td>44,500원</td>
                         <td>2023.01.06 ~ 2023.01.08</td>
@@ -84,6 +112,8 @@
                     </tr>
                 </tbody>
             </table>
+            <br><br>
+            
 
             <div id="pagingArea">
                 <button>&gt;</button>
@@ -92,9 +122,16 @@
                 <button>3</button>
                 <button>&lt;</button>
             </div>
+            <br><br>
 
-
-
+            <a href="boardList.ad">게시물 조회</a> <br>
+            <a href="businessList.ad">사업자 조회</a> <br>
+            <a href="memList.ad">회원 조회</a> <br>
+            <a href="replyList.ad">댓글 조회</a> <br> 
+            <a href="businessPayList.ad">사업자 등록 결제 조회</a> <br>
+            <a href="chatBotList.ad">챗봇 키워드 조회</a> <br>
+            <a href="reportList.ad">신고게시글 목록</a> <br> 
+            <a href="roomPay.ad">숙소결제 조회</a> <br>
         </div>
 
     </div>

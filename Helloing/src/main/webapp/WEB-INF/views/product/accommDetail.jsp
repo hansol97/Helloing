@@ -148,9 +148,67 @@
 	font-size: 30px;
 }
 .reviewstar{
+	display: flex;
 	border: 1px solid gray;
+	padding: 30px;
+	justify-content: space-evenly;
+	margin-bottom: 20px;
+}
+.reviewstar span{
+	font-size: 40px;
+	font-weight: bold;
+}
+.reviewstar div{
+	text-align: center;
 }
 
+/* 정렬버튼 */
+.radio-sort{
+    text-align: right;
+    margin-bottom: 15px;
+}
+.radio-sort>input[type=radio]{
+    opacity: 0;
+}
+.radio-sort>input[type=radio]>label{
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.radio-sort>input[type=radio]:checked+label{
+    font-weight: bold;
+    color: #053E99;
+}
+/* 정렬버튼 끝 */
+
+.reviewbox{
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0px;
+}
+.review-content{
+	font-size: 20px;
+	margin: 5px 0px;
+}
+.tag{
+	background-color: lightgray;
+	margin-right: 20px;
+	padding: 2px 6px;
+}
+
+/* 페이지 버튼 */
+.page-bar{
+	text-align: center;
+	margin: 30px;
+}
+.page-bar li{
+	display: inline-block;
+}
+.page-bar a{
+	font-size: 20px;
+	margin: 0px 20px;
+}
+/* 페이지 버튼끝 */
 /* 리뷰 끝 */
 /* 메인 끝 */
 
@@ -286,9 +344,100 @@
 				<div>
 					<h3 class="reviewtitle">후기 173</h3>
 					<div class="reviewstar">
-						<div></div>
-						<div></div>
+						<div>
+							<p><span>4.3</span><br>
+							⭐⭐⭐⭐⭐</p>
+						</div>
+						<div class="starlist">
+							<table>
+								<tr>
+									<td align="right">⭐⭐⭐⭐⭐ </td>
+									<td width="200"><progress value="130" max="1000"></progress></td>
+									<td>106명</td>
+								</tr>
+								<tr>
+									<td align="right">⭐⭐⭐⭐ </td>
+									<td><progress value="130" max="1000"></progress></td>
+									<td>106명</td>
+								</tr>
+								<tr>
+									<td align="right">⭐⭐⭐ </td>
+									<td><progress value="130" max="1000"></progress></td>
+									<td>106명</td>
+								</tr>
+								<tr>
+									<td align="right">⭐⭐ </td>
+									<td><progress value="130" max="1000"></progress></td>
+									<td>106명</td>
+								</tr>
+								<tr>
+									<td align="right">⭐ </td>
+									<td><progress value="130" max="1000"></progress></td>
+									<td>106명</td>
+								</tr>
+							</table>
+						</div>
 					</div>
+
+					<div class="radio-sort">
+						<input type="radio" name="radio-sort" id="recomm"><label for="recomm">추천순</label>
+						<input type="radio" name="radio-sort" id="manyreview"><label for="manyreview">많은 후기순</label>
+						<input type="radio" name="radio-sort" id="highstar"><label for="highstar">높은 평점순</label>
+						<input type="radio" name="radio-sort" id="lowprice"><label for="lowprice">낮은 가격순</label>
+						<input type="radio" name="radio-sort" id="highprice"><label for="highprice">높은 가격순</label>
+					</div>
+					
+					<div><!-- 리뷰 포문 돌리기 -->
+						<div class="reviewbox">
+							<div>
+								<p>⭐⭐⭐⭐⭐ 김*미<br>
+									2022.08.08 | 디럭스 패밀리트윈</p>
+								<p class="review-content">너무너무 깨끗하고<br>
+									가성비 최고!<br>
+									이런 곳이 진작 있는 줄 알았다면...</p>
+								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+							</div>
+							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+						</div>
+						<hr>
+						<div class="reviewbox">
+							<div>
+								<p>⭐⭐⭐⭐⭐ 김*미<br>
+									2022.08.08 | 디럭스 패밀리트윈</p>
+								<p class="review-content">너무너무 깨끗하고<br>
+									가성비 최고!<br>
+									이런 곳이 진작 있는 줄 알았다면...</p>
+								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+							</div>
+							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+						</div>
+						<hr>
+						<div class="reviewbox">
+							<div>
+								<p>⭐⭐⭐⭐⭐ 김*미<br>
+									2022.08.08 | 디럭스 패밀리트윈</p>
+								<p class="review-content">너무너무 깨끗하고<br>
+									가성비 최고!<br>
+									이런 곳이 진작 있는 줄 알았다면...</p>
+								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+							</div>
+							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="page-bar"><!-- 페이징바 리뷰는 3개씩 보여줄거다 -->
+						<ul>
+		                    <li><a href="">&lt;</a></li>
+							<li><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li>
+							<li><a href="">4</a></li>
+							<li><a href="">5</a></li>
+		                    <li><a href="">&gt;</a></li>
+                		</ul>
+					</div>
+
 				</div>
 
 			</div>
@@ -301,6 +450,8 @@
 			</div>
 		</div>
 	</div>
+
+	<div style="height: 300px;"></div>
 	
 </body>
 </html>
