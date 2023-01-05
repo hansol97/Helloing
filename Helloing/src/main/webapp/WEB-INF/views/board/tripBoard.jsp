@@ -102,7 +102,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p><br>
+	                            <p><span>조회수 : </span></p>
 	                        </div>
                     </div>
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -110,7 +111,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                            
 	                        </div>
                     </div>	                    					
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -118,7 +120,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                           		 등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>
 	                        </div>
                     </div>	
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -126,7 +129,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                            	
 	                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -134,7 +138,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                            	
 	                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -142,7 +147,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                            
 	                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -150,7 +156,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                           		 등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                           		 
 	                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -158,7 +165,8 @@ hr{
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
-	                            등록일 : 2023.01.01</p>
+	                            	등록일 : 2023.01.01</p>
+	                            <p><span>조회수 : </span></p>	                            	
 	                        </div>
                     </div>	                    
                     

@@ -46,6 +46,42 @@
 </style>
 </head>
 <body>
-
+	<jsp:include page="../common/menubar_user.jsp" />
+	
+		<br><br>
+							
+		<div align="center" class=fontfont>
+			<pre>리뷰 상세조회</pre>
+		
+			<br><br><br>
+				<div class="size">제목 : <!-- 여기 제목 --></div>
+				<br><br>
+				
+	            <div class="thumbnail" align="center">
+	                	여기 사진 EL구문~~~ <img src="" onclick="window.open(this.src)">
+	            </div>
+				
+				<div class="size">내용</div>
+				<br><br>
+				<!-- 여기 내용나올공간 -->
+				<div class="contentDetail"></div>
+				
+	        <c:if test="<!-- 내가 본 게시판이 내꺼일경우~ -->">
+		        <div align="center">
+		            <button type="button" class="btn btn-primary" onclick="updateTripReview();">수정하기</button>
+		            <button type="button" class="btn btn-danger" onclick="deleteTripReview();">삭제하기</button>
+		        </div>
+	        </c:if>
+		</div>
+		
+		<script>
+			function updateTripReview(){
+				location.href = "updateTripBoard";
+			}
+			function deleteTripReview(){
+				location.href = "deleteTripBoard";
+			}
+		</script>	
+	
 </body>
 </html>
