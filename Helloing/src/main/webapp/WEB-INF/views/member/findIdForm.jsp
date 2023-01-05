@@ -47,6 +47,7 @@ font-weight: 800;
 	<h1> 아이디 찾기 </h1>
 	<br><br><br><br>	
 		
+		
 		<div class="findId-form">
 			<div class="findId-box">
 				<form action="findId.me" method="post">
