@@ -110,7 +110,6 @@
   }
   header .main-menu .item .item__name{
       padding: 20px 40px 20px;
-      width: 170px;
       font-size: 17px;
       font-weight: 600;
       text-align: center;

@@ -51,9 +51,9 @@
 		<div class="login-box">
 			<div class="login-innor">
 				<form id="login.me" action="login.me" method="post" >
-					<input id="login-id" type="text" name="memId" placeholder="아이디">
+					<input id="login-id" type="text" name="memId" placeholder="아이디" required>
 					<br><br>
-					<input id="login-pwd" type="password" name="memPwd" placeholder="비밀번호">
+					<input id="login-pwd" type="password" name="memPwd" placeholder="비밀번호" required>
 					<br>
 					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 체크</label>
 					<br><br>

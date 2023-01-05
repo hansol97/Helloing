@@ -236,7 +236,7 @@
 				<hr>
 				<div class="middle-info">
 					<div>📌 제주 서귀포시 명동로 46</div>
-					<div>⏲️ 체크인 15:00 ~ 체크아웃 11:00</div>
+					<div>🕒 체크인 15:00 ~ 체크아웃 11:00</div>
 				</div>
 				<hr>
 
