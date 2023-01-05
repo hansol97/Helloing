@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반갑소잉</title>
@@ -12,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
   <style>
   @font-face {
      font-family: 'S-CoreDream-3Light';
@@ -126,27 +129,6 @@
       border-radius: 6px 6px 0 0;
   }
 
-  /* 관리자 메뉴바 */
-  .main-menu{
-      list-style : none;
-      /* ul요소는 기본적으로 위, 아래 margin이 존재한다. 심지어 padding도 있다. */
-      margin: 0px;
-      padding: 0px;
-  }
-
-  .main-menu > li > ul {
-      list-style : none;
-      padding : 0px;
-      display : none; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과 */
-  }
-
-  .main-menu > li > a:hover + ul{
-      display :block; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과2 */
-  }
-
-  .main-menu > li > ul:hover {
-      display : block; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과3 */
-  }
  
   </style>
 
