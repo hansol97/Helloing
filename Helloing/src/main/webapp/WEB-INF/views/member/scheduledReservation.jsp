@@ -91,18 +91,18 @@
 				
 		        <table>
 		            <tr>
-		                <th>예약 번호</th>
-		                <th>예약 유형</th>
+		                <th width="90px">예약 번호</th>
+		                <th width="70px">예약 유형</th>
 		                <th>예약명</th>
-		                <th>예약 일자</th>
-		                <th>결제금액</th>
-		                <th></th>
+		                <th width="120px">예약 일자</th>
+		                <th width="100px">결제금액</th>
+		                <th width="70px"></th>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
 		                <td>숙소</td>
 		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
+		                <td>2023-01-29<br> ~<br> 2023-01-29</td>
 		                <td>198,000원</td>
 		                <td><a href="#ex1" rel="modal:open">예약취소</a></td>
 		            </tr>
@@ -149,7 +149,15 @@
 			  <a href="#" rel="modal:close">아니용</a>
 			  </div>
 		</div>
-
     </div>
+    
+    <script>
+    $(function(){
+    	$('#table td').click(function(){
+    		location.href ="reservationDetail.hj";
+    	})
+    })
+    
+    </script>
 </body>
 </html>
