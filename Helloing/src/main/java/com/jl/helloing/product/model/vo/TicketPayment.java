@@ -1,5 +1,8 @@
 package com.jl.helloing.product.model.vo;
 
+import lombok.Data;
+
+@Data
 public class TicketPayment {
 	
 	private int memNo; // "MEM_NO"	NUMBER		NOT NULL,

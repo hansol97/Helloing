@@ -1,5 +1,8 @@
 package com.jl.helloing.admin.model.vo;
 
+import lombok.Data;
+
+@Data
 public class Chatbot {
 
 	private String chatbotQ; // "CAHTBOT_Q"	VARCHAR2(100)		PRIMARY KEY,
