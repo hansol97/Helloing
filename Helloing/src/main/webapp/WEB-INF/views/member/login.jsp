@@ -12,18 +12,46 @@
 	justify-content: center;
 	margin-top: 200px;
 }
+.info-box{
+	margin-left: 300px;
+}
 .info-title{
 	font-size: large;
 	font-weight: 900;
 	text-align: center;
 }
+
 .info-content{	
 	width: 440px;
+}
+.login-box{
+	margin-left: 50px;
+}
+#login-pwd, #login-id {
+	width: 95%;
+height: 30px;
+font-size: larger;
+
 }
 
 .login-button{
 	width: 80%;
 	height: 50px;
+}
+.login-button{
+
+width: 100%;
+height: 40px;
+font-weight: bold;	
+color: white;
+background-color: #053E99;
+border: 0;
+border-radius: 3px;
+
+}
+button:hover{
+	color: #FFEA24;
+	cursor: pointer;
 }
 
 </style>
@@ -59,13 +87,13 @@
 					<br><br>
 					<button type="submit" class="login-button" >로그인</button>
 					<br>
-					<a href="findIdForm">아이디찾기 </a>
+					<a href="findIdForm.me">아이디찾기 </a>
 					&nbsp;/&nbsp;
 					<a href="#"> 비밀번호찾기</a>
 					<br>
 					<a href="#">회원가입</a>
 				</form>
-			</div>
+			</div>	
 		
 
 		</div>
