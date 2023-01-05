@@ -58,7 +58,7 @@
             <pre align="center">여행리뷰 작성하기</pre>
             <hr><br>
 
-            <form id="insertTripBOard" method="post" action="insertTripBoard" enctype="multipart/form-data">
+            <form id="insertTripBoard" method="post" action="insertTripBoard" enctype="multipart/form-data">
 				<div align="center">
                     <div>
                         <th><label for="title" class="font">제목</label></th><br>
