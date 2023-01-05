@@ -96,7 +96,6 @@
 		                <th>예약명</th>
 		                <th>예약 일자</th>
 		                <th>결제금액</th>
-		                <th></th>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
@@ -104,7 +103,6 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#ex1" rel="modal:open">예약취소</a></td>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
@@ -112,7 +110,6 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#">예약취소</a></td>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
@@ -120,36 +117,9 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#">예약취소</a></td>
 		            </tr>
 		        </table>
 		    </div>
-		    <div id="ex1" class="modal">
-		    	<ul>
-		    		<h5 style="font-weight:600;">취소 시 환불금액</h5>
-		    		<li style="font-size:20px;">190,000원</li>
-		    	</ul>
-		    	<br>
-			    <ul>
-		    		<h5 style="font-weight:600;">환불규정</h5>
-		    		<li>
-		    		<p>
-		    		- 체크인 3일 전 : 무료 취소 <br>
-					- 체크인 2일 전 ~ 당일 : 취소 환불 불가  <br>
-					- 취소요청 이후에는 취소의 철회가 불가능합니다.  <br>
-					- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.  <br>
-					</p>
-					</li>
-		    	</ul>
-		    	<br>
-			  <p style="font-size:25px; font-weight:600;">동의하시겠습니까?</p>
-			 
-			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >넹</a>
-			  <a href="#" rel="modal:close">아니용</a>
-			  </div>
-		</div>
-
     </div>
 </body>
 </html>
