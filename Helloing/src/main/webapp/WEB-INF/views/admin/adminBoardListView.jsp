@@ -44,7 +44,6 @@
 </style>
 </head>
 <body>
-    <!-- <jsp:include page="../common/header.jsp" /> -->
 
     <div class="content">
 
