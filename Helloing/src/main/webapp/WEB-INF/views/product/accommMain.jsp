@@ -128,7 +128,7 @@
         <h3>최근 본 숙소</h3> <!-- 쿠키 사용해서 뿌려줄 것 / 쿠키가 없다면 최근 본 숙소도 없음 -->
                               <!-- N글자 이상이면 ... 하는것도 만들기 -->
         <div class="recentlyAccom">
-            <div style="display: flex; justify-content: flex-start;">
+            <div class="accommCookie" style="display: flex; justify-content: flex-start;">
                 <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
@@ -137,7 +137,7 @@
                     86,000원</p>
                 </div>
             </div>
-            <div style="display: flex; justify-content: flex-start;">
+            <div class="accommCookie" style="display: flex; justify-content: flex-start;">
                 <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
@@ -146,7 +146,7 @@
                         86,000원</p>
                 </div>
             </div>
-            <div style="display: flex; justify-content: flex-start;">
+            <div class="accommCookie" style="display: flex; justify-content: flex-start;">
                 <div><img src="/helloing/resources/img/logo_outline.png" width="200"></div>
                 <div>
                     <p>호텔<br>
@@ -158,9 +158,29 @@
         </div>
         <hr>
 
+		<script>
+			$(function(){
+				// 상품 div 클릭 시 상세보기 페이지로 이동
+				$(document).on('click', '.productbox, .accommCookie', function(){
+					var $accommNo = $(this).children().eq(0).val();
+					//console.log($accommNo);
+                    location.href = "detail.accomm"; // 나중에 겟방식 url로 바꾸기
+				})
+			})
+		</script>
+		
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
             <div class="productbox">
+            	<input type="hidden" name="" value="1"><!-- 숙소 번호 넣기 -->
+                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+                <p>호텔<br>
+                <span class="accommName">호텔이름</span><br>
+               	 ⭐ 4.5 (10)<br>
+                86,000원</p>
+            </div>
+            <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -168,6 +188,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -175,6 +196,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -182,6 +204,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -189,6 +212,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -196,6 +220,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -203,6 +228,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -210,6 +236,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
@@ -217,13 +244,7 @@
                 86,000원</p>
             </div>
             <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
+            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>
                 <span class="accommName">호텔이름</span><br>
