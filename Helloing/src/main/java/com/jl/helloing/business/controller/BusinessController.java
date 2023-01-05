@@ -11,5 +11,11 @@ public class BusinessController {
 		
 		return "business/accommList";
 	}
+	
+	@RequestMapping("activityList.bu")
+	public String selectActivity() {
+		
+		return "business/activityList";
+	}
 
 }
