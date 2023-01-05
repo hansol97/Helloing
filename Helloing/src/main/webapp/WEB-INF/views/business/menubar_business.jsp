@@ -48,7 +48,7 @@
   /* Header */
   header{
       width: 100%;
-      background-color: white;
+      background-color: rgb(254, 254, 246);
       border-bottom: 1px solid #c8c8c8;
       position: fixed;
       top:0;
@@ -65,8 +65,7 @@
       margin: auto;
   }
   header .logo img{
-    height: 70%;
-    margin-top: 20px;
+    height: 100%;
   }
   header .sub-menu{
       position:absolute;
@@ -111,9 +110,10 @@
   }
   header .main-menu .item .item__name{
       padding: 20px 40px 20px;
-      width: 100px;
+      width: 170px;
       font-size: 17px;
       font-weight: 600;
+      text-align: center;
   }
   header .main-menu .item:hover .item__name{
       border-bottom: 5px solid #FFEA24;
@@ -126,48 +126,6 @@
   }
 
 
-/* 검색창 */
-.search{
-      height: 34px;
-      width: 400px;
-      position: relative;
-}
-.search input{
-     width: 400px;
-     height: 50px;
-      padding: 4px 10px;
-      margin: 50px 200px;
-      border: 1px solid #ccc; 
-      box-sizing: border-box;
-      border-radius: 20px;
-      outline: none;
-      background-color: #fff;
-      color: black;
-      font-size: 18px;
-  }
-   .search input:focus{
-      border-color:#053E99 ;
-  }
-  .search #searchImg{
-      height: 25px;
-      position: absolute;
-      top: 60px;
-      left: 550px;
-      margin: auto;
-  }
-   .search #searchImg img{
-  		height: 30px;
-  }
-  .search #searchImg button{
-  	  left: 350px;
-  	  border:none; 
-	  background-color:white;
-  }
-  
-  .search.focused #searchImg{
-      opacity: 0;
-  }
-  /* 검색창 끝 */
   </style>
 
 </head>
@@ -178,93 +136,30 @@
     <div class="inner">
       <!-- 로고(홈) -->
       <a href="#" class="logo"><!--/은 현재 index파일로 이동-->
-        <img src="/helloing/resources/img/logo_outline.png" alt="logo" >
+        <img src="/helloing/resources/img/business_logo.png" alt="logo" >
       </a>
 
       <div class="sub-menu">
         <ul class="menu">
-	          <!-- 로그인 안했을 때 보이는 화면 -->
-	          <li>
-	            <a href="#" >회원가입</a>
-	          </li>
-	
-	          <li>
-	            <a href="#">로그인</a>
-	          </li>
-
-
-
-            <!--로그인 시 보이는 화면-->
-          <!-- 
-            <li style="margin: auto;">
-              OOO님 반갑소잉👋
-            </li>
-             -->
           <li>
-            <a href="#">기업 회원 신청</a>
+            <a href="#">메인페이지로 가기</a>
           </li>
 
-              
-           <li>
-            <a href="#">마이페이지</a>
-          </li>
-          <!--기업회원일 시 보이는 화면-->
-          <!--사용자 화면일 경우-->
-          
-          <li>
-            <a href="#">기업관리</a>
-          </li>
-         
-          <!--기업관리 화면일 경우-->
-         
-          <li>
-            <a href="page.ad">관리자페이지</a>
-          </li>
-         
-          <!--관리자일 시 보이는 화면-->
-         <!--사용자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">관리자페이지</a>
-          </li>
-          -->
-          <!--관리자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">메인페이지</a>
-          </li>
-
-          -->
         </ul>
       </div>
-
-      <!-- 검색창 -->
-          <div class="search">
-            <form action="#" method="get">
-              <input type="text" name="keyword" placeholder="숙소명이나 액티비티명을 입력해주세요.">
-              
-              <span id="searchImg"><button type="submit" style="cursor: pointer;"><img  src="/helloing/resources/img/search.png"></button></span>
-            </form>
-          </div>
 
 
       <ul class="main-menu">
       
 		<!-- 카테고리 -->
         <li class="item">
-          <div class="item__name"><a href="accomm">🏡숙소</a></div>
+          <div class="item__name"><a href="#">🏡등록 숙소 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="activity">🎫액티비티</a></div>
+          <div class="item__name"><a href="#">🎫등록 액티비티 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >🍽️전라맛집</a></div>
-        </li>
-        <li class="item">
-          <div class="item__name" ><a href="#" >🌉전라관광</a></div>
-        </li>       
-        <li class="item">
-          <div class="item__name"><a href="selectTripBoard" >💾여행리뷰</a></div>
+          <div class="item__name" ><a href="#" >🏢기업 정보 관리</a></div>
         </li>
       </ul>
 
@@ -275,5 +170,6 @@
   <br><br><br><br><br><br>
 
 
+  </script>
 </body>
 </html>
