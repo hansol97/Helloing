@@ -12,3 +12,4 @@ public class TicketPayment {
 	private String payment; // "PAYMENT_DATE"	DATE	DEFAULT SYSDATE,
 	
 }
+  
