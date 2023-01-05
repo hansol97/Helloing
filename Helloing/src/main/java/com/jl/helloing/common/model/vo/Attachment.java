@@ -1,9 +1,9 @@
-package com.jl.helloing.board.model.vo;
+package com.jl.helloing.common.model.vo;
 
 import lombok.Data;
 
 @Data
-public class RoomAttachment {
+public class Attachment {
 
 	private int fileNo;
 	private int accommNo;
