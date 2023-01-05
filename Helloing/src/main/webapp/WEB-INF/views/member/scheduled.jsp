@@ -82,7 +82,7 @@
 		</div>
 	    <div id="table">
 	        <h1>예정된 예약</h1>
-	
+			
 	        <table>
 	            <tr>
 	                <th>예약 번호</th>
@@ -118,6 +118,8 @@
 	            </tr>
 	        </table>
 	    </div>
+	    
+
     </div>
 </body>
 </html>
