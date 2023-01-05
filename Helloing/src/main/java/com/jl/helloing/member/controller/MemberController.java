@@ -24,9 +24,16 @@ public class MemberController {
 		return "member/scheduledReservation";
 	}
 	
+	//예정된 예약
 	@RequestMapping("scheduled.hj")
-	public String Scheduled() {
+	public String scheduled() {
 		return "member/scheduledReservation";
+	}
+	
+	//지난 예약
+	@RequestMapping("last.hj")
+	public String list() {
+		return "member/lastReservation";
 	}
 	
 }
