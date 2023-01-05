@@ -135,7 +135,7 @@
     <div class="inner">
       <!-- 로고(홈) -->
       <a href="#" class="logo"><!--/은 현재 index파일로 이동-->
-        <img src="/helloing/resources/img/logo_outline.png" alt="logo" >
+        <img src="/helloing/resources/img/admin_logo.png" alt="logo" >
       </a>
 
       <div class="sub-menu">
