@@ -9,9 +9,9 @@
 <style>
 
 	.sidebar{
-		width : 1200px;
 		height: 100%;
 		margin: auto;
+		display: block;
 	}
 	.outer{
 		width : 200px;
@@ -35,8 +35,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar_user.jsp"/>
-	<br><br><br>
 	
 	<div class="sidebar">
 	    <div class="outer">
@@ -44,7 +42,7 @@
 	        <div class="category" id="book">
 		    <h2>나의 예약정보</h2>
 			<ul>
-		        <li><a href="">예정된 예약</a></li>
+		        <li><a href="scheduled.hj">예정된 예약</a></li>
 		        <li><a href="">지난 예약</a></li>
 		        <li><a href="">취소된 예약</a></li>
 		    </ul>

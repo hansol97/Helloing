@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시물 목록 조회</title>
 <style>
+    
     .content {
         background-color:rgb(247, 245, 245);
         width:1500px;
@@ -121,11 +122,11 @@
             
 
             <div id="pagingArea">
-                <button>&gt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>&lt;</button>
+                <a>&gt;</a>
+                <a>1</a>
+                <a>2</a>
+                <a>3</a>
+                <a>&lt;</a>
             </div>
             <br><br>
 

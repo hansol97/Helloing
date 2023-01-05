@@ -24,6 +24,12 @@ public class ProductController {
 		return "product/accommDetail";
 	}
 	
+	// 숙소 예약(결제) 페이지
+	@RequestMapping("reserve.accomm")
+	public String reserveAccomm() {
+		return "product/accommReserve";
+	}
+	
 	// 액티비티 메인
 	@RequestMapping("activity")
 	public String activityMain() {
