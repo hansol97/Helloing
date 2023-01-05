@@ -16,6 +16,10 @@ public class MemberController {
 	public String findId() {
 		return "member/findIdForm";
 	}
+	@RequestMapping("findPwdForm.me")
+	public String findPwd() {
+		return "member/findPwdForm";
+	}
 	
 	//혜진
 	//마이페이지 메인
