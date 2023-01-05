@@ -132,7 +132,7 @@
 				</div>
 
 				<div class="accommbox">
-					<div class="">
+					<div>
 						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
 						<p><span>슈페리어 트윈</span><br>
 							기준 2인 / 최대 2인</p>
