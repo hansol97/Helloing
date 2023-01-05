@@ -46,6 +46,17 @@
 	font-size: 25px;
 	font-weight: bold;
 }
+#btn-wish{
+	width: 250px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: white;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
 /* 사이드바 끝 */
 
 
@@ -272,8 +283,20 @@
 					</table>
 				</div>
 
+				<script>
+					$(function(){
+						// 예약 버튼 클릭 시 결제 페이지로 이동
+						$(document).on('click', '.accommbox', function(){
+							var $roomNo = $(this).children().eq(0).val();
+							//console.log($roomNo);
+		                    location.href = "reserve.accomm"; // 나중에 겟방식 url로 바꾸기
+						})
+					})
+				</script>
+
 				<div>
 					<div class="accommbox"><!-- 객실 포문 돌리기~ -->
+						<input type="hidden" name="" value="1">
 						<div class="first">
 							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
 							<p><span>슈페리어 트윈</span><br>
@@ -446,6 +469,7 @@
 				<div class="accommselectbox">
 					<p>1박 <span>65,000원 ~</span></p>
 					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
 				</div>
 			</div>
 		</div>
