@@ -10,9 +10,14 @@ public class MemberController {
 	public String loginMember() {
 		return "member/login";
 	}
+	
+	//혜진
+	//마이페이지 메인
 	@RequestMapping("myPage.hj")
 	public String myPage() {
 		
 		return "member/myPage";
 	}
+	
+	
 }
