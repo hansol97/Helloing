@@ -48,7 +48,7 @@
   /* Header */
   header{
       width: 100%;
-      background-color: white;
+      background-color: #d3d3d3;
       border-bottom: 1px solid #c8c8c8;
       position: fixed;
       top:0;
@@ -125,56 +125,6 @@
       color:#053E99 !important;
       border-radius: 6px 6px 0 0;
   }
-
-  /* 카데고리 내 카테고리 시작 */
-
-  header .main-menu .item .item_contents{
-      width: 21%;
-      position: fixed;
-      left: 0;
-      display: none;
-  }
-  header .main-menu .item:hover .item_contents{
-    display: block;
-  }
-  header .main-menu .item .item_contents .contents_menu{
-      background-color: #FFEA24;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul{
-      display: flex;
-      padding: 20px 0;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li{
-      width: 220px;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li h4{
-      padding: 3px 0 12px 0;
-      font-size: 20px;
-      color: #fff;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li h4{
-      padding: 3px 0 12px 0;
-      font-size: 20px;
-      color: #fff;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li h4 a{
-      padding: 3px 0 12px 0;
-      font-size: 18px;
-      color: #fff;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li ul li{
-      padding: 5px 0;
-      font-size: 15px;
-      color: black;
-      cursor: pointer;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li h4 a:hover{
-  	font-size : 20px;
-  }
-  header .main-menu .item .item_contents .contents_menu>ul>li ul li a:hover{
-      color:#fff ;
-  }
-  /* 끝 */
   </style>
 
 </head>
@@ -190,6 +140,9 @@
 
       <div class="sub-menu">
         <ul class="menu">
+          <li>
+	      	<h4 style="padding : 10px;">반갑소잉 관리자님, 환영합니다.😊</h4>
+	      </li>
           <li>
             <a href="#">메인페이지로 가기</a>
           </li>
