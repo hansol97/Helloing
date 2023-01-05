@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반갑소잉</title>
@@ -12,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
   <style>
   @font-face {
      font-family: 'S-CoreDream-3Light';
@@ -114,6 +117,7 @@
       font-size: 17px;
       font-weight: 600;
       text-align: center;
+      border-bottom: 5px solid #d3d3d3;
   }
   header .main-menu .item:hover .item__name{
       border-bottom: 5px solid #FFEA24;
@@ -124,6 +128,8 @@
       color:#053E99 !important;
       border-radius: 6px 6px 0 0;
   }
+
+ 
   </style>
 
 </head>
@@ -154,7 +160,7 @@
       
 		<!-- 카테고리 -->
         <li class="item">
-          <div class="item__name"><a href="accomm">👤회원 관리</a></div>
+          <div class="item__name"><a href="memList.ad">👤회원 관리</a></div>
         </li>
         <li class="item">
           <div class="item__name"><a href="activity">📄게시글 관리</a></div>

@@ -4,15 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- 부트스트랩에서 제공하고 있는 스타일 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>회원 조회</title>
 <style>
-    .content {
+    .admin-content {
         background-color:rgb(247, 245, 245);
         width:1500px;
         margin:auto;
     }
-    .innerOuter {
+    .admin-innerOuter {
         border:1px solid lightgray;
         width:1200px;
         margin:auto;
@@ -43,14 +47,17 @@
     }
 
 </style>
+
 </head>
 <body>
-    <jsp:include page="../common/header.jsp" />
 
-    <div class="content">
+    <jsp:include page="menubar_admin.jsp"/>
+    
 
-        <div class="innerOuter">
+    <div class="admin-content">
 
+        <div class="admin-innerOuter">
+            <br><br>
             <table>
                 <tr>
                     <form id="searchForm" action="" method="get">
