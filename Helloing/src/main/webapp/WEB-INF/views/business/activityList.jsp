@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록한 액티비티 조회</title>
 </head>
 <body>
-dsf
+		
+	<h1>액티비티 나와라</h1>
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
 </body>
 </html>
