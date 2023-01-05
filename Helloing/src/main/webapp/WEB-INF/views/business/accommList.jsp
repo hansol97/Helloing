@@ -13,15 +13,14 @@
 
 </head>
 <body>
-       
+    
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <!--<img src="resources/img/business_logo.png" alt="첫번째 호텔 사진">-->
+                <!--"첫번째 호텔 사진"-->
                 <div class="photo" style="background-image: url(resources/img/business_logo.png)"></div>
-                <div class="photo" style="background-image: url(../../../../webapp/resources/img/admin_logo.png)"></div>
               </div>
               <div class="description">
                 <h1>정말로 비싼 바로 그 호텔</h1>
