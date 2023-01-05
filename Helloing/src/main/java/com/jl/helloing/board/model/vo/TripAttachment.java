@@ -1,5 +1,8 @@
 package com.jl.helloing.board.model.vo;
 
+import lombok.Data;
+
+@Data
 public class TripAttachment {
 
 	private int fileNo; // FILE_NO	NUMBER
