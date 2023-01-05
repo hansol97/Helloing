@@ -86,9 +86,9 @@ border: 1px solid black;
 					<label for="email"> 이메일  </label>
 					<input type="email" class="findEmail" id="email" name="email" required>	
 					<br>
-					<input type="text" class="authNum" id="authNum" name="authNum" required>
+					<input type="text" class="authNum" id="authNum" name="authNum" required placeholder="인증번호">
 					<br>
-					<button type="button" class="authButton" onclick="authNum();">인증</button>	
+					<button type="button" class="authButton" onclick="authNum();" >인증</button>	
 					<br><br><br><br>
 
 					<button type="submit" class="findButton"> 비밀번호 찾기 </button>
