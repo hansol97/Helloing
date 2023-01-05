@@ -20,10 +20,31 @@
 .info-content{	
 	width: 440px;
 }
+#login-pwd, #login-id {
+	width: 95%;
+height: 30px;
+font-size: larger;
+
+}
 
 .login-button{
 	width: 80%;
 	height: 50px;
+}
+.login-button{
+
+width: 100%;
+height: 40px;
+font-weight: bold;	
+color: white;
+background-color: #053E99;
+border: 0;
+border-radius: 3px;
+
+}
+button:hover{
+	color: #FFEA24;
+	cursor: pointer;
 }
 
 </style>
