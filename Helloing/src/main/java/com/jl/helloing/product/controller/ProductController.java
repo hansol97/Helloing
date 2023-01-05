@@ -18,6 +18,12 @@ public class ProductController {
 		return "product/accommSearch";
 	}
 	
+	// 숙소 상세 페이지
+	@RequestMapping("detail.accomm")
+	public String DetailAccomm() {
+		return "product/accommDetail";
+	}
+	
 	// 액티비티 메인
 	@RequestMapping("activity")
 	public String activityMain() {
