@@ -61,13 +61,6 @@
                 </div>
 
             </form>
-            <script>
-						function enrollPage(){
-						
-							location.href = "findIdForm.me"
-		
-						}
-					</script>
         </div>
 
 </div>
