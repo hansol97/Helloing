@@ -62,7 +62,7 @@ button:hover{
 	<br><br><br><br>
 	<div class="outer">
 		<div class="info-box">
-			<div class="info-innor">
+			<div class="info-inner">
 				<div class="info-img" align="center">
 					<img src="/helloing/resources/img/logo_outline.png" alt="logo" >
 				</div>
