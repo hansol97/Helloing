@@ -92,7 +92,7 @@
 	
 	<div style="height: 70px;"></div>
 	
-	<div class="inner">
+	<div class="inner">  
         <div class="top-content">
             <form action="search.accomm" method="">
                 <h1>어떤 숙소 찾으세요?</h1>
