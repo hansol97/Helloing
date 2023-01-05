@@ -46,6 +46,17 @@
 	font-size: 25px;
 	font-weight: bold;
 }
+#btn-wish{
+	width: 250px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: white;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
 /* 사이드바 끝 */
 
 
@@ -446,6 +457,7 @@
 				<div class="accommselectbox">
 					<p>1박 <span>65,000원 ~</span></p>
 					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
 				</div>
 			</div>
 		</div>
