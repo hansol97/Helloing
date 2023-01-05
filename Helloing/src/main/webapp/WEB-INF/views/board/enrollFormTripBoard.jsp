@@ -5,61 +5,91 @@
 <head>
 <meta charset="UTF-8">
 <title>enrollFormTripBoard</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <style>
-        .content {
-            background-color:rgb(247, 245, 245);
-            width:80%;
+        .reviewContent {
+            width:1100px;
             margin:auto;
         }
         .innerOuter {
             border:1px solid lightgray;
             width:80%;
+            height:800px;
             margin:auto;
             padding:5% 10%;
             background-color:white;
         }
+		.innerOuter > pre {
+			font-size:50px;
+			font-weight:500px;
+		}
+		.font {
+			font-size:30px;
+			font-weight:350px;
+		}		
+	#title {
+		width:800px;
+		height:30px;
+	}
+	.inputReview{
+		width:800px;
+		height:200px;
+	}
+	.ReviewButton1 {
+		width:150px;
+		height:50px;
+		background-color:lightblue;
 
-        #enrollForm>table {width:100%;}
-        #enrollForm>table * {margin:5px;}
+	}
+	.ReviewButton2 {
+		width:150px;
+		height:50px;
+		background-color:orange;
+	}
     </style>
 </head>
 <body>
 
 	<jsp:include page="../common/menubar_user.jsp"/>
-
-    <div class="content">
+	
+    <div class="reviewContent">
         <br><br>
         <div class="innerOuter">
-            <h2>여행리뷰 작성하기</h2>
-            <br>
+            <pre align="center">여행리뷰 작성하기</pre>
+            <hr><br>
 
-            <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data">
-                <table algin="center">
+            <form id="insertTripBOard" method="post" action="insertTripBoard" enctype="multipart/form-data">
+				<div align="center">
+                    <div>
+                        <th><label for="title" class="font">제목</label></th><br>
+                    </div>
+                        <td><input type="text" id="title" class="inputTitle" name="boardTitle" required></td>
+                        
                     <tr>
-                        <th><label for="title">제목</label></th>
-                        <td><input type="text" id="title" class="form-control" name="boardTitle" required></td>
+                        <td><input type="hidden" id="writer" class="form-control" value="${ loginUser.userId }" name="boardWriter" readonly></td>
                     </tr>
+                    
+                    <br><br><br><br>
+                    
+                    <div>
+                        <div><label for="content" class="font">내용</label></div><br>
+                        <td><textarea id="content" class="inputReview" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
+                    </div>
+                    
+                    <br><br>
+                    
                     <tr>
-                        <th><label for="writer">작성자</label></th>
-                        <td><input type="text" id="writer" class="form-control" value="${ loginUser.userId }" name="boardWriter" readonly></td>
-                    </tr>
-                    <tr>
-                        <th><label for="upfile">첨부파일</label></th>
+                        <th><label for="upfile" class="font">첨부파일</label></th><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <td><input type="file" id="upfile" class="form-control-file border" name="upfile"></td>
                     </tr>
-                    <tr>
-                        <th><label for="content">내용</label></th>
-                        <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
-                    </tr>
-                </table>
-                <br>
-
-                <div align="center">
-                    <button type="submit" class="btn btn-primary">등록하기</button>
-                    <button type="reset" class="btn btn-danger">취소하기</button>
+                	
+					<br><br><br><br>	
+					
+	                <div align="center">
+	                    <button type="submit" class="ReviewButton1">등록하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <button type="reset" class="ReviewButton2">취소하기</button>
+	                </div>
                 </div>
             </form>
         </div>

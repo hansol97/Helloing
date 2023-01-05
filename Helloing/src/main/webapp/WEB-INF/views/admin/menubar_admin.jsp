@@ -114,6 +114,7 @@
       font-size: 17px;
       font-weight: 600;
       text-align: center;
+      border-bottom: 5px solid #d3d3d3;
   }
   header .main-menu .item:hover .item__name{
       border-bottom: 5px solid #FFEA24;
@@ -124,6 +125,29 @@
       color:#053E99 !important;
       border-radius: 6px 6px 0 0;
   }
+
+  /* 관리자 메뉴바 */
+  .main-menu{
+      list-style : none;
+      /* ul요소는 기본적으로 위, 아래 margin이 존재한다. 심지어 padding도 있다. */
+      margin: 0px;
+      padding: 0px;
+  }
+
+  .main-menu > li > ul {
+      list-style : none;
+      padding : 0px;
+      display : none; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과 */
+  }
+
+  .main-menu > li > a:hover + ul{
+      display :block; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과2 */
+  }
+
+  .main-menu > li > ul:hover {
+      display : block; /* 평소에는 안보이다가 마우스가 올라가는 순간 펼쳐지는 효과3 */
+  }
+ 
   </style>
 
 </head>
@@ -154,7 +178,7 @@
       
 		<!-- 카테고리 -->
         <li class="item">
-          <div class="item__name"><a href="accomm">👤회원 관리</a></div>
+          <div class="item__name"><a href="memList.ad">👤회원 관리</a></div>
         </li>
         <li class="item">
           <div class="item__name"><a href="activity">📄게시글 관리</a></div>
