@@ -147,25 +147,12 @@
             // scrollToTop.onclick(function() { window.scrollTo({ top: 0, behavior: "smooth" })});
 
         $(function () {
-          $(document).on("click", ".more", function () {
+          $(".more").click(function(){
             $(this).siblings(0).toggle(500);
-            // if (
-            //   $(this).attr("src") ==
-            //   "resources/img/IHimg/more.png"
-            // ) {
-            //   $(this).attr(
-            //     "src",
-            //     "resources/img/IHimg/more.png"
-            //   );
-              
-            // } else {
-            //   $(this).attr(
-            //     "src",
-            //     "resources/img/IHimg/more.png"
-            //   );
-            // }
-          });
+          })
         });
+
+
         </script>
         
 

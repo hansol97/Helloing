@@ -289,16 +289,23 @@ a:hover {
 .more_details, .more_buttons, .more_button {
     float: right;
 }
+.more_buttons{
+    display: none;
+}
 .more_button{
-    /* display: none; */
+   
     margin: 3px;
     height: 25px;
     width: 90px;
     padding: 1px;
     border: 1px black solid;
-    background: none;
+    background: rgba(252, 252, 244, 0.761);
     color: inherit;
     position: relative;
-    z-index: 1;
+    z-index: 1; 
+}
 
+.more_button:hover{
+   font-size:large;
+   background: rgba(136, 238, 129, 0.761);
 }
