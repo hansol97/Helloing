@@ -41,36 +41,17 @@
 </head>
 <body>
 	<div class="innor">
+		<div class="findId-form">
+			<form action="findId.me" method="post">
+			
+			</form>
 		
-		    <div id="findIdForm_wrap">
-
-        <div class="container">
-            
-            <br><br><br>
-            <h2>회원정보 찾기</h2>      
-            <br><br><br>   
-            
-            <form action="=findId.me" method="post">
-
-                <div id="Findform">
-                    <button type="button" class="btn btn-outline-secondary">아이디 찾기</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="findPwd();">비밀번호 찾기</button><br><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;이름 : <input type="text" placeholder="홍길동" name="findName"><br>
-                    이메일 : <input type="text" placeholder="ddd" name="findEmail"><br><br>
-                    <button class="btn btn-outline-success" type="submit" style="width: 250px;">확인</button>
-                </div>
-
-            </form>
-            <script>
-						function enrollPage(){
-						
-							location.href = "findIdForm.me"
 		
-						}
-					</script>
-        </div>
+		</div>
+	
 
-</div>
+        
+
 	
 	
 	

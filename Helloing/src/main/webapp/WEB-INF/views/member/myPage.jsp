@@ -9,9 +9,9 @@
 <style>
 
 	.sidebar{
-		width : 1200px;
 		height: 100%;
 		margin: auto;
+		display: block;
 	}
 	.outer{
 		width : 200px;
