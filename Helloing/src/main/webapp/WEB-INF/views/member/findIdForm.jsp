@@ -7,13 +7,21 @@
 <title>아이디 찾기 폼</title>
 <style>
 
+.findId-form button{
 
 
-
-
-.findId-form{
-	border: 1px solid black;
+width: 310px;
+height: 40px;
+font-weight: bold;	
+color: white;
+background-color: #042f75;
+border: 0;
+border-radius: 3px;
 }
+
+
+
+
 
 
 .findId-form label{
@@ -26,7 +34,7 @@ font-weight: 800;
 
 }
 </style>
-</head>
+</head>	
 <body>
 
 	<jsp:include page="../common/menubar_user.jsp"/>
@@ -38,6 +46,7 @@ font-weight: 800;
 	<br><br><br><br>
 	<h1> 아이디 찾기 </h1>
 	<br><br><br><br>	
+		
 		
 		<div class="findId-form">
 			<div class="findId-box">
