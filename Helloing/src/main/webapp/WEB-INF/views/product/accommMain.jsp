@@ -90,9 +90,9 @@
 <body>
 	<jsp:include page="../common/menubar_user.jsp"/> <!-- 헤더를 넣으니까 검색창이 헤더 밑으로 간다... relative, absolute 속성 때문일까? -->
 	
-	<div style="height: 70px;"></div>  
+	<div style="height: 70px;"></div>
 	
-	<div class="inner">  
+	<div class="inner">
         <div class="top-content">
             <form action="search.accomm" method="">
                 <h1>어떤 숙소 찾으세요?</h1>
