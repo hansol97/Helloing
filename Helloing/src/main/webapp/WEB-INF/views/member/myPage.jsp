@@ -5,9 +5,72 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
+<style>
+
+	.sidebar{
+		width : 800px;
+		
+	}
+	.outer{
+		width : 200px;
+		padding : 20px;
+        border-right: 1px solid lightgray;
+	}
+    .outer h2{
+        font-weight: 600;
+        font-size: 30px;
+        
+    }
+    .outer .category{
+    	padding-bottom :10px;
+    }
+    .outer ul li{
+    	padding : 5px;
+    }
+    
+</style>
 </head>
 <body>
-
+	<jsp:include page="../common/menubar_user.jsp"/>
+	<br><br><br>
+	
+	<div class="sidebar">
+	    <div class="outer">
+	    
+	        <div class="category" id="book">
+		    <h2>나의 예약정보</h2>
+			<ul>
+		        <li><a href="">예정된 예약</a></li>
+		        <li><a href="">지난 예약</a></li>
+		        <li><a href="">취소된 예약</a></li>
+		    </ul>
+	        </div>
+	
+	        <div class="category" id="user">
+	            <h2>나의 계정정보</h2>
+	            <ul>
+	                <li><a href="">회원 정보 수정</a></li>
+	                <li><a href="">나의 여행 리뷰 조회</a></li>
+	                <li><a href="">찜한 숙소 조회</a></li>
+	                <li><a href="">찜한 액티비티 조회</a></li>
+	            </ul>
+	        </div>
+	
+	        <div class="category" id="planner">
+	            <h2>My Planner</h2>
+	            <ul>
+	                <li><a href="">나의 여행</a></li>
+	            </ul>
+	        </div>
+	
+	        <div class="category" id="cs">
+	            <h2>고객센터</h2>
+	            <ul>
+	                <li><a href="">1:1 문의 내역</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
 </body>
 </html>
