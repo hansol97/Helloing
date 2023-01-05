@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class BoardController {
+public class TripBoardController {
 	/*
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping("selectBoard")
+	@RequestMapping("selectTripBoard")
 	public String enrollForm() {
-		return "board/selectBoard";
+		return "board/selectTripBoard";
 	}
 	
-	@RequestMapping("insertBoard")
+	@RequestMapping("insertTripBoard")
 	public String insertBoard(Board board, MultipartFile upfile, HttpSession session, Model model) {
 		
 		if(!upfile.getOriginalFilename().equals("")) { // getOriginalFileName == filename필드의 값을 반환함

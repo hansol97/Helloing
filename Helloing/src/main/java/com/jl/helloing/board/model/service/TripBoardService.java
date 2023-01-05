@@ -1,6 +1,6 @@
 package com.jl.helloing.board.model.service;
 
-public interface BoardService {
+public interface TripBoardService {
 
 /*
 	// 게시글 총 개수 조회
