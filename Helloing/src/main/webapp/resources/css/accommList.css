@@ -212,6 +212,9 @@ a:hover {
     position: relative;
     z-index: 1;
   }
+  .nomore{
+    text-align: center;
+  }
 
 /* 등록숙소조회페이지입니다 표시 */
 .accommTitle {
@@ -263,4 +266,17 @@ a:hover {
   .blog-card.alt .details {
     padding-left: 25px;
   }
+}
+
+/* 위로가기 */
+.scrollToTop{
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #7f9bc9bb ;
+
+}
+
+.scrollToTop:hover{
+    background-color: #84aec3bb ;
 }

@@ -13,6 +13,7 @@
 
 </head>
 <body>
+    <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     
     
@@ -31,7 +32,18 @@
                 <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
               </div>
               <div class="description">
-                <h1>이곳이 바로 숙소 이름을 쓰는 곳입니다</h1><br>
+                <h1>이곳이 바로 숙소 이름을 쓰는 곳입니다</h1>                                            
+                <div class="more_details">
+                    <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
+                    <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
+                    <div class="more_buttons">
+                        <button class="more_button">팔로우</button>
+                        <button class="more_button report_modal">신고</button>
+                        <button class="more_button">수정</button>
+                        <button class="more_button">삭제</button>
+                    </div>
+                </div>
+                <br>
                 <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div>
                 <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
                     내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
@@ -124,13 +136,26 @@
           </div>
 
         <!-- 반복 끝 -->
-            
         
+        <br><br><br>
+        <div class="nomore">더 이상 숙소가 없습니다 <br><br>
+            <a class="scrollToTop" href="">🔝맨 위로 이동🔝</a>
+        </div>
+        <script>
+            let scrollToTop = document.querySelector(".scrollToTop");
+            scrollToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+            // scrollToTop.onclick(function() { window.scrollTo({ top: 0, behavior: "smooth" })});
+        </script>
         
 
       
-      </div>
-      </div>
+
+
+
+
+
+    </div>
+    </div>
 
 
 
