@@ -8,8 +8,8 @@
 </head>
 <body>
 	<jsp:include page="common/menubar_user.jsp"/>
-	<br>
-	<jsp:include page="admin/menubar_admin.jsp"/>
+	
+	
 	
 	<br><br><br><br><br><br><br><br>
 	<a href="accommList.bu">accommList.jsp로</a><br>
