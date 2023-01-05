@@ -1,5 +1,6 @@
 package com.jl.helloing.board.model.vo;
 
+
 import lombok.Data;
 
 @Data
