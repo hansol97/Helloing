@@ -24,7 +24,10 @@ public class MemberController {
 	public String updatePwd() {
 		return "member/newFindPwd";
 	}
-	
+	@RequestMapping("terms.me")
+	public String terms() {
+		return "member/terms";
+	}
 	
 	//혜진
 	//마이페이지 메인
