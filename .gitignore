@@ -10,7 +10,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
+
 .loadpath
 .recommenders
 
@@ -99,7 +99,5 @@ replay_pid*
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java
 
 /Servers
-.classpath
-.project
-web.xml
+
 MANIFEST.MF
