@@ -32,8 +32,14 @@ public class MemberController {
 	
 	//지난 예약
 	@RequestMapping("last.hj")
-	public String list() {
+	public String last() {
 		return "member/lastReservation";
+	}
+	
+	//취소된 예약
+	@RequestMapping("cancelled.hj")
+	public String cancelled() {
+		return "member/cancelledReservation";
 	}
 	
 }
