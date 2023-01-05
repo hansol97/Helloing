@@ -73,6 +73,11 @@ hr{
 	margin-left: 10px;
 }
 
+#insertBoard{
+	width : 100px;
+	height : 30px;
+	background-color : lightblue;
+}
 </style>
 </head>
 <body>
@@ -81,9 +86,12 @@ hr{
 	
 	<div style="height: 70px;"></div>
         
+        
         <div class="middle-content" align="center">
             <div class="inner" align="center">
-                <br>
+            
+        	<button id="insertBoard" onclick="insertBoard">리뷰작성</button> <!-- 로그인 된 상태에서 글 작성 보여지게 -->
+                <br><br>
                 <div class="product-list">
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
                         <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
@@ -146,5 +154,14 @@ hr{
         </div>
 		
 	</div>
+	
+	<script>
+	    function insertReview(){
+	        location.href = "/insertBoard"
+	    }
+	</script>
+	
+	
+	
 </body>
 </html>

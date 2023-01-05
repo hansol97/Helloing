@@ -8,8 +8,11 @@ public class BoardController {
 
 	@RequestMapping("selectBoard")
 	public String enrollForm() {
-		return "board/boardEnrollForm";
+		return "board/selectBoard";
 	}
+	
+	@RequestMapping("insertBoard")
+	public 
 	
 	
 }
