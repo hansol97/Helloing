@@ -65,8 +65,7 @@
       margin: auto;
   }
   header .logo img{
-    height: 70%;
-    margin-top: 20px;
+    height: 100%;
   }
   header .sub-menu{
       position:absolute;
