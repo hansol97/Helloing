@@ -13,9 +13,11 @@
 
 </head>
 <body>
-    
+    <jsp:include page="menubar_business.jsp"/>
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
+            <br><br><br>
+            <!-- 반복 시작 -->
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
@@ -23,8 +25,9 @@
                 <div class="photo" style="background-image: url(resources/img/business_logo.png)"></div>
               </div>
               <div class="description">
-                <h1>정말로 비싼 바로 그 호텔</h1>
-                <h2 class="pt-1 pb-4">Sed venenatis elit id ligula cursus sollicitudin</h2>
+                <h1>이곳이 바로 숙소 이름을 쓰는 곳입니다</h1><br>
+                <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
+                <div>객실좀 써볼까?</div>
                 <p class="read-more">
                   <a href="#" target="_blank">Click Here</a>
                 </p>
@@ -34,7 +37,7 @@
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <div class="photo" style="background-image: url()"></div>
+                <div class="photo" style="background-image: url(resources/img/business_logo.png)"></div>
               </div>
               <div class="description">
                 <h1>제발 좀 먹어라</h1>
@@ -48,7 +51,7 @@
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card w-100">
               <div class="meta">
-                <div class="photo" style="background-image: url()"></div>
+                <div class="photo" style="background-image: url(resources/img/business_logo.png)"></div>
               </div>
               <div class="description">
                 <h1>Lorem ipsum dolor sit amet</h1>

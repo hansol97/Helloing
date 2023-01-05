@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 	//승준
 	//로그인
-	@RequestMapping("login")
+	@RequestMapping("login.me")
 	public String loginMember() {
 		return "member/login";
 	}
 	//아이디찾기
-	@RequestMapping("findIdForm")
+	@RequestMapping("findIdForm.me")
 	public String findId() {
 		return "member/findIdForm";
 	}
