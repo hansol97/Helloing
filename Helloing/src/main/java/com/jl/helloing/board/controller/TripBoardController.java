@@ -16,15 +16,15 @@ public class TripBoardController {
 	private TripBoardService tripboardService;
 	*/
 	
-	@RequestMapping("selectTripBoard")
+	@RequestMapping("tripBoard")
 	public String selectTripBoard() {
 		System.out.println(123);
-		return "board/selectTripBoard";
+		return "board/tripBoard";
 	}
 	
 	@RequestMapping("enrollTripBoard")
 	public String enrollTripBoard() {
-		return "board/enrollFormTripBoard";
+		return "board/tripBoardEnrollForm";
 	}
 	
 	/*
@@ -77,9 +77,23 @@ public class TripBoardController {
 	}
 	*/
 	
-	@RequestMapping("selectTripBoardDetail")
+
+	@RequestMapping("tripBoardDetail")
 	public String selectTripBoardDetail() {
-		
+		return "board/tripBoardDetail";
 	}
+
+	@RequestMapping("updateTripBoard")
+	public String updateTripBoard() {
+		return "board/updateTripBoard";
+	}
+	
+	@RequestMapping("deleteTripBoard")
+	public String deleteTripBoard() {
+		return "board/deleteTripBoard";
+	}
+	
+	
+	
 	
 }

@@ -98,79 +98,71 @@ hr{
                 <div class="product-list">
 					
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    					
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                    	<div class="bno">
+                    	<div class="bno">  </div>
 	                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
 	                        <div>
 	                            <p><span>OO팬션 마음에 들어요</span><br> <!-- N 글자 넘어가면 ... 만들기 -->
 	                            등록일 : 2023.01.01</p>
 	                        </div>
-                        </div>
                     </div>	                    
                     
-                    
+                    	
                     					                                                                                                 
                 </div>
             </div>
@@ -180,7 +172,7 @@ hr{
 	<script>
 		$(function(){
 			$('.productbox').click(function(){
-				location.href = 'detailTripBoard?bno=' + $(this).children('.bno').text();
+				location.href = 'tripBoardDetail?bno=' + $(this).children('.bno').text();
 			});
 		});
 	</script>
