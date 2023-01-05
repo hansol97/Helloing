@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시물 목록 조회</title>
 <style>
+    
     .content {
         background-color:rgb(247, 245, 245);
         width:1500px;
