@@ -262,7 +262,7 @@
           <div class="item__name" ><a href="#" >🌉전라관광</a></div>
         </li>       
         <li class="item">
-          <div class="item__name"><a href="#" >💾여행리뷰</a></div>
+          <div class="item__name"><a href="selectBoard" >💾여행리뷰</a></div>
         </li>
       </ul>
 
@@ -272,7 +272,7 @@
   </header>
   <br><br><br><br><br><br>
 
-  
+
   </script>
 </body>
 </html>
