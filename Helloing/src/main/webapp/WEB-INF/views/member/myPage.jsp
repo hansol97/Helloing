@@ -35,8 +35,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar_user.jsp"/>
-	<br><br><br>
 	
 	<div class="sidebar">
 	    <div class="outer">
