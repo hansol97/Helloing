@@ -9,8 +9,9 @@
 <style>
 
 	.sidebar{
-		width : 800px;
-		
+		height: 100%;
+		margin: auto;
+		display: block;
 	}
 	.outer{
 		width : 200px;
@@ -19,8 +20,8 @@
 	}
     .outer h2{
         font-weight: 600;
-        font-size: 30px;
-        
+        font-size: 25px;
+        padding : 10px;
     }
     .outer .category{
     	padding-bottom :10px;
@@ -28,7 +29,9 @@
     .outer ul li{
     	padding : 5px;
     }
-    
+	.outer .sidebar ul li a{
+	 font-size : 15px;
+	}    
 </style>
 </head>
 <body>
@@ -41,7 +44,7 @@
 	        <div class="category" id="book">
 		    <h2>나의 예약정보</h2>
 			<ul>
-		        <li><a href="">예정된 예약</a></li>
+		        <li><a href="scheduled.hj">예정된 예약</a></li>
 		        <li><a href="">지난 예약</a></li>
 		        <li><a href="">취소된 예약</a></li>
 		    </ul>

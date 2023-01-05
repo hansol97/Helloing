@@ -8,24 +8,16 @@
 
 <style>
 
-.middle-content {
-	display: flex;
-	justify-content: space-between;
-}
-.side-bar {
-	width: 280px;
-	padding: 0px 5px;
-}
-.main {
-	width: 800px;
-}
+.middle-content { display: flex; justify-content: space-between; }
+.side-bar { width: 280px; padding: 0px 5px; }
+.main { width: 800px; }
+hr{ margin: 15px 0px; }
 
 /* 사이드바 */
 .accommselectbox{
 	border: 1px solid gray;
 	text-align: center;
 	padding: 10px;
-
 	position: fixed;
 }
 .accommselectbox button{
@@ -37,25 +29,28 @@
 	color: white;
 	border: 0;
 	border-radius: 3px;
-	margin-top: 20px;
+	margin: 40px 0px 10px 0px;
 }
-.accommselectbox p{
-	font-size: 20px;
-}
-.accommselectbox span{
-	font-size: 25px;
+.accommselectbox p{ font-size: 20px; }
+.accommselectbox span{ font-size: 25px; font-weight: bold; }
+#btn-wish{
+	width: 250px;
+	height: 50px;
+	font-size: 18px;
 	font-weight: bold;
+	background-color: white;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin: 10px 0px;
 }
 /* 사이드바 끝 */
 
 
 /* 메인 */
-.top-info{
-	display: flex;
-	justify-content: space-between;
-}
-.accommName{
-	font-size: 40px;
+.top-info{ display: flex; justify-content: space-between; }
+.acticityName{
+	font-size: 30px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
@@ -65,82 +60,49 @@
 	border: 1px solid gray;
 	border-radius: 3px;
 }
-.middle-info{
-	display: flex;
-	margin: 20px 0px;
-}
-.middle-info>div{
-	width: 400px;
-}
 
-.images{
-	border: 1px solid gray;
-}
-.sub-images{
-	display: flex;
-	justify-content: space-between;
-}
+.images{ border: 1px solid gray; margin-bottom: 20px; }
+.sub-images{ display: flex; justify-content: space-between; }
 
-/* 인원, 날짜 재검색 */
-.selectoption{
-	margin: 20px 0px;
-	border: 1px solid gray;
+/* 티켓 선택 */
+.ticketlist{
+	background-color: rgb(230, 230, 230);
+	padding: 10px 0px;
+	margin-bottom: 30px;
 }
-.researchtable{
-	margin: 5px 30px;
-}
-.researchtable input, .researchtable select{
-	width: 90%;
-	height: 30px;
-}
-.researchtable button{
-	width: 100px;
-	height: 30px;
-	border: 0px;
+.ticketbox{
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border: 1px solid lightgray;
 	border-radius: 3px;
-	background-color: #053E99;
-	color: white;
-	font-weight: bold;
-}
-/* 인원, 날짜 재검색 끝 */
-
-/* 객실 상품들 */
-.accommbox{
-	border: 1px solid gray;
 	padding: 10px;
-	margin-bottom: 10px;
+	margin: 10px 20px;
 }
-.first{
-	display: flex;
-	align-items: center;
-}
-.second{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.second button{
-	width: 60px;
+.ticket-info{ width: 400px; }
+.ticket-price{ width: 150px; }
+.ticket-price span{ font-size: 25px; }
+.ticket-count{ width: 200px; }
+.ticket-count button{
+	border: 1px solid lightgray;
+	border-radius: 70px;
+	width: 40px;
 	height: 40px;
-	border: 0;
-	border-radius: 3px;
-	background-color: #053E99;
-	color: white;
-	font-weight: bold;
+	font-size: 40px;
+	font-weight: 50;
+	line-height: 30px;
 }
-/* 객실 상품들 끝 */
+.ticket-count span{ font-size: 25px; margin: 0px 10px; }
+.ticketName{ font-size: 20px; }
+/* 티켓 선택 끝 */
 
 .explanation{
 	display: flex;
 	padding: 10px;
 	margin-bottom: 10px;
 }
-.title{
-	width: 300px;
-}
-.title span{
-	font-size: 20px;
-}
+.title{ width: 300px; }
+.title span{ font-size: 20px; }
 
 /* 리뷰 */
 .reviewtitle{
@@ -182,12 +144,10 @@
 /* 정렬버튼 끝 */
 
 .reviewbox{
-	display: flex;
-	justify-content: space-between;
-	margin: 20px 0px;
+	font-size: 14px;
 }
 .review-content{
-	font-size: 20px;
+	font-size: 16px;
 	margin: 5px 0px;
 }
 .tag{
@@ -226,17 +186,14 @@
 			<div class="main">
 
 				<div class="top-info">
-					<sapn class="accommName">서귀포 퍼스트 호텔</sapn>
-					<button>🗺️ 위치보기</button>
+					<sapn class="acticityName">[QR바로입장] 롯데월드 어드벤처 종합이용권</sapn>
 				</div>
 				<div>
-					<p>4성급<br>
-						⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p>⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
-				<div class="middle-info">
-					<div>📌 제주 서귀포시 명동로 46</div>
-					<div>🕒 체크인 15:00 ~ 체크아웃 11:00</div>
+				<div>
+					<p>📆 유효기간 (2023.01.01 ~ 2023.03.25) 내 사용</p>
 				</div>
 				<hr>
 
@@ -249,80 +206,52 @@
 					</div>
 				</div>
 
-				<div class="selectoption">
-					<table class="researchtable">
-						<tr>
-							<td width="250">날짜</td>
-							<td width="200">인원</td>
-						</tr>
-						<tr>
-							<td><input type="date"></td>
-							<td>
-								<select> <!-- 나중에 자바스크립트로 포문돌리기 -->
-									<option>2명</option>
-									<option>3명</option>
-									<option>4명</option>
-									<option>5명</option>
-									<option>6명</option>
-									<option>7명</option>
-								</select>
-							</td>
-							<td><button>재검색</button></td>
-						</tr>
-					</table>
-				</div>
-
 				<div>
-					<div class="accommbox"><!-- 객실 포문 돌리기~ -->
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
+					<div class="ticketlist"><!-- 티켓 포문 돌리기~ -->
+						<div class="ticketbox">
+							<div class="ticket-info">
+								<p><span class="ticketName">종일 종합이용권 1인</span><br>
+									* 주중/주말 공통<br>
+									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+							</div>
+							<div class="ticket-price">
+								<span>38,600원</span>
+							</div>
+							<div class="ticket-count">
+								<button>-</button>
+								<span class="count">0</span>
+								<button>+</button>
+							</div>
 						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
+						<div class="ticketbox">
+							<div class="ticket-info">
+								<p><span class="ticketName">종일 종합이용권 1인</span><br>
+									* 주중/주말 공통<br>
+									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+							</div>
+							<div class="ticket-price">
+								<span>38,600원</span>
+							</div>
+							<div class="ticket-count">
+								<button>-</button>
+								<span class="count">0</span>
+								<button>+</button>
+							</div>
 						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
+						<div class="ticketbox">
+							<div class="ticket-info">
+								<p><span class="ticketName">종일 종합이용권 1인</span><br>
+									* 주중/주말 공통<br>
+									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+							</div>
+							<div class="ticket-price">
+								<span>38,600원</span>
+							</div>
+							<div class="ticket-count">
+								<button>-</button>
+								<span class="count">0</span>
+								<button>+</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -389,44 +318,48 @@
 					
 					<div><!-- 리뷰 포문 돌리기 -->
 						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+							<p>⭐⭐⭐⭐⭐ 김*미<br>
+								2022.08.08 | 디럭스 패밀리트윈</p>
+							<p class="review-content">너무너무 깨끗하고<br>
+								가성비 최고!<br>
+								이런 곳이 진작 있는 줄 알았다면...</p>
 						</div>
 						<hr>
 						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+							<p>⭐⭐⭐⭐⭐ 김*미<br>
+								2022.08.08 | 디럭스 패밀리트윈</p>
+							<p class="review-content">너무너무 깨끗하고<br>
+								가성비 최고!<br>
+								이런 곳이 진작 있는 줄 알았다면...</p>
 						</div>
 						<hr>
 						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
+							<p>⭐⭐⭐⭐⭐ 김*미<br>
+								2022.08.08 | 디럭스 패밀리트윈</p>
+							<p class="review-content">너무너무 깨끗하고<br>
+								가성비 최고!<br>
+								이런 곳이 진작 있는 줄 알았다면...</p>
+						</div>
+						<hr>
+						<div class="reviewbox">
+							<p>⭐⭐⭐⭐⭐ 김*미<br>
+								2022.08.08 | 디럭스 패밀리트윈</p>
+							<p class="review-content">너무너무 깨끗하고<br>
+								가성비 최고!<br>
+								이런 곳이 진작 있는 줄 알았다면...</p>
+						</div>
+						<hr>
+						<div class="reviewbox">
+							<p>⭐⭐⭐⭐⭐ 김*미<br>
+								2022.08.08 | 디럭스 패밀리트윈</p>
+							<p class="review-content">너무너무 깨끗하고<br>
+								가성비 최고!<br>
+								이런 곳이 진작 있는 줄 알았다면...</p>
 						</div>
 						<hr>
 					</div>
 
-					<div class="page-bar"><!-- 페이징바 리뷰는 3개씩 보여줄거다 -->
+					<div class="page-bar"><!-- 페이징바 리뷰는 5개씩 보여줄거다 -->
 						<ul>
 		                    <li><a href="">&lt;</a></li>
 							<li><a href="">1</a></li>
@@ -444,8 +377,9 @@
 
 			<div class="side-bar">
 				<div class="accommselectbox">
-					<p>1박 <span>65,000원 ~</span></p>
-					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<p><span>65,000원부터 ~</span></p>
+					<button>티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
 				</div>
 			</div>
 		</div>
