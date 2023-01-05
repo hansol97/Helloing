@@ -73,7 +73,7 @@ hr{
 	margin-left: 10px;
 }
 
-#insertBoard{
+#enrollTripBoard{
 	width : 100px;
 	height : 30px;
 	background-color : lightblue;
@@ -90,7 +90,10 @@ hr{
         <div class="middle-content" align="center">
             <div class="inner" align="center">
             
-        	<button id="insertBoard" onclick="insertBoard">리뷰작성</button> <!-- 로그인 된 상태에서 글 작성 보여지게 -->
+            <form action="enrollTripBoard" method="post">
+        		<button type="submit" id="enrollTripBoard">리뷰작성</button> <!-- 로그인 된 상태에서 글 작성 보여지게 -->
+        	</form>
+        	
                 <br><br>
                 <div class="product-list">
                     <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
@@ -155,11 +158,6 @@ hr{
 		
 	</div>
 	
-	<script>
-	    function insertReview(){
-	        location.href = "/insertBoard"
-	    }
-	</script>
 	
 	
 	
