@@ -21,10 +21,12 @@ public class MemberController {
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
 	public String myPage() {
-		
 		return "member/myPage";
-
 	}
 	
+	@RequestMapping("scheduled.hj")
+	public String Scheduled() {
+		return "member/scheduled";
+	}
 	
 }
