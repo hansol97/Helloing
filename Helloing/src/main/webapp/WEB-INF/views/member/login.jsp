@@ -50,7 +50,7 @@
 		</div>
 		<div class="login-box">
 			<div class="login-innor">
-				<form id="login" action="login.me" method="post" >
+				<form id="login.me" action="login.me" method="post" >
 					<input id="login-id" type="text" name="memId" placeholder="아이디">
 					<br><br>
 					<input id="login-pwd" type="password" name="memPwd" placeholder="비밀번호">
