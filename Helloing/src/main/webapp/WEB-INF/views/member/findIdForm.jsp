@@ -64,7 +64,7 @@
             <script>
 						function enrollPage(){
 						
-							location.href = "enrollForm.me"
+							location.href = "findIdForm.me"
 		
 						}
 					</script>
