@@ -42,21 +42,7 @@
         margin:5px;
     }
 
-    /* 페이지 스타일 */
-    #reportMemSelect{
-        background-color:rgb(174, 174, 174);
-        border-color:rgb(174, 174, 174);
-    }
-
-    #del-btn, #insert-btn{
-        background-color: rgb(233, 233, 233);
-        display:inline-block;
-        width:40px;
-        height:25px;
-        text-align: center;
-        border-radius: 5px;
-		border:none;
-    }
+    /* 검색창 */
 
     .admin-search_form{
         background-color: rgb(255, 255, 255);
@@ -98,12 +84,20 @@
         margin-left:10px;
     }
 
+    /* 메뉴바2 */
+
     #admin-menu2 p{
         border-bottom:1px solid #d3d3d3;
     }
 
     #admin-menu2 a{
         font-size:20px;
+    }
+
+    /* 페이징바 */
+
+    #pagingArea a{
+        margin:5px;
     }
 </style>
 
@@ -118,9 +112,9 @@
             <br>
             <table>
                 <tr id="admin-menu2">
-                    <td><p><a href="">일반회원 조회</a></p></td>
+                    <td><p><a href="memList.ad">일반회원 조회</a></p></td>
                     <td width="300"></td>
-                    <td><p><a href="">사업자 조회</a></p></td>
+                    <td><p><a href="businessList.ad">사업자 조회</a></p></td>
                 </tr>
                 <tr>
                     <td><br><br></td>
@@ -206,11 +200,11 @@
             
 
             <div id="pagingArea">
-                <button>&gt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>&lt;</button>
+                <a>&lt;</a>
+                <a>1</a>
+                <a>2</a>
+                <a>3</a>
+                <a>&gt;</a>
             </div>
             <br><br>
 
