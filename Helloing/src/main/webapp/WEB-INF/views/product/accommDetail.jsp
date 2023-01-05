@@ -50,6 +50,29 @@
 
 
 /* 메인 */
+.top-info{
+	display: flex;
+	justify-content: space-between;
+}
+.accommName{
+	font-size: 40px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.top-info button{
+	width: 200px;
+	font-size: 20px;
+	border: 1px solid gray;
+	border-radius: 3px;
+}
+.middle-info{
+	display: flex;
+	margin: 20px 0px;
+}
+.middle-info>div{
+	width: 400px;
+}
+
 .images{
 	border: 1px solid gray;
 }
@@ -106,6 +129,29 @@
 	font-weight: bold;
 }
 /* 객실 상품들 끝 */
+
+.explanation{
+	display: flex;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.title{
+	width: 300px;
+}
+.title span{
+	font-size: 20px;
+}
+
+/* 리뷰 */
+.reviewtitle{
+	margin: 20px 0px 10px 0px;
+	font-size: 30px;
+}
+.reviewstar{
+	border: 1px solid gray;
+}
+
+/* 리뷰 끝 */
 /* 메인 끝 */
 
 </style>
@@ -120,6 +166,22 @@
 	<div class="inner">
 		<div class="middle-content">
 			<div class="main">
+
+				<div class="top-info">
+					<sapn class="accommName">서귀포 퍼스트 호텔</sapn>
+					<button>🗺️ 위치보기</button>
+				</div>
+				<div>
+					<p>4성급<br>
+						⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+				</div>
+				<hr>
+				<div class="middle-info">
+					<div>📌 제주 서귀포시 명동로 46</div>
+					<div>⏲️ 체크인 15:00 ~ 체크아웃 11:00</div>
+				</div>
+				<hr>
+
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
 					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
 					<div class="sub-images">
@@ -208,6 +270,26 @@
 				</div>
 
 				<hr>
+
+				<div class="explanation">
+					<div class="title"><span>소개</span></div>
+					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+				</div>
+				<hr>
+
+				<div class="explanation">
+					<div class="title"><span>이용안내</span></div>
+					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+				</div>
+				<hr>
+
+				<div>
+					<h3 class="reviewtitle">후기 173</h3>
+					<div class="reviewstar">
+						<div></div>
+						<div></div>
+					</div>
+				</div>
 
 			</div>
 
