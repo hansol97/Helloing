@@ -12,13 +12,20 @@
 	justify-content: center;
 	margin-top: 200px;
 }
+.info-box{
+	margin-left: 300px;
+}
 .info-title{
 	font-size: large;
 	font-weight: 900;
 	text-align: center;
 }
+
 .info-content{	
 	width: 440px;
+}
+.login-box{
+	margin-left: 50px;
 }
 #login-pwd, #login-id {
 	width: 95%;
