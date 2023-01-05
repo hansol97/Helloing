@@ -43,6 +43,11 @@
 	<div class="innor">
 		<div class="findId-form">
 			<form action="findId.me" method="post">
+				<label for="memId"> 아이디 : </label>        
+                    <input type="text" class="findId" id="memId" placeholder="아이디" name="memId" required>
+			
+			
+			
 			
 			</form>
 		
