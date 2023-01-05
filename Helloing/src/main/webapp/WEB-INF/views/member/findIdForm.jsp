@@ -7,7 +7,17 @@
 <title>아이디 찾기 폼</title>
 <style>
 
+.findId-form button{
 
+
+width: 310px;
+height: 40px;
+font-weight: bold;	
+color: white;
+background-color: #042f75;
+border: 0;
+border-radius: 3px;
+}
 
 
 
