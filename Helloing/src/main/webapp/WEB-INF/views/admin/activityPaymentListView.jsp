@@ -44,7 +44,7 @@
     <div class="content">
 
         <div class="innerOuter">
-            <form action="actPaySearch.ad">
+            <form action="roomPaySearch.ad">
                 <input type="text" placeholder="회원아이디 입력">
                 <button>검색</button>
             </form>
@@ -92,6 +92,8 @@
                 <button>3</button>
                 <button>&lt;</button>
             </div>
+
+
 
         </div>
 
