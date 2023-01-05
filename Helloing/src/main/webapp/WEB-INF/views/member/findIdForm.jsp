@@ -11,9 +11,7 @@
 
 
 
-.findId-form{
-	border: 1px solid black;
-}
+
 
 
 .findId-form label{
@@ -26,7 +24,7 @@ font-weight: 800;
 
 }
 </style>
-</head>
+</head>	
 <body>
 
 	<jsp:include page="../common/menubar_user.jsp"/>
