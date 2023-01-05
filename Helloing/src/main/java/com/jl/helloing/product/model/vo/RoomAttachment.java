@@ -1,4 +1,4 @@
-package com.jl.helloing.board.model.vo;
+package com.jl.helloing.product.model.vo;
 
 import lombok.Data;
 
