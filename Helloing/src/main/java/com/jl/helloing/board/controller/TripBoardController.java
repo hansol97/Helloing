@@ -10,15 +10,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class TripBoardController {
+	
 	/*
 	@Autowired
-	private BoardService boardService;
+	private TripBoardService tripboardService;
+	*/
 	
 	@RequestMapping("selectTripBoard")
-	public String enrollForm() {
+	public String selectTripBoard() {
 		return "board/selectTripBoard";
 	}
 	
+	@RequestMapping("enrollTripBoard")
+	public String enrollTripBoard() {
+		return "board/enrollFormTripBoard";
+	}
+	
+	/*
 	@RequestMapping("insertTripBoard")
 	public String insertBoard(Board board, MultipartFile upfile, HttpSession session, Model model) {
 		
