@@ -4,76 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="resources/css/adminPage.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>사업자 조회</title>
 <style>
-    .admin-content {
-        background-color:rgb(255, 255, 255);
-        width:1500px;
-        margin:auto;
-    }
-    .admin-innerOuter {
-        font-family: 'S-CoreDream-3Light';
-        width:1200px;
-        margin:auto;
-        padding:50px 100px;
-        background-color:white;
-        word-break:break-all;
-    }
-
-    /* 리스트 스타일 */
-    #boardList {text-align:center;}
-    #boardList>tbody>tr:hover {cursor:pointer;}
-
-    #pagingArea {width:fit-content; margin:auto;}
-    
-
-    /* 검색창 */
-
-    .admin-search_form{
-        background-color: rgb(255, 255, 255);
-        display:inline-block;
-        width:100px;
-        height:27px;
-        text-align: center;
-        border-radius: 2px;
-        margin-right:15px;
-        border:1px solid rgb(150, 150, 150);
-    }
-
-    .admin-input_form{
-        width:200px;
-        height:23px;
-        border-radius: 2px;
-        border:1px solid rgb(150, 150, 150);
-    }
-
-    .admin-search_button, #reportMemDelete{
-        background-color: rgb(233, 233, 233);
-        display:inline-block;
-        width:45px;
-        height:27px;
-        text-align: center;
-        border-radius: 3px;
-        border:1px solid rgb(150, 150, 150);
-        margin-left:10px;
-    }
-
-    /* 메뉴바2 */
-
-    #admin-menu2 p{
-        border-bottom:1px solid #d3d3d3;
-    }
-
-    #admin-menu2 a{
-        font-size:20px;
-    }
-
-    /* 페이징바 */
-
-    #pagingArea a{
-        margin:5px;
-    }
+  
 
 </style>
 </head>

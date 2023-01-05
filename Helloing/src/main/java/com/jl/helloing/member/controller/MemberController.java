@@ -21,12 +21,25 @@ public class MemberController {
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
 	public String myPage() {
-		return "member/scheduled";
+		return "member/scheduledReservation";
 	}
 	
+	//예정된 예약
 	@RequestMapping("scheduled.hj")
-	public String Scheduled() {
-		return "member/scheduled";
+	public String scheduled() {
+		return "member/scheduledReservation";
+	}
+	
+	//지난 예약
+	@RequestMapping("last.hj")
+	public String last() {
+		return "member/lastReservation";
+	}
+	
+	//취소된 예약
+	@RequestMapping("cancelled.hj")
+	public String cancelled() {
+		return "member/cancelledReservation";
 	}
 	
 }
