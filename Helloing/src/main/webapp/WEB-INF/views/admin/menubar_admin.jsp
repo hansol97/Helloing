@@ -111,9 +111,10 @@
   }
   header .main-menu .item .item__name{
       padding: 20px 40px 20px;
-      width: 100px;
+      width: 150px;
       font-size: 17px;
       font-weight: 600;
+      text-align: center;
   }
   header .main-menu .item:hover .item__name{
       border-bottom: 5px solid #FFEA24;
@@ -125,49 +126,55 @@
       border-radius: 6px 6px 0 0;
   }
 
+  /* 카데고리 내 카테고리 시작 */
 
-/* 검색창 */
-.search{
-      height: 34px;
-      width: 400px;
-      position: relative;
-}
-.search input{
-     width: 400px;
-     height: 50px;
-      padding: 4px 10px;
-      margin: 50px 200px;
-      border: 1px solid #ccc; 
-      box-sizing: border-box;
-      border-radius: 20px;
-      outline: none;
-      background-color: #fff;
-      color: black;
+  header .main-menu .item .item_contents{
+      width: 21%;
+      position: fixed;
+      left: 0;
+      display: none;
+  }
+  header .main-menu .item:hover .item_contents{
+    display: block;
+  }
+  header .main-menu .item .item_contents .contents_menu{
+      background-color: #FFEA24;
+  }
+  header .main-menu .item .item_contents .contents_menu>ul{
+      display: flex;
+      padding: 20px 0;
+  }
+  header .main-menu .item .item_contents .contents_menu>ul>li{
+      width: 220px;
+  }
+  header .main-menu .item .item_contents .contents_menu>ul>li h4{
+      padding: 3px 0 12px 0;
+      font-size: 20px;
+      color: #fff;
+  }
+  header .main-menu .item .item_contents .contents_menu>ul>li h4{
+      padding: 3px 0 12px 0;
+      font-size: 20px;
+      color: #fff;
+  }
+  header .main-menu .item .item_contents .contents_menu>ul>li h4 a{
+      padding: 3px 0 12px 0;
       font-size: 18px;
+      color: #fff;
   }
-   .search input:focus{
-      border-color:#053E99 ;
+  header .main-menu .item .item_contents .contents_menu>ul>li ul li{
+      padding: 5px 0;
+      font-size: 15px;
+      color: black;
+      cursor: pointer;
   }
-  .search #searchImg{
-      height: 25px;
-      position: absolute;
-      top: 60px;
-      left: 550px;
-      margin: auto;
+  header .main-menu .item .item_contents .contents_menu>ul>li h4 a:hover{
+  	font-size : 20px;
   }
-   .search #searchImg img{
-  		height: 30px;
+  header .main-menu .item .item_contents .contents_menu>ul>li ul li a:hover{
+      color:#fff ;
   }
-  .search #searchImg button{
-  	  left: 350px;
-  	  border:none; 
-	  background-color:white;
-  }
-  
-  .search.focused #searchImg{
-      opacity: 0;
-  }
-  /* 검색창 끝 */
+  /* 끝 */
   </style>
 
 </head>
@@ -183,87 +190,29 @@
 
       <div class="sub-menu">
         <ul class="menu">
-	          <!-- 로그인 안했을 때 보이는 화면 -->
-	          <li>
-	            <a href="#" >회원가입</a>
-	          </li>
-	
-	          <li>
-	            <a href="#">로그인</a>
-	          </li>
-
-
-
-            <!--로그인 시 보이는 화면-->
-          <!--
-            <li style="margin: auto;">
-              OOO님 반갑소잉👋
-            </li>
           <li>
-            <a href="#">기업 회원 신청</a>
-          </li>
-          <li>
-            <a href="#">마이페이지</a>
-          </li>
-          -->
-          <!--기업회원일 시 보이는 화면-->
-          <!--사용자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">기업관리</a>
-          </li>
-          -->
-          <!--기업관리 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">메인페이지</a>
-          </li>
-          -->
-          <!--관리자일 시 보이는 화면-->
-         <!--사용자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">관리자페이지</a>
-          </li>
-          -->
-          <!--관리자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">메인페이지</a>
+            <a href="#">메인페이지로 가기</a>
           </li>
 
-          -->
         </ul>
       </div>
-
-      <!-- 검색창 -->
-          <div class="search">
-            <form action="#" method="get">
-              <input type="text" name="keyword" placeholder="숙소명이나 액티비티명을 입력해주세요.">
-              
-              <span id="searchImg"><button type="submit" style="cursor: pointer;"><img  src="/helloing/resources/img/search.png"></button></span>
-            </form>
-          </div>
 
 
       <ul class="main-menu">
       
 		<!-- 카테고리 -->
         <li class="item">
-          <div class="item__name"><a href="accomm">🏡숙소</a></div>
+          <div class="item__name"><a href="accomm">👤회원 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="activity">🎫액티비티</a></div>
+          <div class="item__name"><a href="activity">📄게시글 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >🍽️전라맛집</a></div>
+          <div class="item__name" ><a href="#" >💬챗봇관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >🌉전라관광</a></div>
+          <div class="item__name" ><a href="#" >💰결제관리</a></div>
         </li>       
-        <li class="item">
-          <div class="item__name"><a href="selectBoard" >💾여행리뷰</a></div>
-        </li>
       </ul>
 
     </div>
