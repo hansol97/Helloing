@@ -20,10 +20,31 @@
 .info-content{	
 	width: 440px;
 }
+#login-pwd, #login-id {
+	width: 95%;
+height: 30px;
+font-size: larger;
+
+}
 
 .login-button{
 	width: 80%;
 	height: 50px;
+}
+.login-button{
+
+width: 100%;
+height: 40px;
+font-weight: bold;	
+color: white;
+background-color: #053E99;
+border: 0;
+border-radius: 3px;
+
+}
+button:hover{
+	color: #FFEA24;
+	cursor: pointer;
 }
 
 </style>
@@ -51,21 +72,21 @@
 		<div class="login-box">
 			<div class="login-innor">
 				<form id="login.me" action="login.me" method="post" >
-					<input id="login-id" type="text" name="memId" placeholder="아이디">
+					<input id="login-id" type="text" name="memId" placeholder="아이디" required>
 					<br><br>
-					<input id="login-pwd" type="password" name="memPwd" placeholder="비밀번호">
+					<input id="login-pwd" type="password" name="memPwd" placeholder="비밀번호" required>
 					<br>
 					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 체크</label>
 					<br><br>
 					<button type="submit" class="login-button" >로그인</button>
 					<br>
-					<a href="findIdForm">아이디찾기 </a>
+					<a href="findIdForm.me">아이디찾기 </a>
 					&nbsp;/&nbsp;
 					<a href="#"> 비밀번호찾기</a>
 					<br>
 					<a href="#">회원가입</a>
 				</form>
-			</div>
+			</div>	
 		
 
 		</div>

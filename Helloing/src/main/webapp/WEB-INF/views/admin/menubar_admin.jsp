@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반갑소잉</title>
@@ -21,7 +19,7 @@
      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
      font-weight: normal;
      font-style: normal;
-}
+  }
     /* common(공통) */
   body{
       color: #333;
@@ -113,7 +111,7 @@
   }
   header .main-menu .item .item__name{
       padding: 20px 40px 20px;
-      width: 150px;
+      width: 110px;
       font-size: 17px;
       font-weight: 600;
       text-align: center;
@@ -128,6 +126,31 @@
       color:#053E99 !important;
       border-radius: 6px 6px 0 0;
   }
+
+  /* 테이블 스타일 */
+  
+  table.type02 {
+		border-collapse: separate;
+		border-spacing: 0;
+		line-height: 1.5;
+		border: 1px solid rgb(236, 236, 236);
+		margin : 20px 10px;
+	}
+	table.type02 th {
+		font-weight: 600;
+		color:rgb(24, 24, 24);
+		padding: 5px;
+		vertical-align: top;
+		border: 1px solid rgb(236, 236, 236);
+		background: #d3d3d3;
+	}
+	table.type02 td {
+		padding: 7px;
+		vertical-align: top;
+		border: 1px solid rgb(236, 236, 236);
+	}
+
+
 
  
   </style>
@@ -163,13 +186,16 @@
           <div class="item__name"><a href="memList.ad">👤회원 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="activity">📄게시글 관리</a></div>
+          <div class="item__name"><a href="boardList.ad">📄게시글 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >💬챗봇관리</a></div>
+          <div class="item__name" ><a href="chatBotList.ad" >💬챗봇관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >💰결제관리</a></div>
+          <div class="item__name" ><a href="businessPayList.ad" >💰결제관리</a></div>
+        </li>       
+        <li class="item">
+          <div class="item__name" ><a href="#" >💑1:1문의</a></div>
         </li>       
       </ul>
 
