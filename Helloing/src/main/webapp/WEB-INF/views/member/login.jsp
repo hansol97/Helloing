@@ -59,7 +59,8 @@
 					<br><br>
 					<button type="submit" class="login-button" >로그인</button>
 					<br>
-					<a href="findIdForm">아이디찾기 </a>
+					<a data-toggle="modal" data-target="#loginModal">아이디 찾기</a>
+					<a href="findIdForm.me">아이디찾기 </a>
 					&nbsp;/&nbsp;
 					<a href="#"> 비밀번호찾기</a>
 					<br>
