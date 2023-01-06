@@ -77,4 +77,10 @@ public class MemberController {
 	public String tripReviewList() {
 		return "member/tripReviewList";
 	}
+	
+	//찜한 숙소 조회
+	@RequestMapping("wishAccommList.hj")
+	public String wishAccommList(){
+		return "member/wishAccommList";
+	}
 }
