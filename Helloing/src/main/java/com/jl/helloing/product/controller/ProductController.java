@@ -47,4 +47,11 @@ public class ProductController {
 	public String DetailActivity() {
 		return "product/activityDetail";
 	}
+	
+	// 액티비티 결제 페이지
+	@RequestMapping("reserve.activity")
+	public String reserveActivity() {
+		return "product/activityReserve";
+	}
 }
+

@@ -67,8 +67,8 @@ hr{ margin: 15px 0px; }
 /* 티켓 선택 */
 .ticketlist{
 	background-color: rgb(230, 230, 230);
-	padding: 10px 0px;
-	margin-bottom: 30px;
+	padding: 10px 20px;
+	margin-bottom: 10px;
 }
 .ticketbox{
 	display: flex;
@@ -77,7 +77,7 @@ hr{ margin: 15px 0px; }
 	border: 1px solid lightgray;
 	border-radius: 3px;
 	padding: 10px;
-	margin: 10px 20px;
+	margin: 10px 0px;
 }
 .ticket-info{ width: 400px; }
 .ticket-price{ width: 150px; }
@@ -94,6 +94,21 @@ hr{ margin: 15px 0px; }
 }
 .ticket-count span{ font-size: 25px; margin: 0px 10px; }
 .ticketName{ font-size: 20px; }
+
+.order-info{ display: flex; justify-content: space-between; padding: 5px 0px; }
+.text-bold{ margin-left: 50px; font-weight: bold; }
+.all-price{ display: flex; justify-content: flex-end; }
+.point{ margin-left: 50px; font-size: 20px; font-weight: bold; color: #053E99; }
+
+#btn-pay{ text-align: right; margin-bottom: 30px; }
+#btn-pay>a{
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #053E99;
+	color: white;
+	padding: 10px 30px;
+	border-radius: 3px;
+}
 /* 티켓 선택 끝 */
 
 .explanation{
@@ -207,7 +222,7 @@ hr{ margin: 15px 0px; }
 				</div>
 
 				<div>
-					<div class="ticketlist"><!-- 티켓 포문 돌리기~ -->
+					<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
 						<div class="ticketbox">
 							<div class="ticket-info">
 								<p><span class="ticketName">종일 종합이용권 1인</span><br>
@@ -253,7 +268,15 @@ hr{ margin: 15px 0px; }
 								<button>+</button>
 							</div>
 						</div>
+						
+						<div class="order-info"> <!-- 자바스크립트로 쿠폰 수량을 늘렸을때만 아래 코드 나오기 -->
+							<span>종일 종합이용권 1인</span>
+							<span>1 X 22,500원 <span class="text-bold">22,500원</span></span>
+						</div>
+						<hr>
+						<div class="all-price"><p>총 티켓 금액<span class="point">22,500원</span></p></div>
 					</div>
+					<div id="btn-pay"><a href="reserve.activity">결제하기</a></div>
 				</div>
 
 				<hr>
