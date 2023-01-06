@@ -17,7 +17,7 @@
             <br>
             <table>
                 <tr>
-                    <td><br><br></td>
+                    <td><br><br><br></td>
                 </tr>
                 <tr>
                     <table id="admin-search_table">

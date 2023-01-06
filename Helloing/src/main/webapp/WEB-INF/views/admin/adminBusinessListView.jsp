@@ -8,7 +8,11 @@
 <meta charset="UTF-8">
 <title>사업자 조회</title>
 <style>
-  
+    /* 관리자 해당 페이지 표시 */
+    #admin-page_mark{
+    color:#053E99;
+    font-weight: bold;
+    }
 
 </style>
 </head>
@@ -24,7 +28,7 @@
                 <tr id="admin-menu2">
                     <td><p><a href="memList.ad">일반회원 조회</a></p></td>
                     <td width="300"></td>
-                    <td><p><a href="businessList.ad">사업자 조회</a></p></td>
+                    <td><p><a id="admin-page_mark" href="businessList.ad">사업자 조회</a></p></td>
                 </tr>
                 <tr>
                     <td><br><br></td>
