@@ -20,7 +20,7 @@
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
             <br><br><br>
-            <div class="accommTitle">등록한 액티비티</div>
+            <div class="accommTitle">등록한 액티비티<div class="inAT"></div></div>
 
 
             
