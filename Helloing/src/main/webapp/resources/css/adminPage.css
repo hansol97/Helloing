@@ -70,6 +70,30 @@
     margin-left:10px;
 }
 
+/* 테이블 스타일 */
+  
+  table.type02 {
+    border-collapse: separate;
+    border-spacing: 0;
+    line-height: 1.5;
+    border: 1px solid rgb(236, 236, 236);
+    margin : 20px 10px;
+    text-align: center;
+}
+table.type02 th {
+    font-weight: 600;
+    color:rgb(24, 24, 24);
+    padding: 5px;
+    vertical-align: top;
+    border: 1px solid rgb(236, 236, 236);
+    background: #d3d3d3;
+}
+table.type02 td {
+    padding: 7px;
+    vertical-align: top;
+    border: 1px solid rgb(236, 236, 236);
+}
+
 
 /* 두글자 연회색 버튼 */
 .admin-grey, .admin-search_button, #reportMemDelete{
@@ -84,3 +108,5 @@
 }
 
 /* id="admin-page_mark" */
+
+/* 모달 */

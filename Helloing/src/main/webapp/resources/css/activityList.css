@@ -10,7 +10,7 @@
   font-family: "S-CoreDream-3Light";
 }
 
-.body {
+body {
 background: rgb(18, 23, 62);
 }
 a:hover {
@@ -20,9 +20,9 @@ text-decoration: none;
 display: flex;
 flex-direction: column;
 margin: 20px 50px 20px 220px;
-box-shadow: 4px 15px 25px -12px rgba(152, 182, 255, 0.4);
+box-shadow: 14px 15px 15px -12px rgba(218, 221, 228, 0.941);
 margin-bottom: 1.6%;
-background: #fff;
+background: rgb(216, 213, 230);
 line-height: 1.4;
 border-radius: 6px;
 overflow: hidden;
@@ -220,6 +220,7 @@ cursor: pointer;
 }
 .nomore{
 text-align: center;
+text-shadow: 1px 1px #dadada;
 }
 
 /* 등록숙소조회페이지입니다 표시 */
@@ -254,13 +255,11 @@ text-align: center;
   left: 29px;
 }
 
-
-
 @media (min-width: 640px) {
 .blog-card {
   flex-direction: row;
   min-height: 550px;
-  max-width: 1300px;
+  /* max-width: 1300px; */
 }
 .blog-card .meta {
   flex-basis: 30%;
@@ -333,9 +332,8 @@ text-align: center;
 }
 
 .more_button:hover{
-font-weight: bold;
-
- background: rgba(136, 238, 129, 0.761);
+  font-weight: bold;
+  background: rgba(136, 238, 129, 0.761);
 }
 
 
