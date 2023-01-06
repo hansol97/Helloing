@@ -47,7 +47,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="600">
+                            <td width="620">
                                 
                             </td>
                         </tr>
@@ -62,6 +62,7 @@
                                 <th width="120">사업자명</th>
                                 <th width="150">결제 금액</th>
                                 <th width="300">숙소명/액티비티명</th>
+                                <th width="180">결제 만료일자</th>
 
                             </tr>
                         </thead>
@@ -71,6 +72,7 @@
                                 <td>사업자2</td>
                                 <td>300,000원</td>
                                 <td>[전남 목포] 목포 해상케이블카 탑승권</td>
+                                <td>2023.06.15</td>
                             </tr>
                             <tr>
                                 <tr>
@@ -78,6 +80,7 @@
                                     <td>사업자2</td>
                                     <td>300,000원</td>
                                     <td>[전남 목포] 목포 해상케이블카 탑승권</td>
+                                    <td>2023.06.15</td>
                                 </tr>
                             </tr>
                         </tbody>
