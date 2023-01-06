@@ -23,7 +23,7 @@
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">
-            <br>
+            <br><br><br><br><br><br><br><br>
             <table>
                 <tr id="admin-menu2">
                     <td><p><a id="admin-page_mark" href="memList.ad">일반회원 조회</a></p></td>

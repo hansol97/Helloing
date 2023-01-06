@@ -28,7 +28,7 @@
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">
-            <br>
+            <br><br><br><br><br><br><br><br>
             <table>
                 <tr id="admin-menu2">
                     <td><p><a href="businessPayList.ad">사업자 등록 결제</a></p></td>

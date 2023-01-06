@@ -34,7 +34,7 @@
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">
-            <br>
+            <br><br><br><br><br><br><br><br>
             <table>
                 <tr id="admin-menu2">
                     <td><p><a id="admin-page_mark" href="boardList.ad">게시물 조회</a></p></td>
