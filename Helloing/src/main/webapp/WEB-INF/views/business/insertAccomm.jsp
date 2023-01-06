@@ -23,26 +23,22 @@
           <div class="accommTitle">숙소 등록 페이지</div>
           
         <!--등록 폼 박스-->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="blog-card enrollform">
+              
 		<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" >
-          
-			<!-- 피드 등록 내용물 -->
+          <!-- 피드 등록 내용물 -->
           <div class="feed_modal_insert_content">
             <div class="feed_modal_insert_content1">
               <div class="titleImg_class1">
-                <p>🎈피드 사진을 선택해 주세요!</p>
+                <p>🎈 사진을 선택해 주세요!</p>
                 <br />
                 <!-- 미리보기 영역 -->
-                <div class="titleImg_class1_1">
+                <div class="titleImg_class1_1" style="border: 1px solid black; width: 80%; margin: auto;">
                   <img id="titleImg" width="200" height="200" style="margin: auto" src="#" alt="숙소사진" />
                 </div>
                 <div id="file-area">
-                  <input
-                    type="file"
-                    name="file1"
-                    id="file1"
-                    required
-                    onchange="loadImg(this);"
-                  />
+                  <input type="file"  name="file1" id="file1" required onchange="loadImg(this);"/>
                 </div>
                 <!-- onchange : input태그의 내용물이 변경되었을 때 발생하는 이벤트 속성 - 수업시간에 함!! -->
                 <!-- loadImg() : 우리가 만들 함수 -->
@@ -61,7 +57,7 @@
                 cellspacing="20"
               >
                 <tr>
-                  <th width="100" height="40px">피드 제목 :</th>
+                  <th width="100" height="40px"> 제목 :</th>
                   <td width="500px">
                     <input
                       id="feed_insert_title"
@@ -74,7 +70,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th id="feed_content">피드 내용 :</th>
+                  <th id="feed_content">내용 :</th>
                   <td height="40px">
                     <textarea
                       name="feedText"
@@ -133,8 +129,9 @@
 
           <div class="feed_modal_btns" align="center">
             <br />
-            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 피드등록 </button>
+            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 등록 </button>
             <button type="reset" class="custom-btn btn-15">초기화</button>
+            <button type="reset" class="custom-btn btn-15">취소하기</button>
 
           </div>
         </form>
@@ -155,8 +152,6 @@
 
 
 
-
-			   </form>
 
             </div>
           </div>
