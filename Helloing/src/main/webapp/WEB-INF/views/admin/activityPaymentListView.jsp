@@ -14,6 +14,53 @@
         color:#053E99;
         font-weight: bold;
     }
+
+    /* 모달 */
+    
+    .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal.show {
+    display: block;
+  }
+
+  .modal_body {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+
+    width: 600px;
+    height: 400px;
+
+    padding: 40px;
+
+    overflow-x: auto;
+    /* text-align: center; */
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .modal-title{
+    margin-left:40px;
+  }
+
+  .modal-title span{
+    font-weight: bold;
+  }
     
 </style>
 </head>
@@ -100,9 +147,132 @@
             <br><br>
 
             
+
+            
         </div>
 
+        
+        
+
     </div>
+
+
+    <div class="modal">
+        <div class="modal_body">
+            <div>
+                <div class="modal-title">
+                    <span>액티비티 상세정보</span>
+                </div>
+                <div align="center">
+                    <table class="type02">
+                        <thead>
+                            <th>티켓번호</th>
+                            <th>티켓명</th>
+                            <th>수량</th>
+                            <th>가격</th>
+                            <th>유효기간</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr><tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr><tr>
+                                <td>25</td>
+                                <td>주중 종일권</td>
+                                <td>2</td>
+                                <td>43,800원</td>
+                                <td>2022.12.24 ~ 2023.02.27</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-open-popup">Modal 띄우기</button>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+  
+        btnOpenPopup.addEventListener('click', () => {
+          modal.classList.toggle('show');
+  
+          if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+          }
+        });
+  
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.classList.toggle('show');
+  
+            if (!modal.classList.contains('show')) {
+              body.style.overflow = 'auto';
+            }
+          }
+        });
+      </script>
+    
     
 </body>
 </html>
