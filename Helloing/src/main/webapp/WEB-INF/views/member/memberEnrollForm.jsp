@@ -50,7 +50,7 @@
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
 						<td><input type="text" name="memId" maxlength="20" required></td>
-						<td id="checkResult" width="80"></td>
+						<td id="checkId" width="80"></td>
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
@@ -62,14 +62,16 @@
 					</tr>
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
-						<td><input type="email" name="memName" required></td>
-						<div>dddd</div>
+						<td><input type="email" name="email" required></td>
+					</tr>
+					<tr>
+						<td> 이메일 인증 &nbsp;&nbsp;</td>
+						<td id="checkEmail" class="email"></td>
 					</tr>
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
 						<td><input type="text" name="memName" required></td>
 					</tr>
-	
 				</table>
 			</form>
 			
@@ -85,7 +87,7 @@
 			<script>
 				$(function(){
 					$(document).on('focusout', 'input[name=memId]', function(){
-						$('#checkResult').text($('input[name=memId]').val())
+						$('#checkId').text($('input[name=memId]').val())
 					})
 				})
 			</script>
