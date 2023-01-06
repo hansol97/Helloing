@@ -158,7 +158,7 @@
           <div class="item__name"><a href="activityList.bu">🎫등록 액티비티 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="#" >🏢기업 정보 관리</a></div>
+          <div class="item__name" ><a href="mypage.bu" >🏢기업 정보 관리</a></div>
         </li>
       </ul>
 
