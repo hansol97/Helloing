@@ -178,6 +178,7 @@
 
     width: 100%;
     height: 100%;
+    z-index: 2;
 
     display: none;
 
@@ -196,6 +197,7 @@
     height: 400px;
 
     padding: 40px;
+    /* opacity: 1; */
 
     overflow-x: auto;
     /* text-align: center; */
