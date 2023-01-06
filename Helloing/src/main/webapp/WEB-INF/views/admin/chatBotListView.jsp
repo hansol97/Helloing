@@ -213,44 +213,7 @@
         </div>
     </div>
 
-    <div id="keword_updat_page" class="modal">
-        <div class="modal_body">
-            <div>
-                <div class="modal-title">
-                    <span>키워드 수정</span>
-                </div>
-                <div align="center">
-                    <br>
-                    <form action="#">
-                        <table>
-                            <tr>
-                                <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                        </table>
     
-                        <div id="keyword_enroll_btn">
-                            <button type="submit">등록</button>
-                            <button id="keyword_cancel" type="button" onclick="keywordCancel();">취소</button>
-                        </div>
-                    </form>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         const body = document.querySelector('body');
