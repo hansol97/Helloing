@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+.middle-content{ display: flex; justify-content: space-between; }
+.side-bar{ width: 280px; padding: 0px 5px; }
+.main{ width: 800px; }
+
+/* 사이드바 */
+.side-bar span{
+    font-size: 18px;
+	font-weight: bold;
+	margin: 20px 0px 0px 10px;
+}
+#reset{
+    font-size: 15px;
+    font-weight: 100;
+    color: gray;
+}
+.price{ width: 90px; }
+input[class="price"]::-webkit-outer-spin-button,
+input[class="price"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[name=star]{ margin: 10px; }
+/* 사이드바 끝 */
+
+/* 메인 컨텐츠 */
+.radio-sort{ text-align: right; margin-bottom: 15px; }
+.radio-sort>input[type=radio]{ opacity: 0; }
+.radio-sort>input[type=radio]>label{
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.radio-sort>input[type=radio]:checked+label{
+    font-weight: bold;
+    color: #053E99;
+}
+.product-list{ display: flex; flex-wrap: wrap; }
+.productbox{
+    width: 250px;
+    height: 400px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.productbox>div{ padding: 10px; }
+.productbox img{ border-radius: 5px; }
+.accommName{ font-size: 22px; font-weight: bold; }
+/* 메인 컨텐츠 끝 */
+
+hr{ margin: 20px 0px; }
+.inner h1{
+	font-size: 30px;
+	font-weight: bold;
+	margin: 0px 0px 30px 0px;
+}
+.inner h4{
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 10px;
+}

@@ -5,55 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Helloing</title>
-<style>
-/* 검색창 */
-.top-content{
-    text-align: center;
-    margin-bottom: 50px;
-}
-.top-content input{
-    height: 40px;
-    width: 400px;
-    border-radius: 3px;
-    border: 1px solid rgb(154, 154, 154);
-}
-.top-content button{
-    height: 44px;
-    width: 60px;
-    margin: 0px 10px;
-    border: 0;
-    background-color: #053E99;
-    color: white;
-    border-radius: 3px;
-}
-/* 검색창 끝*/
-
-
-.activityName{
-    font-size: 20px;
-    font-weight: bold;
-}
-.hot{
-    display: flex;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.productbox{
-    border: 1px solid rgb(154, 154, 154);
-    height: 330px;
-    width: 255px;
-    margin-bottom: 30px;
-}
-.productbox p{
-    margin: 0px 10px;
-}
-
-.inner h3{
-	font-size: 25px;
-	font-weight: bold;
-}
-</style>
+<link href="resources/css/product/activityMain.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<jsp:include page="../common/menubar_user.jsp"/> <!-- 헤더를 넣으니까 검색창이 헤더 밑으로 간다... relative, absolute 속성 때문일까? -->
