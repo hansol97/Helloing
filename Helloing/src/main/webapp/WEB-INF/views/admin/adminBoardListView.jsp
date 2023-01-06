@@ -16,6 +16,13 @@
         width:120px;
     }
 
+    /* 관리자 해당 페이지 표시 */
+
+    #admin-page_mark{
+    color:#053E99;
+    font-weight: bold;
+    }
+
     
     
 </style>
@@ -30,7 +37,7 @@
             <br>
             <table>
                 <tr id="admin-menu2">
-                    <td><p><a href="boardList.ad">게시물 조회</a></p></td>
+                    <td><p><a id="admin-page_mark" href="boardList.ad">게시물 조회</a></p></td>
                     <td width="300"></td>
                     <td><p><a href="replyList.ad">댓글 조회</a></p></td>
                 </tr>

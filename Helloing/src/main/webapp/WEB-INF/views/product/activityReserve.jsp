@@ -81,7 +81,7 @@ hr{ margin: 10px 0px; }
 	
 		<p id="title">예약하기</p>
 
-		<form action="pay.accomm" method="">
+		<form action="pay.ticket" method="">
 			<div class="content">
 				<div class="main">
 					<p class="sub-title">상품 정보</p>
@@ -89,11 +89,11 @@ hr{ margin: 10px 0px; }
 	
 					<div class="accomm-info">
 						<img src="/helloing/resources/img/logo_outline.png" width="180">
-						<p><span>휘닉스 제주 섭지코지</span><br>
-							23년 1월 06일 (금) 14시 00분 ~ 23년 1월 7일 (토) 11시 00분, 1박</p>
+						<p><span>[QR바로입장] 롯데월드 어드벤처 종합이용권</span><br>
+							23년 1월 06일 (금)까지</p>
 					</div>
 					<div class="room-info">
-						<span>로얄룸 라운지 이용</span>
+						<span>종일 종합이용권 1인</span>
 						<span>807,890원</span>
 					</div>
 					<div class="price-info">
@@ -147,6 +147,7 @@ hr{ margin: 10px 0px; }
 				</div>
 			</div>
 		</form>
+		
 	</div>
 
 </body>

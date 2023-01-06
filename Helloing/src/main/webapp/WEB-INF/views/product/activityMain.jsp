@@ -36,12 +36,14 @@
 .hot{
     display: flex;
     margin-bottom: 50px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .productbox{
     border: 1px solid rgb(154, 154, 154);
-    margin-right: 20px;
     height: 330px;
     width: 255px;
+    margin-bottom: 30px;
 }
 .productbox p{
     margin: 0px 10px;
@@ -78,9 +80,6 @@
 
         <h3>인기 티켓</h3> <!-- 4개까지만 뿌려주자 / 더 보기로 인기 액티비티 20개정도? 뿌려주기 -->
                            <!-- N글자 이상인 경우 ... 하는거 추가하기 -->
-        <div style="text-align: right">
-            <a href="">더보기 &gt; &nbsp&nbsp</a>
-        </div>
         <div class="hot" id="hot-ticket"> 
             <div class="productbox">
                 <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
@@ -114,13 +113,6 @@
                     189,200원 / 1인
                 </p>
             </div>
-        </div>
-
-        <h3>인기 티켓</h3>
-        <div style="text-align: right">
-            <a href="">더보기 &gt; &nbsp&nbsp</a>
-        </div>
-        <div class="hot" id="hot-ticket"> 
             <div class="productbox">
                 <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
                 <p>가이드 투어<br>
@@ -153,52 +145,6 @@
                     189,200원 / 1인
                 </p>
             </div>
-        </div>
-
-        <h3>인기 티켓</h3>
-        <div style="text-align: right">
-            <a href="">더보기 &gt; &nbsp&nbsp</a>
-        </div>
-        <div class="hot" id="hot-ticket"> 
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-                <p>가이드 투어<br>
-                    <span class="activityName">[당일투어][365일 매일 출발] 그랜드캐년 + 앤텔롭</span><br>
-                    ⭐⭐⭐⭐⭐ 1,844<br>
-                    189,200원 / 1인
-                </p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-                <p>가이드 투어<br>
-                    <span class="activityName">[당일투어][365일 매일 출발] 그랜드캐년 + 앤텔롭</span><br>
-                    ⭐⭐⭐⭐⭐ 1,844<br>
-                    189,200원 / 1인
-                </p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-                <p>가이드 투어<br>
-                    <span class="activityName">[당일투어][365일 매일 출발] 그랜드캐년 + 앤텔롭</span><br>
-                    ⭐⭐⭐⭐⭐ 1,844<br>
-                    189,200원 / 1인
-                </p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-                <p>가이드 투어<br>
-                    <span class="activityName">[당일투어][365일 매일 출발] 그랜드캐년 + 앤텔롭</span><br>
-                    ⭐⭐⭐⭐⭐ 1,844<br>
-                    189,200원 / 1인
-                </p>
-            </div>
-        </div>
-
-        <h3>인기 티켓</h3>
-        <div style="text-align: right">
-            <a href="">더보기 &gt; &nbsp&nbsp</a>
-        </div>
-        <div class="hot" id="hot-ticket"> 
             <div class="productbox">
                 <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
                 <p>가이드 투어<br>
