@@ -127,9 +127,58 @@
       border-radius: 6px 6px 0 0;
   }
 
+    /* 모달 */
+    
+    /* .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
 
+    width: 100%;
+    height: 100%;
 
+    display: block;
 
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal.show {
+    display: block;
+  } */
+
+  .cb_modal_body {
+    position: absolute;
+    top:700px;
+    right:30px;
+
+    width: 50px;
+    height: 50px;
+
+    padding: 40px;
+
+    overflow-x: auto;
+    /* text-align: center; */
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .modal-title{
+    margin-left:40px;
+  }
+
+  .modal-title span{
+    font-weight: bold;
+  }
+
+  /* 챗봇 */
+
+  chatbot .cb_modal_body{
+    position:fixed;
+  }
 
  
   </style>
@@ -182,9 +231,51 @@
     
 
   </header>
+
+  <chatbot>
+    <div class="cb_modal_body">
+        <!-- <div>
+            <div class="modal-title">
+                <span>액티비티 상세정보</span>
+            </div>
+            <div align="center">
+                <table class="type02">
+                    
+                        
+                </table>
+            </div>
+        </div> -->
+        🙋‍♂️
+    </div>
+  </chatbot>
   <br><br><br><br><br><br>
 
+  
+<button class="btn-open-popup">Modal 띄우기</button>
 
+<script>
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+    btnOpenPopup.addEventListener('click', () => {
+      modal.classList.toggle('show');
+
+      if (modal.classList.contains('show')) {
+        body.style.overflow = 'hidden';
+      }
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.classList.toggle('show');
+
+        if (!modal.classList.contains('show')) {
+          body.style.overflow = 'auto';
+        }
+      }
+    });
   </script>
+  
 </body>
 </html>
