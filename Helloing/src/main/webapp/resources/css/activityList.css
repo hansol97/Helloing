@@ -20,9 +20,9 @@ text-decoration: none;
 display: flex;
 flex-direction: column;
 margin: 20px 50px 20px 220px;
-box-shadow: 4px 15px 25px -12px rgba(152, 182, 255, 0.4);
+box-shadow: 14px 15px 15px -12px rgba(218, 221, 228, 0.941);
 margin-bottom: 1.6%;
-background: #fff;
+background: rgb(216, 213, 230);
 line-height: 1.4;
 border-radius: 6px;
 overflow: hidden;
@@ -260,7 +260,7 @@ text-align: center;
 .blog-card {
   flex-direction: row;
   min-height: 550px;
-  max-width: 1300px;
+  /* max-width: 1300px; */
 }
 .blog-card .meta {
   flex-basis: 30%;

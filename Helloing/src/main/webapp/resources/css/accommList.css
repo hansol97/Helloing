@@ -257,7 +257,7 @@ a:hover {
   .blog-card {
     flex-direction: row;
     min-height: 550px;
-    max-width: 1300px;
+    /* max-width: 1300px; */
   }
   .blog-card .meta {
     flex-basis: 30%;
