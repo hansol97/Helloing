@@ -199,7 +199,7 @@
     padding: 40px;
     /* opacity: 1; */
 
-    overflow-x: auto;
+    
     /* text-align: center; */
 
     background-color: rgb(255, 255, 255);
@@ -259,6 +259,7 @@
     width:260px;
     height:310px;
     padding:0px;
+    overflow-x: auto;
   }
 
   #admin_chat{
@@ -267,6 +268,7 @@
     margin-bottom:10px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
+    
   }
 
   #user_chat{
@@ -414,7 +416,9 @@
                   <span>반갑소잉 : 전라</span>
               </div>
               <div id="chat_view">
-                <div id="admin_chat">dd</div>
+                <div id="admin_chat">
+                  ㅇㅇ
+                </div>
                 <div id="user_chat">ff</div>      
               </div>
               <div id="chat_input">
