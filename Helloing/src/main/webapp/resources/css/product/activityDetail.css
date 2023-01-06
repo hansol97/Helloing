@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+
+.middle-content { display: flex; justify-content: space-between; }
+.side-bar { width: 280px; padding: 0px 5px; }
+.main { width: 800px; }
+hr{ margin: 15px 0px; }
+
+/* 사이드바 */
+.accommselectbox{
+	border: 1px solid gray;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+}
+.accommselectbox button{
+	width: 250px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #053E99;
+	color: white;
+	border: 0;
+	border-radius: 3px;
+	margin: 40px 0px 10px 0px;
+}
+.accommselectbox p{ font-size: 20px; }
+.accommselectbox span{ font-size: 25px; font-weight: bold; }
+#btn-wish{
+	width: 250px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: white;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
+/* 사이드바 끝 */
+
+
+/* 메인 */
+.top-info{ display: flex; justify-content: space-between; }
+.acticityName{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.top-info button{
+	width: 200px;
+	font-size: 20px;
+	border: 1px solid gray;
+	border-radius: 3px;
+}
+
+.images{ border: 1px solid gray; margin-bottom: 20px; }
+.sub-images{ display: flex; justify-content: space-between; }
+
+/* 티켓 선택 */
+.ticketlist{
+	background-color: rgb(230, 230, 230);
+	padding: 10px 20px;
+	margin-bottom: 10px;
+}
+.ticketbox{
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	padding: 10px;
+	margin: 10px 0px;
+}
+.ticket-info{ width: 400px; }
+.ticket-price{ width: 150px; }
+.ticket-price span{ font-size: 25px; }
+.ticket-count{ width: 200px; }
+.ticket-count button{
+	border: 1px solid lightgray;
+	border-radius: 70px;
+	width: 40px;
+	height: 40px;
+	font-size: 40px;
+	font-weight: 50;
+	line-height: 30px;
+}
+.ticket-count span{ font-size: 25px; margin: 0px 10px; }
+.ticketName{ font-size: 20px; }
+
+.order-info{ display: flex; justify-content: space-between; padding: 5px 0px; }
+.text-bold{ margin-left: 50px; font-weight: bold; }
+.all-price{ display: flex; justify-content: flex-end; }
+.point{ margin-left: 50px; font-size: 20px; font-weight: bold; color: #053E99; }
+
+#btn-pay{ text-align: right; margin-bottom: 30px; }
+#btn-pay>a{
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #053E99;
+	color: white;
+	padding: 10px 30px;
+	border-radius: 3px;
+}
+/* 티켓 선택 끝 */
+
+.explanation{
+	display: flex;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.title{ width: 300px; }
+.title span{ font-size: 20px; }
+
+/* 리뷰 */
+.reviewtitle{ margin: 20px 0px 10px 0px; font-size: 30px; }
+.reviewstar{
+	display: flex;
+	border: 1px solid gray;
+	padding: 30px;
+	justify-content: space-evenly;
+	margin-bottom: 20px;
+}
+.reviewstar span{ font-size: 40px; font-weight: bold; }
+.reviewstar div{ text-align: center; }
+
+/* 정렬버튼 */
+.radio-sort{ text-align: right; margin-bottom: 15px; }
+.radio-sort>input[type=radio]{ opacity: 0; }
+.radio-sort>input[type=radio]>label{
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.radio-sort>input[type=radio]:checked+label{
+    font-weight: bold;
+    color: #053E99;
+}
+/* 정렬버튼 끝 */
+
+.reviewbox{ font-size: 14px; }
+.review-content{ font-size: 16px; margin: 5px 0px; }
+.tag{
+	background-color: lightgray;
+	margin-right: 20px;
+	padding: 2px 6px;
+}
+
+/* 페이지 버튼 */
+.page-bar{ text-align: center; margin: 30px; }
+.page-bar li{ display: inline-block; }
+.page-bar a{ font-size: 20px; margin: 0px 20px; }
+/* 페이지 버튼끝 */
+/* 리뷰 끝 */
+/* 메인 끝 */

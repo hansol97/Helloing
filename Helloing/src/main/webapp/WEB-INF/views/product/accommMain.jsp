@@ -5,87 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Helloing</title>
-<style>
 
-/* 최근 본 숙소 */
-.recentlyAccom{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-.recentlyAccom>div{
-    width: 350px;
-}
-/* 최근본 숙소 끝 */
+<link href="resources/css/product/accommMain.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="resources/js/product/accommMain.js"></script>
 
-/* 검색창 */
-.top-content input[type=radio]{
-    opacity: 0;
-}
-.top-content input[type=radio]>label{
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-.top-content input[type=radio]:checked+label{
-    font-weight: bold;
-    color: #053E99;
-}
-#searchbox{
-    background-color: rgb(237, 237, 237);
-    padding: 20px 15px;
-    margin-top: 10px;
-}
-#searchbox table{
-	width: 100%;
-}
-#searchbox table input{
-	width: 90%;
-	height: 30px;
-}
-#searchbox table div{
-	width: 90%;
-	height: 30px;
-	background: white;
-	padding: 0px 5px;
-	box-sizing: border-box;
-    border: 1px solid rgb(105, 105, 105);
-}
-#searchbox table button{
-	width: 100%;
-	height: 30px;
-    font-weight: bold;
-    color: white;
-    background-color: #053E99;
-    border: 0;
-    border-radius: 3px;
-}
-/* 검색창 끝*/
-
-
-.accommName{
-    font-size: 22px;
-    font-weight: bold;
-}
-.hot{
-    display: flex;
-    margin-bottom: 50px;
-}
-.productbox{
-    margin-right: 20px;
-}
-
-
-.inner h1{
-	font-size: 30px;	
-	font-weight: bold;
-}
-.inner h3{
-	font-size: 25px;
-	font-weight: bold;
-	margin: 20px 0px;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="../common/menubar_user.jsp"/> <!-- 헤더를 넣으니까 검색창이 헤더 밑으로 간다... relative, absolute 속성 때문일까? -->
@@ -157,17 +80,6 @@
             </div>
         </div>
         <hr>
-
-		<script>
-			$(function(){
-				// 상품 div 클릭 시 상세보기 페이지로 이동
-				$(document).on('click', '.productbox, .accommCookie', function(){
-					var $accommNo = $(this).children().eq(0).val();
-					//console.log($accommNo);
-                    location.href = "detail.accomm"; // 나중에 겟방식 url로 바꾸기
-				})
-			})
-		</script>
 		
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
