@@ -12,6 +12,7 @@
 
 body {
   background: #f9fbff;
+  /* border: red 1px solid !important; */
 }
 a:hover {
   text-decoration: none;
@@ -329,19 +330,25 @@ a:hover {
     color: inherit;
     z-index: 1; 
 }
-
 .more_button:hover{
   font-weight: bold;
-
-   background: rgba(136, 238, 129, 0.761);
+  background: rgba(136, 238, 129, 0.761);
 }
 
 /* enrollform 큰 박스 */
-.enrollform{
+.fatherEnrollForm{
   height: 2400px !important;
+  width: 1300px;
+  margin-left: 200px;
+}
 
-
-
-
+.enrollform{
+  width: 80%;
 
 }
+.innerform{
+  border: 1px red solid;
+  width: 180% !important;
+}
+
+
