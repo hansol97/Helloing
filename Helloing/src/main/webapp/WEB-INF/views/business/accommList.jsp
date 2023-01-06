@@ -52,15 +52,129 @@
                   
                      크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
                 <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
+               
+
+                <div class="read-more">
+                  <a href="#">숙소 상세보기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- 반복 끝 -->
+                <!-- 한 뭉치 반복 시작 -->
+                <div class="col-lg-4 col-md-6 d-flex">
+                  <div class="blog-card w-100">
+                    <div class="meta">
+                      <!--"첫번째 호텔 사진"-->
+                      <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
+                    </div>
+                    <div class="description">
+                      <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
+                      <div class="more_details">
+                          <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
+                          <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
+                          <div class="more_buttons">
+                              <button class="more_button">객실등록</button>
+                              <button class="more_button">수정</button>
+                              <button class="more_button">삭제</button>
+                              <button class="more_button">추가결제</button>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div><br>
+                      <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
+                          내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
+                          내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
+                          숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
+                        
+                           크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
+                      <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
+                      <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                        <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                      </div>
+                      <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                        <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                      </div>
+                      <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                        <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                        <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                      </div>
+                     
+      
+                      <div class="read-more">
+                        <a href="#">숙소 상세보기</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+              <!-- 반복 끝 -->
+
+                      <!-- 한 뭉치 반복 시작 -->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="blog-card w-100">
+              <div class="meta">
+                <!--"첫번째 호텔 사진"-->
+                <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
+              </div>
+              <div class="description">
+                <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
+                <div class="more_details">
+                    <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
+                    <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
+                    <div class="more_buttons">
+                      <button class="more_button">만료연장</button>
+                      <button class="more_button">삭제</button>
+                      <button class="more_button">수정</button>
+                      <button class="more_button">객실등록</button>
+                    </div>
+                </div>
+                <br>
+                <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div><br>
+                <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
+                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
+                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
+                    숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
+                  
+                     크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
+                <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자수 X명</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                </div>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                </div>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
+                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                </div>
+               
 
                 <div class="read-more">
                   <a href="#">숙소 상세보기</a>
@@ -72,99 +186,7 @@
         <!-- 반복 끝 -->
                     
             
-        <!-- 한 뭉치 반복 시작 -->
-        <div class="col-lg-4 col-md-6 d-flex">
-            <div class="blog-card w-100">
-              <div class="meta">
-                <!--"첫번째 호텔 사진"-->
-                <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
-              </div>
-              <div class="description">
-                <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
-                <div class="more_details">
-                    <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
-                    <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
-                    <div class="more_buttons">
-                        <button class="more_button">객실등록</button>
-                        <button class="more_button">수정</button>
-                        <button class="more_button">삭제</button>
-                        <button class="more_button">추가결제</button>
-                    </div>
-                </div>
-                <br>
-                <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div><br>
-                <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                  
-                     크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
-                <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
 
-                <div class="read-more">
-                  <a href="#">숙소 상세보기</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <!-- 반복 끝 -->
-                    
-        <!-- 한 뭉치 반복 시작 -->
-        <div class="col-lg-4 col-md-6 d-flex">
-            <div class="blog-card w-100">
-              <div class="meta">
-                <!--"첫번째 호텔 사진"-->
-                <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
-              </div>
-              <div class="description">
-                <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
-                <div class="more_details">
-                    <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
-                    <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
-                    <div class="more_buttons">
-                        <button class="more_button">객실등록</button>
-                        <button class="more_button">수정</button>
-                        <button class="more_button">삭제</button>
-                        <button class="more_button">추가결제</button>
-                    </div>
-                </div>
-                <br>
-                <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div><br>
-                <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                  
-                     크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
-                <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객실이름입니다객실이름입니다객실이름 &nbsp; &nbsp;                
-                    <button class="button button--ujarak button--border-thin button--text-thick">예약 확인</button>
-                </div>
-
-                <div class="read-more">
-                  <a href="#">숙소 상세보기</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <!-- 반복 끝 -->
         
         <br><br><br>
         <div class="nomore">더 이상 숙소가 없습니다 <br><br>
