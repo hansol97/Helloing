@@ -18,4 +18,43 @@ public class BusinessController {
 		return "business/activityList";
 	}
 
+	@RequestMapping("goInsertAccom.bu")
+	public String goInsertAccom() {
+		return "business/insertAccomm";
+	}
+	
+	@RequestMapping("goInsertAct.bu")
+	public String goInsertAct() {
+		return "business/insertActivity";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

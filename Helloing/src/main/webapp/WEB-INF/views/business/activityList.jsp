@@ -22,7 +22,7 @@
           <br><br><br>
           <div class="accommTitle">등록한 액티비티<div class="inAT"></div></div>
             
-          <button class="button button--ujarak button--border-thin button--text-thick enrollBtn">액티비티 등록</button>
+          <button class="button button--ujarak button--border-thin button--text-thick enrollBtn" onclick="location.href='goInsertAct.bu';">액티비티 등록</button>
 
 
             
