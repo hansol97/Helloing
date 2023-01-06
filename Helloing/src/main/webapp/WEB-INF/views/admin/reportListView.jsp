@@ -225,7 +225,7 @@
     
                         <div id="report_confirm_btn">
                             <button type="submit">삭제</button>
-                            <button type="submit">미삭제</button>
+                            <button type="submit" style="width:60px;">미삭제</button>
                             <button id="keyword_cancel" type="button" onclick="keywordCancel();">취소</button>
                         </div>
                     </form>
@@ -236,6 +236,9 @@
     <button class="btn-open-popup">Modal 띄우기</button>
 
     <script>
+
+
+
         const body = document.querySelector('body');
         const modal = document.querySelector('.modal');
         const btnOpenPopup = document.querySelector('.btn-open-popup');
@@ -257,6 +260,11 @@
             }
           }
         });
+
+        function keywordCancel(){
+            const btnCancel = document.getElementById('#keyword_cancel');
+            modal.classList.remove('show');
+        };
       </script>
 
 </body>

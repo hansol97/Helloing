@@ -14,6 +14,62 @@
     font-weight: bold;
     }
 
+    /* 모달 */
+    
+    .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal.show {
+    display: block;
+  }
+
+  .modal_body {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+
+    width: 320px;
+    height: 200px;
+
+    padding: 40px;
+
+    overflow-x: auto;
+    /* text-align: center; */
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .modal-title{
+    margin-left:10px;
+  }
+
+  .modal-title span{
+    font-weight: bold;
+  }
+
+  /* 사업자 조회 모달 설정 */
+  .modal th{
+    width:100px;
+  }
+  
+  .modal td{
+    width:200px;
+  }
+
 </style>
 </head>
 <body>
@@ -110,6 +166,58 @@
         </div>
 
     </div>
+
+    <div class="modal">
+        <div class="modal_body">
+            <div>
+                <div class="modal-title">
+                    <span>사업자 추가정보</span>
+                </div>
+                <div align="center">
+                    <table class="type02">
+                        <tr>
+                            <th>사업자명</th>
+                            <td>사업자2</td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td>서울시 중구</td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td>business@email.com</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-open-popup">Modal 띄우기</button>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+  
+        btnOpenPopup.addEventListener('click', () => {
+          modal.classList.toggle('show');
+  
+          if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+          }
+        });
+  
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.classList.toggle('show');
+  
+            if (!modal.classList.contains('show')) {
+              body.style.overflow = 'auto';
+            }
+          }
+        });
+      </script>
 
     
 </body>
