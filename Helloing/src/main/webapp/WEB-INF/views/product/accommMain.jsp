@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Helloing</title>
+
 <link href="resources/css/product/accommMain.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="resources/js/product/accommMain.js"></script>
+
 </head>
 <body>
 	<jsp:include page="../common/menubar_user.jsp"/> <!-- 헤더를 넣으니까 검색창이 헤더 밑으로 간다... relative, absolute 속성 때문일까? -->
@@ -77,17 +80,6 @@
             </div>
         </div>
         <hr>
-
-		<script>
-			$(function(){
-				// 상품 div 클릭 시 상세보기 페이지로 이동
-				$(document).on('click', '.productbox, .accommCookie', function(){
-					var $accommNo = $(this).children().eq(0).val();
-					//console.log($accommNo);
-                    location.href = "detail.accomm"; // 나중에 겟방식 url로 바꾸기
-				})
-			})
-		</script>
 		
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
