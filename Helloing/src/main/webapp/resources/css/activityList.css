@@ -10,7 +10,7 @@
   font-family: "S-CoreDream-3Light";
 }
 
-.body {
+body {
 background: rgb(18, 23, 62);
 }
 a:hover {
@@ -220,6 +220,7 @@ cursor: pointer;
 }
 .nomore{
 text-align: center;
+text-shadow: 1px 1px #dadada;
 }
 
 /* 등록숙소조회페이지입니다 표시 */
@@ -253,8 +254,6 @@ text-align: center;
   width: 130px !important;
   left: 29px;
 }
-
-
 
 @media (min-width: 640px) {
 .blog-card {
@@ -333,9 +332,8 @@ text-align: center;
 }
 
 .more_button:hover{
-font-weight: bold;
-
- background: rgba(136, 238, 129, 0.761);
+  font-weight: bold;
+  background: rgba(136, 238, 129, 0.761);
 }
 
 
