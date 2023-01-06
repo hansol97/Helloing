@@ -13,7 +13,6 @@
 
 </head>
 <body>
-    <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     
     
@@ -23,97 +22,73 @@
           <div class="accommTitle">숙소 등록 페이지</div>
           
         <!--등록 폼 박스-->
-          <div class="col-lg-4 col-md-6 d-flex">
-            <div class="blog-card enrollform">
-              
-		<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" >
-          <!-- 피드 등록 내용물 -->
-          <div class="feed_modal_insert_content">
-            <div class="feed_modal_insert_content1">
+          <div class="fatherEnrollForm">
+            <div class="blog-card enrollform" >
+			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
+			<!-- 피드 등록 내용물 -->
+				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 1000px;"  >
+					<tr>
+						<th></th>
+						<td style="text-align: center; height: 130px; vertical-align: middle;">123y</td>
+					</tr>
+					<tr>
+						<th width="100" height="40px"> 숙소 이름 :</th>
+						<td width="400px">
+							<input id="feed_insert_title" type="text" name="title" height="100px" width="550px" required placeholder="아무튼 입력"/>
+						</td>
+					</tr>
+					<tr>
+						<th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
+						<td height="40px">
+							<textarea name="feedText" rows="10" style="resize: none; width: 100%" required placeholder="아무튼 입력"></textarea>
+						</td>
+						<br /><br />
+					</tr>
+					<tr>
+						<th>&nbsp;&nbsp;</th>
+						<td>&nbsp;&nbsp;</td>
+					</tr>
+					<tr>
+						<th id="feed_tag">등급 선택 :</th>
+						<br />
+						<br />
+						<td>
+							<select name="rating" id="rating">
+								<option value='1'>1 등급</option>
+								<option value='2'>2 등급</option>
+								<option value='3'>3 등급</option>
+								<option value='4'>4 등급</option>
+								<option value='5'>5 등급</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
+					<div class="titleImg_class1" style="margin-left: 15px;">
+						<p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br />
+						<input type="file" name="accommPhoto1" /><br><br>
+						<input type="file" name="accommPhoto2" /><br><br>
+						<input type="file" name="accommPhoto3" /><br><br>
+					</div>
 
-              
-              <input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
+			<div class="feed_modal_btns" align="center">
+				<br />
+				<button type="submit" class="" id="red_btn2"> 등록 </button>
+				<button type="reset" class="">초기화</button>
+				<button type="reset" class="">취소하기</button>
 
-              <table id="feed_insert_table" cellpadding="20" cellspacing="20">
-                <tr>
-                  <th width="100" height="40px"> 숙소 이름 :</th>
-                  <td width="500px">
-                    <input id="feed_insert_title" type="text" name="title" height="100px" width="550px" required />
-                  </td>
-                </tr>
-                <tr>
-                  <th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
-                  <td height="40px">
-                    <textarea name="feedText" rows="10" style="resize: none; width: 580px" required></textarea>
-                  </td>
-                  <br /><br />
-                </tr>
-                <tr>
-                  <th id="feed_tag">태그 선택 :</th>
-                  <br />
-                  <br />
-                  <td>
-                    <input type="checkbox" name="tag" value="일상" />일상
-                    &nbsp;&nbsp;
-                    <input type="checkbox" name="tag" value="뷰티" />뷰티
-                    &nbsp;&nbsp;
-                    <input type="checkbox" name="tag" value="음식" />음식
-                    &nbsp;&nbsp;
-                    <input type="checkbox" name="tag" value="환경" />환경
-                    &nbsp;&nbsp;
-                    <input type="checkbox" name="tag" value="꿀팁" />꿀팁
-                  </td>
-                </tr>
-              </table>
-			  <div class="titleImg_class1">
-                <p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>
-                <br />
-          </div>
-
-          <div class="feed_modal_btns" align="center">
-            <br />
-            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 등록 </button>
-            <button type="reset" class="custom-btn btn-15">초기화</button>
-            <button type="reset" class="custom-btn btn-15">취소하기</button>
-
-          </div>
-        </form>
-
-
-
-
+			</div>
+			</form>
 
 
+			</div>
 
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-
+		</div>
+		  <!-- 등록 폼 박스 끝 -->
        
-
-                    
-            
-
-        
-        
-
       
-
-
-
-
-
     </div>
+  </div>
   </div>
 
 
