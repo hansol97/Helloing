@@ -168,6 +168,86 @@
       opacity: 0;
   }
   /* 검색창 끝 */
+
+  /* 모달 */
+    
+  .chat_modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+  }
+
+  .chat_modal.show {
+    display: block;
+  }
+
+  .chat_modal_body {
+    position: absolute;
+    top: 440px;
+    right: 20px;
+
+    width: 270px;
+    height: 400px;
+
+    padding: 40px;
+
+    overflow-x: auto;
+    /* text-align: center; */
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 2px 5px 6px 4px rgba(21, 22, 24, 0.15);
+
+    /* transform: translateX(-50%) translateY(-50%); */
+  }
+
+  .chat_modal-title{
+    margin-left:10px;
+  }
+
+  .chat_modal-title span{
+    font-weight: bold;
+  }
+
+  #chatbot_btn {
+    position: absolute;
+    top:880px;
+    right:0px;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 5px;
+
+    overflow-x: auto;
+    text-align: center;
+
+    background-color: #ffffff;
+    border-radius: 50px;
+    box-shadow: 2px 5px 6px 4px rgba(21, 22, 24, 0.15);
+    opacity: 0.9;
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  #chatbot_btn span{
+    font-size: 25px;
+    color:#ffffff;
+    font-weight:bold;
+  }
+
+  /* 챗봇 */
+
+  chatbot #chatbot_btn, .chat_modal{
+    position:fixed;
+  }
+  
   </style>
 
 </head>
@@ -189,7 +269,7 @@
 	          </li>
 	
 	          <li>
-	            <a href="#">로그인</a>
+	            <a href="login.me">로그인</a>
 	          </li>
 
 
@@ -212,7 +292,7 @@
           <!--사용자 화면일 경우-->
           
           <li>
-            <a href="#">기업관리</a>
+            <a href="page.bu">기업관리</a>
           </li>
          
           <!--기업관리 화면일 경우-->
@@ -273,6 +353,52 @@
 
   </header>
   <br><br><br><br><br><br>
+
+  <chatbot>
+    <div id="chatbot_btn" class="chat-btn-open">
+      <span>🙋‍♂️</span>
+    </div>
+
+    <div class="chat_modal">
+      <div class="chat_modal_body">
+          <div>
+              <div class="chat_modal-title">
+                  <span>반갑소잉 : 전라</span>
+              </div>
+              <div align="center">
+                  <table class="type02">
+                      
+                      
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </chatbot>
+
+  <script>
+    const cbBody = document.querySelector('body');
+    const chatModal = document.querySelector('.chat_modal');
+    const chatBtnOpen = document.querySelector('.chat-btn-open');
+
+    chatBtnOpen.addEventListener('click', () => {
+      chatModal.classList.toggle('show');
+
+      // if (modal.classList.contains('show')) {
+      //   cbBody.style.overflow = 'hidden';
+      // }
+    });
+
+    chatModal.addEventListener('click', (event) => {
+      if (event.target === chatModal) {
+        chatModal.classList.toggle('show');
+
+        // if (!chatModal.classList.contains('show')) {
+        //   cbBody.style.overflow = 'auto';
+        // }
+      }
+    });
+  </script>
 
 
 </body>

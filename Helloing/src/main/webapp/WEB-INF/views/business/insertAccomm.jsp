@@ -23,65 +23,28 @@
           <div class="accommTitle">숙소 등록 페이지</div>
           
         <!--등록 폼 박스-->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="blog-card enrollform">
+              
 		<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" >
-          
-			<!-- 피드 등록 내용물 -->
+          <!-- 피드 등록 내용물 -->
           <div class="feed_modal_insert_content">
             <div class="feed_modal_insert_content1">
-              <div class="titleImg_class1">
-                <p>🎈피드 사진을 선택해 주세요!</p>
-                <br />
-                <!-- 미리보기 영역 -->
-                <div class="titleImg_class1_1">
-                  <img id="titleImg" width="200" height="200" style="margin: auto" src="#" alt="숙소사진" />
-                </div>
-                <div id="file-area">
-                  <input
-                    type="file"
-                    name="file1"
-                    id="file1"
-                    required
-                    onchange="loadImg(this);"
-                  />
-                </div>
-                <!-- onchange : input태그의 내용물이 변경되었을 때 발생하는 이벤트 속성 - 수업시간에 함!! -->
-                <!-- loadImg() : 우리가 만들 함수 -->
-              </div>
-              <input
-                type="hidden"
-                class="hidden"
-                name="userNo"
-                value=""
-              />
-              <!-- 유저넘버 히든 -->
 
-              <table
-                id="feed_insert_table"
-                cellpadding="20"
-                cellspacing="20"
-              >
+              
+              <input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
+
+              <table id="feed_insert_table" cellpadding="20" cellspacing="20">
                 <tr>
-                  <th width="100" height="40px">피드 제목 :</th>
+                  <th width="100" height="40px"> 숙소 이름 :</th>
                   <td width="500px">
-                    <input
-                      id="feed_insert_title"
-                      type="text"
-                      name="title"
-                      height="100px"
-                      width="550px"
-                      required
-                    />
+                    <input id="feed_insert_title" type="text" name="title" height="100px" width="550px" required />
                   </td>
                 </tr>
                 <tr>
-                  <th id="feed_content">피드 내용 :</th>
+                  <th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
                   <td height="40px">
-                    <textarea
-                      name="feedText"
-                      rows="10"
-                      style="resize: none; width: 580px"
-                      required
-                    ></textarea>
+                    <textarea name="feedText" rows="10" style="resize: none; width: 580px" required></textarea>
                   </td>
                   <br /><br />
                 </tr>
@@ -102,39 +65,16 @@
                   </td>
                 </tr>
               </table>
-            </div>
-            <br />
-
-            <script>
-              $(function () {
-                $("#file-area").hide();
-                $("#titleImg").click(function () {
-                  $("#file1").click();
-                });
-              });
-              function loadImg(inputFile) {
-
-                if (inputFile.files.length == 1) {
-                  var reader = new FileReader(); // 자바스크립트에서 파일 읽을때 쓰라고 제공해주는 친구
-                  reader.readAsDataURL(inputFile.files[0]); // 읽을 파일을 전달해주는 방법
-                  reader.onload = function (e) {
-                    $("#titleImg").attr("src", e.target.result);
-                  };
-                } else {
-                  // 파일 첨부를 취소했을 때
-                  $("#titleImg").attr(
-                    "src",
-                    "#"
-                  );
-                }
-              }
-            </script>
+			  <div class="titleImg_class1">
+                <p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>
+                <br />
           </div>
 
           <div class="feed_modal_btns" align="center">
             <br />
-            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 피드등록 </button>
+            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 등록 </button>
             <button type="reset" class="custom-btn btn-15">초기화</button>
+            <button type="reset" class="custom-btn btn-15">취소하기</button>
 
           </div>
         </form>
@@ -155,8 +95,6 @@
 
 
 
-
-			   </form>
 
             </div>
           </div>
