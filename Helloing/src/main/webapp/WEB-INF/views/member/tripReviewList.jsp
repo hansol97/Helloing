@@ -88,79 +88,50 @@
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 	    <div id="table">
-		        <h1>예정된 예약</h1>
+		        <h1>나의 여행 리뷰 조회</h1>
 				
 		        <table>
 		        <thead>
 		            <tr>
-		                <th width="90px">예약 번호</th>
-		                <th width="70px">예약 유형</th>
-		                <th>예약명</th>
-		                <th width="120px">예약 일자</th>
-		                <th width="100px">결제금액</th>
-		                <th width="70px"></th>
+		                <th width="60px">글번호</th>
+		                <th>제목</th>
+		                <th width="100px">게시날짜</th>
+		                <th width="60px">조회 수</th>
+		                <th width="70px">좋아요 수</th>
 		            </tr>
 		        <thead>
 		        <tbody>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
-		                <td>OO호텔</td>
-		                <td>2023-01-29<br> ~<br> 2023-01-29</td>
-		                <td>198,000원</td>
-		                <td><a href="#ex1" rel="modal:open">예약취소</a></td>
+		                <td>2023</td>
+		                <td>전주 너무 좋다 하하 비빔밥 최고</td>
+		                <td>2023-01-29</td>
+		                <td>1</td>
+		                <td>1</td>
 		            </tr>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
-		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
-		                <td>198,000원</td>
-		                <td><a href="#">예약취소</a></td>
+		                <td>2023</td>
+		                <td>남원 재밌어여</td>
+		                <td>2023-01-29</td>
+		                <td>1</td>
+		                <td>1</td>
 		            </tr>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
-		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
-		                <td>198,000원</td>
-		                <a href="#">예약취소</a>
+		                <td>2023</td>
+		                <td>전라도 여행중 ~ ^^</td>
+		                <td>2023-01-29</td>
+		                <td>1</td>
+		                <td>1</td>
 		            </tr>
 		        </tbody>
 		        </table>
 		    </div>
-		<!-- 예약취소 모달창 -->
-		    <div id="ex1" class="modal">
-		    	<ul>
-		    		<h5 style="font-weight:600;">취소 시 환불금액</h5>
-		    		<li style="font-size:20px;">190,000원</li>
-		    	</ul>
-		    	<br>
-			    <ul>
-		    		<h5 style="font-weight:600;">환불규정</h5>
-		    		<li>
-		    		<p>
-		    		- 체크인 3일 전 : 무료 취소 <br>
-					- 체크인 2일 전 ~ 당일 : 취소 환불 불가  <br>
-					- 취소요청 이후에는 취소의 철회가 불가능합니다.  <br>
-					- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.  <br>
-					</p>
-					</li>
-		    	</ul>
-		    	<br>
-			  <p style="font-size:25px; font-weight:600;">동의하시겠습니까?</p>
-			 
-			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >넹</a>
-			  <a href="#" rel="modal:close">아니용</a>
-			  </div>
-		</div>
+
     </div>
     
     <script>
     $(function(){
     	$('#table td').click(function(){
-    		location.href ="reservationDetail.hj";
+    		location.href ="";
     	})
     })
     
