@@ -54,4 +54,9 @@ public class MemberController {
 		return "member/cancelledReservation";
 	}
 	
+	//예약 상세 조회
+	@RequestMapping("reservationDetail.hj")
+	public String reservationDetail() {
+		return "member/reservationDetail";
+	}
 }
