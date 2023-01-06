@@ -40,40 +40,7 @@
 	margin-bottom: 20px;
 }
 .show{ display: block; }
-.black_bg{
-	display: none;
-	position: absolute;
-	content: "";
-	width: 100%;
-	height: 100%;
-	background-color:rgba(0, 0,0, 0.5);
-	top:0;
-	left: 0;
-	z-index: 1;
-    }
-.black_bg1{
-	display: none;
-	position: absolute;
-	content: "";
-	width: 100%;
-	height: 100%;
-	background-color:rgba(0, 0,0, 0.5);
-	top:0;
-	left: 0;
-	z-index: 1;
-    }
-    
-.black_bg2{
-	display: none;
-	position: absolute;
-	content: "";
-	width: 100%;
-	height: 100%;
-	background-color:rgba(0, 0,0, 0.5);
-	top:0;
-	left: 0;
-	z-index: 1;
-    }
+
 .termsButton{
 	width: 150px;
 	height: 50px;
