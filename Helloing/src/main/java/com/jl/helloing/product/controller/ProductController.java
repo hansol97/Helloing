@@ -30,6 +30,12 @@ public class ProductController {
 		return "product/accommReserve";
 	}
 	
+	// 숙소 결제 완료
+	@RequestMapping("pay.accomm")
+	public String payAccomm() {
+		return "product/paySuccess";
+	}
+	
 	// 액티비티 메인
 	@RequestMapping("activity")
 	public String activityMain() {
@@ -47,4 +53,17 @@ public class ProductController {
 	public String DetailActivity() {
 		return "product/activityDetail";
 	}
+	
+	// 액티비티 결제 페이지
+	@RequestMapping("reserve.activity")
+	public String reserveActivity() {
+		return "product/activityReserve";
+	}
+	
+	// 액티비티 결제 완료
+	@RequestMapping("pay.ticket")
+	public String payActivity() {
+		return "product/paySuccess";
+	}
 }
+
