@@ -29,6 +29,11 @@ public class MemberController {
 		return "member/terms";
 	}
 	
+	@RequestMapping("memberEnrollForm.me")
+	public String insertMember() {
+		return "member/memberEnrollForm";
+	}
+	
 	//혜진
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
@@ -67,8 +72,25 @@ public class MemberController {
 	}
 	
 	//회원정보 조회 - 수정
-	@RequestMapping("memberEnrollForm.hj")
+	@RequestMapping("memberUpdateForm.hj")
 	public String memberEnrollForm() {
-		return "member/memberEnrollForm";
+		return "member/memberUpdateForm";
+	}
+	
+	//나의 여행리뷰 조회 리스트
+	@RequestMapping("tripReviewList.hj")
+	public String tripReviewList() {
+		return "member/tripReviewList";
+	}
+	
+	//찜한 숙소 조회
+	@RequestMapping("wishAccommList.hj")
+	public String wishAccommList(){
+		return "member/wishAccommList";
+	}
+	//찜한 액티비티 조회
+	@RequestMapping("wishActivityList.hj")
+	public String wishActivityList() {
+		return "member/wishActivityList";
 	}
 }

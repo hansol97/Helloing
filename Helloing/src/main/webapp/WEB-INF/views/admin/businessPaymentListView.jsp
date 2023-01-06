@@ -22,7 +22,7 @@
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">
-            <br>
+            <br><br><br><br><br><br><br><br>
             <table>
                 <tr id="admin-menu2">
                     <td><p><a id="admin-page_mark" href="businessPayList.ad">사업자 등록 결제</a></p></td>
