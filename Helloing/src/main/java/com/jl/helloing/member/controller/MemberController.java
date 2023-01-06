@@ -65,4 +65,10 @@ public class MemberController {
 	public String pwdMatchingForm() {
 		return "member/pwdMatchingForm";
 	}
+	
+	//회원정보 조회 - 수정
+	@RequestMapping("memberEnrollForm.hj")
+	public String memberEnrollForm() {
+		return "member/memberEnrollForm";
+	}
 }
