@@ -269,7 +269,7 @@
 	          </li>
 	
 	          <li>
-	            <a href="../member/login">로그인</a>
+	            <a href="login.me">로그인</a>
 	          </li>
 
 
