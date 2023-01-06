@@ -29,6 +29,11 @@ public class MemberController {
 		return "member/terms";
 	}
 	
+	@RequestMapping("memberEnrollForm.me")
+	public String insertMember() {
+		return "member/memberEnrollForm";
+	}
+	
 	//혜진
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
