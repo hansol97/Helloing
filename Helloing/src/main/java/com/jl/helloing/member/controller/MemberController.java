@@ -59,4 +59,10 @@ public class MemberController {
 	public String reservationDetail() {
 		return "member/reservationDetail";
 	}
+	
+	//회원정보 조회 - 비밀번호 확인
+	@RequestMapping("pwdMatchingForm.hj")
+	public String pwdMatchingForm() {
+		return "member/pwdMatchingForm";
+	}
 }
