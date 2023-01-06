@@ -26,23 +26,26 @@
             <div class="blog-card enrollform" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> 👉당신의 👍멋진 🛖숙소를 🕵️‍♀️등록해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 1000px;"  >
-					<tr>
-						<th></th>
-						<td style="text-align: center; height: 130px; vertical-align: middle;">123y</td>
-					</tr>
 					<tr>
 						<th width="100" height="40px"> 숙소 이름 :</th>
 						<td width="400px">
-							<input id="feed_insert_title" type="text" name="title" height="100px" width="550px" required placeholder="아무튼 입력"/>
+							<input id="amName" type="text" name="title" height="100px" width="550px" required placeholder="아무튼 입력"/>
+						</td>
+					</tr>
+					<tr>
+						<th id="feed_content" style="vertical-align: middle;">숙소 주소 :</th>
+						<td height="40px">
+							<textarea name="amDescription" rows="2" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
 						<td height="40px">
-							<textarea name="feedText" rows="10" style="resize: none; width: 100%" required placeholder="아무튼 입력"></textarea>
+							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
-						<br /><br />
+						<br><br>
 					</tr>
 					<tr>
 						<th>&nbsp;&nbsp;</th>
@@ -50,11 +53,23 @@
 					</tr>
 					<tr>
 						<th id="feed_tag">등급 선택 :</th>
-						<br />
-						<br />
+						<br>
 						<td>
 							<select name="rating" id="rating">
 								<option value='1'>1 등급</option>
+								<option value='2'>2 등급</option>
+								<option value='3'>3 등급</option>
+								<option value='4'>4 등급</option>
+								<option value='5'>5 등급</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th id="feed_tag">카테고리 :</th>
+						<br>
+						<td>
+							<select name="rating" id="rating">
+								<option value='1'>호텔</option>
 								<option value='2'>2 등급</option>
 								<option value='3'>3 등급</option>
 								<option value='4'>4 등급</option>
