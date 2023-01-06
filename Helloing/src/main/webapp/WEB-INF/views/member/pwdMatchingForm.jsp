@@ -97,7 +97,7 @@
 			<br><br><br>
 
 			<div id="enrollForm">
-				<form action="memberEnrollForm.hj" method="post">
+				<form action="memberUpdateForm.hj" method="post">
 					<h6>비밀번호</h6> 
 					<input type="password" placeholder="비밀번호를 입력해주세요.">
 					<button id="btn" type="submit">확인</button>
