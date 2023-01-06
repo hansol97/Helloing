@@ -224,19 +224,34 @@ a:hover {
 
 /* 등록숙소조회페이지입니다 표시 */
 .accommTitle {
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display:inline;
-    margin-left: 15px;
-    margin-top: 19px;
-    border-radius: 10px;
-    background-color: #FFEA24;
-    font-weight: bolder;
-    font-size: 20px;
-    position:fixed;
-
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display:inline;
+  margin-left: 15px;
+  margin-top: 19px;
+  border-radius: 10px;
+  background-color: #FFEA24;
+  font-weight: bolder;
+  font-size: 20px;
+  position:fixed;
 }
+/* 숙소 등록하기 버튼 */
+.enrollBtn {
+  padding: 10px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  margin-left: 10px !important;
+  margin-top: 120px !important;
+  border-radius: 0px !important;
+  background-color: #ffffff !important;
+  font-weight: bolder !important;
+  font-size: 20px !important;
+  position:fixed !important;
+  height: 130px !important;
+  width: 130px !important;
+  left: 20px;
+  }
 
 @media (min-width: 640px) {
   .blog-card {
