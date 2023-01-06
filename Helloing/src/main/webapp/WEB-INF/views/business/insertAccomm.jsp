@@ -22,39 +22,32 @@
           <br><br><br>
           <div class="accommTitle">등록 숙소 관리</div>
           
-            
-        <!-- 한 뭉치 반복 시작 -->
+        <!--등록 폼 박스-->
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="blog-card enrollform">
-               
+               <form action="" method="post"></form>
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
           </div>
 
-        <!-- 반복 끝 -->
        
 
                     
             
 
         
-      <br><br><br>
-      <div class="nomore">더 이상 숙소가 없습니다 <br><br>
-          <a class="scrollToTop" href="">🔝맨 위로 이동🔝</a>
-      </div>
-      <script>
-          let scrollToTop = document.querySelector(".scrollToTop");
-          scrollToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-          // scrollToTop.onclick(function() { window.scrollTo({ top: 0, behavior: "smooth" })});
-
-      $(function () {
-        $(".more").click(function(){
-          $(this).siblings(0).toggle(500);
-        })
-      });
-
-
-      </script>
         
 
       
