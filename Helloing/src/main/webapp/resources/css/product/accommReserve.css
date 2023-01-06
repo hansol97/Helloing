@@ -61,3 +61,28 @@ hr{ margin: 10px 0px; }
 	color: white;
 }
 /* 사이드바 끝 */
+
+/* 모달창 */
+.modal{
+    display: none;
+	width: 700px;
+	position: absolute;
+	top:730px;
+	left: 20%;
+	margin: -250px 0 0 -250px;
+	z-index: 1;
+	padding: 20px;
+	border: 1px solid gray;
+	background-color: white;
+}
+.show{ display: block; }
+.modal h3{ font-size: 25px; margin-bottom: 20px; }
+.modal table { text-align: left; }
+.modal table th, .modal table td{ padding: 5px 10px; }
+.modal_update{ text-align: right; }
+.modal_update a{
+	background-color: #053E99;
+	color: white;
+	border-radius: 3px;
+	padding: 5px 10px;
+}

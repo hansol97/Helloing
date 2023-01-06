@@ -7,7 +7,6 @@
 <title>Helloing</title>
 
 <link href="resources/css/product/accommMain.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="resources/js/product/accommMain.js"></script>
 
 </head>
 <body>
@@ -378,18 +377,20 @@
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
+               	 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
             <div class="productbox">
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>게스트하우스<br>
                 <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
+                	⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
         </div>
 		
 	</div>
+	
+	<script type="text/javascript" src="resources/js/product/accommMain.js"></script>
 </body>
 </html>
