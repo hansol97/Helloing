@@ -178,7 +178,6 @@
 
     width: 100%;
     height: 100%;
-    z-index: 2;
 
     display: none;
 
@@ -197,7 +196,6 @@
     height: 400px;
 
     padding: 40px;
-    /* opacity: 1; */
 
     
     /* text-align: center; */
@@ -209,16 +207,12 @@
     /* transform: translateX(-50%) translateY(-50%); */
   }
 
-  /* .chat_modal-title{
+  .chat_modal-title{
     margin-left:10px;
-  } */
+  }
 
   .chat_modal-title span{
     font-weight: bold;
-    
-  }
-  .chat_modal-title{
-    margin-bottom:20px;
   }
 
   #chatbot_btn {
@@ -253,6 +247,7 @@
   chatbot #chatbot_btn, .chat_modal{
     position:fixed;
   }
+
 
   #chat_view{
     padding:5px;
@@ -415,6 +410,7 @@
               <div class="chat_modal-title">
                   <span>반갑소잉 : 전라</span>
               </div>
+
               <div id="chat_view">
                 <div id="admin_chat">
                   ㅇㅇ
@@ -424,6 +420,7 @@
               <div id="chat_input">
                 <input type="text">
                 <button>🐇</button>
+
               </div>
           </div>
       </div>
