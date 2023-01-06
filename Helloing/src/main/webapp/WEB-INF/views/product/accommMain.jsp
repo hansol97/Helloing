@@ -82,6 +82,9 @@
         <hr>
 		
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
+        <div class="left-button">
+            <p>&lt;</p>
+        </div>
         <div class="hot" id="hot-hotel"> 
             <div class="productbox">
             	<input type="hidden" name="" value="1"><!-- 숙소 번호 넣기 -->
@@ -91,7 +94,7 @@
                	 ⭐ 4.5 (10)<br>
                 86,000원</p>
             </div>
-            <div class="productbox">
+            <div class="productbox"> 
             	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
                 <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
                 <p>호텔<br>

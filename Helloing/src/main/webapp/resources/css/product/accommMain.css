@@ -46,12 +46,14 @@
 }
 /* 검색창 끝*/
 
+/* 메인 컨텐츠 */
 .accommName{ font-size: 22px; font-weight: bold; }
 .hot{ 
     display: flex;
     margin-bottom: 50px;
     overflow: hidden;
 }
+
 .productbox{ margin-right: 20px; }
 
 .inner h1{ font-size: 30px;	font-weight: bold; }
@@ -60,3 +62,4 @@
 	font-weight: bold;
 	margin: 20px 0px;
 }
+/* 메인 컨텐츠 끝 */

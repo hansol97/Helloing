@@ -28,6 +28,23 @@ public class BusinessController {
 		return "business/insertActivity";
 	}
 	
+	// 메뉴바에서 기업관리 누르면 기업페이지로 이동
+	@RequestMapping("page.bu")
+	public String businessPage() {
+		return "business/menubar_business";
+	}
+	// 기업 마이페이지
+	@RequestMapping("mypage.bu")
+	public String selectComMem() {
+		return "business/mypage";
+	}
+	
+	// 기업 정보 수정
+	@RequestMapping("mypageEnroll.bu")
+	public String updateComMem() {
+		return "business/mypageUpdateForm";
+	}
+	
 	
 	
 	
