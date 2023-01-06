@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약 상세 페이지</title>
 </head>
 <body>
+	
+	<jsp:include page="../common/menubar_user.jsp"/>
+	<br><br>
 
+	<div class="out">
+		<div class="include">
+			<jsp:include page="../member/myPage.jsp"/>
+		</div>
+	</div>
 </body>
 </html>

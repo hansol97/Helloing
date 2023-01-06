@@ -90,6 +90,7 @@
 		        <h1>예정된 예약</h1>
 				
 		        <table>
+		        <thead>
 		            <tr>
 		                <th width="90px">예약 번호</th>
 		                <th width="70px">예약 유형</th>
@@ -98,6 +99,8 @@
 		                <th width="100px">결제금액</th>
 		                <th width="70px"></th>
 		            </tr>
+		        <thead>
+		        <tbody>
 		            <tr>
 		                <td>20230103-111111</td>
 		                <td>숙소</td>
@@ -122,6 +125,7 @@
 		                <td>198,000원</td>
 		                <td><a href="#">예약취소</a></td>
 		            </tr>
+		        </tbody>
 		        </table>
 		    </div>
 		    <div id="ex1" class="modal">
