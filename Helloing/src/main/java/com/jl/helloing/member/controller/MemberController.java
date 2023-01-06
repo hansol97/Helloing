@@ -71,4 +71,8 @@ public class MemberController {
 	public String memberEnrollForm() {
 		return "member/memberEnrollForm";
 	}
+	
+	//나의 여행리뷰 조회 리스트
+	@RequestMapping("tripReviewList.hj")
+	public S
 }

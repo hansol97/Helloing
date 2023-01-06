@@ -88,7 +88,7 @@
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 	    <div id="table">
-		        <h1>예정된 예약</h1>
+		        <h1>나의 여행 리뷰 조회</h1>
 				
 		        <table>
 		        <thead>
