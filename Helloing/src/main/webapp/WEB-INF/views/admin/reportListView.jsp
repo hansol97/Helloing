@@ -14,6 +14,82 @@
     font-weight: bold;
     }
 
+    .admin-search_form{
+        width:120px;
+    }
+    /* 모달 */
+    
+    .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal.show {
+    display: block;
+  }
+
+  .modal_body {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+
+    width: 600px;
+    height: 300px;
+
+    padding: 40px;
+
+    overflow-x: auto;
+    /* text-align: center; */
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .modal-title{
+    margin-left:40px;
+  }
+
+  .modal-title span{
+    font-weight: bold;
+  }
+
+  /* 신고 모달창 설정 */
+  #report_table{
+    width:520px;
+  }
+
+  #report_table th{
+    width:130px;
+  }
+
+  #report_table.type02 td{
+    text-align:left;
+  }
+
+  #report_confirm_btn button{
+    margin:20px;
+    margin-bottom: 0px;
+    background-color: rgb(233, 233, 233);
+    display:inline-block;
+    width:45px;
+    height:27px;
+    text-align: center;
+    border-radius: 3px;
+    border:1px solid rgb(150, 150, 150);
+    margin-left:10px;
+  }
+
 </style>
 </head>
 <body>
@@ -40,8 +116,8 @@
                             <form id="searchForm" action="" method="get">
                                 <td>
                                     <select class="admin-search_form" name="" id="">
-                                        <option value="">사업자명</option>
-                                        <option value="">회원번호</option>
+                                        <option value="">작성자 아이디</option>
+                                        <option value="">신고자 아이디</option>
                                     </select>
                                 </td>
                                 <td>
@@ -53,7 +129,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="590">
+                            <td width="555">
                                 
                             </td>
                             
@@ -68,13 +144,13 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="100">글번호</th>
-                                <th width="200">신고코드</th>
-                                <th width="200">작성자 아이디</th>
-                                <th width="200">신고자 아이디</th>
-                                <td>신고일자</td>
-                                <th width="100">내용</th>
-                                <th>처리상태</th>
+                                <th width="90">글번호</th>
+                                <th width="150">신고코드</th>
+                                <th width="140">작성자 아이디</th>
+                                <th width="140">신고자 아이디</th>
+                                <th width="140">신고일자</th>
+                                <th width="70">내용</th>
+                                <th width="100">처리상태</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +199,65 @@
         </div>
 
     </div>
+
+    <div class="modal">
+        <div class="modal_body">
+            <div>
+                <div class="modal-title">
+                    <span>신고 내용</span>
+                </div>
+                <div align="center">
+                    <form action="">
+                        <table id="report_table" class="type02">
+                            <tr>
+                                <th>신고사유</th>
+                                <td>도배</td>
+                            </tr>
+                            <tr>
+                                <th>게시글 내용</th>
+                                <td>ㅇㅇㅇㅇ</td>
+                            </tr>
+                            <tr>
+                                <th>추가 사유</th>
+                                <td>신고합니다</td>
+                            </tr>
+                        </table>
+    
+                        <div id="report_confirm_btn">
+                            <button type="submit">삭제</button>
+                            <button type="submit">미삭제</button>
+                            <button id="keyword_cancel" type="button" onclick="keywordCancel();">취소</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-open-popup">Modal 띄우기</button>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+  
+        btnOpenPopup.addEventListener('click', () => {
+          modal.classList.toggle('show');
+  
+          if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+          }
+        });
+  
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.classList.toggle('show');
+  
+            if (!modal.classList.contains('show')) {
+              body.style.overflow = 'auto';
+            }
+          }
+        });
+      </script>
 
 </body>
 </html>
