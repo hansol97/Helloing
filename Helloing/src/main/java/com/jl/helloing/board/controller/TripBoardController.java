@@ -16,6 +16,8 @@ public class TripBoardController {
 	private TripBoardService tripboardService;
 	*/
 	
+	/** 여행리뷰 게시판 */
+	
 	@RequestMapping("tripBoard")
 	public String selectTripBoard() {
 		System.out.println(123);
@@ -91,6 +93,13 @@ public class TripBoardController {
 	@RequestMapping("deleteTripBoard")
 	public String deleteTripBoard() {
 		return "board/deleteTripBoard";
+	}
+	
+	
+	/** 맛집 게시판 */
+	@RequestMapping("hotplace")
+	public String hotplace() {
+		return "board/hotplaceList";
 	}
 	
 	

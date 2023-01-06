@@ -11,7 +11,7 @@
   }
 
 .body {
-  background: #f9fbff;
+  background: #03102b;
 }
 a:hover {
   text-decoration: none;
@@ -216,21 +216,22 @@ a:hover {
   }
   .nomore{
     text-align: center;
+    color: wheat;
   }
 
 /* 등록숙소조회페이지입니다 표시 */
 .accommTitle {
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display:inline;
-    margin-left: 15px;
-    margin-top: 19px;
-    border-radius: 10px;
-    background-color: #FFEA24;
-    font-weight: bolder;
-    font-size: 20px;
-    position:fixed;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display:inline;
+  margin-left: 15px;
+  margin-top: 19px;
+  border-radius: 10px;
+  background-color: #FFEA24;
+  font-weight: bolder;
+  font-size: 20px;
+  position:fixed;
 
 }
 
@@ -314,7 +315,6 @@ a:hover {
 
 .more_button:hover{
   font-weight: bold;
-
    background: rgba(136, 238, 129, 0.761);
 }
 

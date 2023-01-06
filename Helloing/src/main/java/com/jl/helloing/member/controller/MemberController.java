@@ -16,6 +16,18 @@ public class MemberController {
 	public String findId() {
 		return "member/findIdForm";
 	}
+	@RequestMapping("findPwdForm.me")
+	public String findPwd() {
+		return "member/findPwdForm";
+	}
+	@RequestMapping("newFindPwd.me")
+	public String updatePwd() {
+		return "member/newFindPwd";
+	}
+	@RequestMapping("terms.me")
+	public String terms() {
+		return "member/terms";
+	}
 	
 	//혜진
 	//마이페이지 메인
@@ -42,4 +54,9 @@ public class MemberController {
 		return "member/cancelledReservation";
 	}
 	
+	//예약 상세 조회
+	@RequestMapping("reservationDetail.hj")
+	public String reservationDetail() {
+		return "member/reservationDetail";
+	}
 }
