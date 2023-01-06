@@ -71,9 +71,6 @@
                   <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
 
-
-
-
                 <div class="read-more">
                   <a href="#">액티비티 상세보기</a>
                 </div>

@@ -10,7 +10,7 @@
     font-family: "S-CoreDream-3Light";
   }
 
-.body {
+body {
   background: #f9fbff;
 }
 a:hover {
@@ -336,3 +336,12 @@ a:hover {
    background: rgba(136, 238, 129, 0.761);
 }
 
+/* enrollform 큰 박스 */
+.enrollform{
+  height: 2400px !important;
+
+
+
+
+
+}

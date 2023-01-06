@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록한 숙소 조회</title>
+<title>숙소등록페이지</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
 <style>
     
@@ -20,88 +20,148 @@
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <br><br><br>
-          <div class="accommTitle">등록 숙소 관리</div>
+          <div class="accommTitle">숙소 등록 페이지</div>
           
-          <button class="button button--ujarak button--border-thin button--text-thick enrollBtn"  onclick="location.href='goInsertAccom.bu';">숙소 등록</button>
-
-
-            
-        <!-- 한 뭉치 반복 시작 -->
+        <!--등록 폼 박스-->
           <div class="col-lg-4 col-md-6 d-flex">
-            <div class="blog-card w-100">
-              <div class="meta">
-                <!--"첫번째 호텔 사진"-->
-                <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
+            <div class="blog-card enrollform">
+              
+		<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" >
+          <!-- 피드 등록 내용물 -->
+          <div class="feed_modal_insert_content">
+            <div class="feed_modal_insert_content1">
+              <div class="titleImg_class1">
+                <p>🎈 사진을 선택해 주세요!</p>
+                <br />
+                <!-- 미리보기 영역 -->
+                <div class="titleImg_class1_1" style="border: 1px solid black; width: 80%; margin: auto;">
+                  <img id="titleImg" width="200" height="200" style="margin: auto" src="#" alt="숙소사진" />
+                </div>
+                <div id="file-area">
+                  <input type="file"  name="file1" id="file1" required onchange="loadImg(this);"/>
+                </div>
+                <!-- onchange : input태그의 내용물이 변경되었을 때 발생하는 이벤트 속성 - 수업시간에 함!! -->
+                <!-- loadImg() : 우리가 만들 함수 -->
               </div>
-              <div class="description">
-                <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
-                <div class="more_details">
-                    <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
-                    <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
-                    <div class="more_buttons">
-                        <button class="more_button">객실등록</button>
-                        <button class="more_button">수정</button>
-                        <button class="more_button">삭제</button>
-                        <button class="more_button">추가결제</button>
-                    </div>
-                </div>
-                <br>
-                <div class="endDate"> 🕑결제 만료일 : 2023.12.12 </div><br> 
-                <h2 class="pt-1 pb-4"> &nbsp; 숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까내용이 얼마나 들어갈까
-                    숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다.
-                  
-                     크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
-                <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
-                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
-                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
-                </div>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
-                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
-                </div>
-               
+              <input
+                type="hidden"
+                class="hidden"
+                name="userNo"
+                value=""
+              />
+              <!-- 유저넘버 히든 -->
 
-                <div class="read-more">
-                  <a href="#">숙소 상세보기</a>
-                </div>
-              </div>
+              <table
+                id="feed_insert_table"
+                cellpadding="20"
+                cellspacing="20"
+              >
+                <tr>
+                  <th width="100" height="40px"> 제목 :</th>
+                  <td width="500px">
+                    <input
+                      id="feed_insert_title"
+                      type="text"
+                      name="title"
+                      height="100px"
+                      width="550px"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th id="feed_content">내용 :</th>
+                  <td height="40px">
+                    <textarea
+                      name="feedText"
+                      rows="10"
+                      style="resize: none; width: 580px"
+                      required
+                    ></textarea>
+                  </td>
+                  <br /><br />
+                </tr>
+                <tr>
+                  <th id="feed_tag">태그 선택 :</th>
+                  <br />
+                  <br />
+                  <td>
+                    <input type="checkbox" name="tag" value="일상" />일상
+                    &nbsp;&nbsp;
+                    <input type="checkbox" name="tag" value="뷰티" />뷰티
+                    &nbsp;&nbsp;
+                    <input type="checkbox" name="tag" value="음식" />음식
+                    &nbsp;&nbsp;
+                    <input type="checkbox" name="tag" value="환경" />환경
+                    &nbsp;&nbsp;
+                    <input type="checkbox" name="tag" value="꿀팁" />꿀팁
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <br />
+
+            <script>
+              $(function () {
+                $("#file-area").hide();
+                $("#titleImg").click(function () {
+                  $("#file1").click();
+                });
+              });
+              function loadImg(inputFile) {
+
+                if (inputFile.files.length == 1) {
+                  var reader = new FileReader(); // 자바스크립트에서 파일 읽을때 쓰라고 제공해주는 친구
+                  reader.readAsDataURL(inputFile.files[0]); // 읽을 파일을 전달해주는 방법
+                  reader.onload = function (e) {
+                    $("#titleImg").attr("src", e.target.result);
+                  };
+                } else {
+                  // 파일 첨부를 취소했을 때
+                  $("#titleImg").attr(
+                    "src",
+                    "#"
+                  );
+                }
+              }
+            </script>
+          </div>
+
+          <div class="feed_modal_btns" align="center">
+            <br />
+            <button type="submit" class="custom-btn btn-15" id="red_btn2"> 등록 </button>
+            <button type="reset" class="custom-btn btn-15">초기화</button>
+            <button type="reset" class="custom-btn btn-15">취소하기</button>
+
+          </div>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
           </div>
 
-        <!-- 반복 끝 -->
        
 
                     
             
 
         
-      <br><br><br>
-      <div class="nomore">더 이상 숙소가 없습니다 <br><br>
-          <a class="scrollToTop" href="">🔝맨 위로 이동🔝</a>
-      </div>
-      <script>
-          let scrollToTop = document.querySelector(".scrollToTop");
-          scrollToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-          // scrollToTop.onclick(function() { window.scrollTo({ top: 0, behavior: "smooth" })});
-
-      $(function () {
-        $(".more").click(function(){
-          $(this).siblings(0).toggle(500);
-        })
-      });
-
-
-      </script>
         
 
       
