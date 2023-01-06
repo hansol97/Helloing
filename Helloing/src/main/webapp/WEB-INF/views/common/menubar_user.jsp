@@ -207,12 +207,16 @@
     /* transform: translateX(-50%) translateY(-50%); */
   }
 
-  .chat_modal-title{
+  /* .chat_modal-title{
     margin-left:10px;
-  }
+  } */
 
   .chat_modal-title span{
     font-weight: bold;
+    
+  }
+  .chat_modal-title{
+    margin-bottom:20px;
   }
 
   #chatbot_btn {
@@ -247,7 +251,49 @@
   chatbot #chatbot_btn, .chat_modal{
     position:fixed;
   }
-  
+
+  #chat_view{
+    padding:5px;
+    width:260px;
+    height:310px;
+    padding:0px;
+  }
+
+  #admin_chat{
+    width:220px;
+    padding:10px;
+    margin-bottom:10px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 10px;
+  }
+
+  #user_chat{
+    float:right;
+    margin-bottom:10px;
+    padding:10px;
+    background-color: #65a0ff;
+    color:white;
+    border-radius: 10px;
+  }
+
+  #chat_input input{
+    width:205px;
+    height:23px;
+    margin:8px;
+    margin-right:0px;
+    border-radius: 3px;
+    border:1px solid grey;
+  }
+
+  #chat_input button{
+    font-size:21px;
+    vertical-align: middle;
+    padding:3px;
+    margin-bottom:6px;
+    background-color: white;
+    border:none;
+  }
+
   </style>
 
 </head>
@@ -365,11 +411,13 @@
               <div class="chat_modal-title">
                   <span>반갑소잉 : 전라</span>
               </div>
-              <div align="center">
-                  <table class="type02">
-                      
-                      
-                  </table>
+              <div id="chat_view">
+                <div id="admin_chat">dd</div>
+                <div id="user_chat">ff</div>      
+              </div>
+              <div id="chat_input">
+                <input type="text">
+                <button>🐇</button>
               </div>
           </div>
       </div>
