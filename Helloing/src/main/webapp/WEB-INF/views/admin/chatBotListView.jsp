@@ -115,12 +115,11 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="420">
+                            <td width="470">
                                 
                             </td>
-                            <td><button class="admin-grey">등록</button></td>
+                            <td><button class="admin-grey btn-open-popup">등록</button></td>
                             <td><button class="admin-grey">삭제</button></td>
-                            <td><button class="admin-grey">수정</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -252,17 +251,15 @@
             </div>
         </div>
     </div>
-    <button class="btn-open-popup">Modal 띄우기</button>
 
     <script>
         const body = document.querySelector('body');
-
-        if()
+        
         const modal = document.querySelector('.modal');
         const btnOpenPopup = document.querySelector('.btn-open-popup');
 
         function keywordCancel(){
-            const btnCancel = document.getElementsByClassName('.keyword_cancel');
+            const btnCancel = document.getElementById('#keyword_cancel');
             modal.classList.remove('show');
         };
 

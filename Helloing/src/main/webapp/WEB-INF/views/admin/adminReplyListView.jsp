@@ -27,8 +27,10 @@
             <table>
                 <tr id="admin-menu2">
                     <td><p><a href="boardList.ad">게시물 조회</a></p></td>
-                    <td width="300"></td>
-                    <td><p><a id="admin-page_mark" href="replyList.ad">댓글 조회</a></p></td>
+                    <td width="200"></td>
+                    <td><p><a id="admin-page_mark"  href="replyList.ad">댓글 조회</a></p></td>
+                    <td width="200"></td>
+                    <td><p><a href="reportList.ad">신고게시물 조회</a></p></td>
                 </tr>
                 <tr>
                     <td><br><br></td>
