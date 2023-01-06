@@ -67,12 +67,14 @@ public class MemberController {
 	}
 	
 	//회원정보 조회 - 수정
-	@RequestMapping("memberEnrollForm.hj")
+	@RequestMapping("memberUpdateForm.hj")
 	public String memberEnrollForm() {
-		return "member/memberEnrollForm";
+		return "member/memberUpdateForm";
 	}
 	
 	//나의 여행리뷰 조회 리스트
 	@RequestMapping("tripReviewList.hj")
-	public S
+	public String tripReviewList() {
+		return "member/tripReviewList";
+	}
 }
