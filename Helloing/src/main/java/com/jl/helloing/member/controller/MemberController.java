@@ -88,4 +88,9 @@ public class MemberController {
 	public String wishAccommList(){
 		return "member/wishAccommList";
 	}
+	//찜한 액티비티 조회
+	@RequestMapping("wishActivityList.hj")
+	public String wishActivityList() {
+		return "member/wishActivityList";
+	}
 }

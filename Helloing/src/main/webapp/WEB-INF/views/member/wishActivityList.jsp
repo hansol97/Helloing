@@ -71,7 +71,7 @@
 		</div>
 		
 		<div id="title">
-		<h3>찜한 숙소</h3>
+		<h3>찜한 액티비티</h3>
 	    </div>
 	    <div align="center">
 	        <div class="list-area">
