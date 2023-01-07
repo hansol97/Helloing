@@ -74,7 +74,7 @@ height: 30px;
 				</table>
 				<button type="submit" class="join-button">파트너 등록</button>
 			</form>
-	
+
 		</div>
 	</div>
 	
