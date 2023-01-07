@@ -9,7 +9,7 @@
 .inner-box{
 	border: 1px solid black;
 	width: 550px;
-	height: 600px;
+	height: 650px;
 }
 .terms-content{
 	border: 1px solid black;
@@ -74,7 +74,7 @@
 			<img src="/helloing/resources/img/logo_outline.png" alt="logo" >
 		</div>
 		
-			<form>
+			<div>
 				<pre>이용약관, 개인정보 수집 및 이용, 위치기반서비스 이용약관 모두 동의합니다.</pre>
 				<input type="checkbox" id="cbx_chkAll" />모두 동의하기
 				
@@ -90,10 +90,14 @@
 				
 				<input type="checkbox" name="chk">위치기반서비스(필수)<button type='button' id="modal_btn2" onclick="openModal(3)">위치기반서비스 이용약관 보기</button>	
 				<div class="black_bg2"></div>
-				<br><br><br><br>
-				<button type="submit" class="termsButton"> 동의하기 </button>
-			</form>
+				<br><br>
+				
+				<button onclick="check();" class="termsButton"> 동의하기 </button>
+			</div>
+			<label id="check">&nbsp;</label>
+			
 		</div>
+		
 	</div>	
 	
 <script>
@@ -109,8 +113,17 @@
 	}
 </script>
 	
-
-	
+<script>	
+function check(){
+	if($('input[type=checkbox]').length == $('input[type=checkbox]:checked').length){
+		location.href="memberEnrollForm.me";
+	}
+	else{
+		$('#check').text('모든 약관에 동의 하셔야합니다.')
+		$('#check').css('color', 'red');
+	}
+}
+</script>	
 	
 
 
