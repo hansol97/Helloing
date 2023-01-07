@@ -9,11 +9,11 @@
 <body>
 	<div class="inner">
 		<div class="enroll-form">
-			<form action="insert.me" method="post" id="enroll-form"> 
+			<form action="insertCompany.me" method="post" id="enroll-form"> 
 				<table>
 					<tr>
 						<td> 파트너 이름 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" readonly value="파트너임"></td>
+						<td><input type="text" name="memName" maxlength="20" readonly >파트너이름</td>
 						<td id="checkId" width="80"></td>
 					</tr>
 					<tr>
