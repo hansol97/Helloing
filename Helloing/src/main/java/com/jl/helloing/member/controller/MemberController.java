@@ -29,9 +29,14 @@ public class MemberController {
 		return "member/terms";
 	}
 	
+	
 	@RequestMapping("memberEnrollForm.me")
 	public String insertMember() {
 		return "member/memberEnrollForm";
+	}
+	@RequestMapping("loginMove.me")
+	public String loginMove() {
+		return "member/loginMove";
 	}
 	
 	//혜진
