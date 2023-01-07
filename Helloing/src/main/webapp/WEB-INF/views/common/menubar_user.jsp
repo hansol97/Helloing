@@ -265,7 +265,7 @@
         <ul class="menu">
 	          <!-- 로그인 안했을 때 보이는 화면 -->
 	          <li>
-	            <a href="#" >회원가입</a>
+	            <a href="memberEnrollForm.me" >회원가입</a>
 	          </li>
 	
 	          <li>

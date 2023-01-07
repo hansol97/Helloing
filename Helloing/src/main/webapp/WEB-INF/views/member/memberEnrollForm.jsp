@@ -39,7 +39,7 @@ button:hover{
 		
 			<br><br><br><br>
 			<h1>회원가입</h1>
-			<br><br><br><br>
+			<br>
 			<!-- 
 			<form action="insert.me" id="enroll-form" method="post">
 				<label for="memId"> 아이디 &nbsp;&nbsp;&nbsp;&nbsp; 
@@ -65,6 +65,10 @@ button:hover{
 				<button type="submit">회원가입</button>
 			</form>
 			 -->
+
+			 <div>
+				<img src="/helloing/resources/img/logo_outline.png" alt="logo" >
+			 </div>
 			<form action="insert.me" method="post" id="enroll-form"> 
 				<table>
 					<tr>
@@ -86,11 +90,11 @@ button:hover{
 					</tr>
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
-						<td><input id="checkEmail" class="emailCheck" size=10 maxlength=8></td>
+						<td><input id="checkEmail" class="emailCheck" size=3 maxlength=5></td>
 					</tr>
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
-						<td><input type="text" name="memName" required></td>
+						<td><input type="text" name="memName" placeholder="(-)를포함시켜주세요" required></td>
 					</tr>
 				</table>
 				<button type="submit" class="join-button">회원가입</button>
