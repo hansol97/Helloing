@@ -7,9 +7,26 @@
 <title>Insert title here</title>
 </head>
 <style>
-table {
-  border-collapse: separate;
-  border-spacing: 0 10px;
+	
+#enroll-form table {
+   border-collapse: separate;
+   border-spacing: 10px 30px;
+}
+#enroll-form input{
+  height: 25px;
+}
+.join-button{
+	width: 200px;
+	height: 40px;
+	font-weight: bold;	
+	color: white;
+	background-color: #053E99;
+	border: 0;
+	border-radius: 3px;
+}
+button:hover{
+	color: #FFEA24;
+	cursor: pointer;
 }
 </style>
 <body>
@@ -69,13 +86,14 @@ table {
 					</tr>
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
-						<td><input id="checkEmail" class="emailCheck" size=10 maxlength=8><buttom type="button">인증</buttom></td>
+						<td><input id="checkEmail" class="emailCheck" size=10 maxlength=8></td>
 					</tr>
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
 						<td><input type="text" name="memName" required></td>
 					</tr>
 				</table>
+				<button type="submit" class="join-button">회원가입</button>
 			</form>
 			
 			
