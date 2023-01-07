@@ -12,8 +12,8 @@
 			<form action="insert.me" method="post" id="enroll-form"> 
 				<table>
 					<tr>
-						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" required></td>
+						<td> 파트너 이름 &nbsp;&nbsp;</td>
+						<td><input type="text" name="memId" maxlength="20" readonly value="파트너임"></td>
 						<td id="checkId" width="80"></td>
 					</tr>
 					<tr>

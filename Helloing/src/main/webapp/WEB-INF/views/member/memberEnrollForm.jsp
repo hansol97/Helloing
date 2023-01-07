@@ -28,6 +28,11 @@ button:hover{
 	color: #FFEA24;
 	cursor: pointer;
 }
+.emailCheck{
+height: 30px;
+
+}
+
 </style>
 <body>
 	
@@ -87,6 +92,7 @@ button:hover{
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
 						<td><input type="email" name="email" required></td>
+						<td><button class="emailCheck" onclick="emailCheck">인증</button></td>
 					</tr>
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
