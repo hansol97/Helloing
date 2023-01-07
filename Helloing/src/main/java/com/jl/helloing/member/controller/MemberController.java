@@ -44,19 +44,19 @@ public class MemberController {
 	//예정된 예약
 	@RequestMapping("scheduled.hj")
 	public String scheduled() {
-		return "member/scheduledReservation";
+		return "member/reservationScheduled";
 	}
 	
 	//지난 예약
 	@RequestMapping("last.hj")
 	public String last() {
-		return "member/lastReservation";
+		return "member/reservationLast";
 	}
 	
 	//취소된 예약
 	@RequestMapping("cancelled.hj")
 	public String cancelled() {
-		return "member/cancelledReservation";
+		return "member/reservationCancelled";
 	}
 	
 	//예약 상세 조회
@@ -88,9 +88,16 @@ public class MemberController {
 	public String wishAccommList(){
 		return "member/wishAccommList";
 	}
+	
 	//찜한 액티비티 조회
 	@RequestMapping("wishActivityList.hj")
 	public String wishActivityList() {
 		return "member/wishActivityList";
+	}
+	
+	//후기 작성 페이지 
+	@RequestMapping("reviewEnrollForm.hj")
+	public String reviewEnrollForm() {
+		return "member/reviewEnrollFrom";
 	}
 }

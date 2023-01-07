@@ -75,6 +75,15 @@
 		padding : 10px;
 	}
 	
+	#ex1 li span{
+	    color: white;
+	    background: gray;
+	    margin: 5px;
+	    border-radius: 5px
+	}
+	#ex1 li img{
+		padding:10px;
+	}
 </style>
 </head>
 <body>
@@ -132,13 +141,16 @@
 		    <div id="ex1" class="modal">
 		    	<br>
 			    <ul>
-		    		<h5 style="font-weight:600;">내 후기</h5>
+		    		<h5 style="font-weight:600; font-size:25px;">내 후기</h5>
 		    		<hr>
 		    		<li><h3>[팔로우미투어]가우디투어</h3></li>
 		    		<li>⭐⭐⭐⭐⭐<li>
-		    		<li>가이드분이 친절하셨어요~</li>
+		    		<li style="font-size: 15px;">2023-01-01 | 성인 2매</li>
+		    		<li style="padding:10px;">가이드분이 친절하셨어요~</li>
 		    		<li><span>친절해요</span><span>위치가 찾기 쉬워요</span></li>
-		    		<li><img src="/helloing/resources/img/logo_outline.png" alt="" width="100px"></li>
+		    		<li style="display:flex;"><img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
+		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
+		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px"></li>
 		    	</ul>
 		    	<br>
 
