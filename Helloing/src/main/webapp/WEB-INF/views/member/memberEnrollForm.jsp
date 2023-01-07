@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <style>
-
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
 </style>
 <body>
 	
@@ -66,7 +69,7 @@
 					</tr>
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
-						<td id="checkEmail" class="email"></td>
+						<td><input id="checkEmail" class="emailCheck" size=10 maxlength=8><buttom type="button">인증</buttom></td>
 					</tr>
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>

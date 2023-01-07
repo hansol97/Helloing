@@ -91,7 +91,7 @@ button:hover{
 					&nbsp;/&nbsp;
 					<a href="#"> 비밀번호찾기</a>
 					<br>
-					<a href="#">회원가입</a>
+					<a href="memberEnrollForm.me">회원가입</a>
 				</form>
 			</div>	
 		
