@@ -29,14 +29,17 @@ public class MemberController {
 		return "member/terms";
 	}
 	
-	
 	@RequestMapping("memberEnrollForm.me")
-	public String insertMember() {
+	public String enrollForm() {
 		return "member/memberEnrollForm";
 	}
 	@RequestMapping("loginMove.me")
 	public String loginMove() {
 		return "member/loginMove";
+	}
+	@RequestMapping("businessEnrollForm.me")
+	public String businessEnrollForm() {
+		return "member/businessEnrollForm";
 	}
 	
 	//혜진
