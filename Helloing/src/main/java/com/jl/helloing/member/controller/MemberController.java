@@ -1,8 +1,13 @@
 package com.jl.helloing.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.Member;
@@ -13,17 +18,41 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	
 	//승준
 	//로그인
+
 	@RequestMapping("login.me")
-	public String loginMember(Member m) {
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
-		memberService.loginMember(m);
+		Member loginUser = memberService.loginMember(m);
 		
+		System.out.println("서비스 돌아온 후 " + loginUser);
+		
+		//System.out.println(loginUser.getMemId());
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/");
+			
+		} else {
+
+			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
+			mv.setViewName("common/errorPage");
+			
+		}
+		
+		return mv;
+	}
+	//로그인 창
+	@RequestMapping("loginForm.me")
+	public String loginForm() {
 		return "member/login";
 	}
+	
 	//아이디찾기
 	@RequestMapping("findIdForm.me")
 	public String findId() {
@@ -49,6 +78,21 @@ public class MemberController {
 	public String enrollForm() {
 		return "member/memberEnrollForm";
 	}
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, Model model) {
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
+		int result = memberService.insertMember(m);
+		
+		if(result >0) {
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
+			return "common/errorPage";
+		}
+	}
+	
 	// 기업파트너등록 전 알림페이지
 	@RequestMapping("loginMove.me")
 	public String loginMove() {
@@ -60,6 +104,7 @@ public class MemberController {
 		return "member/businessEnrollForm";
 	}
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
+	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
@@ -124,6 +169,17 @@ public class MemberController {
 	//후기 작성 페이지 
 	@RequestMapping("reviewEnrollForm.hj")
 	public String reviewEnrollForm() {
-		return "member/reviewEnrollFrom";
+		return "member/reviewEnrollForm";
+	}
+	
+	//플래너 메인페이지
+	@RequestMapping("plannerMain.hj")
+	public String plannerMain() {
+		return "member/plannerMain";
+	}
+	//플랜 상세페이지
+	@RequestMapping("planDetailView.hj")
+	public String planDetailView() {
+		return "member/planDetailView";
 	}
 }

@@ -189,15 +189,15 @@
 
   .chat_modal_body {
     position: absolute;
-    top: 440px;
-    right: 20px;
+    bottom:1%;
+    right:1%;
 
     width: 270px;
     height: 400px;
 
     padding: 40px;
 
-    overflow-x: auto;
+    
     /* text-align: center; */
 
     background-color: rgb(255, 255, 255);
@@ -208,7 +208,7 @@
   }
 
   .chat_modal-title{
-    margin-left:10px;
+    margin-bottom:20px;
   }
 
   .chat_modal-title span{
@@ -217,8 +217,10 @@
 
   #chatbot_btn {
     position: absolute;
-    top:880px;
-    right:0px;
+    /* top:880px;
+    right:0px; */
+    bottom:1%;
+    right:1%;
 
     width: 40px;
     height: 40px;
@@ -247,7 +249,52 @@
   chatbot #chatbot_btn, .chat_modal{
     position:fixed;
   }
-  
+
+
+  #chat_view{
+    padding:5px;
+    width:260px;
+    height:310px;
+    padding:0px;
+    overflow-x: auto;
+  }
+
+  #admin_chat{
+    width:220px;
+    padding:10px;
+    margin-bottom:10px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 10px;
+    
+  }
+
+  #user_chat{
+    float:right;
+    margin-bottom:10px;
+    padding:10px;
+    background-color: #65a0ff;
+    color:white;
+    border-radius: 10px;
+  }
+
+  #chat_input input{
+    width:205px;
+    height:23px;
+    margin:8px;
+    margin-right:0px;
+    border-radius: 3px;
+    border:1px solid grey;
+  }
+
+  #chat_input button{
+    font-size:21px;
+    vertical-align: middle;
+    padding:3px;
+    margin-bottom:6px;
+    background-color: white;
+    border:none;
+  }
+
   </style>
 
 </head>
@@ -269,7 +316,7 @@
 	          </li>
 	
 	          <li>
-	            <a href="login.me">로그인</a>
+	            <a href="loginForm.me">로그인</a>
 	          </li>
 
 
@@ -365,11 +412,17 @@
               <div class="chat_modal-title">
                   <span>반갑소잉 : 전라</span>
               </div>
-              <div align="center">
-                  <table class="type02">
-                      
-                      
-                  </table>
+
+              <div id="chat_view">
+                <div id="admin_chat">
+                  ㅇㅇ
+                </div>
+                <div id="user_chat">ff</div>      
+              </div>
+              <div id="chat_input">
+                <input type="text">
+                <button>🐇</button>
+
               </div>
           </div>
       </div>

@@ -19,14 +19,14 @@ public class MemberServiceImpl implements MemberService{
 	// 로그인
 	@Override
 	public Member loginMember(Member m) {
-		memberDao.loginMember(m, sqlSession);
-		return null;
+
+		return memberDao.loginMember(m, sqlSession);
 	}
 	
 	// 회원가입
 	@Override
 	public int insertMember(Member m) {
-		return 0;
+		return memberDao.insertMember(m, sqlSession);
 	}
 
 }

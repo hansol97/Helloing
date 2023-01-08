@@ -54,8 +54,9 @@
                   
                      크하하하하하!!!!!!!!!숙소의 내용을 쓰는 곳입니다. 크하하하하하!!!!!!!!!</h2>
                 <h2 class="pt-1 pb-4"> &nbsp; 주소 쓰는곳 주소주소주소</h2>
-                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
-                  <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
+                <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;
+                
+                  <button onclick='location.href="accommBookList.bu"' class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
                   <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
                   <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
@@ -99,7 +100,7 @@
           $(this).siblings(0).toggle(500);
         })
       });
-
+		
 
       </script>
         

@@ -96,7 +96,7 @@ table.type02 td {
 
 
 /* 두글자 연회색 버튼 */
-.admin-grey, .admin-search_button, #reportMemDelete{
+.admin-grey, .admin-search_button, #reportMemDelete, #admin-delete{
     background-color: rgb(233, 233, 233);
     display:inline-block;
     width:45px;
