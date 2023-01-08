@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
 	// 로그인
 	@Override
 	public Member loginMember(Member m) {
-		
+		memberDao.loginMember(m, sqlSession);
 		return null;
 	}
 	
