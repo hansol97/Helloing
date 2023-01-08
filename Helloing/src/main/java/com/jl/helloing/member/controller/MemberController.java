@@ -17,13 +17,31 @@ public class MemberController {
 	
 	//승준
 	//로그인
+
 	@RequestMapping("login.me")
 	public String loginMember(Member m) {
 		
-		memberService.loginMember(m);
+		System.out.println(m);
 		
+		Member loginUser = memberService.loginMember(m);
+		
+		System.out.println("서비스 돌아온 후 " + loginUser);
+		
+		System.out.println(loginUser.getMemId());
+		if(loginUser == null) {
+			System.out.println("로그인 실패");
+		} else {
+			System.out.println("로그인 성공");
+		}
+		
+		return "main";
+	}
+	//로그인 창
+	@RequestMapping("loginForm.me")
+	public String loginForm() {
 		return "member/login";
 	}
+	
 	//아이디찾기
 	@RequestMapping("findIdForm.me")
 	public String findId() {
