@@ -53,6 +53,9 @@ button:hover{
 	color: #FFEA24;
 	cursor: pointer;
 }
+.findId-button{
+	margin-left: 20px;
+}
 
 </style>
 </head>
@@ -87,11 +90,9 @@ button:hover{
 					<br><br>
 					<button type="submit" class="login-button" >로그인</button>
 					<br>
-					<a href="findIdForm.me">아이디찾기 </a>
+					<a href="findIdForm.me" class="findId-button">아이디찾기 </a>
 					&nbsp;/&nbsp;
-					<a href="#"> 비밀번호찾기</a>
-					<br>
-					<a href="#">회원가입</a>
+					<a href="findPwdForm.me"> 비밀번호찾기</a>
 				</form>
 			</div>	
 		
