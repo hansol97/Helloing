@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>티켓등록페이지</title>
+<title>티켓수정페이지</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
 <style>
     
@@ -19,14 +19,14 @@
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <br><br><br>
-          <div class="accommTitle">티켓 등록 페이지</div>
+          <div class="accommTitle">티켓 수정 페이지</div>
           
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
-            <div class="blog-card enrollform" >
+            <div class="blog-card enrollform tic" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡티켓을 등록해 😋주세요!❤️ </div>
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡티켓을 ✏️수정해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
 						<th width="330px" height="40px"> 액티비티 이름 :</th>
@@ -37,7 +37,7 @@
 					<tr>
 						<th > 티켓 이름 :</th>
 						<td>
-							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력"/>
+							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력" value="진짜로 무서운 귀신의 집"/>
 						</td>
 					</tr>
 					<tr>
@@ -49,20 +49,20 @@
                     <tr>
                         <th>티켓 가격 :</th>
                         <td>
-                            <input type="number" name="price" id="" placeholder="10000"> 원
+                            <input type="number" name="price" id="" placeholder="10000" value="10000"> 원
                         </td>
                     </tr>
 					<tr>
 						<th>총 티켓 수량 : </th>
 						<td>
-							<input type="number" name="capacity" id="" placeholder="1"> 장
+							<input type="number" name="capacity" id="" placeholder="1" value="200"> 장
 						</td>
 					</tr>
 					<tr>
                         <th>운영 시작 / 운영 종료일 : </th>
 						<td>
-                            <input type="date" name="startDay" id=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="date" name="endDay" id="">
+                            <input type="date" name="startDay" id="" value=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="endDay" id="" value="">
                         </td>
 					</tr>
 	

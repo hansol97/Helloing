@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>객실등록페이지</title>
+<title>기업결제 - 객실</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
 <style>
     
@@ -12,21 +12,21 @@
 
 
 </head>
-<body>
+<body id="insertActBody">
     <jsp:include page="menubar_business.jsp"/>
     
     
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <br><br><br>
-          <div class="accommTitle">객실 등록 페이지</div>
+          <div class="accommTitle">기업결제 - 객실</div>
           
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 👍멋진 🙋‍♀️객실을 🕵️‍♀️등록해 😋주세요!❤️ </div>
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;기업결제 - 객실 </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>

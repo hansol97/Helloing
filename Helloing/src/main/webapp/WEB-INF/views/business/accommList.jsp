@@ -40,9 +40,9 @@
                     <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                     <div class="more_buttons">
                         <button onclick='location.href="goInsertRoom.bu"' class="more_button">객실등록</button>
-                        <button onclick='location.href="goUpdateAccom.bu"' class="more_button">수정</button>
-                        <button onclick='location.href="#"' class="more_button">삭제</button>
-                        <button onclick='location.href="#"' class="more_button">추가결제</button>
+                        <button onclick='location.href="goUpdateAccom.bu"' class="more_button">숙소수정</button>
+                        <button onclick='location.href="#"' class="more_button">숙소삭제</button>
+                        <button onclick='location.href="goPayAccom.bu"' class="more_button">추가결제</button>
                     </div>
                 </div>
                 <br>
@@ -57,9 +57,11 @@
                 <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;
                 
                   <button onclick='location.href="accommBookList.bu"' class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick" >수정</button>
-                  <button class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                  <button onclick='location.href="goUpdateRoom.bu"' class="button button--ujarak button--border-thin button--text-thick" >수정</button>
+                  <button onclick='location.href="accommBookList.bu"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                 </div>
+
+                <!-- 위 div 반복시키고 삭제할 것  -->
                 <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;                
                   <button class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
                   <button class="button button--ujarak button--border-thin button--text-thick">수정</button>
