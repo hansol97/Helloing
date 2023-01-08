@@ -20,10 +20,22 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String loginMember(Member m) {
 		
-		memberService.loginMember(m);
+		Member loginUser = memberService.loginMember(m);
 		
+		if(loginUser == null) {
+			System.out.println("로그인 실패");
+		} else {
+			System.out.println("로그인 성공");
+		}
+		
+		return "main";
+	}
+	//로그인 창
+	@RequestMapping("loginForm.me")
+	public String loginForm() {
 		return "member/login";
 	}
+	
 	//아이디찾기
 	@RequestMapping("findIdForm.me")
 	public String findId() {

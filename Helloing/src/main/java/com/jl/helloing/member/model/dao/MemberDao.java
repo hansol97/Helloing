@@ -9,7 +9,7 @@ import com.jl.helloing.member.model.vo.Member;
 public class MemberDao {
 
 	public Member loginMember(Member m, SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("memberMapper", parameter);
+		return sqlSession.selectOne("memberMapper.loginMember", m);
 
 		
 	}
