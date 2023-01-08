@@ -37,8 +37,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		status = 'Y' or status = 'A'
 	</select>
 	
-	
-	
+	<insert id="insertMember" parameterType="member">
+		insert
+		  into
+		  		member
+		  		(
+		  		mem_no,
+		  		mem_id,
+		  		mem_pwd,
+		  		mem_name,
+		  		email,
+		  		phone
+		  		)
+		values
+				(
+				seq_memNo.nextval,
+				#{ memId },
+				#{ memPwd },
+				#{ memName },
+				#{ email },
+				#{ phone }
+				)
+	</insert>	
 	
 	
 	

@@ -92,15 +92,17 @@ height: 30px;
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
 						<td><input type="email" name="email" required></td>
-						<td><button class="emailCheck" onclick="emailCheck">인증</button></td>
+						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
 					</tr>
+					<!--  
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
 						<td><input id="checkEmail" class="emailCheck" size=3 maxlength=5></td>
 					</tr>
+					-->
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
-						<td><input type="text" name="memName" placeholder="(-)를포함시켜주세요" required></td>
+						<td><input type="text" name="phone" placeholder="(-)를포함시켜주세요" required></td>
 					</tr>
 				</table>
 				<button type="submit" class="join-button">회원가입</button>

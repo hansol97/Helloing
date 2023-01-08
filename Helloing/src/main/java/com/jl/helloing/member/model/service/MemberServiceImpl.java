@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService{
 	// 회원가입
 	@Override
 	public int insertMember(Member m) {
-		return 0;
+		return memberDao.insertMember(m, sqlSession);
 	}
 
 }

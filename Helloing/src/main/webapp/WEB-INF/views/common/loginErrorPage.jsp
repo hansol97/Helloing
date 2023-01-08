@@ -11,9 +11,10 @@
 
     <br>
     <div align="center">
-        <img src="https://cdn2.iconfinder.com/data/icons/oops-404-error/64/208_balloon-bubble-chat-conversation-sorry-speech-256.png">
-        <br><br>
+        <br><br><br><br>
+        <img src="/helloing/resources/img/logo_outline.png" alt="logo">
         <h1 style="font-weight:bold;">${ errorMsg }</h1> <!-- request에 담은거  -->
+        <a href="loginForm.me">로그인 다시하기</a> / <a href="memberEnrollForm.me">회원가입</a> 
     </div>
     <br>
     

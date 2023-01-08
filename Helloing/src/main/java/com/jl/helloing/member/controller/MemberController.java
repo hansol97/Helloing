@@ -30,15 +30,19 @@ public class MemberController {
 		
 		Member loginUser = memberService.loginMember(m);
 		
-		//System.out.println("서비스 돌아온 후 " + loginUser);
+		System.out.println("서비스 돌아온 후 " + loginUser);
 		
 		//System.out.println(loginUser.getMemId());
-		if(loginUser == null) {
-			mv.addObject("errorMsg","로그인에 실패하셨습니다.");
-			mv.setViewName("");
-		} else {
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
+			
+		} else {
+
+			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
+			mv.setViewName("common/errorPage");
+			
 		}
 		
 		return mv;
@@ -85,7 +89,7 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
-			return "
+			return "common/errorPage";
 		}
 	}
 	
