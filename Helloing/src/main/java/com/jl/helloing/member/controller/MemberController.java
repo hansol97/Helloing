@@ -177,4 +177,9 @@ public class MemberController {
 	public String plannerMain() {
 		return "member/plannerMain";
 	}
+	//플랜 상세페이지
+	@RequestMapping("planDetailView.hj")
+	public String planDetailView() {
+		return "member/planDetailView";
+	}
 }

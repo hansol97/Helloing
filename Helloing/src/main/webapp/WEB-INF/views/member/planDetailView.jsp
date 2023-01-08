@@ -59,6 +59,9 @@
 	.modalBtn a{
 		padding-right:10px;
 	}
+	#trip-btn{
+		display:flex;
+	}
 </style>
 </head>
 <body>
@@ -75,50 +78,34 @@
 			<h1>My Planner</h1>
 			
 			<hr>
-			<div id="add-plan">
-				<a href="#ex1" rel="modal:open"> ➕ 일정 추가하기📝</a>
-			</div>
-			<hr>
-			
-			<div id="upcoming-trip" class="trip">
-			<h3>다가오는 여행</h3>
-				<div class="plan">
-					<h4>반갑소잉 여행</h4>
-					<p>2023.1.2 ~ 1.25</p>
-					
-					<span class="planner-btn">
-						<a href="">수정</a>
-						<a href="">삭제</a>
-					</span>
+			<div id="trip-detail">
+				<h2>반갑소잉 여행</h2>
+				<h5>2023.1.2 ~ 1.25</h5>
+				<h3>여행에 함께하는 사람들 : </h4>
+				<div id="person">
+					<span>박혜진</span>
+					<span>홍길동</span>
+					<span>김길동</span>
 				</div>
 			</div>
-			
-			<div id="completed-trip" class="trip">
-			<h3>완료된 여행</h3>
-				<div class="plan">
-					<h4>가족 여행</h3>
-					<p>2022.1.2 ~ 1.25</p>
-					
-					<span class="planner-btn">
-						<a href="">삭제</a>
-					</span>
-				</div>
-			</div>
-	
-	
-	</div>
-
-		    <div id="ex1" class="modal">
-	    		<h5 style="font-weight:600;">여행 일정 등록</h5>
-				<hr>
-		    	<br>
-		    	
-		    	<div>
-		    	여행 시작 <input type="date" id="start" name="trip-start"> ~ 여행 종료  <input type="date" id="start" name="trip-end">
-		    	</div>
-				<div>
-				여행명 <input type="text" placeholder="내용을 입력해주세요.">
-				</div>			 
+			<div id="trip-btn">
+		        <div id="share-area">
+		        	<button>일행과 함께 여행가기</button>
+		        </div>
+		        <div>
+		        	<button onclick="location.hred=''">가계부</button>
+		        </div>
+	        </div>
+	        <div id="plan">
+	        	<div class="plan-day">
+					<h2>day1 : 1.2</h2>	
+		        	<button>일정 추가</button>
+					<div>
+						
+					</div>				        	
+	        	</div>
+	        </div>
+	        	 
 			 <div class="modalBtn" style="float:right;">
 				  <a href="#" >생성</a>
 				  <a href="#" rel="modal:close">취소</a>
@@ -126,12 +113,9 @@
 		</div>
 		
 	<script>
-	$(function(){
-		$('.trip').click(function(){
-			location.href="planDetailView.hj"
-		})
-	})
+
 	
+
 	</script>
 </body>
 </html>
