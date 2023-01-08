@@ -1,8 +1,13 @@
 package com.jl.helloing.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.Member;
@@ -13,28 +18,30 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	
 	//승준
 	//로그인
 
 	@RequestMapping("login.me")
-	public String loginMember(Member m) {
-		
-		System.out.println(m);
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
 		
-		System.out.println("서비스 돌아온 후 " + loginUser);
+		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
-		System.out.println(loginUser.getMemId());
+		//System.out.println(loginUser.getMemId());
 		if(loginUser == null) {
-			System.out.println("로그인 실패");
+			mv.addObject("errorMsg","로그인에 실패하셨습니다.");
+			mv.setViewName("");
 		} else {
-			System.out.println("로그인 성공");
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/");
 		}
 		
-		return "main";
+		return mv;
 	}
 	//로그인 창
 	@RequestMapping("loginForm.me")
@@ -67,6 +74,21 @@ public class MemberController {
 	public String enrollForm() {
 		return "member/memberEnrollForm";
 	}
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, Model model) {
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
+		int result = memberService.insertMember(m);
+		
+		if(result >0) {
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
+			return "
+		}
+	}
+	
 	// 기업파트너등록 전 알림페이지
 	@RequestMapping("loginMove.me")
 	public String loginMove() {
