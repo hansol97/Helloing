@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Planner - 반갑소잉 여행</title>
+<title>가계부</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -133,7 +133,7 @@
 		</div>
 		
 		<div id="detail">
-			<h1>My Planner</h1>
+			<h1>가계부</h1>
 			
 			<hr>
 			<div id="trip-detail">
@@ -151,7 +151,7 @@
 		        	<button>👫일행과 함께 여행가기</button>
 		        </div>
 		        <div id="payment-area">
-		        	<button onclick="location.href='expenseView.hj'">💰가계부</button>
+		        	<button onclick="location.hred=''">💰가계부</button>
 		        </div>
 	        </div>
 			<hr>
