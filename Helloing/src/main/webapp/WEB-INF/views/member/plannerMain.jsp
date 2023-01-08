@@ -56,6 +56,9 @@
 		text-align: center;
 		font-size : 30px;
 	}
+	.modalBtn a{
+		padding-right:10px;
+	}
 </style>
 </head>
 <body>
@@ -109,12 +112,26 @@
 	    		<h5 style="font-weight:600;">여행 일정 등록</h5>
 				<hr>
 		    	<br>
-			  <p style="font-size:25px; font-weight:600;">동의하시겠습니까?</p>
-			 
+		    	
+		    	<div>
+		    	여행 시작 <input type="date" id="start" name="trip-start"> ~ 여행 종료  <input type="date" id="start" name="trip-end">
+		    	</div>
+				<div>
+				여행명 <input type="text" placeholder="내용을 입력해주세요.">
+				</div>			 
 			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >넹</a>
-			  <a href="#" rel="modal:close">아니용</a>
+				  <a href="#" >생성</a>
+				  <a href="#" rel="modal:close">취소</a>
 			  </div>
 		</div>
+		
+	<script>
+	$(function(){
+		$('trip').click(function(){
+			location.href="planDetailView.hj"
+		})
+	})
+	
+	</script>
 </body>
 </html>
