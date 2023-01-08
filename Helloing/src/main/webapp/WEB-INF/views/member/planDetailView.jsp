@@ -159,7 +159,7 @@
 	        	<div class="plan-day">
 					<h2>day1 : 1.2</h2>	
 					<br>
-		        	<a> + 일정 추가</a>
+		        	<a href="#ex1" rel="modal:open"> + 일정 추가</a>
 					<br><br>
 					<div>
 						<div class="plan-title">전주한옥마을</div>
@@ -170,7 +170,9 @@
 	        	</div>
     	      	<div class="plan-day">
 					<h2>day2 : 1.3</h2>	
-		        	<a> + 일정 추가</a>
+					<br>
+		        	<a href="#ex1" rel="modal:open"> + 일정 추가</a>
+		        	<br><br>
 					<div>
 						<div class="plan-title">전주한옥마을</div>
 						<div>가는 길에 육회먹기</div>
@@ -183,6 +185,33 @@
 		
 		</div>
 		
+	    <div id="ex1" class="modal">
+    		<h5 style="font-weight:600;">일정 추가</h5>
+			<hr>
+			<form action="" method="">
+				<ul>
+					<li>일정명  <input type="text" placeholder="내용을 입력해주세요."></li>
+					<li>일정 설명  <input type="text" placeholder="내용을 입력해주세요."></li>
+					<li>일정 시작 시간 <input type="time" id="start" name="plan-start"> </li>
+					<li>일정 종료 시간 <input type="time" id="end" name="plan-start"> </li>
+					<li>
+						카테고리
+						<select name = "category">
+						    <option>숙소</option>
+						    <option>이동</option>
+						    <option>관광</option>
+						    <option>식사</option>
+						    <option>쇼핑</option>
+						    <option>기타</option>
+					    </select>
+					</li>
+				</ul>
+			</form>		 
+			<div class="modalBtn" style="float:right;">
+				  <a href="#" >추가</a>
+				  <a href="#" rel="modal:close">취소</a>
+		 	</div>
+		</div>
 	<script>
 
 	
