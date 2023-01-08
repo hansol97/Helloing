@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 작성 페이지</title>
+<title>리뷰 수정 페이지</title>
 <style>
 	/* 구조 관련 */
 	.out{
@@ -357,7 +357,7 @@
 			<br>
 			<div id="btn">
 				<button id="list_btn">목록으로</button>
-				<button type="submit" id="cancel_btn">등록</button>
+				<button type="submit" id="cancel_btn">수정</button>
 			</div>	
 		</form>
 		</div>
