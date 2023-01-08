@@ -232,8 +232,7 @@ a:hover {
   margin-left: 15px;
   margin-top: 19px;
   border-radius: 10px;
-/*  background-color: #FFEA24;*/
-  background-color: red;
+  background-color: #FFEA24;
   font-weight: bolder;
   font-size: 20px;
   position:fixed;
@@ -344,8 +343,9 @@ a:hover {
 
 .enrollform{
   width: 80%;
-  height: 1000px !important;
-
+  /*height: 1400px !important;*/
+  height: auto;
+  padding-bottom: 20px;
 }
 .innerform{
   /* border: 1px red solid; */
@@ -353,3 +353,11 @@ a:hover {
   margin: auto;
 }
 
+.accommFormTable{
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+
+input[type="file"]{
+  margin-left : 100px;
+}

@@ -26,35 +26,33 @@
             <div class="blog-card enrollform" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> 👉당신의 👍멋진 🛖숙소를 🕵️‍♀️등록해 😋주세요!❤️ </div>
-				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 1000px;"  >
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 👍멋진 🛖숙소를 🕵️‍♀️등록해 😋주세요!❤️ </div>
+				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px;"  >
 					<tr>
-						<th width="100" height="40px"> 숙소 이름 :</th>
+						<th width="300px" height="40px"> 숙소 이름 :</th>
 						<td width="400px">
 							<input id="amName" type="text" name="title" height="100px" width="550px" required placeholder="아무튼 입력"/>
 						</td>
 					</tr>
 					<tr>
-						<th id="feed_content" style="vertical-align: middle;">숙소 주소 :</th>
+						<th style="vertical-align: middle;">숙소 주소 :</th>
 						<td height="40px">
 							<textarea name="amDescription" rows="2" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
 
 					</tr>
 					<tr>
-						<th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
+						<th style="vertical-align: middle;">숙소 설명 :</th>
 						<td height="40px">
 							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
-						<br><br>
 					</tr>
 					<tr>
 						<th>&nbsp;&nbsp;</th>
 						<td>&nbsp;&nbsp;</td>
 					</tr>
 					<tr>
-						<th id="feed_tag">등급 선택 :</th>
-						<br>
+						<th>등급 선택 :</th>
 						<td>
 							<select name="rating" id="rating">
 								<option value='1'>1 등급</option>
@@ -69,35 +67,46 @@
 						<td></td>
 					</tr>
 					<tr>
-						<th id="feed_tag">카테고리 :</th>
-						<br>
+						<th>카테고리 :</th>
 						<td>
-							<select name="rating" id="rating"> 
-								<option value='1'>호텔</option>
-								<option value='2'>2 등급</option>
-								<option value='3'>3 등급</option>
-								<option value='4'>4 등급</option>
-								<option value='5'>5 등급</option>
+							<select name="category" id="category"> 
+								<option value='hotel'>호텔</option>
+								<option value='pension'>펜션</option>
+								<option value='motel'>모텔</option>
+								<option value='house'>민박</option>
+								<option value='guestHouse'>게스트하우스</option>
 							</select>
 						</td>
 					</tr>
-
+					<tr>
+						<th>체크인 / 체크아웃 시간 : </th>
+						<td>
+							<input type="time" name="checkIn" id=""/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+							<input type="time" name="checkOut" id=""/>
+						</td>
+					</tr>
+					<tr>
+						<th style="vertical-align: middle;">환불 규정 : </th>
+						<td>
+							<textarea name="refundDescription" rows="5" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
+						</td>
+					</tr>
 
 
 				</table>
 					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
-						<p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br>
+						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
 						<input type="file" name="accommPhoto1" /><br><br>
 						<input type="file" name="accommPhoto2" /><br><br>
-						<input type="file" name="accommPhoto3" /><br><br>
+						<input type="file" name="accommPhoto3" /><br><br><br><br>
 					</div>
 
 			<div class="feed_modal_btns" align="center">
 				<br>
-				<button type="submit" class="" id="red_btn2"> 등록 </button>
-				<button type="reset" class="">초기화</button>
-				<button type="reset" class="">취소하기</button>
+				<button type="submit" class="button--ujarak button" id="red_btn2"> 등록 </button>
+				<button type="reset" class="button--ujarak button">초기화</button>
+				<button type="reset" class="button--ujarak button">취소하기</button>
 
 			</div>
 			</form>
