@@ -189,8 +189,8 @@
 
   .chat_modal_body {
     position: absolute;
-    top: 440px;
-    right: 20px;
+    bottom:1%;
+    right:1%;
 
     width: 270px;
     height: 400px;
@@ -208,7 +208,7 @@
   }
 
   .chat_modal-title{
-    margin-left:10px;
+    margin-bottom:20px;
   }
 
   .chat_modal-title span{
@@ -217,8 +217,10 @@
 
   #chatbot_btn {
     position: absolute;
-    top:880px;
-    right:0px;
+    /* top:880px;
+    right:0px; */
+    bottom:1%;
+    right:1%;
 
     width: 40px;
     height: 40px;
