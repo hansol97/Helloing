@@ -39,10 +39,10 @@
                     <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                     <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                     <div class="more_buttons">
-                        <button class="more_button">객실등록</button>
+                        <button onclick='location.href="goInsertRoom.bu"' class="more_button">객실등록</button>
                         <button onclick='location.href="goUpdateAccom.bu"' class="more_button">수정</button>
-                        <button class="more_button">삭제</button>
-                        <button class="more_button">추가결제</button>
+                        <button onclick='location.href="#"' class="more_button">삭제</button>
+                        <button onclick='location.href="#"' class="more_button">추가결제</button>
                     </div>
                 </div>
                 <br>

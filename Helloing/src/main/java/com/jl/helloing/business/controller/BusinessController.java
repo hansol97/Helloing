@@ -36,8 +36,16 @@ public class BusinessController {
 	public String goUpdateActivity() {
 		return "business/updateActivity";
 	}
-	
-	
+	// 객실 등록화면으로 이동
+	@RequestMapping("goInsertRoom.bu")
+	public String goInsertRoom() {
+		return "business/insertRoom";
+	}
+	// 티켓 등록 화면으로 이동 
+	@RequestMapping("goInsertTicket.bu")
+	public String goInsertTicket() {
+		return "business/insertTicket";
+	}
 	
 	
 	

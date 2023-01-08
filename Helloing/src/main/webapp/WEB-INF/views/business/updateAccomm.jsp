@@ -108,7 +108,7 @@
 
 			<div class="feed_modal_btns" align="center">
 				<br>
-				<button type="submit" class="button--ujarak button" id="red_btn2"> 등록 </button>
+				<button type="submit" class="button--ujarak button" id="red_btn2"> 수정 완료 </button>
 				<button type="reset" class="button--ujarak button">초기화</button>
 				<button type="reset" class="button--ujarak button">취소하기</button>
 
