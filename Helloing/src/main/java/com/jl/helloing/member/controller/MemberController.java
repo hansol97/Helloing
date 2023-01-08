@@ -136,6 +136,6 @@ public class MemberController {
 	//후기 작성 페이지 
 	@RequestMapping("reviewEnrollForm.hj")
 	public String reviewEnrollForm() {
-		return "member/reviewEnrollFrom";
+		return "member/reviewEnrollForm";
 	}
 }
