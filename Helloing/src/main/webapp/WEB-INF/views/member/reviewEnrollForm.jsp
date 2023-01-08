@@ -25,7 +25,11 @@
 		font-size: 30px;
 		font-weight: 600;
 	}
-	/* 예약명 */
+
+	#tag-area{
+		height: 200px;
+	}
+
 	#detail a{
 		font-size: 20px;
 		font-weight: 300;
@@ -34,53 +38,22 @@
 		text-decoration:underline;
 	}
 
-	/* 예약상태 */
-	#check{
-		border: 1px solid lightgray;
-		height: 150px;
+	/* 후기작성란 */
+	#content{
+		height: 400px;
 		border-radius: 30px;
-		background-color: aliceblue;
 	}
-	#check h3{
+	#content h3{
+		padding : 10px;
 		text-align: center;
-		margin: auto;
 		font-size: 25px;
+		font-weight:600;
 	}
 
-	/* 예약 상세정보 */
-	#datail_book h2{
-		font-weight: 700;
-		font-size: 25px;
-		padding: 10px 0;
-	}
-	#datail_book .book_title{
-		font-weight: 700;
-	}
-	#datail_book div{
-		padding-bottom: 5px;
-	}
-
-	/* 예약자 상세정보 */
-	#datail_mem h2{
-		font-weight: 700;
-		font-size: 25px;
-		padding: 10px 0;
-	}
-	#datail_mem div{
-		padding-bottom: 5px;
-	}
-	#payment{
-		float: right;
-	}
-	#price{
-		font-size: 25px;
-		font-weight: 600;
-		padding-left: 20px;
-	}
 
 	/* 버튼 */
 	#btn{
-		padding-left: 350px;
+		padding-left: 300px;
 	}
 	#btn button{
 		font-family: 'S-CoreDream-3Light';
@@ -108,7 +81,142 @@
 		border-radius: 10px;
 		margin: 5px;
 	}
+	/* 별점 */
+	 #star-area img{
+        margin: 10px 10px; 
+    }
 
+    #star-area label{
+        display: inline-block;
+    }
+
+    #star-area input[name=reviewStar] {
+        display: none;
+    }
+
+	#content textarea[name=content]{
+		border: 1px solid lightgray;
+		border-radius: 10px;
+		font-size: 15px;
+		font-family: 'S-CoreDream-3Light';
+		margin: 10px;
+		padding: 10px;
+	}
+	#content span{
+		margin-left: 10px;
+	}
+
+	/* 태그 */
+	#tag-area input[name=tag] {
+		display: none;
+	}
+	#tag-area span{
+		border: 1px solid gray;
+		background-color: white;
+		border-radius: 5px;
+		padding: 5px;
+		color: black;
+	}
+	#tag-area h3{
+		padding : 10px;
+		text-align: center;
+		font-size: 25px;
+		font-weight:600;
+	}
+
+	#photo-area h3{
+		padding : 10px;
+		text-align: center;
+		font-size: 25px;
+		font-weight:600;
+	}
+	/* 이미지 */
+	#root {
+		width: 100%;
+		margin: 0 auto;
+		max-width: 800px;
+		}
+
+		.title {
+		text-align: center;
+		}
+
+		.contents {
+		display: flex;
+		flex-direction: row;
+		margin-top: 30px;
+		}
+		.contents .upload-box {
+		width: 100%;
+		margin-right: 30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		}
+
+		.contents .upload-box .drag-file {
+		position: relative;
+		width: 100%;
+		height: 360px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 3px dashed #dbdbdb;
+		}
+		.contents .upload-box .drag-file.highlight {
+		border: 3px dashed red;
+		}
+		.contents .upload-box .drag-file .image {
+		width: 40px;
+		}
+		.contents .upload-box .drag-file .message {
+		margin-bottom: 0;
+		}
+		.contents .upload-box .drag-file .preview {
+		display: none;
+		position: absolute;
+		left: 0;
+		height: 0;
+		width: 100%;
+		height: 100%;
+		}
+		.contents .upload-box .file-label {
+		margin-top: 30px;
+		background-color: #5b975b;
+		color: #fff;
+		text-align: center;
+		padding: 10px 0;
+		width: 65%;
+		border-radius: 6px;
+		cursor: pointer;
+		}
+		.contents .upload-box .file {
+		display: none;
+		}
+
+		@media (max-width: 700px) {
+		.contents {
+			display: flex;
+			flex-direction: column;
+			margin-top: 30px;
+		}
+		.contents .upload-box {
+			width: 100%;
+			box-sizing: border-box;
+			margin-right: 0;
+		}
+		.contents .upload-box .drag-file {
+			height: 150px;
+		}
+		.contents .files {
+			width: 100%;
+			box-sizing: border-box;
+			margin-right: 0;
+			overflow: initial;
+		}
+		}
 </style>
 </head>
 <body>
@@ -124,79 +232,238 @@
 		<div id="detail">
 		<br><br>
 		<h1>리뷰 작성 페이지</h1><br>
-		<a href="detail.accomm">[빠른전송] 2023 스위스패스 연속 E-티켓 + 특전</a>
-		<hr>
-		<div id="star">
-		
-		
-		</div>
-		
-		
-		
-		
-		<div id="check">
-			<h3>
-				<br>
-				❇️
-				<br>
-				예약까지 D-20
-			</h3>
-		</div>
-		<div id="image">
-			<img src="/helloing/resources/img/logo_outline.png" alt="" width="250px">
-			<img src="/helloing/resources/img/logo_outline.png" alt="" width="250px">
-			<img src="/helloing/resources/img/logo_outline.png" alt="" width="250px">
-		</div>
-		<hr>
-			<div id="datail_book">
-				<h2>예약 상세 정보</h2>
-				<div>
-					<span class="book_title">예약번호 : </span>
-					<span class="book_content">20230103-111111</span>
-				</div>
-				<div>
-					<span class="book_title">주문 : </span>
+		<form action="" method="post">
+			<a href="detail.accomm">[빠른전송] 2023 스위스패스 연속 E-티켓 + 특전</a>
+			<hr>
+			<div id="star-area">
+				<label for="rate1">
+					<input type="radio" name="reviewStar" value="1" id="rate1" checked>
+					<img src="/helloing/resources/img/star1.png" width="50" height="50" alt="">
+				</label>
+
+				<label for="rate2">
+					<input type="radio" name="reviewStar" value="2" id="rate2">
+					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
+				</label>
+
+				<label for="rate3">
+					<input type="radio" name="reviewStar" value="3" id="rate3">
+					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
+				</label>
+
+				<label for="rate4">
+					<input type="radio" name="reviewStar" value="4" id="rate4">
+					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
+				</label>
+				
+				<label for="rate5">
+					<input type="radio" name="reviewStar" value="5" id="rate5">
+					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
+				</label>
+			</div>
+			
+			
+			<div id="content">
+				<h3>구체적으로 어떤 경험이었나요?</h3>
+				<textarea name="content" id="text-area"cols="110px" rows="10px" placeholder="이용하기 전 알기 어려운 사실이나 꿀팁을 알려주세요."></textarea>
+				<span id="count">0</span> / 150
+				
+				<p>
 					<br>
-					<span class="book_content">
-					1-2. 스위스패스 연속패스 3일권 2등석 유스 ✕ 1 <br>1-2. 스위스패스 연속패스 3일권 2등석 성인 ✕ 1
-					</span>
-				</div>
-				<div>
-					<span class="book_title">수량 :</span>
-					<span class="book_content"> 2</span>
-				</div>
-				<div>
-					<span class="book_title">시작일자 : </span>
-					<span class="book_content">2023-01-03</span>
-				</div>
-				<div>
-					<span class="book_title">마감일자 : </span> 
-					<span class="book_content">2022-12-31</span>
-				</div>
+					* 상품과 무관한 내용이나 동일한 문자의 반복 등 부적합한 내용은 삭제될 수 있습니다.
+					<br>
+					* 후기 내용에 개인 정보가 노출되지 않도록 주의해주세요.
+				</p>
 			</div>
-		<hr>
-			<div id="datail_mem">
-					<h2>예약자 정보</h2>
-					<div>박혜진</div>
-					<div>01041396013</div>
-					<div>qkrgpwls6013@gmail.com</div>
+
+			<br>
+			<hr>
+
+			<div id="tag-area">
+				<h3>어떤 점이 특히 좋았나요?</h3>
 				<br>
-				<div id="payment">
-					<span>총 결제금액</span>
-					<span id="price">103,000원</span>
-					<div>결제일 : 2022-12-31</div>
+				
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="위치가 찾기 쉬워요" id="rate1" checked>
+					<span>🧭위치가 찾기 쉬워요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="관광지와 가까워요" id="rate1" checked>
+					<span>🏝️관광지와 가까워요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="방문하기 편해요" id="rate1" checked>
+					<span>🚗방문하기 편해요</span>
+				</label>
+
+				<br><br>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="즐길 거리가 많아요" id="rate1" checked>
+					<span>🗽즐길 거리가 많아요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="관리가 잘 되어있어요" id="rate1" checked>
+					<span>🧹관리가 잘 되어있어요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="사진과 동일해요" id="rate1" checked>
+					<span>🖼️사진과 동일해요</span>
+				</label>
+
+				<br><br>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="친절해요" id="rate1" checked>
+					<span>😊친절해요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="전문적이에요" id="rate1" checked>
+					<span>💻전문적이에요</span>
+				</label>
+
+				<label for="rate1">
+					<input type="checkbox" name="tag" value="응답이 빨라요" id="rate1" checked>
+					<span>✉️응답이 빨라요</span>
+				</label>
+			</div>
+
+			<hr>
+			<div id="photo-area">
+				<h3>사진을 공유해주세요.</h3>
+				<div id="root">
+					<hr>
+					<div class="contents">
+					<div class="upload-box">
+						<div id="drop-file" class="drag-file">
+						<img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image" >
+						<p class="message">사진을 끌어당기거나, 선택해주세요.</p>
+						<img src="" alt="미리보기 이미지" class="preview">
+						</div>
+						<label class="file-label" for="chooseFile">사진 선택하기</label>
+						<input class="file" id="chooseFile" type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+					</div>
+					</div>
 				</div>
 			</div>
-			<br><br><br>
-		<hr>
 
-		<br>
-		<div id="btn">
-			<button id="list_btn">목록으로</button>
-			<button id="cancel_btn">예약취소</button>
-		</div>	
 
+
+			<br>
+			<div id="btn">
+				<button id="list_btn">목록으로</button>
+				<button type="submit" id="cancel_btn">등록</button>
+			</div>	
+		</form>
 		</div>
 	</div>
+
+<script>
+//리뷰 별 
+$('input[name=reviewStar]').click(function(){
+
+    var $num = $(this).val();
+
+    $('input[name=reviewStar]').each(function(){
+
+        if($(this).val() <= $num){
+            $(this).next().attr('src','/helloing/resources/img/star1.png');
+        } else {
+            $(this).next().attr('src','/helloing/resources/img/star2.png');
+        }
+    })
+});
+
+//글자 수
+		$('#text-area').keyup(function(){
+            $('#count').text($(this).val().length);
+
+        })
+//태그
+	$('#input[name=tag]').click(function(){
+		
+		$(this).children('span').css({color: 'white', background:'gray'});
+		//$('#tag-area input[name=tag]').each(function(){
+			// if($(this).prop('checked') == true){
+			// } else {
+			// 	$(this).css({color: 'black', background:'none'});
+			// }
+
+	});
+	//});
+
+	//사진업로드
+	function DropFile(dropAreaId, fileListId) {
+	let dropArea = document.getElementById(dropAreaId);
+	let fileList = document.getElementById(fileListId);
+
+	function preventDefaults(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
+	function highlight(e) {
+		preventDefaults(e);
+		dropArea.classList.add("highlight");
+	}
+
+	function unhighlight(e) {
+		preventDefaults(e);
+		dropArea.classList.remove("highlight");
+	}
+
+	function handleDrop(e) {
+		unhighlight(e);
+		let dt = e.dataTransfer;
+		let files = dt.files;
+
+		handleFiles(files);
+
+		const fileList = document.getElementById(fileListId);
+		if (fileList) {
+		fileList.scrollTo({ top: fileList.scrollHeight });
+		}
+	}
+
+	function handleFiles(files) {
+		files = [...files];
+		// files.forEach(uploadFile);
+		files.forEach(previewFile);
+	}
+
+	function previewFile(file) {
+		console.log(file);
+		renderFile(file);
+	}
+
+	function renderFile(file) {
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = function () {
+		let img = dropArea.getElementsByClassName("preview")[0];
+		img.src = reader.result;
+		img.style.display = "block";
+		};
+	}
+
+	dropArea.addEventListener("dragenter", highlight, false);
+	dropArea.addEventListener("dragover", highlight, false);
+	dropArea.addEventListener("dragleave", unhighlight, false);
+	dropArea.addEventListener("drop", handleDrop, false);
+
+	return {
+		handleFiles
+	};
+	}
+
+	const dropFile = new DropFile("drop-file", "files");
+
+</script>
+
 </body>
 </html>
