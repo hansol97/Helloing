@@ -1,19 +1,26 @@
 package com.jl.helloing.member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.Member;
 
 @Controller
 public class MemberController {
+	
+	@Autowired
+	private MemberService memberService;
+	
+	
+	
 	//승준
 	//로그인
 	@RequestMapping("login.me")
 	public String loginMember(Member m) {
 		
-		System.out.println("memId : " + m.getMemId());
-		System.out.println("memPwd : " + m.getMemPwd() );
+		memberService.loginMember(m);
 		
 		return "member/login";
 	}
