@@ -17,8 +17,11 @@ public class MemberController {
 	
 	//승준
 	//로그인
+
 	@RequestMapping("login.me")
 	public String loginMember(Member m) {
+		
+		System.out.println(m);
 		
 		Member loginUser = memberService.loginMember(m);
 		
