@@ -17,8 +17,27 @@
     padding:50px 100px;
     background-color:white;
     word-break:break-all;
-    }   
+    }
+    
+    button[title="month view"]
+    , button[title="week view"]
+    , button[title="day view"]{
+        display: none !important;
+    }
+
+    #calendar-area{
+        width:600px;
+        height:600px;
+        float:right;
+
+        position:absolute;
+        top:200px;
+
+    }
+
+
 </style>
+
 <meta charset='utf-8' />
 <title>객실별 예약자 조회</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
@@ -38,40 +57,40 @@ document.addEventListener('DOMContentLoaded', function() {
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
         alert('clicked ' + info.dateStr); 
         },
-        select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
-        alert('selected ' + info.startStr + ' to ' + info.endStr);
-        },
+        // select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
+        // alert('selected ' + info.startStr + ' to ' + info.endStr);
+        // },
         events: [ // 화면에 띄워줄 이벤트 객체 배열
-            {
-            title: '종강',
-            start: '2023-01-25'
-            },
-            {
-            title: '수업시작',
-            start: '2023-01-06T09:00:00',
-            },
-            {
-            title: '수업끝',
-            start: '2023-01-06T17:50:00',
-            },
-            {
-            title: '기능구현하기',
-            start: '2023-01-09',
-            end: '2023-01-14'
-            },
-            {
-            title: '점심시간',
-            start: '2023-01-16T12:50:00'
-            },
-            {
-            title: '휴강',
-            start: '2023-01-18'
-            },
-            {
-            title: 'URL요청??',
-            url: 'http://google.com/', // a태그 달기
-            start: '2023-01-20'
-            }
+            // {
+            // title: '종강',
+            // start: '2023-01-25'
+            // },
+            // {
+            // title: '수업시작',
+            // start: '2023-01-06T09:00:00',
+            // },
+            // {
+            // title: '수업끝',
+            // start: '2023-01-06T17:50:00',
+            // },
+            // {
+            // title: '기능구현하기',
+            // start: '2023-01-09',
+            // end: '2023-01-14'
+            // },
+            // {
+            // title: '점심시간',
+            // start: '2023-01-16T12:50:00'
+            // },
+            // {
+            // title: '휴강',
+            // start: '2023-01-18'
+            // },
+            // {
+            // title: 'URL요청??',
+            // url: 'http://google.com/', // a태그 달기
+            // start: '2023-01-20'
+            // }
         ]
     });
 
@@ -88,7 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="business-content">
         <br><br>
         <div class="business-innerOuter">
-            <div id='calendar'></div>
+            <div id="calendar-area">
+                <div id='calendar'></div>
+            </div>
         </div>
     </div>
   </body>
