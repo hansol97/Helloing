@@ -6,27 +6,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BusinessController {
 	
+	// 숙소 조회
 	@RequestMapping("accommList.bu")
 	public String goSelectAccom() {
-		
 		return "business/accommList";
 	}
-	
+	// 액티비티 조회
 	@RequestMapping("activityList.bu")
 	public String selectActivity() {
-		
 		return "business/activityList";
 	}
-
+	// 숙소등록화면으로 이동
 	@RequestMapping("goInsertAccom.bu")
 	public String goInsertAccom() {
 		return "business/insertAccomm";
 	}
-	
+	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
 	public String goInsertAct() {
 		return "business/insertActivity";
 	}
+	// 숙소 수정하기
+	@RequestMapping("goUpdateAccom.bu")
+	public String goUpdateAccom() {
+		return "business/updateAccomm";
+	}
+	// 액티비티 수정하기
+	@RequestMapping("goUpdateAct.bu")
+	public String goUpdateActivity() {
+		return "business/updateActivity";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 메뉴바에서 기업관리 누르면 기업페이지로 이동
 	@RequestMapping("page.bu")
