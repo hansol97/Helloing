@@ -39,6 +39,7 @@
 						<td height="40px">
 							<textarea name="amDescription" rows="2" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
+
 					</tr>
 					<tr>
 						<th id="feed_content" style="vertical-align: middle;">숙소 설명 :</th>
@@ -65,6 +66,9 @@
 						</td>
 					</tr>
 					<tr>
+						<td></td>
+					</tr>
+					<tr>
 						<th id="feed_tag">카테고리 :</th>
 						<br>
 						<td>
@@ -77,17 +81,20 @@
 							</select>
 						</td>
 					</tr>
+
+
+
 				</table>
 					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
-						<p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br />
+						<p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br>
 						<input type="file" name="accommPhoto1" /><br><br>
 						<input type="file" name="accommPhoto2" /><br><br>
 						<input type="file" name="accommPhoto3" /><br><br>
 					</div>
 
 			<div class="feed_modal_btns" align="center">
-				<br />
+				<br>
 				<button type="submit" class="" id="red_btn2"> 등록 </button>
 				<button type="reset" class="">초기화</button>
 				<button type="reset" class="">취소하기</button>
