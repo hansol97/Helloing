@@ -68,7 +68,7 @@
 						<th id="feed_tag">카테고리 :</th>
 						<br>
 						<td>
-							<select name="rating" id="rating">
+							<select name="rating" id="rating"> 
 								<option value='1'>호텔</option>
 								<option value='2'>2 등급</option>
 								<option value='3'>3 등급</option>
