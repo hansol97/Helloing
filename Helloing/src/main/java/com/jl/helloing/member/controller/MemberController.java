@@ -78,6 +78,7 @@ public class MemberController {
 		return "member/businessEnrollForm";
 	}
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
+	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
 	//마이페이지 메인
 	@RequestMapping("myPage.hj")
@@ -143,5 +144,11 @@ public class MemberController {
 	@RequestMapping("reviewEnrollForm.hj")
 	public String reviewEnrollForm() {
 		return "member/reviewEnrollForm";
+	}
+	
+	//플래너 메인페이지
+	@RequestMapping("plannerMain")
+	public String plannerMain() {
+		return "member/plannerMain";
 	}
 }
