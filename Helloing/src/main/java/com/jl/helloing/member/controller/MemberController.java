@@ -25,6 +25,8 @@ public class MemberController {
 		
 		Member loginUser = memberService.loginMember(m);
 		
+		System.out.println("서비스 돌아온 후 " + loginUser);
+		
 		System.out.println(loginUser.getMemId());
 		if(loginUser == null) {
 			System.out.println("로그인 실패");

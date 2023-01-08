@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="memberMapper">
 	
 	<resultMap id="memberResultSet" type="member">
+		<result column="MEM_NO"		property="memNo" />
 		<result column="MEM_ID" 		property="memId" />
 		<result column="MEM_PWD" 		property="memPwd" />
 		<result column="MEM_NAME" 		property="memName" />
@@ -17,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
 		select
+				mem_no,
 				mem_id,
 				mem_pwd,
 				mem_name,
@@ -32,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  and
 		  		mem_pwd = #{memPwd}
 		  and
-		  		status = 'Y'		
+		  		status = 'Y' or status = 'A'
 	</select>
 	
 	
