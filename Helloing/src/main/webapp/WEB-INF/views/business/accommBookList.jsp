@@ -12,7 +12,7 @@
     }
     .business-innerOuter {
     font-family: 'S-CoreDream-3Light';
-    width:1200px;
+    width:1300px;
     margin:auto;
     padding:50px 100px;
     background-color:white;
@@ -28,11 +28,44 @@
     #calendar-area{
         width:600px;
         height:600px;
-        float:right;
+        /* float:right; */
 
         position:absolute;
         top:200px;
+    }
 
+    #book-info-area{
+        width:690px;
+        /* float:left; */
+
+        position:absolute;
+        top:260px;
+        left:830px;
+    }
+
+    #book-info-area > div{
+        border:1px solid lightgrey;
+        border-radius:5px;
+        width:600px;
+        margin-left:20px;
+    }
+
+    #book-info-area p{
+        margin-left:10px;
+        margin-right:10px;
+        padding:10px;
+        margin:10px
+    }
+
+    #book-info-area>div>span:first-child{
+        width:400px;
+    }
+
+    #book-info-date{
+        margin-left:0px;
+        font-size:20px;
+        font-weight:bold;
+        padding-left:0px;
     }
 
 
@@ -109,6 +142,21 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="business-innerOuter">
             <div id="calendar-area">
                 <div id='calendar'></div>
+            </div>
+            <div id="book-info-area">
+                <p id="book-info-date">2022-08-03</p>
+                <div id="book-info1">
+                    <p>숙소/호텔</p>
+                    <p>서울신라호텔/디럭스 패키지(더블)</p>
+                </div>
+                <div id="book-info2">
+                    <p>예약자명 : 유저2</p>
+                    <p>인원 수 : 3명</p>
+                </div>
+                <div id="book-info3">
+                    <p>이용기간 : 2022.08.02 ~ 2022.08.04</p>
+                    <p>총 지불금액 : 155,000원</p>
+                </div>
             </div>
         </div>
     </div>
