@@ -45,6 +45,12 @@ public class BusinessController {
 		return "business/mypageUpdateForm";
 	}
 	
+	// 숙소 예약자 리스트
+	@RequestMapping("accommBookList.bu")
+	public String accommBookList() {
+		return "business/accommBookList";
+	}
+	
 	
 	
 	

@@ -23,6 +23,16 @@
     font-weight: bold;
     }
 
+    #admin-delete{
+    background-color: rgb(233, 233, 233);
+    display:inline-block;
+    width:45px;
+    height:27px;
+    text-align: center;
+    border-radius: 3px;
+    border:1px solid rgb(150, 150, 150);
+    margin-left:10px;
+}
     
     
 </style>
@@ -65,7 +75,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="610">
+                            <td width="460">
                                 
                             </td>
                             <td><button id="admin-delete">삭제</button></td>
@@ -80,14 +90,13 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="100">회원번호</th>
-                                <th width="100">아이디</th>
-                                <th width="100">이름</th>
-                                <th width="200">이메일</th>
-                                <th width="150">전화번호</th>
-                                <th width="80">상태</th>
-                                <th>가입일자</th>
-                                <th width="100">신고횟수</th>
+                                <th width="80">글번호</th>
+                                <th width="110">작성자아이디</th>
+                                <th width="270">제목</th>
+                                <th width="130">작성일</th>
+                                <th width="70">추천수</th>
+                                <th width="70">조회수</th>
+                                <th width="60">상태</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,27 +104,31 @@
                                 <td onclick="event.stopPropagation()">
                                     <input name="cbox" type="checkbox" value="">
                                 </td>
-                                <td>2</td>
+                                <td>10</td>
                                 <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
+                                <td>
+                                    제주도 여행
+                                    💾
+                                </td>
                                 <td>2022.12.25</td>
                                 <td>2</td>
+                                <td>10</td>
+                                <td>N</td>
                             </tr>
                             <tr>
                                 <td onclick="event.stopPropagation()">
                                     <input name="cbox" type="checkbox" value="">
                                 </td>
-                                <td>2</td>
+                                <td>10</td>
                                 <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
+                                <td>
+                                    제주도 여행
+                                    💾
+                                </td>
                                 <td>2022.12.25</td>
                                 <td>2</td>
+                                <td>10</td>
+                                <td>N</td>
                             </tr>
                         </tbody>
                     </table>
