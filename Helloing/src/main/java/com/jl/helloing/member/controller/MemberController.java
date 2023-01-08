@@ -3,12 +3,18 @@ package com.jl.helloing.member.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jl.helloing.member.model.vo.Member;
+
 @Controller
 public class MemberController {
 	//승준
 	//로그인
 	@RequestMapping("login.me")
-	public String loginMember() {
+	public String loginMember(Member m) {
+		
+		System.out.println("memId : " + m.getMemId());
+		System.out.println("memPwd : " + m.getMemPwd() );
+		
 		return "member/login";
 	}
 	//아이디찾기
