@@ -75,6 +75,15 @@
 		padding : 10px;
 	}
 	
+	#ex1 li span{
+	    color: white;
+	    background: gray;
+	    margin: 5px;
+	    border-radius: 5px
+	}
+	#ex1 li img{
+		padding:10px;
+	}
 </style>
 </head>
 <body>
@@ -107,7 +116,7 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#ex1" rel="modal:open">예약취소</a></td>
+		                <td><a href="#ex1" rel="modal:open">후기 조회</a></td>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
@@ -115,7 +124,7 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#">예약취소</a></td>
+		                <td><a href="reviewEnrollForm.hj">후기작성</a></td>
 		            </tr>
 		            <tr>
 		                <td>20230103-111111</td>
@@ -123,35 +132,30 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <td><a href="#">예약취소</a></td>
+		                <td><a href="reviewEnrollForm.hj">예약취소</a></td>
 		            </tr>
 	            </tbody>
 		        </table>
 		       
 		    </div>
 		    <div id="ex1" class="modal">
-		    	<ul>
-		    		<h5 style="font-weight:600;">취소 시 환불금액</h5>
-		    		<li style="font-size:20px;">190,000원</li>
-		    	</ul>
 		    	<br>
 			    <ul>
-		    		<h5 style="font-weight:600;">환불규정</h5>
-		    		<li>
-		    		<p>
-		    		- 체크인 3일 전 : 무료 취소 <br>
-					- 체크인 2일 전 ~ 당일 : 취소 환불 불가  <br>
-					- 취소요청 이후에는 취소의 철회가 불가능합니다.  <br>
-					- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.  <br>
-					</p>
-					</li>
+		    		<h5 style="font-weight:600; font-size:25px;">내 후기</h5>
+		    		<hr>
+		    		<li><h3>[팔로우미투어]가우디투어</h3></li>
+		    		<li>⭐⭐⭐⭐⭐<li>
+		    		<li style="font-size: 15px;">2023-01-01 | 성인 2매</li>
+		    		<li style="padding:10px;">가이드분이 친절하셨어요~</li>
+		    		<li><span>친절해요</span><span>위치가 찾기 쉬워요</span></li>
+		    		<li style="display:flex;"><img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
+		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
+		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px"></li>
 		    	</ul>
 		    	<br>
-			  <p style="font-size:25px; font-weight:600;">동의하시겠습니까?</p>
-			 
+
 			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >넹</a>
-			  <a href="#" rel="modal:close">아니용</a>
+			  <a href="#" >수정</a>
 			  </div>
 		</div>
 

@@ -61,7 +61,7 @@
 	        <div class="category" id="planner">
 	            <h2>My Planner</h2>
 	            <ul>
-	                <li><a href="">나의 여행</a></li>
+	                <li><a href="plannerMain.hj">나의 여행</a></li>
 	            </ul>
 	        </div>
 	

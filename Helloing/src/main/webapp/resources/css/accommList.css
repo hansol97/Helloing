@@ -337,18 +337,19 @@ a:hover {
 
 /* enrollform 큰 박스 */
 .fatherEnrollForm{
-  height: 2400px !important;
   width: 1300px;
   margin-left: 200px;
 }
 
 .enrollform{
   width: 80%;
+  height: 1000px !important;
 
 }
 .innerform{
-  border: 1px red solid;
-  width: 180% !important;
+  /* border: 1px red solid; */
+  width: 80% !important;
+  margin: auto;
 }
 
 

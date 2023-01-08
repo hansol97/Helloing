@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 모달창 관련 cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -88,25 +87,25 @@
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 	    <div id="table">
-		        <h1>예정된 예약</h1>
+		        <h1>예약된 예약</h1>
 				
 		        <table>
 		        <thead>
 		            <tr>
-		                <th width="90px">예약 번호</th>
-		                <th width="70px">예약 유형</th>
+		                <th>예약 번호</th>
+		                <th>예약 유형</th>
 		                <th>예약명</th>
-		                <th width="120px">예약 일자</th>
-		                <th width="100px">결제금액</th>
-		                <th width="70px"></th>
+		                <th>예약 일자</th>
+		                <th>결제금액</th>
+		                <th></th>
 		            </tr>
-		        <thead>
-		        <tbody>
+		         </thead>
+		         <tbody>
 		            <tr>
 		                <td>20230103-111111</td>
 		                <td>숙소</td>
 		                <td>OO호텔</td>
-		                <td>2023-01-29<br> ~<br> 2023-01-29</td>
+		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
 		                <td><a href="#ex1" rel="modal:open">예약취소</a></td>
 		            </tr>
@@ -124,12 +123,12 @@
 		                <td>OO호텔</td>
 		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
-		                <a href="#">예약취소</a>
+		                <td><a href="#">예약취소</a></td>
 		            </tr>
-		        </tbody>
+	            </tbody>
 		        </table>
+		       
 		    </div>
-		<!-- 예약취소 모달창 -->
 		    <div id="ex1" class="modal">
 		    	<ul>
 		    		<h5 style="font-weight:600;">취소 시 환불금액</h5>
@@ -155,6 +154,7 @@
 			  <a href="#" rel="modal:close">아니용</a>
 			  </div>
 		</div>
+
     </div>
     
     <script>

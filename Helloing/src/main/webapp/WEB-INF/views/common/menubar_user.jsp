@@ -310,11 +310,11 @@
         <ul class="menu">
 	          <!-- 로그인 안했을 때 보이는 화면 -->
 	          <li>
-	            <a href="#" >회원가입</a>
+	            <a href="terms.me" >회원가입</a>
 	          </li>
 	
 	          <li>
-	            <a href="login.me">로그인</a>
+	            <a href="loginForm.me">로그인</a>
 	          </li>
 
 
