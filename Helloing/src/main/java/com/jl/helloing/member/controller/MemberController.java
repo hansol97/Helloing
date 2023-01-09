@@ -128,9 +128,26 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정:비밀번호 변경
 	@RequestMapping("memberUpdatePwd.hj")
-	public String memberUpdatePwd(String memPwd, String memNewPwd) {
+	public String memberUpdatePwd(Member m, String memNewPwd, HttpSession session, Model model) {
 		
-		if()
+		//비밀번호 일치하는지 확인
+		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+			//비밀번호 불일치
+			
+			
+		}else {
+			//비밀번호 변경
+			String encPwd = bcryptPasswordEncoder.encode(memNewPwd);
+			m.setMemPwd(encPwd);
+			
+			if(memberService.memberUpdatePwd(m)>0) {//성공
+				return "redirect:/";
+			}else {
+				//비밀번호 변경실패
+				
+				
+			}
+		}
 		
 		return "";
 	}

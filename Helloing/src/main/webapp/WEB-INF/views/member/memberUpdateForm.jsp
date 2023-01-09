@@ -162,6 +162,7 @@
 		<div class="modalBtn" style="float:right;">
 		  <button id="update-btn" type="submit" disabled>변경하기</button>
 		</div>
+		<input type="hidden" name="memId" value="${loginUser.memId}">
   	</form>
 	
 	<button onclick="pwdMatch();">비밀번호 확인</button>

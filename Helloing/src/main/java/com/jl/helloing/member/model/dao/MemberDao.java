@@ -23,4 +23,8 @@ public class MemberDao {
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("memberMapper.checkPwd", m);
 	}
+
+	public int memberUpdatePwd(Member m, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.memberUpdatePwd", m);
+	}
 }
