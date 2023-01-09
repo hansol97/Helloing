@@ -15,4 +15,10 @@ public class MemberDao {
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
+
+	
+	//혜진
+	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.checkPwd", m);
+	}
 }

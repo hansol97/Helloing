@@ -33,7 +33,7 @@ public interface MemberService {
 	Book reservationDetail(int userNo, int orderNo);
 
 	//비밀번호확인
-	int checkPwd(Member m);
+	String checkPwd(Member m);
 	
 	//회원정보 조회
 	Member memberUpdateForm(int userNo);

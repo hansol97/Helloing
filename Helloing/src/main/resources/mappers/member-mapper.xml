@@ -66,8 +66,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	
-	
+	<!-- 여기부터 혜진 -->
+	<select id="checkPwd" parameterType="member" resultType="string">
+	SELECT 
+			MEM_PWD
+	FROM
+		MEMBER
+	WHERE 
+		MEM_ID = #{memId)
+	</select>
 	
 	
 </mapper>
