@@ -45,6 +45,12 @@ public class MemberController {
 		
 		return mv;
 	}
+	// 로그아웃
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) { 
+		session.invalidate();
+		return "redirect:/";
+	}
 	//로그인 창
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
@@ -170,8 +176,6 @@ public class MemberController {
 		return mv;
 	}
 	
-
-	
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
 	public ModelAndView memberUpdate(Member m, HttpSession session, ModelAndView mv) {
@@ -186,11 +190,14 @@ public class MemberController {
 		return mv;
 	}
 	
-	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
-	public String wishAccommList(){
-		return "member/wishAccommList";
+	public ModelAndView wishAccommList(HttpSession session, ModelAndView mv){
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		memberService.wishAccommList(memNo);
+		
+		return mv;
 	}
 	
 	//찜한 액티비티 조회
