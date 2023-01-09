@@ -306,18 +306,6 @@
 
 </head>
 <body>
-<<<<<<< HEAD
- <script>
- 	var msg =${ alertMsg };
- 	
- 	if(msg != null){
- 		alert(msg);	
- 	}
- 	
- 
- </script>
-=======
-
 
 <c:if test="${not empty alertMsg}">
     <script>
