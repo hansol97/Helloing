@@ -3,6 +3,32 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="businessMapper">
+ 
   <resultMap id="businessResultSet" type="business">
+  	<result column="BUSINESS_NO" 			property="businessNo" />
+  	<result column="MEM_NO" 				property="memNo" />
+  	<result column="BUSINESS_NAME" 			property="businessName" />
+  	<result column="ADDRESS" 				property="address" />
+  	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
   </resultMap>
+
+	<insert id="insertCompany" parameterType="business" >
+		insert
+		  into
+		  		business
+		  		(
+		  		mem_no,		  		
+		  		business_Name,
+		  		business_No,
+		  		address
+		  		)
+		 values
+		 	 	(
+		 	 	#{ memNo },
+		 		#{ businessName },
+		 		#{ businessNo },
+		 		#{ address }
+		 		)
+	</insert>
+
 </mapper>

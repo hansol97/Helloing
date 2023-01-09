@@ -41,7 +41,6 @@ public class MemberController {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
 			mv.setViewName("common/loginErrorPage");
-			
 		}
 		
 		return mv;
@@ -128,23 +127,50 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정:비밀번호 변경
 	@RequestMapping("memberUpdatePwd.hj")
-	public String memberUpdatePwd(String memPwd, String memNewPwd) {
+	public String memberUpdatePwd(Member m, String memNewPwd, HttpSession session, Model model) {
 		
-		if()
+		//비밀번호 일치하는지 확인
+		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+			//비밀번호 불일치
+			model.addAttribute("errorMsg", "비밀번호 불일치");
+			return "common/errorPage";
+			
+		}else {
+			//비밀번호 변경
+			String encPwd = bcryptPasswordEncoder.encode(memNewPwd);
+			m.setMemPwd(encPwd);
+			
+			if(memberService.memberUpdatePwd(m)>0) {//성공
+				
+				session.setAttribute("alertMsg", "비밀번호 변경 성공");
+				
+				return "redirect:/";
+			}else {
+				//비밀번호 변경실패
+				model.addAttribute("errorMsg", "비밀번호 변경 실패");
+				return "common/errorPage";
+			}
+		}
 		
-		return "";
 	}
 	
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
+<<<<<<< HEAD
+	public String memberUpdateForm(Member m, ModelAndView mv) {
+		
+		//System.out.println(m);
+		
+=======
 	public String memberUpdateForm(Member m, Model model) {
+>>>>>>> c4d92d704014e8c91ccfe6754864cd6c73d76561
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
 		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
 			return "member/memberUpdateForm";
 		}else {
-			model.addAttribute("errorMsg","로그인에 실패 하셨습니다.");
+			model.addAttribute("errorMsg","비밀번호가 일치하지 않습니다.");
 			return "common/errorPage";
 		}
 		
@@ -153,6 +179,10 @@ public class MemberController {
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
 	public String memberUpdate(Member m) {
+		
+		if(memberService.memberUpdate(m)>0) {
+			
+		}
 		return "";
 	}
 	

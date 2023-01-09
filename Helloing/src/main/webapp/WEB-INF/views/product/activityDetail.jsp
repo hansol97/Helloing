@@ -39,61 +39,67 @@
 				</div>
 
 				<div>
-					<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
-						<div class="ticketbox">
-							<div class="ticket-info">
-								<p><span class="ticketName">종일 종합이용권 1인</span><br>
-									* 주중/주말 공통<br>
-									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+					<form action="reserve.activity" method="post">
+						<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
+							<div class="ticketbox">
+								<div class="ticket-info">
+									<p><span class="ticketName">종일 종합이용권 1인</span><br>
+										* 주중/주말 공통<br>
+										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+								</div>
+								<div class="ticket-price">
+									<span>38,600원</span>
+								</div>
+								<div class="ticket-count">
+									<button class="btn-minus" type="button">-</button>
+									<span class="count">0</span>
+									<button class="btn-plus" type="button">+</button>
+								</div>
 							</div>
-							<div class="ticket-price">
-								<span>38,600원</span>
+							<div class="ticketbox">
+								<div class="ticket-info">
+									<p><span class="ticketName">종일 종합이용권 2인</span><br>
+										* 주중/주말 공통<br>
+										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+								</div>
+								<div class="ticket-price">
+									<span>380원</span>
+								</div>
+								<div class="ticket-count">
+									<button class="btn-minus" type="button">-</button>
+									<span class="count">0</span>
+									<button class="btn-plus" type="button">+</button>
+								</div>
 							</div>
-							<div class="ticket-count">
-								<button>-</button>
-								<span class="count">0</span>
-								<button>+</button>
+							<div class="ticketbox">
+								<div class="ticket-info">
+									<p><span class="ticketName">종일 종합이용권 3인</span><br>
+										* 주중/주말 공통<br>
+										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+								</div>
+								<div class="ticket-price">
+									<span>38,600원</span>
+								</div>
+								<div class="ticket-count">
+									<button class="btn-minus" type="button">-</button>
+									<span class="count">0</span>
+									<button class="btn-plus" type="button">+</button>
+								</div>
+							</div>
+							
+							
+							<div class="order-info"> <!-- 자바스크립트로 쿠폰 수량을 늘렸을때만 아래 코드 나오기 -->
+								
+							</div>
+							<hr>
+							<div class="all-price">
+
 							</div>
 						</div>
-						<div class="ticketbox">
-							<div class="ticket-info">
-								<p><span class="ticketName">종일 종합이용권 1인</span><br>
-									* 주중/주말 공통<br>
-									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
-							</div>
-							<div class="ticket-price">
-								<span>38,600원</span>
-							</div>
-							<div class="ticket-count">
-								<button>-</button>
-								<span class="count">0</span>
-								<button>+</button>
-							</div>
+						<div id="btn-pay">
+							<button>결제하기</button>
 						</div>
-						<div class="ticketbox">
-							<div class="ticket-info">
-								<p><span class="ticketName">종일 종합이용권 1인</span><br>
-									* 주중/주말 공통<br>
-									* 롯데월드파크 + 민속박물관 모두 이용가능</p>
-							</div>
-							<div class="ticket-price">
-								<span>38,600원</span>
-							</div>
-							<div class="ticket-count">
-								<button>-</button>
-								<span class="count">0</span>
-								<button>+</button>
-							</div>
-						</div>
-						
-						<div class="order-info"> <!-- 자바스크립트로 쿠폰 수량을 늘렸을때만 아래 코드 나오기 -->
-							<span>종일 종합이용권 1인</span>
-							<span>1 X 22,500원 <span class="text-bold">22,500원</span></span>
-						</div>
-						<hr>
-						<div class="all-price"><p>총 티켓 금액<span class="point">22,500원</span></p></div>
-					</div>
-					<div id="btn-pay"><a href="reserve.activity">결제하기</a></div>
+					</form>
 				</div>
 
 				<hr>
@@ -218,7 +224,7 @@
 			<div class="side-bar">
 				<div class="accommselectbox">
 					<p><span>65,000원부터 ~</span></p>
-					<button>티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
 				</div>
 			</div>
@@ -226,6 +232,8 @@
 	</div>
 
 	<div style="height: 300px;"></div>
+	
+	<script type="text/javascript" src="resources/js/product/activityDetail.js"></script>
 	
 </body>
 </html>

@@ -7,7 +7,6 @@
 <title>Helloing</title>
 
 <link href="resources/css/product/activityMain.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="resources/js/product/accommMain.js"></script>
 
 </head>
 <body>
@@ -125,5 +124,8 @@
 
 		
 	</div>
+	
+	<script type="text/javascript" src="resources/js/product/activityMain.js"></script>
+	
 </body>
 </html>

@@ -38,6 +38,9 @@ public interface MemberService {
 	//회원정보 조회
 	Member memberUpdateForm(int userNo);
 	
+	//비밀번호 변경
+	int memberUpdatePwd(Member m);
+	
 	//회원 정보 수정
 	int memberUpdate(Member m);
 	

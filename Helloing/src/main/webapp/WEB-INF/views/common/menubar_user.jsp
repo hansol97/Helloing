@@ -13,6 +13,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- 알럿창 -->
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
   <style>
   @font-face {
      font-family: 'S-CoreDream-3Light';
@@ -305,7 +313,27 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+ <script>
+ 	var msg =${ alertMsg };
+ 	
+ 	if(msg != null){
+ 		alert(msg);	
+ 	}
+ 	
+ 
+ </script>
+=======
 
+
+<c:if test="${not empty alertMsg}">
+    <script>
+    alertify.alert('알림', '${alertMsg}', function(){ alertify.success('성공'); });
+    </script>
+    <c:remove var="alertMsg" scope="session"/>
+</c:if>
+
+>>>>>>> c4d92d704014e8c91ccfe6754864cd6c73d76561
   <!--HEADER-->
   <header>
     <div class="inner">
