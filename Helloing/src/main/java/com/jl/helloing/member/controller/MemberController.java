@@ -137,14 +137,14 @@ public class MemberController {
 	}
 	
 	//회원정보 조회 - 비밀번호 확인
-	@RequestMapping("pwdMatchingForm.hj")
-	public String pwdMatchingForm() {
-		return "member/pwdMatchingForm";
+	@RequestMapping("checkPwdForm.hj")
+	public String checkPwd() {
+		return "member/checkPwdForm";
 	}
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberEnrollForm() {
+	public String memberUpdateForm() {
 		return "member/memberUpdateForm";
 	}
 	

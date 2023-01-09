@@ -30,6 +30,10 @@
 		padding : 10px;
 	}
 
+	#header{
+		padding-top : 10px; 
+		display : flex;
+	}
 	.trip h3{
 		font-size:25px;
 		font-weight:600;
@@ -59,9 +63,6 @@
 	.modalBtn a{
 		padding-right:10px;
 	}
-	#trip-btn{
-		display:flex;
-	}
 	
 	#trip-detail h2{
 		font-size : 30px;
@@ -75,25 +76,20 @@
 		padding-right : 10px;
 	}
 	/* 버튼들 */
-	#share-area button{
-		border : none;
-		border-radius: 20px;
-		background-color : yellow;
-		color: gray;
-		font-size: 25px;
-		margin: 10px;
+	#payment-area{
+		height:60px;
+		padding-top: 15px;
 	}
-	#payment-area button{
+	
+	#payment-area a{
 		border : none;
 		border-radius: 20px;
 		background-color : navy;
 		color: white;
 		font-size: 25px;
 		padding:10px;
-		margin: 10px;
-		width : 60px;
 	}
-	#trip-btn button:hover{
+	#payment-area a:hover{
 		cursor: pointer;
 		color: white;
 		background-color: darkgray;
@@ -134,14 +130,15 @@
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 		
+	
 		<div id="detail">
+		<div id="header">
 			<h1>가계부</h1>
 			
-			<div id="trip-btn">
-		        <div id="payment-area">
-		        	<button onclick="location.hred=''">1/n</button>
-		        </div>
+	        <div id="payment-area">
+	        	<a href="">1/n</a>
 	        </div>
+        </div>
 			<hr>
 	        <div id="plan">
     	        <div class="plan-day">
@@ -150,48 +147,41 @@
 		        	<a href="#ex1" rel="modal:open"> 비용수정 </a>
 					<br><br>
 					<div>
-						<div class="expense-amount">사용 금액 : 50,000원</div>
-						<div>결제 수단 : 현금</div>
+						<div class="expense-amount"><b>사용 금액 :</b> 50,000원</div>
+						<div><b>결제 수단 :</b> 현금</div>
 						<div class="expense-content">내용 : ktx</div>
-						<div>교통</div>
+						<div>카테고리 : 교통</div>
 					</div>
 				</div>				        	
 	        	<div class="plan-day">
 					<h2>day1 : 1.2</h2>	
 					<br>
-		        	<a href="#ex1" rel="modal:open"> + 일정 추가</a>
+		        	<a href="#ex1" rel="modal:open"> + 비용 추가</a>
 					<br><br>
-					<div>
-						<div class="plan-title">전주한옥마을</div>
-						<div>가는 길에 육회먹기</div>
-						<div class="plan-time">22.01.08 18:00 ~ 22.01.08 20:00</div>
-						<div>관광</div>
-					</div>				        	
 	        	</div>
     	      	<div class="plan-day">
 					<h2>day2 : 1.3</h2>	
 					<br>
-		        	<a href="#ex1" rel="modal:open"> + 일정 추가</a>
+		        	<a href="#ex1" rel="modal:open"> + 비용 추가</a>
 		        	<br><br>
-					<div>
-						<div class="plan-title">전주한옥마을</div>
-						<div>가는 길에 육회먹기</div>
-						<div class="plan-time">22.01.08 18:00 ~ 22.01.08 20:00</div>
-						<div>관광</div>
-					</div>				        	
-	        	</div>
 	        </div>
 	        	 
 		
 		</div>
 		
 	    <div id="ex1" class="modal">
-    		<h5 style="font-weight:600;">일정 추가</h5>
+    		<h5 style="font-weight:600;">비용 추가</h5>
 			<hr>
 			<form action="" method="post">
 				<ul>
-					<li>일정명  <input type="text" placeholder="내용을 입력해주세요."></li>
-					<li>일정 설명  <input type="text" placeholder="내용을 입력해주세요."></li>
+					<li><input type="number" placeholder="금액입력">원</li>
+					<li>
+						결제수단  
+						<select name="payment">
+							<option></option>
+							<option></option>
+						</select>
+					</li>
 					<li>일정 시작 시간 <input type="time" id="start" name="plan-start"> </li>
 					<li>일정 종료 시간 <input type="time" id="end" name="plan-start"> </li>
 					<li>
