@@ -27,15 +27,14 @@ import com.jl.helloing.member.model.vo.Member;
 
 @Controller
 public class BusinessController {
-<<<<<<< HEAD
-=======
-	
+
 	@Autowired
 	private BusinessService businessService;
-	
->>>>>>> 18ead792a79aa11f5f69ab8ff737c0dc4060c56b
 
-    // 인호 시작
+
+	// 인호 시작
+
+
 	// 숙소 조회
 	@RequestMapping("accommList.bu")
 	public String goSelectAccom() {
