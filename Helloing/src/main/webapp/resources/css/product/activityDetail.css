@@ -88,20 +88,24 @@ hr{ margin: 15px 0px; }
 .ticket-count span{ font-size: 25px; margin: 0px 10px; }
 .ticketName{ font-size: 20px; }
 
-.order-info{ display: flex; justify-content: space-between; padding: 5px 0px; }
+.order-info{padding: 5px 0px; }
+.order-info>div{display: flex; justify-content: space-between; padding: 5px 0px; }
 .text-bold{ margin-left: 50px; font-weight: bold; }
 .all-price{ display: flex; justify-content: flex-end; }
 .point{ margin-left: 50px; font-size: 20px; font-weight: bold; color: #053E99; }
 
 #btn-pay{ text-align: right; margin-bottom: 30px; }
-#btn-pay>a{
+#btn-pay>button{
 	font-size: 20px;
 	font-weight: bold;
 	background-color: #053E99;
 	color: white;
 	padding: 10px 30px;
+	border: 0;
 	border-radius: 3px;
 }
+
+#btn-pay{display: none;}
 /* 티켓 선택 끝 */
 
 .explanation{
