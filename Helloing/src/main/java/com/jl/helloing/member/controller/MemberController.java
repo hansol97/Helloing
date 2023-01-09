@@ -133,7 +133,8 @@ public class MemberController {
 		//비밀번호 일치하는지 확인
 		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
 			//비밀번호 불일치
-			
+			model.addAttribute("errorMsg", "비밀번호 불일치");
+			return "common/errorPage";
 			
 		}else {
 			//비밀번호 변경
@@ -144,12 +145,11 @@ public class MemberController {
 				return "redirect:/";
 			}else {
 				//비밀번호 변경실패
-				
-				
+				model.addAttribute("errorMsg", "비밀번호 변경 실패");
+				return "common/errorPage";
 			}
 		}
 		
-		return "";
 	}
 	
 	
@@ -161,7 +161,7 @@ public class MemberController {
 		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
 			return "member/memberUpdateForm";
 		}else {
-			model.addAttribute("errorMsg","로그인에 실패 하셨습니다.");
+			model.addAttribute("errorMsg","비밀번호가 일치하지 않습니다.");
 			return "common/errorPage";
 		}
 		

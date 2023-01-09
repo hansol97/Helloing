@@ -23,6 +23,7 @@
 
 <jsp:include page="../common/menubar_user.jsp"/>
 
+<br><br><br><br><br>
 	<div class="outer">
 		<div width="500" align="center">
 			<br>
