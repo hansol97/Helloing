@@ -351,6 +351,10 @@
 		            <li style="margin: auto;">
 		              ${ loginUser.memName }님 반갑소잉👋
 		            </li>
+		          
+		          <li>
+		          	<a href="logout.me"></a>
+		          </li>
 		            
 		          <li>
 		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
