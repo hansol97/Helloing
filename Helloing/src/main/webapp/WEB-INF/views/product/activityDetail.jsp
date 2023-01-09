@@ -21,7 +21,7 @@
 					<sapn class="acticityName">[QR바로입장] 롯데월드 어드벤처 종합이용권</sapn>
 				</div>
 				<div>
-					<p>⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p onclick="selectReview();">⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 				<div>
