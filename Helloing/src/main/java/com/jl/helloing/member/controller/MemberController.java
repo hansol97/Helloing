@@ -186,6 +186,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
 	public String wishAccommList(){
