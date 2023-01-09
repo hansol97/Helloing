@@ -126,18 +126,26 @@ public class MemberController {
 		return "member/checkPwdForm";
 	}
 	
+	//회원정보 조회 - 수정:비밀번호 변경
+	@RequestMapping("memberUpdatePwd.hj")
+	public String memberUpdatePwd(String memPwd, String memNewPwd) {
+		
+		if()
+		
+		return "";
+	}
+	
+	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm(Member m, ModelAndView mv) {
-		
-		System.out.println(m);
-		
+	public String memberUpdateForm(Member m, Model model) {
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
 		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
 			return "member/memberUpdateForm";
 		}else {
-			return "";
+			model.addAttribute("errorMsg","로그인에 실패 하셨습니다.");
+			return "common/errorPage";
 		}
 		
 	}
