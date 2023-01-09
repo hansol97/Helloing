@@ -108,19 +108,19 @@ public class MemberController {
 	//혜진
 	//예정된 예약
 	@RequestMapping("scheduled.hj")
-	public String scheduled() {
+	public String selectScheduled() {
 		return "member/reservationScheduled";
 	}
 	
 	//지난 예약
 	@RequestMapping("last.hj")
-	public String last() {
+	public String selectLast() {
 		return "member/reservationLast";
 	}
 	
 	//취소된 예약
 	@RequestMapping("cancelled.hj")
-	public String cancelled() {
+	public String selectCancelled() {
 		return "member/reservationCancelled";
 	}
 	
