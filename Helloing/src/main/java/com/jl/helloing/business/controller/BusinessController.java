@@ -8,7 +8,11 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.jl.helloing.business.model.vo.Business;
 
 @Controller
 public class BusinessController {
@@ -77,31 +81,32 @@ public class BusinessController {
 	
 	// 카카오 주소에서 좌표받아오기 컨트롤러
     private static String GEOCODE_URL="http://dapi.kakao.com/v2/local/search/address.json?query=";
-    private static String GEOCODE_USER_INFO="1fa55aec8417264025c2d5d36f070b8c\r\n" ; 
+    private static String GEOCODE_USER_INFO="1fa55aec8417264025c2d5d36f070b8c" ;  //rest API 키
 	
-    @RequestMapping("getGeocode.etc")
-	public String getGeocode(String beforeAddress) {
+    @ResponseBody
+    @RequestMapping(value = "getGeocode.etc", produces="application/json; charset=UTF-8")
+	public String getGeocode(String address) {
         
 		URL obj;
-    	
+    	String result ="";
         try{
             //인코딩한 String을 넘겨야 원하는 데이터를 받을 수 있다.
-            String address = URLEncoder.encode(beforeAddress, "UTF-8");
+        	address = URLEncoder.encode("서울특별시 중구", "UTF-8");
             
-            obj = new URL(GEOCODE_URL+address);
+            String url = GEOCODE_URL + address;
+            
+            obj = new URL(url);
+//            System.out.println(obj);
 			
             HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             
             //get으로 받아오면 된다. 자세한 사항은 카카오개발자센터에 나와있다.
             con.setRequestMethod("GET");
-            con.setRequestProperty("Authorization",GEOCODE_USER_INFO);
+            con.setRequestProperty("X-Requested-With", "curl");
+            con.setRequestProperty("Authorization","KakaoAK 1fa55aec8417264025c2d5d36f070b8c"); //키 넣을 때 앞에 KakaoAK붙일 것!
             con.setRequestProperty("content-type", "application/json");
-            con.setDoOutput(true);
-            con.setUseCaches(false);
-            con.setDefaultUseCaches(false);
 			
-            Charset charset = Charset.forName("UTF-8");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), charset));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             
             String inputLine;
             StringBuffer response = new StringBuffer();
@@ -112,12 +117,13 @@ public class BusinessController {
 			
             //response 객체를 출력해보자
             System.out.println(response.toString());
-            String result = response.toString();
-			
+            result = response.toString();
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "";
+        
+		return result;
 	}
 	
 	
@@ -147,14 +153,21 @@ public class BusinessController {
 	
 	
 	// 승준
-	// 기업 파트너 등록 
-	@RequestMapping("businessEnrollForm.me")
+	// 기업 파트너 등록 폼
+	@RequestMapping("businessEnrollForm.bu")
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
 	}
+	// 기업 파트너 등록
+	@RequestMapping("insertCompany.bu")
+	public String insertCompany(Business b, Model model) {
+		
+		
+		return null;
+	}
 	
 	// 기업파트너등록 전 알림페이지
-	@RequestMapping("loginMove.me")
+	@RequestMapping("loginMove.bu")
 	public String loginMove() {
 		return "member/loginMove";
 	}

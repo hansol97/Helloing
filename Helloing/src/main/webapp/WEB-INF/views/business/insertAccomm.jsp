@@ -42,9 +42,13 @@
 							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기 클릭 🏠" class="button button--ujarak button--round-s"><br><br>
 							<input type="text" id="sample6_address" placeholder="주소">&nbsp;
 							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-							<input type="hidden" name="address" id="" value="">
+							<input type="text" id="sample6_postcode" placeholder="우편번호">
+							<input type="text" id="LAT" name="LAT" placeholder="위도">
+							<input type="text" id="LNG" name="LNG" placeholder="경도">
+
+							<!-- <input type="hidden" name="address" id="" value=""> -->
 							<script>
-								var address = '';
+								var query = ''; // 주소
 								var themeObj = {
 									bgColor: "#FFFB22",//바탕 배경색	
 									searchBgColor: "#FFFB07" //검색창 배경색
@@ -97,10 +101,24 @@
 							
 								$(function(){
 									// 주소인풋 밸류가 변경되면 (주소가 입력되면) 위도경도찾아 넣기
-									$('#sample6_address').on('change', function(){
-										address = $('#sample6_address').val(); 
+									$('#sample6_address').on('focusout', function(){
+										address = $(this).val(); 
+										console.log('주소(address) : ' + address);
+										$.ajax({
+											url : 'getGeocode.etc',
+											data : {address : address},
+											success : result => {
+												console.log(result);
+												$('LAT').val("위도 json에서 빼서 넣기");
+												$('LNG').val("경도 json에서 빼서  넣기");
+											},
+											error : () =>{
+												console.log('Error occurred');
+											}
+										});
 									});
-								})
+								});
+
 						
 							</script>
 						</td>

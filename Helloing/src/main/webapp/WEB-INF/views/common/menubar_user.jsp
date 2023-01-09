@@ -328,8 +328,15 @@
 		          <li>
 		            <a href="loginForm.me">로그인</a>
 		          </li>
-	          </c:when>
+
+		          
+		          <li>
+		            <a href="loginMove.bu">기업 회원 신청</a>
+		          </li>
+	          	</c:when>
+
 				    <c:otherwise>
+
 		            <!--로그인 시 보이는 화면-->
 		           
 		            <li style="margin: auto;">
@@ -337,12 +344,12 @@
 		            </li>
 		            
 		          <li>
-		            <a href="businessEnrollForm.me">기업 회원 신청</a>
+		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
 		          </li>
 		
 		              
 		           <li>
-		            <a href="myPage.hj">마이페이지</a>
+		            <a href="scheduled.hj">마이페이지</a>
 		          </li>
 		          <!--기업회원일 시 보이는 화면-->
 		          <!--사용자 화면일 경우-->
