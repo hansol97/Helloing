@@ -146,9 +146,18 @@ public class BusinessController {
 	}
 	
 	
+	// 승준
+	// 기업 파트너 등록 
+	@RequestMapping("businessEnrollForm.me")
+	public String businessEnrollForm() {
+		return "member/businessEnrollForm";
+	}
 	
-	
-	
+	// 기업파트너등록 전 알림페이지
+	@RequestMapping("loginMove.me")
+	public String loginMove() {
+		return "member/loginMove";
+	}
 	
 	
 	

@@ -327,6 +327,10 @@
 		          <li>
 		            <a href="loginForm.me">로그인</a>
 		          </li>
+		          
+		          <li>
+		            <a href="loginMove.me">기업 회원 신청</a>
+		          </li>
 	          	</c:when>
 				
 	
@@ -338,7 +342,7 @@
 		            </li>
 		            
 		          <li>
-		            <a href="#">기업 회원 신청</a>
+		            <a href="businessEnrollForm.me">기업 회원 신청</a>
 		          </li>
 		
 		              

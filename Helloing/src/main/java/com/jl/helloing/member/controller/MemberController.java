@@ -24,7 +24,6 @@ public class MemberController {
 	
 	//승준
 	//로그인
-
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
@@ -73,11 +72,12 @@ public class MemberController {
 	public String terms() {
 		return "member/terms";
 	}
-	// 회원가입
+	// 회원가입 폼
 	@RequestMapping("memberEnrollForm.me")
 	public String enrollForm() {
 		return "member/memberEnrollForm";
 	}
+	// 회원가입
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model model) {
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
@@ -92,17 +92,7 @@ public class MemberController {
 			return "common/loginErrorPage";
 		}
 	}
-	
-	// 기업파트너등록 전 알림페이지
-	@RequestMapping("loginMove.me")
-	public String loginMove() {
-		return "member/loginMove";
-	}
-	// 기업 파트너 등록 
-	@RequestMapping("businessEnrollForm.me")
-	public String businessEnrollForm() {
-		return "member/businessEnrollForm";
-	}
+
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
