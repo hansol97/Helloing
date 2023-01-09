@@ -271,10 +271,9 @@ public class BusinessController {
 	
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
-	public String insertCompany(HttpSession session, Business b, Model model) {
+	public String insertCompany(HttpSession session, Business b) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		int memNo = loginUser.getMemNo();
-		b.setMemNo(memNo);
 		
 		System.out.println(b); 
 		
