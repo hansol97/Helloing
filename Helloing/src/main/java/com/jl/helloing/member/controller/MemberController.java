@@ -106,12 +106,6 @@ public class MemberController {
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
-	//마이페이지 메인
-	@RequestMapping("myPage.hj")
-	public String myPage() {
-		return "member/scheduledReservation";
-	}
-	
 	//예정된 예약
 	@RequestMapping("scheduled.hj")
 	public String scheduled() {
@@ -144,7 +138,7 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm(String userPwd, ModelAndView mv) {
+	public String memberUpdateForm(String userId, String userPwd, ModelAndView mv) {
 		
 		
 		return "member/memberUpdateForm";
