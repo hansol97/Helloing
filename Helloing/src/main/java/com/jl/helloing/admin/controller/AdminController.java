@@ -1,10 +1,17 @@
 package com.jl.helloing.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jl.helloing.admin.model.service.AdminService;
+import com.jl.helloing.admin.model.vo.Chatbot;
+
 @Controller
 public class AdminController {
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping("page.ad")
 	public String adminPage() {
@@ -59,6 +66,17 @@ public class AdminController {
 	@RequestMapping("QAList.ad")
 	public String adminQAListView() {
 		return "admin/adminQAListView";
+	}
+	
+	//---------------- 챗봇 ----------------
+	
+	// 챗봇 등록
+	@RequestMapping("insert.qa")
+	public String insertChatbot(Chatbot c) {
+		
+		int result = adminService.insertChatbot(c);
+		
+		return "redirect:/";
 	}
 
 }

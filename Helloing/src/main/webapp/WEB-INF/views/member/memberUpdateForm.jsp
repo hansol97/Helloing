@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +113,7 @@
 			<form action="" method="post">
 				<div class="form-group">
 					<span class="form-title">아이디</span>
-					<span class="form-fix">user01</span>
+					<span class="form-fix">${loginUser.memId}</span>
 				</div>	
 				<div class="form-group">
 					<span class="form-title">비밀번호</span>
@@ -120,15 +121,15 @@
 				</div>	
 				<div class="form-group">
 					<span class="form-title">이름</span>
-					<span class="form-fix">박혜진</span>
+					<span class="form-fix">${loginUser.memName}</span>
 				</div>	
 				<div class="form-group">
 					<span class="form-title">핸드폰번호</span>
-					<span class="form-input"><input type="text" placeholder="01041396013"></span>
+					<span class="form-input"><input type="text" placeholder="${loginUser.phone}"></span>
 				</div>	
 				<div class="form-group">
 					<span class="form-title">이메일</span>
-					<span class="form-input"><input type="text" placeholder="user01@gmail.com"></span>
+					<span class="form-input"><input type="text" placeholder="${loginUser.email}"></span>
 				</div>
 
 				<br>
@@ -143,24 +144,39 @@
 
 	<div id="ex1" class="modal">
 		<br>
-	<form action="" method="post">
+	<form action="updatePwd.hj" method="post">
 			<div class="pwdForm">
 			<h5 style="font-weight:600;">현재 비밀번호 입력</h5>
-			<input type="password">
+			<input type="password" name="memPwd">
 			</div>
 			<div class="pwdForm">
 			<h5 style="font-weight:600;">변경할 비밀번호 입력</h5>
-			<input type="password">
+			<input type="password" name="memNewPwd">
 			</div>
 			<div class="pwdForm">
 			<h5 style="font-weight:600;">변경할 비밀번호 재입력</h5>
-			<input type="password">
+			<input type="password" name="memNewPwd2">
 			</div>
 		<br>
 	 
-	 <div class="modalBtn" style="float:right;">
-	  <a type="submit" >변경하기</a>
+		<div class="modalBtn" style="float:right;">
+		  <button id="update-btn" type="submit" disabled>변경하기</button>
+		</div>
   	</form>
-    </div>
+	
+	<button onclick="pwdMatch();">비밀번호 확인</button>
+  	
+  	<script>
+  			function pwdMatch(){
+	  			if(($('input[name=memNewPwd]').val()) == ($('input[name=memNewPwd2]').val())){
+	  				$('#update-btn').removeAttr('disabled');
+	  			}else{
+					$('#update-btn').attr('disabled', true);
+					alert('비밀번호가 일치하지 않습니다.');
+					
+  			}
+  		}
+  	
+  	</script>
 </body>
 </html>

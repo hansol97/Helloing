@@ -24,13 +24,12 @@ public class MemberController {
 	
 	//승준
 	//로그인
-
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
 		
-		System.out.println("서비스 돌아온 후 " + loginUser);
+		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
 		//System.out.println(loginUser.getMemId());
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
@@ -41,7 +40,7 @@ public class MemberController {
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
-			mv.setViewName("common/errorPage");
+			mv.setViewName("common/loginErrorPage");
 			
 		}
 		
@@ -73,11 +72,12 @@ public class MemberController {
 	public String terms() {
 		return "member/terms";
 	}
-	// 회원가입
+	// 회원가입 폼
 	@RequestMapping("memberEnrollForm.me")
 	public String enrollForm() {
 		return "member/memberEnrollForm";
 	}
+	// 회원가입
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model model) {
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
@@ -89,20 +89,10 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
-			return "common/errorPage";
+			return "common/loginErrorPage";
 		}
 	}
-	
-	// 기업파트너등록 전 알림페이지
-	@RequestMapping("loginMove.me")
-	public String loginMove() {
-		return "member/loginMove";
-	}
-	// 기업 파트너 등록 
-	@RequestMapping("businessEnrollForm.me")
-	public String businessEnrollForm() {
-		return "member/businessEnrollForm";
-	}
+
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
@@ -132,16 +122,38 @@ public class MemberController {
 	
 	//회원정보 조회 - 비밀번호 확인
 	@RequestMapping("checkPwdForm.hj")
-	public String checkPwd() {
+	public String checkPwdForm() {
 		return "member/checkPwdForm";
 	}
 	
+	//회원정보 조회 - 수정:비밀번호 변경
+	@RequestMapping("memberUpdatePwd.hj")
+	public String memberUpdatePwd(String memPwd, String memNewPwd) {
+		
+		if()
+		
+		return "";
+	}
+	
+	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm(String userId, String userPwd, ModelAndView mv) {
+	public String memberUpdateForm(Member m, Model model) {
 		
+		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
+		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+			return "member/memberUpdateForm";
+		}else {
+			model.addAttribute("errorMsg","로그인에 실패 하셨습니다.");
+			return "common/errorPage";
+		}
 		
-		return "member/memberUpdateForm";
+	}
+	
+	//회원정보 수정 - 수정(update)
+	@RequestMapping("memberUpdate.hj")
+	public String memberUpdate(Member m) {
+		return "";
 	}
 	
 	//찜한 숙소 조회
@@ -164,7 +176,7 @@ public class MemberController {
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
-	public String plannerMain() {
+	public String plannerList() {
 		return "member/plannerMain";
 	}
 	//플랜 상세페이지
