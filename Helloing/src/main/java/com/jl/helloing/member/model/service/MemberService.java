@@ -3,7 +3,12 @@ package com.jl.helloing.member.model.service;
 import java.util.ArrayList;
 
 import com.jl.helloing.member.model.vo.Book;
+import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Plan;
+import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.Activity;
 
 public interface MemberService {
 	
@@ -39,6 +44,19 @@ public interface MemberService {
 	//찜한 숙소 조회
 	ArrayList<Accomm> wishAccommList(int userNo);
 	
+	//찜한 액티비티 조회
+	ArrayList<Activity> wishActivityList(int userNo);
+	
+	//플래너리스트 조회 
+	ArrayList<Planner> plannerList(int userNo);
+	
+	//플랜 상세 페이지
+	Plan planDetailView(int userNo, int planNo);
+	
+	
+	
+	//가계부 페이지
+	Expense expenseView(int planNo);
 	
 
 }

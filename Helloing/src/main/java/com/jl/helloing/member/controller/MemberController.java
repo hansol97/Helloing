@@ -164,7 +164,7 @@ public class MemberController {
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
-	public String plannerMain() {
+	public String plannerList() {
 		return "member/plannerMain";
 	}
 	//플랜 상세페이지
