@@ -171,7 +171,7 @@
           <div class="item__name" ><a href="businessPayList.ad" >💰결제관리</a></div>
         </li>       
         <li class="item">
-          <div class="item__name" ><a href="#" >💑1:1문의</a></div>
+          <div class="item__name" ><a href="QAList.ad" >💑1:1문의</a></div>
         </li>       
       </ul>
 

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="resources/css/adminPage.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>문의</title>
 <style>
@@ -99,8 +100,8 @@
                             <form id="searchForm" action="" method="get">
                                 <td>
                                     <select class="admin-search_form" name="" id="">
-                                        <option value="">키워드명</option>
-                                        <option value="">내용</option>
+                                        <option value="">회원아이디</option>
+                                        <option value="">구분</option>
                                     </select>
                                 </td>
                                 <td>
@@ -129,13 +130,13 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="200">문의번호</th>
-                                <th width="">구분</th>
-                                <th width="">카테고리</th>
-                                <th width="">제목</th>
-                                <th width="">회원아이디</th>
-                                <th width="">등록일</th>
-                                <th width="">답변여부</th>
+                                <th width="80">문의번호</th>
+                                <th width="80">구분</th>
+                                <th width="120">카테고리</th>
+                                <th width="250">제목</th>
+                                <th width="110">회원아이디</th>
+                                <th width="120">등록일</th>
+                                <th width="80">답변여부</th>
                             </tr>
                         </thead>
                         <tbody>

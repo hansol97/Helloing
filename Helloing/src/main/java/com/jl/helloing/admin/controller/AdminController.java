@@ -55,5 +55,10 @@ public class AdminController {
 	public String roomPaymentListView() {
 		return "admin/roomPaymentListView";
 	}
+	
+	@RequestMapping("QAList.ad")
+	public String adminQAListView() {
+		return "admin/adminQAListView";
+	}
 
 }
