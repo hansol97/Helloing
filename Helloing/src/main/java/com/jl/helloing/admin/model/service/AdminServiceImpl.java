@@ -43,8 +43,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Chatbot updateFormChatbot(String chatbotQ) {
-		return null;
+	public Chatbot chatbotUpdateForm(String originChatbotQ) {
+		return adminDao.chatbotUpdateForm(sqlSession, originChatbotQ);
 	}
 
 	@Override

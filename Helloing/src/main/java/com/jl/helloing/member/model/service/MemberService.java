@@ -35,9 +35,6 @@ public interface MemberService {
 	//비밀번호확인
 	String checkPwd(Member m);
 	
-	//회원정보 조회
-	Member memberUpdateForm(int userNo);
-	
 	//비밀번호 변경
 	int memberUpdatePwd(Member m);
 	
