@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jl.helloing.member.model.dao.MemberDao;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Book;
 import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
-import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 
 @Service
@@ -86,8 +86,14 @@ public class MemberServiceImpl implements MemberService{
 
 	//찜한 숙소 리스트 조회
 	@Override
-	public ArrayList<Accomm> wishAccommList(int memNo) {
+	public ArrayList<AccommWish> wishAccommList(int memNo) {
 		return memberDao.wishAccommList(memNo, sqlSession);
+	}
+
+	//찜한 숙소 삭제
+	@Override
+	public int deleteWishAccount(AccommWish aw) {
+		return memberDao.deleteWishAccount(aw, sqlSession);
 	}
 
 	@Override
@@ -113,6 +119,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

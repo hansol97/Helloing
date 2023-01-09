@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Member;
-import com.jl.helloing.product.model.vo.Accomm;
 
 @Repository
 public class MemberDao {
@@ -35,7 +35,11 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.memberUpdate", m);
 	}
 	
-	public ArrayList<Accomm> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
+	public ArrayList<AccommWish> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("memberMapper.wishAccommList", memNo);
+	}
+	
+	public int deleteWishAccount(AccommWish aw, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteWishAccount", aw);
 	}
 }
