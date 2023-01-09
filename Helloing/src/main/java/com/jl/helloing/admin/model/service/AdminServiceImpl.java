@@ -20,7 +20,15 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public int insertChatbot(Chatbot c) {
-		return 0;
+		
+		int comResult = adminDao.selectChatbotQ(sqlSession, c);
+		
+		if(comResult < 1) {
+			int result = adminDao.insertChatbot(sqlSession, c);
+			return result;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override

@@ -88,6 +88,12 @@
 <body>
     <jsp:include page="menubar_admin.jsp"/>
     
+    <c:if test="${ not empty alertMsg }">
+    	<script>
+    		alert('${alertMsg}');
+    	</script>
+    </c:if>
+    
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">

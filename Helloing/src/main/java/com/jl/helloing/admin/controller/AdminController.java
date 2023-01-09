@@ -2,6 +2,7 @@ package com.jl.helloing.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jl.helloing.admin.model.service.AdminService;
@@ -48,9 +49,9 @@ public class AdminController {
 		return "admin/businessPaymentListView";
 	}
 	
-	@RequestMapping("chatBotList.ad")
+	@RequestMapping("chatbotList.ad")
 	public String chatBotListView() {
-		return "admin/chatBotListView";
+		return "admin/chatbotListView";
 	}
 	
 	@RequestMapping("reportList.ad")
@@ -72,11 +73,16 @@ public class AdminController {
 	
 	// 챗봇 등록
 	@RequestMapping("insert.qa")
-	public String insertChatbot(Chatbot c) {
+	public String insertChatbot(Chatbot c, Model m) {
 		
 		int result = adminService.insertChatbot(c);
-		
-		return "redirect:/";
+
+		if(result > 0) {
+			return "redirect:/chatbotList.ad";
+		}else {
+			m.addAttribute("alertMsg", "키워드 등록에 실패했습니다");
+			return "admin/chatbotListView";
+		}
 	}
 
 }
