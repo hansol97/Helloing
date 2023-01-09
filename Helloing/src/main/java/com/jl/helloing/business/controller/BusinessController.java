@@ -287,7 +287,9 @@ public class BusinessController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		int memNo = loginUser.getMemNo();
 		
-		//System.out.println(b); 
+		System.out.println(loginUser.getMemNo()); 
+		b.setMemNo(memNo);
+		System.out.println(b);
 		
 		int result = businessService.insertCompany(b);
 		
