@@ -317,6 +317,7 @@
       <div class="sub-menu">
      	
         <ul class="menu">
+
         	<c:choose>
         		<c:when test="${ empty loginUser }"	>
 		          <!-- 로그인 안했을 때 보이는 화면 -->
@@ -333,7 +334,6 @@
 		          </li>
 	          	</c:when>
 				
-	
 				<c:otherwise>
 		            <!--로그인 시 보이는 화면-->
 		           
