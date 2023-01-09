@@ -130,7 +130,7 @@ public class MemberController {
 	@RequestMapping("memberUpdateForm.hj")
 	public String memberUpdateForm(Member m, ModelAndView mv) {
 		
-		System.out.println(m);
+		//System.out.println(m);
 		
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교

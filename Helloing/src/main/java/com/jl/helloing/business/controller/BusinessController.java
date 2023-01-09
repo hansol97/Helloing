@@ -7,14 +7,22 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.member.model.vo.Member;
 
 @Controller
 public class BusinessController {
+	
+	@Autowired
+	private BusinessService businessService;
 	
 	// 숙소 조회
 	@RequestMapping("accommList.bu")
@@ -155,13 +163,27 @@ public class BusinessController {
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
 	}
+	
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
-	public String insertCompany(Business b, Model model) {
+	public String insertCompany(HttpSession session, Business b, Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int memNo = loginUser.getMemNo();
+		b.setMemNo(memNo);
 		
+		System.out.println(b); 
 		
-		return null;
+		int result = businessService.insertCompany(b);
+		
+		if( result >0) {
+			
+			return "redirect:/";
+		} else {
+		
+			return "business/businessEnrollForm";
+		}
 	}
+	
 	
 	// 기업파트너등록 전 알림페이지
 	@RequestMapping("loginMove.bu")

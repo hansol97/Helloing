@@ -47,7 +47,7 @@ button:hover{
 	<h1>기업 파트너 등록</h1>
 	<br><br>
 		<div class="enroll-form">
-			<form action="insertCompany.me" method="post" id="enroll-form"> 
+			<form action="insertCompany.bu" method="post" id="enroll-form"> 
 				<table>
 					<tr>
 						<td> 파트너 이름 &nbsp;&nbsp;</td>
@@ -64,7 +64,7 @@ button:hover{
 					</tr>
 					<tr>
 						<td> 사업자번호  &nbsp;&nbsp;</td>
-						<td><input type="text" name="businessxxxxxx" required></td>
+						<td><input type="text" name="businessNo" required></td>
 					</tr>
 					<tr>
 						<td> 사업자주소 &nbsp;&nbsp;</td>

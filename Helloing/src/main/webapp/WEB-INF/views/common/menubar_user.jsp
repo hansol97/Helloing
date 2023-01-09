@@ -305,7 +305,15 @@
 
 </head>
 <body>
-
+ <script>
+ 	var msg =${ alertMsg };
+ 	
+ 	if(msg != null){
+ 		alert(msg);	
+ 	}
+ 	
+ 
+ </script>
   <!--HEADER-->
   <header>
     <div class="inner">
