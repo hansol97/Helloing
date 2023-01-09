@@ -183,11 +183,11 @@
             </div>
             <div align="center">
                 <br>
-                <form action="#">
+                <form action="insert.qa" method="post">
                     <table>
                         <tr>
                             <td>
-                                <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" required>
+                                <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" name="chatbotQ" required>
                             </td>
                         </tr>
                         <tr>
@@ -195,7 +195,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required></textarea>
+                                <textarea id="keyword_content" placeholder="키워드 답변내용을 입력하세요" name="chatbotA" required></textarea>
                             </td>
                         </tr>
                         <tr>

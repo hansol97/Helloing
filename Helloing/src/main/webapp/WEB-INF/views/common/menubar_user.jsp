@@ -328,9 +328,9 @@
 		          <li>
 		            <a href="loginForm.me">로그인</a>
 		          </li>
-	          	</c:when>
+	          </c:when>
 				
-				<c:otherwise>
+				    <c:otherwise>
 		            <!--로그인 시 보이는 화면-->
 		           
 		            <li style="margin: auto;">
@@ -355,7 +355,7 @@
 		          <!--기업관리 화면일 경우-->
 		         
 		          <li>
-		            <a href="page.ad">관리자페이지</a>
+		            <a href="memList.ad">관리자페이지</a>
 		          </li>
 		         
 		          <!--관리자일 시 보이는 화면-->
@@ -371,7 +371,7 @@
 		            <a href="#">메인페이지</a>
 		          </li>
 		          -->
-		  		</c:otherwise> 				      
+		  		  </c:otherwise> 				      
           </c:choose>
         </ul>
         
