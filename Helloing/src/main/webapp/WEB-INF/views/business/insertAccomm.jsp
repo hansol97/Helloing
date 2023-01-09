@@ -26,7 +26,7 @@
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
-			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
+			<form action="insertAccom.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
 			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 👍멋진 🛖숙소를 🕵️‍♀️등록해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
@@ -45,7 +45,7 @@
 							<input type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="hidden" id="LAT" name="LAT" placeholder="위도" value="">
 							<input type="hidden" id="LNG" name="LNG" placeholder="경도" value="">
-
+							<!-- 컨트롤러에서 주소 합쳐서 넣기 -->
 							<!-- <input type="hidden" name="address" id="" value=""> -->
 							<script>
 								var query = ''; // 주소
@@ -103,16 +103,17 @@
 									// 주소인풋 밸류가 변경되면 (주소가 입력되면) 위도경도찾아 넣기
 									$('#sample6_detailAddress').on('focus', function(){
 										address = $('#sample6_address').val(); 
-										console.log('주소(address) : ' + address);
+										// console.log('주소(address) : ' + address);
 										$.ajax({
 											url : 'getGeocode.etc',
 											data : {address : address},
 											success : result => {
-												console.log(result);
-												console.log('위도' + result.documents[0].x);
-												console.log('경도' + result.documents[0].y);
+												// console.log(result);
+												// console.log('위도' + result.documents[0].x);
+												// console.log('경도' + result.documents[0].y);
 												$('#LAT').val(result.documents[0].x);
 												$('#LNG').val(result.documents[0].y);
+
 											},
 											error : () =>{
 												console.log('Error occurred');
@@ -121,29 +122,6 @@
 									});
 								});
 							
-								// $(function(){
-								// 	// 주소인풋 밸류가 변경되면 (주소가 입력되면) 위도경도찾아 넣기
-								// 	$('#sample6_address').on('focusout', function(){
-								// 		address = $(this).val(); 
-								// 		console.log('주소(address) : ' + address);
-								// 		$.ajax({
-								// 			url : 'getGeocode.etc',
-								// 			data : {address : address},
-								// 			success : result => {
-								// 				console.log(result);
-								// 				console.log('위도' + result.documents[0].x);
-								// 				console.log('경도' + result.documents[0].y);
-								// 				$('#LAT').val(result.documents[0].x);
-								// 				$('#LNG').val(result.documents[0].y);
-								// 			},
-								// 			error : () =>{
-								// 				console.log('Error occurred');
-								// 			}
-								// 		});
-								// 	});
-								// });
-
-						
 							</script>
 						</td>
 					</tr>
@@ -197,7 +175,7 @@
 
 
 				</table>
-					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
+					<input type="hidden" class="hidden" name="businessNo" value=""/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
 						<input type="file" name="accommPhoto1" /><br><br>
