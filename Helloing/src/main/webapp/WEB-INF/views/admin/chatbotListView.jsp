@@ -56,14 +56,14 @@
   }
 
   /* 챗봇 모달 설정 */
-  #keyword_content{
+  #update_chatbotA{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:200px;
     resize: none;
   }
 
-  #keyword_input{
+  #update_chatbotQ{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:23px;
@@ -125,11 +125,42 @@
                                 
                             </td>
                             <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
-                            <td><button onclick="openModal(2);" class="admin-grey">수정</button></td>
+                            <td><button id="updateChatbot" class="admin-grey">수정</button></td>
                             <td><button class="admin-grey">삭제</button></td>
                         </tr>
                     </table>
                 </tr>
+                
+                <script>
+                    $(function(){
+						$('#updateChatbot').click(function(){
+							var chatbotQ = '';
+							var list = $(".cbox");
+							
+							for(var i = 0; i < 1; i++){
+								if(list[i].checked){
+									chatbotQ = list[i].value;
+								}
+							};
+							console.log(chatbotQ);
+							
+							$.ajax({
+								url : 'chatbotUpdate.ad'
+								,data : {originChatbotQ : chatbotQ}
+								,success : function(c){
+									$('#update_chatbotQ').val(c.chatbotQ);
+									$('#update_chatbotA').val(c.chatbotA);
+									openModal(2)
+									var chatbotQ = '';
+								}
+								,error : function(){
+									console.log('실패');
+								}
+							});
+						});
+					})      	
+                </script>
+
                 <br>
                 <tr>
                     <table id="boardList" class="type02" align="center">
@@ -151,7 +182,7 @@
                         			<c:forEach var="c" items="${ list }">
 			                            <tr>
 			                                <td onclick="event.stopPropagation()">
-			                                    <input name="cbox" type="checkbox" value="">
+			                                    <input class="cbox" name="originChatbotQ" type="checkbox" value="${ c.chatbotQ }">
 			                                </td>
 			                                <td>${ c.chatbotQ }</td>
 			                                <td>${ c.chatbotA }</td>
@@ -232,7 +263,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" value="안녕" required>
+                                    <input id="update_chatbotQ" type="text" placeholder="키워드명을 입력하세요" value="안녕" required>
                                 </td>
                             </tr>
                             <tr>
@@ -240,7 +271,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required>안녕하세요</textarea>
+                                    <textarea name="" id="update_chatbotA" placeholder="키워드 답변내용을 입력하세요" required>안녕하세요</textarea>
                                 </td>
                             </tr>
                             <tr>

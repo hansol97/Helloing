@@ -32,5 +32,9 @@ public class AdminDao {
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.selectChatbotList", null, rowBounds);
 	}
+	
+	public Chatbot chatbotUpdateForm(SqlSessionTemplate sqlSession, String originChatbotQ) {
+		return sqlSession.selectOne("adminMapper.chatbotUpdateForm", originChatbotQ);
+	}
 
 }
