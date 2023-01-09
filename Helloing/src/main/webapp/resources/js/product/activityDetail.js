@@ -27,8 +27,6 @@ $(function(){
 			}
 		})
 
-		text += '<input type="hidden" name="memNo" + value="${loginUser.memNo}">'; // jstl로 로그인된 유저 정보 넣기
-
 		$('.order-info').html(text);
 
 		// 모든 티켓 가격 합계
