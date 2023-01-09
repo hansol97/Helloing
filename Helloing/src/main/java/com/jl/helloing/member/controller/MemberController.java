@@ -216,7 +216,7 @@ public class MemberController {
 		if(memberService.deleteWishAccount(aw)>0) {
 			mv.setViewName("redirect:wishAccommList.hj");
 		}else {
-			session.setAttribute("alertMsg", "비밀번호 변경 성공");
+			session.setAttribute("alertMsg", "delect");
 			mv.setViewName("redirect:wishAccommList.hj");
 		}
 		
