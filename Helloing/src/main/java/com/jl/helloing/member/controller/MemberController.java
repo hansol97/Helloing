@@ -29,7 +29,7 @@ public class MemberController {
 		
 		Member loginUser = memberService.loginMember(m);
 		
-		System.out.println("서비스 돌아온 후 " + loginUser);
+		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
 		//System.out.println(loginUser.getMemId());
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {

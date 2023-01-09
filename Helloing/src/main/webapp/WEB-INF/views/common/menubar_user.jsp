@@ -330,7 +330,7 @@
 		          </li>
 		          
 		          <li>
-		            <a href="loginMove.me">기업 회원 신청</a>
+		            <a href="loginMove.bu">기업 회원 신청</a>
 		          </li>
 	          	</c:when>
 				
@@ -342,7 +342,7 @@
 		            </li>
 		            
 		          <li>
-		            <a href="businessEnrollForm.me">기업 회원 신청</a>
+		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
 		          </li>
 		
 		              
