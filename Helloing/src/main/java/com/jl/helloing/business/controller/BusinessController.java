@@ -8,7 +8,10 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.jl.helloing.business.model.vo.Business;
 
 @Controller
 public class BusinessController {
@@ -146,9 +149,25 @@ public class BusinessController {
 	}
 	
 	
+	// 승준
+	// 기업 파트너 등록 폼
+	@RequestMapping("businessEnrollForm.bu")
+	public String businessEnrollForm() {
+		return "member/businessEnrollForm";
+	}
+	// 기업 파트너 등록
+	@RequestMapping("insertCompany.bu")
+	public String insertCompany(Business b, Model model) {
+		
+		
+		return null;
+	}
 	
-	
-	
+	// 기업파트너등록 전 알림페이지
+	@RequestMapping("loginMove.bu")
+	public String loginMove() {
+		return "member/loginMove";
+	}
 	
 	
 	
