@@ -148,12 +148,6 @@ public class MemberController {
 		return "member/memberUpdateForm";
 	}
 	
-	//나의 여행리뷰 조회 리스트
-	@RequestMapping("tripReviewList.hj")
-	public String tripReviewList() {
-		return "member/tripReviewList";
-	}
-	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
 	public String wishAccommList(){
