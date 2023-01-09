@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	FROM
 		MEMBER
 	WHERE 
-		MEM_ID = #{memId)
+		MEM_ID = #{ memId }
 	</select>
 	
 	
