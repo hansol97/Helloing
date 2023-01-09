@@ -43,9 +43,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	//혜진
+	
 	@Override
 	public ArrayList<Book> selectScheduled(int userNo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -68,9 +68,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int checkPwd(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String checkPwd(Member m) {
+		return memberDao.checkPwd(m, sqlSession);
 	}
 
 	@Override

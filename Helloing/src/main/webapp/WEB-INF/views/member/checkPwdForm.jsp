@@ -99,8 +99,8 @@
 			<div id="enrollForm">
 				<form action="memberUpdateForm.hj" method="post">
 					<h6>비밀번호</h6> 
-					<input type="hidden" name="userId" value="user01"><!-- 로그인 완성 후 value값 수정 -->
-					<input type="password" name="userPwd" placeholder="비밀번호를 입력해주세요.">
+					<input type="hidden" name="memId" value="${loginUser.userId}">
+					<input type="password" name="memPwd" placeholder="비밀번호를 입력해주세요.">
 					<button id="btn" type="submit">확인</button>
 				</form>
 			</div>

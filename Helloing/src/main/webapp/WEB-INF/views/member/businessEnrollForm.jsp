@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,11 @@ button:hover{
 	cursor: pointer;
 }
 #btn-address{
-height: 30px;
+	height: 30px;
+
+}
+.hold-form {
+	color: #053E99;
 
 }
 
@@ -46,12 +51,12 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 파트너 이름 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memName" maxlength="20" readonly value="파트너이름" ></td>
+						<td><input type="text" name="memName" maxlength="20" class="hold-form" readonly value=${ loginUser.memName } ></td>
 						<td id="checkId" width="80"></td>
 					</tr>
 					<tr>
 						<td> 전화번호 &nbsp;&nbsp;</td>
-						<td><input type="text" name="phone" maxlength="20" readonly value="전화번호" ></td>
+						<td><input type="text" name="phone" maxlength="20" class="hold-form" readonly value=${ loginUser.phone } ></td>
 					</tr>
 					<tr>
 						<td> 사업장명  &nbsp;&nbsp;</td>
