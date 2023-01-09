@@ -41,7 +41,7 @@ public class MemberController {
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
-			mv.setViewName("common/errorPage");
+			mv.setViewName("common/loginErrorPage");
 			
 		}
 		
@@ -89,7 +89,7 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
-			return "common/errorPage";
+			return "common/loginErrorPage";
 		}
 	}
 	

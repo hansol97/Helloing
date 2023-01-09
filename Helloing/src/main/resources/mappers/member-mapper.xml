@@ -32,8 +32,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 				mem_id = #{memId}
 		  and
-		  		mem_pwd = #{memPwd}
-		  and
 		  		(status = 'Y' or status = 'A')
 	</select>
 	
