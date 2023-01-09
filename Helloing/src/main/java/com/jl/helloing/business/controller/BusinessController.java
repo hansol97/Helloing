@@ -91,7 +91,7 @@ public class BusinessController {
     	String result ="";
         try{
             //인코딩한 String을 넘겨야 원하는 데이터를 받을 수 있다.
-        	address = URLEncoder.encode("서울특별시 중구", "UTF-8");
+        	address = URLEncoder.encode( address , "UTF-8");
             
             String url = GEOCODE_URL + address;
             

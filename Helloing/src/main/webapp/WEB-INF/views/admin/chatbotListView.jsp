@@ -143,22 +143,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>제주도 여행</td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <td onclick="event.stopPropagation()">
-                                        <input name="cbox" type="checkbox" value="">
-                                    </td>
-                                    <td>2</td>
-                                    <td>제주도 여행</td>
-                                </tr>
-                            </tr>
+                        	<c:choose>
+                        		<c:when test="${ empty list }" >
+                        			조회할 키워드가 없습니다.
+                        		</c:when>
+                        		<c:otherwise>
+                        			<c:forEach var="c" items="${ list }">
+			                            <tr>
+			                                <td onclick="event.stopPropagation()">
+			                                    <input name="cbox" type="checkbox" value="">
+			                                </td>
+			                                <td>${ c.chatbotQ }</td>
+			                                <td>${ c.chatbotA }</td>
+			                            </tr>
+			                        </c:forEach>
+                            	</c:otherwise>
+                            </c:choose>
                         </tbody>
                     </table>
                 </tr>
