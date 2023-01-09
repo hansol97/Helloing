@@ -25,7 +25,7 @@
 	<div class="inner">
 		<div class="content">
 			<h1>💵결제 완료되었습니다.💵</h1>
-			<a href="">메인으로</a>
+			<a href="/helloing">메인으로</a>
 		</div>
 	</div>
 
