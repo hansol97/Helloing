@@ -162,8 +162,17 @@
 					<tr>
 						<th>체크인 / 체크아웃 시간 : </th>
 						<td>
-							<input type="time" name="checkIn" id=""/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-							<input type="time" name="checkOut" id=""/>
+							<input type="time" name="checkIn" id="checkIn"/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+							<input type="time" name="checkOut" id="checkOut"/>
+							<script>
+								$(function(){
+									$('#checkOut').focusout(function(){
+										var chekInout =  $('#checkOut').val() + " / " + $('#checkIn').val() 
+										$("input[name=checkInout]").val(chekInout);
+									});
+								})
+							</script>
+							<input type="hidden" name="checkInout">
 						</td>
 					</tr>
 					<tr>
