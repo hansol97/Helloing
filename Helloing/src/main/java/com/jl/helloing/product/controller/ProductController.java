@@ -2,13 +2,20 @@ package com.jl.helloing.product.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.service.ProductService;
+import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
 public class ProductController {
+	
+	@Autowired
+	private ProductService productService;
 
 	// 숙소 메인
 	@RequestMapping("accomm")
@@ -42,8 +49,11 @@ public class ProductController {
 	
 	// 액티비티 메인
 	@RequestMapping("activity")
-	public String activityMain() {
-		return "product/activityMain";
+	public ModelAndView activityMain(ModelAndView mv) {
+		
+		mv.addObject("list", productService.selectActList()).setViewName("product/activityMain");
+		
+		return mv;
 	}
 	
 	// 액티비티 검색
@@ -60,12 +70,13 @@ public class ProductController {
 	
 	// 액티비티 결제 페이지
 	@RequestMapping("reserve.activity")
-	public String reserveActivity(HttpSession session, String ticketName0, String count0) {
-		
-		System.out.println("ticketName : " + ticketName0);
-		System.out.println("count : " + count0);
-		
+	public String reserveActivity(HttpSession session, TicketCommand tk) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		// System.out.println(tk.getTicketPayment());
+		// count가 0 이상인 것만 DB에 insert
+		
+		
 		if(loginUser != null) {
 			int memNo = loginUser.getMemNo();
 			return "product/activityReserve";

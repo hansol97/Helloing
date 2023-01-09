@@ -22,8 +22,9 @@ $(function(){
 
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
-					  + '<input type="hidden" name="ticketName' + idx + '" value="' + ticketName + '">'
-					  + '<input type="hidden" name="count' + idx + '" value="' + count + '">';
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketName" value="' + ticketName + '">'
+					  	// 나중에 ticketNo로 바꿔야함
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].count" value="' + count + '">';
 			}
 		})
 
@@ -51,5 +52,13 @@ function selectTicket(){
 	height.top = 850;
 	// 헤더를 float 해놔서 좌표가 제대로 안먹음 => 객체에 접근해서 해당 값 직접 수정
 	
+	$('html, body').animate({scrollTop : height.top}, 400);
+}
+
+// 별점 클릭 시 후기 목록으로 스크롤 이동
+function selectReview(){
+	var height = $('.reviewtitle').offset();
+
+	height.top = 1500;
 	$('html, body').animate({scrollTop : height.top}, 400);
 }

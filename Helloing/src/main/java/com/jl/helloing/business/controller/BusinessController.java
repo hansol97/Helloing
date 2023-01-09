@@ -271,15 +271,17 @@ public class BusinessController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		int memNo = loginUser.getMemNo();
 		
-		System.out.println(b); 
+		System.out.println(loginUser.getMemNo()); 
+		b.setMemNo(memNo);
+		System.out.println(b);
 		
 		int result = businessService.insertCompany(b);
 		
 		if( result >0) {
-			session.setAttribute("alertMsg", "기업 파트너에 등록 되었습니다.");
+
 			return "redirect:/";
 		} else {
-			session.setAttribute("alertMsg", "사업자 번호를 다시 입력해주세요");
+
 			return "business/businessEnrollForm";
 		}
 	}

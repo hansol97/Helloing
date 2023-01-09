@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="productMapper">
+
+	<resultMap id="ActivityResultSet" type="activity">
+        <result column="ACTIVITY_NO"       property="activityNo" />
+        <result column="ACTIVITY_NAME"    property="activityName" />
+        <result column="BUSINESS_NO"   property="businessNo" />
+        <result column="ACTIBITY_CONTENT"  property="activityContent" />
+        <result column="END_DATE"    property="endDate" />
+    </resultMap>
+
+	<select id="selectActList" resultMap="ActivityResultSet">
+		SELECT
+			   ACTIVITY_NO
+			  ,ACTIVITY_NAME
+			  ,BUSINESS_NO
+			  ,ACTIBITY_CONTENT
+			  ,END_DATE
+		  FROM
+		  	   ACTIVITY
+	</select>
+
+</mapper>

@@ -2,12 +2,12 @@ package com.jl.helloing.member.model.service;
 
 import java.util.ArrayList;
 
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Book;
 import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
-import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 
 public interface MemberService {
@@ -42,7 +42,10 @@ public interface MemberService {
 	int memberUpdate(Member m);
 	
 	//찜한 숙소 조회
-	ArrayList<Accomm> wishAccommList(int memNo);
+	ArrayList<AccommWish> wishAccommList(int memNo);
+	
+	//찜한 숙소 삭제
+	int deleteWishAccount(AccommWish aw);
 	
 	//찜한 액티비티 조회
 	ArrayList<Activity> wishActivityList(int memNo);
