@@ -41,7 +41,7 @@ public class MemberController {
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
-			mv.setViewName("common/errorPage");
+			mv.setViewName("common/loginErrorPage");
 			
 		}
 		
@@ -89,7 +89,7 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
-			return "common/errorPage";
+			return "common/loginErrorPage";
 		}
 	}
 	
@@ -106,27 +106,21 @@ public class MemberController {
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
-	//마이페이지 메인
-	@RequestMapping("myPage.hj")
-	public String myPage() {
-		return "member/scheduledReservation";
-	}
-	
 	//예정된 예약
 	@RequestMapping("scheduled.hj")
-	public String scheduled() {
+	public String selectScheduled() {
 		return "member/reservationScheduled";
 	}
 	
 	//지난 예약
 	@RequestMapping("last.hj")
-	public String last() {
+	public String selectLast() {
 		return "member/reservationLast";
 	}
 	
 	//취소된 예약
 	@RequestMapping("cancelled.hj")
-	public String cancelled() {
+	public String selectCancelled() {
 		return "member/reservationCancelled";
 	}
 	
@@ -144,7 +138,9 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm() {
+	public String memberUpdateForm(String userId, String userPwd, ModelAndView mv) {
+		
+		
 		return "member/memberUpdateForm";
 	}
 	
@@ -168,7 +164,7 @@ public class MemberController {
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
-	public String plannerMain() {
+	public String plannerList() {
 		return "member/plannerMain";
 	}
 	//플랜 상세페이지
