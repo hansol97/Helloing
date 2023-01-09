@@ -71,6 +71,11 @@ public class MemberServiceImpl implements MemberService{
 	public String checkPwd(Member m) {
 		return memberDao.checkPwd(m, sqlSession);
 	}
+	
+	@Override
+	public int memberUpdatePwd(Member m) {
+		return memberDao.memberUpdatePwd(m, sqlSession);
+	}
 
 	@Override
 	public Member memberUpdateForm(int userNo) {
@@ -113,5 +118,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }
