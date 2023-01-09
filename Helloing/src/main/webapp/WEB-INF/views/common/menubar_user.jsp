@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -314,60 +315,66 @@
       </a>
 
       <div class="sub-menu">
+     	
         <ul class="menu">
-	          <!-- 로그인 안했을 때 보이는 화면 -->
-	          <li>
-	            <a href="terms.me" >회원가입</a>
-	          </li>
-	
-	          <li>
-	            <a href="loginForm.me">로그인</a>
-	          </li>
 
-
-
-            <!--로그인 시 보이는 화면-->
-          <!-- 
-            <li style="margin: auto;">
-              OOO님 반갑소잉👋
-            </li>
-             -->
-          <li>
-            <a href="#">기업 회원 신청</a>
-          </li>
-
-              
-           <li>
-            <a href="myPage.hj">마이페이지</a>
-          </li>
-          <!--기업회원일 시 보이는 화면-->
-          <!--사용자 화면일 경우-->
-          
-          <li>
-            <a href="page.bu">기업관리</a>
-          </li>
-         
-          <!--기업관리 화면일 경우-->
-         
-          <li>
-            <a href="page.ad">관리자페이지</a>
-          </li>
-         
-          <!--관리자일 시 보이는 화면-->
-         <!--사용자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">관리자페이지</a>
-          </li>
-          -->
-          <!--관리자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">메인페이지</a>
-          </li>
-
-          -->
+        	<c:choose>
+        		<c:when test="${ empty loginUser }"	>
+		          <!-- 로그인 안했을 때 보이는 화면 -->
+		          <li>
+		            <a href="terms.me" >회원가입</a>
+		          </li>
+		
+		          <li>
+		            <a href="loginForm.me">로그인</a>
+		          </li>
+	          	</c:when>
+				
+				<c:otherwise>
+		            <!--로그인 시 보이는 화면-->
+		           
+		            <li style="margin: auto;">
+		              ${ loginUser.memName }님 반갑소잉👋
+		            </li>
+		            
+		          <li>
+		            <a href="#">기업 회원 신청</a>
+		          </li>
+		
+		              
+		           <li>
+		            <a href="myPage.hj">마이페이지</a>
+		          </li>
+		          <!--기업회원일 시 보이는 화면-->
+		          <!--사용자 화면일 경우-->
+		          
+		          <li>
+		            <a href="page.bu">기업관리</a>
+		          </li>
+		         
+		          <!--기업관리 화면일 경우-->
+		         
+		          <li>
+		            <a href="page.ad">관리자페이지</a>
+		          </li>
+		         
+		          <!--관리자일 시 보이는 화면-->
+		         <!--사용자 화면일 경우-->
+		          <!--
+		          <li>
+		            <a href="#">관리자페이지</a>
+		          </li>
+		          -->
+		          <!--관리자 화면일 경우-->
+		          <!--
+		          <li>
+		            <a href="#">메인페이지</a>
+		          </li>
+		          -->
+		  		</c:otherwise> 				      
+          </c:choose>
         </ul>
+        
       </div>
 
       <!-- 검색창 -->
