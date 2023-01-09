@@ -328,18 +328,15 @@
 		          <li>
 		            <a href="loginForm.me">로그인</a>
 		          </li>
-<<<<<<< HEAD
+
 		          
 		          <li>
 		            <a href="loginMove.bu">기업 회원 신청</a>
 		          </li>
 	          	</c:when>
-				
-				<c:otherwise>
-=======
-	          </c:when>
+
 				    <c:otherwise>
->>>>>>> c4630a2294a85d0d2bf5e842a4ad92fb33aadc25
+
 		            <!--로그인 시 보이는 화면-->
 		           
 		            <li style="margin: auto;">
