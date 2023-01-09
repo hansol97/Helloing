@@ -353,7 +353,7 @@
 		            </li>
 		          
 		          <li>
-		          	<a href="logout.me"></a>
+		          	<a href="logout.me">로그아웃</a>
 		          </li>
 		            
 		          <li>
