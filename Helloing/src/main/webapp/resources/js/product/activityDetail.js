@@ -22,8 +22,9 @@ $(function(){
 
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
-					  + '<input type="hidden" name="ticketName' + idx + '" value="' + ticketName + '">'
-					  + '<input type="hidden" name="count' + idx + '" value="' + count + '">';
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketName" value="' + ticketName + '">'
+					  	// 나중에 ticketNo로 바꿔야함
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].count' + idx + '" value="' + count + '">';
 			}
 		})
 

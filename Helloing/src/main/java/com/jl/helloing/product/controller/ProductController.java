@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
 public class ProductController {
@@ -60,10 +61,9 @@ public class ProductController {
 	
 	// 액티비티 결제 페이지
 	@RequestMapping("reserve.activity")
-	public String reserveActivity(HttpSession session, String ticketName0, String count0) {
+	public String reserveActivity(HttpSession session, TicketCommand tk) {
 		
-		System.out.println("ticketName : " + ticketName0);
-		System.out.println("count : " + count0);
+		System.out.println(tk.getTicketPayment());
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		if(loginUser != null) {
