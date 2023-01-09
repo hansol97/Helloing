@@ -1,5 +1,7 @@
 package com.jl.helloing.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Member;
 
 @Controller
@@ -194,8 +197,23 @@ public class MemberController {
 	@RequestMapping("wishAccommList.hj")
 	public ModelAndView wishAccommList(HttpSession session, ModelAndView mv){
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<AccommWish> list = memberService.wishAccommList(memNo);
 		
-		memberService.wishAccommList(memNo);
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/wishAccommList");
+		}else {
+			mv.addObject("errorMsg", "찜한 숙소가 없습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	//찜한 숙소 삭제
+	@RequestMapping("deleteWishAccount.hj")
+	public ModelAndView deleteWishAccount() {
+		
+		
 		
 		return mv;
 	}
