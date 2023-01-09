@@ -315,7 +315,6 @@
 
       <div class="sub-menu">
         <ul class="menu">
-        	<c:ch
 	          <!-- 로그인 안했을 때 보이는 화면 -->
 	          <li>
 	            <a href="terms.me" >회원가입</a>
