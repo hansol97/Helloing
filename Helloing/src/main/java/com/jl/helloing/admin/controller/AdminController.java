@@ -4,9 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
+import com.jl.helloing.common.model.vo.PageInfo;
+import com.jl.helloing.common.template.Pagination;
 
 @Controller
 public class AdminController {
@@ -49,11 +55,6 @@ public class AdminController {
 		return "admin/businessPaymentListView";
 	}
 	
-	@RequestMapping("chatbotList.ad")
-	public String chatBotListView() {
-		return "admin/chatbotListView";
-	}
-	
 	@RequestMapping("reportList.ad")
 	public String reportListView() {
 		return "admin/reportListView";
@@ -84,5 +85,28 @@ public class AdminController {
 			return "admin/chatbotListView";
 		}
 	}
+	
+	// 챗봇 리스트 조회
+	@RequestMapping("chatbotList.ad")
+	public ModelAndView chatbotListView(@RequestParam(value="cpage", defaultValue="1") int currentPage
+								 ,ModelAndView mv) {
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectChatbotListCount(), currentPage, 10, 5);
+
+		mv.addObject("list", adminService.selectChatbotList(pi))
+		  .setViewName("admin/chatbotListView");
+		
+		return mv;
+	}
+	
+	// 챗봇 키워드 수정
+	@ResponseBody
+	@RequestMapping(value="chatbotUpdate.ad", produces="application/json; charset=UTF-8")
+	public String chatbotUpdateForm(String originChatbotQ) {
+		Chatbot c = adminService.chatbotUpdateForm(originChatbotQ);
+		
+		return new Gson().toJson(c);
+	}
+	
 
 }

@@ -41,10 +41,15 @@ public class MemberController {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
 			mv.setViewName("common/loginErrorPage");
-			
 		}
 		
 		return mv;
+	}
+	// 로그아웃
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) { 
+		session.invalidate();
+		return "redirect:/";
 	}
 	//로그인 창
 	@RequestMapping("loginForm.me")
@@ -126,40 +131,73 @@ public class MemberController {
 		return "member/checkPwdForm";
 	}
 	
-	//회원정보 조회 - 수정:비밀번호 변경
-	@RequestMapping("memberUpdatePwd.hj")
-	public String memberUpdatePwd(String memPwd, String memNewPwd) {
-		
-		if()
-		
-		return "";
-	}
-	
-	
-	//회원정보 조회 - 수정
+	//회원정보 조회 - 수정 페이지
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm(Member m, Model model) {
+	public ModelAndView memberUpdateForm(Member m, ModelAndView mv) {
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
 		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
-			return "member/memberUpdateForm";
+			
+			mv.setViewName("member/memberUpdateForm");
 		}else {
-			model.addAttribute("errorMsg","로그인에 실패 하셨습니다.");
-			return "common/errorPage";
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
+	
+	//회원정보 조회 - 수정:비밀번호 변경
+	@RequestMapping("memberUpdatePwd.hj")
+	public ModelAndView memberUpdatePwd(Member m, String memNewPwd, HttpSession session, ModelAndView mv) {
 		
+		//비밀번호 일치하는지 확인
+		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+			//비밀번호 불일치
+			
+			mv.addObject("errorMsg", "비밀번호 불일치");
+			mv.setViewName("common/errorPage");
+			
+		}else {
+			//비밀번호 변경
+			String encPwd = bcryptPasswordEncoder.encode(memNewPwd);
+			m.setMemPwd(encPwd);
+			
+			if(memberService.memberUpdatePwd(m)>0) {//성공
+				
+				session.setAttribute("alertMsg", "비밀번호 변경 성공");
+				mv.setViewName("redirect:/");
+			}else {
+				//비밀번호 변경실패
+				
+				mv.addObject("errorMsg", "비밀번호 변경 실패");
+				mv.setViewName("common/errorPage");
+			}
+		}
+		return mv;
 	}
 	
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
-	public String memberUpdate(Member m) {
-		return "";
+	public ModelAndView memberUpdate(Member m, HttpSession session, ModelAndView mv) {
+		
+		if(memberService.memberUpdate(m)>0) {
+			session.setAttribute("alertMsg", "회원정보 수정 성공");
+			mv.setViewName("redirect:/");
+		}else {
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
 	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
-	public String wishAccommList(){
-		return "member/wishAccommList";
+	public ModelAndView wishAccommList(HttpSession session, ModelAndView mv){
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		memberService.wishAccommList(memNo);
+		
+		return mv;
 	}
 	
 	//찜한 액티비티 조회

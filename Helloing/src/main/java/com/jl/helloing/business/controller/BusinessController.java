@@ -12,17 +12,29 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.member.model.vo.Member;
 
 @Controller
 public class BusinessController {
+<<<<<<< HEAD
 	// 인호 시작
+=======
+	
+	@Autowired
+	private BusinessService businessService;
+	
+>>>>>>> 18ead792a79aa11f5f69ab8ff737c0dc4060c56b
 	// 숙소 조회
 	@RequestMapping("accommList.bu")
 	public String goSelectAccom() {
@@ -256,13 +268,27 @@ public class BusinessController {
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
 	}
+	
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
-	public String insertCompany(Business b, Model model) {
+	public String insertCompany(HttpSession session, Business b, Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int memNo = loginUser.getMemNo();
+		b.setMemNo(memNo);
 		
+		System.out.println(b); 
 		
-		return null;
+		int result = businessService.insertCompany(b);
+		
+		if( result >0) {
+			session.setAttribute("alertMsg", "기업 파트너에 등록 되었습니다.");
+			return "redirect:/";
+		} else {
+			session.setAttribute("alertMsg", "사업자 번호를 다시 입력해주세요");
+			return "business/businessEnrollForm";
+		}
 	}
+	
 	
 	// 기업파트너등록 전 알림페이지
 	@RequestMapping("loginMove.bu")

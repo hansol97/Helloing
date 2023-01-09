@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
   <style>
   @font-face {
      font-family: 'S-CoreDream-3Light';
@@ -306,6 +307,14 @@
 </head>
 <body>
 
+<c:if test="${not empty alertMsg}">
+    <script>
+    alert('${alertMsg}')
+    </script>
+    <c:remove var="alertMsg" scope="session"/>
+</c:if>
+
+
   <!--HEADER-->
   <header>
     <div class="inner">
@@ -342,6 +351,10 @@
 		            <li style="margin: auto;">
 		              ${ loginUser.memName }님 반갑소잉👋
 		            </li>
+		          
+		          <li>
+		          	<a href="logout.me">로그아웃</a>
+		          </li>
 		            
 		          <li>
 		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
