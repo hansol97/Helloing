@@ -39,15 +39,23 @@
 					<tr>
 						<th style="vertical-align: middle;">숙소 주소 :</th>
 						<td>
-							<input type="text" id="sample6_postcode" placeholder="우편번호">
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="sample6_address" placeholder="주소"><br>
+							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기 클릭 🏠" class="button button--ujarak button--round-s"><br><br>
+							<input type="text" id="sample6_address" placeholder="주소">&nbsp;
 							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-							<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+							<input type="hidden" name="address" id="" value="">
 							<script>
+								var address = '';
+								var themeObj = {
+									bgColor: "#FFFB22",//바탕 배경색	
+									searchBgColor: "#FFFB07" //검색창 배경색
+								};
+
 								function sample6_execDaumPostcode() {
 									new daum.Postcode({
+										// 테마
+										theme: themeObj,
 										oncomplete: function(data) {
+
 											// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 							
 											// 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -73,12 +81,6 @@
 												if(data.buildingName !== '' && data.apartment === 'Y'){
 													extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
 												}
-												// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-												if(extraAddr !== ''){
-													extraAddr = ' (' + extraAddr + ')';
-												}
-												// 조합된 참고항목을 해당 필드에 넣는다.
-												document.getElementById("sample6_extraAddress").value = extraAddr;
 											
 											} else {
 												document.getElementById("sample6_extraAddress").value = '';
@@ -92,6 +94,14 @@
 										}
 									}).open();
 								}
+							
+								$(function(){
+									// 주소인풋 밸류가 변경되면 (주소가 입력되면) 위도경도찾아 넣기
+									$('#sample6_address').on('change', function(){
+										address = $('#sample6_address').val(); 
+									});
+								})
+						
 							</script>
 						</td>
 					</tr>
@@ -101,10 +111,7 @@
 							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
 					</tr>
-					<tr>
-						<th>&nbsp;&nbsp;</th>
-						<td>&nbsp;&nbsp;</td>
-					</tr>
+
 					<tr>
 						<th>등급 선택 :</th>
 						<td>
