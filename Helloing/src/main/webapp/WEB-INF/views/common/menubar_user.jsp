@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -192,7 +193,7 @@
     bottom:2%;
     right:1%;
 
-    width: 270px;
+    width: 300px;
     height: 400px;
 
     padding: 40px;
@@ -253,19 +254,24 @@
 
   #chat_view{
     padding:5px;
-    width:260px;
+    width:280px;
     height:310px;
     padding:0px;
     overflow-x: auto;
   }
 
   #admin_chat{
-    width:220px;
+    width:250px;
     padding:10px;
     margin-bottom:10px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
     
+  }
+  
+  #admin_chat pre{
+    padding:0px;
+    margin:0px;
   }
 
   #user_chat{
@@ -278,7 +284,7 @@
   }
 
   #chat_input input{
-    width:205px;
+    width:235px;
     height:23px;
     margin:8px;
     margin-right:0px;
@@ -309,60 +315,66 @@
       </a>
 
       <div class="sub-menu">
+     	
         <ul class="menu">
-	          <!-- 로그인 안했을 때 보이는 화면 -->
-	          <li>
-	            <a href="terms.me" >회원가입</a>
-	          </li>
-	
-	          <li>
-	            <a href="loginForm.me">로그인</a>
-	          </li>
 
-
-
-            <!--로그인 시 보이는 화면-->
-          <!-- 
-            <li style="margin: auto;">
-              OOO님 반갑소잉👋
-            </li>
-             -->
-          <li>
-            <a href="#">기업 회원 신청</a>
-          </li>
-
-              
-           <li>
-            <a href="myPage.hj">마이페이지</a>
-          </li>
-          <!--기업회원일 시 보이는 화면-->
-          <!--사용자 화면일 경우-->
-          
-          <li>
-            <a href="page.bu">기업관리</a>
-          </li>
-         
-          <!--기업관리 화면일 경우-->
-         
-          <li>
-            <a href="page.ad">관리자페이지</a>
-          </li>
-         
-          <!--관리자일 시 보이는 화면-->
-         <!--사용자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">관리자페이지</a>
-          </li>
-          -->
-          <!--관리자 화면일 경우-->
-          <!--
-          <li>
-            <a href="#">메인페이지</a>
-          </li>
-
-          -->
+        	<c:choose>
+        		<c:when test="${ empty loginUser }"	>
+		          <!-- 로그인 안했을 때 보이는 화면 -->
+		          <li>
+		            <a href="terms.me" >회원가입</a>
+		          </li>
+		
+		          <li>
+		            <a href="loginForm.me">로그인</a>
+		          </li>
+	          	</c:when>
+				
+				<c:otherwise>
+		            <!--로그인 시 보이는 화면-->
+		           
+		            <li style="margin: auto;">
+		              ${ loginUser.memName }님 반갑소잉👋
+		            </li>
+		            
+		          <li>
+		            <a href="#">기업 회원 신청</a>
+		          </li>
+		
+		              
+		           <li>
+		            <a href="myPage.hj">마이페이지</a>
+		          </li>
+		          <!--기업회원일 시 보이는 화면-->
+		          <!--사용자 화면일 경우-->
+		          
+		          <li>
+		            <a href="page.bu">기업관리</a>
+		          </li>
+		         
+		          <!--기업관리 화면일 경우-->
+		         
+		          <li>
+		            <a href="page.ad">관리자페이지</a>
+		          </li>
+		         
+		          <!--관리자일 시 보이는 화면-->
+		         <!--사용자 화면일 경우-->
+		          <!--
+		          <li>
+		            <a href="#">관리자페이지</a>
+		          </li>
+		          -->
+		          <!--관리자 화면일 경우-->
+		          <!--
+		          <li>
+		            <a href="#">메인페이지</a>
+		          </li>
+		          -->
+		  		</c:otherwise> 				      
+          </c:choose>
         </ul>
+        
       </div>
 
       <!-- 검색창 -->
@@ -415,7 +427,12 @@
 
               <div id="chat_view">
                 <div id="admin_chat">
-                  ㅇㅇ
+                  <p>
+                    안녕하세요 <br>
+                    반갑소잉 : 전라 입니다. <br>
+                    문의 키워드를 입력해주세요 <br>
+                    예시) 숙소 예약(O), 숙소예약(X)
+                  </p>
                 </div>
                 <div id="user_chat">ff</div>      
               </div>
@@ -437,18 +454,12 @@
     chatBtnOpen.addEventListener('click', () => {
       chatModal.classList.toggle('show');
 
-      // if (modal.classList.contains('show')) {
-      //   cbBody.style.overflow = 'hidden';
-      // }
     });
 
     chatModal.addEventListener('click', (event) => {
       if (event.target === chatModal) {
         chatModal.classList.toggle('show');
 
-        // if (!chatModal.classList.contains('show')) {
-        //   cbBody.style.overflow = 'auto';
-        // }
       }
     });
   </script>

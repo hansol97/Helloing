@@ -60,5 +60,8 @@ public class AdminController {
 	public String adminQAListView() {
 		return "admin/adminQAListView";
 	}
+	
+	// 챗봇
+	
 
 }
