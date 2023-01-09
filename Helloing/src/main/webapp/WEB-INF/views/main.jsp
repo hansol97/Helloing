@@ -9,7 +9,7 @@
 <body>
 	<jsp:include page="common/menubar_user.jsp"/>
 	
-	
+	console.log("${alertMsg}");
 	
 	<br><br><br><br><br><br><br><br>
 	<a href="accommList.bu">accommList.jsp로</a><br>
