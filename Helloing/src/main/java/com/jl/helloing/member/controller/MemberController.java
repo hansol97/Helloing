@@ -144,7 +144,9 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm() {
+	public String memberUpdateForm(String userPwd, ModelAndView mv) {
+		
+		
 		return "member/memberUpdateForm";
 	}
 	
