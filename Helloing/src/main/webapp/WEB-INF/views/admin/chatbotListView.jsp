@@ -137,7 +137,7 @@
 							var chatbotQ = '';
 							var list = $(".cbox");
 							
-							for(var i = 0; i < 1; i++){
+							for(var i = 0; i < list.length; i++){
 								if(list[i].checked){
 									chatbotQ = list[i].value;
 								}
@@ -155,6 +155,7 @@
 								}
 								,error : function(){
 									console.log('실패');
+									alert('하나만 선택');
 								}
 							});
 						});
