@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Planner - 반갑소잉 여행</title>
+<title>가계부</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -89,7 +89,9 @@
 		background-color : navy;
 		color: white;
 		font-size: 25px;
+		padding:10px;
 		margin: 10px;
+		width : 60px;
 	}
 	#trip-btn button:hover{
 		cursor: pointer;
@@ -133,29 +135,27 @@
 		</div>
 		
 		<div id="detail">
-			<h1>My Planner</h1>
+			<h1>가계부</h1>
 			
-			<hr>
-			<div id="trip-detail">
-				<h2>반갑소잉 여행</h2>
-				<h5>2023.1.2 ~ 1.25</h5>
-				<h3>여행에 함께하는 사람들 : </h4>
-				<div id="person">
-					<span>박혜진</span>
-					<span>홍길동</span>
-					<span>김길동</span>
-				</div>
-			</div>
 			<div id="trip-btn">
-		        <div id="share-area">
-		        	<button>👫일행과 함께 여행가기</button>
-		        </div>
 		        <div id="payment-area">
-		        	<button onclick="location.href='expenseView.hj'">💰가계부</button>
+		        	<button onclick="location.hred=''">1/n</button>
 		        </div>
 	        </div>
 			<hr>
 	        <div id="plan">
+    	        <div class="plan-day">
+					<h2>여행준비</h2>	
+					<br>
+		        	<a href="#ex1" rel="modal:open"> 비용수정 </a>
+					<br><br>
+					<div>
+						<div class="expense-amount">사용 금액 : 50,000원</div>
+						<div>결제 수단 : 현금</div>
+						<div class="expense-content">내용 : ktx</div>
+						<div>교통</div>
+					</div>
+				</div>				        	
 	        	<div class="plan-day">
 					<h2>day1 : 1.2</h2>	
 					<br>

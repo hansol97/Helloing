@@ -108,21 +108,20 @@
 	
 	</div>
 
-		    <div id="ex1" class="modal">
-	    		<h5 style="font-weight:600;">여행 일정 등록</h5>
-				<hr>
-		    	<br>
-		    	
-		    	<div>
-		    	여행 시작 <input type="date" id="start" name="trip-start"> ~ 여행 종료  <input type="date" id="start" name="trip-end">
-		    	</div>
-				<div>
-				여행명 <input type="text" placeholder="내용을 입력해주세요.">
-				</div>			 
-			 <div class="modalBtn" style="float:right;">
+	    <div id="ex1" class="modal">
+    		<h5 style="font-weight:600;">여행 일정 등록</h5>
+			<hr>
+	    	<br>
+	    	<div>
+	    	여행 시작 <input type="date" id="start" name="trip-start"> ~ 여행 종료  <input type="date" id="start" name="trip-end">
+	    	</div>
+			<div>
+			여행명 <input type="text" placeholder="내용을 입력해주세요.">
+			</div>			 
+			<div class="modalBtn" style="float:right;">
 				  <a href="#" >생성</a>
 				  <a href="#" rel="modal:close">취소</a>
-			  </div>
+		 	</div>
 		</div>
 		
 	<script>

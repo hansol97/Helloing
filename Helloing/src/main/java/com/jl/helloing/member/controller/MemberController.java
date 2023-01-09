@@ -182,4 +182,9 @@ public class MemberController {
 	public String planDetailView() {
 		return "member/planDetailView";
 	}
+	//가계부 페이지
+	@RequestMapping("expenseView.hj")
+	public String expenseView() {
+		return "member/expenseView";
+	}
 }
