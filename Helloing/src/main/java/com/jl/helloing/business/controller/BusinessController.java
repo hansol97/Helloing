@@ -159,7 +159,7 @@ public class BusinessController {
 	@RequestMapping("insertCompany.bu")
 	public String insertCompany(Business b, Model model) {
 		
-		businessService.insertCompany(b);
+		
 		return null;
 	}
 	
