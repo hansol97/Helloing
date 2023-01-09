@@ -1,5 +1,7 @@
 package com.jl.helloing.product.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
+import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -51,7 +55,12 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		mv.addObject("list", productService.selectActList()).setViewName("product/activityMain");
+		mv.addObject("activityList", productService.selectActList());
+		
+		System.out.println(productService.selectActList()); // 메인 화면에 별점과 후기도 필요
+		
+		//mv.addObject("ticketList", productService.selectTicketList());
+		mv.setViewName("product/activityMain");
 		
 		return mv;
 	}
@@ -64,8 +73,15 @@ public class ProductController {
 	
 	// 액티비티 상세 페이지
 	@RequestMapping("detail.activity")
-	public String DetailActivity() {
-		return "product/activityDetail";
+	public ModelAndView DetailActivity(ModelAndView mv, int activityNo) {
+		
+		Activity act = productService.selectActDetail(activityNo);
+		ArrayList<Ticket> ticketList = productService.selectTicketList(activityNo);
+		
+		mv.addObject("act", act).addObject("ticketList", ticketList);
+		mv.setViewName("product/activityDetail");
+		
+		return mv;
 	}
 	
 	// 액티비티 결제 페이지

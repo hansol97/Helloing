@@ -10,11 +10,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     </settings>
     
 	<typeAliases>
-    	<typeAlias type="com.jl.helloing.member.model.vo.Member" alias="member" />
-    	<typeAlias type="com.jl.helloing.admin.model.vo.Chatbot" alias="chatbot" />
-    	<typeAlias type="com.jl.helloing.business.model.vo.Business" alias="business" />
-    	<typeAlias type="com.jl.helloing.member.model.vo.AccommWish" alias="AccommWish" />
-    	<typeAlias type="com.jl.helloing.product.model.vo.Activity" alias="activity" />
+    	<typeAlias type="com.jl.helloing.member.model.vo.Member" 		alias="member" />
+    	<typeAlias type="com.jl.helloing.admin.model.vo.Chatbot" 		alias="chatbot" />
+    	<typeAlias type="com.jl.helloing.business.model.vo.Business" 	alias="business" />
+    	<typeAlias type="com.jl.helloing.member.model.vo.AccommWish" 	alias="AccommWish" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     </typeAliases>
 
 	<mappers>

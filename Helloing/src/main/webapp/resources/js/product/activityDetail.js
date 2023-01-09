@@ -19,10 +19,13 @@ $(function(){
 				var ticketName = $(this).find('.ticketName').text();
 				var ticketPrice = $(this).find('.ticket-price').children().eq(0).text().replace("원", "").replace(",", "");
 				var count = $(this).find('.count').text();
+				var ticketNo = $(this).find('input[name=ticketNo]').val();
 
+				console.log(ticketNo);
+				
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
-					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketName" value="' + ticketName + '">'
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketNo" value="' + ticketNo + '">'
 					  	// 나중에 ticketNo로 바꿔야함
 					  + '<input type="hidden" name="ticketPayment[' + idx + '].count" value="' + count + '">';
 			}
