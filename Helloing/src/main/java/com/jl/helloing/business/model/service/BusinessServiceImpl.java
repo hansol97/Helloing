@@ -20,8 +20,7 @@ public class BusinessServiceImpl implements BusinessService {
 	// 파트너 기업 등록
 	@Override
 	public int insertCompany(Business b) {
-		businessDao.insertCompany(b, sqlSession);
-		return 0;
+		return businessDao.insertCompany(b, sqlSession);
 	}
 
 }

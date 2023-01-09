@@ -306,6 +306,17 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+ <script>
+ 	var msg =${ alertMsg };
+ 	
+ 	if(msg != null){
+ 		alert(msg);	
+ 	}
+ 	
+ 
+ </script>
+=======
 
 
 <c:if test="${not empty alertMsg}">
@@ -315,6 +326,7 @@
     <c:remove var="alertMsg" scope="session"/>
 </c:if>
 
+>>>>>>> c4d92d704014e8c91ccfe6754864cd6c73d76561
   <!--HEADER-->
   <header>
     <div class="inner">
