@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>액티비티등록페이지</title>
+<title>티켓등록페이지</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
 <style>
     
@@ -19,27 +19,51 @@
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <br><br><br>
-          <div class="accommTitle">액티비티 등록 페이지</div>
+          <div class="accommTitle">티켓 등록 페이지</div>
           
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡액티비티를 등록해 😋주세요!❤️ </div>
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡티켓을 등록해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
-						<th width="150px" height="40px"> 액티비티 이름 :</th>
-						<td width="400px">
+						<th width="330px" height="40px"> 액티비티 이름 :</th>
+						<td width="500px">
+							<h1>정말로 재밌는 남원랜드</h1>
+						</td>
+					</tr>
+					<tr>
+						<th > 티켓 이름 :</th>
+						<td>
 							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력"/>
 						</td>
 					</tr>
-
 					<tr>
-						<th style="vertical-align: middle;">액티비티 설명 :</th>
-						<td height="40px">
-							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
+						<th style="vertical-align: middle;"> 이름 작성 예시 :</th>
+						<td>
+							<img src="resources/img/IHimg/enrollTicket.png" alt="example" style="height: 200px;">
 						</td>
+					</tr>
+                    <tr>
+                        <th>티켓 가격 :</th>
+                        <td>
+                            <input type="number" name="price" id="" placeholder="10000"> 원
+                        </td>
+                    </tr>
+					<tr>
+						<th>총 티켓 수량 : </th>
+						<td>
+							<input type="number" name="capacity" id="" placeholder="1"> 장
+						</td>
+					</tr>
+					<tr>
+                        <th>운영 시작 / 운영 종료일 : </th>
+						<td>
+                            <input type="date" name="startDay" id=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="endDay" id="">
+                        </td>
 					</tr>
 	
                     <!-- 히든 넣는 곳 -->
@@ -50,13 +74,7 @@
 					</tr>
 
 				</table>
-					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
-					<div class="titleImg_class1" style="margin-left: 15px;">
-						<br><br><p>🎈 액티비티의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" /><br><br>
-						<input type="file" name="accommPhoto2" /><br><br>
-						<input type="file" name="accommPhoto3" /><br><br><br><br>
-					</div>
+
 
 			<div class="feed_modal_btns" align="center">
 				<br>

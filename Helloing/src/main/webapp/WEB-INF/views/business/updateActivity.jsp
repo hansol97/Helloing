@@ -19,26 +19,26 @@
     <div class="container-fluid px-lg-5 body">
         <div class="row justify-content-center">
           <br><br><br>
-          <div class="accommTitle">액티비티 등록 페이지</div>
+          <div class="accommTitle">액티비티 수정 페이지</div>
           
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
 			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡액티비티를 등록해 😋주세요!❤️ </div>
+			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉 수정하실 🎡액티비티 항목을 ✏️변경해 주세요 👍  </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
 						<th width="150px" height="40px"> 액티비티 이름 :</th>
 						<td width="400px">
-							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력"/>
+							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력" value="러시아 두메산골 체험 (철원)"/>
 						</td>
 					</tr>
 
 					<tr>
 						<th style="vertical-align: middle;">액티비티 설명 :</th>
 						<td height="40px">
-							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
+							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력">아주 추운곳 입니다.</textarea>
 						</td>
 					</tr>
 	
@@ -52,7 +52,7 @@
 				</table>
 					<input type="hidden" class="hidden" name="userNo" value=""/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
-						<br><br><p>🎈 액티비티의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
+						<br><br><p>🎈 액티비티의 외관이나 기구 / 시설 사진을 등록해 주세요</p>	<br><br>
 						<input type="file" name="accommPhoto1" /><br><br>
 						<input type="file" name="accommPhoto2" /><br><br>
 						<input type="file" name="accommPhoto3" /><br><br><br><br>

@@ -137,21 +137,15 @@ public class MemberController {
 	}
 	
 	//회원정보 조회 - 비밀번호 확인
-	@RequestMapping("pwdMatchingForm.hj")
-	public String pwdMatchingForm() {
-		return "member/pwdMatchingForm";
+	@RequestMapping("checkPwdForm.hj")
+	public String checkPwd() {
+		return "member/checkPwdForm";
 	}
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberEnrollForm() {
+	public String memberUpdateForm() {
 		return "member/memberUpdateForm";
-	}
-	
-	//나의 여행리뷰 조회 리스트
-	@RequestMapping("tripReviewList.hj")
-	public String tripReviewList() {
-		return "member/tripReviewList";
 	}
 	
 	//찜한 숙소 조회
@@ -176,5 +170,15 @@ public class MemberController {
 	@RequestMapping("plannerMain.hj")
 	public String plannerMain() {
 		return "member/plannerMain";
+	}
+	//플랜 상세페이지
+	@RequestMapping("planDetailView.hj")
+	public String planDetailView() {
+		return "member/planDetailView";
+	}
+	//가계부 페이지
+	@RequestMapping("expenseView.hj")
+	public String expenseView() {
+		return "member/expenseView";
 	}
 }

@@ -14,6 +14,11 @@ body {
   background: #f9fbff;
   /* border: red 1px solid !important; */
 }
+
+#insertActBody{
+  background: rgb(18, 23, 62) !important;
+
+}
 a:hover {
   text-decoration: none;
 }
@@ -343,8 +348,9 @@ a:hover {
 
 .enrollform{
   width: 80%;
-  height: 1000px !important;
-
+  /*height: 1400px !important;*/
+  height: auto;
+  padding-bottom: 20px;
 }
 .innerform{
   /* border: 1px red solid; */
@@ -352,4 +358,22 @@ a:hover {
   margin: auto;
 }
 
+.accommFormTable{
+  border-collapse: separate;
+  border-spacing: 0 20px;
+  margin-left : 40px;
+}
 
+input[type="file"]{
+  margin-left : 50px;
+}
+
+.tic{ width : 1100px !important; }
+
+.paymentBox{ 
+  border-radius: 10px;
+  border: #112a36 solid 2px;
+  box-shadow: 4px 15px 25px -12px rgba(99, 135, 228, 0.739);
+  padding: 30px;
+  margin: 10px;
+}
