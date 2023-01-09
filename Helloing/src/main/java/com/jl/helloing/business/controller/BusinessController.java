@@ -179,10 +179,10 @@ public class BusinessController {
 		int result = businessService.insertCompany(b);
 		
 		if( result >0) {
-			
+			session.setAttribute("alertMsg", "기업 파트너에 등록 되었습니다.");
 			return "redirect:/";
 		} else {
-		
+			session.setAttribute("alertMsg", "사업자 번호를 다시 입력해주세요");
 			return "business/businessEnrollForm";
 		}
 	}
