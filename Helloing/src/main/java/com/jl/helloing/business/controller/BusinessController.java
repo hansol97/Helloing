@@ -299,6 +299,8 @@ public class BusinessController {
 			return "business/businessEnrollForm";
 		}
 	}
+	
+	
 	// 기업파트너등록 전 알림페이지
 	@RequestMapping("loginMove.bu")
 	public String loginMove() {
