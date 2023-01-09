@@ -93,8 +93,7 @@ public class MemberServiceImpl implements MemberService{
 	//찜한 숙소 삭제
 	@Override
 	public int deleteWishAccount(AccommWish aw) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.deleteWishAccount(aw, sqlSession);
 	}
 
 	@Override

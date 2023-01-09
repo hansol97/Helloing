@@ -107,5 +107,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BY 
 				WISH_DATE DESC
 	</select>
+	<delete id="deleteWishAccount"  parameterType="AccommWish">
+	DELETE 
+			ACCOMM_WISH 
+		WHERE
+			MEM_NO = #{ memNo }
+		AND
+			ACCOMM_NO = #{ accommNo }
+	</delete>
 	
 </mapper>

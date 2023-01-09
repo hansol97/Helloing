@@ -211,9 +211,14 @@ public class MemberController {
 	
 	//찜한 숙소 삭제
 	@RequestMapping("deleteWishAccount.hj")
-	public ModelAndView deleteWishAccount(AccommWish aw, ModelAndView mv) {
+	public ModelAndView deleteWishAccount(HttpSession session, AccommWish aw, ModelAndView mv) {
 		
-		memberService.deleteWishAccount(aw);
+		if(memberService.deleteWishAccount(aw)>0) {
+			mv.setViewName("redirect:wishAccommList.hj");
+		}else {
+			session.setAttribute("alertMsg", "비밀번호 변경 성공");
+			mv.setViewName("redirect:wishAccommList.hj");
+		}
 		
 		return mv;
 	}

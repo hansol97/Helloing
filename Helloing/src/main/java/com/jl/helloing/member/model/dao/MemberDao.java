@@ -38,4 +38,8 @@ public class MemberDao {
 	public ArrayList<AccommWish> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("memberMapper.wishAccommList", memNo);
 	}
+	
+	public int deleteWishAccount(AccommWish aw, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteWishAccount", aw);
+	}
 }
