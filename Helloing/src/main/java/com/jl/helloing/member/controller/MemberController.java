@@ -211,9 +211,9 @@ public class MemberController {
 	
 	//찜한 숙소 삭제
 	@RequestMapping("deleteWishAccount.hj")
-	public ModelAndView deleteWishAccount() {
+	public ModelAndView deleteWishAccount(AccommWish aw, ModelAndView mv) {
 		
-		
+		memberService.deleteWishAccount(aw);
 		
 		return mv;
 	}

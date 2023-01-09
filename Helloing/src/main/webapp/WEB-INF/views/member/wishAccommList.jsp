@@ -80,6 +80,8 @@
 	                  <div  class="z_area" style="position:relative;">
 	                     <img class="heart"  onclick = "location.href = 'deleteWishAccount.hj'" src="/helloing/resources/img/heart.png" alt=""> 
 	                     <img  class="placeImage"  onclick = "location.href = '#'" src="${a.filePath}">
+	                 	<input type="hidden" name="memNo" value="${loginUser.memNo}">
+	                 	<input type="hidden" name="accommNo" value="${a.accommNo }">
 	                  </div>
 	                  <p>
 	                    	${a.accommName}

@@ -45,7 +45,7 @@ public interface MemberService {
 	ArrayList<AccommWish> wishAccommList(int memNo);
 	
 	//찜한 숙소 삭제
-	int deleteWishAccount(int accommNo, int memNo);
+	int deleteWishAccount(AccommWish aw);
 	
 	//찜한 액티비티 조회
 	ArrayList<Activity> wishActivityList(int memNo);

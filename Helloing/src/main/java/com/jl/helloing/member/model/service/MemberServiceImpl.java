@@ -90,6 +90,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.wishAccommList(memNo, sqlSession);
 	}
 
+	//찜한 숙소 삭제
+	@Override
+	public int deleteWishAccount(AccommWish aw) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@Override
 	public ArrayList<Activity> wishActivityList(int memNo) {
 		// TODO Auto-generated method stub
@@ -113,6 +120,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 
