@@ -30,8 +30,8 @@
     top: 500px;
     left: 50%;
 
-    width: 450px;
-    height: 360px;
+    width: 600px;
+    height: 500px;
 
     padding: 40px;
 
@@ -46,22 +46,22 @@
   }
 
   .modal-title{
-    margin-left:20px;
+    margin-left:40px;
   }
 
   .modal-title span{
     font-weight: bold;
   }
 
-  /* 챗봇 모달 설정 */
-  #keyword_content{
+  /* 문의 모달 설정 */
+  .modal_body textarea{
     font-family: 'S-CoreDream-3Light';
     width:400px;
-    height:200px;
+    height:180px;
     resize: none;
   }
 
-  #keyword_input{
+  #QA_input{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:23px;
@@ -69,8 +69,8 @@
     border:1px solid rgb(150, 150, 150);
   }
 
-  #keyword_enroll_btn button{
-    margin-left: 20px;
+  #QA_enroll_btn button{
+    margin-left: 60px;
     margin-right: 20px;
     background-color: rgb(233, 233, 233);
     display:inline-block;
@@ -79,8 +79,8 @@
     text-align: center;
     border-radius: 3px;
     border:1px solid rgb(150, 150, 150);
-    margin-left:10px;
   }
+
 </style>
 </head>
 <body>
@@ -146,7 +146,7 @@
                                 </td>
                                 <td>2</td>
                                 <td>일반회원</td>
-                                <td>상품관련</td>
+                                <td>숙소관련</td>
                                 <td>문의합니다</td>
                                 <td>user01</td>
                                 <td>2022.12.25</td>
@@ -186,81 +186,89 @@
 
     </div>
 
-    <div id="keword_enroll_page" class="modal modal1">
+    <div id="QA_enroll_page" class="modal modal1">
         <div class="modal_body">
-            <div>
-                <div class="modal-title">
-                    <span>키워드 등록</span>
-                </div>
-                <div align="center">
-                    <br>
-                    <form action="#">
-                        <table>
-                            <tr>
-                                <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                        </table>
-    
-                        <div id="keyword_enroll_btn">
-                            <button type="submit">등록</button>
-                            <button id="keyword_cancel keyword_cancel1" type="button" onclick="keywordCancel(1);">취소</button>
-                        </div>
-                    </form>
-                    
-                </div>
+            
+            <div class="modal-title">
+                <span>QA 답변 등록</span>
             </div>
+            <div align="center">
+                <br>
+                <form action="#">
+                    <table class="type02">
+                        <tr>
+                            <th width="80">제목</th>
+                            <td width="300">문의합니다</td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>안녕하세요 숙소관련 문의합니다</td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>숙소관련</td>
+                        </tr>
+                        <tr>
+                            <th>구분</th>
+                            <td>일반회원</td>
+                        </tr>
+                        <tr>
+                            <th>답변</th>
+                            <td><textarea name="" id="" placehold="답변을 입력하세요"></textarea></td>
+                        </tr>
+                    </table>
+
+                    <div id="QA_enroll_btn">
+                        <button type="submit">등록</button>
+                        <button id="QA_cancel QA_cancel1" type="button" onclick="QACancel(1);">취소</button>
+                    </div>
+                </form>
+                
+            </div>
+            
         </div>
     </div>
 
-    <div id="keword_enroll_page" class="modal modal2">
+    <div id="QA_enroll_page" class="modal modal2">
         <div class="modal_body">
-            <div>
-                <div class="modal-title">
-                    <span>키워드 수정</span>
-                </div>
-                <div align="center">
-                    <br>
-                    <form action="#">
-                        <table>
-                            <tr>
-                                <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" value="안녕" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required>안녕하세요</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                        </table>
-    
-                        <div id="keyword_enroll_btn">
-                            <button type="submit">수정</button>
-                            <button id="keyword_cancel keyword_cancel2" type="button" onclick="keywordCancel(2);">취소</button>
-                        </div>
-                    </form>
-                    
-                </div>
+            
+            <div class="modal-title">
+                <span>QA 답변 수정</span>
             </div>
+            <div align="center">
+                <br>
+                <form action="#">
+                    <table class="type02">
+                        <tr>
+                            <th width="80">제목</th>
+                            <td width="300">문의합니다</td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>안녕하세요 숙소관련 문의합니다</td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>숙소관련</td>
+                        </tr>
+                        <tr>
+                            <th>구분</th>
+                            <td>일반회원</td>
+                        </tr>
+                        <tr>
+                            <th>답변</th>
+                            <td><textarea name="" id="" placehold="답변을 입력하세요">답변입니다</textarea></td>
+                        </tr>
+                    </table>
+
+                    <div id="QA_enroll_btn">
+                        <button type="submit">수정</button>
+                        <button id="QA_cancel QA_cancel2" type="button" onclick="QACancel(2);">취소</button>
+                    </div>
+                </form>
+                
+            </div>
+            
         </div>
     </div>
 
@@ -270,16 +278,15 @@
         const body = document.querySelector('body');
         
 
-        function keywordCancel(num){
+        function QACancel(num){
             let modal = document.querySelector('.modal'+ num);
-            const btnCancel = document.getElementById('#keyword_cancel'+ num);
+            const btnCancel = document.getElementById('#QA_cancel'+ num);
             modal.classList.remove('show');
         };
 
         function openModal(num){
             let modal = document.querySelector('.modal'+num);
             modal.classList.toggle('show');
-            console.log(modal);
             
   
             if (modal.classList.contains('show')) {

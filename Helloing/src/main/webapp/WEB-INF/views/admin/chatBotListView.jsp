@@ -177,40 +177,40 @@
 
     <div id="keword_enroll_page" class="modal modal1">
         <div class="modal_body">
-            <div>
-                <div class="modal-title">
-                    <span>키워드 등록</span>
-                </div>
-                <div align="center">
-                    <br>
-                    <form action="#">
-                        <table>
-                            <tr>
-                                <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                        </table>
-    
-                        <div id="keyword_enroll_btn">
-                            <button type="submit">등록</button>
-                            <button id="keyword_cancel keyword_cancel1" type="button" onclick="keywordCancel(1);">취소</button>
-                        </div>
-                    </form>
-                    
-                </div>
+            
+            <div class="modal-title">
+                <span>키워드 등록</span>
             </div>
+            <div align="center">
+                <br>
+                <form action="#">
+                    <table>
+                        <tr>
+                            <td>
+                                <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                        </tr>
+                    </table>
+
+                    <div id="keyword_enroll_btn">
+                        <button type="submit">등록</button>
+                        <button id="keyword_cancel keyword_cancel1" type="button" onclick="keywordCancel(1);">취소</button>
+                    </div>
+                </form>
+                
+            </div>
+            
         </div>
     </div>
 

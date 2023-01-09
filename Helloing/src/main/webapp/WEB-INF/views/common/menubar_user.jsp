@@ -193,7 +193,7 @@
     bottom:2%;
     right:1%;
 
-    width: 270px;
+    width: 300px;
     height: 400px;
 
     padding: 40px;
@@ -254,19 +254,24 @@
 
   #chat_view{
     padding:5px;
-    width:260px;
+    width:280px;
     height:310px;
     padding:0px;
     overflow-x: auto;
   }
 
   #admin_chat{
-    width:220px;
+    width:250px;
     padding:10px;
     margin-bottom:10px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
     
+  }
+  
+  #admin_chat pre{
+    padding:0px;
+    margin:0px;
   }
 
   #user_chat{
@@ -279,7 +284,7 @@
   }
 
   #chat_input input{
-    width:205px;
+    width:235px;
     height:23px;
     margin:8px;
     margin-right:0px;
@@ -422,7 +427,12 @@
 
               <div id="chat_view">
                 <div id="admin_chat">
-                  ㅇㅇ
+                  <p>
+                    안녕하세요 <br>
+                    반갑소잉 : 전라 입니다. <br>
+                    문의 키워드를 입력해주세요 <br>
+                    예시) 숙소 예약(O), 숙소예약(X)
+                  </p>
                 </div>
                 <div id="user_chat">ff</div>      
               </div>
@@ -444,18 +454,12 @@
     chatBtnOpen.addEventListener('click', () => {
       chatModal.classList.toggle('show');
 
-      // if (modal.classList.contains('show')) {
-      //   cbBody.style.overflow = 'hidden';
-      // }
     });
 
     chatModal.addEventListener('click', (event) => {
       if (event.target === chatModal) {
         chatModal.classList.toggle('show');
 
-        // if (!chatModal.classList.contains('show')) {
-        //   cbBody.style.overflow = 'auto';
-        // }
       }
     });
   </script>
