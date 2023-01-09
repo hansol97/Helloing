@@ -125,15 +125,31 @@ public class MemberController {
 		return "member/checkPwdForm";
 	}
 	
+	//회원정보 조회 - 수정 페이지
+	@RequestMapping("memberUpdateForm.hj")
+	public ModelAndView memberUpdateForm(Member m, ModelAndView mv) {
+		
+		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
+		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+			
+			mv.setViewName("member/memberUpdateForm");
+		}else {
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
 	//회원정보 조회 - 수정:비밀번호 변경
 	@RequestMapping("memberUpdatePwd.hj")
-	public String memberUpdatePwd(Member m, String memNewPwd, HttpSession session, Model model) {
+	public ModelAndView memberUpdatePwd(Member m, String memNewPwd, HttpSession session, ModelAndView mv) {
 		
 		//비밀번호 일치하는지 확인
 		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
 			//비밀번호 불일치
-			model.addAttribute("errorMsg", "비밀번호 불일치");
-			return "common/errorPage";
+			
+			mv.addObject("errorMsg", "비밀번호 불일치");
+			mv.setViewName("common/errorPage");
 			
 		}else {
 			//비밀번호 변경
@@ -143,28 +159,35 @@ public class MemberController {
 			if(memberService.memberUpdatePwd(m)>0) {//성공
 				
 				session.setAttribute("alertMsg", "비밀번호 변경 성공");
-				
-				return "redirect:/";
+				mv.setViewName("redirect:/");
 			}else {
 				//비밀번호 변경실패
-				model.addAttribute("errorMsg", "비밀번호 변경 실패");
-				return "common/errorPage";
+				
+				mv.addObject("errorMsg", "비밀번호 변경 실패");
+				mv.setViewName("common/errorPage");
 			}
 		}
-		
+		return mv;
 	}
 	
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
 <<<<<<< HEAD
+
+=======
+>>>>>>> e6a1fdc1899f868eec972677efde2b861f960ab4
 	public String memberUpdateForm(Member m, ModelAndView mv) {
 		
 		//System.out.println(m);
 		
+<<<<<<< HEAD
+
+	public String memberUpdateForm(Member m, Model model) {
+
 =======
 	public String memberUpdateForm(Member m, Model model) {
->>>>>>> c4d92d704014e8c91ccfe6754864cd6c73d76561
+>>>>>>> e6a1fdc1899f868eec972677efde2b861f960ab4
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
 		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
@@ -178,12 +201,16 @@ public class MemberController {
 	
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
-	public String memberUpdate(Member m) {
+	public ModelAndView memberUpdate(Member m, HttpSession session, ModelAndView mv) {
 		
 		if(memberService.memberUpdate(m)>0) {
-			
+			session.setAttribute("alertMsg", "회원정보 수정 성공");
+			mv.setViewName("redirect:/");
+		}else {
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			mv.setViewName("common/errorPage");
 		}
-		return "";
+		return mv;
 	}
 	
 	//찜한 숙소 조회

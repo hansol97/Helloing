@@ -66,26 +66,22 @@ public class MemberServiceImpl implements MemberService{
 		return null;
 	}
 
+	//비밀번호 체크
 	@Override
 	public String checkPwd(Member m) {
 		return memberDao.checkPwd(m, sqlSession);
 	}
 	
+	//비밀번호 변경
 	@Override
 	public int memberUpdatePwd(Member m) {
 		return memberDao.memberUpdatePwd(m, sqlSession);
 	}
 
-	@Override
-	public Member memberUpdateForm(int userNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//회원 정보 수정
 	@Override
 	public int memberUpdate(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.memberUpdate(m, sqlSession);
 	}
 
 	@Override
