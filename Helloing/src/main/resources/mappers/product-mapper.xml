@@ -21,6 +21,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="START_DATE"    		property="startDate" />
         <result column="END_DATE"    		property="endDate" />
     </resultMap>
+    
+    <resultMap id="AccommResultSet" type="accomm">
+        <result column="ACCOMM_NO"       property="accommNo" />
+        <result column="BUSINESS_NO"   property="businessNo" />
+        <result column="ACCOMM_NAME"  property="activityContent" />
+        <result column="ADDRESS"    property="address" />
+        <result column="LAT"    property="lat" />
+        <result column="LNG"    property="lng" />
+        <result column="GRADE"    property="grade" />
+        <result column="REFUND"    property="refund" />
+        <result column="CHECKINOUT"    property="checkInout" />
+        <result column="ACCOMM_CONTENT"    property="accommContent" />
+        <result column="CATEGORY"    property="category" />
+    </resultMap>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
@@ -31,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	   ACTIVITY
 	</select>
 	
+
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
 		SELECT
@@ -60,5 +75,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE
 		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
+
+	
+	<!-- 숙소 집어넣기 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 숙소 첨부파일 집어넣기 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 </mapper>

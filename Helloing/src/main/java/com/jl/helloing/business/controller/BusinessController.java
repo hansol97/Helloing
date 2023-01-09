@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.Accomm;
 
 @Controller
 public class BusinessController {
@@ -44,7 +48,7 @@ public class BusinessController {
 	
 	
 	
-	// 인호 시작
+	// 인호 시작---------------------------------------------------------------------------------------------
 
 
 	// 숙소 조회
@@ -144,6 +148,8 @@ public class BusinessController {
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
+            in.close();
+           con.disconnect();
 			
             //response 객체를 출력해보자
             System.out.println(response.toString());
@@ -158,65 +164,45 @@ public class BusinessController {
 	
     
     // 숙소 등록!!! insertAccom()
-//    @RequestMapping("insertAccom.bu")
-//	public String insertAccom(Board b, MultipartFile[] upfile, HttpSession session, Model model) {
-//		// filename이 빈 문자열인가 아닌가로 첨부파일 유무를 판단할 수 있다 (첨부해도 파일사이즈가 0일수 있음)
-//		// System.out.println(b); 
-//		// System.out.println(upfile); //첨부파일이 있든 없든 객체가 무조건 생성된다 - 차이점은 filename에 원본명이 존재하는가, 혹은 ""(빈문자열)인가
-//		
-//		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
-//		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
-//		
-//	if (!upfile.getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
-//			// 파일이 있으면 들어옴
-//			/*
-//			// 파일명 수정작업 후 서버에 업로드 시키기("image.png" => 20221238123123.png)
-//			String originName = upfile.getOriginalFilename();
-//			
-//			// "20221226103530"(년월일시분초)
-//			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());//util타입 Date가 아니면 simpleDateFormat이 받을 수가 없다
-//			
-//			//12321(5자리 랜덤값)
-//			int ranNum = (int)(Math.random() * 90000 + 10000);
-//			
-//			// 확장자
-//			String ext = originName.substring(originName.lastIndexOf("."));
-//			
-//			String changeName = currentTime + ranNum + ext;
-//			
-//			// 업로드 시키고자 하는 폴더의 물리적인 경로 알아내기
-//			// 세션 만들고 getServletContext()이용해서 application에 접근하고, 파일 경로 알아내기
-//			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-//			
-//			try {												// transferTo() => 서버에 파일을 업로드해주는 메소드
-//				upfile.transferTo(new File(savePath, changeName));//파일 객체를 만들 때는 경로와 파일명을 넣어서..
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			*/
-//			
-//			// saveFile(upfile, session); // 우리가 만든 saveFile()의 반환값 == changeName
-//			
-//			b.setOriginName(upfile.getOriginalFilename());
-//			b.setChangeName("resources/uploadFiles/" + saveFile(upfile, session));
-//			
-//		}
-//		
-//		
-//		// 넘어온 첨부파일이 없을 경우 b : 제목, 작성자, 내용  
-//		// 넘어온 첨부파일이 있을 경우 b : 제목, 작성자, 내용 + 파일 원본명 , 파일저장경로
-//		// int result = boardService.insertBoard(b);  // int
-//		
-//		if (boardService.insertBoard(b) > 0) { // 성공 => 게시글 리스트 페이지
-//			// 포워딩으로 보낸다면?? boardListView.jsp // 리스트 달라고 요청을 한게 아니기 때문에 리스트 조회가 되지 않는다. => DB에 들렀다 와야한다.
-//			// return "board/boardListView";
-//			session.setAttribute("alertMsg", "게시글 등록 성공!");
-//			return "redirect:list.bo";
-//		} else {// 실패 => 에러 페이지로
-//			model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
-//			return "common/errorPage";
-//		}
-//	}
+    // 3 files
+    @RequestMapping("insertAccom.bu")
+	public String insertAccom(Accomm acc, MultipartFile[] upfile, HttpSession session, Model model) {
+		// filename이 빈 문자열인가 아닌가로 첨부파일 유무를 판단할 수 있다 (첨부해도 파일사이즈가 0일수 있음)
+		// System.out.println(b); 
+		// System.out.println(upfile); //첨부파일이 있든 없든 객체가 무조건 생성된다 - 차이점은 filename에 원본명이 존재하는가, 혹은 ""(빈문자열)인가
+		
+		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
+		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
+		
+    	ArrayList<Attachment> list = new ArrayList();
+    	
+    	for (int i = 0; i < upfile.length; i++) {
+			
+	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
+				
+					Attachment at = new Attachment();
+					at.setOriginName( upfile[i].getOriginalFilename());
+					at.setChangeName( saveFile(upfile[i], session) );
+					at.setFilePath( "resources/uploadFiles/"  );
+					
+	    		}
+		}
+
+		if (businessService.insertAccom(acc) > 0) { // 성공 => 게시글 리스트 페이지
+			// 포워딩으로 보낸다면?? boardListView.jsp // 리스트 달라고 요청을 한게 아니기 때문에 리스트 조회가 되지 않는다. => DB에 들렀다 와야한다.
+			// return "board/boardListView";
+			if(businessService.insertAccomPhoto(list)>0) {
+				session.setAttribute("alertMsg", "게시글 등록 성공!");
+				return "redirect:accommList.bu";
+			}else {
+				model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+				return "common/errorPage";
+			}
+		} else {// 실패 => 에러 페이지로
+			model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+			return "common/errorPage";
+		}
+	}
     
     // 파일 리네임 saveFile() 
 	public String saveFile(MultipartFile upfile, HttpSession session) {// 실제 넘어온 파일의 이름을 변경해서 서버에 업로드하는 역할
@@ -243,11 +229,9 @@ public class BusinessController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return changeName;
 	}
-    
-    // 인호 끝
+    // 인호 끝-----------------------------------------------------------------------------------------------
     
     
 	// 메뉴바에서 기업관리 누르면 기업페이지로 이동
