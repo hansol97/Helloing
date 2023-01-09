@@ -170,24 +170,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	
-	//회원정보 조회 - 수정
-	@RequestMapping("memberUpdateForm.hj")
-	public String memberUpdateForm(Member m, ModelAndView mv) {
-		
-		//System.out.println(m);
-		
-	public String memberUpdateForm(Member m, Model model) {
-		
-		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
-		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
-			return "member/memberUpdateForm";
-		}else {
-			model.addAttribute("errorMsg","비밀번호가 일치하지 않습니다.");
-			return "common/errorPage";
-		}
-		
-	}
+
 	
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")

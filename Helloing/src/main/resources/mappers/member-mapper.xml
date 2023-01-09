@@ -81,7 +81,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
-	
+	<update id="memberUpdate" parameterType="member">
+		UPDATE 
+			  MEMBER
+		SET
+			EMAIL = #{ email },
+			PHONE = #{ phone }
+		WHERE 
+			MEM_ID = #{ memId }
+	</update>
 	
 	
 </mapper>
