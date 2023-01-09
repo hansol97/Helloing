@@ -90,6 +90,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
-	
+	<select id="wishAccommList">
+		
+	</select>
 	
 </mapper>

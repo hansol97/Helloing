@@ -87,7 +87,7 @@ public class MemberServiceImpl implements MemberService{
 	//찜한 숙소 리스트 조회
 	@Override
 	public ArrayList<Accomm> wishAccommList(int memNo) {
-		return null;
+		return memberDao.wishAccommList(memNo, sqlSession);
 	}
 
 	@Override
