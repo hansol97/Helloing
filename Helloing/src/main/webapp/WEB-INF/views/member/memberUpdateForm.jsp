@@ -110,10 +110,11 @@
 			</div>
 			<br><br>
 			<div id="enrollForm">
-			<form action="" method="post">
+			<form action="memberUpdate.hj" method="post">
 				<div class="form-group">
 					<span class="form-title">아이디</span>
 					<span class="form-fix">${loginUser.memId}</span>
+					<input type="hidden" name="memId" value="${loginUser.memId}">
 				</div>	
 				<div class="form-group">
 					<span class="form-title">비밀번호</span>
@@ -125,11 +126,11 @@
 				</div>	
 				<div class="form-group">
 					<span class="form-title">핸드폰번호</span>
-					<span class="form-input"><input type="text" placeholder="${loginUser.phone}"></span>
+					<span class="form-input"><input type="text" name="phone" value="${loginUser.phone}"></span>
 				</div>	
 				<div class="form-group">
 					<span class="form-title">이메일</span>
-					<span class="form-input"><input type="text" placeholder="${loginUser.email}"></span>
+					<span class="form-input"><input type="text" name="email" value="${loginUser.email}"></span>
 				</div>
 
 				<br>
@@ -144,7 +145,7 @@
 
 	<div id="ex1" class="modal">
 		<br>
-	<form action="updatePwd.hj" method="post">
+	<form action="memberUpdatePwd.hj" method="post">
 			<div class="pwdForm">
 			<h5 style="font-weight:600;">현재 비밀번호 입력</h5>
 			<input type="password" name="memPwd">

@@ -41,7 +41,6 @@ public class MemberController {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
 			mv.setViewName("common/loginErrorPage");
-			
 		}
 		
 		return mv;
@@ -142,6 +141,9 @@ public class MemberController {
 			m.setMemPwd(encPwd);
 			
 			if(memberService.memberUpdatePwd(m)>0) {//성공
+				
+				session.setAttribute("alertMsg", "비밀번호 변경 성공");
+				
 				return "redirect:/";
 			}else {
 				//비밀번호 변경실패
@@ -170,6 +172,10 @@ public class MemberController {
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
 	public String memberUpdate(Member m) {
+		
+		if(memberService.memberUpdate(m)>0) {
+			
+		}
 		return "";
 	}
 	
