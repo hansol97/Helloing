@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,7 +100,8 @@
 			<div id="enrollForm">
 				<form action="memberUpdateForm.hj" method="post">
 					<h6>비밀번호</h6> 
-					<input type="password" placeholder="비밀번호를 입력해주세요.">
+					<input type="hidden" name="memId" value="${loginUser.memId}">
+					<input type="password" name="memPwd" placeholder="비밀번호를 입력해주세요.">
 					<button id="btn" type="submit">확인</button>
 				</form>
 			</div>

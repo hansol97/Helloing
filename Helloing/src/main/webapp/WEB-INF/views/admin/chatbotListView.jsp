@@ -88,6 +88,12 @@
 <body>
     <jsp:include page="menubar_admin.jsp"/>
     
+    <c:if test="${ not empty alertMsg }">
+    	<script>
+    		alert('${alertMsg}');
+    	</script>
+    </c:if>
+    
     <div class="admin-content">
 
         <div class="admin-innerOuter" align="center">
@@ -115,10 +121,11 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="470">
+                            <td width="420">
                                 
                             </td>
-                            <td><button class="admin-grey btn-open-popup">등록</button></td>
+                            <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
+                            <td><button onclick="openModal(2);" class="admin-grey">수정</button></td>
                             <td><button class="admin-grey">삭제</button></td>
                         </tr>
                     </table>
@@ -136,22 +143,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>제주도 여행</td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <td onclick="event.stopPropagation()">
-                                        <input name="cbox" type="checkbox" value="">
-                                    </td>
-                                    <td>2</td>
-                                    <td>제주도 여행</td>
-                                </tr>
-                            </tr>
+                        	<c:choose>
+                        		<c:when test="${ empty list }" >
+                        			조회할 키워드가 없습니다.
+                        		</c:when>
+                        		<c:otherwise>
+                        			<c:forEach var="c" items="${ list }">
+			                            <tr>
+			                                <td onclick="event.stopPropagation()">
+			                                    <input name="cbox" type="checkbox" value="">
+			                                </td>
+			                                <td>${ c.chatbotQ }</td>
+			                                <td>${ c.chatbotA }</td>
+			                            </tr>
+			                        </c:forEach>
+                            	</c:otherwise>
+                            </c:choose>
                         </tbody>
                     </table>
                 </tr>
@@ -174,11 +181,50 @@
 
     </div>
 
-    <div id="keword_enroll_page" class="modal">
+    <div id="keword_enroll_page" class="modal modal1">
+        <div class="modal_body">
+            
+            <div class="modal-title">
+                <span>키워드 등록</span>
+            </div>
+            <div align="center">
+                <br>
+                <form action="insert.qa" method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" name="chatbotQ" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea id="keyword_content" placeholder="키워드 답변내용을 입력하세요" name="chatbotA" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                        </tr>
+                    </table>
+
+                    <div id="keyword_enroll_btn">
+                        <button type="submit">등록</button>
+                        <button id="keyword_cancel keyword_cancel1" type="button" onclick="keywordCancel(1);">취소</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="keword_enroll_page" class="modal modal2">
         <div class="modal_body">
             <div>
                 <div class="modal-title">
-                    <span>키워드 등록</span>
+                    <span>키워드 수정</span>
                 </div>
                 <div align="center">
                     <br>
@@ -186,7 +232,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요">
+                                    <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" value="안녕" required>
                                 </td>
                             </tr>
                             <tr>
@@ -194,7 +240,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요"></textarea>
+                                    <textarea name="" id="keyword_content" placeholder="키워드 답변내용을 입력하세요" required>안녕하세요</textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -203,8 +249,8 @@
                         </table>
     
                         <div id="keyword_enroll_btn">
-                            <button type="submit">등록</button>
-                            <button id="keyword_cancel" type="button" onclick="keywordCancel();">취소</button>
+                            <button type="submit">수정</button>
+                            <button id="keyword_cancel keyword_cancel2" type="button" onclick="keywordCancel(2);">취소</button>
                         </div>
                     </form>
                     
@@ -218,31 +264,51 @@
     <script>
         const body = document.querySelector('body');
         
-        const modal = document.querySelector('.modal');
-        const btnOpenPopup = document.querySelector('.btn-open-popup');
+        // const modal = document.querySelector('.modal');
 
-        function keywordCancel(){
-            const btnCancel = document.getElementById('#keyword_cancel');
+        function keywordCancel(num){
+            let modal = document.querySelector('.modal'+ num);
+            const btnCancel = document.getElementById('#keyword_cancel'+ num);
             modal.classList.remove('show');
         };
 
-        btnOpenPopup.addEventListener('click', () => {
-          modal.classList.toggle('show');
-  
-          if (modal.classList.contains('show')) {
-            body.style.overflow = 'hidden';
-          }
-        });
-  
-        modal.addEventListener('click', (event) => {
-          if (event.target === modal) {
+        function openModal(num){
+            let modal = document.querySelector('.modal'+num);
             modal.classList.toggle('show');
+            
   
-            if (!modal.classList.contains('show')) {
-              body.style.overflow = 'auto';
+            if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
             }
-          }
+
+            
+        };
+
+        
+        let modal = document.querySelector('.modal');
+            modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.toggle('show');
+
+                if (!modal.classList.contains('show')) {
+                body.style.overflow = 'auto';
+                }
+            }
         });
+
+            
+        
+        
+  
+        // modal.addEventListener('click', (event) => {
+        //   if (event.target === modal) {
+        //     modal.classList.toggle('show');
+  
+        //     if (!modal.classList.contains('show')) {
+        //       body.style.overflow = 'auto';
+        //     }
+        //   }
+        // });
       </script>
 </body>
 </html>

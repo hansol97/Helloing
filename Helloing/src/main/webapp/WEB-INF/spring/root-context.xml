@@ -10,8 +10,8 @@
         <!-- 어떤 DB에 접속할건지 정보 작성 -->
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-        <property name="username" value="AA" />
-        <property name="password" value="aa" />
+        <property name="username" value="HELLOING" />
+        <property name="password" value="HELLOING" />
     </bean>
     
     <!-- 2단계. Mybatis Spring에서 제공하는 SQL 명령어 실행을 위한 도구 등록 -->

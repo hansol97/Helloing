@@ -148,7 +148,7 @@
 	      	<h4 style="padding : 10px;">반갑소잉 관리자님, 환영합니다.😊</h4>
 	      </li>
           <li>
-            <a href="#">메인페이지로 가기</a>
+            <a href="/">메인페이지로 가기</a>
           </li>
 
         </ul>
@@ -165,13 +165,13 @@
           <div class="item__name"><a href="boardList.ad">📄게시글 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="chatBotList.ad" >💬챗봇관리</a></div>
+          <div class="item__name" ><a href="chatbotList.ad" >💬챗봇관리</a></div>
         </li>
         <li class="item">
           <div class="item__name" ><a href="businessPayList.ad" >💰결제관리</a></div>
         </li>       
         <li class="item">
-          <div class="item__name" ><a href="#" >💑1:1문의</a></div>
+          <div class="item__name" ><a href="QAList.ad" >💑1:1문의</a></div>
         </li>       
       </ul>
 
