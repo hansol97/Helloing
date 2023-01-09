@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jl.helloing.admin.model.dao.AdminDao;
 import com.jl.helloing.admin.model.vo.Chatbot;
+import com.jl.helloing.common.model.vo.PageInfo;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -20,12 +21,25 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public int insertChatbot(Chatbot c) {
-		return 0;
+		
+		int comResult = adminDao.selectChatbotQ(sqlSession, c);
+		
+		if(comResult < 1) {
+			int result = adminDao.insertChatbot(sqlSession, c);
+			return result;
+		} else {
+			return 0;
+		}
+	}
+	
+	@Override
+	public int selectChatbotListCount() {
+		return adminDao.selecChatbottListCount(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Chatbot> selectChatbotList() {
-		return null;
+	public ArrayList<Chatbot> selectChatbotList(PageInfo pi) {
+		return adminDao.selectChatbotList(sqlSession, pi);
 	}
 
 	@Override
@@ -42,6 +56,8 @@ public class AdminServiceImpl implements AdminService{
 	public int deleteChatbot(String chatbotQ) {
 		return 0;
 	}
+
+
 	
 
 }

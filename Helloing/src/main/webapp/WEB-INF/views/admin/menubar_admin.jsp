@@ -165,7 +165,7 @@
           <div class="item__name"><a href="boardList.ad">📄게시글 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name" ><a href="chatBotList.ad" >💬챗봇관리</a></div>
+          <div class="item__name" ><a href="chatbotList.ad" >💬챗봇관리</a></div>
         </li>
         <li class="item">
           <div class="item__name" ><a href="businessPayList.ad" >💰결제관리</a></div>
