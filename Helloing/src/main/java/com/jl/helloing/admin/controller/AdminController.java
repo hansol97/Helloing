@@ -1,14 +1,14 @@
 package com.jl.helloing.admin.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
@@ -88,7 +88,7 @@ public class AdminController {
 	
 	// 챗봇 리스트 조회
 	@RequestMapping("chatbotList.ad")
-	public ModelAndView chatBotListView(@RequestParam(value="cpage", defaultValue="1") int currentPage
+	public ModelAndView chatbotListView(@RequestParam(value="cpage", defaultValue="1") int currentPage
 								 ,ModelAndView mv) {
 		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectChatbotListCount(), currentPage, 10, 5);
@@ -98,5 +98,15 @@ public class AdminController {
 		
 		return mv;
 	}
+	
+	// 챗봇 키워드 수정
+	@ResponseBody
+	@RequestMapping(value="chatbotUpdate.ad", produces="application/json; charset=UTF-8")
+	public String chatbotUpdateForm(String originChatbotQ) {
+		Chatbot c = adminService.chatbotUpdateForm(originChatbotQ);
+		
+		return new Gson().toJson(c);
+	}
+	
 
 }

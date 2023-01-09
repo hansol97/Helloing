@@ -18,7 +18,7 @@ public interface AdminService {
 	ArrayList<Chatbot> selectChatbotList(PageInfo pi);
 	
 	// 챗봇 수정 모달
-	Chatbot updateFormChatbot(String chatbotQ);
+	Chatbot chatbotUpdateForm(String chatbotQ);
 	
 	// 챗봇 수정
 	int updateChatbot(Chatbot c);
