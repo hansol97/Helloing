@@ -3,6 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminMapper">
+
+	<resultMap id="chatbotResultSet" type="chatbot">
+		<result column="CHATBOT_Q" property="chatbotQ"/>
+		<result column="CHATBOT_A" property="chatbotA"/>
+	</resultMap>
+	
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
 		SELECT 
 		       COUNT(*)
@@ -21,4 +27,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,#{chatbotA}
 		       )
 	</insert>
+	
+	<select id="selecChatbottListCount" resultType="_int">
+		SELECT 
+		       COUNT(*)
+		  FROM 
+		       CHATBOT
+	</select>
+	
+	<select id="selectChatbotList" resultMap="chatbotResultSet">
+		SELECT
+		       CHATBOT_Q,
+		       CHATBOT_A
+		  FROM
+		       CHATBOT
+	</select>
 </mapper>
