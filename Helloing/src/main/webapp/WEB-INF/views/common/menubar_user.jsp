@@ -189,7 +189,7 @@
 
   .chat_modal_body {
     position: absolute;
-    bottom:1%;
+    bottom:2%;
     right:1%;
 
     width: 270px;
@@ -219,8 +219,8 @@
     position: absolute;
     /* top:880px;
     right:0px; */
-    bottom:1%;
-    right:1%;
+    bottom:0%;
+    right:0%;
 
     width: 40px;
     height: 40px;
@@ -421,7 +421,7 @@
               </div>
               <div id="chat_input">
                 <input type="text">
-                <button>🐇</button>
+                <button>📄</button>
 
               </div>
           </div>

@@ -6,10 +6,8 @@
 <head>
     <link href="resources/css/adminPage.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
-<title>챗봇</title>
+<title>문의</title>
 <style>
-    /* 모달 */
-    
     .modal {
     position: absolute;
     top: 0;
@@ -102,8 +100,8 @@
                             <form id="searchForm" action="" method="get">
                                 <td>
                                     <select class="admin-search_form" name="" id="">
-                                        <option value="">키워드명</option>
-                                        <option value="">내용</option>
+                                        <option value="">회원아이디</option>
+                                        <option value="">구분</option>
                                     </select>
                                 </td>
                                 <td>
@@ -132,8 +130,13 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="200">키워드명</th>
-                                <th width="700">키워드 답변용</th>
+                                <th width="80">문의번호</th>
+                                <th width="80">구분</th>
+                                <th width="120">카테고리</th>
+                                <th width="250">제목</th>
+                                <th width="110">회원아이디</th>
+                                <th width="120">등록일</th>
+                                <th width="80">답변여부</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,16 +145,24 @@
                                     <input name="cbox" type="checkbox" value="">
                                 </td>
                                 <td>2</td>
-                                <td>제주도 여행</td>
+                                <td>일반회원</td>
+                                <td>상품관련</td>
+                                <td>문의합니다</td>
+                                <td>user01</td>
+                                <td>2022.12.25</td>
+                                <td>완료</td>
                             </tr>
                             <tr>
-                                <tr>
-                                    <td onclick="event.stopPropagation()">
-                                        <input name="cbox" type="checkbox" value="">
-                                    </td>
-                                    <td>2</td>
-                                    <td>제주도 여행</td>
-                                </tr>
+                                <td onclick="event.stopPropagation()">
+                                    <input name="cbox" type="checkbox" value="">
+                                </td>
+                                <td>2</td>
+                                <td>일반회원</td>
+                                <td>상품관련</td>
+                                <td>문의합니다</td>
+                                <td>user01</td>
+                                <td>2022.12.25</td>
+                                <td>완료</td>
                             </tr>
                         </tbody>
                     </table>
@@ -258,7 +269,6 @@
     <script>
         const body = document.querySelector('body');
         
-        // const modal = document.querySelector('.modal');
 
         function keywordCancel(num){
             let modal = document.querySelector('.modal'+ num);
@@ -269,6 +279,7 @@
         function openModal(num){
             let modal = document.querySelector('.modal'+num);
             modal.classList.toggle('show');
+            console.log(modal);
             
   
             if (modal.classList.contains('show')) {
@@ -278,7 +289,6 @@
             
         };
 
-        
         let modal = document.querySelector('.modal');
             modal.addEventListener('click', (event) => {
             if (event.target === modal) {
@@ -289,20 +299,10 @@
                 }
             }
         });
-
-            
-        
         
   
-        // modal.addEventListener('click', (event) => {
-        //   if (event.target === modal) {
-        //     modal.classList.toggle('show');
-  
-        //     if (!modal.classList.contains('show')) {
-        //       body.style.overflow = 'auto';
-        //     }
-        //   }
-        // });
       </script>
+
+
 </body>
 </html>

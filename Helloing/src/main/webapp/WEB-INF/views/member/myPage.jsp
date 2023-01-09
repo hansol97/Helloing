@@ -51,8 +51,7 @@
 	        <div class="category" id="user">
 	            <h2>나의 계정정보</h2>
 	            <ul>
-	                <li><a href="pwdMatchingForm.hj">회원 정보 수정</a></li>
-	                <li><a href="tripReviewList.hj">나의 여행 리뷰 조회</a></li>
+	                <li><a href="checkPwdForm.hj">회원 정보 수정</a></li>
 	                <li><a href="wishAccommList.hj">찜한 숙소 조회</a></li>
 	                <li><a href="wishActivityList.hj">찜한 액티비티 조회</a></li>
 	            </ul>

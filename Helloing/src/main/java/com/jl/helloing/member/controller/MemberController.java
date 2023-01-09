@@ -106,27 +106,21 @@ public class MemberController {
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
-	//마이페이지 메인
-	@RequestMapping("myPage.hj")
-	public String myPage() {
-		return "member/scheduledReservation";
-	}
-	
 	//예정된 예약
 	@RequestMapping("scheduled.hj")
-	public String scheduled() {
+	public String selectScheduled() {
 		return "member/reservationScheduled";
 	}
 	
 	//지난 예약
 	@RequestMapping("last.hj")
-	public String last() {
+	public String selectLast() {
 		return "member/reservationLast";
 	}
 	
 	//취소된 예약
 	@RequestMapping("cancelled.hj")
-	public String cancelled() {
+	public String selectCancelled() {
 		return "member/reservationCancelled";
 	}
 	
@@ -137,21 +131,17 @@ public class MemberController {
 	}
 	
 	//회원정보 조회 - 비밀번호 확인
-	@RequestMapping("pwdMatchingForm.hj")
-	public String pwdMatchingForm() {
-		return "member/pwdMatchingForm";
+	@RequestMapping("checkPwdForm.hj")
+	public String checkPwd() {
+		return "member/checkPwdForm";
 	}
 	
 	//회원정보 조회 - 수정
 	@RequestMapping("memberUpdateForm.hj")
-	public String memberEnrollForm() {
+	public String memberUpdateForm(String userId, String userPwd, ModelAndView mv) {
+		
+		
 		return "member/memberUpdateForm";
-	}
-	
-	//나의 여행리뷰 조회 리스트
-	@RequestMapping("tripReviewList.hj")
-	public String tripReviewList() {
-		return "member/tripReviewList";
 	}
 	
 	//찜한 숙소 조회
