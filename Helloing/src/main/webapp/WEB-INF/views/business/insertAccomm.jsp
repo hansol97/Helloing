@@ -45,7 +45,8 @@
 							<input type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="hidden" id="LAT" name="LAT" placeholder="위도" value="">
 							<input type="hidden" id="LNG" name="LNG" placeholder="경도" value="">
-							<input type="hidden" class="hidden" name="businessNo" value="${sessionScope.loginCompany.businessNo}"/><!-- 사업자번호 히든 -->
+							<!--<input type="hidden" class="hidden" name="businessNo" value="${sessionScope.loginCompany.businessNo}"/>--><!-- 사업자번호 히든 -->
+							<input type="hidden" class="hidden" name="businessNo" value="1"/><!-- 사업자번호 히든 -->
 							<input type="hidden" name="address" id="" value=""> <!-- 제이쿼리로 합친 주소+상세주소 를 밸류에 -->
 							<script>
 								var query = ''; // 주소
