@@ -1,10 +1,13 @@
 package com.jl.helloing.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jl.helloing.admin.model.dao.AdminDao;
 import com.jl.helloing.admin.model.vo.Chatbot;
@@ -43,21 +46,43 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Chatbot chatbotUpdateForm(String originChatbotQ) {
-		return adminDao.chatbotUpdateForm(sqlSession, originChatbotQ);
-	}
-
-	@Override
 	public int updateChatbot(Chatbot c) {
-		return 0;
+		int comResult = adminDao.selectChatbotQUpdate(sqlSession, c);
+		
+		if(comResult < 1) {
+			int result = adminDao.updateChatbot(sqlSession, c);
+			return result;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
-	public int deleteChatbot(String chatbotQ) {
-		return 0;
+	@Transactional
+	public int deleteChatbot(List<String> cbox) {
+		
+		int result = 1;
+		
+		for(int i = 0; i < cbox.size(); i++) {
+			result *= adminDao.deleteChatbot(sqlSession, cbox.get(i));
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int selectSearchChatbotCount(HashMap map) {
+		return adminDao.selectSearchChatbotCount(sqlSession, map);
 	}
 
+	@Override
+	public ArrayList<Chatbot> searchChatbot(HashMap map) {
+		return adminDao.searchChatbot(sqlSession, map);
+	}
 
+	
+
+	
 	
 
 }
