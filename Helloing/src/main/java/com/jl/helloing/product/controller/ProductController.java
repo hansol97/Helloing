@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Activity;
-import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -57,7 +57,7 @@ public class ProductController {
 		
 		mv.addObject("activityList", productService.selectActList());
 		
-		System.out.println(productService.selectActList()); // 메인 화면에 별점과 후기도 필요
+		// 메인 화면에 별점과 후기도 필요
 		
 		//mv.addObject("ticketList", productService.selectTicketList());
 		mv.setViewName("product/activityMain");
@@ -76,9 +76,18 @@ public class ProductController {
 	public ModelAndView DetailActivity(ModelAndView mv, int activityNo) {
 		
 		Activity act = productService.selectActDetail(activityNo);
-		ArrayList<Ticket> ticketList = productService.selectTicketList(activityNo);
+		ArrayList<ActivityReview> actReviewList = productService.selectReviewList(activityNo);
 		
-		mv.addObject("act", act).addObject("ticketList", ticketList);
+		if(!actReviewList.isEmpty()) { // 리뷰가 있을 때만 평균 연산하기
+			int sum = 0;
+			for(int i = 0; i < actReviewList.size(); i++) {
+				sum += actReviewList.get(i).getStar();
+			}
+			act.setAvg(sum / actReviewList.size());
+		}
+		mv.addObject("act", act)
+		  .addObject("ticketList", productService.selectTicketList(activityNo))
+		  .addObject("actReviewList", actReviewList);
 		mv.setViewName("product/activityDetail");
 		
 		return mv;

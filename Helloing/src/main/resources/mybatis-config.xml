@@ -11,17 +11,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     
 	<typeAliases>
     	<typeAlias type="com.jl.helloing.member.model.vo.Member" 		alias="member" />
-    	<typeAlias type="com.jl.helloing.admin.model.vo.Chatbot" 		alias="chatbot" />
-    	<typeAlias type="com.jl.helloing.business.model.vo.Business" 	alias="business" />
     	<typeAlias type="com.jl.helloing.member.model.vo.AccommWish" 	alias="accommwish" />
     	<typeAlias type="com.jl.helloing.member.model.vo.ActivityWish" 	alias="activitywish" />
+    	<typeAlias type="com.jl.helloing.member.model.vo.Planner" 		alias="planner" />
+    	<typeAlias type="com.jl.helloing.member.model.vo.Plan" 			alias="plan" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Accomm" 		alias="accomm" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Room" 		alias="room" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.ActivityReview"	alias="actReview" />
+    	<typeAlias type="com.jl.helloing.business.model.vo.Business" 	alias="business" />
+    	<typeAlias type="com.jl.helloing.admin.model.vo.Chatbot" 		alias="chatbot" />
     	<typeAlias type="com.jl.helloing.common.model.vo.Attachment" 	alias="attachment" />
-    	<typeAlias type="com.jl.helloing.member.model.vo.Planner" 	alias="planner" />
-    	<typeAlias type="com.jl.helloing.member.model.vo.Plan" 	alias="plan" />
     </typeAliases>
 
 	<mappers>

@@ -7,13 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap id="AccommResultSet" type="accomm">
         <result column="ACCOMM_NO"       property="accommNo" />
         <result column="BUSINESS_NO"   property="businessNo" />
-        <result column="ACCOMM_NAME"  property="activityContent" />
+        <result column="ACCOMM_NAME"  property="accommName" />
         <result column="ADDRESS"    property="address" />
         <result column="LAT"    property="lat" />
         <result column="LNG"    property="lng" />
         <result column="GRADE"    property="grade" />
         <result column="REFUND"    property="refund" />
         <result column="CHECKINOUT"    property="checkInout" />
+        <result column="ENDDATE"    property="endDate" />
         <result column="ACCOMM_CONTENT"    property="accommContent" />
         <result column="CATEGORY"    property="category" />
     </resultMap>
@@ -55,7 +56,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="UPLOAD_DATE"    property="uploadDate" />
     </resultMap>
     
-    
+    <resultMap id="ActReviewResultSet"  type="actReview">
+        <result column="REVIEW_NO"       property="reviewNo" />
+        <result column="ACTIVITY_NO"   property="activityNo" />
+        <result column="TICKET_NO"  property="ticketNo" />
+        <result column="MEM_NO"    property="memNo" />
+        <result column="REVIEW_CONTENT"    property="reviewContent" />
+        <result column="CREATE_DATE"    property="createDate" />
+        <result column="TAG"    property="tag" />
+        <result column="STAR"    property="star" />
+        <result column="MEM_NAME"    property="memName" />
+        <result column="TICKET_NAME"    property="ticketName" />
+    </resultMap>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
@@ -89,36 +101,99 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TICKET_NAME
 			  ,CAPACITY
 			  ,PRICE
-			  ,START_DATE
-			  ,END_DATE
+			  ,TO_CHAR(START_DATE, 'YYYY-MM-DD') AS START_DATE
+			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
 		  FROM
 		  	   TICKET
 		 WHERE
 		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
+	
+	<select id="selectReviewList" resultMap="ActReviewResultSet" parameterType="_int">
+		SELECT
+			   REVIEW_NO
+			  ,AR.ACTIVITY_NO
+			  ,TICKET_NAME
+			  ,substr(MEM_NAME,1,1) || lpad('*',length(MEM_NAME)-2,'*') || substr(MEM_NAME, length(MEM_NAME), 1) AS MEM_NAME
+			  ,REVIEW_CONTENT
+			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
+			  ,TAG
+			  ,STAR
+		  FROM
+		  	   ACTIVITY_REVIEW AR
+		  JOIN
+		  	   MEMBER USING (MEM_NO)
+		  JOIN
+		  	   TICKET USING (TICKET_NO)
+		 WHERE
+		 	   AR.ACTIVITY_NO = #{ activityNo }
+		 ORDER
+		    BY
+		       REVIEW_NO DESC
+	</select>
 
-	
+
 	<!-- 숙소 집어넣기 -->
-	<!--  
 	<insert id="insertAccom" parameterType="accomm">
-		
-	
-	
+		INSERT
+		  INTO
+				        ACCOMM
+				        (
+				        ACCOMM_NO,
+				        BUSINESS_NO,
+				        ACCOMM_NAME,
+				        ADDRESS,
+				        LAT,
+				        LNG,
+				        GRADE,
+				        REFUND,
+				        CHECKINOUT,
+				        END_DATE,
+				        ACCOMM_CONTENT,
+				        CATEGORY
+				        )
+		VALUES
+				        (
+				        SEQ_ACCNO.NEXTVAL,        
+				        #{businessNo},
+				        #{accommName},
+				        #{address},
+				        #{lat},
+				        #{lng},
+				        #{grade},
+				        #{refund},
+				        #{checkInout},
+				        #{endDate},
+				        #{accommContent},
+				        #{category}
+				        )
 	</insert>
 	
-	-->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- 숙소 첨부파일 집어넣기 -->
-	
+	<insert id="insertAccomPhoto" parameterType="java.util.List">
+		INSERT
+		  INTO
+				        ATTACHMENT
+				        (
+				        FILE_NO,
+				        ACCOMM_NO,
+				        ORIGIN_NAME,
+				        CHANGE_NAME,
+				        FILE_PATH,
+				        UPLOAD_DATE
+				        )
+		VALUES
+							<foreach  item="item" index="index"  collection="list">
+					        (
+					        SEQ_ACCFNO.NEXTVAL,        
+					        #{accommNo},
+					        #{originName},
+					        #{changeName},
+					        #{filePath},
+					        #{uploadDate}
+					        )
+							</foreach>
+	</insert>
 	
 	
 	
