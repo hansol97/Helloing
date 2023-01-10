@@ -101,9 +101,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
-		
-	
-	
+		INSERT
+		  INTO
+				        ACCOMM
+				        (
+				        ACCOMM_NO,
+				        BUSINESS_NO,
+				        ACCOMM_NAME,
+				        ADDRESS,
+				        LAT,
+				        LNG,
+				        GRADE,
+				        REFUND,
+				        CHECKINOUT,
+				        END_DATE,
+				        ACCOMM_CONTENT,
+				        CATEGORY
+				        )
+		VALUES
+				        (
+				        SEQ_ACCNO.NEXTVAL,        
+				        #{businessNo},
+				        #{accommName},
+				        #{address},
+				        #{lat},
+				        #{lng},
+				        #{grade},
+				        #{refund},
+				        #{checkInout},
+				        #{endDate},
+				        #{accommContent},
+				        #{category}
+				        )
 	</insert>
 	
 
