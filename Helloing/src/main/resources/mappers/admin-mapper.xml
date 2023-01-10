@@ -114,19 +114,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 챗봇A 조회 -->
-	<select id="selectChatbotA" parameterType="hashMap" resultMap="chatbotResultSet">
+	<select id="selectChatbotA" parameterType="List" resultMap="chatbotResultSet">
 		SELECT 
 		 	   CHATBOT_Q,
 			   CHATBOT_A
 	 	  FROM
 	 	       CHATBOT
-	 	 WHERE 1 = 1
-	 	 <foreach collection="chatQs" item="chatQ" index="index">
-	 	       AND CHATBOT_Q LIKE '%' || #{chatQ[index]} || '%'
+	 	 WHERE 
+	 	 <foreach collection="List" item="item"
+	 	 	open="(" separator="," close=")">
+	 	       CHATBOT_Q LIKE '%' || #{item} || '%'
 	 	 </foreach>
-	 	
-		<!-- <foreach item="item" index="index" collection="listName" close=")" separator="|">
-			#{item}
-		</foreach> -->
 	</select>
 </mapper>

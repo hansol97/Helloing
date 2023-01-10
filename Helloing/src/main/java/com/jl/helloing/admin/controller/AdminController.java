@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
@@ -148,17 +149,18 @@ public class AdminController {
 	//------------------------ 챗봇(메뉴바) ------------------------
 	
 	@ResponseBody
-	@RequestMapping(value="adminInfo.ch", produces="text/html; charset=UTF-8")
+	@RequestMapping(value="adminInfo.ch", produces="application/json; charset=UTF-8")
 	public String selectChatbotA(@RequestParam(value="chatbotQ", defaultValue="[admin]안내메세지") String chatbotKeyword) {
 		String[] keywords = chatbotKeyword.split("\\s");
-		HashMap map = new HashMap();
 		
-		map.put("chatQ", keywords);
-		System.out.println(Arrays.toString(keywords));
-		String chatbotA = adminService.selectChatbotA(map);
-		System.out.println(chatbotA);
+		List list = Arrays.asList(keywords);
 		
-		return chatbotA;
+		HashMap<String, Object> map = new HashMap();
+		map.put("List", list);
+		
+		Chatbot c = adminService.selectChatbotA(map);
+		System.out.println(c);
+		return new Gson().toJson(c);
 	}
 	
 	
