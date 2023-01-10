@@ -181,19 +181,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				        )
 	</insert>
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- 숙소 첨부파일 집어넣기 -->
-	
+	<insert id="insertAccomPhoto" parameterType="java.util.List">
+		INSERT
+		  INTO
+				        ATTACHMENT
+				        (
+				        FILE_NO,
+				        ACCOMM_NO,
+				        ORIGIN_NAME,
+				        CHANGE_NAME,
+				        FILE_PATH,
+				        UPLOAD_DATE
+				        )
+		VALUES
+							<foreach  item="item" index="index"  collection="list">
+					        (
+					        SEQ_ACCFNO.NEXTVAL,        
+					        #{accommNo},
+					        #{originName},
+					        #{changeName},
+					        #{filePath},
+					        #{uploadDate}
+					        )
+							</foreach>
+	</insert>
 	
 	
 	
