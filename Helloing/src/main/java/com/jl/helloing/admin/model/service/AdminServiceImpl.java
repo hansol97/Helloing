@@ -1,6 +1,7 @@
 package com.jl.helloing.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,11 +46,6 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Chatbot chatbotUpdateForm(String originChatbotQ) {
-		return adminDao.chatbotUpdateForm(sqlSession, originChatbotQ);
-	}
-
-	@Override
 	public int updateChatbot(Chatbot c) {
 		int comResult = adminDao.selectChatbotQUpdate(sqlSession, c);
 		
@@ -73,8 +69,20 @@ public class AdminServiceImpl implements AdminService{
 		
 		return result;
 	}
+	
+	@Override
+	public int selectSearchChatbotCount(HashMap map) {
+		return adminDao.selectSearchChatbotCount(sqlSession, map);
+	}
 
+	@Override
+	public ArrayList<Chatbot> searchChatbot(HashMap map) {
+		return adminDao.searchChatbot(sqlSession, map);
+	}
 
+	
+
+	
 	
 
 }
