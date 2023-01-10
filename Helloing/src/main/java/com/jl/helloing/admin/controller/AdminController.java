@@ -138,9 +138,13 @@ public class AdminController {
 		ArrayList<Chatbot> list = adminService.searchChatbot(pi, map);
 		
 		mv.addObject("list", list)
+		  .addObject("map", map)
 		  .setViewName("admin/chatbotListView");
 		
 		return mv;
+	}
+
+	private void addObject(String string, HashMap<String, String> map) {
 	}
 	
 	
