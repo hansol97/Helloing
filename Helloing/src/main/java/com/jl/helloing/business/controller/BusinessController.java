@@ -175,6 +175,7 @@ public class BusinessController {
     	ArrayList<Attachment> list = new ArrayList();
     	System.out.println("upfile : " + upfile);
     	System.out.println("upfile[0] : " + upfile[0]);
+    	System.out.println(  );
     	for (int i = 0; i < upfile.length; i++) {
 			
 	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
@@ -183,9 +184,7 @@ public class BusinessController {
 					at.setOriginName( upfile[i].getOriginalFilename());
 					at.setChangeName( saveFile(upfile[i], session) );
 					at.setFilePath( "resources/uploadFiles/"  );
-					System.out.println( 0 + 1 );
 					list.add(at);
-					System.out.println("컨트롤러 리스트 : " + list);
 	    		}
 		}
 

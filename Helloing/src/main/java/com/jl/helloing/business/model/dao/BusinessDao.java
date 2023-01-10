@@ -27,7 +27,7 @@ public class BusinessDao {
 		
 //		HashMap<String, Object> map = new HashMap();
 //		map.put("List", list);
-
+		System.out.println("숙소사진등록 DAO list :  " + list );
 		return sqlSession.insert("productMapper.insertAccomPhoto", list);
 	}
 	
