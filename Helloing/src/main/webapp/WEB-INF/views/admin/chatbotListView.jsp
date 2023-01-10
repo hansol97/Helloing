@@ -105,16 +105,16 @@
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="searchChatbot.ad" method="get">
                                 <td>
-                                    <select class="admin-search_form" name="" id="">
-                                        <option value="">키워드명</option>
-                                        <option value="">내용</option>
+                                    <select class="admin-search_form" name="condition" id="chatbotSeachtSelect" >
+                                        <option value="chatbotName">키워드명</option>
+                                        <option value="chatbotContent">내용</option>
                                     </select>
                                 </td>
                                 <td>
                                     <div class="text">
-                                        <input type="text" class="admin-input_form" name="keyword">
+                                        <input type="text" class="admin-input_form" name="keyword" id="chatbot_search_input">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
@@ -133,37 +133,35 @@
                 
                 <script>
                     $(function(){
-						$('#updateChatbot').click(function(){
-							var chatbotQ = '';
-							var list = $(".cbox");
-							for(var i = 0; i < list.length; i++){
-								if(list[i].checked){
-									chatbotQ = list[i].value;
-								}
-							};
-							if($('input[type=checkbox]:checked').length == 1){
-								$.ajax({
-									url : 'chatbotUpdateForm.ad'
-									,data : {originChatbotQ : chatbotQ}
-									,success : function(c){
-										$('#update_chatbotQ').val(c.chatbotQ);
-										$('#update_chatbotA').val(c.chatbotA);
-										$('#update_ori_chatbotQ').val(c.originChatbotQ);
-										openModal(2)
-										var chatbotQ = '';
-									}
-									,error : function(){
-										console.log('실패');
-									}
-								});
-							}
-							else{
-								alert('하나만 선택하세요');
-							}
-							console.log(chatbotQ);
+                        $('#updateChatbot').click(function(){
+                            var chatbotQ = '';
+                            var list = $(".cbox");
+                            if($('input[type=checkbox]:checked').length == 1){
+                                list.each(function(index, value){
+                                    if($(value).prop('checked')){
+                                        console.log($(value).parents('td').next()[0].outerText);
+                                        $('#update_chatbotQ').val($(value).parents('td').next()[0].outerText);
+                                        $('#update_chatbotA').val($(value).parents('td').next().next()[0].outerText);
+                                        $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].outerText);
+                                        openModal(2)
+                                    }
+                                })
+                            }
+                            else{
+                                alert('하나만 선택하세요');
+                            }
+                        });
+                        
+                        if('${map.condition}' != ''){
+	   						if('${ map.condition }' == "chatbotName"){
+	   							$('select option:eq(0)').prop('selected', true);
+	   						}else{
+	   							$('select option:eq(1)').prop('selected', true);
+	   						};
+	    					
+	   						$('#chatbot_search_input').val('${map.keyword}');
+                        }
 							
-							
-						});
 					})      
 					
 					function delConfirm(){
@@ -211,8 +209,8 @@
 								}
 							}
 						})
-						
 					};
+					
                 </script>
 
                 <br>
@@ -231,7 +229,9 @@
                         	<c:choose>
                         		<c:when test="${ empty list }" >
                         			<tr>
-                        				조회할 키워드가 없습니다.
+                        				<td colspan="3">
+                        					조회할 키워드가 없습니다.
+                        				</td>
                         			</tr>
                         		</c:when>
                         		<c:otherwise>

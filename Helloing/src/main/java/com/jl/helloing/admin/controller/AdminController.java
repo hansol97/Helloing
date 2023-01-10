@@ -1,5 +1,7 @@
 package com.jl.helloing.admin.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
@@ -101,16 +102,6 @@ public class AdminController {
 		return mv;
 	}
 	
-	// 챗봇 키워드 수정폼
-	@ResponseBody
-	@RequestMapping(value="chatbotUpdateForm.ad", produces="application/json; charset=UTF-8")
-	public String chatbotUpdateForm(String originChatbotQ) {
-		Chatbot c = adminService.chatbotUpdateForm(originChatbotQ);
-		c.setOriginChatbotQ(originChatbotQ);
-		
-		return new Gson().toJson(c);
-	}
-	
 	// 챗봇 키워드 수정
 	@RequestMapping("updateChatbot.ad")
 	public String updateChatbot(Chatbot c, Model m) {
@@ -130,6 +121,30 @@ public class AdminController {
 	@RequestMapping("deleteChatbot.ad")
 	public int deleteChatbot(@RequestParam(value="cbox[]")List<String> cbox, Model m) {
 		return adminService.deleteChatbot(cbox);
+	}
+	
+	// 챗봇 검색
+	@RequestMapping("searchChatbot.ad")
+	public ModelAndView searchChatbot(@RequestParam(value="cpage", defaultValue="1") int currentPage
+									 ,String condition, String keyword, ModelAndView mv) {
+		
+		
+		HashMap<String, String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchChatbotCount(map), currentPage, 10, 5);
+		
+		ArrayList<Chatbot> list = adminService.searchChatbot(pi, map);
+		
+		mv.addObject("list", list)
+		  .addObject("map", map)
+		  .setViewName("admin/chatbotListView");
+		
+		return mv;
+	}
+
+	private void addObject(String string, HashMap<String, String> map) {
 	}
 	
 	
