@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<result column="ADDRESS" 				property="address" />
   	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
   </resultMap>
-
-	<select id="loginCompany" parameterType="business" resultMap="businessResultSet">
+ 
+	<select id="loginCompany" parameterType="_int" resultMap="businessResultSet">
 		select
 				business_no,
 				mem_no,
@@ -20,11 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				address,
 				business_enrolldate
 		  from
-		  		business b
-		  join
-		  		member m on(m.mem_no = b.mem_no)
+		  		business
 		 where
-		 		b.mem_no = #{ memNo }
+		 		mem_no = #{ memNo }
 	</select>
 
 

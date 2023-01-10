@@ -30,8 +30,8 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	// 파트너 기업 로그인
 	@Override
-	public Business loginCompany(Business b) {
-		return businessDao.loginCompany(b, sqlSession);
+	public Business loginCompany(int memNo) {
+		return businessDao.loginCompany(memNo, sqlSession);
 	}
 
 
