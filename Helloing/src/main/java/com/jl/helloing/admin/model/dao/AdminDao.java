@@ -61,5 +61,9 @@ public class AdminDao {
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.searchChatbot", map, rowBounds);
 	}
+	
+	public String selectChatbotA(SqlSessionTemplate sqlSession, HashMap map) {
+		return sqlSession.selectOne("adminMapper.selectChatbotA", map);
+	}
 
 }
