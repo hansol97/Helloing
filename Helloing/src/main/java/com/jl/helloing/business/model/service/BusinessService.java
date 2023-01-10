@@ -9,6 +9,8 @@ import com.jl.helloing.product.model.vo.Accomm;
 public interface BusinessService {
 	// 파트너 기업 등록
 	int insertCompany(Business b);
+	
+	Business loginCompany(Business b);
 
 
 	
@@ -69,4 +71,5 @@ public interface BusinessService {
 	
 	
 	
+
 }

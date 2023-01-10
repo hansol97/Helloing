@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.jl.helloing.business.model.dao.BusinessDao;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
+
 import com.jl.helloing.product.model.vo.Accomm;
 
 @Service
@@ -25,6 +26,12 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int insertCompany(Business b) {
 		return businessDao.insertCompany(b, sqlSession);
+	}
+	
+	// 파트너 기업 로그인
+	@Override
+	public Business loginCompany(Business b) {
+		return businessDao.loginCompany(b, sqlSession);
 	}
 
 

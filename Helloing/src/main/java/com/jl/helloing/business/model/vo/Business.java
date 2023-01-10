@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Business {
 
-	private int businessNo; //BUSINESS_NO	NUMBER
+	private String businessNo; //BUSINESS_NO	NUMBER
 	private int memNo; //MEM_NO	NUMBER
 	private String businessName; //BUSINESS_NAME	VARCHAR2(100 BYTE)
 	private String address; //ADDRESS	VARCHAR2(1000 BYTE)

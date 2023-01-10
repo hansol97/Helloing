@@ -80,6 +80,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.searchChatbot(sqlSession, pi, map);
 	}
 
+	@Override
+	public String selectChatbotA(HashMap map) {
+		return adminDao.selectChatbotA(sqlSession, map);
+	}
+
 	
 
 	

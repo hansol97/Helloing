@@ -33,20 +33,20 @@
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>
 						<td width="400px">
-							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력"/>
+							<input id="amName" type="text" name="accommName" height="100px" size="40" required placeholder="아무튼 입력"/>
 						</td>
 					</tr>
 					<tr>
 						<th style="vertical-align: middle;">숙소 주소 :</th>
 						<td>
 							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기 클릭 🏠" class="button button--ujarak button--round-s"><br><br>
-							<input type="text" id="sample6_address" placeholder="주소">&nbsp;
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+							<input type="text" id="sample6_address" placeholder="주소" required>&nbsp;
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" required>
 							<input type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="hidden" id="LAT" name="LAT" placeholder="위도" value="">
 							<input type="hidden" id="LNG" name="LNG" placeholder="경도" value="">
-							<!-- 컨트롤러에서 주소 합쳐서 넣기 -->
-							<!-- <input type="hidden" name="address" id="" value=""> -->
+							<input type="hidden" class="hidden" name="businessNo" value="${sessionScope.loginCompany.businessNo}"/><!-- 사업자번호 히든 -->
+							<input type="hidden" name="address" id="" value=""> <!-- 제이쿼리로 합친 주소+상세주소 를 밸류에 -->
 							<script>
 								var query = ''; // 주소
 								var themeObj = {
@@ -128,14 +128,14 @@
 					<tr>
 						<th style="vertical-align: middle;">숙소 설명 :</th>
 						<td height="40px">
-							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
+							<textarea name="accommContent" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력" required></textarea>
 						</td>
 					</tr>
 
 					<tr>
 						<th>등급 선택 :</th>
 						<td>
-							<select name="rating" id="rating">
+							<select name="grade" id="rating" required> 
 								<option value='1'>1 등급</option>
 								<option value='2'>2 등급</option>
 								<option value='3'>3 등급</option>
@@ -150,7 +150,7 @@
 					<tr>
 						<th>카테고리 :</th>
 						<td>
-							<select name="category" id="category"> 
+							<select name="category" id="category" required> 
 								<option value='hotel'>호텔</option>
 								<option value='pension'>펜션</option>
 								<option value='motel'>모텔</option>
@@ -162,14 +162,19 @@
 					<tr>
 						<th>체크인 / 체크아웃 시간 : </th>
 						<td>
-							<input type="time" name="checkIn" id="checkIn"/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-							<input type="time" name="checkOut" id="checkOut"/>
+							<input type="time" name="checkIn" id="checkIn" required/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+							<input type="time" name="checkOut" id="checkOut" required/>
 							<script>
 								$(function(){
 									$('#checkOut').focusout(function(){
 										var chekInout =  $('#checkOut').val() + " / " + $('#checkIn').val() 
 										$("input[name=checkInout]").val(chekInout);
 									});
+									$('#sample6_detailAddress').focusout(function(){
+										var fullAddress =  $('#sample6_address').val() + " " + $('#sample6_detailAddress').val() 
+										$("#address").val(fullAddress);
+									});
+
 								})
 							</script>
 							<input type="hidden" name="checkInout">
@@ -178,16 +183,15 @@
 					<tr>
 						<th style="vertical-align: middle;">환불 규정 : </th>
 						<td>
-							<textarea name="refundDescription" rows="5" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
+							<textarea name="refund" rows="5" style="resize: none; width: 70%;" required placeholder="아무튼 입력"></textarea>
 						</td>
 					</tr>
 
 
 				</table>
-					<input type="hidden" class="hidden" name="businessNo" value=""/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" /><br><br>
+						<input type="file" name="accommPhoto1" required/><br><br>
 						<input type="file" name="accommPhoto2" /><br><br>
 						<input type="file" name="accommPhoto3" /><br><br><br><br>
 					</div>
