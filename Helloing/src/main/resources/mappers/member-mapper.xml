@@ -158,7 +158,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insertPlanner" parameterType="planner">
 		INSERT 
-			ALL
 				INTO 
 					PLANNER 
 			VALUES (
@@ -167,10 +166,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ startDate }
 					, #{ endDate }
 					)
+	</insert>
+	<insert id="insertPlannerMem" parameterType="_int">
+		INSERT 
 				INTO
 					PLANNER_MEM
-			VALUES (
-					SEQ_PLANNO.CURRVAL,
+			VALUES	(
+					SEQ_PLANNO.CURRVAL
 					, #{ memNo }
 					)
 	</insert>
