@@ -264,15 +264,17 @@ public class BusinessController {
 	}
 	
 	// 기업 파트너 로그인
+	/*
 	@RequestMapping("login.bu")
 	public String loginCompany(Business b, HttpSession session) {
-	Business loginCompany = businessService.loginCompany(b);
-	return null;
 	
+		Business loginCompany = businessService.loginCompany(b);
+		
+			session.setAttribute("loginCompany", loginCompany);
 	
-	
-	
+		return null;
 	}
+	*/
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
 	public String insertCompany(HttpSession session, Business b) {

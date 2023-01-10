@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jl.helloing.business.model.service.BusinessService;
+import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -26,13 +28,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	@Autowired
+	private BusinessService businessService;
 	
 	//승준
 	//로그인
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
+	public ModelAndView loginMember(Business b, Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
+		Business loginCompany = businessService.loginCompany(b);
 		
 		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
@@ -40,6 +45,9 @@ public class MemberController {
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginUser", loginUser);
+			
+			
 			mv.setViewName("redirect:/");
 			
 		} else {

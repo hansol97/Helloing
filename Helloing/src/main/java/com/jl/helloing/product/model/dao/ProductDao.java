@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Repository
@@ -21,5 +22,9 @@ public class ProductDao {
 	
 	public ArrayList<Ticket> selectTicketList(SqlSessionTemplate sqlSession, int activityNo){
 		return (ArrayList)sqlSession.selectList("productMapper.selectTicketList", activityNo);
+	}
+	
+	public ArrayList<ActivityReview> selectReviewList(SqlSessionTemplate sqlSession, int activityNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectReviewList", activityNo);
 	}
 }

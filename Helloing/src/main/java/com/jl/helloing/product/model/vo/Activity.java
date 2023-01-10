@@ -11,4 +11,5 @@ public class Activity {
 	private String activityContent;
 	private String endDate;
 	
+	private double avg; // 별점 평균
 }
