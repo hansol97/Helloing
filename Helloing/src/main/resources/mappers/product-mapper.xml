@@ -7,13 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap id="AccommResultSet" type="accomm">
         <result column="ACCOMM_NO"       property="accommNo" />
         <result column="BUSINESS_NO"   property="businessNo" />
-        <result column="ACCOMM_NAME"  property="activityContent" />
+        <result column="ACCOMM_NAME"  property="accommName" />
         <result column="ADDRESS"    property="address" />
         <result column="LAT"    property="lat" />
         <result column="LNG"    property="lng" />
         <result column="GRADE"    property="grade" />
         <result column="REFUND"    property="refund" />
         <result column="CHECKINOUT"    property="checkInout" />
+        <result column="ENDDATE"    property="endDate" />
         <result column="ACCOMM_CONTENT"    property="accommContent" />
         <result column="CATEGORY"    property="category" />
     </resultMap>
@@ -99,14 +100,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	<!-- 숙소 집어넣기 -->
-	<!--  
 	<insert id="insertAccom" parameterType="accomm">
-		
-	
-	
+		INSERT
+		  INTO
+				        ACCOMM
+				        (
+				        ACCOMM_NO,
+				        BUSINESS_NO,
+				        ACCOMM_NAME,
+				        ADDRESS,
+				        LAT,
+				        LNG,
+				        GRADE,
+				        REFUND,
+				        CHECKINOUT,
+				        END_DATE,
+				        ACCOMM_CONTENT,
+				        CATEGORY
+				        )
+		VALUES
+				        (
+				        SEQ_ACCNO.NEXTVAL,        
+				        #{businessNo},
+				        #{accommName},
+				        #{address},
+				        #{lat},
+				        #{lng},
+				        #{grade},
+				        #{refund},
+				        #{checkInout},
+				        #{endDate},
+				        #{accommContent},
+				        #{category}
+				        )
 	</insert>
 	
-	-->
+
 	
 	
 	

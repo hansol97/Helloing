@@ -69,4 +69,5 @@ public interface BusinessService {
 	
 	
 	
+	Business loginCompany(Business b);
 }

@@ -26,4 +26,7 @@ public class BusinessDao {
 		return sqlSession.insert("product-mapper.insertAccomPhoto", list);
 	}
 	
+	public Business loginCompany(Business b, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("businessMapper.loginCompany", b);
+	}
 }
