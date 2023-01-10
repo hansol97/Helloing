@@ -57,4 +57,8 @@ public class MemberDao {
 	public ArrayList<Planner> plannerList(int memNo, SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("memberMapper.plannerList", memNo);
 	}
+
+	public int insertPlanner(Planner pl, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.insertPlanner", pl);
+	}
 }
