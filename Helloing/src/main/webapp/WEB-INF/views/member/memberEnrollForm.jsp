@@ -66,6 +66,7 @@ height: 30px;
 				<label for="phone" > 핸드폰번호 &nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="text" id="phone" name="email" required>
 				</label>
+				이메일하기
 				<br><br><br><br>
 				<button type="submit">회원가입</button>
 			</form>
