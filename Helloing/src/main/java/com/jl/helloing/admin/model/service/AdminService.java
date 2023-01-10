@@ -29,6 +29,6 @@ public interface AdminService {
 	int selectSearchChatbotCount(HashMap map);
 	
 	// 챗봇 검색
-	ArrayList<Chatbot> searchChatbot(HashMap map);
+	ArrayList<Chatbot> searchChatbot(PageInfo pi, HashMap<String, String> map);
 
 }

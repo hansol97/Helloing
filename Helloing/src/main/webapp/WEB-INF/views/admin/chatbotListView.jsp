@@ -219,7 +219,9 @@
                         	<c:choose>
                         		<c:when test="${ empty list }" >
                         			<tr>
-                        				조회할 키워드가 없습니다.
+                        				<td colspan="3">
+                        					조회할 키워드가 없습니다.
+                        				</td>
                         			</tr>
                         		</c:when>
                         		<c:otherwise>
