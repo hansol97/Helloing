@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 					<sapn class="acticityName">${ act.activityName }</sapn>
 				</div>
 				<div>
-					<p onclick="selectReview();">⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 				<div>
@@ -45,7 +46,8 @@
 							<c:forEach items="${ ticketList }" var="t">
 								<div class="ticketbox">
 									<div class="ticket-info">
-										<p><span class="ticketName">${ t.ticketName }</span></p>
+										<p><span class="ticketName">${ t.ticketName }</span><br>
+											${ t.startDate } ~ ${ t.endDate }</p>
 										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
 									</div>
 									<div class="ticket-price">
@@ -104,11 +106,11 @@
 				<hr>
 
 				<div>
-					<h3 class="reviewtitle">후기 173</h3>
+					<h3 class="reviewtitle">후기 ${ fn:length(actReviewList) }</h3>
 					<div class="reviewstar">
 						<div>
-							<p><span>4.3</span><br>
-							⭐⭐⭐⭐⭐</p>
+							<p><span>${ act.avg }</span><br>
+								⭐⭐⭐⭐⭐</p>
 						</div>
 						<div class="starlist">
 							<table>
@@ -141,6 +143,7 @@
 						</div>
 					</div>
 
+					<!-- 
 					<div class="radio-sort">
 						<input type="radio" name="radio-sort" id="recomm"><label for="recomm">추천순</label>
 						<input type="radio" name="radio-sort" id="manyreview"><label for="manyreview">많은 후기순</label>
@@ -148,50 +151,20 @@
 						<input type="radio" name="radio-sort" id="lowprice"><label for="lowprice">낮은 가격순</label>
 						<input type="radio" name="radio-sort" id="highprice"><label for="highprice">높은 가격순</label>
 					</div>
+					-->
 					
 					<div><!-- 리뷰 포문 돌리기 -->
-						<div class="reviewbox">
-							<p>⭐⭐⭐⭐⭐ 김*미<br>
-								2022.08.08 | 디럭스 패밀리트윈</p>
-							<p class="review-content">너무너무 깨끗하고<br>
-								가성비 최고!<br>
-								이런 곳이 진작 있는 줄 알았다면...</p>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<p>⭐⭐⭐⭐⭐ 김*미<br>
-								2022.08.08 | 디럭스 패밀리트윈</p>
-							<p class="review-content">너무너무 깨끗하고<br>
-								가성비 최고!<br>
-								이런 곳이 진작 있는 줄 알았다면...</p>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<p>⭐⭐⭐⭐⭐ 김*미<br>
-								2022.08.08 | 디럭스 패밀리트윈</p>
-							<p class="review-content">너무너무 깨끗하고<br>
-								가성비 최고!<br>
-								이런 곳이 진작 있는 줄 알았다면...</p>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<p>⭐⭐⭐⭐⭐ 김*미<br>
-								2022.08.08 | 디럭스 패밀리트윈</p>
-							<p class="review-content">너무너무 깨끗하고<br>
-								가성비 최고!<br>
-								이런 곳이 진작 있는 줄 알았다면...</p>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<p>⭐⭐⭐⭐⭐ 김*미<br>
-								2022.08.08 | 디럭스 패밀리트윈</p>
-							<p class="review-content">너무너무 깨끗하고<br>
-								가성비 최고!<br>
-								이런 곳이 진작 있는 줄 알았다면...</p>
-						</div>
-						<hr>
+						<c:forEach items="${ actReviewList }" var="a">
+							<div class="reviewbox">
+								<p>⭐⭐⭐⭐⭐ ${  a.memName }<br>
+									${ a.createDate} | ${ a.ticketName }</p>
+								<p class="review-content">${ a.reviewContent }</p>
+							</div>
+							<hr>
+						</c:forEach>
 					</div>
 
+					<%-- 
 					<div class="page-bar"><!-- 페이징바 리뷰는 5개씩 보여줄거다 -->
 						<ul>
 		                    <li><a href="">&lt;</a></li>
@@ -203,7 +176,8 @@
 		                    <li><a href="">&gt;</a></li>
                 		</ul>
 					</div>
-
+					--%>
+					
 				</div>
 
 			</div>
