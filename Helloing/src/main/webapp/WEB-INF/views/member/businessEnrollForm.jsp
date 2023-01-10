@@ -71,30 +71,24 @@ button:hover {
 						<td><input type="text" name="businessNo" required></td>
 					</tr>
 					<tr>
-						<td>사업자주소 &nbsp;&nbsp;</td>
-						<td><input type="text" class="address" name="address"></td>
-						<td><input type="text" class="addAddress"></td>
-						<!-- 
-							<input type="text" id="sample6_postcode" placeholder="우편번호">
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-							<input type="text" id="sample6_address" placeholder="주소">
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-							<input type="hidden" id="LAT" name="LAT" placeholder="위도" value="">
-							<input type="hidden" id="LNG" name="LNG" placeholder="경도" value="">
-							-->
+						<td>사업자주소 &nbsp;&nbsp;</td><input type="hidden" id="address" name="address">
+						<td>
+						<input type="text" id="sample6_postcode" placeholder="우편번호">
+						<br>
+						<input type="text" id="sample6_address" placeholder="주소">
+						<br>
+						<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+						<br>
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+						</td>
 					</tr>
-					<tr>
-						<td></td>
-						<td><button id="btn-address" onclick="address();">주소 찾기</button></td>
-					</tr>
+
 				</table>
 				<button type="submit" class="join-button">파트너 등록</button>
 			</form>
 
 		</div>
 	</div>
-
-<!-- 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 	</script>
@@ -152,30 +146,12 @@ button:hover {
 						}
 					}).open();
 		}
-		$(function(){
-			// 주소인풋 밸류가 변경되면 (주소가 입력되면) 위도경도찾아 넣기
-			$('#sample6_detailAddress').on('focus', function(){
-				address = $('#sample6_address').val(); 
-				// console.log('주소(address) : ' + address);
-				$.ajax({
-					url : 'getGeocode.etc',
-					data : {address : address},
-					success : result => {
-						// console.log(result);
-						// console.log('위도' + result.documents[0].x);
-						// console.log('경도' + result.documents[0].y);
-						$('#LAT').val(result.documents[0].x);
-						$('#LNG').val(result.documents[0].y);
-
-					},
-					error : () =>{
-						console.log('Error occurred');
-					}
-				});
-			});
+		$('#sample6_detailAddress').focusout(function(){
+			var fullAddress =  $('#sample6_address').val() + " " + $('#sample6_detailAddress').val() 
+			$("#address").val(fullAddress);
 		});
 	</script>
-	 -->
+
 
 
 
