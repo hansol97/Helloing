@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jl.helloing.member.model.dao.MemberDao;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Book;
 import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
-import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 
 @Service
@@ -44,24 +44,24 @@ public class MemberServiceImpl implements MemberService{
 	//혜진
 	
 	@Override
-	public ArrayList<Book> selectScheduled(int userNo) {
+	public ArrayList<Book> selectScheduled(int memNo) {
 		return null;
 	}
 
 	@Override
-	public ArrayList<Book> selectLast(int userNo) {
+	public ArrayList<Book> selectLast(int memNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Book> selectCancelled(int userNo) {
+	public ArrayList<Book> selectCancelled(int memNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Book reservationDetail(int userNo, int orderNo) {
+	public Book reservationDetail(int memNo, int orderNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -84,26 +84,32 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberUpdate(m, sqlSession);
 	}
 
+	//찜한 숙소 리스트 조회
 	@Override
-	public ArrayList<Accomm> wishAccommList(int userNo) {
+	public ArrayList<AccommWish> wishAccommList(int memNo) {
+		return memberDao.wishAccommList(memNo, sqlSession);
+	}
+
+	//찜한 숙소 삭제
+	@Override
+	public int deleteWishAccount(AccommWish aw) {
+		return memberDao.deleteWishAccount(aw, sqlSession);
+	}
+
+	@Override
+	public ArrayList<Activity> wishActivityList(int memNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Activity> wishActivityList(int userNo) {
+	public ArrayList<Planner> plannerList(int memNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Planner> plannerList(int userNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Plan planDetailView(int userNo, int planNo) {
+	public Plan planDetailView(int memNo, int planNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -113,6 +119,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

@@ -306,18 +306,6 @@
 
 </head>
 <body>
-<<<<<<< HEAD
- <script>
- 	var msg =${ alertMsg };
- 	
- 	if(msg != null){
- 		alert(msg);	
- 	}
- 	
- 
- </script>
-=======
-
 
 <c:if test="${not empty alertMsg}">
     <script>
@@ -326,7 +314,7 @@
     <c:remove var="alertMsg" scope="session"/>
 </c:if>
 
->>>>>>> c4d92d704014e8c91ccfe6754864cd6c73d76561
+
   <!--HEADER-->
   <header>
     <div class="inner">
@@ -363,6 +351,10 @@
 		            <li style="margin: auto;">
 		              ${ loginUser.memName }님 반갑소잉👋
 		            </li>
+		          
+		          <li>
+		          	<a href="logout.me">로그아웃</a>
+		          </li>
 		            
 		          <li>
 		            <a href="businessEnrollForm.bu">기업 회원 신청</a>

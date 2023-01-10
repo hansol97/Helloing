@@ -1,8 +1,11 @@
 package com.jl.helloing.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Member;
 
 @Repository
@@ -30,5 +33,13 @@ public class MemberDao {
 
 	public int memberUpdate(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.update("memberMapper.memberUpdate", m);
+	}
+	
+	public ArrayList<AccommWish> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("memberMapper.wishAccommList", memNo);
+	}
+	
+	public int deleteWishAccount(AccommWish aw, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteWishAccount", aw);
 	}
 }

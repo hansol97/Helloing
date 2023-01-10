@@ -1,5 +1,7 @@
 package com.jl.helloing.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.Member;
 
 @Controller
@@ -44,6 +47,12 @@ public class MemberController {
 		}
 		
 		return mv;
+	}
+	// 로그아웃
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) { 
+		session.invalidate();
+		return "redirect:/";
 	}
 	//로그인 창
 	@RequestMapping("loginForm.me")
@@ -170,8 +179,6 @@ public class MemberController {
 		return mv;
 	}
 	
-
-	
 	//회원정보 수정 - 수정(update)
 	@RequestMapping("memberUpdate.hj")
 	public ModelAndView memberUpdate(Member m, HttpSession session, ModelAndView mv) {
@@ -186,11 +193,34 @@ public class MemberController {
 		return mv;
 	}
 	
-	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
-	public String wishAccommList(){
-		return "member/wishAccommList";
+	public ModelAndView wishAccommList(HttpSession session, ModelAndView mv){
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<AccommWish> list = memberService.wishAccommList(memNo);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/wishAccommList");
+		}else {
+			mv.addObject("errorMsg", "찜한 숙소가 없습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	//찜한 숙소 삭제
+	@RequestMapping("deleteWishAccount.hj")
+	public ModelAndView deleteWishAccount(HttpSession session, AccommWish aw, ModelAndView mv) {
+		
+		if(memberService.deleteWishAccount(aw)>0) {
+			mv.setViewName("redirect:wishAccommList.hj");
+		}else {
+			session.setAttribute("alertMsg", "delect");
+			mv.setViewName("redirect:wishAccommList.hj");
+		}
+		
+		return mv;
 	}
 	
 	//찜한 액티비티 조회

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +19,14 @@
 			<div class="main">
 
 				<div class="top-info">
-					<sapn class="acticityName">[QR바로입장] 롯데월드 어드벤처 종합이용권</sapn>
+					<sapn class="acticityName">${ act.activityName }</sapn>
 				</div>
 				<div>
-					<p>⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p onclick="selectReview();">⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 				<div>
-					<p>📆 유효기간 (2023.01.01 ~ 2023.03.25) 내 사용</p>
+					<p>📆 유효기간 (${ act.endDate }) 내 사용</p>
 				</div>
 				<hr>
 
@@ -41,53 +42,39 @@
 				<div>
 					<form action="reserve.activity" method="post">
 						<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
-							<div class="ticketbox">
-								<div class="ticket-info">
-									<p><span class="ticketName">종일 종합이용권 1인</span><br>
-										* 주중/주말 공통<br>
-										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+							<c:forEach items="${ ticketList }" var="t">
+								<div class="ticketbox">
+									<div class="ticket-info">
+										<p><span class="ticketName">${ t.ticketName }</span></p>
+										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
+									</div>
+									<div class="ticket-price">
+										<span>${ t.price }원</span>
+									</div>
+									<div class="ticket-count">
+										<button class="btn-minus" type="button">-</button>
+										<span class="count">0</span>
+										<button class="btn-plus" type="button">+</button>
+									</div>
 								</div>
-								<div class="ticket-price">
-									<span>38,600원</span>
+							</c:forEach>
+							<!-- 
+								<div class="ticketbox">
+									<div class="ticket-info">
+										<p><span class="ticketName">종일 종합이용권 1인</span><br>
+											* 주중/주말 공통<br>
+											* 롯데월드파크 + 민속박물관 모두 이용가능</p>
+									</div>
+									<div class="ticket-price">
+										<span>38,600원</span>
+									</div>
+									<div class="ticket-count">
+										<button class="btn-minus" type="button">-</button>
+										<span class="count">0</span>
+										<button class="btn-plus" type="button">+</button>
+									</div>
 								</div>
-								<div class="ticket-count">
-									<button class="btn-minus" type="button">-</button>
-									<span class="count">0</span>
-									<button class="btn-plus" type="button">+</button>
-								</div>
-							</div>
-							<div class="ticketbox">
-								<div class="ticket-info">
-									<p><span class="ticketName">종일 종합이용권 2인</span><br>
-										* 주중/주말 공통<br>
-										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
-								</div>
-								<div class="ticket-price">
-									<span>380원</span>
-								</div>
-								<div class="ticket-count">
-									<button class="btn-minus" type="button">-</button>
-									<span class="count">0</span>
-									<button class="btn-plus" type="button">+</button>
-								</div>
-							</div>
-							<div class="ticketbox">
-								<div class="ticket-info">
-									<p><span class="ticketName">종일 종합이용권 3인</span><br>
-										* 주중/주말 공통<br>
-										* 롯데월드파크 + 민속박물관 모두 이용가능</p>
-								</div>
-								<div class="ticket-price">
-									<span>38,600원</span>
-								</div>
-								<div class="ticket-count">
-									<button class="btn-minus" type="button">-</button>
-									<span class="count">0</span>
-									<button class="btn-plus" type="button">+</button>
-								</div>
-							</div>
-							
-							
+							 -->
 							<div class="order-info"> <!-- 자바스크립트로 쿠폰 수량을 늘렸을때만 아래 코드 나오기 -->
 								
 							</div>
@@ -106,7 +93,7 @@
 
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+					<div><p>${ act.activityContent }</p></div>
 				</div>
 				<hr>
 
