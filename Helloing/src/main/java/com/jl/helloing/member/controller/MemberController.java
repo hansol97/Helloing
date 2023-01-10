@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 
 @Controller
@@ -211,10 +212,9 @@ public class MemberController {
 	
 	//찜한 숙소 삭제
 	@RequestMapping("deleteWishAccount.hj")
-	public ModelAndView deleteWishAccount(HttpSession session, AccommWish aw, ModelAndView mv) {
+	public ModelAndView deleteWishAccomm(HttpSession session, AccommWish aw, ModelAndView mv) {
 		
-		
-		if(memberService.deleteWishAccount(aw)>0) {
+		if(memberService.deleteWishAccomm(aw)>0) {
 			mv.setViewName("redirect:wishAccommList.hj");
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
@@ -226,8 +226,32 @@ public class MemberController {
 	
 	//찜한 액티비티 조회
 	@RequestMapping("wishActivityList.hj")
-	public String wishActivityList() {
-		return "member/wishActivityList";
+	public ModelAndView wishActivityList(HttpSession session, ModelAndView mv) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<ActivityWish> list = memberService.wishActivityList(memNo);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/wishActivityList");
+		}else {
+			mv.addObject("errorMsg", "찜한 숙소가 없습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	//찜한 액티비티 삭제 
+	@RequestMapping("deleteWishActivity.hj")
+	public String deleteWishActivity(HttpSession session, ActivityWish aw, ModelAndView mv) {
+		if(memberService.deleteWishAccomm(aw)>0) {
+			mv.setViewName("redirect:wishAccommList.hj");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
+			mv.setViewName("redirect:wishAccommList.hj");
+		}
+		
+		return mv;
 	}
 	
 	//후기 작성 페이지 
