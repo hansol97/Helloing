@@ -116,8 +116,7 @@ public class MemberServiceImpl implements MemberService{
 	//플래너 생성
 	@Override
 	public int insertPlanner(Planner pl) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.insertPlanner(pl, sqlSession);
 	}
 	
 	//플래너 수정

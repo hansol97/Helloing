@@ -8,4 +8,6 @@ public class Planner {
 	private String plannerName; // 플래너이름
 	private int startDate; // 시작날짜
 	private int endDate; // 종료날짜
+	
+	private int memNo;
 }

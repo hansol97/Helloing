@@ -284,7 +284,14 @@ public class MemberController {
 	@RequestMapping("insertPlanner.hj")
 	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
 		
-		if(memberService.insertPlanner)
+		System.out.println(pl);
+		
+		if(memberService.insertPlanner(pl)>0) {
+			mv.setViewName("redirect:plannerMain.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
+			mv.setViewName("redirect:plannerMain.hj");
+		}
 		return mv;
 	}
 	
