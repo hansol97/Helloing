@@ -284,6 +284,7 @@ public class MemberController {
 	@RequestMapping("insertPlanner.hj")
 	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
 		
+		if(memberService.insertPlanner)
 		return mv;
 	}
 	

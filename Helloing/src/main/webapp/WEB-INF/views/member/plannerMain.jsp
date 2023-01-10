@@ -121,7 +121,7 @@
     		<h5 style="font-weight:600;">여행 일정 등록</h5>
 			<hr>
 	    	<br>
-	    	<form action="" method="post">
+	    	<form action="insertPlanner.hj" method="post">
 		    	<div>
 		    	여행 시작 <input type="date" id="start" name="startDate"> ~ 여행 종료  <input type="date" id="start" name="endDate">
 		    	</div>
