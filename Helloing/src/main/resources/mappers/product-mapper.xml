@@ -100,7 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
-	
+		
 	
 	
 	</insert>
