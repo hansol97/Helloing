@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Planner;
 
 @Controller
 public class MemberController {
@@ -211,12 +213,12 @@ public class MemberController {
 	
 	//찜한 숙소 삭제
 	@RequestMapping("deleteWishAccount.hj")
-	public ModelAndView deleteWishAccount(HttpSession session, AccommWish aw, ModelAndView mv) {
+	public ModelAndView deleteWishAccomm(HttpSession session, AccommWish aw, ModelAndView mv) {
 		
-		if(memberService.deleteWishAccount(aw)>0) {
+		if(memberService.deleteWishAccomm(aw)>0) {
 			mv.setViewName("redirect:wishAccommList.hj");
 		}else {
-			session.setAttribute("alertMsg", "비밀번호 변경 성공");
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
 			mv.setViewName("redirect:wishAccommList.hj");
 		}
 		
@@ -225,8 +227,32 @@ public class MemberController {
 	
 	//찜한 액티비티 조회
 	@RequestMapping("wishActivityList.hj")
-	public String wishActivityList() {
-		return "member/wishActivityList";
+	public ModelAndView wishActivityList(HttpSession session, ModelAndView mv) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<ActivityWish> list = memberService.wishActivityList(memNo);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/wishActivityList");
+		}else {
+			mv.addObject("errorMsg", "찜한 숙소가 없습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	//찜한 액티비티 삭제 
+	@RequestMapping("deleteWishActivity.hj")
+	public ModelAndView deleteWishActivity(HttpSession session, ActivityWish aw, ModelAndView mv) {
+		if(memberService.deleteWishActivity(aw)>0) {
+			mv.setViewName("redirect:wishActivityList.hj");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
+			mv.setViewName("redirect:wishActivityList.hj");
+		}
+		
+		return mv;
 	}
 	
 	//후기 작성 페이지 
@@ -237,9 +263,32 @@ public class MemberController {
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
-	public String plannerList() {
-		return "member/plannerMain";
+	public ModelAndView plannerList(ModelAndView mv, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		ArrayList<Planner> list = memberService.plannerList(memNo);
+		if(list!=null) {
+			int today = Integer.parseInt(new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date()));
+			mv.addObject("today", today);
+			mv.addObject("list", list);
+			mv.setViewName("member/plannerMain");
+			
+		}else {
+			mv.addObject("errorMsg", "플래너 조회에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
+	//플래너 추가
+	@RequestMapping("insertPlanner.hj")
+	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
+		
+		if(memberService.insertPlanner)
+		return mv;
+	}
+	
+	
 	//플랜 상세페이지
 	@RequestMapping("planDetailView.hj")
 	public String planDetailView() {

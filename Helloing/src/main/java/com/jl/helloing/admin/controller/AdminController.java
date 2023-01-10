@@ -1,5 +1,9 @@
 package com.jl.helloing.admin.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
@@ -73,7 +76,7 @@ public class AdminController {
 	//---------------- 챗봇 ----------------
 	
 	// 챗봇 등록
-	@RequestMapping("insert.qa")
+	@RequestMapping("insertChatbot.ad")
 	public String insertChatbot(Chatbot c, Model m) {
 		
 		int result = adminService.insertChatbot(c);
@@ -100,13 +103,58 @@ public class AdminController {
 	}
 	
 	// 챗봇 키워드 수정
-	@ResponseBody
-	@RequestMapping(value="chatbotUpdate.ad", produces="application/json; charset=UTF-8")
-	public String chatbotUpdateForm(String originChatbotQ) {
-		Chatbot c = adminService.chatbotUpdateForm(originChatbotQ);
+	@RequestMapping("updateChatbot.ad")
+	public String updateChatbot(Chatbot c, Model m) {
 		
-		return new Gson().toJson(c);
+		int result = adminService.updateChatbot(c);
+		
+		if(result > 0) {
+			return "redirect:/chatbotList.ad";
+		}else {
+			m.addAttribute("alertMsg", "키워드 등록에 실패했습니다");
+			return "admin/chatbotListView";
+		}
 	}
+	
+	// 챗봇 키워드 삭제
+	@ResponseBody
+	@RequestMapping("deleteChatbot.ad")
+	public int deleteChatbot(@RequestParam(value="cbox[]")List<String> cbox, Model m) {
+		return adminService.deleteChatbot(cbox);
+	}
+	
+	// 챗봇 검색
+	@RequestMapping("searchChatbot.ad")
+	public ModelAndView searchChatbot(@RequestParam(value="cpage", defaultValue="1") int currentPage
+									 ,String condition, String keyword, ModelAndView mv) {
+		
+		
+		HashMap<String, String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchChatbotCount(map), currentPage, 10, 5);
+		
+		ArrayList<Chatbot> list = adminService.searchChatbot(pi, map);
+		
+		mv.addObject("list", list)
+		  .addObject("map", map)
+		  .setViewName("admin/chatbotListView");
+		
+		return mv;
+	}
+	
+	//------------------------ 챗봇(메뉴바) ------------------------
+	
+	@ResponseBody
+	@RequestMapping(value="adminInfo.ch", produces="text/html; charset=UTF-8")
+	public String selectChatbotA(@RequestParam(value="chatbotQ", defaultValue="[admin]안내메세지") String chatbotKeyword) {
+		String[] keywords = chatbotKeyword.split("\\s");
+		
+		String chatbotA = adminService.selectChatbotA(keywords);
+	}
+	
+	
 	
 
 }

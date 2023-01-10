@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.jl.helloing.member.model.dao.MemberDao;
 import com.jl.helloing.member.model.vo.AccommWish;
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Book;
 import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
-import com.jl.helloing.product.model.vo.Activity;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -92,22 +92,48 @@ public class MemberServiceImpl implements MemberService{
 
 	//찜한 숙소 삭제
 	@Override
-	public int deleteWishAccount(AccommWish aw) {
-		return memberDao.deleteWishAccount(aw, sqlSession);
+	public int deleteWishAccomm(AccommWish aw) {
+		return memberDao.deleteWishAccomm(aw, sqlSession);
 	}
 
+	//찜한 액티비티
 	@Override
-	public ArrayList<Activity> wishActivityList(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ActivityWish> wishActivityList(int memNo) {
+		return memberDao.wishActivityList(memNo, sqlSession);
 	}
-
+	//찜한 액티비티 삭제
+	@Override
+	public int deleteWishActivity(ActivityWish aw) {
+		return memberDao.deleteWishActivity(aw, sqlSession);
+	}
+	
+	//플래너 리스트 조회
 	@Override
 	public ArrayList<Planner> plannerList(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.plannerList(memNo, sqlSession);
 	}
 
+	//플래너 생성
+	@Override
+	public int insertPlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	//플래너 수정
+	@Override
+	public int updatePlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//플래너 삭제
+	@Override
+	public int deletePlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	@Override
 	public Plan planDetailView(int memNo, int planNo) {
 		// TODO Auto-generated method stub
@@ -119,6 +145,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

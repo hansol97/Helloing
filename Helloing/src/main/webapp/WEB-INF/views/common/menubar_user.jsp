@@ -481,6 +481,20 @@
 
       }
     });
+
+    $(function(){
+      $('#chatbot_btn').click(function(){
+        $.ajax({
+          url:'adminInfo.ch'
+          ,data : {
+              chatbotQ : $('#chat_input')
+          }
+          ,success: function(result){
+            $('#admin_chat p').html(result);
+          }
+        })
+      })
+    });
   </script>
 
 

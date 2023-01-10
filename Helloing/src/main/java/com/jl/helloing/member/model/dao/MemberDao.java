@@ -2,11 +2,14 @@ package com.jl.helloing.member.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.member.model.vo.AccommWish;
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Planner;
 
 @Repository
 public class MemberDao {
@@ -39,7 +42,19 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.wishAccommList", memNo);
 	}
 	
-	public int deleteWishAccount(AccommWish aw, SqlSessionTemplate sqlSession) {
-		return sqlSession.delete("memberMapper.deleteWishAccount", aw);
+	public int deleteWishAccomm(AccommWish aw, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteWishAccomm", aw);
+	}
+
+	public ArrayList<ActivityWish> wishActivityList(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.wishActivityList", memNo);
+	}
+
+	public int deleteWishActivity(ActivityWish aw, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteWishActivity", aw);
+	}
+
+	public ArrayList<Planner> plannerList(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.plannerList", memNo);
 	}
 }

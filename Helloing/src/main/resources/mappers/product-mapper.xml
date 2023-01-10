@@ -4,23 +4,186 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="productMapper">
 
-	<resultMap id="ActivityResultSet" type="activity">
-        <result column="ACTIVITY_NO"       property="activityNo" />
-        <result column="ACTIVITY_NAME"    property="activityName" />
+    <resultMap id="AccommResultSet" type="accomm">
+        <result column="ACCOMM_NO"       property="accommNo" />
         <result column="BUSINESS_NO"   property="businessNo" />
-        <result column="ACTIBITY_CONTENT"  property="activityContent" />
-        <result column="END_DATE"    property="endDate" />
+        <result column="ACCOMM_NAME"  property="accommName" />
+        <result column="ADDRESS"    property="address" />
+        <result column="LAT"    property="lat" />
+        <result column="LNG"    property="lng" />
+        <result column="GRADE"    property="grade" />
+        <result column="REFUND"    property="refund" />
+        <result column="CHECKINOUT"    property="checkInout" />
+        <result column="ENDDATE"    property="endDate" />
+        <result column="ACCOMM_CONTENT"    property="accommContent" />
+        <result column="CATEGORY"    property="category" />
     </resultMap>
 
+     <resultMap id="RoomResultSet"  type="room">
+        <result column="ROOM_NO"       property="roomNo" />
+        <result column="ACCOMM_NO"   property="accommNo" />
+        <result column="ROOM_NAME"  property="roomName" />
+        <result column="CAPACITY"    property="capacity" />
+        <result column="PRICE"    property="price" />
+    </resultMap>
+    
+	<resultMap id="ActivityResultSet" type="activity">
+        <result column="ACTIVITY_NO"       	property="activityNo" />
+        <result column="ACTIVITY_NAME"    	property="activityName" />
+        <result column="BUSINESS_NO"   		property="businessNo" />
+        <result column="ACTIVITY_CONTENT"  	property="activityContent" />
+        <result column="END_DATE"    		property="endDate" />
+    </resultMap>
+    
+    <resultMap id="TicketResultSet" type="ticket">
+        <result column="TICKET_NO"       	property="ticketNo" />
+        <result column="ACTIVITY_NO"    	property="activityNo" />
+        <result column="TICKET_NAME"   		property="ticketName" />
+        <result column="CAPACITY"  			property="capacity" />
+        <result column="PRICE"    			property="price" />
+        <result column="START_DATE"    		property="startDate" />
+        <result column="END_DATE"    		property="endDate" />
+    </resultMap>
+    
+     <resultMap id="AttachmentResultSet"  type="attachment">
+        <result column="ACCOMM_NO"       property="accommNo" />
+        <result column="ACTIVITY_NO"   property="activityNo" />
+        <result column="ROOM_NO"  property="roomNo" />
+        <result column="FILE_NO"    property="fileNo" />
+        <result column="ORIGIN_NAME"    property="originName" />
+        <result column="CHANGE_NAME"    property="changeName" />
+        <result column="FILE_PATH"    property="filePath" />
+        <result column="UPLOAD_DATE"    property="uploadDate" />
+    </resultMap>
+    
+    
+
+	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
 		SELECT
 			   ACTIVITY_NO
 			  ,ACTIVITY_NAME
-			  ,BUSINESS_NO
-			  ,ACTIBITY_CONTENT
-			  ,END_DATE
 		  FROM
 		  	   ACTIVITY
 	</select>
+	
+
+	<!-- 액티비티 상세 정보 -->
+	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
+		SELECT
+			   ACTIVITY_NO
+			  ,ACTIVITY_NAME
+			  ,BUSINESS_NO
+			  ,ACTIVITY_CONTENT
+			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
+		  FROM
+		  	   ACTIVITY
+		 WHERE
+		 	   ACTIVITY_NO = ${ activityNo }
+	</select>
+	
+	<!-- 해당 액티비티에 딸린 티켓들 -->
+	<select id="selectTicketList" resultMap="TicketResultSet" parameterType="_int">
+		SELECT
+			   TICKET_NO
+			  ,ACTIVITY_NO
+			  ,TICKET_NAME
+			  ,CAPACITY
+			  ,PRICE
+			  ,START_DATE
+			  ,END_DATE
+		  FROM
+		  	   TICKET
+		 WHERE
+		 	   ACTIVITY_NO = #{ activityNo }
+	</select>
+
+	
+	<!-- 숙소 집어넣기 -->
+	<insert id="insertAccom" parameterType="accomm">
+		
+	
+	
+	</insert>
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 숙소 첨부파일 집어넣기 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 </mapper>

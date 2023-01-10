@@ -1,11 +1,15 @@
 package com.jl.helloing.business.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jl.helloing.business.model.dao.BusinessDao;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.product.model.vo.Accomm;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -27,6 +31,36 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public Business loginCompany(Business b) {
 		return businessDao.loginCompany(b, sqlSession);
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//인호
+	// 인서트 숙소 세트 
+	@Override
+	public int insertAccom(Accomm acc) {
+		return businessDao.insertAccom(acc, sqlSession);
+	}
+
+	@Override
+	public int insertAccomPhoto(ArrayList<Attachment> list) {
+		return businessDao.insertAccomPhoto(list, sqlSession);
 	}
 
 }
