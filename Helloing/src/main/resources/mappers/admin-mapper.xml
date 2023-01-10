@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	       CHATBOT
 	 	 WHERE 
 	 	 <foreach collection="List" item="item"
-	 	 	open="(" separator="," close=")">
+	 	 	open="(" separator="AND" close=")">
 	 	       CHATBOT_Q LIKE '%' || #{item} || '%'
 	 	 </foreach>
 	</select>

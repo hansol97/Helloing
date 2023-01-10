@@ -150,7 +150,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value="adminInfo.ch", produces="application/json; charset=UTF-8")
-	public String selectChatbotA(@RequestParam(value="chatbotQ", defaultValue="[admin]안내메세지") String chatbotKeyword) {
+	public String selectadminInfo(String chatbotKeyword) {
 		String[] keywords = chatbotKeyword.split("\\s");
 		
 		List list = Arrays.asList(keywords);
@@ -158,10 +158,28 @@ public class AdminController {
 		HashMap<String, Object> map = new HashMap();
 		map.put("List", list);
 		
-		Chatbot c = adminService.selectChatbotA(map);
-		System.out.println(c);
-		return new Gson().toJson(c);
+		ArrayList<Chatbot> cList = adminService.selectChatbotA(map);
+		
+		System.out.println(cList);
+
+		return new Gson().toJson(cList);
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="selectChatbotA.ch", produces="application/json; charset=UTF-8")
+//	public String selectChatbotA(String chatbotKeyword) {
+//		String[] keywords = chatbotKeyword.split("\\s");
+//		
+//		List list = Arrays.asList(keywords);
+//		
+//		HashMap<String, Object> map = new HashMap();
+//		map.put("List", list);
+//		
+//		Chatbot c = adminService.selectChatbotA(map);
+//		System.out.println(c);
+//		return new Gson().toJson(c);
+//		
+//	}
 	
 	
 	

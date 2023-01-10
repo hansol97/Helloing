@@ -66,8 +66,8 @@ public class AdminDao {
 	public String selectChatbotA(SqlSessionTemplate sqlSession, String[] keywords) {
 		return sqlSession.selectOne("adminMapper.selectChatbotA", keywords);
 	}*/
-	public Chatbot selectChatbotA(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
-		return sqlSession.selectOne("adminMapper.selectChatbotA", map);
+	public ArrayList<Chatbot> selectChatbotA(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectChatbotA", map);
 	}
 
 }

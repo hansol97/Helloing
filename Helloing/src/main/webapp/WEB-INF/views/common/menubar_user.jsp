@@ -453,10 +453,8 @@
                 <div class="user_chat">ff</div>      
               </div>
               <div id="chat_input">
-                <form action="">
                   <input id="chatbot_user_input" type="text">
-                  <button onclick="addUserChat();">📄</button>
-                </form>
+                  <button onclick="addUserChat(); return false;">📄</button>
               </div>
           </div>
       </div>
@@ -480,23 +478,25 @@
       }
     });
 
+
+
+    var $chatBody = $('#chat_view')
+
     $(function(){
       $('#chatbot_btn').click(function(){
-        $('#chat_view').children().remove('');
+        $chatBody.children().remove('');
         $.ajax({
           url:'adminInfo.ch'
           ,data : {
-              chatbotQ : $('#chat_input')
+            chatbotKeyword : '[admin]안내메세지'
           }
           ,success: function(c){
-            console.log(c.chatbotQ);
-            $('#chat_view').append('<div class="admin_chat"><p>' + c.chatbotA + '</p></div>');
+            console.log(c[0].chatbotA);
+            $chatBody.append('<div class="admin_chat"><p>' + c[0].chatbotA + '</p></div>');
           }
           ,error : function(){
             console.log('실패');
           }
-          ,contentType: false
-          , processData: false
         })
       })
     });
@@ -507,8 +507,22 @@
       })
     }
 
+    let $userInput = $('#chatbot_user_input');
     function addUserChat(){
-      
+      $chatBody.append('<div class="user_chat"><p>' + $userInput + '</p></div>');
+      console.log($userInput.val());
+      $.ajax({
+        url : 'adminInfo.ch'
+        ,data : {
+          chatbotKeyword : $userInput.val()
+        }
+        ,success: function(result){
+          console.log(result);
+        }
+        ,error : function(){
+          console.log('실패');
+        }
+      });
     }
   </script>
 
