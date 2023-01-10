@@ -12,6 +12,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
   </resultMap>
 
+	<select id="loginCompany" parameterType="business" resultMap="businessResultSet">
+		select
+				business_no,
+				mem_no,
+				business_name,
+				address,
+				business_enrolldate
+		  from
+		  		business b
+		  join
+		  		member m on(m.mem_no = b.mem_no)
+		 where
+		 		b.mem_no = #{ memNo }
+	</select>
+
+
 	<insert id="insertCompany" parameterType="business" >
 		insert
 		  into
