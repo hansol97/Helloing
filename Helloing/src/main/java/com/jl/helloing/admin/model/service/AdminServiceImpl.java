@@ -76,8 +76,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public ArrayList<Chatbot> searchChatbot(HashMap map) {
-		return adminDao.searchChatbot(sqlSession, map);
+	public ArrayList<Chatbot> searchChatbot(PageInfo pi, HashMap<String, String> map) {
+		return adminDao.searchChatbot(sqlSession, pi, map);
 	}
 
 	

@@ -107,14 +107,14 @@
                         <tr>
                             <form id="searchForm" action="searchChatbot.ad" method="get">
                                 <td>
-                                    <select class="admin-search_form" name="condition" >
+                                    <select class="admin-search_form" name="condition" id="chatbotSeachtSelect" >
                                         <option value="chatbotName">키워드명</option>
                                         <option value="chatbotContent">내용</option>
                                     </select>
                                 </td>
                                 <td>
                                     <div class="text">
-                                        <input type="text" class="admin-input_form" name="keyword">
+                                        <input type="text" class="admin-input_form" name="keyword" id="chatbot_search_input">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
@@ -151,6 +151,16 @@
                                 alert('하나만 선택하세요');
                             }
                         });
+                        
+                        if('${map.condition}' != ''){
+	   						if('${ map.condition }' == "chatbotName"){
+	   							$('select option:eq(0)').prop('selected', true);
+	   						}else{
+	   							$('select option:eq(1)').prop('selected', true);
+	   						};
+	    					
+	   						$('#chatbot_search_input').val('${map.keyword}');
+                        }
 							
 					})      
 					
@@ -199,8 +209,8 @@
 								}
 							}
 						})
-						
 					};
+					
                 </script>
 
                 <br>
@@ -219,7 +229,9 @@
                         	<c:choose>
                         		<c:when test="${ empty list }" >
                         			<tr>
-                        				조회할 키워드가 없습니다.
+                        				<td colspan="3">
+                        					조회할 키워드가 없습니다.
+                        				</td>
                         			</tr>
                         		</c:when>
                         		<c:otherwise>

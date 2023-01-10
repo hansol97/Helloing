@@ -95,4 +95,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	</if>
 		 		LIKE '%' || #{keyword} || '%'
 	</select>
+	
+	<!-- 챗봇 검색 목록 조회 -->
+	<select id="searchChatbot" parameterType="hashMap" resultMap="chatbotResultSet">
+		SELECT
+			   CHATBOT_Q,
+			   CHATBOT_A
+	 	  FROM
+	 	       CHATBOT
+	 	 WHERE
+		 	<if test="condition == 'chatbotName'">
+		    	CHATBOT_Q
+		 	</if>
+		 	<if test="condition == 'chatbotContent'">
+		 		CHATBOT_A 
+		 	</if>
+		 		LIKE '%' || #{keyword} || '%'
+	</select>
 </mapper>

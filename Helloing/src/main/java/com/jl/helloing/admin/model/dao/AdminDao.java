@@ -50,12 +50,16 @@ public class AdminDao {
 		return sqlSession.delete("adminMapper.deleteChatbot", chatbotQ);
 	}
 	
-	public int selectSearchChatbotCount(SqlSessionTemplate sqlSession, HashMap map) {
+	public int selectSearchChatbotCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("adminMapper.selectSearchChatbotCount", map);
 	}
 	
-	public ArrayList<Chatbot> searchChatbot(SqlSessionTemplate sqlSession, HashMap map){
-		return (ArrayList)sqlSession.selectList("");
+	public ArrayList<Chatbot> searchChatbot(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map){
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchChatbot", map, rowBounds);
 	}
 
 }

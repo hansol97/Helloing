@@ -134,9 +134,17 @@ public class AdminController {
 		map.put("keyword", keyword);
 		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchChatbotCount(map), currentPage, 10, 5);
-		ArrayList<Chatbot> list = adminService.searchChatbot(map);
+		
+		ArrayList<Chatbot> list = adminService.searchChatbot(pi, map);
+		
+		mv.addObject("list", list)
+		  .addObject("map", map)
+		  .setViewName("admin/chatbotListView");
 		
 		return mv;
+	}
+
+	private void addObject(String string, HashMap<String, String> map) {
 	}
 	
 	
