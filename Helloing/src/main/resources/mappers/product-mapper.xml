@@ -4,6 +4,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="productMapper">
 
+    <resultMap id="AccommResultSet" type="accomm">
+        <result column="ACCOMM_NO"       property="accommNo" />
+        <result column="BUSINESS_NO"   property="businessNo" />
+        <result column="ACCOMM_NAME"  property="activityContent" />
+        <result column="ADDRESS"    property="address" />
+        <result column="LAT"    property="lat" />
+        <result column="LNG"    property="lng" />
+        <result column="GRADE"    property="grade" />
+        <result column="REFUND"    property="refund" />
+        <result column="CHECKINOUT"    property="checkInout" />
+        <result column="ACCOMM_CONTENT"    property="accommContent" />
+        <result column="CATEGORY"    property="category" />
+    </resultMap>
+
+     <resultMap id="RoomResultSet"  type="room">
+        <result column="ROOM_NO"       property="roomNo" />
+        <result column="ACCOMM_NO"   property="accommNo" />
+        <result column="ROOM_NAME"  property="roomName" />
+        <result column="CAPACITY"    property="capacity" />
+        <result column="PRICE"    property="price" />
+    </resultMap>
+    
 	<resultMap id="ActivityResultSet" type="activity">
         <result column="ACTIVITY_NO"       	property="activityNo" />
         <result column="ACTIVITY_NAME"    	property="activityName" />
@@ -22,20 +44,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="END_DATE"    		property="endDate" />
     </resultMap>
     
-    <resultMap id="AccommResultSet" type="accomm">
-        <result column="ACCOMM_NO"       property="accommNo" />
-        <result column="BUSINESS_NO"   property="businessNo" />
-        <result column="ACCOMM_NAME"  property="activityContent" />
-        <result column="ADDRESS"    property="address" />
-        <result column="LAT"    property="lat" />
-        <result column="LNG"    property="lng" />
-        <result column="GRADE"    property="grade" />
-        <result column="REFUND"    property="refund" />
-        <result column="CHECKINOUT"    property="checkInout" />
-        <result column="ACCOMM_CONTENT"    property="accommContent" />
-        <result column="CATEGORY"    property="category" />
-    </resultMap>
-    
      <resultMap id="AttachmentResultSet"  type="attachment">
         <result column="ACCOMM_NO"       property="accommNo" />
         <result column="ACTIVITY_NO"   property="activityNo" />
@@ -45,14 +53,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="CHANGE_NAME"    property="changeName" />
         <result column="FILE_PATH"    property="filePath" />
         <result column="UPLOAD_DATE"    property="uploadDate" />
-    </resultMap>
-
-     <resultMap id="RoomResultSet"  type="room">
-        <result column="ROOM_NO"       property="roomNo" />
-        <result column="ACCOMM_NO"   property="accommNo" />
-        <result column="ROOM_NAME"  property="roomName" />
-        <result column="CAPACITY"    property="capacity" />
-        <result column="PRICE"    property="price" />
     </resultMap>
     
     

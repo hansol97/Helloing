@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.jl.helloing.admin.model.vo.Chatbot" 		alias="chatbot" />
     	<typeAlias type="com.jl.helloing.business.model.vo.Business" 	alias="business" />
     	<typeAlias type="com.jl.helloing.member.model.vo.AccommWish" 	alias="accommwish" />
-    	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
     	<typeAlias type="com.jl.helloing.member.model.vo.ActivityWish" 	alias="activitywish" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Accomm" 		alias="accomm" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Room" 		alias="room" />
