@@ -136,11 +136,18 @@
 						$('#updateChatbot').click(function(){
 							var chatbotQ = '';
 							var list = $(".cbox");
-							for(var i = 0; i < list.length; i++){
-								if(list[i].checked){
-									chatbotQ = list[i].value;
+							list.each(function(index, value){
+								if($(value).prop('checked')){
+                                    console.log($(value).parents('td').next()[0].outerText);
+									$('#update_chatbotQ').val($(value).parents('td').next()[0].outerText);
+									$('#update_chatbotA').val($(value).parents('td').next().next()[0].outerText);
+                                    $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].outerText);
+                                    openModal(2)
 								}
-							};
+							})
+							});
+							
+							/*
 							if($('input[type=checkbox]:checked').length == 1){
 								$.ajax({
 									url : 'chatbotUpdateForm.ad'
@@ -150,7 +157,7 @@
 										$('#update_chatbotA').val(c.chatbotA);
 										$('#update_ori_chatbotQ').val(c.originChatbotQ);
 										openModal(2)
-										var chatbotQ = '';
+										
 									}
 									,error : function(){
 										console.log('실패');
@@ -160,10 +167,12 @@
 							else{
 								alert('하나만 선택하세요');
 							}
-							console.log(chatbotQ);
+							console.log(chatbotQ); 
 							
 							
-						});
+							
+							
+						});*/
 					})      
 					
 					function delConfirm(){
