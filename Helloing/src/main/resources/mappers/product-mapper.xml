@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="CATEGORY"    property="category" />
     </resultMap>
     
-     <resultMap id="Attachment"  type="attachment">
+     <resultMap id="AttachmentResultSet"  type="attachment">
         <result column="ACCOMM_NO"       property="accommNo" />
         <result column="ACTIVITY_NO"   property="activityNo" />
         <result column="ROOM_NO"  property="roomNo" />
@@ -46,6 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="FILE_PATH"    property="filePath" />
         <result column="UPLOAD_DATE"    property="uploadDate" />
     </resultMap>
+
+     <resultMap id="RoomResultSet"  type="room">
+        <result column="ROOM_NO"       property="roomNo" />
+        <result column="ACCOMM_NO"   property="accommNo" />
+        <result column="ROOM_NAME"  property="roomName" />
+        <result column="CAPACITY"    property="capacity" />
+        <result column="PRICE"    property="price" />
+    </resultMap>
+    
+    
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
@@ -89,7 +99,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	<!-- 숙소 집어넣기 -->
+	<insert id="insertAccom" parameterType="accomm">
 	
+	
+	
+	</insert>
 	
 	
 	
