@@ -36,5 +36,17 @@ public class AdminDao {
 	public Chatbot chatbotUpdateForm(SqlSessionTemplate sqlSession, String originChatbotQ) {
 		return sqlSession.selectOne("adminMapper.chatbotUpdateForm", originChatbotQ);
 	}
+	
+	public int selectChatbotQUpdate(SqlSessionTemplate sqlSession, Chatbot c) {
+		return sqlSession.selectOne("adminMapper.selectChatbotQUpdate", c);
+	}
+	
+	public int updateChatbot(SqlSessionTemplate sqlSession, Chatbot c) {
+		return sqlSession.update("adminMapper.updateChatbot", c);
+	}
+	
+	public int deleteChatbot(SqlSessionTemplate sqlSession, String chatbotQ) {
+		return sqlSession.delete("adminMapper.deleteChatbot", chatbotQ);
+	}
 
 }

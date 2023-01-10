@@ -1,5 +1,7 @@
 package com.jl.helloing.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,7 +75,7 @@ public class AdminController {
 	//---------------- 챗봇 ----------------
 	
 	// 챗봇 등록
-	@RequestMapping("insert.qa")
+	@RequestMapping("insertChatbot.ad")
 	public String insertChatbot(Chatbot c, Model m) {
 		
 		int result = adminService.insertChatbot(c);
@@ -99,14 +101,37 @@ public class AdminController {
 		return mv;
 	}
 	
-	// 챗봇 키워드 수정
+	// 챗봇 키워드 수정폼
 	@ResponseBody
-	@RequestMapping(value="chatbotUpdate.ad", produces="application/json; charset=UTF-8")
+	@RequestMapping(value="chatbotUpdateForm.ad", produces="application/json; charset=UTF-8")
 	public String chatbotUpdateForm(String originChatbotQ) {
 		Chatbot c = adminService.chatbotUpdateForm(originChatbotQ);
+		c.setOriginChatbotQ(originChatbotQ);
 		
 		return new Gson().toJson(c);
 	}
+	
+	// 챗봇 키워드 수정
+	@RequestMapping("updateChatbot.ad")
+	public String updateChatbot(Chatbot c, Model m) {
+		
+		int result = adminService.updateChatbot(c);
+		
+		if(result > 0) {
+			return "redirect:/chatbotList.ad";
+		}else {
+			m.addAttribute("alertMsg", "키워드 등록에 실패했습니다");
+			return "admin/chatbotListView";
+		}
+	}
+	
+	// 챗봇 키워드 삭제
+	@ResponseBody
+	@RequestMapping("deleteChatbot.ad")
+	public int deleteChatbot(@RequestParam(value="cbox[]")List<String> cbox, Model m) {
+		return adminService.deleteChatbot(cbox);
+	}
+	
 	
 
 }

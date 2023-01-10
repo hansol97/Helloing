@@ -56,14 +56,14 @@
   }
 
   /* 챗봇 모달 설정 */
-  #update_chatbotA{
+  .keyword_content{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:200px;
     resize: none;
   }
 
-  #update_chatbotQ{
+  .keyword_input{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:23px;
@@ -126,7 +126,7 @@
                             </td>
                             <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
                             <td><button id="updateChatbot" class="admin-grey">수정</button></td>
-                            <td><button class="admin-grey">삭제</button></td>
+                            <td><button class="admin-grey" onclick="delConfirm();">삭제</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -136,30 +136,83 @@
 						$('#updateChatbot').click(function(){
 							var chatbotQ = '';
 							var list = $(".cbox");
-							
 							for(var i = 0; i < list.length; i++){
 								if(list[i].checked){
 									chatbotQ = list[i].value;
 								}
 							};
+							if($('input[type=checkbox]:checked').length == 1){
+								$.ajax({
+									url : 'chatbotUpdateForm.ad'
+									,data : {originChatbotQ : chatbotQ}
+									,success : function(c){
+										$('#update_chatbotQ').val(c.chatbotQ);
+										$('#update_chatbotA').val(c.chatbotA);
+										$('#update_ori_chatbotQ').val(c.originChatbotQ);
+										openModal(2)
+										var chatbotQ = '';
+									}
+									,error : function(){
+										console.log('실패');
+									}
+								});
+							}
+							else{
+								alert('하나만 선택하세요');
+							}
 							console.log(chatbotQ);
 							
-							$.ajax({
-								url : 'chatbotUpdate.ad'
-								,data : {originChatbotQ : chatbotQ}
-								,success : function(c){
-									$('#update_chatbotQ').val(c.chatbotQ);
-									$('#update_chatbotA').val(c.chatbotA);
-									openModal(2)
-									var chatbotQ = '';
-								}
-								,error : function(){
-									console.log('실패');
-									alert('하나만 선택');
-								}
-							});
+							
 						});
-					})      	
+					})      
+					
+					function delConfirm(){
+						if(confirm("삭제하시겠습니까?")){
+							deleteChatbot();			
+						}
+						else{
+							return false;
+						}
+					}
+					
+					function checkAll(){
+						if($('#cboxAll').is(':checked')){
+							$(".cbox").prop("checked", true);
+						} else{
+							$(".cbox").prop("checked", false);
+						}
+					};
+					
+					$(".cbox").click(function(){
+						$("#cboxAll").prop("checked", false);
+					});
+					
+					function deleteChatbot(){
+						
+						var cArr = new Array();
+						var list = $(".cbox");
+						for(var i = 0; i < list.length; i++){
+							if(list[i].checked){
+								cArr.push(list[i].value);
+							}
+						}
+						console.log(cArr);
+						
+						$.ajax({
+							url : "deleteChatbot.ad"
+							,data : {
+								cbox : cArr
+							}
+							,success : function(result){
+								if(result > 0){
+									location.href = "chatbotList.ad"
+								} else{
+									alert("삭제 실패");
+								}
+							}
+						})
+						
+					};
                 </script>
 
                 <br>
@@ -177,7 +230,9 @@
                         <tbody>
                         	<c:choose>
                         		<c:when test="${ empty list }" >
-                        			조회할 키워드가 없습니다.
+                        			<tr>
+                        				조회할 키워드가 없습니다.
+                        			</tr>
                         		</c:when>
                         		<c:otherwise>
                         			<c:forEach var="c" items="${ list }">
@@ -221,11 +276,11 @@
             </div>
             <div align="center">
                 <br>
-                <form action="insert.qa" method="post">
+                <form action="insertChatbot.ad" method="post">
                     <table>
                         <tr>
                             <td>
-                                <input id="keyword_input" type="text" placeholder="키워드명을 입력하세요" name="chatbotQ" required>
+                                <input class="keyword_input" type="text" placeholder="키워드명을 입력하세요" name="chatbotQ" required>
                             </td>
                         </tr>
                         <tr>
@@ -233,7 +288,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <textarea id="keyword_content" placeholder="키워드 답변내용을 입력하세요" name="chatbotA" required></textarea>
+                                <textarea class="keyword_content" placeholder="키워드 답변내용을 입력하세요" name="chatbotA" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -260,11 +315,12 @@
                 </div>
                 <div align="center">
                     <br>
-                    <form action="#">
+                    <form action="updateChatbot.ad" method="post">
+                    	<input id="update_ori_chatbotQ" type="hidden" name="originChatbotQ" >
                         <table>
                             <tr>
                                 <td>
-                                    <input id="update_chatbotQ" type="text" placeholder="키워드명을 입력하세요" value="안녕" required>
+                                    <input class="keyword_input" id="update_chatbotQ" type="text" placeholder="키워드명을 입력하세요" name="chatbotQ" required>
                                 </td>
                             </tr>
                             <tr>
@@ -272,7 +328,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="" id="update_chatbotA" placeholder="키워드 답변내용을 입력하세요" required>안녕하세요</textarea>
+                                    <textarea class="keyword_content" id="update_chatbotA" name="chatbotA" placeholder="키워드 답변내용을 입력하세요" required></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -328,19 +384,6 @@
             }
         });
 
-            
-        
-        
-  
-        // modal.addEventListener('click', (event) => {
-        //   if (event.target === modal) {
-        //     modal.classList.toggle('show');
-  
-        //     if (!modal.classList.contains('show')) {
-        //       body.style.overflow = 'auto';
-        //     }
-        //   }
-        // });
       </script>
 </body>
 </html>
