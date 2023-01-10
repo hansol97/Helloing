@@ -34,18 +34,20 @@ public class MemberController {
 	//승준
 	//로그인
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Business b, Member m, ModelAndView mv, HttpSession session) {
+	public ModelAndView loginMember( Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
-		Business loginCompany = businessService.loginCompany(b);
-		
+		int memNo = loginUser.getMemNo();
+		Business loginCompany = businessService.loginCompany(memNo);
+		System.out.println("loginUser :" + loginUser );
+		System.out.println("memNo:" + memNo);
+		System.out.println("lc:" + loginCompany);
 		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
 		//System.out.println(loginUser.getMemId());
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
-
 			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginCompany", loginCompany);
 			
 			
 			mv.setViewName("redirect:/");
@@ -55,7 +57,7 @@ public class MemberController {
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
 			mv.setViewName("common/loginErrorPage");
 		}
-		
+
 		return mv;
 	}
 	// 로그아웃
