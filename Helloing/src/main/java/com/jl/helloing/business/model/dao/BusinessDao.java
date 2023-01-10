@@ -17,13 +17,13 @@ public class BusinessDao {
 	}
 
 	
-	// 숙소 등록
+	// 숙소 등록ih
 	public int insertAccom(Accomm acc,  SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("businessMapper.insertAccom", acc);
+		return sqlSession.insert("productMapper.insertAccom", acc);
 	}
-	// 숙소 사진 등록
+	// 숙소 사진 등록ih
 	public int insertAccomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("product-mapper.insertAccomPhoto", list);
+		return sqlSession.insert("productMapper.insertAccomPhoto", list);
 	}
 	
 	public Business loginCompany(int memNo, SqlSessionTemplate sqlSession) {

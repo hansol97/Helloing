@@ -163,7 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				        #{grade},
 				        #{refund},
 				        #{checkInout},
-				        #{endDate},
+				        SYSDATE,
 				        #{accommContent},
 				        #{category}
 				        )
@@ -186,11 +186,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							<foreach  item="item" index="index"  collection="list">
 					        (
 					        SEQ_ACCFNO.NEXTVAL,        
-					        #{accommNo},
-					        #{originName},
-					        #{changeName},
-					        #{filePath},
-					        #{uploadDate}
+					        #{item.accommNo},
+					        #{item.originName},
+					        #{item.changeName},
+					        #{item.filePath},
+					        SYSDATE
 					        )
 							</foreach>
 	</insert>
