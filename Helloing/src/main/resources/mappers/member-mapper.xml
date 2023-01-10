@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BY 
 				WISH_DATE DESC
 	</select>
-	<delete id="deleteWishAccount"  parameterType="AccommWish">
+	<delete id="deleteWishAccomm"  parameterType="accommwish">
 	DELETE 
 			ACCOMM_WISH 
 		WHERE
@@ -115,5 +115,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 			ACCOMM_NO = #{ accommNo }
 	</delete>
+	<select id="wishActivityList" parameterType="_int" resultType="ActivityWish">
+			SELECT 
+        		ACTIVITY_NO activityNo,
+        		ACTIVITY_NAME activityName,
+       			FILE_PATH || CHANGE_NAME AS FILEPATH
+		FROM 
+			ACTIVITY_WISH
+		JOIN 
+			ACTIVITY USING(ACTIVITY_NO)
+		JOIN 
+			ACTIVITY_ATTACHMENT USING(ACTIVITY_NO)
+		WHERE 
+			MEM_NO = #{ memNo }
+		ORDER 
+			BY 
+				WISH_DATE DESC
+	</select>
+	<delete id="deleteWishActivity" parameterType="activitywish">
+		DELETE 
+			ACTIVITY_WISH 
+		WHERE
+			MEM_NO = #{ memNo }
+		AND
+			ACTIVITY_NO = #{ activityNo }
+	</delete>
+	
+	
 	
 </mapper>
