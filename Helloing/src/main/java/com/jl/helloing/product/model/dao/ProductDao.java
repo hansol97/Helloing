@@ -16,6 +16,10 @@ public class ProductDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectActList");
 	}
 	
+	public int actTicketRowPrice(SqlSessionTemplate sqlSession, int activityNo) {
+		return sqlSession.selectOne("productMapper.actTicketRowPrice", activityNo);
+	}
+	
 	public Activity selectActDetail(SqlSessionTemplate sqlSession, int activityNo) {
 		return sqlSession.selectOne("productMapper.selectActDetail", activityNo);
 	}

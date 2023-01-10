@@ -194,7 +194,7 @@
     bottom:2%;
     right:1%;
 
-    width: 300px;
+    width: 320px;
     height: 400px;
 
     padding: 40px;
@@ -255,27 +255,24 @@
 
   #chat_view{
     padding:5px;
-    width:280px;
+    width:300px;
     height:310px;
     padding:0px;
     overflow-x: auto;
   }
 
-  #admin_chat{
+  .admin_chat{
     width:250px;
     padding:10px;
     margin-bottom:10px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
     
-  }
-  
-  #admin_chat pre{
-    padding:0px;
-    margin:0px;
+    clear:both;
+    
   }
 
-  #user_chat{
+  .user_chat{
     float:right;
     margin-bottom:10px;
     padding:10px;
@@ -445,7 +442,7 @@
               </div>
 
               <div id="chat_view">
-                <div id="admin_chat">
+                <div class="admin_chat">
                   <p>
                     안녕하세요 <br>
                     반갑소잉 : 전라 입니다. <br>
@@ -453,12 +450,11 @@
                     예시) 숙소 예약(O), 숙소예약(X)
                   </p>
                 </div>
-                <div id="user_chat">ff</div>      
+                <div class="user_chat">ff</div>      
               </div>
               <div id="chat_input">
-                <input type="text">
-                <button>📄</button>
-
+                  <input id="chatbot_user_input" type="text">
+                  <button onclick="addUserChat(); return false;">📄</button>
               </div>
           </div>
       </div>
@@ -482,25 +478,52 @@
       }
     });
 
+
+
+    var $chatBody = $('#chat_view')
+
     $(function(){
       $('#chatbot_btn').click(function(){
+        $chatBody.children().remove('');
         $.ajax({
           url:'adminInfo.ch'
           ,data : {
-              chatbotQ : $('#chat_input')
+            chatbotKeyword : '[admin]안내메세지'
           }
-          ,success: function(result){
-            console.log(result);
-            $('#admin_chat p').html(result);
+          ,success: function(c){
+            console.log(c[0].chatbotA);
+            $chatBody.append('<div class="admin_chat"><p>' + c[0].chatbotA + '</p></div>');
           }
           ,error : function(){
             console.log('실패');
           }
-          ,contentType: false
-          , processData: false
         })
       })
     });
+
+    function addAdminChat(result){
+      $('document').on('click', '#chat_view', function(){
+        $(this).append('<p>' + result + '</p>');
+      })
+    }
+
+    let $userInput = $('#chatbot_user_input');
+    function addUserChat(){
+      $chatBody.append('<div class="user_chat"><p>' + $userInput + '</p></div>');
+      console.log($userInput.val());
+      $.ajax({
+        url : 'adminInfo.ch'
+        ,data : {
+          chatbotKeyword : $userInput.val()
+        }
+        ,success: function(result){
+          console.log(result);
+        }
+        ,error : function(){
+          console.log('실패');
+        }
+      });
+    }
   </script>
 
 
