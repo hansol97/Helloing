@@ -3,6 +3,7 @@ package com.jl.helloing.business.model.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import com.jl.helloing.product.model.vo.Accomm;
 public class BusinessDao {
 
 	public int insertCompany(Business b, SqlSessionTemplate sqlSession) {
+		System.out.println("sd");
 		return sqlSession.insert("businessMapper.insertCompany", b);
 	}
 
