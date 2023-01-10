@@ -1,6 +1,7 @@
 package com.jl.helloing.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,6 +36,30 @@ public class AdminDao {
 	
 	public Chatbot chatbotUpdateForm(SqlSessionTemplate sqlSession, String originChatbotQ) {
 		return sqlSession.selectOne("adminMapper.chatbotUpdateForm", originChatbotQ);
+	}
+	
+	public int selectChatbotQUpdate(SqlSessionTemplate sqlSession, Chatbot c) {
+		return sqlSession.selectOne("adminMapper.selectChatbotQUpdate", c);
+	}
+	
+	public int updateChatbot(SqlSessionTemplate sqlSession, Chatbot c) {
+		return sqlSession.update("adminMapper.updateChatbot", c);
+	}
+	
+	public int deleteChatbot(SqlSessionTemplate sqlSession, String chatbotQ) {
+		return sqlSession.delete("adminMapper.deleteChatbot", chatbotQ);
+	}
+	
+	public int selectSearchChatbotCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.selectSearchChatbotCount", map);
+	}
+	
+	public ArrayList<Chatbot> searchChatbot(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map){
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchChatbot", map, rowBounds);
 	}
 
 }

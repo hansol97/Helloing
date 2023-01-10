@@ -3,12 +3,12 @@ package com.jl.helloing.member.model.service;
 import java.util.ArrayList;
 
 import com.jl.helloing.member.model.vo.AccommWish;
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Book;
 import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
-import com.jl.helloing.product.model.vo.Activity;
 
 public interface MemberService {
 	
@@ -45,10 +45,13 @@ public interface MemberService {
 	ArrayList<AccommWish> wishAccommList(int memNo);
 	
 	//찜한 숙소 삭제
-	int deleteWishAccount(AccommWish aw);
+	int deleteWishAccomm(AccommWish aw);
 	
 	//찜한 액티비티 조회
-	ArrayList<Activity> wishActivityList(int memNo);
+	ArrayList<ActivityWish> wishActivityList(int memNo);
+	
+	//찜한 액티비티 삭제
+	int deleteWishActivity(ActivityWish aw);
 	
 	//플래너리스트 조회 
 	ArrayList<Planner> plannerList(int memNo);

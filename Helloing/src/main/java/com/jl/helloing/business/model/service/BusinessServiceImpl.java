@@ -46,7 +46,7 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	
 	//인호
-	// 인서트 숙소
+	// 인서트 숙소 세트 
 	@Override
 	public int insertAccom(Accomm acc) {
 		return businessDao.insertAccom(acc, sqlSession);
