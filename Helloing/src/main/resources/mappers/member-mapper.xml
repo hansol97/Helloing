@@ -140,7 +140,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 			ACTIVITY_NO = #{ activityNo }
 	</delete>
-	
+	<select id="plannerList" parameterType="_int" resultType="planner">
+	SELECT 
+		PLANNER_NO plannerNo, 
+		PLANNER_NAME plannerName, 
+		TO_NUMBER(TO_CHAR(START_DATE, 'YYYYMMDD'))startDate,
+		TO_NUMBER(TO_CHAR(END_DATE, 'YYYYMMDD'))endDate 
+	FROM 
+		PLANNER
+	JOIN 
+		PLANNER_MEM USING(PLANNER_NO)
+	WHERE 
+		MEM_NO = #{ memNo }
+	ORDER 
+		BY 
+			START_DATE DESC
+	</select>
 	
 	
 </mapper>

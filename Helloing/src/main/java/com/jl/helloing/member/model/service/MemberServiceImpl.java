@@ -107,13 +107,33 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.deleteWishActivity(aw, sqlSession);
 	}
 	
-
+	//플래너 리스트 조회
 	@Override
 	public ArrayList<Planner> plannerList(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.plannerList(memNo, sqlSession);
 	}
 
+	//플래너 생성
+	@Override
+	public int insertPlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	//플래너 수정
+	@Override
+	public int updatePlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//플래너 삭제
+	@Override
+	public int deletePlanner(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	@Override
 	public Plan planDetailView(int memNo, int planNo) {
 		// TODO Auto-generated method stub
