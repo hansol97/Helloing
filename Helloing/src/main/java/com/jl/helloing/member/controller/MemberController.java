@@ -213,10 +213,11 @@ public class MemberController {
 	@RequestMapping("deleteWishAccount.hj")
 	public ModelAndView deleteWishAccount(HttpSession session, AccommWish aw, ModelAndView mv) {
 		
+		
 		if(memberService.deleteWishAccount(aw)>0) {
 			mv.setViewName("redirect:wishAccommList.hj");
 		}else {
-			session.setAttribute("alertMsg", "delect");
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
 			mv.setViewName("redirect:wishAccommList.hj");
 		}
 		
