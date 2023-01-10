@@ -55,11 +55,18 @@ public interface MemberService {
 	
 	//플래너리스트 조회 
 	ArrayList<Planner> plannerList(int memNo);
+
+	//플래너 생성
+	int insertPlanner(Planner pl);
+	
+	//플래너 수정
+	int updatePlanner(Planner pl);
+	
+	//플래너 삭제
+	int deletePlanner(Planner pl);
 	
 	//플랜 상세 페이지
 	Plan planDetailView(int memNo, int planNo);
-	
-	
 	
 	//가계부 페이지
 	Expense expenseView(int planNo);
