@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String today = new java.text.SimpleDateFormat("yy/MM/dd").format(new java.util.Date());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,29 +86,37 @@
 			
 			<div id="upcoming-trip" class="trip">
 			<h3>다가오는 여행</h3>
-				<div class="plan">
-					<h4>반갑소잉 여행</h4>
-					<p>2023.1.2 ~ 1.25</p>
-					
-					<span class="planner-btn">
-						<a href="">수정</a>
-						<a href="">삭제</a>
-					</span>
-				</div>
+		<c:forEach var="p" items="${list}">
+			<c:if test="${today <= ${p.startDate }">
+					<div class="plan">
+						<h4>${p.plnnerName }</h4>
+						<p>${p.startDate } ~ ${p.endDate }</p>
+						
+						<span class="planner-btn">
+							<a href="">수정</a>
+							<a href="">삭제</a>
+						</span>
+					</div>
+			</c:if>
+		</c:forEach>
 			</div>
 			
 			<div id="completed-trip" class="trip">
 			<h3>완료된 여행</h3>
-				<div class="plan">
-					<h4>가족 여행</h3>
-					<p>2022.1.2 ~ 1.25</p>
-					
-					<span class="planner-btn">
-						<a href="">삭제</a>
-					</span>
-				</div>
+			<c:forEach var="p" items="${list }">
+				<c:if test="${today > ${p.startDate }">
+					<div class="plan">
+						<h4>${p.plnnerName }</h4>
+						<p>${p.startDate } ~ ${p.endDate }</p>
+						
+						<span class="planner-btn">
+							<a href="">삭제</a>
+						</span>
+					</div>
+				</c:if>
+			</c:forEach>
 			</div>
-	
+			
 	
 	</div>
 
