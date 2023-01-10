@@ -144,8 +144,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT 
 		PLANNER_NO plannerNo, 
 		PLANNER_NAME plannerName, 
-		TO_NUMBER(TO_CHAR(START_DATE, 'YYYYMMDD'))startDate,
-		TO_NUMBER(TO_CHAR(END_DATE, 'YYYYMMDD'))endDate 
+		TO_CHAR(START_DATE, 'YY/MM/DD') startDate,
+		TO_CHAR(END_DATE,'YY/MM/DD') endDate 
 	FROM 
 		PLANNER
 	JOIN 
