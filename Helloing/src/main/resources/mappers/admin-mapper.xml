@@ -37,19 +37,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectChatbotList" resultMap="chatbotResultSet">
 		SELECT
-		       CHATBOT_Q,
-		       CHATBOT_A
+		       CHATBOT_Q
+		       ,CHATBOT_A
 		  FROM
 		       CHATBOT
 	</select>
 	
 	<select id="chatbotUpdateForm" parameterType="string" resultMap="chatbotResultSet" >
 		SELECT 
-		       CHATBOT_Q,
-		       CHATBOT_A
+		       CHATBOT_Q
+		       ,CHATBOT_A
 		  FROM
 		       CHATBOT
 		 WHERE
 		       CHATBOT_Q = #{ originChatbotQ }
 	</select>
+	
+	<select id="selectChatbotQUpdate" parameterType="chatbot" resultType="_int">
+		SELECT
+			   COUNT(*)
+		  FROM
+		       CHATBOT
+		 WHERE
+		       CHATBOT_Q = #{chatbotQ}
+		   AND
+		       NOT CHATBOT_Q = #{originChatbotQ}
+	</select>
+	
+	<update id="updateChatbot" parameterType="chatbot" >
+		UPDATE
+		       CHATBOT
+		   SET
+		       CHATBOT_Q = #{chatbotQ}
+		       ,CHATBOT_A = #{chatbotA}
+		 WHERE
+		       CHATBOT_Q = #{originChatbotQ}
+	</update>
+	
+	<delete id="deleteChatbot" parameterType="string">
+		DELETE	
+		  FROM 
+		       CHATBOT
+		 WHERE
+		       CHATBOT_Q = #{chatbotQ}
+	</delete>
 </mapper>
