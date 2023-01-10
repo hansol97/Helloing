@@ -243,12 +243,12 @@ public class MemberController {
 	
 	//찜한 액티비티 삭제 
 	@RequestMapping("deleteWishActivity.hj")
-	public String deleteWishActivity(HttpSession session, ActivityWish aw, ModelAndView mv) {
-		if(memberService.deleteWishAccomm(aw)>0) {
-			mv.setViewName("redirect:wishAccommList.hj");
+	public ModelAndView deleteWishActivity(HttpSession session, ActivityWish aw, ModelAndView mv) {
+		if(memberService.deleteWishActivity(aw)>0) {
+			mv.setViewName("redirect:wishActivityList.hj");
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:wishAccommList.hj");
+			mv.setViewName("redirect:wishActivityList.hj");
 		}
 		
 		return mv;

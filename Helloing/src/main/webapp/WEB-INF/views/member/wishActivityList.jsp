@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,46 +76,19 @@
 	    </div>
 	    <div align="center">
 	        <div class="list-area">
+			    <c:forEach var="a" items="${list}">
 	               <div class="thumbnail" align="center" border="1">
 	                  <div  class="z_area" style="position:relative;">
-	                  
-	                     <img class="heart"  onclick = "location.href = '#'" src="/helloing/resources/img/heart.png" alt=""> 
-	                     <img  class="placeImage"  onclick = "location.href = '#'" src="/helloing/resources/img/logo_outline.png">
+	                     <img class="heart"  onclick = "location.href = 'deleteWishAccount.hj?memNo=${loginUser.memNo}&accommNo=${a.accommNo }'" src="/helloing/resources/img/heart.png" alt=""> 
+	                     <img  class="placeImage"  onclick = "location.href = '#'" src="${a.filePath}">
+	                 	<input type="hidden" name="memNo" value="${loginUser.memNo}">
+	                 	<input type="hidden" name="accommNo" value="${a.accommNo }">
 	                  </div>
 	                  <p>
-	                    	신라호텔
+	                    	${a.activityName}
 	                  </p>
 	               </div>
-	               	               <div class="thumbnail" align="center" border="1">
-	                  <div  class="z_area" style="position:relative;">
-	                  
-	                     <img class="heart"  onclick = "location.href = '#'" src="/helloing/resources/img/heart.png" alt=""> 
-	                     <img  class="placeImage"  onclick = "location.href = '#'" src="/helloing/resources/img/logo_outline.png">
-	                  </div>
-	                  <p>
-	                    	신라호텔
-	                  </p>
-	               </div>
-	               	               <div class="thumbnail" align="center" border="1">
-	                  <div  class="z_area" style="position:relative;">
-	                  
-	                     <img class="heart"  onclick = "location.href = '#'" src="/helloing/resources/img/heart.png" alt=""> 
-	                     <img  class="placeImage"  onclick = "location.href = '#'" src="/helloing/resources/img/logo_outline.png">
-	                  </div>
-	                  <p>
-	                    	신라호텔
-	                  </p>
-	               </div>
-	               	               <div class="thumbnail" align="center" border="1">
-	                  <div  class="z_area" style="position:relative;">
-	                  
-	                     <img class="heart"  onclick = "location.href = '#'" src="/helloing/resources/img/heart.png" alt=""> 
-	                     <img  class="placeImage"  onclick = "location.href = '#'" src="/helloing/resources/img/logo_outline.png">
-	                  </div>
-	                  <p>
-	                    	신라호텔
-	                  </p>
-	               </div>
+			      </c:forEach>
 	      	</div>
 	    </div>
 	</div>
