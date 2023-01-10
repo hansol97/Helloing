@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jl.helloing.product.model.dao.ProductDao;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Service
@@ -24,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public int actTicketRowPrice(int activityNo) {
+		return productDao.actTicketRowPrice(sqlSession, activityNo);
+	}
+
+	@Override
 	public Activity selectActDetail(int activityNo) {
 		return productDao.selectActDetail(sqlSession, activityNo);
 	}
@@ -32,5 +38,12 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Ticket> selectTicketList(int activityNo) {
 		return productDao.selectTicketList(sqlSession, activityNo);
 	}
+
+	@Override
+	public ArrayList<ActivityReview> selectReviewList(int activityNo) {
+		return productDao.selectReviewList(sqlSession, activityNo);
+	}
+
+	
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Activity;
-import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -55,12 +55,22 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		mv.addObject("activityList", productService.selectActList());
+		ArrayList<Activity> actList = productService.selectActList();
 		
-		System.out.println(productService.selectActList()); // 메인 화면에 별점과 후기도 필요
+		// 메인 화면에 가격과 후기 갯수도 필요
+		// 후기 갯수, 각 액티비티의 티켓 중 제일 낮은 가격
+		for(int i = 0; i< actList.size(); i++) {
+			// 리뷰 갯수
+			ArrayList<ActivityReview> actReviewList = productService.selectReviewList(actList.get(i).getActivityNo());
+			actList.get(i).setReviewCount(actReviewList.size());
+			
+			// 가장 낮은 가격
+			int price = productService.actTicketRowPrice(actList.get(i).getActivityNo());
+			actList.get(i).setRowPrice(price);
+		}
 		
-		//mv.addObject("ticketList", productService.selectTicketList());
-		mv.setViewName("product/activityMain");
+		mv.addObject("actList", actList)
+		  .setViewName("product/activityMain");
 		
 		return mv;
 	}
@@ -76,10 +86,19 @@ public class ProductController {
 	public ModelAndView DetailActivity(ModelAndView mv, int activityNo) {
 		
 		Activity act = productService.selectActDetail(activityNo);
-		ArrayList<Ticket> ticketList = productService.selectTicketList(activityNo);
+		ArrayList<ActivityReview> actReviewList = productService.selectReviewList(activityNo);
 		
-		mv.addObject("act", act).addObject("ticketList", ticketList);
-		mv.setViewName("product/activityDetail");
+		if(!actReviewList.isEmpty()) { // 리뷰가 있을 때만 평균 연산하기
+			int sum = 0;
+			for(int i = 0; i < actReviewList.size(); i++) {
+				sum += actReviewList.get(i).getStar();
+			}
+			act.setAvg(sum / actReviewList.size());
+		}
+		mv.addObject("act", act)
+		  .addObject("ticketList", productService.selectTicketList(activityNo))
+		  .addObject("actReviewList", actReviewList)
+		  .setViewName("product/activityDetail");
 		
 		return mv;
 	}

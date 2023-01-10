@@ -11,4 +11,7 @@ public class Activity {
 	private String activityContent;
 	private String endDate;
 	
+	private double avg; // 별점 평균
+	private int reviewCount; // 리뷰 갯수
+	private int rowPrice; // 가장 낮은 티켓 가격
 }

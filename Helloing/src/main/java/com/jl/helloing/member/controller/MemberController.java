@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jl.helloing.business.model.service.BusinessService;
+import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -26,20 +28,28 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	@Autowired
+	private BusinessService businessService;
 	
 	//승준
 	//로그인
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
+	public ModelAndView loginMember( Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
-		
+		int memNo = loginUser.getMemNo();
+		Business loginCompany = businessService.loginCompany(memNo);
+		//System.out.println("loginUser :" + loginUser );
+		//System.out.println("memNo:" + memNo);
+		//System.out.println("lc:" + loginCompany);
 		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
 		//System.out.println(loginUser.getMemId());
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
-
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginCompany", loginCompany);
+			
+			
 			mv.setViewName("redirect:/");
 			
 		} else {
@@ -47,7 +57,7 @@ public class MemberController {
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
 			mv.setViewName("common/loginErrorPage");
 		}
-		
+
 		return mv;
 	}
 	// 로그아웃
@@ -284,7 +294,14 @@ public class MemberController {
 	@RequestMapping("insertPlanner.hj")
 	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
 		
-		if(memberService.insertPlanner)
+		System.out.println(pl);
+		
+		if(memberService.insertPlanner(pl)>0) {
+			mv.setViewName("redirect:plannerMain.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
+			mv.setViewName("redirect:plannerMain.hj");
+		}
 		return mv;
 	}
 	

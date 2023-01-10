@@ -26,14 +26,14 @@
                            <!-- N글자 이상인 경우 ... 하는거 추가하기 -->
         <div class="hot" id="hot-ticket"> 
         
-        	<c:forEach items="${ activityList }" var="a">
+        	<c:forEach items="${ actList }" var="a">
         		<div class="productbox">
                     <input type="hidden" name="activityNo" value="${ a.activityNo }">
 	                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
 	                <p>가이드 투어<br>
 	                    <span class="activityName">${ a.activityName }</span><br>
-	                    	⭐⭐⭐⭐⭐ 1,844<br>
-	                    원
+	                    	⭐⭐⭐⭐⭐ ${ a.reviewCount }<br>
+	                    ${ a.rowPrice }원 ~
 	                </p>
 	            </div>
         	</c:forEach>

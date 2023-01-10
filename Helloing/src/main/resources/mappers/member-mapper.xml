@@ -156,6 +156,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		BY 
 			START_DATE DESC
 	</select>
-	
+	<insert id="insertPlanner" parameterType="planner">
+		INSERT 
+			ALL
+				INTO 
+					PLANNER 
+			VALUES (
+					SEQ_PLANNO.NEXTVAL
+					, #{ plannerName }
+					, #{ startDate }
+					, #{ endDate }
+					)
+				INTO
+					PLANNER_MEM
+			VALUES (
+					SEQ_PLANNO.CURRVAL,
+					, #{ memNo }
+					)
+	</insert>
 	
 </mapper>
