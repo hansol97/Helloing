@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Accomm" 		alias="accomm" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.Room" 		alias="room" />
     	<typeAlias type="com.jl.helloing.common.model.vo.Attachment" 	alias="attachment" />
     </typeAliases>
 

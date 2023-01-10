@@ -152,10 +152,10 @@
       
 		<!-- 카테고리 -->
         <li class="item">
-          <div class="item__name"><a href="accommList.bu">🏡등록 숙소 관리</a></div>
+          <div class="item__name"><a href="accommList.bu">🏡 숙소 관리</a></div>
         </li>
         <li class="item">
-          <div class="item__name"><a href="activityList.bu">🎫등록 액티비티 관리</a></div>
+          <div class="item__name"><a href="activityList.bu">🎫 액티비티 관리</a></div>
         </li>
         <li class="item">
           <div class="item__name" ><a href="mypage.bu" >🏢기업 정보 관리</a></div>
