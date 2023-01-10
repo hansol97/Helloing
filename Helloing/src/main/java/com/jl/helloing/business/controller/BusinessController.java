@@ -12,11 +12,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -281,20 +278,32 @@ public class BusinessController {
 		return "member/businessEnrollForm";
 	}
 	
+	// 기업 파트너 로그인
+	@RequestMapping("login.bu")
+	public String loginCompany(Business b, HttpSession session) {
+	Business loginCompany = businessService.loginCompany(b);
+	return null;
+	
+	
+	
+	
+	}
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
 	public String insertCompany(HttpSession session, Business b) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		
 		int memNo = loginUser.getMemNo();
 		
-		System.out.println(loginUser.getMemNo()); 
+		//System.out.println(loginUser.getMemNo()); 
 		b.setMemNo(memNo);
-		System.out.println(b);
+		
+		//System.out.println(b);
 		
 		int result = businessService.insertCompany(b);
 		
 		if( result >0) {
-
+			
 			return "redirect:/";
 		} else {
 

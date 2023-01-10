@@ -22,5 +22,11 @@ public class BusinessServiceImpl implements BusinessService {
 	public int insertCompany(Business b) {
 		return businessDao.insertCompany(b, sqlSession);
 	}
+	
+	// 파트너 기업 로그인
+	@Override
+	public Business loginCompany(Business b) {
+		return businessDao.loginCompany(b, sqlSession);
+	}
 
 }

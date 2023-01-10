@@ -6,4 +6,5 @@ public interface BusinessService {
 	// 파트너 기업 등록
 	int insertCompany(Business b);
 	
+	Business loginCompany(Business b);
 }

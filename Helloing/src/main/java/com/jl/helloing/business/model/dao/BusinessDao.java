@@ -12,4 +12,7 @@ public class BusinessDao {
 		return sqlSession.insert("businessMapper.insertCompany", b);
 	}
 	
+	public Business loginCompany(Business b, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("businessMapper.loginCompany", b);
+	}
 }
