@@ -183,7 +183,9 @@ public class BusinessController {
 					at.setOriginName( upfile[i].getOriginalFilename());
 					at.setChangeName( saveFile(upfile[i], session) );
 					at.setFilePath( "resources/uploadFiles/"  );
-					
+					System.out.println( 0 + 1 );
+					list.add(at);
+					System.out.println("컨트롤러 리스트 : " + list);
 	    		}
 		}
 

@@ -181,7 +181,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				        )
 	</insert>
 	
-	<!-- 숙소 첨부파일 집어넣기 -->
+	<!-- 숙소 첨부파일 집어넣기 --> 
 	<insert id="insertAccomPhoto" parameterType="java.util.List">
 		INSERT
 		  INTO
@@ -195,18 +195,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				        UPLOAD_DATE
 				        )
 		VALUES
-							<foreach  item="item" index="index"  collection="list">
+							<foreach  item="item"  index="index"  collection="list" separator="," >
+							
 					        (
-					        SEQ_ACCFNO.NEXTVAL,        
-					        #{item.accommNo},
-					        #{item.originName},
-					        #{item.changeName},
-					        #{item.filePath},
-					        SYSDATE
+								SEQ_ACCFNO.NEXTVAL,        
+							     #{item.accommNo},
+							     #{item.originName},
+							     #{item.changeName},
+							     #{item.filePath},
+							     SYSDATE
 					        )
 							</foreach>
 	</insert>
-	
+
 	
 	
 	

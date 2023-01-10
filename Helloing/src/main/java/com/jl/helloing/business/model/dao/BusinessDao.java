@@ -1,6 +1,7 @@
 package com.jl.helloing.business.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,10 @@ public class BusinessDao {
 	}
 	// 숙소 사진 등록ih
 	public int insertAccomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
+		
+//		HashMap<String, Object> map = new HashMap();
+//		map.put("List", list);
+
 		return sqlSession.insert("productMapper.insertAccomPhoto", list);
 	}
 	
