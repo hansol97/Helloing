@@ -32,6 +32,6 @@ public interface AdminService {
 	ArrayList<Chatbot> searchChatbot(PageInfo pi, HashMap<String, String> map);
 	
 	// 챗봇Q로 챗봇A 조회
-	String selectChatbotA(HashMap map);
+	ArrayList<Chatbot> selectChatbotA(HashMap<String, Object> map);
 
 }

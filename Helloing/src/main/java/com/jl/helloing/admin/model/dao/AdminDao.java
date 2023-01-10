@@ -2,6 +2,7 @@ package com.jl.helloing.admin.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -61,9 +62,12 @@ public class AdminDao {
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.searchChatbot", map, rowBounds);
 	}
-	
-	public String selectChatbotA(SqlSessionTemplate sqlSession, HashMap map) {
-		return sqlSession.selectOne("adminMapper.selectChatbotA", map);
+	/*
+	public String selectChatbotA(SqlSessionTemplate sqlSession, String[] keywords) {
+		return sqlSession.selectOne("adminMapper.selectChatbotA", keywords);
+	}*/
+	public ArrayList<Chatbot> selectChatbotA(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectChatbotA", map);
 	}
 
 }

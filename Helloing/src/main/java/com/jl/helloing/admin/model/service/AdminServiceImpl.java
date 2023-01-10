@@ -81,7 +81,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public String selectChatbotA(HashMap map) {
+	public ArrayList<Chatbot> selectChatbotA(HashMap<String, Object> map) {
 		return adminDao.selectChatbotA(sqlSession, map);
 	}
 

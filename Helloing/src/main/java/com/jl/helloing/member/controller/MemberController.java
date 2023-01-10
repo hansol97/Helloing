@@ -39,17 +39,17 @@ public class MemberController {
 		Member loginUser = memberService.loginMember(m);
 		int memNo = loginUser.getMemNo();
 		Business loginCompany = businessService.loginCompany(memNo);
-		//System.out.println("loginUser :" + loginUser );
-		//System.out.println("memNo:" + memNo);
-		//System.out.println("lc:" + loginCompany);
-		//System.out.println("서비스 돌아온 후 " + loginUser);
 		
-		//System.out.println(loginUser.getMemId());
+		// System.out.println("loginUser :" + loginUser );
+		// System.out.println("memNo:" + memNo);
+		// System.out.println("lc:" + loginCompany);
+		// System.out.println("서비스 돌아온 후 " + loginUser);
+		
+		// System.out.println(loginUser.getMemId());
+		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("loginCompany", loginCompany);
-			
-			
 			mv.setViewName("redirect:/");
 			
 		} else {
