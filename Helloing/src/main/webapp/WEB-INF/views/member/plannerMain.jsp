@@ -124,14 +124,8 @@
 	    	<form action="insertPlanner.hj" method="post">
 		    	<div>
 		    		여행 시작 <input type="date" id="start" > ~ 여행 종료  <input type="date" >
+					<a href="#" rel="modal:close">취소</a>
 		    	</div>
-				<div>
-					여행명 <input type="text" name="plannerName" placeholder="내용을 입력해주세요.">
-				</div>			 
-					<input type="hidden" name="memNo" value="${loginUser.memNo }">
-				<div class="modalBtn" style="float:right;">
-					  <button type="submit">생성</button>
-					  <a href="#" rel="modal:close">취소</a>
 			 	</div>
 			</form>
 		</div>
