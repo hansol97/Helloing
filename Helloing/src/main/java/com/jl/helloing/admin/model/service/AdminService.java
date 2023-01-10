@@ -30,5 +30,8 @@ public interface AdminService {
 	
 	// 챗봇 검색
 	ArrayList<Chatbot> searchChatbot(PageInfo pi, HashMap<String, String> map);
+	
+	// 챗봇Q로 챗봇A 조회
+	String selectChatbotA(String[] keywords);
 
 }

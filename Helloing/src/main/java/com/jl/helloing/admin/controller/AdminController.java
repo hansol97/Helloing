@@ -143,9 +143,17 @@ public class AdminController {
 		
 		return mv;
 	}
-
-	private void addObject(String string, HashMap<String, String> map) {
+	
+	//------------------------ 챗봇(메뉴바) ------------------------
+	
+	@ResponseBody
+	@RequestMapping(value="adminInfo.ch", produces="text/html; charset=UTF-8")
+	public String selectChatbotA(@RequestParam(value="chatbotQ", defaultValue="[admin]안내메세지") String chatbotKeyword) {
+		String[] keywords = chatbotKeyword.split("\\s");
+		
+		String chatbotA = adminService.selectChatbotA(keywords);
 	}
+	
 	
 	
 
