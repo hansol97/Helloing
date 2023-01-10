@@ -15,6 +15,7 @@ import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Planner;
 
 @Controller
 public class MemberController {
@@ -262,9 +263,32 @@ public class MemberController {
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
-	public String plannerList() {
-		return "member/plannerMain";
+	public ModelAndView plannerList(ModelAndView mv, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		ArrayList<Planner> list = memberService.plannerList(memNo);
+		if(list!=null) {
+			int today = Integer.parseInt(new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date()));
+			mv.addObject("today", today);
+			mv.addObject("list", list);
+			mv.setViewName("member/plannerMain");
+			
+		}else {
+			mv.addObject("errorMsg", "플래너 조회에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
+	//플래너 추가
+	@RequestMapping("insertPlanner.hj")
+	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
+		
+		if(memberService.insertPlanner)
+		return mv;
+	}
+	
+	
 	//플랜 상세페이지
 	@RequestMapping("planDetailView.hj")
 	public String planDetailView() {

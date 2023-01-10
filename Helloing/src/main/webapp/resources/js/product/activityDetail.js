@@ -12,7 +12,7 @@ $(function(){
 			$(this).siblings('.count').text(ticketcount + 1);
 		}
 
-		// 결제 정보에 티켓 정보들 추가하기
+		// 결제 정보에 티켓 수량이 0 이상인 티켓 정보들 추가하기
 		var text = '';
 		$('.ticketbox').each(function(idx){
 			if($(this).find('.count').text() > 0){
@@ -22,11 +22,10 @@ $(function(){
 				var ticketNo = $(this).find('input[name=ticketNo]').val();
 
 				console.log(ticketNo);
-				
+
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
 					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketNo" value="' + ticketNo + '">'
-					  	// 나중에 ticketNo로 바꿔야함
 					  + '<input type="hidden" name="ticketPayment[' + idx + '].count" value="' + count + '">';
 			}
 		})

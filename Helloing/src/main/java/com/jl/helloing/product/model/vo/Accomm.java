@@ -6,7 +6,7 @@ import lombok.Data;
 public class Accomm {
 
 	private int accommNo;
-	private int businessNo;
+	private String businessNo;
 	private String accommName;
 	private String address;
 	private String lat;

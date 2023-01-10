@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Planner;
 
 @Repository
 public class MemberDao {
@@ -51,5 +52,9 @@ public class MemberDao {
 
 	public int deleteWishActivity(ActivityWish aw, SqlSessionTemplate sqlSession) {
 		return sqlSession.delete("memberMapper.deleteWishActivity", aw);
+	}
+
+	public ArrayList<Planner> plannerList(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.plannerList", memNo);
 	}
 }
