@@ -59,6 +59,9 @@ public interface MemberService {
 	//플래너 생성
 	int insertPlanner(Planner pl);
 	
+	//플래너 멤버 추가
+	int insertPlannerMem(int memNo);
+	
 	//플래너 수정
 	int updatePlanner(Planner pl);
 	
@@ -72,4 +75,5 @@ public interface MemberService {
 	Expense expenseView(int planNo);
 	
 
+	
 }
