@@ -77,7 +77,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM
 		  	   ACTIVITY
 	</select>
-	
+	<!-- 해당 액티비티의 최저가 티켓 -->
+	<select id="actTicketRowPrice" resultType="_int" parameterType="_int">
+		SELECT 
+			   MIN(T.PRICE)
+		  FROM
+		  	   ACTIVITY
+		  JOIN
+		  	   TICKET T USING (ACTIVITY_NO)
+		 WHERE
+	 	   ACTIVITY_NO = #{ activityNo }
+	</select>
+
 
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
@@ -109,6 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
 	
+	<!-- 액티비티에 달린 리뷰들 -->
 	<select id="selectReviewList" resultMap="ActReviewResultSet" parameterType="_int">
 		SELECT
 			   REVIEW_NO

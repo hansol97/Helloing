@@ -55,12 +55,22 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		mv.addObject("activityList", productService.selectActList());
+		ArrayList<Activity> actList = productService.selectActList();
 		
-		// 메인 화면에 별점과 후기도 필요
+		// 메인 화면에 가격과 후기 갯수도 필요
+		// 후기 갯수, 각 액티비티의 티켓 중 제일 낮은 가격
+		for(int i = 0; i< actList.size(); i++) {
+			// 리뷰 갯수
+			ArrayList<ActivityReview> actReviewList = productService.selectReviewList(actList.get(i).getActivityNo());
+			actList.get(i).setReviewCount(actReviewList.size());
+			
+			// 가장 낮은 가격
+			int price = productService.actTicketRowPrice(actList.get(i).getActivityNo());
+			actList.get(i).setRowPrice(price);
+		}
 		
-		//mv.addObject("ticketList", productService.selectTicketList());
-		mv.setViewName("product/activityMain");
+		mv.addObject("actList", actList)
+		  .setViewName("product/activityMain");
 		
 		return mv;
 	}
@@ -87,8 +97,8 @@ public class ProductController {
 		}
 		mv.addObject("act", act)
 		  .addObject("ticketList", productService.selectTicketList(activityNo))
-		  .addObject("actReviewList", actReviewList);
-		mv.setViewName("product/activityDetail");
+		  .addObject("actReviewList", actReviewList)
+		  .setViewName("product/activityDetail");
 		
 		return mv;
 	}
