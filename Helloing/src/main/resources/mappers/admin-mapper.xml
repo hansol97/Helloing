@@ -177,9 +177,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE
 		       MEMBER
 		   SET
-		       STATUS = 'Y'
+		       STATUS = 'S'
 		 WHERE
-		       STATUS = 'N'
+		       STATUS != 'N'
 		   AND
 		       MEM_NO = #{memNo}
 	</update>

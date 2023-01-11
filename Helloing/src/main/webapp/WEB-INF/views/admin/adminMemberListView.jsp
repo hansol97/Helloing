@@ -52,7 +52,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="570">
+                            <td width="580">
                                 
                             </td>
                             <td>&nbsp;&nbsp;<button id="memDelete-btn">정지</button></td>
@@ -106,6 +106,9 @@
 			                                	<c:if test="${ m.status.equals('A') }">
 			                                		관리자
 			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('S') }">
+			                                		정지
+			                                	</c:if>
 			                                </td>
 			                                <td>${ m.memEnrollDate }</td>
 			                            </tr>
@@ -153,14 +156,19 @@
                         if($('input[type=checkbox]:checked').length == 1){
                             list.each(function(index, value){
                                 if($(value).prop('checked')){
-                                	console.log($(value).parent().next()[0].outerText);
                                     $.ajax({
                                     	url:'deleteMem.ad'
                                     	,data : {
                                     		memNo : $(value).parent().next()[0].outerText
                                     	}
                                     	,success : function(result){
-                                    		console.log(result);
+                                    		if(result == 'YYYY'){
+                                    			alert('정지 성공');
+                                    			location.href="memList.ad";
+                                    		}
+                                    		else{
+                                    			alert('정지 실패');
+                                    		}
                                     	}
                                     	,error : function(){
                                     		console.log('실패');
