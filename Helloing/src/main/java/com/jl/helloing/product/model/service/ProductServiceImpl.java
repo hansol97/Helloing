@@ -1,6 +1,7 @@
 package com.jl.helloing.product.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.jl.helloing.product.model.dao.ProductDao;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -37,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ArrayList<ActivityReview> selectReviewList(int activityNo) {
 		return productDao.selectReviewList(sqlSession, activityNo);
+	}
+
+	@Override
+	public int insertTicketPayment(List<TicketPayment> list) {
+		return productDao.insertTicketPayment(sqlSession, list);
 	}
 
 	

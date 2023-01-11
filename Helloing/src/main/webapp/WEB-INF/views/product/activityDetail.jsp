@@ -42,12 +42,15 @@
 
 				<div>
 					<form action="reserve.activity" method="post">
+						<input type="hidden" name="activityName" value="${ act.activityName }">
+						<input type="hidden" name="endDate" value="${ act.endDate }">
+						<input type="hidden" name="allSum">
 						<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
 							<c:forEach items="${ ticketList }" var="t">
 								<div class="ticketbox">
 									<div class="ticket-info">
 										<p><span class="ticketName">${ t.ticketName }</span><br>
-											${ t.startDate } ~ ${ t.endDate }</p>
+											${ t.startDate } ~ <span id="endDate">${ t.endDate }</span></p>
 										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
 									</div>
 									<div class="ticket-price">

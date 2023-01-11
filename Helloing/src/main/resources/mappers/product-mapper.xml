@@ -162,6 +162,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       REVIEW_NO DESC
 	</select>
 	
+	<!-- 티켓 구매하기 -->
+	<insert id="insertTicketPayment" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator="" index="index" open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+			INTO
+				   TICKET_PAYMENT
+			  	   (
+			  	    ORDER_NO
+			  	   ,MEM_NO
+			  	   ,TICKET_NO
+			  	   ,COUNT
+			  	   ,PAYMENT_AMOUNT
+			  	   )
+			VALUES
+				   (
+				   <if test="index == 0">
+				   	   SEQ_TICKET_ORDER.NEXTVAL
+				   </if>
+				   <if test="index > 0">
+				       SEQ_TICKET_ORDER.CURRVAL
+				   </if>
+				   ,#{ item.memNo }
+				   ,#{ item.ticketNo }
+				   ,#{ item.count }
+				   ,#{ item.paymentAmount }
+				   )
+		</foreach>
+	</insert>
+	
 
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
