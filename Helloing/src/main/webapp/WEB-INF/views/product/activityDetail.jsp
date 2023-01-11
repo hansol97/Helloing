@@ -116,27 +116,27 @@
 							<table>
 								<tr>
 									<td align="right">⭐⭐⭐⭐⭐ </td>
-									<td width="200"><progress value="130" max="1000"></progress></td>
+									<td width="200"><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
 									<td>106명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
+									<td><progress value="2" max="${ fn:length(actReviewList) }"></progress></td>
 									<td>106명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
+									<td><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
 									<td>106명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
+									<td><progress value="0 max="${ fn:length(actReviewList) }"></progress></td>
 									<td>106명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
+									<td><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
 									<td>106명</td>
 								</tr>
 							</table>
