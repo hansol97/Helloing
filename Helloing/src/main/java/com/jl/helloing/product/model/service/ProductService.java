@@ -1,10 +1,12 @@
 package com.jl.helloing.product.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 public interface ProductService {
 	
@@ -17,4 +19,7 @@ public interface ProductService {
 	ArrayList<Ticket> selectTicketList(int activityNo);
 	// 액티비티에 달린 리뷰 조회
 	ArrayList<ActivityReview> selectReviewList(int activityNo);
+	
+	// 티켓 구매하기
+	int insertTicketPayment(List<TicketPayment> list);
 }
