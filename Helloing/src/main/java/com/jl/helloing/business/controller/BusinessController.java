@@ -173,7 +173,9 @@ public class BusinessController {
 		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
 		
     	ArrayList<Attachment> list = new ArrayList();
-    	
+    	System.out.println("upfile : " + upfile);
+    	System.out.println("upfile[0] : " + upfile[0]);
+    	System.out.println(  );
     	for (int i = 0; i < upfile.length; i++) {
 			
 	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
@@ -182,7 +184,7 @@ public class BusinessController {
 					at.setOriginName( upfile[i].getOriginalFilename());
 					at.setChangeName( saveFile(upfile[i], session) );
 					at.setFilePath( "resources/uploadFiles/"  );
-					
+					list.add(at);
 	    		}
 		}
 

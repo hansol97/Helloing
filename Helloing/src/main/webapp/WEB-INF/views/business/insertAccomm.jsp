@@ -27,7 +27,7 @@
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
 			<form action="insertAccom.bu" method="post" enctype="multipart/form-data" class="innerform">
-			<!-- 피드 등록 내용물 -->
+			<!--  등록 내용물 -->
 			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 👍멋진 🛖숙소를 🕵️‍♀️등록해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
@@ -45,9 +45,8 @@
 							<input type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="hidden" id="LAT" name="LAT" placeholder="위도" value="">
 							<input type="hidden" id="LNG" name="LNG" placeholder="경도" value="">
-							<!--<input type="hidden" class="hidden" name="businessNo" value="${sessionScope.loginCompany.businessNo}"/>--><!-- 사업자번호 히든 -->
-							<input type="hidden" class="hidden" name="businessNo" value="1"/><!-- 사업자번호 히든 -->
-							<input type="hidden" name="address" id="" value=""> <!-- 제이쿼리로 합친 주소+상세주소 를 밸류에 -->
+							<input type="hidden" class="hidden" name="businessNo" value="${sessionScope.loginCompany.businessNo}"/><!-- 사업자번호 히든 -->
+							<input type="hidden" name="address" id="address" value=""> <!-- 제이쿼리로 합친 주소+상세주소 를 밸류에 -->
 							<script>
 								var query = ''; // 주소
 								var themeObj = {
@@ -192,9 +191,9 @@
 				</table>
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" required/><br><br>
-						<input type="file" name="accommPhoto2" /><br><br>
-						<input type="file" name="accommPhoto3" /><br><br><br><br>
+						<input type="file" name="upfile" required/><br><br>
+						<input type="file" name="upfile" /><br><br>
+						<input type="file" name="upfile" /><br><br><br><br>
 					</div>
 
 			<div class="feed_modal_btns" align="center">

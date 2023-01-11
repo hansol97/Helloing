@@ -1,7 +1,9 @@
 package com.jl.helloing.business.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -17,13 +19,17 @@ public class BusinessDao {
 	}
 
 	
-	// 숙소 등록
+	// 숙소 등록ih
 	public int insertAccom(Accomm acc,  SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("businessMapper.insertAccom", acc);
+		return sqlSession.insert("productMapper.insertAccom", acc);
 	}
-	// 숙소 사진 등록
+	// 숙소 사진 등록ih
 	public int insertAccomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("product-mapper.insertAccomPhoto", list);
+		
+//		HashMap<String, Object> map = new HashMap();
+//		map.put("List", list);
+		System.out.println("숙소사진등록 DAO list :  " + list );
+		return sqlSession.insert("productMapper.insertAccomPhoto", list);
 	}
 	
 	public Business loginCompany(int memNo, SqlSessionTemplate sqlSession) {
