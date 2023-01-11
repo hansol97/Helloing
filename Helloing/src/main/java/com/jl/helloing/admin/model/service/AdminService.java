@@ -37,10 +37,15 @@ public interface AdminService {
 	ArrayList<Chatbot> selectChatbotA(HashMap<String, Object> map);
 	
 	//--------------- 회원 관리 ----------------
+	
+	// 일반회원 목록 수 조회
+	int selectMemListCount();
+	
 	// 일반회원 목록 조회
-	ArrayList<Member> selectMemberList();
+	ArrayList<Member> selectMemberList(PageInfo pi);
 	
 	// 일반회원 정지
 	int deleteMember(int memNo);
+
 
 }

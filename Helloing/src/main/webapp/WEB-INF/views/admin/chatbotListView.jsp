@@ -96,13 +96,18 @@
 </style>
 </head>
 <body>
-    <jsp:include page="menubar_admin.jsp"/>
-    
-    <c:if test="${ not empty alertMsg }">
+
+	<c:if test="${ not empty adminAlertMsg }">
     	<script>
-    		alert('${alertMsg}');
+    		alert('${adminAlertMsg}');
+    		session
     	</script>
     </c:if>
+    <%session.invalidate();%>
+    
+    <jsp:include page="menubar_admin.jsp"/>
+    
+    
     
     <div class="admin-content">
 
