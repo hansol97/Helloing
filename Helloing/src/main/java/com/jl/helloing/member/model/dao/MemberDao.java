@@ -14,7 +14,8 @@ import com.jl.helloing.member.model.vo.Planner;
 
 @Repository
 public class MemberDao {
-
+	
+	// 승준
 	public Member loginMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
@@ -25,6 +26,15 @@ public class MemberDao {
 	
 	public void insertSecret(SqlSessionTemplate sqlSession, Cert cert) {
 		sqlSession.insert("memberMapper.insertSecret", cert);
+	}
+	public boolean validate(SqlSessionTemplate sqlSession, Cert cert) {
+		
+		Cert result = sqlSession.selectOne("memberMapper.validate", cert);
+		if(result != null) {
+			sqlSession.delete("memberMapper.remove", cert);
+		}
+		
+		return result != null;// null이 아니면 true, null이면 false
 	}
 
 	
@@ -80,4 +90,6 @@ public class MemberDao {
 	public ArrayList<Plan> planDetailView(int plannerNo, SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("memberMapper.planDetailView", plannerNo);
 	}
+
+
 }

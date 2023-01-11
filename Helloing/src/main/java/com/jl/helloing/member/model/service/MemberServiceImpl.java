@@ -38,14 +38,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertMember(m, sqlSession);
 	}
 	
-	// 메일인증
+	// 메일인증번호 보내기
 	
 	@Override
 	public void sendMail(Cert cert) {
 		memberDao.insertSecret(sqlSession, cert);
 		
 	}
-	
+	// 메일인증번호 인증하기
+	@Override
+	public boolean validate(Cert cert) {
+		return memberDao.validate(sqlSession, cert) ;
+	}
 	
 	
 	
@@ -171,6 +175,8 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 
