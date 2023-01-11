@@ -41,24 +41,16 @@
 
 			<table>
 				<tr>
-					<th>아이디</th>
-					<td>business1</td>
-				</tr>
-				<tr>
 					<th>사업자명</th>
-					<td>사업자1</td>
+					<td>${loginCompany.businessName}</td>
 				</tr>
 				<tr>
 					<th>사업자 번호</th>
-					<td>222-22-22222</td>
-				</tr>
-				<tr>
-					<th>연락처</th>
-					<td>010-0000-0000</td>
+					<td>${loginCompany.businessName}</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td>서울시 중구</td>
+					<td>${loginCompany.address}</td>
 				</tr>
 			</table>
 

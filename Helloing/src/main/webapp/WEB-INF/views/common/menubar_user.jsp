@@ -327,6 +327,22 @@
     padding:0px;
   }
 
+  .chat_qa_btn{
+    background-color: rgb(233, 233, 233);
+    display:inline-block;
+    width:120px;
+    height:27px;
+    text-align: center;
+    border-radius: 3px;
+    border:1px solid rgb(150, 150, 150);
+    margin-left:25px;
+    margin-top:5px;
+  }
+
+  .admin_chat.chat_qa_area{
+    width:180px;
+  }
+
   </style>
 
 </head>
@@ -504,7 +520,7 @@
 
     $(function(){
       $('#chatbot_btn').click(function(){
-        //$chatBody.children().remove('');
+        $chatBody.children().remove('');
         $.ajax({
           url:'adminInfo.ch'
           ,data : {
@@ -524,6 +540,7 @@
     
     var chatbotList = '';
     let $userInput = $('#chatbot_user_input');
+    
     function addUserChat(){
       $chatBody.append('<div class="wrap_user_chat"><div class="user_chat"><p>' + $userInput.val() + '</p></div></div>');
       $.ajax({
@@ -532,7 +549,11 @@
           chatbotKeyword : $userInput.val()
         }
         ,success: function(cList){
-          console.log(cList);
+          $userInput.val(null);
+          if(cList == ''){
+            $chatBody.append('<div class="admin_chat chat_qa_area" onclick="QAInfo();"> 검색된 결과가 없습니다.<br>'+
+              '<button class="chat_qa_btn">1:1문의 바로가기</button></div>');
+          }
           for(var i = 0; i < cList.length; i++){
             $chatBody.append('<button class="admin_chat" onclick="bringChatbotA(' + i + ');">'+ (i+1) + '. ' + cList[i].chatbotQ + '</button>');
           }

@@ -34,12 +34,13 @@
                 <div class="photo" style="background-image: url(resources/img/IHimg/hotelex.jpg)"></div>
               </div>
               <div class="description">
-                <span style="font-size: larger;">이곳이 바로 숙소 이름을 쓰는 곳입니다</span>                                            
+                <span style="font-size: larger;">이곳이 바로 숙소 이름이 나오는 곳입니다</span>                                            
                 <div class="more_details">
                     <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                     <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                     <div class="more_buttons">
-                        <button onclick='location.href="goInsertRoom.bu"' class="more_button">객실등록</button>
+                        <button onclick='location.href="goInsertRoom.bu?accommNo=3"' class="more_button">객실등록</button>
+                        <!-- <button onclick='location.href="goInsertRoom.bu?accommNo=$"' class="more_button">객실등록</button> -->
                         <button onclick='location.href="goUpdateAccom.bu"' class="more_button">숙소수정</button>
                         <button onclick='location.href="#"' class="more_button">숙소삭제</button>
                         <button onclick='location.href="goPayAccom.bu"' class="more_button">추가결제</button>

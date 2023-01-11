@@ -1,9 +1,7 @@
 package com.jl.helloing.business.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +9,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.Room;
 
 @Repository
 public class BusinessDao {
@@ -42,5 +41,15 @@ public class BusinessDao {
 
 	public int insertActPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("productMapper.insertActPhoto", list);
+	}
+
+
+	public int insertRoom(Room room, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("productMapper.insertRoom", room);
+	}
+
+
+	public int insertRoomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("productMapper.insertRoomPhoto", list);
 	}
 }

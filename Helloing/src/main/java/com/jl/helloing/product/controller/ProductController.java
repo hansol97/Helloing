@@ -1,7 +1,6 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +14,7 @@ import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class ProductController {
@@ -101,17 +101,31 @@ public class ProductController {
 	
 	// 액티비티 결제 페이지
 	@RequestMapping("reserve.activity")
-	public String reserveActivity(HttpSession session, TicketCommand tk) {
+	public String reserveActivity(HttpSession session, TicketCommand tk, TicketPayment tp) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		// System.out.println(tk.getTicketPayment());
-		// count가 0 이상인 것만 DB에 insert
-		
-		
-		if(loginUser != null) {
+		if(loginUser != null) { // 로그인 되어있는 유저만 결제 페이지 넘어가기
 			int memNo = loginUser.getMemNo();
+			
+			System.out.println("리스트 사이즈 : " + tk.getTicketPayment().size());
+			System.out.println("삭제전 : " + tk.getTicketPayment());
+			
+			for(int i = 0; i < tk.getTicketPayment().size(); i++) {
+				System.out.println(i + "번째 : " + tk.getTicketPayment());
+				
+				if(tk.getTicketPayment().get(i).getCount() == 0) {
+					tk.getTicketPayment().remove(i);
+				}
+			}
+			System.out.println("삭제후 : " + tk.getTicketPayment());
+			
+			
+			
+			
+			
+			
 			return "product/activityReserve";
-		} else { // 로그인이 되어있지 않을 경우 로그인 폼으로 이동
+		} else {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:loginForm.me";
 		}
