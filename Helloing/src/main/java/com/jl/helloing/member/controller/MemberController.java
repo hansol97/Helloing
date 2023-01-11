@@ -433,11 +433,81 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	
+	//일행과 함께 여행가기
+	
+	
+	
+	
+	
+	
+	
+	
+	//일정 추가
+	
+	
+	
+	
+	
+	
+	
+	//일정 수정 전 조회
+	
+	
+	
+	
+	
+	//일정 수정
+	
+	
+	
+	
+	
+	//일정 삭제
+	
+	
+	
+	
+	
 	//가계부 페이지
 	@RequestMapping("expenseView.hj")
 	public String expenseView() {
 		return "member/expenseView";
 	}
+
+	
+	//1/n
+	
+	
+	
+	
+	
+	
+	
+	//비용 추가
+	
+	
+	
+	
+	
+	
+	
+	//비용 수정 전 조회
+	
+	
+	
+	
+	
+	
+	//비용삭제
+	
+	
+	
+	
+	
+	
+	
 	
 	// 위시리스트 추가
 	@RequestMapping("addWish")
