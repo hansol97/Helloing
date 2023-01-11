@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data @Builder @AllArgsConstructor
-public class cert {
+public class Cert {
 	private String who; 	// 이메일 보낼 사용자 ip
 	private String secret;	// 인증번호
 	private String when; 	// 인증번호 유효 시간(3분)

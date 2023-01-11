@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jl.helloing.admin.model.dao.AdminDao;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
+import com.jl.helloing.member.model.vo.Member;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -84,6 +85,23 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<Chatbot> selectChatbotA(HashMap<String, Object> map) {
 		return adminDao.selectChatbotA(sqlSession, map);
 	}
+	
+	@Override
+	public int selectMemListCount() {
+		return adminDao.selectMembListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Member> selectMemberList(PageInfo pi) {
+		return adminDao.selectMemberList(sqlSession, pi);
+	}
+
+	@Override
+	public int deleteMember(int memNo) {
+		return adminDao.deleteMember(sqlSession, memNo);
+	}
+
+	
 
 	
 

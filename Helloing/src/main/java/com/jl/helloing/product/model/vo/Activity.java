@@ -21,4 +21,7 @@ public class Activity {
 	private int star3;
 	private int star4;
 	private int star5;
+	
+
+	private int allSum;
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
@@ -14,6 +15,7 @@ public interface BusinessService {
 	int insertCompany(Business b);
 	
 	Business loginCompany(int memNo);
+	
 
 
 	

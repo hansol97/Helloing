@@ -92,7 +92,7 @@ height: 30px;
 					</tr>
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
-						<td><input type="email" name="email" >
+						<td><input type="email" name="email" id="email" >
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
 							<input type="text" name="cert" maxlength="6"> 
@@ -118,7 +118,18 @@ height: 30px;
 			<script>
 			// 이메일 인증번호
 			function certButton() {
-				
+				$.ajax({
+					url : 'certButton.me',
+					data : {
+						email : $('email').val()
+					}
+					,success :function(result){
+						console.log(result)
+					},
+					error :function(){
+						console.log("에러남")
+					}	
+				})
 			}
 			
 			</script>

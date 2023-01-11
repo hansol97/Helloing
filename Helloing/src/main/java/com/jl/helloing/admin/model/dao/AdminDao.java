@@ -2,7 +2,6 @@ package com.jl.helloing.admin.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
+import com.jl.helloing.member.model.vo.Member;
 
 @Repository
 public class AdminDao {
@@ -62,12 +62,24 @@ public class AdminDao {
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.searchChatbot", map, rowBounds);
 	}
-	/*
-	public String selectChatbotA(SqlSessionTemplate sqlSession, String[] keywords) {
-		return sqlSession.selectOne("adminMapper.selectChatbotA", keywords);
-	}*/
+	
 	public ArrayList<Chatbot> selectChatbotA(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectChatbotA", map);
 	}
+
+	public int selectMembListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectMemListCount");
+	}
+	
+	public ArrayList<Member> selectMemberList(SqlSessionTemplate sqlSession, PageInfo pi){
+			int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList", null, rowBounds);
+	}
+	
+	public int deleteMember(SqlSessionTemplate sqlSession, int memNo) {
+		return sqlSession.update("adminMapper.deleteMember", memNo);
+	}
+
 
 }

@@ -2,10 +2,10 @@ package com.jl.helloing.member.model.dao;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
@@ -21,6 +21,10 @@ public class MemberDao {
 	
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+	
+	public void insertSecret(SqlSessionTemplate sqlSession, Cert cert) {
+		sqlSession.insert("memberMapper.insertSecret", cert);
 	}
 
 	
