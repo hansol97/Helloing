@@ -6,16 +6,19 @@
 <head>
 <style>
     .business-content {
-    background-color:rgb(255, 255, 255);
+    background-color:#f9fbff;
     width:1500px;
     margin:auto;
     }
     .business-innerOuter {
     font-family: 'S-CoreDream-3Light';
-    width:1300px;
+    width:1450px;
+    height:660px;
+    
     margin:auto;
     padding:50px 100px;
-    background-color:white;
+    
+    background-color:rgb(255, 255, 255);
     word-break:break-all;
     }
     
@@ -31,7 +34,7 @@
         /* float:right; */
 
         position:absolute;
-        top:200px;
+        top:250px;
     }
 
     #book-info-area{
@@ -39,8 +42,8 @@
         /* float:left; */
 
         position:absolute;
-        top:260px;
-        left:830px;
+        top:290px;
+        right:220px;
     }
 
     #book-info-area > div{

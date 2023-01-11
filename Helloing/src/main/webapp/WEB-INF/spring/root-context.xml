@@ -33,5 +33,21 @@
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
     </bean>
+    
+    <!-- 메일전송도구 등록 (스프링이 관리할수있게 빈 등록) -->
+	  												<!-- 내가등록하고싶은 풀 클래스명 -->
+	 <bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	 	<property name="host" value="smtp.gmail.com" />
+	 	<property name="port" value="587" />
+	 	<property name="username" value="winjun9191@gmail.com" />
+	 	<property name="password" value="zgggozlujryamapz" />
+	 	<property name="javaMailProperties">
+	 		<props>
+	 			<prop key="mail.smtp.auth">true</prop>
+	 			<prop key="mail.smtp.starttls.enable">true</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 <!--  이렇게 한거를 스프링이 사용할수있게 의존성을 입힌다. -> test2 controller  -->
 		
 </beans>

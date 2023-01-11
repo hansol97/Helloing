@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import com.jl.helloing.business.model.dao.BusinessDao;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
-
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.Room;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -34,7 +35,6 @@ public class BusinessServiceImpl implements BusinessService {
 	public Business loginCompany(int memNo) {
 		return businessDao.loginCompany(memNo, sqlSession);
 	}
-
 
 	
 	
@@ -75,5 +75,22 @@ public class BusinessServiceImpl implements BusinessService {
 	public int InsertActPhoto(ArrayList<Attachment> list) {
 		return businessDao.insertActPhoto(list, sqlSession);
 	}
+
+	@Override
+	public int InsertRoom(Room room) {
+		return businessDao.insertRoom(room, sqlSession);
+	}
+
+	@Override
+	public int InsertRoomPhoto(ArrayList<Attachment> list) {
+		return businessDao.insertRoomPhoto(list, sqlSession);
+	}
+
+	@Override
+	public int updateBusinessMember(Business loginCompany) {
+		return businessDao.updateBusinessMember(sqlSession, loginCompany);
+	}
+
+
 
 }

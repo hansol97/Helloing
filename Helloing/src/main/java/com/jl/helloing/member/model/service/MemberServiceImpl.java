@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.dao.MemberDao;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -24,6 +25,7 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	// 승준
 	// 로그인
 	@Override
 	public Member loginMember(Member m) {
@@ -35,8 +37,14 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMember(Member m) {
 		return memberDao.insertMember(m, sqlSession);
 	}
-
 	
+	// 메일인증
+	
+	@Override
+	public void sendMail(Cert cert) {
+		memberDao.insertSecret(sqlSession, cert);
+		
+	}
 	
 	
 	
@@ -137,6 +145,13 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePlanner(Planner pl) {
 		return memberDao.updatePlanner(pl, sqlSession);
 	}
+	
+	//플래너 속 플랜 삭제
+	@Override
+	public int deletePlan(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	//플래너 삭제
 	@Override
@@ -145,10 +160,10 @@ public class MemberServiceImpl implements MemberService{
 		return 0;
 	}
 	
+	//플래너 상세페이지
 	@Override
-	public Plan planDetailView(int memNo, int planNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Plan> planDetailView(int plannerNo) {
+		return memberDao.planDetailView(plannerNo, sqlSession);
 	}
 
 	@Override
@@ -156,6 +171,9 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 
 

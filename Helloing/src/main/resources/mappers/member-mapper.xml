@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="REPORT_COUNT" 	property="reportCount" />
 	</resultMap>
 
+ <!-- 여기는 승준 -->
 	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
 		select
 				mem_no,
@@ -58,8 +59,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 	</insert>	
 	
-	
-	
+		<insert id="insertSecret" parameterType="cert">
+		INSERT 
+		  INTO
+		  		CERT
+				(
+				WHO,
+				SECRET,
+				WHEN
+				)
+		VALUES
+				(
+				#{who},
+				#{secret},
+				sysdate
+				)
+	</insert>
 	
 	
 	
@@ -200,4 +215,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 		PLANNER_NO = #{ plannerNo }
 	</update>
+	<select id="planDetailView" parameterType="_int" resultType="plan">
+	SELECT DISTINCT
+	        PLANNER_NAME plannerName,
+	        PLAN_NO planNo,
+	        PLAN_NAME planName,
+	        PLAN_CONTENT planContent,
+	        START_TIME startTime,
+	        END_TIME endTime,
+	        START_DATE startDate,
+	        END_DATE endDate,
+	        PLAN_CATEGORY planCategory,
+	        (WITH MEM AS (
+	            SELECT 
+	                    MEM_NAME memNo 
+	            FROM 
+	                MEMBER 
+	            JOIN 
+	                PLANNER_MEM USING(MEM_NO) 
+	            WHERE 
+	                PLANNER_NO = #{ plannerNo }
+	        )
+	        SELECT LISTAGG(memNo, ',') WITHIN GROUP (ORDER BY memNo) FROM MEM)memName
+	      
+			FROM 
+			    PLAN
+			JOIN 
+			    PLANNER USING(PLANNER_NO)
+			JOIN 
+			    PLANNER_MEM USING(PLANNER_NO)
+			JOIN 
+			    MEMBER USING(MEM_NO)
+			WHERE 
+			    PLANNER_NO = #{ plannerNo }
+	</select>
 </mapper>
