@@ -107,6 +107,7 @@ public class ProductController {
 		if(loginUser != null) { // 로그인 되어있는 유저만 결제 페이지 넘어가기
 			int memNo = loginUser.getMemNo();
 			
+			System.out.println("리스트 사이즈 : " + tk.getTicketPayment().size());
 			System.out.println("삭제전 : " + tk.getTicketPayment());
 			
 			for(int i = 0; i < tk.getTicketPayment().size(); i++) {
