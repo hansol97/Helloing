@@ -92,9 +92,9 @@ height: 30px;
 					</tr>
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
-						<td><input type="email" name="email" required>
-							<br>
+						<td><input type="email" name="email" >
 							<input type="button" value="인증요청">
+							<input type="text" name="cert" maxlength="6"> 
 						</td>
 					</tr>	
 						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
