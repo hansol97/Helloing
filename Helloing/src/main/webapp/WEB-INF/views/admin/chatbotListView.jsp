@@ -149,12 +149,10 @@
                 <script>
                     $(function(){
                         $('#updateChatbot').click(function(){
-                            var chatbotQ = '';
                             var list = $(".cbox");
                             if($('input[type=checkbox]:checked').length == 1){
                                 list.each(function(index, value){
                                     if($(value).prop('checked')){
-                                        console.log($(value).parents('td').next()[0].outerText);
                                         $('#update_chatbotQ').val($(value).parents('td').next()[0].outerText);
                                         $('#update_chatbotA').val($(value).parents('td').next().next()[0].outerText);
                                         $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].outerText);
@@ -270,11 +268,28 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="chatbotList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="chatbotList.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="chatbotList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
 

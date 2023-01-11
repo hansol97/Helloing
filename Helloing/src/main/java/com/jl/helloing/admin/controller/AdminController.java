@@ -99,6 +99,7 @@ public class AdminController {
 		PageInfo pi = Pagination.getPageInfo(adminService.selectChatbotListCount(), currentPage, 10, 5);
 
 		mv.addObject("list", adminService.selectChatbotList(pi))
+		  .addObject("pi", pi)
 		  .setViewName("admin/chatbotListView");
 		
 		return mv;
@@ -175,10 +176,24 @@ public class AdminController {
 		ArrayList<Member> list = adminService.selectMemberList(pi);
 		
 		m.addAttribute("list", list);
+		m.addAttribute("pi", pi);
 		
 		return "admin/adminMemberListView";
 	}
 	
+	// 일반회원 정지
+	@ResponseBody
+	@RequestMapping(value="deleteMem.ad", produces="text/html; charset=UTF-8")
+	public String deleteMember(int memNo) {
+		
+		String result;
+		if(adminService.deleteMember(memNo) > 0) {
+			result = "YYYY";
+		}else {
+			result = "NNNN";
+		}
+		return result;
+	}
 	
 
 	
