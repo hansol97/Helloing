@@ -188,9 +188,9 @@
 
 			<div class="side-bar">
 				<div class="accommselectbox">
-					<p><span>65,000원부터 ~</span></p>
+					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
-					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
+					<div><button id="btn-wish" onclick="btn-addWish">♥️ 위시리스트에 담기</button></div>
 				</div>
 			</div>
 		</div>
