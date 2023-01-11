@@ -159,27 +159,11 @@ public class AdminController {
 		map.put("List", list);
 		
 		ArrayList<Chatbot> cList = adminService.selectChatbotA(map);
-		
-		System.out.println(cList);
 
 		return new Gson().toJson(cList);
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="selectChatbotA.ch", produces="application/json; charset=UTF-8")
-//	public String selectChatbotA(String chatbotKeyword) {
-//		String[] keywords = chatbotKeyword.split("\\s");
-//		
-//		List list = Arrays.asList(keywords);
-//		
-//		HashMap<String, Object> map = new HashMap();
-//		map.put("List", list);
-//		
-//		Chatbot c = adminService.selectChatbotA(map);
-//		System.out.println(c);
-//		return new Gson().toJson(c);
-//		
-//	}
+
 	
 	
 	
