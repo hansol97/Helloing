@@ -223,9 +223,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        PLAN_CONTENT planContent,
 	        START_TIME startTime,
 	        END_TIME endTime,
-	        START_DATE startDate,
-	        END_DATE endDate,
+	        SUBSTR(START_DATE,1,10) startDate,
+	        SUBSTR(END_DATE,1,10) endDate,
 	        PLAN_CATEGORY planCategory,
+	        SUBSTR(PLAN_DATE,4,10) planDate,
 	        (WITH MEM AS (
 	            SELECT 
 	                    MEM_NAME memNo 

@@ -17,4 +17,5 @@ public class Plan {
 	private String memName;
 	private String startDate;
 	private String endDate;
+	private String planDate;
 }

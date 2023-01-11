@@ -101,7 +101,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
 
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
 		SELECT
@@ -110,6 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,BUSINESS_NO
 			  ,ACTIVITY_CONTENT
 			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
+			  ,(SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS "ROWPRICE"
 			  ,(SELECT AVG(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo }) AS "AVG"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 1) AS "STAR1"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 2) AS "STAR2"
@@ -117,7 +117,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 4) AS "STAR4"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 5) AS "STAR5"
 		  FROM
-		  	   ACTIVITY
+		  	   ACTIVITY A
 		 WHERE
 		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
@@ -191,40 +191,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
 		INSERT
 		  INTO
-				        ACCOMM
-				        (
-				        ACCOMM_NO,
-				        BUSINESS_NO,
-				        ACCOMM_NAME,
-				        ADDRESS,
-				        LAT,
-				        LNG,
-				        GRADE,
-				        REFUND,
-				        CHECKINOUT,
-				        END_DATE,
-				        ACCOMM_CONTENT,
-				        CATEGORY
-				        )
+		        ACCOMM
+		        (
+		        ACCOMM_NO,
+		        BUSINESS_NO,
+		        ACCOMM_NAME,
+		        ADDRESS,
+		        LAT,
+		        LNG,
+		        GRADE,
+		        REFUND,
+		        CHECKINOUT,
+		        END_DATE,
+		        ACCOMM_CONTENT,
+		        CATEGORY
+		        )
 		VALUES
-				        (
-				        SEQ_ACCNO.NEXTVAL,        
-				        #{businessNo},
-				        #{accommName},
-				        #{address},
-				        #{lat},
-				        #{lng},
-				        #{grade},
-				        #{refund},
-				        #{checkInout},
-				        SYSDATE,
-				        #{accommContent},
-				        #{category}
-				        )
+		        (
+		        SEQ_ACCNO.NEXTVAL,        
+		        #{businessNo},
+		        #{accommName},
+		        #{address},
+		        #{lat},
+		        #{lng},
+		        #{grade},
+		        #{refund},
+		        #{checkInout},
+		        SYSDATE,
+		        #{accommContent},
+		        #{category}
+		        )
 	</insert>
 	
 	<!-- 숙소 첨부파일 집어넣기 --> 
@@ -315,28 +316,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertRoom" parameterType="room">
 		INSERT
 		  INTO
-				        ROOM
-				        (
-				        ROOM_NO,
-				        ACCOMM_NO,
-				        ROOM_NAME,
-				        CAPACITY,
-				        PRICE
-				 
-				        )
+		        ROOM
+		        (
+		        ROOM_NO,
+		        ACCOMM_NO,
+		        ROOM_NAME,
+		        CAPACITY,
+		        PRICE
+		 
+		        )
 		VALUES
-				        (
-				        SEQ_RMNO.NEXTVAL,        
-				        #{accommNo},
-				        #{roomName},
-				        #{capacity},
-				        #{price}
-				        )
+		        (
+		        SEQ_RMNO.NEXTVAL,        
+		        #{accommNo},
+		        #{roomName},
+		        #{capacity},
+		        #{price}
+		        )
 	</insert>
 	
 	<!-- 객실 첨부파일 집어넣기 --> 
 	<insert  id="insertRoomPhoto"   parameterType="java.util.List" >
-	  INSERT
+	  	INSERT
 		  INTO
 		        ROOM_ATTACHMENT
 		        (
@@ -364,6 +365,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</foreach>
 						  ) A
 	</insert>
+	
+	<!-- 티켓 집어넣기 -->
+	<insert id="insertTicket" parameterType="ticket">
+		INSERT
+		  INTO
+		        TICKET
+		        (
+		        TICKET_NO,
+		        ACTIVITY_NO,
+		        TICKET_NAME,
+		        CAPACITY,
+		        PRICE,
+		        START_DATE,
+		        END_DATE
+		 
+		        )
+		VALUES
+		        (
+		        SEQ_TNO.NEXTVAL,        
+		        #{activityNo},
+		        #{ticketName},
+		        #{capacity},
+		        #{price},
+		        #{startDate},
+		        #{endDate}
+		        )
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

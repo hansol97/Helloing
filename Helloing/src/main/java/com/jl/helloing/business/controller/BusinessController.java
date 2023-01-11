@@ -24,10 +24,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.service.MemberService;
+import com.jl.helloing.member.model.service.MemberServiceImpl;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.Ticket;
 
 @Controller
 public class BusinessController {
@@ -182,7 +185,19 @@ public class BusinessController {
 		}
 	}
 	
-	
+	// 티켓등록하기
+	@RequestMapping("insertTicket.bu")
+	public String insertTicket(Ticket t, Model m) {
+		
+		int result = businessService.insertTicket(t);
+		
+		if (result > 0) { // 티켓 등록 성공! 
+			return "redirect:activityList.bu";
+		} else { // 실패 => 에러 문구를 담아서 에러페이지로 포워딩
+			m.addAttribute("errorMsg", "회원가입 실패ㅠㅠ");
+			return "common/errorPage"; 
+		}
+	}
 	
 	
 	

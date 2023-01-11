@@ -129,11 +129,12 @@ public class MemberController {
 		}
 	}
 	
-	@PostMapping("certButton.me")
+	
+	@RequestMapping("certButton.me")
 	public String certButton(String email, HttpServletRequest request) throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-		
+		//System.out.println(email);
 		String ip = request.getRemoteAddr(); //getRemoteAddr ip주소를 준다.
 		String secret = generateSecret();
 		//build 를 사용
@@ -167,6 +168,21 @@ public class MemberController {
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}
 	
+	@ResponseBody
+	@RequestMapping("check")
+	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
+											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없다.
+		Cert cert = Cert.builder()
+						.who(request.getRemoteAddr())
+						.secret(secret)
+						.build(); // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
+		
+		
+		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
+		
+		return "result : " + result;
+		
+	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
@@ -407,7 +423,6 @@ public class MemberController {
 		
 		ArrayList<Plan> list = memberService.planDetailView(plannerNo);
 
-		System.out.println(list);
 		if(list!=null) {
 			mv.addObject("list", list);
 			mv.setViewName("member/planDetailView");
@@ -422,5 +437,23 @@ public class MemberController {
 	@RequestMapping("expenseView.hj")
 	public String expenseView() {
 		return "member/expenseView";
+	}
+	
+	// 위시리스트 추가
+	@RequestMapping("addWish")
+	public void addWish(HttpSession session,
+						ActivityWish aw,
+					    int activityNo) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			aw.setActivityNo(activityNo);
+		} else {
+			
+		}
+		
+		
+		
 	}
 }

@@ -95,9 +95,9 @@ height: 30px;
 						<td><input type="email" name="email" id="email" >
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
-							<input type="text" name="cert" maxlength="6"> 
-						</td>
-					</tr>	
+							<input type="text" name="secret" id="secret1" maxlength="6"><span id="secret" width="80"></span> 
+						</td>	 
+					</tr>
 						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
 					
 					<!--  
@@ -117,11 +117,14 @@ height: 30px;
 			
 			<script>
 			// 이메일 인증번호
+			
+			
 			function certButton() {
+				console.log($('#email').val());
 				$.ajax({
 					url : 'certButton.me',
 					data : {
-						email : $('email').val()
+						email : $('#email').val()
 					}
 					,success :function(result){
 						console.log(result)
@@ -135,15 +138,34 @@ height: 30px;
 			</script>
 			
 			
-			
-			
-			
-			
+			<script>
+				$(function(){
+					$(document).on('focusout', 'input[name=memId]', 
+					function(){
+						$('#checkId').text($('인증인증').val())
+					})
+				})
+			</script>
 			
 			<script>
 				$(function(){
-					$(document).on('focusout', 'input[name=memId]', function(){
-						$('#checkId').text($('input[name=memId]').val())
+					$(document).on('keyup', 'input[name=secret]', function(){
+						if($('input[name=secret]').val().length == 6){
+							$.ajax({
+								url : 'check',
+								data : {
+									secret : $('#secret1').val()
+								}
+								,success :function(result1){
+									console.log(result1)
+								},
+								error :function(){
+									console.log()
+								}
+								
+							})
+						$('#secret').text($('input[name=secret]').val())
+						}
 					})
 				})
 			</script>

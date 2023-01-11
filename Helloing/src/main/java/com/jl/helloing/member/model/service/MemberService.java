@@ -21,6 +21,7 @@ public interface MemberService {
 	// 메일인증
 	void sendMail(Cert cert);
 	
+	boolean validate(Cert cert);
 	
 	//혜진
 	//예정된 예약 리스트 조회
