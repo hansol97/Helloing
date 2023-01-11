@@ -33,6 +33,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="BUSINESS_NO"   		property="businessNo" />
         <result column="ACTIVITY_CONTENT"  	property="activityContent" />
         <result column="END_DATE"    		property="endDate" />
+        <result column="REVIEWCOUNT"    	property="reviewCount" />
+        <result column="ROWPRICE"    	property="rowPrice" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -72,23 +74,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
 		SELECT
-			   ACTIVITY_NO
+			   DISTINCT A.ACTIVITY_NO
 			  ,ACTIVITY_NAME
+              ,( SELECT
+              		    COUNT(*)
+                   FROM
+                   	    ACTIVITY_REVIEW
+                  WHERE
+                  	    ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
+              ,( SELECT
+              	        MIN(PRICE)
+              	   FROM
+              	   	    TICKET
+              	  WHERE
+              	  	    ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
 		  FROM
-		  	   ACTIVITY
+		  	   ACTIVITY A
+          LEFT
+          JOIN 
+          	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
-	<!-- 해당 액티비티의 최저가 티켓 -->
-	<select id="actTicketRowPrice" resultType="_int" parameterType="_int">
-		SELECT 
-			   MIN(T.PRICE)
-		  FROM
-		  	   ACTIVITY
-		  JOIN
-		  	   TICKET T USING (ACTIVITY_NO)
-		 WHERE
-	 	   ACTIVITY_NO = #{ activityNo }
-	</select>
-
 
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
@@ -97,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,ACTIVITY_NAME
 			  ,BUSINESS_NO
 			  ,ACTIVITY_CONTENT
-			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
+			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
 		  FROM
 		  	   ACTIVITY
 		 WHERE
@@ -112,8 +117,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TICKET_NAME
 			  ,CAPACITY
 			  ,PRICE
-			  ,TO_CHAR(START_DATE, 'YYYY-MM-DD') AS START_DATE
-			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
+			  ,TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE
+			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
 		  FROM
 		  	   TICKET
 		 WHERE
