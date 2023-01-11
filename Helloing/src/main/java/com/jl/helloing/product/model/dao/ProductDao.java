@@ -1,6 +1,7 @@
 package com.jl.helloing.product.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Repository
 public class ProductDao {
@@ -30,5 +32,9 @@ public class ProductDao {
 	
 	public ArrayList<ActivityReview> selectReviewList(SqlSessionTemplate sqlSession, int activityNo){
 		return (ArrayList)sqlSession.selectList("productMapper.selectReviewList", activityNo);
+	}
+	
+	public int insertTicketPayment(SqlSessionTemplate sqlSession, List<TicketPayment> list) {
+		return sqlSession.insert("productMapper.insertTicketPayment", list);
 	}
 }

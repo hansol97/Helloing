@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.dao.MemberDao;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -24,6 +25,7 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	// 승준
 	// 로그인
 	@Override
 	public Member loginMember(Member m) {
@@ -35,9 +37,19 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMember(Member m) {
 		return memberDao.insertMember(m, sqlSession);
 	}
-
 	
+	// 메일인증번호 보내기
 	
+	@Override
+	public void sendMail(Cert cert) {
+		memberDao.insertSecret(sqlSession, cert);
+		
+	}
+	// 메일인증번호 인증하기
+	@Override
+	public boolean validate(Cert cert) {
+		return memberDao.validate(sqlSession, cert) ;
+	}
 	
 	
 	
@@ -163,6 +175,9 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 
 

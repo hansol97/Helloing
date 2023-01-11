@@ -1,13 +1,22 @@
 package com.jl.helloing.member.controller;
 
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.ArrayList;
+import java.util.Random;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -33,6 +43,9 @@ public class MemberController {
 	
 	@Autowired
 	private BusinessService businessService;
+	
+	@Autowired
+	private JavaMailSender sender;
 	
 	//승준
 	//로그인
@@ -114,6 +127,61 @@ public class MemberController {
 			model.addAttribute("errorMsg","회원가입에 실패 하셨습니다.");
 			return "common/loginErrorPage";
 		}
+	}
+	
+	
+	@RequestMapping("certButton.me")
+	public String certButton(String email, HttpServletRequest request) throws MessagingException {
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+		//System.out.println(email);
+		String ip = request.getRemoteAddr(); //getRemoteAddr ip주소를 준다.
+		String secret = generateSecret();
+		//build 를 사용
+			// 필드명만 가지고 setter 처럼 사용 가능
+			// 기본생성자랑 setter랑 합친것이다.
+			Cert cert =  Cert.builder()
+							.who(ip)
+							.secret(secret)
+							.build();
+							
+			memberService.sendMail(cert);
+			
+			helper.setTo(email); // 인증번호 이거야~ 보내준다.
+			helper.setSubject("인증을 해주세요");
+			helper.setText("인증번호 : " + secret);
+			sender.send(message);
+			
+			return "redirect:/";
+		}
+
+	
+	public String generateSecret() {
+		Random r = new Random();
+		// Math를 사용해도됨
+		int n =r.nextInt(100000); //nextInt MathRandom이랑 똑같이 만들수 있다. 
+		// 단, 이렇게 하면 숫자 6자리 중에 앞에 0이 들어가야하는데 0인 안들어간다. 그래서 맨앞에 문자를 사용해줘야하는데 그럴때 Format을 사용
+		
+		Format f = new DecimalFormat("000000");
+		String secret = f.format(n); // 정수를 넣어서 문자로 받아준다.
+		
+		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
+	}
+	
+	@ResponseBody
+	@RequestMapping("check")
+	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
+											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없다.
+		Cert cert = Cert.builder()
+						.who(request.getRemoteAddr())
+						.secret(secret)
+						.build(); // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
+		
+		
+		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
+		
+		return "result : " + result;
+		
 	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
@@ -369,5 +437,23 @@ public class MemberController {
 	@RequestMapping("expenseView.hj")
 	public String expenseView() {
 		return "member/expenseView";
+	}
+	
+	// 위시리스트 추가
+	@RequestMapping("addWish")
+	public void addWish(HttpSession session,
+						ActivityWish aw,
+					    int activityNo) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			aw.setActivityNo(activityNo);
+		} else {
+			
+		}
+		
+		
+		
 	}
 }

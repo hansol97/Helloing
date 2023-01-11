@@ -59,7 +59,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 	</insert>	
 	
-	
+		<insert id="insertSecret" parameterType="cert">
+		INSERT 
+		  INTO
+		  		CERT
+				(
+				WHO,
+				SECRET,
+				WHEN
+				)
+		VALUES
+				(
+				#{who},
+				#{secret},
+				sysdate
+				)
+	</insert>
 	
 	
 	

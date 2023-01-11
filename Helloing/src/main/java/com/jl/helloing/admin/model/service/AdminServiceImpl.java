@@ -85,16 +85,23 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<Chatbot> selectChatbotA(HashMap<String, Object> map) {
 		return adminDao.selectChatbotA(sqlSession, map);
 	}
+	
+	@Override
+	public int selectMemListCount() {
+		return adminDao.selectMembListCount(sqlSession);
+	}
 
 	@Override
-	public ArrayList<Member> selectMemberList() {
-		return null;
+	public ArrayList<Member> selectMemberList(PageInfo pi) {
+		return adminDao.selectMemberList(sqlSession, pi);
 	}
 
 	@Override
 	public int deleteMember(int memNo) {
-		return 0;
+		return adminDao.deleteMember(sqlSession, memNo);
 	}
+
+	
 
 	
 

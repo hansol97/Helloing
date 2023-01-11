@@ -2,10 +2,10 @@ package com.jl.helloing.member.model.dao;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
@@ -14,13 +14,27 @@ import com.jl.helloing.member.model.vo.Planner;
 
 @Repository
 public class MemberDao {
-
+	
+	// 승준
 	public Member loginMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 	
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+	
+	public void insertSecret(SqlSessionTemplate sqlSession, Cert cert) {
+		sqlSession.insert("memberMapper.insertSecret", cert);
+	}
+	public boolean validate(SqlSessionTemplate sqlSession, Cert cert) {
+		
+		Cert result = sqlSession.selectOne("memberMapper.validate", cert);
+		if(result != null) {
+			sqlSession.delete("memberMapper.remove", cert);
+		}
+		
+		return result != null;// null이 아니면 true, null이면 false
 	}
 
 	
@@ -76,4 +90,6 @@ public class MemberDao {
 	public ArrayList<Plan> planDetailView(int plannerNo, SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("memberMapper.planDetailView", plannerNo);
 	}
+
+
 }

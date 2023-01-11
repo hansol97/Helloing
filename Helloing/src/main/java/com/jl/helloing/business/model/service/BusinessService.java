@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.Ticket;
 
 public interface BusinessService {
 	// 파트너 기업 등록
 	int insertCompany(Business b);
 	
 	Business loginCompany(int memNo);
+	
 
 
 	
@@ -55,6 +58,8 @@ public interface BusinessService {
 	int InsertRoomPhoto(ArrayList<Attachment> list);
 
 	int updateBusinessMember(Business loginCompany);
+
+	int insertTicket(Ticket t);
 
 
 	

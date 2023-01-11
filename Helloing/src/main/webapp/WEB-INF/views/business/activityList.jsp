@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>등록한 액티비티 페이지</title>
 <link rel="stylesheet" type="text/css" href="resources/css/activityList.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <style>
     
 </style>
@@ -41,7 +43,7 @@
                     <div class="more_buttons">
                       <button onclick='location.href="goPayAct.bu"'  class="more_button">만료연장</button><!--결제페이지로-->
                       <button onclick='location.href="#"'  class="more_button">삭제</button>
-                      <button onclick='location.href="goUpdateAct.bu";'  class="more_button">수정</button>
+                      <button onclick='location.href="goUpdateAct.bu"'  class="more_button">수정</button>
                       <button onclick='location.href="goInsertTicket.bu"'  class="more_button">티켓등록</button>
                     </div>
                 </div>

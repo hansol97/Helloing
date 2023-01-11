@@ -52,10 +52,10 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="520">
+                            <td width="580">
                                 
                             </td>
-                            <td>&nbsp;&nbsp;<button id="reportMemDelete">정지</button></td>
+                            <td>&nbsp;&nbsp;<button id="memDelete-btn">정지</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -67,40 +67,54 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="100">회원번호</th>
+                                <th width="80">회원번호</th>
                                 <th width="100">아이디</th>
                                 <th width="100">이름</th>
                                 <th width="200">이메일</th>
                                 <th width="150">전화번호</th>
                                 <th width="80">상태</th>
-                                <th width="110">가입일자</th>
+                                <th width="180">가입일자</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
-                                <td>2022.12.25</td>
-                            </tr>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
-                                <td>2022.12.25</td>
-                            </tr>
+                            <c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="8">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="m" items="${ list }">
+			                            <tr>
+			                                <td onclick="event.stopPropagation()">
+			                                    <input class="cbox" type="checkbox" value="">
+			                                </td>
+			                                <td>${m.memNo}</td>
+			                                <td>${m.memId}</td>
+			                                <td>${m.memName}</td>
+			                                <td>${m.email}</td>
+			                                <td>${m.phone }</td>
+			                                <td>
+			                                	<c:if test="${ m.status.equals('Y') }">
+			                                		가입
+			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('N') }">
+			                                		탈퇴
+			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('A') }">
+			                                		관리자
+			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('S') }">
+			                                		정지
+			                                	</c:if>
+			                                </td>
+			                                <td>${ m.memEnrollDate }</td>
+			                            </tr>
+		                            </c:forEach>
+		                         </c:otherwise>
+		                     </c:choose>
                         </tbody>
                     </table>
                 </tr>
@@ -110,14 +124,65 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="chatbotList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="chatbotList.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="chatbotList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
-
+			
+			<script>
+				$(function(){
+					$('#memDelete-btn').click(function(){
+                        var list = $(".cbox");
+                        if($('input[type=checkbox]:checked').length == 1){
+                            list.each(function(index, value){
+                                if($(value).prop('checked')){
+                                    $.ajax({
+                                    	url:'deleteMem.ad'
+                                    	,data : {
+                                    		memNo : $(value).parent().next()[0].outerText
+                                    	}
+                                    	,success : function(result){
+                                    		if(result == 'YYYY'){
+                                    			alert('정지 성공');
+                                    			location.href="memList.ad";
+                                    		}
+                                    		else{
+                                    			alert('정지 실패');
+                                    		}
+                                    	}
+                                    	,error : function(){
+                                    		console.log('실패');
+                                    	}
+                                    })
+                                }
+                            });
+                        }
+                        else{
+                            alert('하나를 선택하세요');
+                        }
+                    });
+				})
+			</script>
             
         </div>
 

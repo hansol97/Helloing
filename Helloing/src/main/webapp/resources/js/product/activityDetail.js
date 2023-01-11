@@ -20,17 +20,28 @@ $(function(){
 				var ticketPrice = $(this).find('.ticket-price').children().eq(0).text().replace("원", "").replace(",", "");
 				var count = $(this).find('.count').text();
 				var ticketNo = $(this).find('input[name=ticketNo]').val();
+				var endDate = $(this).find('#endDate').text();
+				var activityName = $('.activityName').text();
+				var ticketSum = ticketPrice * count;
+				var allSum = $('.point').text().replace("원", "");
 
-				console.log(ticketNo);
+				console.log(endDate);
 
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
 					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketNo" value="' + ticketNo + '">'
-					  + '<input type="hidden" name="ticketPayment[' + idx + '].count" value="' + count + '">';
-			}
-		})
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].count" value="' + count + '">'
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketName" value="' + ticketName + '">'
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketSum" value="' + ticketSum + '">'
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].allSum" value="' + allSum + '">'
+					  + '<input type="hidden" name="ticketPayment[' + idx + '].ticketPrice" value="' + ticketPrice + '">';
 
-		$('.order-info').html(text);
+					  //$('.order-info').append(abc(idx).attr('name', 'ticketPay' + idx).val(ticketName));
+					}
+				})
+				
+			$('.order-info').html(text);
+
 
 		// 모든 티켓 가격 합계
 		var allPrice = 0;
@@ -39,10 +50,15 @@ $(function(){
 			allPrice += price;
 		})
 		var textPrice = '<p>총 티켓 금액<span class="point">' + allPrice + '원</span></p>';
+		$('input[name=allSum]').val(allPrice);
 		$('.all-price').html(textPrice);
 
 		// 결제버튼 보이기
 		$('#btn-pay').attr('style', 'display: block;');
+		
+		function abc(idx){
+			return $('<input>').attr('type','hidden');
+		}
 	})
 })
 
@@ -63,4 +79,26 @@ function selectReview(){
 
 	height.top = 1500;
 	$('html, body').animate({scrollTop : height.top}, 400);
+}
+
+// 위시리스트에 추가
+function addWish(){
+
+	console.log($('input[name=activityNo]').val());
+
+	$.ajax({
+		url : "addWish",
+		data : { activityNo : $('input[name=activityNo]').val() },
+		success : function(){
+			console.log("성공");
+		},
+		error : function(){
+			console.log("실패");
+		}
+	})
+}
+
+// 위시리스트에서 삭제
+function removeWish(){
+
 }

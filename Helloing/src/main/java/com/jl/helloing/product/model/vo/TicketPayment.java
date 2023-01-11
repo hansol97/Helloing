@@ -11,5 +11,11 @@ public class TicketPayment {
 	private String paymentDate;
 	private int orderNo;
 	private int count;
+	
+	private String ticketName;
+	private String endDate;
+	private String activityName;
+	private int ticketSum;
+	private int ticketPrice;
 }
   

@@ -2,6 +2,7 @@ package com.jl.helloing.business.model.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,11 @@ import org.springframework.stereotype.Service;
 import com.jl.helloing.business.model.dao.BusinessDao;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
-
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.Ticket;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -35,7 +37,6 @@ public class BusinessServiceImpl implements BusinessService {
 	public Business loginCompany(int memNo) {
 		return businessDao.loginCompany(memNo, sqlSession);
 	}
-
 
 	
 	
@@ -86,10 +87,30 @@ public class BusinessServiceImpl implements BusinessService {
 	public int InsertRoomPhoto(ArrayList<Attachment> list) {
 		return businessDao.insertRoomPhoto(list, sqlSession);
 	}
+	// 티켓 등록
+	@Override
+	public int insertTicket(Ticket t) {
+		return businessDao.insertTicket(t, sqlSession);
+	}
 
 	@Override
 	public int updateBusinessMember(Business loginCompany) {
 		return businessDao.updateBusinessMember(sqlSession, loginCompany);
 	}
 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
