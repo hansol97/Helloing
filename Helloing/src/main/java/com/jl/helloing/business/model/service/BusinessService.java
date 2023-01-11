@@ -47,6 +47,8 @@ public interface BusinessService {
 	int InsertAct(Activity act);
 
 	int InsertActPhoto(ArrayList<Attachment> list);
+
+
 	
 	
 	
