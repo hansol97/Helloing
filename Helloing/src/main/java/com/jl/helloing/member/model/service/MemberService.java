@@ -2,6 +2,7 @@ package com.jl.helloing.member.model.service;
 
 import java.util.ArrayList;
 
+import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Book;
@@ -11,12 +12,14 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 
 public interface MemberService {
-	
+	// 승준
 	// 로그인 서비스(select)
 	Member loginMember(Member m);
 	
 	// 회원가입 서비스(insert)
 	int insertMember(Member m);
+	// 메일인증
+	void sendMail(Cert cert);
 	
 	
 	//혜진
