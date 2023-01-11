@@ -195,18 +195,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					        UPLOAD_DATE
 					        )
 	  SELECT 
-							SEQ_ACCFNO.NEXTVAL, SEQ_ACCNO.CURRVAL, A.* FROM (
+							SEQ_ACCFNO.NEXTVAL, 
+							SEQ_ACCNO.CURRVAL,
+							 A.* 
+							 FROM (
 						
- 			<foreach collection="list" item="item"    separator="UNION ALL ">
-						SELECT
-										     #{item.originName} AS ORIGIN_NAME,
-										     #{item.changeName} AS CHANGE_NAME,
-										     #{item.filePath} AS FILE_PATH,
-										     SYSDATE AS UPLOAD_DATE
-						   FROM
-						   					DUAL
-			</foreach>
-								        ) A
+				 			<foreach collection="list" item="item"    separator="UNION ALL ">
+										SELECT
+														     #{item.originName} AS ORIGIN_NAME,
+														     #{item.changeName} AS CHANGE_NAME,
+														     #{item.filePath} AS FILE_PATH,
+														     SYSDATE AS UPLOAD_DATE
+										   FROM
+										   					DUAL
+							</foreach>
+												   ) A
 	</insert>
 	
 	
