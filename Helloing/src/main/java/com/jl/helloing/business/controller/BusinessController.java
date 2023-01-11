@@ -381,7 +381,7 @@ public class BusinessController {
 			return "redirect:/";
 		} else {
 
-			return "business/businessEnrollForm";
+			return "member/businessEnrollForm";
 		}
 	}
 	
@@ -393,7 +393,17 @@ public class BusinessController {
 	}
 	
 	
-	
+	@RequestMapping("updateMember.bu")
+	public String updateBusinessMember(HttpSession session, String address) {
+		Business loginCompany = (Business)session.getAttribute("loginCompany");
+		if(loginCompany.getAddress().equals(address)) {
+			return "business/mypage";
+		}else {
+			loginCompany.setAddress(address);
+			int result = businessService.updateBusinessMember(loginCompany);
+		}
+		return "";
+	}
 	
 	
 	
