@@ -235,7 +235,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        #{businessNo},
 		        #{activityName},
 		        #{activityContent},
-		        #{address},
 		        SYSDATE
 		        )
 	</insert>
@@ -259,7 +258,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				 A.* 
 				 FROM (
 			
-	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+	 			<foreach collection="list" item="item" separator="UNION ALL ">
 						SELECT
 							     #{item.originName} AS ORIGIN_NAME,
 							     #{item.changeName} AS CHANGE_NAME,

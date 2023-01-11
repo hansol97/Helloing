@@ -116,8 +116,6 @@ public class BusinessController {
 	public String InsertAct(Activity act, MultipartFile[] upfile, HttpSession session, Model model) {
 		
     	ArrayList<Attachment> list = new ArrayList();
-    	System.out.println("upfile : " + upfile);
-    	System.out.println("upfile[0] : " + upfile[0]);
     	for (int i = 0; i < upfile.length; i++) {
 			
 	    		if (!upfile[i].getOriginalFilename().equals("") ) { 
@@ -145,7 +143,44 @@ public class BusinessController {
 		}
 	}
 	
+	// 객실등록
+	@RequestMapping("insertRoom.bu")
+	public String InsertRoom(int accommNo, MultipartFile[] upfile, HttpSession session, Model model) {
+		
+    	ArrayList<Attachment> list = new ArrayList();
+    	System.out.println("upfile : " + upfile);
+    	System.out.println("upfile[0] : " + upfile[0]);
+    	for (int i = 0; i < upfile.length; i++) {
+			
+	    		if (!upfile[i].getOriginalFilename().equals("") ) { 
+				
+					Attachment at = new Attachment();
+					at.setOriginName( upfile[i].getOriginalFilename());
+					at.setChangeName( saveFile(upfile[i], session) );
+					at.setFilePath( "resources/uploadFiles/"  );
+					list.add(at);
+	    		}
+		}
+
+		if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
+
+			if(businessService.InsertActPhoto(list)>0) {
+				session.setAttribute("alertMsg", "액티비티 등록 성공!");
+				return "redirect:activityList.bu";
+			} else {
+				model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
+				return "common/errorPage";
+			}
+		} else {// 실패 => 에러 페이지로
+			model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
+			return "common/errorPage";
+		}
+		
+		
 	
+		
+		
+	}
 	
 	
 	
