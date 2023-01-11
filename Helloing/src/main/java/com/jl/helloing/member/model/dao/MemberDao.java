@@ -16,7 +16,6 @@ public class MemberDao {
 
 	public Member loginMember(Member m, SqlSessionTemplate sqlSession) {
 		Member loginUser = sqlSession.selectOne("memberMapper.loginMember", m);
-		System.out.println(loginUser);
 		return loginUser;
 	}
 	
