@@ -2,6 +2,8 @@ package com.jl.helloing.common.email;
 
 import java.util.Properties;
 
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 public class email {
 	
 	public static JavaMailSenderImpl sender;
