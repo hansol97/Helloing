@@ -13,3 +13,10 @@ public class Ticket {
 	private String startDate;
 	private String endDate;
 }
+//TICKET_NO	NUMBER
+//ACTIVITY_NO	NUMBER
+//TICKET_NAME	VARCHAR2(1000 BYTE)
+//CAPACITY	NUMBER
+//PRICE	NUMBER
+//START_DATE	DATE
+//END_DATE	DATE

@@ -13,6 +13,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.Ticket;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -86,10 +87,16 @@ public class BusinessServiceImpl implements BusinessService {
 	public int InsertRoomPhoto(ArrayList<Attachment> list) {
 		return businessDao.insertRoomPhoto(list, sqlSession);
 	}
+	// 티켓 등록
+	@Override
+	public int insertTicket(Ticket t) {
+		return businessDao.insertTicket(t, sqlSession);
+	}
 
 	@Override
 	public int updateBusinessMember(Business loginCompany) {
 		return businessDao.updateBusinessMember(sqlSession, loginCompany);
 	}
+
 
 }

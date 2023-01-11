@@ -41,7 +41,7 @@
                     <div class="more_buttons">
                       <button onclick='location.href="goPayAct.bu"'  class="more_button">만료연장</button><!--결제페이지로-->
                       <button onclick='location.href="#"'  class="more_button">삭제</button>
-                      <button onclick='location.href="goUpdateAct.bu";'  class="more_button">수정</button>
+                      <button onclick='location.href="goUpdateAct.bu"'  class="more_button">수정</button>
                       <button onclick='location.href="goInsertTicket.bu"'  class="more_button">티켓등록</button>
                     </div>
                 </div>

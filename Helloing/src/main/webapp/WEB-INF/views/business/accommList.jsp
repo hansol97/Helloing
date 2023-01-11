@@ -22,7 +22,7 @@
           <br><br><br>
           <div class="accommTitle">등록 숙소 관리</div>
           
-          <button class="button button--ujarak button--border-thin button--text-thick enrollBtn"  onclick="location.href='goInsertAccom.bu';">숙소 등록</button>
+          <button class="button button--ujarak button--border-thin button--text-thick enrollBtn"  onclick="location.href='goInsertAccom.bu'">숙소 등록</button>
 
 
             

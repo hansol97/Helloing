@@ -101,7 +101,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
 
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
 		SELECT
@@ -163,6 +162,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
 		INSERT
@@ -287,28 +287,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertRoom" parameterType="room">
 		INSERT
 		  INTO
-				        ROOM
-				        (
-				        ROOM_NO,
-				        ACCOMM_NO,
-				        ROOM_NAME,
-				        CAPACITY,
-				        PRICE
-				 
-				        )
+		        ROOM
+		        (
+		        ROOM_NO,
+		        ACCOMM_NO,
+		        ROOM_NAME,
+		        CAPACITY,
+		        PRICE
+		 
+		        )
 		VALUES
-				        (
-				        SEQ_RMNO.NEXTVAL,        
-				        #{accommNo},
-				        #{roomName},
-				        #{capacity},
-				        #{price}
-				        )
+		        (
+		        SEQ_RMNO.NEXTVAL,        
+		        #{accommNo},
+		        #{roomName},
+		        #{capacity},
+		        #{price}
+		        )
 	</insert>
 	
 	<!-- 객실 첨부파일 집어넣기 --> 
 	<insert  id="insertRoomPhoto"   parameterType="java.util.List" >
-	  INSERT
+	  	INSERT
 		  INTO
 		        ROOM_ATTACHMENT
 		        (
@@ -336,6 +336,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</foreach>
 						  ) A
 	</insert>
+	
+	<!-- 티켓 집어넣기 -->
+	<insert id="insertTicket" parameterType="ticket">
+		INSERT
+		  INTO
+		        TICKET
+		        (
+		        TICKET_NO,
+		        ACTIVITY_NO,
+		        TICKET_NAME,
+		        CAPACITY,
+		        PRICE,
+		        START_DATE,
+		        END_DATE
+		 
+		        )
+		VALUES
+		        (
+		        SEQ_TNO.NEXTVAL,        
+		        #{activityNo},
+		        #{ticketName},
+		        #{capacity},
+		        #{price},
+		        #{startDate},
+		        #{endDate}
+		        )
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
