@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,15 +79,15 @@ public class AdminController {
 	
 	// 챗봇 등록
 	@RequestMapping("insertChatbot.ad")
-	public String insertChatbot(Chatbot c, Model m) {
+	public String insertChatbot(Chatbot c, HttpSession session) {
 		
 		int result = adminService.insertChatbot(c);
 
 		if(result > 0) {
 			return "redirect:/chatbotList.ad";
 		}else {
-			m.addAttribute("alertMsg", "키워드 등록에 실패했습니다");
-			return "admin/chatbotListView";
+			session.setAttribute("adminAlertMsg", "키워드 등록에 실패했습니다");
+			return "redirect:/chatbotList.ad";
 		}
 	}
 	
@@ -104,15 +106,15 @@ public class AdminController {
 	
 	// 챗봇 키워드 수정
 	@RequestMapping("updateChatbot.ad")
-	public String updateChatbot(Chatbot c, Model m) {
+	public String updateChatbot(Chatbot c, HttpSession session) {
 		
 		int result = adminService.updateChatbot(c);
 		
 		if(result > 0) {
 			return "redirect:/chatbotList.ad";
 		}else {
-			m.addAttribute("alertMsg", "키워드 등록에 실패했습니다");
-			return "admin/chatbotListView";
+			session.setAttribute("adminAlertMsg", "키워드 등록에 실패했습니다");
+			return "redirect:/chatbotList.ad";
 		}
 	}
 	
@@ -166,8 +168,14 @@ public class AdminController {
 	
 	// 일반회원 리스트 조회
 	@RequestMapping("memList.ad")
-	public String selectMemberList() {
-		ArrayList<Member> list = adminService.selectMemberList();
+	public String selectMemberList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectMemListCount(), currentPage, 10, 5);
+		
+		ArrayList<Member> list = adminService.selectMemberList(pi);
+		
+		m.addAttribute("list", list);
+		
 		return "admin/adminMemberListView";
 	}
 	

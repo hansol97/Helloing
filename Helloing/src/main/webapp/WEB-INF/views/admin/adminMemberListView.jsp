@@ -52,7 +52,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="520">
+                            <td width="570">
                                 
                             </td>
                             <td>&nbsp;&nbsp;<button id="reportMemDelete">정지</button></td>
@@ -67,40 +67,51 @@
                                 <th width="30">
                                     <input type="checkbox" name="cboxAll" id="cboxAll" onclick="checkAll();">
                                 </th>
-                                <th width="100">회원번호</th>
+                                <th width="80">회원번호</th>
                                 <th width="100">아이디</th>
                                 <th width="100">이름</th>
                                 <th width="200">이메일</th>
                                 <th width="150">전화번호</th>
                                 <th width="80">상태</th>
-                                <th width="110">가입일자</th>
+                                <th width="180">가입일자</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
-                                <td>2022.12.25</td>
-                            </tr>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>user02</td>
-                                <td>유저2</td>
-                                <td>email2@mail.com</td>
-                                <td>010-3333-3333</td>
-                                <td>가입</td>
-                                <td>2022.12.25</td>
-                            </tr>
+                            <c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="8">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="m" items="${ list }">
+			                            <tr>
+			                                <td onclick="event.stopPropagation()">
+			                                    <input name="cbox" type="checkbox" value="">
+			                                </td>
+			                                <td>${m.memNo}</td>
+			                                <td>${m.memId}</td>
+			                                <td>${m.memName}</td>
+			                                <td>${m.email}</td>
+			                                <td>${m.phone }</td>
+			                                <td>
+			                                	<c:if test="${ m.status.equals('Y') }">
+			                                		가입
+			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('N') }">
+			                                		탈퇴
+			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('A') }">
+			                                		관리자
+			                                	</c:if>
+			                                </td>
+			                                <td>${ m.memEnrollDate }</td>
+			                            </tr>
+		                            </c:forEach>
+		                         </c:otherwise>
+		                     </c:choose>
                         </tbody>
                     </table>
                 </tr>
