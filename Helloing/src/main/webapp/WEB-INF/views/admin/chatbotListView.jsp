@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+     //치환 변수 선언합니다.
+      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+      pageContext.setAttribute("br", "<br/>"); //br 태그
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,6 +89,10 @@
     border:1px solid rgb(150, 150, 150);
     margin-left:10px;
   }
+
+  #boardList>tbody>tr>td:last-child{
+    text-align: left;
+  }
 </style>
 </head>
 <body>
@@ -162,7 +172,7 @@
 	   						$('#chatbot_search_input').val('${map.keyword}');
                         }
 							
-					})      
+					});      
 					
 					function delConfirm(){
 						if(confirm("삭제하시겠습니까?")){
@@ -241,7 +251,7 @@
 			                                    <input class="cbox" name="originChatbotQ" type="checkbox" value="${ c.chatbotQ }">
 			                                </td>
 			                                <td>${ c.chatbotQ }</td>
-			                                <td>${ c.chatbotA }</td>
+			                                <td>${fn:replace(c.chatbotA, crcn, br)}</td>
 			                            </tr>
 			                        </c:forEach>
                             	</c:otherwise>
