@@ -289,33 +289,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  INTO
 				        ROOM
 				        (
+				        ROOM_NO,
 				        ACCOMM_NO,
-				        BUSINESS_NO,
-				        ACCOMM_NAME,
-				        ADDRESS,
-				        LAT,
-				        LNG,
-				        GRADE,
-				        REFUND,
-				        CHECKINOUT,
-				        END_DATE,
-				        ACCOMM_CONTENT,
-				        CATEGORY
+				        ROOM_NAME,
+				        CAPACITY,
+				        PRICE
+				 
 				        )
 		VALUES
 				        (
-				        SEQ_ACCNO.NEXTVAL,        
-				        #{businessNo},
-				        #{accommName},
-				        #{address},
-				        #{lat},
-				        #{lng},
-				        #{grade},
-				        #{refund},
-				        #{checkInout},
-				        SYSDATE,
-				        #{accommContent},
-				        #{category}
+				        SEQ_RMNO.NEXTVAL,        
+				        #{accommNo},
+				        #{roomName},
+				        #{capacity},
+				        #{price}
 				        )
 	</insert>
 	
@@ -326,28 +313,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        ROOM_ATTACHMENT
 		        (
 		        FILE_NO,
-		        ACCOMM_NO,
+		        ROOM_NO,
 		        ORIGIN_NAME,
 		        CHANGE_NAME,
 		        FILE_PATH,
 		        UPLOAD_DATE
 		        )
 	  SELECT 
-				SEQ_ACCFNO.NEXTVAL, 
-				SEQ_ACCNO.CURRVAL,
+				SEQ_RMFNO.NEXTVAL, 
+				SEQ_RMNO.CURRVAL,
 				 A.* 
 				 FROM (
 			
-	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+	 			<foreach collection="list" item="item" separator="UNION ALL ">
 						SELECT
-						     #{item.originName} AS ORIGIN_NAME,
-						     #{item.changeName} AS CHANGE_NAME,
-						     #{item.filePath} AS FILE_PATH,
-						     SYSDATE AS UPLOAD_DATE
-						   FROM
-			   					DUAL
+							     #{item.originName} AS ORIGIN_NAME,
+							     #{item.changeName} AS CHANGE_NAME,
+							     #{item.filePath} AS FILE_PATH,
+							     SYSDATE AS UPLOAD_DATE
+					      FROM
+		   					  	 DUAL
 				</foreach>
-						   ) A
+						  ) A
 	</insert>
 	
 	
