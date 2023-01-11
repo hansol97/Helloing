@@ -80,3 +80,25 @@ function selectReview(){
 	height.top = 1500;
 	$('html, body').animate({scrollTop : height.top}, 400);
 }
+
+// 위시리스트에 추가
+function addWish(){
+
+	console.log($('input[name=activityNo]').val());
+
+	$.ajax({
+		url : "addWish",
+		data : { activityNo : $('input[name=activityNo]').val() },
+		success : function(){
+			console.log("성공");
+		},
+		error : function(){
+			console.log("실패");
+		}
+	})
+}
+
+// 위시리스트에서 삭제
+function removeWish(){
+
+}

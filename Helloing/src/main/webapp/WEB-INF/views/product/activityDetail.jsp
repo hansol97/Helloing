@@ -21,6 +21,7 @@
 
 				<div class="top-info">
 					<sapn class="acticityName">${ act.activityName }</sapn>
+					<input type="hidden" name="activityNo" value="${ act.activityNo}">
 				</div>
 				<div>
 					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
@@ -190,7 +191,10 @@
 				<div class="accommselectbox">
 					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
-					<div><button id="btn-wish" onclick="btn-addWish">♥️ 위시리스트에 담기</button></div>
+					<div>
+						<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						<button id="btn-addwish" onclick="removeWish();">♥️😘♥️</button>
+					</div>
 				</div>
 			</div>
 		</div>
