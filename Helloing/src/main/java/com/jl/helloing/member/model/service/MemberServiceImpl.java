@@ -137,6 +137,13 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePlanner(Planner pl) {
 		return memberDao.updatePlanner(pl, sqlSession);
 	}
+	
+	//플래너 속 플랜 삭제
+	@Override
+	public int deletePlan(Planner pl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	//플래너 삭제
 	@Override
@@ -145,10 +152,10 @@ public class MemberServiceImpl implements MemberService{
 		return 0;
 	}
 	
+	//플래너 상세페이지
 	@Override
-	public Plan planDetailView(int memNo, int planNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Plan> planDetailView(int plannerNo) {
+		return memberDao.planDetailView(plannerNo, sqlSession);
 	}
 
 	@Override
@@ -156,6 +163,8 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 

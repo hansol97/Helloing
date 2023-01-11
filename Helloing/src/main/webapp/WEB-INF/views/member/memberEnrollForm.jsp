@@ -92,12 +92,14 @@ height: 30px;
 					</tr>
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
-						<td><input type="email" name="email" required></td>
-						
-						
-						
+						<td><input type="email" name="email" >
+							<button type="button" onclick="certButton();" >전송</button>
+							<br>
+							<input type="text" name="cert" maxlength="6"> 
+						</td>
+					</tr>	
 						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
-					</tr>
+					
 					<!--  
 					<tr>
 						<td> 이메일 인증 &nbsp;&nbsp;</td>
@@ -113,7 +115,13 @@ height: 30px;
 			</form>
 			
 			
+			<script>
+			// 이메일 인증번호
+			function certButton() {
+				
+			}
 			
+			</script>
 			
 			
 			

@@ -64,7 +64,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	
 	<!-- 여기부터 혜진 -->
 	<select id="checkPwd" parameterType="member" resultType="string">
 	SELECT 
@@ -201,4 +200,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 		PLANNER_NO = #{ plannerNo }
 	</update>
+	<select id="planDetailView" parameterType="_int" resultType="plan">
+	
+	
+	
+	</select>
 </mapper>
