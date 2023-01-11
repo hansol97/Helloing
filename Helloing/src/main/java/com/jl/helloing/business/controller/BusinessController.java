@@ -394,15 +394,18 @@ public class BusinessController {
 	
 	
 	@RequestMapping("updateMember.bu")
-	public String updateBusinessMember(HttpSession session, String address) {
+	public String updateBusinessMember(HttpSession session, String address, Model m) {
 		Business loginCompany = (Business)session.getAttribute("loginCompany");
 		if(loginCompany.getAddress().equals(address)) {
 			return "business/mypage";
 		}else {
 			loginCompany.setAddress(address);
 			int result = businessService.updateBusinessMember(loginCompany);
+			
+			businessService.updateBusinessMember(loginCompany);
+			session.setAttribute("loginCompany", loginCompany);
+			return "business/mypage";
 		}
-		return "";
 	}
 	
 	
