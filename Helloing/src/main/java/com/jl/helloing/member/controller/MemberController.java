@@ -9,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.member.model.service.MemberService;
@@ -302,6 +304,39 @@ public class MemberController {
 			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
 			mv.setViewName("redirect:plannerMain.hj");
 		}
+		return mv;
+	}
+	
+	//플래너 수정 전 조회
+	@ResponseBody
+	@RequestMapping(value="selectPlanner.hj", produces="application/json; charset=UTF-8")
+	public String selectPlanner(HttpSession session, int plannerNo) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		Planner p = new Planner();
+		p.setPlannerNo(plannerNo);
+		p.setMemNo(memNo);
+		
+		System.out.println(p);
+		
+		Planner planner = memberService.selectPlanner(p); 
+		
+		return new Gson().toJson(planner);
+	}
+	//플래너 수정
+	@RequestMapping("updatePlanner.hj")
+	public ModelAndView updatePlanner(ModelAndView mv, HttpSession session, Planner pl) {
+		
+		
+		if(memberService.updatePlanner(pl)>0) {
+			session.setAttribute("alertMsg", "수정에 성공 하였습니다.");
+			mv.setViewName("redirect:plannerMain.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 수정에 실패하였습니다.");
+			mv.setViewName("redirect:plannerMain.hj");
+		}
+		
 		return mv;
 	}
 	

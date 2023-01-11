@@ -1,6 +1,7 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
@@ -57,8 +58,6 @@ public class ProductController {
 		
 		ArrayList<Activity> actList = productService.selectActList();
 		
-		System.out.println(actList);
-		
 		/*
 		// 메인 화면에 가격과 후기 갯수도 필요
 		// 후기 갯수, 각 액티비티의 티켓 중 제일 낮은 가격
@@ -92,13 +91,6 @@ public class ProductController {
 		Activity act = productService.selectActDetail(activityNo);
 		ArrayList<ActivityReview> actReviewList = productService.selectReviewList(activityNo);
 		
-		if(!actReviewList.isEmpty()) { // 리뷰가 있을 때만 평균 연산하기
-			int sum = 0;
-			for(int i = 0; i < actReviewList.size(); i++) {
-				sum += actReviewList.get(i).getStar();
-			}
-			act.setAvg(sum / actReviewList.size());
-		}
 		mv.addObject("act", act)
 		  .addObject("ticketList", productService.selectTicketList(activityNo))
 		  .addObject("actReviewList", actReviewList)
