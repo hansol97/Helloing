@@ -352,15 +352,15 @@ public class BusinessController {
 	}
 	
 	// 기업 파트너 로그인
-	/*
+	
 	@RequestMapping("login.bu")
 	public void loginCompany(Business b, HttpSession session) {
-	
-		Business loginCompany = businessService.loginCompany(b);
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		Business loginCompany = businessService.loginCompany(loginUser.getMemNo());
 		
-			session.setAttribute("loginCompany", loginCompany);
+		session.setAttribute("loginCompany", loginCompany);
 	}
-	*/
+	
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.bu")
 	public String insertCompany(HttpSession session, Business b) {
