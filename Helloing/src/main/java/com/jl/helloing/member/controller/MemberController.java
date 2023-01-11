@@ -281,8 +281,6 @@ public class MemberController {
 		
 		ArrayList<Planner> list = memberService.plannerList(memNo);
 		if(list!=null) {
-			int today = Integer.parseInt(new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date()));
-			mv.addObject("today", today);
 			mv.addObject("list", list);
 			mv.setViewName("member/plannerMain");
 			
@@ -340,11 +338,24 @@ public class MemberController {
 		return mv;
 	}
 	
+	//플래너 삭제
+	@RequestMapping("deletePlanner.hj")
+	public ModelAndView deletePlanner(ModelAndView mv, HttpSession session, int plannerNo) {
+	
+		//플래너 번호에 해당하는 플랜 삭제
+		
+		
+		//플래너 삭제
+		
+		return mv;
+	}
 	
 	//플랜 상세페이지
 	@RequestMapping("planDetailView.hj")
-	public String planDetailView() {
-		return "member/planDetailView";
+	public ModelAndView planDetailView(int plannerNo, ModelAndView mv, HttpSession session) {
+		
+		
+		return mv;
 	}
 	//가계부 페이지
 	@RequestMapping("expenseView.hj")

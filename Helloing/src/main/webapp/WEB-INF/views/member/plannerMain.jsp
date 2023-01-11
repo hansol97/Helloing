@@ -102,10 +102,10 @@
 		<c:forEach var="p" items="${list}">
 					<div class="plan">
 						<h4>${p.plannerName }</h4>
+						<input type="hidden" class="planner-No" name="plannerNo" value="${p.plannerNo}">
 						<p>${p.startDate } ~ ${p.endDate }</p>
-						
 						<span class="planner-btn">
-							<input type="hidden" id="planner-No" name="plannerNo" value="${p.plannerNo}">
+							<input type="hidden" class="planner-No" name="plannerNo" value="${p.plannerNo}">
 							<a href="#ex2" rel="modal:open" class="updateBtn">수정</a>
 							<a href="#ex3" rel="modal:open" class="deleteBtn">삭제</a>
 						</span>
@@ -154,27 +154,32 @@
 			<div>
 				<h5>정말 삭제하시겠습니까?</h5>
 			</div>
-   				<input type="hidden" name="memNo" value="${loginUser.memNo}">
-				<button onclick="deletePlanner();">삭제</button>
+				<button class="delete-plan">삭제</button>
 	 	</div>
 	</div>
 		
 	<script>
 	$(function(){
+		
 		$('.plan h4').click(function(){
-			location.href="planDetailView.hj"
+			var $planNo = $(this);
+			var plannerNo = $planNo.siblings('input[name=plannerNo]').val();
+			location.href="planDetailView.hj?plannerNo=" + plannerNo;
 		});
 	});
 
 	//플래너 수정 버튼 클릭 시 실행
 	$('.updateBtn').click(function(){
+		
+		var $planNo = $(this);
+		
 			$.ajax({
 				url : 'selectPlanner.hj',
-				data : {plannerNo : $(this).siblings('input[name=plannerNo]').val()},
+				data : {plannerNo : $planNo.siblings('input[name=plannerNo]').val()},
 				success : function(result){
 					
 					let value = '';
-					var plannerNo = $('#planner-No').val();
+					var plannerNo = $planNo.siblings('input[name=plannerNo]').val()
 					var startDate = (result.startDate).substring(0,10);
 					var endDate = (result.endDate).substring(0,10);
 					
@@ -197,13 +202,17 @@
 				});
 	})
 	//플래너 삭제 버튼 클릭 시 실행
-		function deletePlanner(){
+	
+		$('.deleteBtn').click(function(){
 		
-			var plannerNo = $('#planner-No').val();
-	
-			location.href="deletePlanner.hj?plannerNo="+ plannerNo;
-		}
-	
+			var $planNo = $(this);
+			var plannerNo = $planNo.siblings('input[name=plannerNo]').val();
+			
+			$('.delete-plan').click(function(){
+				location.href="deletePlanner.hj?plannerNo="+ plannerNo;
+			})
+		})
+		
 	</script>
 </body>
 </html>

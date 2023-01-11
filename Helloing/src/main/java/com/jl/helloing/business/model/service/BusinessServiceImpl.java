@@ -12,6 +12,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.Room;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -74,6 +75,16 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int InsertActPhoto(ArrayList<Attachment> list) {
 		return businessDao.insertActPhoto(list, sqlSession);
+	}
+
+	@Override
+	public int InsertRoom(Room room) {
+		return businessDao.insertRoom(room, sqlSession);
+	}
+
+	@Override
+	public int InsertRoomPhoto(ArrayList<Attachment> list) {
+		return businessDao.insertRoomPhoto(list, sqlSession);
 	}
 
 }

@@ -6,6 +6,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.Room;
 
 public interface BusinessService {
 	// 파트너 기업 등록
@@ -49,7 +50,20 @@ public interface BusinessService {
 	int InsertActPhoto(ArrayList<Attachment> list);
 
 
+	int InsertRoom(Room room);
+
+	int InsertRoomPhoto(ArrayList<Attachment> list);
+
+
 	
+	
+	
+	
+	
+	
+
+	//인호 ---------------------------------------------------------------------------
+
 	
 	
 	
