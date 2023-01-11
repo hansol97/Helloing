@@ -121,9 +121,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	  FROM
 	 	       CHATBOT
 	 	 WHERE 
-	 	 <foreach collection="List" item="item"
-	 	 	open="(" separator="AND" close=")">
-	 	       CHATBOT_Q LIKE '%' || #{item} || '%'
-	 	 </foreach>
+	 	 <choose>
+	 	 	<when test='List[0].contains("[admin]")'>
+	 	 		CHATBOT_Q LIKE '%' || #{List[0]} || '%'
+	 	 	</when>
+	 	 	<otherwise>
+	 	 		<foreach collection="List" item="item" open="(" separator="AND" close=")">
+		 	       CHATBOT_Q LIKE '%' || #{item} || '%'
+			 	 </foreach>
+			  AND
+			       CHATBOT_Q NOT LIKE '[admin]%'
+	 	 	</otherwise>
+	 	 </choose>
 	</select>
 </mapper>
