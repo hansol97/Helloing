@@ -10,6 +10,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.Ticket;
 
 @Repository
 public class BusinessDao {
@@ -57,5 +58,10 @@ public class BusinessDao {
 
 	public int updateBusinessMember(SqlSessionTemplate sqlSession, Business loginCompany) {
 		return sqlSession.update("businessMapper.updateBusinessMember", loginCompany);
+	}
+
+
+	public int insertTicket(Ticket t, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("productMapper.insertTicket", t);
 	}
 }
