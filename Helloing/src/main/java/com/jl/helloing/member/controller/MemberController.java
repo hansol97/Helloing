@@ -19,6 +19,7 @@ import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 
 @Controller
@@ -316,8 +317,6 @@ public class MemberController {
 		p.setPlannerNo(plannerNo);
 		p.setMemNo(memNo);
 		
-		System.out.println(p);
-		
 		Planner planner = memberService.selectPlanner(p); 
 		
 		return new Gson().toJson(planner);
@@ -354,6 +353,15 @@ public class MemberController {
 	@RequestMapping("planDetailView.hj")
 	public ModelAndView planDetailView(int plannerNo, ModelAndView mv, HttpSession session) {
 		
+		ArrayList<Plan> list = memberService.planDetailView(plannerNo);
+		
+		if(list!=null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/planDetailView");
+		}else {
+			mv.addObject("errorMsg","상세페이지 조회에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}
