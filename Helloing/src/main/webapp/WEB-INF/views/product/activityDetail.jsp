@@ -166,7 +166,7 @@
 					</div>
 
 					<%-- 
-					<div class="page-bar"><!-- 페이징바 리뷰는 5개씩 보여줄거다 -->
+					<div class="page-bar"><!-- 페이징바 리뷰는 5개씩 보여줄거다 --> 귀찮아서 안하기로 함~
 						<ul>
 		                    <li><a href="">&lt;</a></li>
 							<li><a href="">1</a></li>
