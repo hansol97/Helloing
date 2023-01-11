@@ -18,6 +18,7 @@ import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
+import com.jl.helloing.member.model.vo.Member;
 
 @Controller
 public class AdminController {
@@ -45,10 +46,7 @@ public class AdminController {
 		return "admin/adminBoardListView";
 	}
 	
-	@RequestMapping("memList.ad")
-	public String adminMemberListView() {
-		return "admin/adminMemberListView";
-	}
+	
 	
 	@RequestMapping("replyList.ad")
 	public String adminReplyListView() {
@@ -162,6 +160,17 @@ public class AdminController {
 
 		return new Gson().toJson(cList);
 	}
+	
+	//---------------------- 일반회원 ----------------------
+	
+	
+	// 일반회원 리스트 조회
+	@RequestMapping("memList.ad")
+	public String selectMemberList() {
+		ArrayList<Member> list = adminService.selectMemberList();
+		return "admin/adminMemberListView";
+	}
+	
 	
 
 	
