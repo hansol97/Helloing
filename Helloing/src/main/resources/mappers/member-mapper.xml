@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{ phone }
 				)
 	</insert>	
-	
+		<!-- 이메일 인증번호 보낼때 회원의 ip,인증번호,인증번호제한시간  -->
 		<insert id="insertSecret" parameterType="cert">
 		INSERT 
 		  INTO
@@ -76,7 +76,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 	</insert>
 	
+	<select id="validate" parameterType="cert" resultType="cert">
+		select
+				*
+		  from
+		  		cert
+		 where
+		 		who = #{ who }
+		   and
+		   		secret = #{secret}
+		   and
+		   		when between sysdate - 3/24/60 and sysdate		
+	</select>
 	
+	<delete id="remove" parameterType="cert">
+		delete
+				cert
+	 	 where
+	 	 		who = #{who} 
+	 	   and
+	 	   		secret = #{secret}
+	</delete>
 	
 	
 	<!-- 여기부터 혜진 -->

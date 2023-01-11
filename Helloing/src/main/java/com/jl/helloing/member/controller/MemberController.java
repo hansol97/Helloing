@@ -168,15 +168,15 @@ public class MemberController {
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}
 	
-	@ResponseBody
+	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
 	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
-											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없다.
+											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없이 써야한다.
 		Cert cert = Cert.builder()
 						.who(request.getRemoteAddr())
 						.secret(secret)
-						.build(); // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
-		
+						.build(); // 객체를 만들어주는 역할
+		 // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
 		
 		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
 		
