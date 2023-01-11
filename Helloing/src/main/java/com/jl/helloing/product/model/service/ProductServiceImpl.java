@@ -25,11 +25,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int actTicketRowPrice(int activityNo) {
-		return productDao.actTicketRowPrice(sqlSession, activityNo);
-	}
-
-	@Override
 	public Activity selectActDetail(int activityNo) {
 		return productDao.selectActDetail(sqlSession, activityNo);
 	}

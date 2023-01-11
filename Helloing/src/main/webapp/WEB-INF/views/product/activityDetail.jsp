@@ -116,28 +116,28 @@
 							<table>
 								<tr>
 									<td align="right">⭐⭐⭐⭐⭐ </td>
-									<td width="200"><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
-									<td>106명</td>
+									<td width="200"><progress value="${ act.star5 }" max="${ fn:length(actReviewList) }"></progress></td>
+									<td>${ act.star5 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐⭐ </td>
-									<td><progress value="2" max="${ fn:length(actReviewList) }"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ act.star4 }" max="${ fn:length(actReviewList) }"></progress></td>
+									<td>${ act.star4 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐ </td>
-									<td><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ act.star3 }" max="${ fn:length(actReviewList) }"></progress></td>
+									<td>${ act.star3 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐ </td>
-									<td><progress value="0 max="${ fn:length(actReviewList) }"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ act.star2 }" max="${ fn:length(actReviewList) }"></progress></td>
+									<td>${ act.star2 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐ </td>
-									<td><progress value="0" max="${ fn:length(actReviewList) }"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ act.star1 }" max="${ fn:length(actReviewList) }"></progress></td>
+									<td>${ act.star1 } 명</td>
 								</tr>
 							</table>
 						</div>
@@ -156,7 +156,8 @@
 					<div><!-- 리뷰 포문 돌리기 -->
 						<c:forEach items="${ actReviewList }" var="a">
 							<div class="reviewbox">
-								<p>⭐⭐⭐⭐⭐ ${  a.memName }<br>
+								<p>
+									${  a.memName } | <c:forEach var="i" begin="1" end="${ a.star }">⭐</c:forEach><br>
 									${ a.createDate} | ${ a.ticketName }</p>
 								<p class="review-content">${ a.reviewContent }</p>
 							</div>

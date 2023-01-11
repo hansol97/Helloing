@@ -34,7 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="ACTIVITY_CONTENT"  	property="activityContent" />
         <result column="END_DATE"    		property="endDate" />
         <result column="REVIEWCOUNT"    	property="reviewCount" />
-        <result column="ROWPRICE"    	property="rowPrice" />
+        <result column="ROWPRICE"    		property="rowPrice" />
+        <result column="AVG"    			property="avg" />
+        <result column="STAR1"    			property="star1" />
+        <result column="STAR2"    			property="star2" />
+        <result column="STAR3"    			property="star3" />
+        <result column="STAR4"    			property="star4" />
+        <result column="STAR5"    			property="star5" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -103,10 +109,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,BUSINESS_NO
 			  ,ACTIVITY_CONTENT
 			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
+			  ,(SELECT AVG(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo }) AS "AVG"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 1) AS "STAR1"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 2) AS "STAR2"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 3) AS "STAR3"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 4) AS "STAR4"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 5) AS "STAR5"
 		  FROM
 		  	   ACTIVITY
 		 WHERE
-		 	   ACTIVITY_NO = ${ activityNo }
+		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
 	
 	<!-- 해당 액티비티에 딸린 티켓들 -->
@@ -148,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    BY
 		       REVIEW_NO DESC
 	</select>
-
+	
 
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
