@@ -45,6 +45,7 @@ public class BusinessDao {
 
 
 	public int insertRoom(Room room, SqlSessionTemplate sqlSession) {
+		System.out.println(room);
 		return sqlSession.insert("productMapper.insertRoom", room);
 	}
 
