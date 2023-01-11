@@ -45,11 +45,17 @@ public class BusinessDao {
 
 
 	public int insertRoom(Room room, SqlSessionTemplate sqlSession) {
+		System.out.println(room);
 		return sqlSession.insert("productMapper.insertRoom", room);
 	}
 
 
 	public int insertRoomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("productMapper.insertRoomPhoto", list);
+	}
+
+
+	public int updateBusinessMember(SqlSessionTemplate sqlSession, Business loginCompany) {
+		return sqlSession.update("businessMapper.updateBusinessMember", loginCompany);
 	}
 }

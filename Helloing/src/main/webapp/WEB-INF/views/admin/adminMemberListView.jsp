@@ -52,10 +52,9 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="480">
+                            <td width="520">
                                 
                             </td>
-                            <td><button id="reportMemSelect">정지 회원 조회</button></td>
                             <td>&nbsp;&nbsp;<button id="reportMemDelete">정지</button></td>
                         </tr>
                     </table>
@@ -74,8 +73,7 @@
                                 <th width="200">이메일</th>
                                 <th width="150">전화번호</th>
                                 <th width="80">상태</th>
-                                <th>가입일자</th>
-                                <th width="100">신고횟수</th>
+                                <th width="110">가입일자</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,7 +88,6 @@
                                 <td>010-3333-3333</td>
                                 <td>가입</td>
                                 <td>2022.12.25</td>
-                                <td>2</td>
                             </tr>
                             <tr>
                                 <td onclick="event.stopPropagation()">
@@ -103,7 +100,6 @@
                                 <td>010-3333-3333</td>
                                 <td>가입</td>
                                 <td>2022.12.25</td>
-                                <td>2</td>
                             </tr>
                         </tbody>
                     </table>

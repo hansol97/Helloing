@@ -67,9 +67,9 @@
 				</table>
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈객실 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" /><br><br>
-						<input type="file" name="accommPhoto2" /><br><br>
-						<input type="file" name="accommPhoto3" /><br><br><br><br>
+						<input type="file" name="upfile" /><br><br>
+						<input type="file" name="upfile" /><br><br>
+						<input type="file" name="upfile" /><br><br><br><br>
 					</div>
 
 			<div class="feed_modal_btns" align="center">

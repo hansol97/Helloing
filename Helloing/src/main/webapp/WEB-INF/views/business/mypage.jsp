@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<th>사업자 번호</th>
-					<td>${loginCompany.businessName}</td>
+					<td>${loginCompany.businessNo}</td>
 				</tr>
 				<tr>
 					<th>주소</th>

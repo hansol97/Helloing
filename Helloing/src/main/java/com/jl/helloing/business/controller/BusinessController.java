@@ -146,9 +146,9 @@ public class BusinessController {
 	
 	// 객실등록
 	@RequestMapping("insertRoom.bu")
-	public String InsertRoom(int accommNo, Room room, MultipartFile[] upfile, HttpSession session, Model model) {
-		
-		System.out.println();
+	public String InsertRoom(Room room, MultipartFile[] upfile, HttpSession session, Model model) {
+//		int accommNo = room.getAccommNo();  
+		int accommNo = 3;   // 이거 만지세요~!
 		room.setAccommNo(accommNo);// 다 하고 되면 빼고 돌려보자.
 		System.out.println("accommNo : " + accommNo);
     	System.out.println("upfile : " + upfile);
@@ -381,7 +381,7 @@ public class BusinessController {
 			return "redirect:/";
 		} else {
 
-			return "business/businessEnrollForm";
+			return "member/businessEnrollForm";
 		}
 	}
 	
@@ -393,7 +393,20 @@ public class BusinessController {
 	}
 	
 	
-	
+	@RequestMapping("updateMember.bu")
+	public String updateBusinessMember(HttpSession session, String address, Model m) {
+		Business loginCompany = (Business)session.getAttribute("loginCompany");
+		if(loginCompany.getAddress().equals(address)) {
+			return "business/mypage";
+		}else {
+			loginCompany.setAddress(address);
+			int result = businessService.updateBusinessMember(loginCompany);
+			
+			businessService.updateBusinessMember(loginCompany);
+			session.setAttribute("loginCompany", loginCompany);
+			return "business/mypage";
+		}
+	}
 	
 	
 	

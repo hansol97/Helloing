@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="REPORT_COUNT" 	property="reportCount" />
 	</resultMap>
 
+ <!-- 여기는 승준 -->
 	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
 		select
 				mem_no,
@@ -57,7 +58,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{ phone }
 				)
 	</insert>	
-	
 	
 	
 	

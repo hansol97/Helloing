@@ -54,6 +54,8 @@ public interface BusinessService {
 
 	int InsertRoomPhoto(ArrayList<Attachment> list);
 
+	int updateBusinessMember(Business loginCompany);
+
 
 	
 	
