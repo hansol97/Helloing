@@ -154,6 +154,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM
 		       MEMBER
 	</select>
+	
 	<!-- 일반회원 목록 조회 -->
 	<select id="selectMemberList" resultMap="memberResultSet">
 		SELECT
@@ -170,4 +171,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    BY
 		       (CASE WHEN STATUS='A' THEN 1 ELSE 2 END), MEM_ENROLLDATE DESC
 	</select>
+	
+	<!-- 일반회원 정지 -->
+	<update id="deleteMember" parameterType="_int">
+		UPDATE
+		       MEMBER
+		   SET
+		       STATUS = 'S'
+		 WHERE
+		       STATUS != 'N'
+		   AND
+		       MEM_NO = #{memNo}
+	</update>
 </mapper>

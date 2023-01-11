@@ -101,39 +101,52 @@ public class ProductController {
 	
 	// 액티비티 결제 페이지
 	@RequestMapping("reserve.activity")
-	public String reserveActivity(HttpSession session, TicketCommand tk, TicketPayment tp) {
+	public ModelAndView reserveActivity(HttpSession session,
+								  		TicketCommand tk,
+								  		Activity act,
+								  		ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) { // 로그인 되어있는 유저만 결제 페이지 넘어가기
-			int memNo = loginUser.getMemNo();
-			
-			System.out.println("리스트 사이즈 : " + tk.getTicketPayment().size());
-			System.out.println("삭제전 : " + tk.getTicketPayment());
 			
 			for(int i = 0; i < tk.getTicketPayment().size(); i++) {
-				System.out.println(i + "번째 : " + tk.getTicketPayment());
 				
-				if(tk.getTicketPayment().get(i).getCount() == 0) {
+				if(tk.getTicketPayment().get(i).getCount() == 0) { // 티켓 수량이 0이면 리스트에서 제거하기
 					tk.getTicketPayment().remove(i);
+					tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
+					i--;
+					continue;
 				}
 			}
-			System.out.println("삭제후 : " + tk.getTicketPayment());
 			
+			mv.addObject("ticketList", tk.getTicketPayment())
+			  .addObject("act", act)
+			  .setViewName("product/activityReserve");
 			
-			
-			
-			
-			
-			return "product/activityReserve";
 		} else {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
-			return "redirect:loginForm.me";
+			mv.setViewName("redirect:loginForm.me");
 		}
+		
+		return mv;
 	}
 	
 	// 액티비티 결제 완료
 	@RequestMapping("pay.ticket")
-	public String payActivity() {
+	public String payActivity(HttpSession session,
+						      TicketCommand tk,
+						      ModelAndView mv) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		System.out.println(tk.getTicketPayment());
+		
+		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
+			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
+		}
+		
+		int result = productService.insertTicketPayment(tk.getTicketPayment());
+		
+		System.out.println(result);
+		
 		return "product/paySuccess";
 	}
 }

@@ -21,6 +21,7 @@
 
 				<div class="top-info">
 					<sapn class="acticityName">${ act.activityName }</sapn>
+					<input type="hidden" name="activityNo" value="${ act.activityNo}">
 				</div>
 				<div>
 					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
@@ -42,12 +43,15 @@
 
 				<div>
 					<form action="reserve.activity" method="post">
+						<input type="hidden" name="activityName" value="${ act.activityName }">
+						<input type="hidden" name="endDate" value="${ act.endDate }">
+						<input type="hidden" name="allSum">
 						<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
 							<c:forEach items="${ ticketList }" var="t">
 								<div class="ticketbox">
 									<div class="ticket-info">
 										<p><span class="ticketName">${ t.ticketName }</span><br>
-											${ t.startDate } ~ ${ t.endDate }</p>
+											${ t.startDate } ~ <span id="endDate">${ t.endDate }</span></p>
 										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
 									</div>
 									<div class="ticket-price">
@@ -185,9 +189,12 @@
 
 			<div class="side-bar">
 				<div class="accommselectbox">
-					<p><span>65,000원부터 ~</span></p>
+					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
-					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
+					<div>
+						<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						<button id="btn-addwish" onclick="removeWish();">♥️😘♥️</button>
+					</div>
 				</div>
 			</div>
 		</div>

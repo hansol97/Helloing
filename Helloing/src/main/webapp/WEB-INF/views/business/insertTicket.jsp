@@ -24,7 +24,7 @@
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
-			<form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
+			<form action="insertTicket.bu" method="post" enctype="multipart/form-data" class="innerform">
 			<!-- 피드 등록 내용물 -->
 			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;👉당신의 🎡티켓을 등록해 😋주세요!❤️ </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
@@ -37,7 +37,7 @@
 					<tr>
 						<th > 티켓 이름 :</th>
 						<td>
-							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력"/>
+							<input id="amName" type="text" name="ticketName" height="100px" size="40" required placeholder="아무튼 입력"/>
 						</td>
 					</tr>
 					<tr>
@@ -61,15 +61,15 @@
 					<tr>
                         <th>운영 시작 / 운영 종료일 : </th>
 						<td>
-                            <input type="date" name="startDay" id=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="date" name="endDay" id="">
+                            <input type="date" name="startDate" id=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="endDate" id="">
                         </td>
 					</tr>
 	
                     <!-- 히든 넣는 곳 -->
 					<tr>
 						<td>
-                            <input type="hidden" name="busiNo">
+                            <input type="hidden" name="activityNo" id="" value="1"><!-- 조회하고 나서 리퀘스트에서 빼서 넣자-->
                         </td>
 					</tr>
 

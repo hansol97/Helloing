@@ -439,4 +439,22 @@ public class MemberController {
 	public String expenseView() {
 		return "member/expenseView";
 	}
+	
+	// 위시리스트 추가
+	@RequestMapping("addWish")
+	public void addWish(HttpSession session,
+						ActivityWish aw,
+					    int activityNo) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			aw.setActivityNo(activityNo);
+		} else {
+			
+		}
+		
+		
+		
+	}
 }

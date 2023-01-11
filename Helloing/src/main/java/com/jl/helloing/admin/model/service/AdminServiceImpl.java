@@ -98,7 +98,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public int deleteMember(int memNo) {
-		return 0;
+		return adminDao.deleteMember(sqlSession, memNo);
 	}
 
 	
