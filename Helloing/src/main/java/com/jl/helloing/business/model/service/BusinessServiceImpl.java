@@ -11,6 +11,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
 
 import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.Activity;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -62,6 +63,17 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int insertAccomPhoto(ArrayList<Attachment> list) {
 		return businessDao.insertAccomPhoto(list, sqlSession);
+	}
+
+	// 인서트 액티비티 세트
+	@Override
+	public int InsertAct(Activity act) {
+		return businessDao.insertAct(act, sqlSession);
+	}
+
+	@Override
+	public int InsertActPhoto(ArrayList<Attachment> list) {
+		return businessDao.insertActPhoto(list, sqlSession);
 	}
 
 }

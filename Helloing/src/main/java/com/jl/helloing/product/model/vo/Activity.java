@@ -13,5 +13,12 @@ public class Activity {
 	
 	private double avg; // 별점 평균
 	private int reviewCount; // 리뷰 갯수
-	private int rowPrice; // 가장 낮은 티켓 가격
+	private int rowPrice; // 가장 낮은 티켓 가격  
+	
+	// 별점의 각 개수들
+	private int star1;
+	private int star2;
+	private int star3;
+	private int star4;
+	private int star5;
 }
