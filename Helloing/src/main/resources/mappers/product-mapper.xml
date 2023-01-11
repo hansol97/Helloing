@@ -190,34 +190,86 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert  id="insertAccomPhoto"   parameterType="java.util.List" >
 	  INSERT
 		  INTO
-					        ACCOMM_ATTACHMENT
-					        (
-					        FILE_NO,
-					        ACCOMM_NO,
-					        ORIGIN_NAME,
-					        CHANGE_NAME,
-					        FILE_PATH,
-					        UPLOAD_DATE
-					        )
+		        ACCOMM_ATTACHMENT
+		        (
+		        FILE_NO,
+		        ACCOMM_NO,
+		        ORIGIN_NAME,
+		        CHANGE_NAME,
+		        FILE_PATH,
+		        UPLOAD_DATE
+		        )
 	  SELECT 
-							SEQ_ACCFNO.NEXTVAL, 
-							SEQ_ACCNO.CURRVAL,
-							 A.* 
-							 FROM (
-						
-				 			<foreach collection="list" item="item"    separator="UNION ALL ">
-										SELECT
-														     #{item.originName} AS ORIGIN_NAME,
-														     #{item.changeName} AS CHANGE_NAME,
-														     #{item.filePath} AS FILE_PATH,
-														     SYSDATE AS UPLOAD_DATE
-										   FROM
-										   					DUAL
-							</foreach>
-												   ) A
+				SEQ_ACCFNO.NEXTVAL, 
+				SEQ_ACCNO.CURRVAL,
+				 A.* 
+				 FROM (
+			
+	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+						SELECT
+						     #{item.originName} AS ORIGIN_NAME,
+						     #{item.changeName} AS CHANGE_NAME,
+						     #{item.filePath} AS FILE_PATH,
+						     SYSDATE AS UPLOAD_DATE
+						   FROM
+			   					DUAL
+				</foreach>
+						   ) A
 	</insert>
 	
+	<!-- 액티비티 인서트으!! -->
+	<insert id="insertAct" parameterType="activity">
+		INSERT
+		  INTO
+		        ACTIVITY
+		        (
+		        ACTIVITY_NO,
+		        BUSINESS_NO,
+		        ACTIVITY_NAME,
+		        ACTIVITY_CONTENT,
+		        END_DATE
+		        )
+		VALUES
+		        (
+		        SEQ_ACTNO.NEXTVAL,        
+		        #{businessNo},
+		        #{activityName},
+		        #{activityContent},
+		        #{address},
+		        SYSDATE
+		        )
+	</insert>
 	
+	<!-- 액티비티 첨부파일 집어넣기 --> 
+	<insert  id="insertActPhoto"   parameterType="java.util.List" >
+	  INSERT
+		INTO
+		        ACTIVITY_ATTACHMENT
+		        (
+		        FILE_NO,
+		        ACTIVITY_NO,
+		        ORIGIN_NAME,
+		        CHANGE_NAME,
+		        FILE_PATH,
+		        UPLOAD_DATE
+		        )
+	  SELECT 
+				SEQ_ACTFNO.NEXTVAL, 
+				SEQ_ACTNO.CURRVAL,
+				 A.* 
+				 FROM (
+			
+	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+						SELECT
+							     #{item.originName} AS ORIGIN_NAME,
+							     #{item.changeName} AS CHANGE_NAME,
+							     #{item.filePath} AS FILE_PATH,
+							     SYSDATE AS UPLOAD_DATE
+						   FROM
+			   					 DUAL
+				</foreach>
+						   ) A
+	</insert>
 	
 	
 	

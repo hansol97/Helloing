@@ -94,14 +94,14 @@ public class BusinessController {
 			// 포워딩으로 보낸다면?? boardListView.jsp // 리스트 달라고 요청을 한게 아니기 때문에 리스트 조회가 되지 않는다. => DB에 들렀다 와야한다.
 			// return "board/boardListView";
 			if(businessService.insertAccomPhoto(list)>0) {
-				session.setAttribute("alertMsg", "게시글 등록 성공!");
+				session.setAttribute("alertMsg", "숙소 등록 성공!");
 				return "redirect:accommList.bu";
 			}else {
-				model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+				model.addAttribute("errorMsg", "숙소 등록에 실패했어요...");
 				return "common/errorPage";
 			}
 		} else {// 실패 => 에러 페이지로
-			model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+			model.addAttribute("errorMsg", "숙소 등록에 실패했어요...");
 			return "common/errorPage";
 		}
 	}
@@ -133,14 +133,14 @@ public class BusinessController {
 		if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
 
 			if(businessService.InsertActPhoto(list)>0) {
-				session.setAttribute("alertMsg", "게시글 등록 성공!");
+				session.setAttribute("alertMsg", "액티비티 등록 성공!");
 				return "redirect:activityList.bu";
 			} else {
-				model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+				model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
 				return "common/errorPage";
 			}
 		} else {// 실패 => 에러 페이지로
-			model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
+			model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
 			return "common/errorPage";
 		}
 	}

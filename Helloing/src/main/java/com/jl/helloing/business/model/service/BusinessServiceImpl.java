@@ -68,12 +68,12 @@ public class BusinessServiceImpl implements BusinessService {
 	// 인서트 액티비티 세트
 	@Override
 	public int InsertAct(Activity act) {
-		return 0;
+		return businessDao.insertAct(act, sqlSession);
 	}
 
 	@Override
 	public int InsertActPhoto(ArrayList<Attachment> list) {
-		return 0;
+		return businessDao.insertActPhoto(list, sqlSession);
 	}
 
 }
