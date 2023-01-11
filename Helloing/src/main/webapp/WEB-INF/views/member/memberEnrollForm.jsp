@@ -118,7 +118,12 @@ height: 30px;
 			<script>
 			// 이메일 인증번호
 			function certButton() {
-				
+				$.ajax({
+					url
+					
+					
+					
+				})
 			}
 			
 			</script>
