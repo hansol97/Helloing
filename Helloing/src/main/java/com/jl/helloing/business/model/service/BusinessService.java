@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.Activity;
 
 public interface BusinessService {
 	// 파트너 기업 등록
@@ -42,6 +43,10 @@ public interface BusinessService {
 	int insertAccom(Accomm acc);
 
 	int insertAccomPhoto(ArrayList<Attachment> list);
+
+	int InsertAct(Activity act);
+
+	int InsertActPhoto(ArrayList<Attachment> list);
 	
 	
 	

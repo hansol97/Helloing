@@ -26,6 +26,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.Activity;
 
 @Controller
 public class BusinessController {
@@ -64,12 +65,105 @@ public class BusinessController {
 	public String goInsertAccom() {
 		return "business/insertAccomm";
 	}
+    
+    // 숙소 등록!!! insertAccom()
+    // 3 files
+    @RequestMapping("insertAccom.bu")
+	public String insertAccom(Accomm acc, MultipartFile[] upfile, HttpSession session, Model model) {
+		// filename이 빈 문자열인가 아닌가로 첨부파일 유무를 판단할 수 있다 (첨부해도 파일사이즈가 0일수 있음)
+		// System.out.println(b); 
+		// System.out.println(upfile); //첨부파일이 있든 없든 객체가 무조건 생성된다 - 차이점은 filename에 원본명이 존재하는가, 혹은 ""(빈문자열)인가
+		
+		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
+		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
+		
+    	ArrayList<Attachment> list = new ArrayList();
+    	for (int i = 0; i < upfile.length; i++) {
+			
+	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
+				
+					Attachment at = new Attachment();
+					at.setOriginName( upfile[i].getOriginalFilename());
+					at.setChangeName( saveFile(upfile[i], session) );
+					at.setFilePath( "resources/uploadFiles/"  );
+					list.add(at);
+	    		}
+		}
+
+		if (businessService.insertAccom(acc) > 0) { // 성공 => 게시글 리스트 페이지
+			// 포워딩으로 보낸다면?? boardListView.jsp // 리스트 달라고 요청을 한게 아니기 때문에 리스트 조회가 되지 않는다. => DB에 들렀다 와야한다.
+			// return "board/boardListView";
+			if(businessService.insertAccomPhoto(list)>0) {
+				session.setAttribute("alertMsg", "숙소 등록 성공!");
+				return "redirect:accommList.bu";
+			}else {
+				model.addAttribute("errorMsg", "숙소 등록에 실패했어요...");
+				return "common/errorPage";
+			}
+		} else {// 실패 => 에러 페이지로
+			model.addAttribute("errorMsg", "숙소 등록에 실패했어요...");
+			return "common/errorPage";
+		}
+	}
+	
 	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
 	public String goInsertAct() {
 		return "business/insertActivity";
 	}
-	// 숙소 수정하기
+	// 액티비티 등록!!! 
+	@RequestMapping("InsertAct.bu")
+	public String InsertAct(Activity act, MultipartFile[] upfile, HttpSession session, Model model) {
+		
+    	ArrayList<Attachment> list = new ArrayList();
+    	System.out.println("upfile : " + upfile);
+    	System.out.println("upfile[0] : " + upfile[0]);
+    	for (int i = 0; i < upfile.length; i++) {
+			
+	    		if (!upfile[i].getOriginalFilename().equals("") ) { 
+				
+					Attachment at = new Attachment();
+					at.setOriginName( upfile[i].getOriginalFilename());
+					at.setChangeName( saveFile(upfile[i], session) );
+					at.setFilePath( "resources/uploadFiles/"  );
+					list.add(at);
+	    		}
+		}
+
+		if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
+
+			if(businessService.InsertActPhoto(list)>0) {
+				session.setAttribute("alertMsg", "액티비티 등록 성공!");
+				return "redirect:activityList.bu";
+			} else {
+				model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
+				return "common/errorPage";
+			}
+		} else {// 실패 => 에러 페이지로
+			model.addAttribute("errorMsg", "액티비티 등록에 실패했어요...");
+			return "common/errorPage";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 숙소 수정하기화면으로 이동
 	@RequestMapping("goUpdateAccom.bu")
 	public String goUpdateAccom() {
 		return "business/updateAccomm";
@@ -160,49 +254,7 @@ public class BusinessController {
 		return result;
 	}
 	
-    
-    // 숙소 등록!!! insertAccom()
-    // 3 files
-    @RequestMapping("insertAccom.bu")
-	public String insertAccom(Accomm acc, MultipartFile[] upfile, HttpSession session, Model model) {
-		// filename이 빈 문자열인가 아닌가로 첨부파일 유무를 판단할 수 있다 (첨부해도 파일사이즈가 0일수 있음)
-		// System.out.println(b); 
-		// System.out.println(upfile); //첨부파일이 있든 없든 객체가 무조건 생성된다 - 차이점은 filename에 원본명이 존재하는가, 혹은 ""(빈문자열)인가
-		
-		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
-		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
-		
-    	ArrayList<Attachment> list = new ArrayList();
-    	System.out.println("upfile : " + upfile);
-    	System.out.println("upfile[0] : " + upfile[0]);
-    	System.out.println(  );
-    	for (int i = 0; i < upfile.length; i++) {
-			
-	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
-				
-					Attachment at = new Attachment();
-					at.setOriginName( upfile[i].getOriginalFilename());
-					at.setChangeName( saveFile(upfile[i], session) );
-					at.setFilePath( "resources/uploadFiles/"  );
-					list.add(at);
-	    		}
-		}
 
-		if (businessService.insertAccom(acc) > 0) { // 성공 => 게시글 리스트 페이지
-			// 포워딩으로 보낸다면?? boardListView.jsp // 리스트 달라고 요청을 한게 아니기 때문에 리스트 조회가 되지 않는다. => DB에 들렀다 와야한다.
-			// return "board/boardListView";
-			if(businessService.insertAccomPhoto(list)>0) {
-				session.setAttribute("alertMsg", "게시글 등록 성공!");
-				return "redirect:accommList.bu";
-			}else {
-				model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
-				return "common/errorPage";
-			}
-		} else {// 실패 => 에러 페이지로
-			model.addAttribute("errorMsg", "게시글 작성에 실패했어요...");
-			return "common/errorPage";
-		}
-	}
     
     // 파일 리네임 saveFile() 
 	public String saveFile(MultipartFile upfile, HttpSession session) {// 실제 넘어온 파일의 이름을 변경해서 서버에 업로드하는 역할

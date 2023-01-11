@@ -37,16 +37,6 @@
 	                </p>
 	            </div>
         	</c:forEach>
-        	<!-- 
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-                <p>가이드 투어<br>
-                    <span class="activityName">[당일투어][365일 매일 출발] 그랜드캐년 + 앤텔롭</span><br>
-                    	⭐⭐⭐⭐⭐ 1,844<br>
-                    189,200원 / 1인
-                </p>
-            </div>
-             -->
         </div>
 
 		
