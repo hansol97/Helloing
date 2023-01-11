@@ -65,4 +65,13 @@ public class MemberDao {
 	public int insertPlannerMem(int memNo, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("memberMapper.insertPlannerMem", memNo);
 	}
+
+	public Planner selectPlanner(Planner p, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectPlanner", p);
+	}
+
+	public int updatePlanner(Planner pl, SqlSessionTemplate sqlSession) {
+		System.out.println(pl);
+		return sqlSession.update("memberMapper.updatePlanner", pl);
+	}
 }

@@ -62,6 +62,9 @@ public interface MemberService {
 	//플래너 멤버 추가
 	int insertPlannerMem(int memNo);
 	
+	//플래너 수정 전 조회
+	Planner selectPlanner(Planner p);
+	
 	//플래너 수정
 	int updatePlanner(Planner pl);
 	

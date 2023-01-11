@@ -125,11 +125,17 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertPlannerMem(memNo, sqlSession);
 	}
 	
+	//플래너 수정 전 조회
+	@Override
+	public Planner selectPlanner(Planner p) {
+		return memberDao.selectPlanner(p, sqlSession);
+	}
+	
+	
 	//플래너 수정
 	@Override
 	public int updatePlanner(Planner pl) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.updatePlanner(pl, sqlSession);
 	}
 
 	//플래너 삭제
@@ -150,6 +156,8 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 
