@@ -68,11 +68,14 @@ public interface MemberService {
 	//플래너 수정
 	int updatePlanner(Planner pl);
 	
+	//플래너 삭제 - 플래너 속 플랜 삭제
+	int deletePlan(Planner pl);
+	
 	//플래너 삭제
 	int deletePlanner(Planner pl);
 	
 	//플랜 상세 페이지
-	Plan planDetailView(int memNo, int planNo);
+	ArrayList<Plan> planDetailView(int plannerNo);
 	
 	//가계부 페이지
 	Expense expenseView(int planNo);
