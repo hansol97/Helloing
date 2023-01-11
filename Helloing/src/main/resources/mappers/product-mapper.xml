@@ -101,6 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
 
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
 		SELECT
@@ -282,11 +283,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						   ) A
 	</insert>
 	
+	<!-- 객실 집어넣기 -->
+	<insert id="insertRoom" parameterType="room">
+		INSERT
+		  INTO
+				        ROOM
+				        (
+				        ACCOMM_NO,
+				        BUSINESS_NO,
+				        ACCOMM_NAME,
+				        ADDRESS,
+				        LAT,
+				        LNG,
+				        GRADE,
+				        REFUND,
+				        CHECKINOUT,
+				        END_DATE,
+				        ACCOMM_CONTENT,
+				        CATEGORY
+				        )
+		VALUES
+				        (
+				        SEQ_ACCNO.NEXTVAL,        
+				        #{businessNo},
+				        #{accommName},
+				        #{address},
+				        #{lat},
+				        #{lng},
+				        #{grade},
+				        #{refund},
+				        #{checkInout},
+				        SYSDATE,
+				        #{accommContent},
+				        #{category}
+				        )
+	</insert>
+	
+	<!-- 객실 첨부파일 집어넣기 --> 
+	<insert  id="insertRoomPhoto"   parameterType="java.util.List" >
+	  INSERT
+		  INTO
+		        ROOM_ATTACHMENT
+		        (
+		        FILE_NO,
+		        ACCOMM_NO,
+		        ORIGIN_NAME,
+		        CHANGE_NAME,
+		        FILE_PATH,
+		        UPLOAD_DATE
+		        )
+	  SELECT 
+				SEQ_ACCFNO.NEXTVAL, 
+				SEQ_ACCNO.CURRVAL,
+				 A.* 
+				 FROM (
+			
+	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+						SELECT
+						     #{item.originName} AS ORIGIN_NAME,
+						     #{item.changeName} AS CHANGE_NAME,
+						     #{item.filePath} AS FILE_PATH,
+						     SYSDATE AS UPLOAD_DATE
+						   FROM
+			   					DUAL
+				</foreach>
+						   ) A
+	</insert>
 	
 	
 	
-	
-	
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 끝ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 	
 	
