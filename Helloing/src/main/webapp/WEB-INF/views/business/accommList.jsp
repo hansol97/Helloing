@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>등록한 숙소 조회</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <style>
     
 </style>
