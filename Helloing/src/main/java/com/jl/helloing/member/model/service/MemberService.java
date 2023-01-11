@@ -67,7 +67,7 @@ public interface MemberService {
 	int insertPlannerMem(int memNo);
 	
 	//플래너 수정 전 조회
-	Planner selectPlanner(Planner p);
+	Planner selectPlanner(Planner pl);
 	
 	//플래너 수정
 	int updatePlanner(Planner pl);
@@ -80,6 +80,21 @@ public interface MemberService {
 	
 	//플랜 상세 페이지
 	ArrayList<Plan> planDetailView(int plannerNo);
+	
+	//일행과 함께 여행가기
+	int planAddMem(Plan p);
+	
+	//일정 추가 
+	int insertPlan(Plan p);
+	
+	//일정 수정 전 조회
+	Plan selectPlan(int planNo);
+	
+	//일정 수정
+	int updatePlan(Plan p);
+	
+	//일정 삭제 
+	int deletePlan(int planNo);
 	
 	//가계부 페이지
 	Expense expenseView(int planNo);

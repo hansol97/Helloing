@@ -381,11 +381,11 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		Planner p = new Planner();
-		p.setPlannerNo(plannerNo);
-		p.setMemNo(memNo);
+		Planner pl = new Planner();
+		pl.setPlannerNo(plannerNo);
+		pl.setMemNo(memNo);
 		
-		Planner planner = memberService.selectPlanner(p); 
+		Planner planner = memberService.selectPlanner(pl); 
 		
 		return new Gson().toJson(planner);
 	}
