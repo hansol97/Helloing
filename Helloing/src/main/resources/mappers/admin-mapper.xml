@@ -114,7 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 챗봇A 조회 -->
-	<select id="selectChatbotA" parameterType="List" resultMap="chatbotResultSet">
+	<select id="selectChatbotA" parameterType="hashMap" resultMap="chatbotResultSet">
 		SELECT 
 		 	   CHATBOT_Q,
 			   CHATBOT_A

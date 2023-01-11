@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+     //치환 변수 선언합니다.
+      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+      pageContext.setAttribute("br", "<br/>"); //br 태그
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -263,10 +269,11 @@
 
   .admin_chat{
     width:250px;
-    padding:10px;
     margin-bottom:10px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
+    padding:10px;
+    white-space: pre-wrap;
     
     clear:both;
     
@@ -297,6 +304,27 @@
     margin-bottom:6px;
     background-color: white;
     border:none;
+  }
+
+  button.admin_chat{
+    border:2px solid rgb(226, 226, 226);
+    font-family: 'S-CoreDream-3Light';
+    text-align:left;
+    width:250px;
+  }
+
+  button.admin_chat:hover{
+    cursor:pointer;
+    border:2px solid rgb(193, 193, 193);
+    font-size:13px;
+  }
+
+  .wrap_user_chat{
+    float:left;
+    width:280px;
+    height:50px;
+    margin:0px;
+    padding:0px;
   }
 
   </style>
@@ -442,15 +470,7 @@
               </div>
 
               <div id="chat_view">
-                <div class="admin_chat">
-                  <p>
-                    안녕하세요 <br>
-                    반갑소잉 : 전라 입니다. <br>
-                    문의 키워드를 입력해주세요 <br>
-                    예시) 숙소 예약(O), 숙소예약(X)
-                  </p>
-                </div>
-                <div class="user_chat">ff</div>      
+                
               </div>
               <div id="chat_input">
                   <input id="chatbot_user_input" type="text">
@@ -484,7 +504,7 @@
 
     $(function(){
       $('#chatbot_btn').click(function(){
-        $chatBody.children().remove('');
+        //$chatBody.children().remove('');
         $.ajax({
           url:'adminInfo.ch'
           ,data : {
@@ -492,7 +512,8 @@
           }
           ,success: function(c){
             console.log(c[0].chatbotA);
-            $chatBody.append('<div class="admin_chat"><p>' + c[0].chatbotA + '</p></div>');
+
+            $chatBody.append('<div class="admin_chat">' + c[0].chatbotA + '</div>');
           }
           ,error : function(){
             console.log('실패');
@@ -500,30 +521,36 @@
         })
       })
     });
-
-    function addAdminChat(result){
-      $('document').on('click', '#chat_view', function(){
-        $(this).append('<p>' + result + '</p>');
-      })
-    }
-
+    
+    var chatbotList = '';
     let $userInput = $('#chatbot_user_input');
     function addUserChat(){
-      $chatBody.append('<div class="user_chat"><p>' + $userInput + '</p></div>');
-      console.log($userInput.val());
+      $chatBody.append('<div class="wrap_user_chat"><div class="user_chat"><p>' + $userInput.val() + '</p></div></div>');
       $.ajax({
         url : 'adminInfo.ch'
         ,data : {
           chatbotKeyword : $userInput.val()
         }
-        ,success: function(result){
-          console.log(result);
+        ,success: function(cList){
+          console.log(cList);
+          for(var i = 0; i < cList.length; i++){
+            $chatBody.append('<button class="admin_chat" onclick="bringChatbotA(' + i + ');">'+ (i+1) + '. ' + cList[i].chatbotQ + '</button>');
+          }
+          $chatBody.scrollTop($chatBody[0].scrollHeight);
+          chatbotList = cList;
         }
         ,error : function(){
           console.log('실패');
         }
       });
     }
+
+    function bringChatbotA(num){
+      $chatBody.append('<div class="admin_chat">' + chatbotList[num].chatbotA + '</div>')
+      $chatBody.scrollTop($chatBody[0].scrollHeight);
+      }
+    
+    
   </script>
 
 

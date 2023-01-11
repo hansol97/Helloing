@@ -82,9 +82,8 @@
 			<hr>
 			
 			<div id="upcoming-trip" class="trip">
-			<h3>다가오는 여행</h3>
+			<h3>나의 여행 🗓️</h3>
 		<c:forEach var="p" items="${list}">
-			<c:if test="${today <= p.endDate }">
 					<div class="plan">
 						<h4>${p.plannerName }</h4>
 						<p>${p.startDate } ~ ${p.endDate }</p>
@@ -94,27 +93,9 @@
 							<a href="deletePlanner.hj">삭제</a>
 						</span>
 					</div>
-			</c:if>
+					<br>
 		</c:forEach>
 			</div>
-			
-			<div id="completed-trip" class="trip">
-			<h3>완료된 여행</h3>
-			<c:forEach var="p" items="${list }">
-				<c:if test="${today > p.endDate}">
-					<div class="plan">
-						<h4>${p.plannerName }</h4>
-						<p>${p.startDate } ~ ${p.endDate }</p>
-						
-						<span class="planner-btn">
-							<a href="">삭제</a>
-						</span>
-					</div>
-				</c:if>
-			</c:forEach>
-			</div>
-			
-	
 	</div>
 
 	    <div id="ex1" class="modal">
@@ -122,19 +103,17 @@
 			<hr>
 	    	<br>
 	    	<form action="insertPlanner.hj" method="post">
+	    		<div>
+	    			여행명 <input type="text" name="plannerName">
+	    		</div>
 		    	<div>
-		    		여행 시작 <input type="date" id="start" > ~ 여행 종료  <input type="date" >
+		    		여행 시작 <input type="date" id="start" name="startDate"> ~ 여행 종료  <input type="date" name="endDate">
 		    	</div>
-				<div>
-					여행명 <input type="text" name="plannerName" placeholder="내용을 입력해주세요.">
-				</div>			 
-					<input type="hidden" name="memNo" value="${loginUser.memNo }">
-				<div class="modalBtn" style="float:right;">
-					  <button type="submit">생성</button>
-					  <a href="#" rel="modal:close">취소</a>
-			 	</div>
+   				<input type="hidden" name="memNo" value="${loginUser.memNo}">
+				<button type="submit">등록</button>
 			</form>
-		</div>
+	 	</div>
+	</div>
 		
 	<script>
 	$(function(){

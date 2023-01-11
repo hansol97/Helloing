@@ -33,6 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="BUSINESS_NO"   		property="businessNo" />
         <result column="ACTIVITY_CONTENT"  	property="activityContent" />
         <result column="END_DATE"    		property="endDate" />
+        <result column="REVIEWCOUNT"    	property="reviewCount" />
+        <result column="ROWPRICE"    		property="rowPrice" />
+        <result column="AVG"    			property="avg" />
+        <result column="STAR1"    			property="star1" />
+        <result column="STAR2"    			property="star2" />
+        <result column="STAR3"    			property="star3" />
+        <result column="STAR4"    			property="star4" />
+        <result column="STAR5"    			property="star5" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -72,23 +80,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
 		SELECT
-			   ACTIVITY_NO
+			   DISTINCT A.ACTIVITY_NO
 			  ,ACTIVITY_NAME
+              ,( SELECT
+              		    COUNT(*)
+                   FROM
+                   	    ACTIVITY_REVIEW
+                  WHERE
+                  	    ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
+              ,( SELECT
+              	        MIN(PRICE)
+              	   FROM
+              	   	    TICKET
+              	  WHERE
+              	  	    ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
 		  FROM
-		  	   ACTIVITY
+		  	   ACTIVITY A
+          LEFT
+          JOIN 
+          	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
-	<!-- 해당 액티비티의 최저가 티켓 -->
-	<select id="actTicketRowPrice" resultType="_int" parameterType="_int">
-		SELECT 
-			   MIN(T.PRICE)
-		  FROM
-		  	   ACTIVITY
-		  JOIN
-		  	   TICKET T USING (ACTIVITY_NO)
-		 WHERE
-	 	   ACTIVITY_NO = #{ activityNo }
-	</select>
-
 
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
@@ -97,11 +108,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,ACTIVITY_NAME
 			  ,BUSINESS_NO
 			  ,ACTIVITY_CONTENT
-			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
+			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
+			  ,(SELECT AVG(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo }) AS "AVG"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 1) AS "STAR1"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 2) AS "STAR2"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 3) AS "STAR3"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 4) AS "STAR4"
+			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 5) AS "STAR5"
 		  FROM
 		  	   ACTIVITY
 		 WHERE
-		 	   ACTIVITY_NO = ${ activityNo }
+		 	   ACTIVITY_NO = #{ activityNo }
 	</select>
 	
 	<!-- 해당 액티비티에 딸린 티켓들 -->
@@ -112,8 +129,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TICKET_NAME
 			  ,CAPACITY
 			  ,PRICE
-			  ,TO_CHAR(START_DATE, 'YYYY-MM-DD') AS START_DATE
-			  ,TO_CHAR(END_DATE, 'YYYY-MM-DD') AS END_DATE
+			  ,TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE
+			  ,TO_CHAR(END_DATE, 'YYYY.MM.DD') AS END_DATE
 		  FROM
 		  	   TICKET
 		 WHERE
@@ -143,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    BY
 		       REVIEW_NO DESC
 	</select>
-
+	
 
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
@@ -182,37 +199,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 숙소 첨부파일 집어넣기 --> 
-	<insert id="insertAccomPhoto" parameterType="java.util.List">
+	<insert  id="insertAccomPhoto"   parameterType="java.util.List" >
+	  INSERT
+		  INTO
+		        ACCOMM_ATTACHMENT
+		        (
+		        FILE_NO,
+		        ACCOMM_NO,
+		        ORIGIN_NAME,
+		        CHANGE_NAME,
+		        FILE_PATH,
+		        UPLOAD_DATE
+		        )
+	  SELECT 
+				SEQ_ACCFNO.NEXTVAL, 
+				SEQ_ACCNO.CURRVAL,
+				 A.* 
+				 FROM (
+			
+	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+						SELECT
+						     #{item.originName} AS ORIGIN_NAME,
+						     #{item.changeName} AS CHANGE_NAME,
+						     #{item.filePath} AS FILE_PATH,
+						     SYSDATE AS UPLOAD_DATE
+						   FROM
+			   					DUAL
+				</foreach>
+						   ) A
+	</insert>
+	
+	<!-- 액티비티 인서트으!! -->
+	<insert id="insertAct" parameterType="activity">
 		INSERT
 		  INTO
-				        ATTACHMENT
-				        (
-				        FILE_NO,
-				        ACCOMM_NO,
-				        ORIGIN_NAME,
-				        CHANGE_NAME,
-				        FILE_PATH,
-				        UPLOAD_DATE
-				        )
+		        ACTIVITY
+		        (
+		        ACTIVITY_NO,
+		        BUSINESS_NO,
+		        ACTIVITY_NAME,
+		        ACTIVITY_CONTENT,
+		        END_DATE
+		        )
 		VALUES
-							<foreach  item="item"  index="index"  collection="list" separator="," >
-							
-					        (
-								SEQ_ACCFNO.NEXTVAL,        
-							     #{item.accommNo},
-							     #{item.originName},
-							     #{item.changeName},
-							     #{item.filePath},
-							     SYSDATE
-					        )
-							</foreach>
+		        (
+		        SEQ_ACTNO.NEXTVAL,        
+		        #{businessNo},
+		        #{activityName},
+		        #{activityContent},
+		        #{address},
+		        SYSDATE
+		        )
 	</insert>
-
 	
-	
-	
-	
-	
+	<!-- 액티비티 첨부파일 집어넣기 --> 
+	<insert  id="insertActPhoto"   parameterType="java.util.List" >
+	  INSERT
+		INTO
+		        ACTIVITY_ATTACHMENT
+		        (
+		        FILE_NO,
+		        ACTIVITY_NO,
+		        ORIGIN_NAME,
+		        CHANGE_NAME,
+		        FILE_PATH,
+		        UPLOAD_DATE
+		        )
+	  SELECT 
+				SEQ_ACTFNO.NEXTVAL, 
+				SEQ_ACTNO.CURRVAL,
+				 A.* 
+				 FROM (
+			
+	 			<foreach collection="list" item="item"    separator="UNION ALL ">
+						SELECT
+							     #{item.originName} AS ORIGIN_NAME,
+							     #{item.changeName} AS CHANGE_NAME,
+							     #{item.filePath} AS FILE_PATH,
+							     SYSDATE AS UPLOAD_DATE
+						   FROM
+			   					 DUAL
+				</foreach>
+						   ) A
+	</insert>
 	
 	
 	

@@ -10,8 +10,6 @@ public interface ProductService {
 	
 	// 액티비티 전체 조회(메인페이지)
 	ArrayList<Activity> selectActList();
-	// 전체 조회할 때 필요한 해당 액티비티 티켓 최저가
-	int actTicketRowPrice(int activityNo); 
 	
 	// 액티비티 상세 조회
 	Activity selectActDetail(int activityNo);

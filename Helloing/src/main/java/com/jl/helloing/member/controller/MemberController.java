@@ -296,7 +296,7 @@ public class MemberController {
 		
 		System.out.println(pl);
 		
-		if(memberService.insertPlanner(pl)>0) {
+		if(memberService.insertPlanner(pl)>0 && memberService.insertPlannerMem(pl.getMemNo())>0) {
 			mv.setViewName("redirect:plannerMain.hj");
 		}else {
 			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
