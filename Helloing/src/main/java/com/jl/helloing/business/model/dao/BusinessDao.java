@@ -15,7 +15,6 @@ import com.jl.helloing.product.model.vo.Accomm;
 public class BusinessDao {
 
 	public int insertCompany(Business b, SqlSessionTemplate sqlSession) {
-		System.out.println("sd");
 		return sqlSession.insert("businessMapper.insertCompany", b);
 	}
 
