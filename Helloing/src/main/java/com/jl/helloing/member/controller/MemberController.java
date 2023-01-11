@@ -355,7 +355,6 @@ public class MemberController {
 		
 		ArrayList<Plan> list = memberService.planDetailView(plannerNo);
 
-		System.out.println(list);
 		if(list!=null) {
 			mv.addObject("list", list);
 			mv.setViewName("member/planDetailView");
