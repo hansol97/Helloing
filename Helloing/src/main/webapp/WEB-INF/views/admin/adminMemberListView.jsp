@@ -36,11 +36,11 @@
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="memListSearch.ad" method="get">
                                 <td>
-                                    <select class="admin-search_form" name="" id="">
-                                        <option value="">아이디</option>
-                                        <option value="">이름</option>
+                                    <select class="admin-search_form" name="condition">
+                                        <option value="searchId">아이디</option>
+                                        <option value="searchName">이름</option>
                                     </select>
                                 </td>
                                 <td>
@@ -130,12 +130,12 @@
                 		<a disabled onclick="return false;">&lt;</a>
                 	</c:when>
                 	<c:otherwise>
-                		<a href="chatbotList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                		<a href="memList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
                 	</c:otherwise>
                 </c:choose>
 					
 				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
-					<a href="chatbotList.ad?cpage=${ p }">${ p }</a> 
+					<a href="memList.ad?cpage=${ p }">${ p }</a> 
 				</c:forEach>              
 				
 				<c:choose>
@@ -143,7 +143,7 @@
 						<a didsabled onclick="return false;">&gt;</a>
 					</c:when>
 					<c:otherwise>
-						<a href="chatbotList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+						<a href="memList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
 					</c:otherwise>
 				</c:choose>
             </div>

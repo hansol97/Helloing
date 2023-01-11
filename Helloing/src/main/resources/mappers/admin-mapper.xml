@@ -21,6 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="REPORT_COUNT" 	property="reportCount" />
 	</resultMap>
 	
+	<resultMap id="businessResultSet" type="business">
+	  	<result column="BUSINESS_NO" 			property="businessNo" />
+	  	<result column="MEM_NO" 				property="memNo" />
+	  	<result column="BUSINESS_NAME" 			property="businessName" />
+	  	<result column="ADDRESS" 				property="address" />
+	  	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
+	  </resultMap>
+	
 	<!-- 챗봇Q 중복 확인 -->
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
 		SELECT 
@@ -183,4 +191,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND
 		       MEM_NO = #{memNo}
 	</update>
+	
+	<!-- 일반회원 검색된 목록 수 -->
+	<select id="selectSearchMemListCount" parameterType="hashMap" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       MEMBER
+		 WHERE
+		 <if test="condition == 'searchId'">
+		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 </if>
+		 <if test="condition == 'searchName'">
+		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 </if>
+	</select>
+	<!-- 사업가 목록 수 -->
+	<select id="selectBusiListCount" resultType="_int">
+		SELECT 
+		       COUNT(*)
+		  FROM
+		       BUSINESS
+	</select>
+	
+	<!-- 사업가 목록 조회 -->
+	<select id="selectBusinessList" resultMap="businessResultSet">
+		SELECT
+		       BUSINESS_NO
+		       ,MEM_NO
+		       ,BUSINESS_NAME
+		       ,PHONE
+		       ,BUSINESS_ENROLLDATE
+		       ,ADDRESS
+		       ,EMAIL
+		 FROM
+		       BUSINESS B
+		 JOIN
+		       MEMBER USING(MEM_NO)
+	</select>
 </mapper>

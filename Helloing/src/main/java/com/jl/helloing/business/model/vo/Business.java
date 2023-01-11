@@ -11,4 +11,5 @@ public class Business {
 	private String businessName; //BUSINESS_NAME	VARCHAR2(100 BYTE)
 	private String address; //ADDRESS	VARCHAR2(1000 BYTE)
 	private String businessEnrollDate; //BUSINESS_ENROLLDATE	DATE
+	private String phone;
 }

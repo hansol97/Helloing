@@ -108,7 +108,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="590">
+                            <td width="610">
                                 
                             </td>
                             
@@ -123,28 +123,31 @@
                                 <th width="100">회원번호</th>
                                 <th width="100">사업자명</th>
                                 <th width="200">사업자번호</th>
-                                <th width="200">전화번호</th>
+                                <th width="330">주소</th>
                                 <th width="200">등록일자</th>
-                                <th width="100">기타</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td>사업자2</td>
-                                <td>333-33-33333</td>
-                                <td>010-3333-3333</td>
-                                <td>2023.01.01</td>
-                                <td onclick="event.stopPropagation()"><button>+</button></td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>사업자2</td>
-                                <td>333-33-33333</td>
-                                <td>010-3333-3333</td>
-                                <td>2023.01.01</td>
-                                <td><button>+</button></td>
-                            </tr>
+                            <c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="8">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="b" items="${ list }" varStatus="status">
+			                            <tr>
+			                                <td>${ b.memNo }</td>
+			                                <td>${ b.businessName }</td>
+			                                <td>${ b.businessNo }</td>
+			                                <td>${ b.address}</td>
+			                                <td>${ b.businessEnrollDate }</td>
+			                            </tr>
+			                        </c:forEach>
+			                   </c:otherwise>
+			                </c:choose>
                         </tbody>
                     </table>
                 </tr>
@@ -154,11 +157,29 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="businessList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="businessList.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="businessList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
+				
             </div>
             <br><br>
 
@@ -166,59 +187,6 @@
         </div>
 
     </div>
-
-    <div class="modal">
-        <div class="modal_body">
-            <div>
-                <div class="modal-title">
-                    <span>사업자 추가정보</span>
-                </div>
-                <div align="center">
-                    <table class="type02">
-                        <tr>
-                            <th>사업자명</th>
-                            <td>사업자2</td>
-                        </tr>
-                        <tr>
-                            <th>주소</th>
-                            <td>서울시 중구</td>
-                        </tr>
-                        <tr>
-                            <th>이메일</th>
-                            <td>business@email.com</td>
-                        </tr>
-                        
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="btn-open-popup">Modal 띄우기</button>
-
-    <script>
-        const body = document.querySelector('body');
-        const modal = document.querySelector('.modal');
-        const btnOpenPopup = document.querySelector('.btn-open-popup');
-  
-        btnOpenPopup.addEventListener('click', () => {
-          modal.classList.toggle('show');
-  
-          if (modal.classList.contains('show')) {
-            body.style.overflow = 'hidden';
-          }
-        });
-  
-        modal.addEventListener('click', (event) => {
-          if (event.target === modal) {
-            modal.classList.toggle('show');
-  
-            if (!modal.classList.contains('show')) {
-              body.style.overflow = 'auto';
-            }
-          }
-        });
-      </script>
-
     
 </body>
 </html>

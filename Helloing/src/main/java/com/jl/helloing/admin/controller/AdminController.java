@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
+import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
@@ -37,32 +38,10 @@ public class AdminController {
 	public String activityPaymentViewList() {
 		return "admin/activityPaymentListView";
 	}
-	
-	@RequestMapping("businessList.ad")
-	public String adminBusinessListView() {
-		return "admin/adminBusinessListView";
-	}
-	
-	@RequestMapping("boardList.ad")
-	public String adminBoardListView() {
-		return "admin/adminBoardListView";
-	}
-	
-	
-	
-	@RequestMapping("replyList.ad")
-	public String adminReplyListView() {
-		return "admin/adminReplyListView";
-	}
 
 	@RequestMapping("businessPayList.ad")
 	public String businessPaymentListView() {
 		return "admin/businessPaymentListView";
-	}
-	
-	@RequestMapping("reportList.ad")
-	public String reportListView() {
-		return "admin/reportListView";
 	}
 	
 	@RequestMapping("roomPay.ad")
@@ -164,7 +143,7 @@ public class AdminController {
 		return new Gson().toJson(cList);
 	}
 	
-	//---------------------- 일반회원 ----------------------
+	//---------------------- 회원관리 ----------------------
 	
 	
 	// 일반회원 리스트 조회
@@ -195,6 +174,30 @@ public class AdminController {
 		return result;
 	}
 	
+	// 일반회원 검색
+	@RequestMapping("memListSearch.ad")
+	public String searchMemList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+								,String condition, String keyword) {
+		HashMap map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchMemListCount(map), currentPage, 10, 5);
+		System.out.println(pi);
+		return "";
+	}
+	
+	// 사업자 리스트 조회
+	@RequestMapping("businessList.ad")
+	public String selectBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 5);
+
+		ArrayList<Business> list = adminService.selectBusinessList(pi);
+		m.addAttribute("list", list);
+		m.addAttribute("pi", pi);
+		
+		return "admin/adminBusinessListView";
+	}
 
 	
 	
