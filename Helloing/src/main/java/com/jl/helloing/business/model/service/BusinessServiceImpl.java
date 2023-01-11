@@ -87,4 +87,9 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.insertRoomPhoto(list, sqlSession);
 	}
 
+	@Override
+	public int updateBusinessMember(Business loginCompany) {
+		return businessDao.updateBusinessMember(sqlSession, loginCompany);
+	}
+
 }

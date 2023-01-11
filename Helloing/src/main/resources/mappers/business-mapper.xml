@@ -45,6 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		)
 	</insert>
 	
+	<update id="updateBusinessMember" parameterType="business">
+		UPDATE
+		       BUSINESS
+		   SET
+		       ADDRESS = #{ address }
+		 WHERE
+		       BUSINESS_NO = #{ businessNo }
+	</update>
+	
 
 
 

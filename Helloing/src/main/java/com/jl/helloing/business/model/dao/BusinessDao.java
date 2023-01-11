@@ -53,4 +53,9 @@ public class BusinessDao {
 	public int insertRoomPhoto(ArrayList<Attachment> list, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("productMapper.insertRoomPhoto", list);
 	}
+
+
+	public int updateBusinessMember(SqlSessionTemplate sqlSession, Business loginCompany) {
+		return sqlSession.update("businessMapper.updateBusinessMember", loginCompany);
+	}
 }
