@@ -176,5 +176,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ memNo }
 					)
 	</insert>
-	
+	<select id="selectPlanner" parameterType="planner" resultType="planner">
+	SELECT
+			PLANNER_NAME plannerName
+			, START_DATE startDate
+			, END_DATE endDate
+	FROM
+		PLANNER
+	JOIN 
+		PLANNER_MEM USING(PLANNER_NO)
+	WHERE
+		PLANNER_NO = #{ plannerNo }
+	AND
+		MEM_NO = #{ memNo }
+	</select>
+	<update id="updatePlanner" parameterType="planner">
+	UPDATE
+		PLANNER
+	SET
+		PLANNER_NAME = #{ plannerName }
+		, START_DATE = #{ startDate }
+		, END_DATE = #{ endDate }
+	WHERE 
+		PLANNER_NO = #{ plannerNo }
+	</update>
 </mapper>
