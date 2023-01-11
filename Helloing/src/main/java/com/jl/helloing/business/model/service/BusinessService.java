@@ -49,10 +49,21 @@ public interface BusinessService {
 
 	int InsertActPhoto(ArrayList<Attachment> list);
 
+
 	int InsertRoom(Room room);
 
 	int InsertRoomPhoto(ArrayList<Attachment> list);
+
+
 	
+	
+	
+	
+	
+	
+
+	//인호 ---------------------------------------------------------------------------
+
 	
 	
 	

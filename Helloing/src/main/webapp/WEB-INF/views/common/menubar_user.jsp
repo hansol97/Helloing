@@ -552,7 +552,7 @@
           $userInput.val(null);
           if(cList == ''){
             $chatBody.append('<div class="admin_chat chat_qa_area" onclick="QAInfo();"> 검색된 결과가 없습니다.<br>'+
-              '<form action="#" method="post"><input type="hidden" value="${loginUser.userNo}"><button class="chat_qa_btn">1:1문의 바로가기</button></form></div>');
+              '<button class="chat_qa_btn">1:1문의 바로가기</button></div>');
           }
           for(var i = 0; i < cList.length; i++){
             $chatBody.append('<button class="admin_chat" onclick="bringChatbotA(' + i + ');">'+ (i+1) + '. ' + cList[i].chatbotQ + '</button>');
