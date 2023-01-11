@@ -15,8 +15,7 @@ import com.jl.helloing.member.model.vo.Planner;
 public class MemberDao {
 
 	public Member loginMember(Member m, SqlSessionTemplate sqlSession) {
-		Member loginUser = sqlSession.selectOne("memberMapper.loginMember", m);
-		return loginUser;
+		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 	
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
