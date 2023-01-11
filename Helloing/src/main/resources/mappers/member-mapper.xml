@@ -223,8 +223,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        PLAN_CONTENT planContent,
 	        START_TIME startTime,
 	        END_TIME endTime,
-	        SUBSTR(START_DATE,1,10) startDate,
-	        SUBSTR(END_DATE,1,10) endDate,
+	        '20' || REPLACE(SUBSTR(START_DATE,1,10), '/', '-' ) startDate,
+	        '20' || REPLACE(SUBSTR(END_DATE,1,10), '/', '-') endDate,
 	        PLAN_CATEGORY planCategory,
 	        SUBSTR(PLAN_DATE,4,10) planDate,
 	        (WITH MEM AS (
