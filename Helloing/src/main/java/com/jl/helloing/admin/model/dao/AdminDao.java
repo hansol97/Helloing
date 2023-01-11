@@ -76,6 +76,10 @@ public class AdminDao {
 			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList", null, rowBounds);
 	}
+	
+	public int deleteMember(SqlSessionTemplate sqlSession, int memNo) {
+		return sqlSession.update("adminMapper.deleteMember", memNo);
+	}
 
 
 }

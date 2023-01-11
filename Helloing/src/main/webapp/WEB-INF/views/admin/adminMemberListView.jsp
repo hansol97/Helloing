@@ -52,10 +52,10 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="570">
+                            <td width="580">
                                 
                             </td>
-                            <td>&nbsp;&nbsp;<button id="reportMemDelete">정지</button></td>
+                            <td>&nbsp;&nbsp;<button id="memDelete-btn">정지</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -89,7 +89,7 @@
                             		<c:forEach var="m" items="${ list }">
 			                            <tr>
 			                                <td onclick="event.stopPropagation()">
-			                                    <input name="cbox" type="checkbox" value="">
+			                                    <input class="cbox" type="checkbox" value="">
 			                                </td>
 			                                <td>${m.memNo}</td>
 			                                <td>${m.memId}</td>
@@ -106,6 +106,9 @@
 			                                	<c:if test="${ m.status.equals('A') }">
 			                                		관리자
 			                                	</c:if>
+			                                	<c:if test="${ m.status.equals('S') }">
+			                                		정지
+			                                	</c:if>
 			                                </td>
 			                                <td>${ m.memEnrollDate }</td>
 			                            </tr>
@@ -121,14 +124,65 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="chatbotList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="chatbotList.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="chatbotList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
-
+			
+			<script>
+				$(function(){
+					$('#memDelete-btn').click(function(){
+                        var list = $(".cbox");
+                        if($('input[type=checkbox]:checked').length == 1){
+                            list.each(function(index, value){
+                                if($(value).prop('checked')){
+                                    $.ajax({
+                                    	url:'deleteMem.ad'
+                                    	,data : {
+                                    		memNo : $(value).parent().next()[0].outerText
+                                    	}
+                                    	,success : function(result){
+                                    		if(result == 'YYYY'){
+                                    			alert('정지 성공');
+                                    			location.href="memList.ad";
+                                    		}
+                                    		else{
+                                    			alert('정지 실패');
+                                    		}
+                                    	}
+                                    	,error : function(){
+                                    		console.log('실패');
+                                    	}
+                                    })
+                                }
+                            });
+                        }
+                        else{
+                            alert('하나를 선택하세요');
+                        }
+                    });
+				})
+			</script>
             
         </div>
 
