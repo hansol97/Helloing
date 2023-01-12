@@ -81,7 +81,7 @@ height: 30px;
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
 						<td><input type="text" name="memId" maxlength="20" required></td>
-						<td id="checkId" width="80"></td>
+						<div id="checkId" width="80"></div>
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
@@ -117,6 +117,27 @@ height: 30px;
 				</table>
 				<button type="submit" class="join-button">회원가입</button>
 			</form>
+			
+			
+			<script>
+			$(function(){
+				
+				
+				
+				
+				
+			})
+			
+			
+			
+			
+			</script>
+			
+			
+			
+			
+			
+			
 			
 			
 			<script>
@@ -170,7 +191,8 @@ height: 30px;
 				})
 			</script>
 			
-						<script>
+			<!--  
+			<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행
 					//document는 현재 페이지중에 이러한 변화가 일어나면~
 					$(document).on('focusout', 'input[name=memId]', function(){
@@ -179,7 +201,7 @@ height: 30px;
 					})
 				})
 			</script>
-			
+			-->
 			
 
 	</div>

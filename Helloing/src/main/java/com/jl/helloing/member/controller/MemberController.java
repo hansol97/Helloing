@@ -468,8 +468,6 @@ public class MemberController {
 	@RequestMapping("insertPlan.hj")
 	public ModelAndView insertPlan(ModelAndView mv, Plan p, HttpSession session) {
 		
-		System.out.println(p);
-		
 		if(memberService.insertPlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 추가에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
@@ -483,17 +481,31 @@ public class MemberController {
 	}
 	
 	//일정 수정 전 조회
-	
-	
-	
-	
+	@ResponseBody
+	@RequestMapping(value="selectPlan.hj", produces="application/json; charset=UTF-8")
+	public String selectPlan(int planNo) {
+		
+		Plan p = memberService.selectPlan(planNo);
+		
+		return new Gson().toJson(p);
+	}
 	
 	//일정 수정
-	
-	
-	
-	
-	
+	@RequestMapping("updatePlan.hj")
+	public ModelAndView updatePlan(Plan p, ModelAndView mv, HttpSession session) {
+		
+		if(memberService.updatePlan(p)>0) {
+			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 수정에 실패하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}
+		
+		return mv;
+	}
 	//일정 삭제
 	
 	

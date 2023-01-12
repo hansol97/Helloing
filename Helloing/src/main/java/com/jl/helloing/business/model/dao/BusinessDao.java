@@ -64,4 +64,9 @@ public class BusinessDao {
 	public int insertTicket(Ticket t, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("productMapper.insertTicket", t);
 	}
+
+	// 숙소 리스트 뽑아오기
+	public ArrayList<Accomm> selectAccommList(SqlSessionTemplate sqlSession, String businessNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectAccommList", businessNo);
+	}
 }
