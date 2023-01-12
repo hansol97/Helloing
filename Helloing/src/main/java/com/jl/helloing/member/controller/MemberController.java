@@ -490,17 +490,34 @@ public class MemberController {
 		return new Gson().toJson(p);
 	}
 	
-	
-	
-	
 	//일정 수정
-	
-	
-	
-	
-	
+	@RequestMapping("updatePlan.hj")
+	public ModelAndView updatePlan(Plan p, ModelAndView mv, HttpSession session) {
+		
+		System.out.println(p);
+		if(memberService.updatePlan(p)>0) {
+			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 수정에 실패하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}
+		
+		return mv;
+	}
 	//일정 삭제
+	@RequestMapping("deletePlanner.hj")
+	public ModelAndView deletePlan(ModelAndView mv, HttpSession session, int planNo) {
 	
+		//플래너 번호에 해당하는 플랜 삭제
+		
+		
+		//플래너 삭제
+		
+		return mv;
+	}
 	
 	
 	

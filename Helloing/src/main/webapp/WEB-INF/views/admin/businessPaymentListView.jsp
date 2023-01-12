@@ -37,10 +37,10 @@
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="busiPaySearch.ad" method="post">
                                 <td>
                                     <div class="text">
-                                        <input type="text" placeholder="사업자명 입력" class="admin-input_form" name="keyword">
+                                        <input type="text" id="busiPay_input" placeholder="사업자명 입력" class="admin-input_form" name="keyword">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
@@ -67,22 +67,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>2</td>
-                                <td>사업자2</td>
-                                <td>300,000원</td>
-                                <td>[전남 목포] 목포 해상케이블카 탑승권</td>
-                                <td>2023.06.15</td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>사업자2</td>
-                                    <td>300,000원</td>
-                                    <td>[전남 목포] 목포 해상케이블카 탑승권</td>
-                                    <td>2023.06.15</td>
-                                </tr>
-                            </tr>
+                            <c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="5">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="bp" items="${ list }" varStatus="status">
+			                            <tr>
+			                                <td>${ bp.paymentNo }</td>
+			                                <td>${ bp.businessNo }</td>
+			                                <td>${ bp.paymentAmount }</td>
+			                                <td>
+				                                <c:if test="${ !bp.accommName.equals('null')}" >
+				                                	${ bp.accommName } 
+				                                </c:if> 
+				                                <c:if test="${ !bp.activityName.equals('null')}" >
+				                                	${ bp.activityName }
+				                                </c:if> 
+			                                </td>
+			                                <td>
+			                                <c:if test="${ !bp.actEndDate.equals('null')}" >
+			                                	${ bp.actEndDate }
+			                                </c:if> 
+			                                <c:if test="${ !bp.accEndDate.equals('null')}" >
+			                                	${ bp.accEndDate }
+			                                </c:if> 
+			                                </td>
+			                            </tr>
+			                        </c:forEach>
+			                   </c:otherwise>
+			                </c:choose>
                         </tbody>
                     </table>
                 </tr>
@@ -99,10 +117,17 @@
                 <a>&gt;</a>
             </div>
             <br><br>
-
             
         </div>
-
+        
+        <script>
+        	$(function(){
+        		if('${keyword}' != ''){
+					$('#busiPay_input').val('${keyword}')
+                }
+        	})
+        </script>
+        
     </div>
 </body>
 </html>

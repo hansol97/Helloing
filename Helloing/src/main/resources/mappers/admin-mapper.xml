@@ -31,10 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap id="businessPayResultSet" type="businessPayment">
 		<result column="PAYMENT_NO" property="paymentNo" />
-		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="BUSINESS_NAME" property="businessNo" />
 		<result column="PAYMENT_AMOUNT" property="paymentAmount" />
-		<result column="ACCOMM_NO" property="accommNo" />
-		<result column="ACTIVITY_NO" property="activityNo" />
+		<result column="ACCOMM_NAME" property="accommName" />
+		<result column="ACTIVITY_NAME" property="activityName" />
+		<result column="ACT_END_DATE" property="actEndDate" />
+		<result column="ACC_END_DATE" property="accEndDate" />
+		
 	</resultMap>
 	
 	<!-- 챗봇Q 중복 확인 -->
@@ -278,6 +281,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,PAYMENT_AMOUNT
 		       ,ACCOMM_NAME
 		       ,ACTIVITY_NAME
+		       ,TO_CHAR(ACTIVITY.END_DATE,'YYYY-MM-DD') ACT_END_DATE
+		       ,TO_CHAR(ACCOMM.END_DATE,'YYYY-MM-DD') ACC_END_DATE
 		  FROM
 		       BUSINESS_PAYMENT
 		  JOIN 
@@ -294,5 +299,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        ACCOMM 
 		 USING
 		        (ACCOMM_NO)		        
+	</select>
+	
+	<!-- 사업자 등록 결제 검색 리스트 수 -->
+	<select id="searchBusiPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BUSINESS_PAYMENT
+		  JOIN
+		       BUSINESS USING(BUSINESS_NO)
+		 WHERE
+		       BUSINESS_NAME LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 사업자 등록 결제 검색 리스트 -->
+	<select id="searchBusiPayList" parameterType="string" resultMap="businessPayResultSet">
+		SELECT
+		       PAYMENT_NO
+		       ,BUSINESS_NAME
+		       ,PAYMENT_AMOUNT
+		       ,ACCOMM_NAME
+		       ,ACTIVITY_NAME
+		       ,TO_CHAR(ACTIVITY.END_DATE,'YYYY-MM-DD') ACT_END_DATE
+		       ,TO_CHAR(ACCOMM.END_DATE,'YYYY-MM-DD') ACC_END_DATE
+		  FROM
+		       BUSINESS_PAYMENT
+		  JOIN 
+		       BUSINESS 
+		 USING 
+		       (BUSINESS_NO)
+		  LEFT
+		  JOIN
+		        ACTIVITY 
+		 USING 
+		        (ACTIVITY_NO)
+		  LEFT
+		  JOIN
+		        ACCOMM 
+		 USING
+		        (ACCOMM_NO)	
+		 WHERE
+		       BUSINESS_NAME LIKE '%' || #{keyword} || '%'
 	</select>
 </mapper>

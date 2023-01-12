@@ -53,13 +53,37 @@ public class BusinessController {
 	// 인호 시작---------------------------------------------------------------------------------------------
 
 
-	// 숙소 조회
+	// 숙소 조회 // 숙소조회하고 Room조회 한다음 같이 mv에 담아서 보내자.
 	@RequestMapping("accommList.bu")
-	public String goSelectAccom() {
+	public ModelAndView selectAccom(HttpSession session ,ModelAndView mv) {
 		
+		ArrayList<Accomm> accList = new ArrayList<Accomm>();
+		String BusinessNo = ((Business) session.getAttribute("loginCompany")).getBusinessNo();// 사업자번호 가져오기
+		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
+		accList = businessService.selectAccommList(BusinessNo); // 사업자 번호 보내서 객실 리스트 가져오기
+		System.out.println("accList" + accList);
 		
-		return "business/accommList";
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		
+		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
+
+			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
+
+			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
+			roomList = businessService.selectRoomList(accommNoList); //숙소 번호 리스트 보내서 방 리스트 받아오기
+			System.out.println("roomList : " + roomList);
+			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
+		
+		}
+		
+		System.out.println(accList);
+		
+		mv.addObject("accList", accList)
+		  .setViewName("business/accommList");
+		
+		return mv;
 	}
+	
 	// 액티비티 조회
 	@RequestMapping("activityList.bu")
 	public String selectActivity() {
@@ -346,7 +370,7 @@ public class BusinessController {
 	}
 	// 기업 마이페이지
 	@RequestMapping("mypage.bu")
-	public String selectComMem() {
+	public String selectComMem(HttpSession session) {
 		return "business/mypage";
 	}
 	
@@ -368,16 +392,6 @@ public class BusinessController {
 	@RequestMapping("businessEnrollForm.bu")
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
-	}
-	
-	// 기업 파트너 로그인
-	
-	@RequestMapping("login.bu")
-	public void loginCompany(Business b, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		Business loginCompany = businessService.loginCompany(loginUser.getMemNo());
-		
-		session.setAttribute("loginCompany", loginCompany);
 	}
 	
 	// 기업 파트너 등록
@@ -414,11 +428,11 @@ public class BusinessController {
 	@RequestMapping("updateMember.bu")
 	public String updateBusinessMember(HttpSession session, String address, Model m) {
 		Business loginCompany = (Business)session.getAttribute("loginCompany");
-		if(loginCompany.getAddress().equals(address)) {
+		System.out.println(address);
+		if(loginCompany.getAddress().equals(address) || address.equals("")) {
 			return "business/mypage";
 		}else {
 			loginCompany.setAddress(address);
-			int result = businessService.updateBusinessMember(loginCompany);
 			
 			businessService.updateBusinessMember(loginCompany);
 			session.setAttribute("loginCompany", loginCompany);

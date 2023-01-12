@@ -1,5 +1,7 @@
 package com.jl.helloing.product.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
@@ -17,6 +19,9 @@ public class Accomm {
 	private String endDate;
 	private String accommContent;
 	private String category;
+	
+	// 객실리스트를 추가하기 위한 변수
+	private ArrayList<Room> roomList;
 }
 
 //ACCOMM_NO	NUMBER

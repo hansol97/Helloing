@@ -117,5 +117,16 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectBusiPayList");
 	}
 
+	public int searchBusiPayListCount(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("adminMapper.searchBusiPayListCount", keyword);
+	}
+	
+	public ArrayList<BusinessPayment> searchBusiPayList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword){
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchBusiPayList", keyword, rowBounds);
+	}
+
 
 }

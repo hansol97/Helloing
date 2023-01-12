@@ -66,6 +66,12 @@ public interface AdminService {
 	
 	// 사업자 등록 결제 리스트 조회
 	ArrayList<BusinessPayment> selectBusiPayList(PageInfo pi);
+	
+	// 사업자 등록 결제 검색 리스트 수
+	int searchBusiPayListCount(String keyword);
+	
+	// 사업자 등록 결제 검색 리스트 조회
+	ArrayList<BusinessPayment> searchBusiPayList(PageInfo pi, String keyword);
 
 
 

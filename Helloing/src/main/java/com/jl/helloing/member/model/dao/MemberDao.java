@@ -106,6 +106,32 @@ public class MemberDao {
 		System.out.println(p);
 		return sqlSession.insert("memberMapper.insertPlan", p);
 	}
+	
+	public Plan selectPlan(int planNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectPlan", planNo);
+	}
+	
+	public int updatePlan(Plan p, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updatePlan", p);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//혜진 끝
 
 	public int addActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.insert("memberMapper.addActWish", aw);
@@ -114,4 +140,7 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+
+
+
 }
