@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					var $firstDay = $('td[data-date="' + dList[i].startDate + '"]')[0]
 					
 					for(var j = 0; j < nightDate; j++){
-						console.log($firstDay);
+						$($firstDay)
 						console.log($($firstDay).next()[0]);
 						
 					} 
