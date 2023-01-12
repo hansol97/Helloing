@@ -111,7 +111,7 @@ public class BusinessController {
 		
 		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
 		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
-		
+		System.out.println("acc: " + acc);
     	ArrayList<Attachment> list = new ArrayList();
     	for (int i = 0; i < upfile.length; i++) {
 			
