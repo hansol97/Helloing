@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jl.helloing.member.model.vo.ActivityWish;
+import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
+import com.jl.helloing.product.model.vo.Room;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -25,4 +28,14 @@ public interface ProductService {
 	
 	// 티켓 구매하기
 	int insertTicketPayment(List<TicketPayment> list);
+	
+	// 숙소 전체 조회(메인페이지)
+	ArrayList<Accomm> selectAcList();
+	
+	// 숙소 상세 조회
+	Accomm selectAcDetail(int accommNo);
+	// 객실 조회
+	ArrayList<Room> selectRoomList(int accommNo);
+	// 숙소에 달린 리뷰 조회
+	ArrayList<AccommReview> selectAcReviewList(int accommNo);
 }
