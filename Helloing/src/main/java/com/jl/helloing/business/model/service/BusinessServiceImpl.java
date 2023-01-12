@@ -94,7 +94,7 @@ public class BusinessServiceImpl implements BusinessService {
 	// 숙소에 딸린 방 리스트 조회
 	@Override
 	public ArrayList<Room> selectRoomList(ArrayList<Integer> accommNoList) {
-		return null;
+		return businessDao.selectRoomList(sqlSession, accommNoList);
 	}
 
 
