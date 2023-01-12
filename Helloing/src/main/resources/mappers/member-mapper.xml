@@ -336,6 +336,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  					)
 	</insert>
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 액티비티 위시리스트 추가 -->
 	<insert id="addActWish" parameterType="activityWish">
 		INSERT
