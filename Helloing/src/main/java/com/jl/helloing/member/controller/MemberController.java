@@ -485,6 +485,8 @@ public class MemberController {
 	@RequestMapping(value="selectPlan.hj", produces="application/json; charset=UTF-8")
 	public String selectPlan(int planNo) {
 		
+		System.out.println(planNo);
+		
 		Plan p = memberService.selectPlan(planNo);
 		
 		return new Gson().toJson(p);
