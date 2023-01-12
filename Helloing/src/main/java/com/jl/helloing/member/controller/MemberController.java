@@ -27,6 +27,7 @@ import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.service.MemberService;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
+import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
@@ -69,7 +70,6 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("loginCompany", loginCompany);
 			mv.setViewName("redirect:/");
-			System.out.println(loginCompany);
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
@@ -187,9 +187,15 @@ public class MemberController {
 			return result;
 		*/	
 		return memberService.validate(cert);
-		
-
+	
 	}
+	
+//	@RequestMapping("idCheck.me")
+//	public String idCheck() {
+//		
+//	}
+	
+	
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
@@ -429,8 +435,19 @@ public class MemberController {
 	public ModelAndView planDetailView(int plannerNo, ModelAndView mv, HttpSession session) {
 		
 		ArrayList<Plan> list = memberService.planDetailView(plannerNo);
-
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		Planner pl = new Planner();
+		pl.setPlannerNo(plannerNo);
+		pl.setMemNo(memNo);
+		
+		Planner planner = memberService.selectPlanner(pl); 
+		
+		
+		System.out.println(planner);
 		if(list!=null) {
+			mv.addObject("pl", planner);
 			mv.addObject("list", list);
 			mv.setViewName("member/planDetailView");
 		}else {
@@ -526,15 +543,31 @@ public class MemberController {
 	@RequestMapping("expenseView.hj")
 	public ModelAndView expenseView(ModelAndView mv, int plannerNo) {
 		
+		ArrayList<Expense> list = memberService.expenseView(plannerNo);
 		
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.addObject("plannerNo", plannerNo);
+			mv.setViewName("member/expenseView");
+		}else {
+			mv.addObject("errorMsg","가계부 조회에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}
 
 	
 	//1/n
-	
-	
+	@ResponseBody
+	@RequestMapping(value="dutchTreat.hj", produces="application/json; charset=UTF-8")
+	public String dutchTreat(int plannerNo) {
+		
+		Expense e = memberService.dutchTreat(plannerNo);
+		
+		return new Gson().toJson(e);
+	}
 	
 	
 	

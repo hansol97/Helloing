@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
@@ -57,33 +58,32 @@ public class BusinessController {
 	@RequestMapping("accommList.bu")
 	public ModelAndView selectAccom(HttpSession session ,ModelAndView mv) {
 		
-//		ArrayList<Accomm> accList = new ArrayList<Accomm>();
-//		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
-//		System.out.println("loginCompany : " + loginCompany);
+		ArrayList<Accomm> accList = new ArrayList<Accomm>();
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
+		System.out.println("loginCompany : " + loginCompany);
+		
+		String businessNo = loginCompany.getBusinessNo();
+		System.out.println("businessNo :" + businessNo);
+		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
+		System.out.println("db다녀온 accList" + accList);
+		
+		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		
+//		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
+//
+//			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
+//
+//			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
+//			roomList = businessService.selectRoomList(accommNoList); //숙소 번호 리스트 보내서 방 리스트 받아오기
+//			System.out.println("포문 돌려 DB나녀온 roomList : " + roomList);
+//			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
 //		
-//		String businessNo = loginCompany.getBusinessNo();
-//		System.out.println("businessNo :" + businessNo);
-////		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
-////		System.out.println("accList" + accList);
-////		
-////		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
-////		ArrayList<Room> roomList = new ArrayList<Room>();
-////		
-////		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
-////
-////			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
-////
-////			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
-////			roomList = businessService.selectRoomList(accommNoList); //숙소 번호 리스트 보내서 방 리스트 받아오기
-////			System.out.println("roomList : " + roomList);
-////			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
-////		
-////		}
-////		
-//		System.out.println("accList : " +accList);
-////		
-////		mv.addObject("accList", accList)
-////		  .setViewName("business/accommList");
+//		}
+		System.out.println("포문 돌려서 방 집어넣은 accList : " +accList);
+		
+		mv.addObject("accList", accList)
+		  .setViewName("business/accommList");
 		
 		mv.setViewName("business/accommList");
 		
@@ -111,7 +111,11 @@ public class BusinessController {
 		
 		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
 		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
+
 		System.out.println("acc: " + acc);
+
+		System.out.println("숙소등록의 accomm : " + acc);
+
     	ArrayList<Attachment> list = new ArrayList();
     	for (int i = 0; i < upfile.length; i++) {
 			
@@ -239,15 +243,15 @@ public class BusinessController {
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
-	public void checkBookDate(String roomNo) {
+	public String checkBookDate(int roomNo) {
 	
 		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
 	
 		
-	
-	
 		
 	
+		
+		return new Gson().toJson(arr);
 	}
 	
 	// 숙소 수정하기화면으로 이동

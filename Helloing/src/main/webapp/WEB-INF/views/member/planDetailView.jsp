@@ -183,11 +183,11 @@
 			
 			<hr>
 			<div id="trip-detail">
-				<h2>${list[1].plannerName}</h2>
-				<h5>${list[1].startDate} ~ ${list[1].endDate}</h5>
+				<h2>${pl.plannerName}</h2>
+				<h5>${pl.startDate} ~ ${pl.endDate}</h5>
 				<h3>여행에 함께하는 사람들 : </h4>
 				<div id="person">
-					<span>${list[1].memName}</span>
+					<span>${pl.memName}</span>
 				</div>
 			</div>
 			<div id="trip-btn">
@@ -195,7 +195,7 @@
 		        	<a href="#ex1" rel="modal:open">👫일행과 함께 여행가기</a>
 		        </div>
 		        <div id="payment-area">
-		        	<button onclick="expense();">💰가계부</button>
+		        	<button onclick="location.href='expenseView.hj?plannerNo=${pl.plannerNo}'">💰가계부</button>
 		        </div>
 		        <div id="add-area">
             		 <a href="#ex2" rel="modal:open"> 🗓️ 일정 추가</a>
@@ -235,7 +235,7 @@
 			<form action="planAddMem.hj" method="post">
 				<h2>일행의 아이디를 입력해주세요.</h2>
 				<input type="text" name="memId">
-				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
+				<input type="hidden" name="plannerNo" value="${pl.plannerNo}">
 				<div class="modalBtn" style="float:right;">
 					<button type="submit">추가</button>
 			 	</div>
@@ -249,7 +249,7 @@
 				<ul>
 					<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요."></li>
 					<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요."></li>
-					<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}">
+					<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}">
 					<li>
 						일정 시작 시간
 						<select name = "startTime">
@@ -321,7 +321,7 @@
 					    </select>
 					</li>
 				</ul>
-			<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
+			<input type="hidden" name="plannerNo" value="${pl.plannerNo}">
 			<div class="modalBtn" style="float:right;">
 				<div class="modalBtn" style="float:right;">
 					<button type="submit">추가</button>
@@ -409,7 +409,7 @@
 						    </select>
 						</li>
 					</ul>
-				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
+				<input type="hidden" name="plannerNo" value="${pl.plannerNo}">
 				<div class="modalBtn" style="float:right;">
 					<div class="modalBtn" style="float:right;">
 						<button type="submit">수정</button>
@@ -449,7 +449,7 @@
 					
 					value +=  '<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value="' + planName + '"></li>'
 							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + planContent + '"></li>'
-							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + planDate  + '">'
+							+	'<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}" value="' + planDate  + '">'
 							+ 	'<li><input type="hidden" name="planNo" value="' + planNo + '">';
 							
 							console.log(value)
@@ -480,9 +480,6 @@
 			})
 		})
 		
-		$(function(){
-			
-		})
 		
 	</script>
 </body>

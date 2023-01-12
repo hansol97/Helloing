@@ -77,6 +77,7 @@
 <meta charset='utf-8' />
 <title>객실별 예약자 조회</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.2/index.global.min.js'></script>
 <script>
 
@@ -134,13 +135,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     $(function(){
+    	console.log($('td[data-date="2023-01-02"]')[0])
     	$.ajax({
     		url: 'bookedDate.bu'
 			,data: {
-				roomNo : $('#roomNo_input')
+				roomNo : $('#roomNo_input').val()
 			}
-    		,success : function(result){
-    			console.log(result)
+    		,success : function(dList){
+    			console.log(dList);
+				for(var i = 0; i < dList.length; i++){
+					var startDate = new Date(dList[i].startDate);
+					var endDate = new Date(dList[i].endDate);
+					console.log(startDate);
+					console.log(endDate);
+					console.log((endDate-startDate)/(1 * 24 * 60 * 60 * 1000));
+					
+					var nightDate = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000);
+					var $firstDay = $('td[data-date="' + dList[i].startDate + '"]')[0]
+					
+					for(var j = 0; j < nightDate; j++){
+						$($firstDay)
+						console.log($($firstDay).next()[0]);
+						
+					} 
+				}
     		}
     		,error : function(){
     			console.log('실패')
@@ -179,5 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
+   
   </body>
 </html>

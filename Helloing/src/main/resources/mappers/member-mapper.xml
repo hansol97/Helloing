@@ -212,18 +212,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					)
 	</insert>
 	<select id="selectPlanner" parameterType="planner" resultType="planner">
-	SELECT
-			PLANNER_NAME plannerName
-			, START_DATE startDate
-			, END_DATE endDate
-	FROM
-		PLANNER
-	JOIN 
-		PLANNER_MEM USING(PLANNER_NO)
-	WHERE
-		PLANNER_NO = #{ plannerNo }
-	AND
-		MEM_NO = #{ memNo }
+	SELECT DISTINCT
+			PLANNER_NO plannerNo,
+	        PLANNER_NAME plannerName,
+	        '20' || REPLACE(SUBSTR(START_DATE,1,10), '/', '-' ) startDate,
+	        '20' || REPLACE(SUBSTR(END_DATE,1,10), '/', '-') endDate,
+	        (WITH MEM AS (
+				            SELECT 
+				                    MEM_NAME memNo 
+				            FROM 
+				                MEMBER 
+				            JOIN 
+				                PLANNER_MEM USING(MEM_NO) 
+				            WHERE 
+				                PLANNER_NO = #{ plannerNo }
+	        			)
+	        SELECT LISTAGG(memNo, ',') WITHIN GROUP (ORDER BY memNo) FROM MEM)memName
+	      
+			FROM 
+			    PLAN
+			RIGHT OUTER JOIN 
+			    PLANNER USING(PLANNER_NO)
+			JOIN 
+			    PLANNER_MEM USING(PLANNER_NO)
+			JOIN 
+			    MEMBER USING(MEM_NO)
+			WHERE 
+			    PLANNER_NO = #{ plannerNo }
+            	AND
+            MEM_NO = #{ memNo }
 	</select>
 	<update id="updatePlanner" parameterType="planner">
 	UPDATE
@@ -364,8 +381,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE
 		PLAN_NO = #{ planNo }		
 	</delete>
-	
-	
+	<select id="expenseView" parameterType="_int" resultType="expense">
+	SELECT EXPENSE_NO expenseNo
+	        ,PLANNER_NO plannerNo
+	        ,AMOUNT amount
+	        ,METHOD method
+	        ,TO_CHAR(EXPENSE_DATE, 'YY/MM/DD') expenseDate
+	        ,EXPENSE_CONTENT expenseContent
+	        ,EXPENSE_CATEGORY expenseCategory
+		FROM 
+			EXPENSE
+		WHERE 
+			PLANNER_NO = #{ plannerNo }
+		ORDER 
+				BY expenseDate ASC
+					
+	</select>
+	<select id="dutchTreat" parameterType="_int" resultType="expense">
+	</select>
 	
 	
 	
