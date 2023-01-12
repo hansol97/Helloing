@@ -67,6 +67,6 @@ public class BusinessDao {
 
 	// 숙소 리스트 뽑아오기
 	public ArrayList<Accomm> selectAccommList(SqlSessionTemplate sqlSession, String businessNo) {
-		return (ArrayList)sqlSession.selectList("productMapper.selectAccommList", businessNo);
+		return (ArrayList)sqlSession.selectList("productMapper.selectAccommListBu", businessNo);
 	}
 }
