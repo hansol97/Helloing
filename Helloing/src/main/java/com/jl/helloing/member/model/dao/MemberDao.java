@@ -115,6 +115,9 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updatePlan", p);
 	}
 	
+	public int deletePlan(int planNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deletePlan", planNo);
+	}
 	
 	
 	
@@ -140,6 +143,7 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+
 
 
 

@@ -216,6 +216,7 @@
 							<span>${p.planContent }</span>
 							<span style="float:right; font-size:20px;">
 								<input type="hidden" class="plan" name="planNo" value="${p.planNo}">	
+								<input type="hidden" class="plannerNo" name="plannerNo" value="${p.plannerNo}">	
 								<a href="#ex3" rel="modal:open" class="updateBtn">수정</a>
 								&nbsp;&nbsp;
 								<a href="#ex4" rel="modal:open" class="deleteBtn">삭제</a>

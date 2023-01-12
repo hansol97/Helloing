@@ -204,8 +204,7 @@ public class MemberServiceImpl implements MemberService{
 	//일정 삭제 
 	@Override
 	public int deletePlan(int planNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.deletePlan(planNo, sqlSession);
 	}
 	
 	//가계부 상세페이지

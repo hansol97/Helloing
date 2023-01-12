@@ -357,7 +357,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	WHERE
   		PLAN_NO = #{ planNo }
 	</update>
-	
+	<delete id="deletePlan">
+	DELETE
+		FROM
+			PLAN
+	WHERE
+		PLAN_NO = #{ planNo }		
+	</delete>
 	
 	
 	
