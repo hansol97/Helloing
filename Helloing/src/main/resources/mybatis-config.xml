@@ -21,7 +21,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Accomm" 		alias="accomm" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Room" 		alias="room" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.RoomPayment" 		alias="roomPayment" />
     	<typeAlias type="com.jl.helloing.product.model.vo.ActivityReview"	alias="actReview" />
+    	<typeAlias type="com.jl.helloing.product.model.vo.AccommReview"	alias="acReview" />
     	<typeAlias type="com.jl.helloing.product.model.vo.TicketPayment"	alias="ticketPayment" />
     	<typeAlias type="com.jl.helloing.business.model.vo.Business" 	alias="business" />
     	<typeAlias type="com.jl.helloing.business.model.vo.BusinessPayment" 	alias="businessPayment" />

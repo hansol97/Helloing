@@ -14,6 +14,7 @@
 	<br><br><br><br><br><br><br><br>
 	<a href="accommList.bu">accommList.jsp로</a><br>
 	<a href="activityList.bu">activityList.jsp로</a>
+	<a href="accommBookList.bu">accommBookList.bu</a>
 
 </body>
 </html>

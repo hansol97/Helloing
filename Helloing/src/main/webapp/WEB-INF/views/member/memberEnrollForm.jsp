@@ -26,7 +26,7 @@
 	border-radius: 3px;
 }
 button:hover{
-	color: #FFEA24;
+
 	cursor: pointer;
 }
 .emailCheck{
@@ -80,7 +80,7 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" required>
+						<td><input type="text" name="memId" maxlength="20" id="memId" required>
 						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
 						</td>
 					</tr>
@@ -191,6 +191,48 @@ height: 30px;
 				})
 			</script>
 			
+			
+			<script>
+				$(function(){
+					
+					//const $idInput = $('#enroll-form #memId');
+					// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
+						
+					// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
+					$idInput.keyup(function(){
+						console.log($idInput.val());
+						
+						// 최소 다섯글자 이상으로 입력할때만 ajax요청
+						if($idInput.val).length >= 5){
+						
+							//중복체크 요청
+							$.ajax({
+								url : 'idCheck.me',
+							
+								data : { checkId : $idInput.val()}// 전달할 값 
+								success : function(result){ //성공했을때 돌아오는 매개변수로 넣는다 result
+									
+								},
+								
+								error : function(){
+									
+								}
+								
+								
+							})
+						
+						
+						}
+						
+						
+					})
+					
+					
+					
+				})
+			
+			
+			</script>
 			<!--  
 			<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행

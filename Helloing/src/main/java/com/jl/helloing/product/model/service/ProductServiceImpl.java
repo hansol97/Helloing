@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.dao.ProductDao;
+import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
+import com.jl.helloing.product.model.vo.Room;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -51,6 +54,28 @@ public class ProductServiceImpl implements ProductService {
 	public ActivityWish checkActWish(ActivityWish aw) {
 		return productDao.checkActWish(sqlSession, aw);
 	}
+
+	@Override
+	public ArrayList<Accomm> selectAcList() {
+		return productDao.selectAcList(sqlSession);
+	}
+
+	@Override
+	public Accomm selectAcDetail(int accommNo) {
+		return productDao.selectAcDetail(sqlSession, accommNo);
+	}
+
+	@Override
+	public ArrayList<Room> selectRoomList(int accommNo) {
+		return productDao.selectRoomList(sqlSession, accommNo);
+	}
+
+	@Override
+	public ArrayList<AccommReview> selectAcReviewList(int accommNo) {
+		return productDao.selectAcReviewList(sqlSession, accommNo);
+	}
+	
+	
 
 	
 

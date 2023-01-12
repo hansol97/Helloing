@@ -3,6 +3,6 @@ $(function(){
 	$(document).on('click', '.productbox, .accommCookie', function(){
 		var $accommNo = $(this).children().eq(0).val();
 		//console.log($accommNo);
-		location.href = "detail.accomm"; // 나중에 겟방식 url로 바꾸기
+		location.href = "detail.accomm?accommNo=" + $accommNo; // 나중에 겟방식 url로 바꾸기
 	})
 })

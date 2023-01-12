@@ -13,4 +13,7 @@ public class AccommReview {
 	private String createDate; //CREATE_DATE	DATE
 	private String tag; //TAG	VARCHAR2(1000 BYTE)
 	private int Star; //STAR	NUMBER
+	
+	private String memName;
+	private String roomName;
 }

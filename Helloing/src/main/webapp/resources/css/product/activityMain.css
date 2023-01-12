@@ -29,7 +29,8 @@
     border: 1px solid rgb(154, 154, 154);
     height: 330px;
     width: 255px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-right: 30px;
 }
 .productbox p{ margin: 0px 10px; }
 
