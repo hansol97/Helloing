@@ -178,6 +178,7 @@ height: 30px;
 										$('#secret').text('일치하지 않습니다.')
 										$('#secret').css('color','red')
 										//$('#enroll-form :submit').removeAttr('disabled');
+										$('#btn-submit').css('background-color', 'lightgray');
 										$('#btn-submit').attr('type', 'button');
 									}
 								},
