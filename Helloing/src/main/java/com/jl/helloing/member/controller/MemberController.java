@@ -522,14 +522,13 @@ public class MemberController {
 		}
 		return mv;
 	}
-	
-	
-	
-	
 	//가계부 페이지
 	@RequestMapping("expenseView.hj")
-	public String expenseView() {
-		return "member/expenseView";
+	public ModelAndView expenseView(ModelAndView mv, int plannerNo) {
+		
+		
+		
+		return mv;
 	}
 
 	

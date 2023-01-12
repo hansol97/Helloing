@@ -195,7 +195,7 @@
 		        	<a href="#ex1" rel="modal:open">👫일행과 함께 여행가기</a>
 		        </div>
 		        <div id="payment-area">
-		        	<button onclick="location.href='expenseView.hj'">💰가계부</button>
+		        	<button onclick="expense();">💰가계부</button>
 		        </div>
 		        <div id="add-area">
             		 <a href="#ex2" rel="modal:open"> 🗓️ 일정 추가</a>
@@ -418,7 +418,7 @@
 			</form>		 
 		</div>	
 		
-   		<div id="ex3" class="modal">
+   		<div id="ex4" class="modal">
     		<h5 style="font-weight:600;">여행 일정 삭제</h5>
 			<hr>
 	    	<br>
@@ -470,13 +470,20 @@
 	
 		$('.deleteBtn').click(function(){
 		
-			var $planNo = $(this);
-			var planNo = $planNo.siblings('input[name=planNo]').val();
+			var $this = $(this);
+			var planNo = $this.siblings('input[name=planNo]').val();
+			var plannerNo = $this.siblings('input[name=plannerNo]').val();
+			
 			
 			$('.delete-plan').click(function(){
-				location.href="deletePlan.hj?plan="+ plan;
+				location.href="deletePlan.hj?planNo="+ planNo + '&&plannerNo=' + plannerNo;
 			})
 		})
+		
+		$(function(){
+			
+		})
+		
 	</script>
 </body>
 </html>
