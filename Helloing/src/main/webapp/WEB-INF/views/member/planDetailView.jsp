@@ -416,7 +416,16 @@
 			 	</div>
 			</form>		 
 		</div>	
-
+		
+   		<div id="ex3" class="modal">
+    		<h5 style="font-weight:600;">여행 일정 삭제</h5>
+			<hr>
+	    	<br>
+			<div>
+				<h5>정말 삭제하시겠습니까?</h5>
+			</div>
+				<button class="delete-plan">삭제</button>
+	 	</div>
 
 
 	<script>
@@ -435,12 +444,13 @@
 					var planName = result.planName;
 					var planContent = result.planContent;
 					var planDate = result.planDate;
-					
+					var planNo = result.planNo;
 					
 					value +=  '<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value="' + planName + '"></li>'
 							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + planContent + '"></li>'
-							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + planDate  + '">';
-
+							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + planDate  + '">'
+							+ 	'<li><input type="hidden" name="planNo" value="' + planNo + '">';
+							
 							console.log(value)
 							$('.insert-form').html(value);
 							
@@ -455,7 +465,17 @@
 				});
 	})
 	
-
+	//플래너 삭제 버튼 클릭 시 실행
+	
+		$('.deleteBtn').click(function(){
+		
+			var $planNo = $(this);
+			var planNo = $planNo.siblings('input[name=planNo]').val();
+			
+			$('.delete-plan').click(function(){
+				location.href="deletePlan.hj?plan="+ plan;
+			})
+		})
 	</script>
 </body>
 </html>
