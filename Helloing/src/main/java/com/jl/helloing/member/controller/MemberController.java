@@ -494,6 +494,7 @@ public class MemberController {
 	@RequestMapping("updatePlan.hj")
 	public ModelAndView updatePlan(Plan p, ModelAndView mv, HttpSession session) {
 		
+		System.out.println(p);
 		if(memberService.updatePlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
@@ -507,7 +508,20 @@ public class MemberController {
 		return mv;
 	}
 	//일정 삭제
-	
+	@RequestMapping("deletePlan.hj")
+	public ModelAndView deletePlan(ModelAndView mv, HttpSession session, int planNo, int plannerNo) {
+
+		if(memberService.deletePlan(planNo)>0) {
+			session.setAttribute("alertMsg", "일정 삭제에 성공하였습니다.");
+			mv.addObject("plannerNo", plannerNo);
+			mv.setViewName("redirect:planDetailView.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 삭제에 실패하였습니다.");
+			mv.addObject("plannerNo", plannerNo);
+			mv.setViewName("redirect:planDetailView.hj");
+		}
+		return mv;
+	}
 	
 	
 	
