@@ -183,7 +183,9 @@ public class AdminController {
 		map.put("keyword", keyword);
 		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchMemListCount(map), currentPage, 10, 5);
-		System.out.println(pi);
+		
+		
+		
 		return "";
 	}
 	
