@@ -151,11 +151,21 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.log((endDate-startDate)/(1 * 24 * 60 * 60 * 1000));
 					
 					var nightDate = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000);
-					var $firstDay = $('td[data-date="' + dList[i].startDate + '"]')[0]
+					//var $firstDay = $('td[data-date="' + dList[i].startDate + '"]')[0]
+					var firstDate = dList[i].startDate;
+					console.log($($('td[data-date="'+ firstDate +'"]')[0]).find('a')[0]);
+					//$('td[data-date="'+ firstDate +'"]')[0].chileren('a')
+					$($($('td[data-date="'+ firstDate +'"]')[0]).find('a')[0]).css('color', 'grey');
 					
-					for(var j = 0; j < nightDate; j++){
-						$($firstDay)
-						console.log($($firstDay).next()[0]);
+					for(var j = 1; j < nightDate; j++){
+						var firstDay = Number(dList[i].startDate.substr(8, 9));
+						var nextDay = firstDay + j;
+						//firstDate.replace(firstDay, nextDay);
+						console.log(firstDate.replace(firstDay, nextDay));
+						var bookDay = firstDate.replace(firstDay, nextDay)
+						//console.log($($firstDay).(next())*j + ([0])*j/j);
+						//console.log($($firstDay).next()[0]);
+						$($($('td[data-date="'+ bookDay +'"]')[0]).find('a')[0]).css('color', 'grey');
 						
 					} 
 				}

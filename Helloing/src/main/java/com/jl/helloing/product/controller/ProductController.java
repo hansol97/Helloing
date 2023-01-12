@@ -49,6 +49,10 @@ public class ProductController {
 	@RequestMapping("detail.accomm")
 	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
 		
+		System.out.println("숙소 상세정보 : " + productService.selectAcDetail(accommNo));
+		System.out.println("객실 리스트 : " + productService.selectRoomList(accommNo));
+		System.out.println("리뷰 리스트 : " + productService.selectAcReviewList(accommNo));
+		
 		mv.addObject("ac", productService.selectAcDetail(accommNo))
 		  .addObject("roomList", productService.selectRoomList(accommNo))
 		  .addObject("acReviewList", productService.selectAcReviewList(accommNo))

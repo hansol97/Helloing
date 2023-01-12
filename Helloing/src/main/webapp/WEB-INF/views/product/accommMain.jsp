@@ -87,9 +87,9 @@
         <hr>
          --%>
 		
-        <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
+        <h3>호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
-	        <c:forEach items="${ acList }" var="ac">
+	        <c:forEach items="${ acList }" var="ac" begin="0" end="6" step="1">
 	        	<c:if test="${ ac.category == 'HOTEL' }">
 	        		<div class="productbox">
 		            	<input type="hidden" name="accommNo" value="${ ac.accommNo }">
@@ -104,9 +104,9 @@
             
         </div>
 
-        <h3>인기 펜션</h3>
+        <h3>펜션</h3>
         <div class="hot" id="hot-pension">
-        	<c:forEach items="${ acList }" var="ac">
+        	<c:forEach items="${ acList }" var="ac" begin="0" end="6">
         		<c:if test="${ ac.category == 'PENSION' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
@@ -120,9 +120,9 @@
         	</c:forEach>
         </div>
 
-        <h3>인기 모텔</h3>
+        <h3>모텔</h3>
         <div class="hot" id="hot-motel">
-            <c:forEach items="${ acList }" var="ac">
+            <c:forEach items="${ acList }" var="ac" begin="0" end="6">
         		<c:if test="${ ac.category == 'MOTEL' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
@@ -136,9 +136,9 @@
         	</c:forEach>
         </div>
 
-        <h3>인기 게스트하우스</h3>
+        <h3>게스트하우스</h3>
         <div class="hot" id="hot-guestHouse">
-            <c:forEach items="${ acList }" var="ac">
+            <c:forEach items="${ acList }" var="ac" begin="0" end="6">
         		<c:if test="${ ac.category == 'GUESTHOUSE' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
@@ -152,9 +152,9 @@
         	</c:forEach>
         </div>
         
-        <h3>인기 민박</h3>
+        <h3>민박</h3>
         <div class="hot" id="hot-guestHouse">
-            <c:forEach items="${ acList }" var="ac">
+            <c:forEach items="${ acList }" var="ac" begin="0" end="6">
         		<c:if test="${ ac.category == 'HOUSE' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
