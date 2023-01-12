@@ -385,7 +385,7 @@
 		          </li>
 	          	</c:when>
 
-				    <c:otherwise>
+				   
 
 		            <!--로그인 시 보이는 화면-->
 		           
@@ -396,22 +396,22 @@
 		          <li>
 		          	<a href="logout.me">로그아웃</a>
 		          </li>
-		            
+		         <c:when test="${ empty loginCompany }" >   
 		          <li>
 		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
 		          </li>
-		
+				</c:when>
 		              
 		           <li>
 		            <a href="scheduled.hj">마이페이지</a>
 		          </li>
 		          <!--기업회원일 시 보이는 화면-->
 		          <!--사용자 화면일 경우-->
-		          
+		         <c:when test="${ not empty loginCompany }" >  
 		          <li>
 		            <a href="page.bu">기업관리</a>
 		          </li>
-		         
+		         </c:when>
 		          <!--기업관리 화면일 경우-->
 		         
 		          <li>
@@ -430,8 +430,7 @@
 		          <li>
 		            <a href="#">메인페이지</a>
 		          </li>
-		          -->
-		  		  </c:otherwise> 				      
+		          -->				      
           </c:choose>
         </ul>
         
