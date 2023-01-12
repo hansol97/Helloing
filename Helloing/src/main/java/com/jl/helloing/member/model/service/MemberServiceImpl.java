@@ -15,6 +15,7 @@ import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -139,8 +140,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	//플래너 수정 전 조회
 	@Override
-	public Planner selectPlanner(Planner p) {
-		return memberDao.selectPlanner(p, sqlSession);
+	public Planner selectPlanner(Planner pl) {
+		return memberDao.selectPlanner(pl, sqlSession);
 	}
 	
 	
@@ -171,16 +172,38 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//일행과 함께 여행가기
-	
+	@Override
+	public int planAddMem(PlannerMem p) {
+		return memberDao.planAddMem(p, sqlSession);
+	}
 	
 	//일정 추가 
+	@Override
+	public int insertPlan(Plan p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//일정 수정 전 조회
+	@Override
+	public Plan selectPlan(int planNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	//일정 수정
+	@Override
+	public int updatePlan(Plan p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//일정 삭제 
-	
-	
-	
+	@Override
+	public int deletePlan(int planNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//가계부 상세페이지
 	@Override
@@ -188,6 +211,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

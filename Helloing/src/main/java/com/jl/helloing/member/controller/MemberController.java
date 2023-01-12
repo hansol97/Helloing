@@ -16,7 +16,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +30,7 @@ import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 @Controller
 public class MemberController {
@@ -168,15 +168,15 @@ public class MemberController {
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}
 	
-	@ResponseBody
+	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
 	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
-											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없다.
+											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없이 써야한다.
 		Cert cert = Cert.builder()
 						.who(request.getRemoteAddr())
 						.secret(secret)
-						.build(); // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
-		
+						.build(); // 객체를 만들어주는 역할
+		 // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
 		
 		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
 		
@@ -381,11 +381,11 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		Planner p = new Planner();
-		p.setPlannerNo(plannerNo);
-		p.setMemNo(memNo);
+		Planner pl = new Planner();
+		pl.setPlannerNo(plannerNo);
+		pl.setMemNo(memNo);
 		
-		Planner planner = memberService.selectPlanner(p); 
+		Planner planner = memberService.selectPlanner(pl); 
 		
 		return new Gson().toJson(planner);
 	}
@@ -430,25 +430,109 @@ public class MemberController {
 			mv.addObject("errorMsg","상세페이지 조회에 실패했습니다.");
 			mv.setViewName("common/errorPage");
 		}
-		
 		return mv;
 	}
+	
+	
+	//일행과 함께 여행가기
+	@RequestMapping("planAddMem.hj")
+	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm) {
+		
+			System.out.println(pm);
+		
+		if(memberService.planAddMem(pm)>0) {
+			
+		}else {
+			
+		}
+		
+		return mv;
+		
+	}
+	
+	
+	
+	
+	//일정 추가
+	
+	
+	
+	
+	
+	
+	
+	//일정 수정 전 조회
+	
+	
+	
+	
+	
+	//일정 수정
+	
+	
+	
+	
+	
+	//일정 삭제
+	
+	
+	
+	
+	
 	//가계부 페이지
 	@RequestMapping("expenseView.hj")
 	public String expenseView() {
 		return "member/expenseView";
 	}
+
 	
+	//1/n
+	
+	
+	
+	
+	
+	
+	
+	//비용 추가
+	
+	
+	
+	
+	
+	
+	
+	//비용 수정 전 조회
+	
+	
+	
+	
+	
+	
+	//비용삭제
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	// 위시리스트 추가
 	@RequestMapping("addWish")
 	public void addWish(HttpSession session,
 						ActivityWish aw,
-					    int activityNo) {
+					    int activityNo,
+					    String activityName) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
 			aw.setMemNo(loginUser.getMemNo());
 			aw.setActivityNo(activityNo);
+			// aw.setActivityName(activityName); // 이게 왜 필요하지?
+			
+			System.out.println(aw);
 		} else {
 			
 		}
@@ -456,4 +540,5 @@ public class MemberController {
 		
 		
 	}
+	*/
 }

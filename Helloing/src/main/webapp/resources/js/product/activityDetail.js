@@ -88,7 +88,9 @@ function addWish(){
 
 	$.ajax({
 		url : "addWish",
-		data : { activityNo : $('input[name=activityNo]').val() },
+		data : { 
+				 activityNo : $('input[name=activityNo]').val(),
+				 activityName : $('.acticityName').text() },
 		success : function(){
 			console.log("성공");
 		},
