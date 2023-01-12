@@ -75,6 +75,8 @@ public class BusinessDao {
 	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, ArrayList<Integer> accommNoList) {
 		return null;
 	}
+
+
 	
 	
 	
