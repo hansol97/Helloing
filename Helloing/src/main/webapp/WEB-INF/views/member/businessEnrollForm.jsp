@@ -68,7 +68,7 @@ button:hover {
 					</tr>
 					<tr>
 						<td>사업자번호 &nbsp;&nbsp;</td>
-						<td><input type="text" name="businessNo" required></td>
+						<td><input type="text" name="businessNo" placeholder="(-)없이 번호만 입력해주세요" required></td>
 					</tr>
 					<tr>
 						<td>사업자주소 &nbsp;&nbsp;</td><input type="hidden" id="address" name="address">
