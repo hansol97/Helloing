@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="GRADE"    			property="grade" />
         <result column="REFUND"    			property="refund" />
         <result column="CHECKINOUT"    		property="checkInout" />
-        <result column="ENDDATE"    		property="endDate" />
+        <result column="END_DATE"    		property="endDate" />
         <result column="ACCOMM_CONTENT"		property="accommContent" />
         <result column="CATEGORY"    		property="category" />
         <result column="AVG"    			property="avg" />
@@ -318,7 +318,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				GRADE,
 				REFUND,
 				CHECKINOUT,
-				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS END_DATE,
+				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS "END_DATE",
 				ACCOMM_CONTENT,
 				CATEGORY
 		  FROM

@@ -55,7 +55,7 @@
                 <div class="endDate"> 🕑결제 만료일 : ${requestScope.accList[0].endDate}   </div><br> 
                 <h2 class="pt-1 pb-4"> &nbsp; ACCOMM_CONTENT ${requestScope.accList[0].accommContent}
                 </h2>
-                <h2 class="pt-1 pb-4"> &nbsp; 주소 : 주소</h2>
+                <h2 class="pt-1 pb-4"> &nbsp; 주소 : ${requestScope.accList[0].address}</h2>
                 <div class="room-area">▶️ 객실1 쓰는 곳 객실이름입니다다객이름00000000000000000 &nbsp; &nbsp;
                 
                   <button onclick='location.href="accommBookList.bu"' class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
