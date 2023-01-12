@@ -270,4 +270,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE 
 			    PLANNER_NO = #{ plannerNo }
 	</select>
+	<insert id="planAddMem" parameterType="plan">
+	INSERT 
+		  INTO
+		  		PLANNER_MEM
+			VALUES 
+					(
+						#{ plannerNo }
+						, #{ memId }
+					)
+	</insert>
+	
 </mapper>

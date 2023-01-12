@@ -15,6 +15,7 @@ import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -172,9 +173,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	//일행과 함께 여행가기
 	@Override
-	public int planAddMem(Plan p) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int planAddMem(PlannerMem p) {
+		return memberDao.planAddMem(p, sqlSession);
 	}
 	
 	//일정 추가 

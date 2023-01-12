@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,14 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Attachment;
-import com.jl.helloing.member.model.service.MemberService;
-import com.jl.helloing.member.model.service.MemberServiceImpl;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
@@ -57,6 +56,8 @@ public class BusinessController {
 	// 숙소 조회
 	@RequestMapping("accommList.bu")
 	public String goSelectAccom() {
+		
+		
 		return "business/accommList";
 	}
 	// 액티비티 조회
@@ -146,12 +147,18 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
-	
+	// 객실 등록화면으로 이동
+	@RequestMapping("goInsertRoom.bu")
+	public ModelAndView goInsertRoom(int accommNo, ModelAndView mv) {
+		mv.addObject("accommNo", accommNo).setViewName("business/insertRoom");
+		
+		return mv;
+	}
 	// 객실등록
 	@RequestMapping("insertRoom.bu")
-	public String InsertRoom(Room room, MultipartFile[] upfile, HttpSession session, Model model) {
+	public String InsertRoom(int accommNo ,Room room, MultipartFile[] upfile, HttpSession session, Model model) {
 //		int accommNo = room.getAccommNo();  
-		int accommNo = 3;   // 이거 만지세요~!
+//		int accommNo = 3;   // 이거 만지세요~!
 		room.setAccommNo(accommNo);// 다 하고 되면 빼고 돌려보자.
 		System.out.println("accommNo : " + accommNo);
     	System.out.println("upfile : " + upfile);
@@ -223,11 +230,7 @@ public class BusinessController {
 	public String goUpdateActivity() {
 		return "business/updateActivity";
 	}
-	// 객실 등록화면으로 이동
-	@RequestMapping("goInsertRoom.bu")
-	public String goInsertRoom() {
-		return "business/insertRoom";
-	}
+
 	// 티켓 등록 화면으로 이동 
 	@RequestMapping("goInsertTicket.bu")
 	public String goInsertTicket() {

@@ -16,7 +16,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +30,7 @@ import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 @Controller
 public class MemberController {
@@ -430,16 +430,25 @@ public class MemberController {
 			mv.addObject("errorMsg","상세페이지 조회에 실패했습니다.");
 			mv.setViewName("common/errorPage");
 		}
-		
 		return mv;
 	}
 	
 	
 	//일행과 함께 여행가기
-	
-	
-	
-	
+	@RequestMapping("planAddMem.hj")
+	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm) {
+		
+			System.out.println(pm);
+		
+		if(memberService.planAddMem(pm)>0) {
+			
+		}else {
+			
+		}
+		
+		return mv;
+		
+	}
 	
 	
 	
