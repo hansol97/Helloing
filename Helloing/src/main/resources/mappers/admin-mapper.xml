@@ -172,7 +172,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,EMAIL
 		       ,PHONE
 		       ,STATUS
-		       ,MEM_ENROLLDATE
+		       ,TO_CHAR(MEM_ENROLLDATE, 'YYYY-MM-DD') MEM_ENROLLDATE
 		  FROM
 		       MEMBER
 		 ORDER
@@ -203,7 +203,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	   MEM_ID LIKE '%' || #{keyword} || '%'
 		 </if>
 		 <if test="condition == 'searchName'">
-		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 	   MEM_NAME LIKE '%' || #{keyword} || '%'
 		 </if>
 	</select>
 	
@@ -216,7 +216,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,EMAIL
 		       ,PHONE
 		       ,STATUS
-		       ,MEM_ENROLLDATE
+		       ,TO_CHAR(MEM_ENROLLDATE, 'YYYY-MM-DD') MEM_ENROLLDATE
 		  FROM
 		       MEMBER
 		 WHERE
@@ -224,7 +224,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	   MEM_ID LIKE '%' || #{keyword} || '%'
 		 </if>
 		 <if test="condition == 'searchName'">
-		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 	   MEM_NAME LIKE '%' || #{keyword} || '%'
 		 </if>
 		 ORDER
 		    BY
@@ -245,7 +245,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,MEM_NO
 		       ,BUSINESS_NAME
 		       ,PHONE
-		       ,BUSINESS_ENROLLDATE
+		       ,TO_CHAR(BUSINESS_ENROLLDATE, 'YYYY-MM-DD') BUSINESS_ENROLLDATE
 		       ,ADDRESS
 		       ,EMAIL
 		 FROM

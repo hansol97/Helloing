@@ -38,11 +38,6 @@ public class AdminController {
 	public String activityPaymentViewList() {
 		return "admin/activityPaymentListView";
 	}
-
-	@RequestMapping("businessPayList.ad")
-	public String businessPaymentListView() {
-		return "admin/businessPaymentListView";
-	}
 	
 	@RequestMapping("roomPay.ad")
 	public String roomPaymentListView() {
@@ -187,6 +182,7 @@ public class AdminController {
 		
 		mv.addObject("list", list)
 		  .addObject("pi", pi)
+		  .addObject("map", map)
 		  .setViewName("admin/adminMemberListView");
 		
 		return mv;
@@ -203,7 +199,14 @@ public class AdminController {
 		
 		return "admin/adminBusinessListView";
 	}
-
+	
+	//--------------------- 결제관리 ---------------------
+	@RequestMapping("businessPayList.ad")
+	public String businessPaymentListView(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiPayListCount(), currentPage, 10, 5);
+		
+		return "admin/businessPaymentListView";
+	}
 	
 	
 	

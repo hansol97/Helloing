@@ -122,6 +122,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.searchMemList(sqlSession, pi, map);
 	}
 
+	@Override
+	public int selectBusiPayListCount() {
+		return 0;
+	}
+
 	
 	
 

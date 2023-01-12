@@ -77,7 +77,7 @@
     <jsp:include page="menubar_admin.jsp"/>
     
     <div class="admin-content">
-
+	
         <div class="admin-innerOuter" align="center">
             <br><br><br><br><br><br><br><br>
             <table>
@@ -125,7 +125,6 @@
                                 <th width="200">사업자번호</th>
                                 <th width="330">주소</th>
                                 <th width="200">등록일자</th>
-                                <th width="100">기타</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,7 +144,6 @@
 			                                <td>${ b.businessNo }</td>
 			                                <td>${ b.address}</td>
 			                                <td>${ b.businessEnrollDate }</td>
-			                                <td><button>+</button></td>
 			                            </tr>
 			                        </c:forEach>
 			                   </c:otherwise>
@@ -216,7 +214,6 @@
             </div>
         </div>
     </div>
-    <button class="btn-open-popup">Modal 띄우기</button>
 
     <script>
         const body = document.querySelector('body');
@@ -240,6 +237,12 @@
             }
           }
         });
+        
+        $(function(){
+        	$('.plus_btn').click(function(){
+        		console.log($(this).siblings('input').eq(0);
+        	})
+        })
       </script>
     
 </body>
