@@ -509,16 +509,21 @@ public class MemberController {
 	
 	
 	
+	/*
 	// 위시리스트 추가
 	@RequestMapping("addWish")
 	public void addWish(HttpSession session,
 						ActivityWish aw,
-					    int activityNo) {
+					    int activityNo,
+					    String activityName) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
 			aw.setMemNo(loginUser.getMemNo());
 			aw.setActivityNo(activityNo);
+			// aw.setActivityName(activityName); // 이게 왜 필요하지?
+			
+			System.out.println(aw);
 		} else {
 			
 		}
@@ -526,4 +531,5 @@ public class MemberController {
 		
 		
 	}
+	*/
 }
