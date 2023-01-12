@@ -69,7 +69,7 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("loginCompany", loginCompany);
 			mv.setViewName("redirect:/");
-			
+			System.out.println(loginCompany);
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
@@ -522,14 +522,13 @@ public class MemberController {
 		}
 		return mv;
 	}
-	
-	
-	
-	
 	//가계부 페이지
 	@RequestMapping("expenseView.hj")
-	public String expenseView() {
-		return "member/expenseView";
+	public ModelAndView expenseView(ModelAndView mv, int plannerNo) {
+		
+		
+		
+		return mv;
 	}
 
 	

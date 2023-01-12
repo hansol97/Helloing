@@ -406,7 +406,7 @@ public class BusinessController {
 		b.setMemNo(memNo);
 		
 		//System.out.println(b);
-		
+		System.out.println(b);
 		int result = businessService.insertCompany(b);
 		
 		if( result >0) {
