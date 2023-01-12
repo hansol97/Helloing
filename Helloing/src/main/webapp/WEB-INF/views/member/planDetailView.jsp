@@ -205,7 +205,8 @@
 	        <div id="plan">
 		        <c:forEach var="p" items="${list}">
 		        	<div class="plan-day">
-						<h2>day : ${p.planDate}</h2>	
+						<h2>day : ${p.planDate}</h2>
+						<input type="hidden" class="plan" name="planNo" value="${p.planNo}">	
 						<div>
 							<div class="plan-time">${p.startTime} ~ ${p.endTime}</div>
 							<br>
@@ -214,9 +215,10 @@
 							<br><br>
 							<span>${p.planContent }</span>
 							<span style="float:right; font-size:20px;">
-								<a>수정</a>
+								<input type="hidden" class="plan" name="planNo" value="${p.planNo}">	
+								<a href="#ex3" rel="modal:open" class="updateBtn">수정</a>
 								&nbsp;&nbsp;
-								<a>삭제</a>
+								<a href="#ex4" rel="modal:open" class="deleteBtn">삭제</a>
 							</span>
 						</div>				        	
 		        	</div>
@@ -233,16 +235,16 @@
 				<h2>일행의 아이디를 입력해주세요.</h2>
 				<input type="text" name="memId">
 				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
-			<div class="modalBtn" style="float:right;">
-				<button type="submit">추가</button>
-		 	</div>
+				<div class="modalBtn" style="float:right;">
+					<button type="submit">추가</button>
+			 	</div>
 			</form>		 
 		</div>
-		
+		<!-- 일정 추가 모달 -->
 	    <div id="ex2" class="modal">
     		<h5 style="font-weight:600;">일정 추가</h5>
 			<hr>
-			<form action="" method="post">
+			<form action="insertPlan.hj" method="post">
 				<ul>
 					<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요."></li>
 					<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요."></li>
@@ -317,14 +319,131 @@
 					    </select>
 					</li>
 				</ul>
-			</form>		 
+			<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
 			<div class="modalBtn" style="float:right;">
-				  <a href="#" >추가</a>
-				  <a href="#" rel="modal:close">취소</a>
+				<div class="modalBtn" style="float:right;">
+					<button type="submit">추가</button>
+			 	</div>
 		 	</div>
+			</form>		 
 		</div>
-	<script>
+	<!-- 일정 수정 버튼 -->
+	    <div id="ex3" class="modal">
+    		<h5 style="font-weight:600;">일정 수정</h5>
+			<hr>
+			<form action="insertPlan.hj" method="post">
+					<ul class="insert-form">
+						<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요."></li>
+						<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요."></li>
+						<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}">
+					</ul>
+					<ul>
+						<li>
+							일정 시작 시간
+							<select name = "startTime">
+							    <option>01:00</option>
+							    <option>02:00</option>
+							    <option>03:00</option>
+							    <option>04:00</option>
+							    <option>05:00</option>
+							    <option>06:00</option>
+							    <option>07:00</option>
+							    <option>08:00</option>
+							    <option>09:00</option>
+							    <option>10:00</option>
+							    <option>11:00</option>
+							    <option>12:00</option>
+							    <option>13:00</option>
+							    <option>14:00</option>
+							    <option>15:00</option>
+							    <option>16:00</option>
+							    <option>17:00</option>
+							    <option>18:00</option>
+							    <option>19:00</option>
+							    <option>20:00</option>
+							    <option>21:00</option>
+							    <option>22:00</option>
+							    <option>23:00</option>
+							    <option>24:00</option>
+						    </select>
+						</li>
+						<li>
+							일정 종료 시간
+							<select name = "endTime">
+							    <option>01:00</option>
+							    <option>02:00</option>
+							    <option>03:00</option>
+							    <option>04:00</option>
+							    <option>05:00</option>
+							    <option>06:00</option>
+							    <option>07:00</option>
+							    <option>08:00</option>
+							    <option>09:00</option>
+							    <option>10:00</option>
+							    <option>11:00</option>
+							    <option>12:00</option>
+							    <option>13:00</option>
+							    <option>14:00</option>
+							    <option>15:00</option>
+							    <option>16:00</option>
+							    <option>17:00</option>
+							    <option>18:00</option>
+							    <option>19:00</option>
+							    <option>20:00</option>
+							    <option>21:00</option>
+							    <option>22:00</option>
+							    <option>23:00</option>
+							    <option>24:00</option>
+						    </select>
+						</li>
+						<li>
+							카테고리
+							<select name = "planCategory">
+							    <option>숙소</option>
+							    <option>이동</option>
+							    <option>관광</option>
+							    <option>식사</option>
+							    <option>쇼핑</option>
+							    <option>기타</option>
+						    </select>
+						</li>
+					</ul>
+				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
+				<div class="modalBtn" style="float:right;">
+					<div class="modalBtn" style="float:right;">
+						<button type="submit">추가</button>
+				 	</div>
+			 	</div>
+			</form>		 
+		</div>	
 
+
+
+	<script>
+	$('.updateBtn').click(function(){
+		
+		var $planNo = $(this);
+		
+			$.ajax({
+				url : 'selectPlan.hj',
+				data : {planNo : $planNo.siblings('input[name=planNo]').val()},
+				success : function(result){
+					let value = '';
+					var planNo = $planNo.siblings('input[name=planNo]').val()
+					
+					value +=  
+							+	'<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value=' + ${result.planName} + '"></li>'
+							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + ${result.planContent} + '"></li>'
+							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + ${result.planDate}  + '">';
+
+							$('.insert-form').html(value);
+							
+				},
+				error : function(){
+					console.log('실패');
+				}
+				});
+	})
 	
 
 	</script>

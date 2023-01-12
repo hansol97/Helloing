@@ -83,7 +83,10 @@ public interface MemberService {
 	ArrayList<Plan> planDetailView(int plannerNo);
 	
 	//일행과 함께 여행가기
-	int planAddMem(PlannerMem p);
+	int planAddMem(PlannerMem pm);
+	
+	//일행이 중복되는 지 판단
+	int planMemSelect(PlannerMem pm);
 	
 	//일정 추가 
 	int insertPlan(Plan p);
@@ -100,6 +103,10 @@ public interface MemberService {
 	//가계부 페이지
 	Expense expenseView(int planNo);
 	
-
+	// 액티비티 위시리스트 추가
+	int addActWish(ActivityWish aw);
+	
+	// 액티비티 위시리스트 삭제
+	int removeActWish(ActivityWish aw);
 	
 }

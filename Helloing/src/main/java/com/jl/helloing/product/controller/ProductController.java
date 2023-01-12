@@ -9,12 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
-import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class ProductController {
@@ -86,10 +86,18 @@ public class ProductController {
 	
 	// 액티비티 상세 페이지
 	@RequestMapping("detail.activity")
-	public ModelAndView DetailActivity(ModelAndView mv, int activityNo) {
+	public ModelAndView DetailActivity(ModelAndView mv, HttpSession session, int activityNo, ActivityWish aw) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Activity act = productService.selectActDetail(activityNo);
 		ArrayList<ActivityReview> actReviewList = productService.selectReviewList(activityNo);
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			mv.addObject("checkWish", productService.checkActWish(aw)); // 0아니면 1이 오겠지...
+		}
 		
 		mv.addObject("act", act)
 		  .addObject("ticketList", productService.selectTicketList(activityNo))

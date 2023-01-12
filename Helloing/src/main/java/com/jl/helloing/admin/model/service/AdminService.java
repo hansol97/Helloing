@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 
@@ -48,14 +49,24 @@ public interface AdminService {
 	// 일반회원 정지
 	int deleteMember(int memNo);
 	
-	// 일반회원 검색된 목록 수 조회
+	// 일반회원 검색 목록 수 조회
 	int selectSearchMemListCount(HashMap map);
+	
+	// 일반회원 검색 목록
+	ArrayList<Member> searchMemList(PageInfo pi, HashMap map);
 	
 	// 사업자 목록 수 조회
 	int selectBusiListCount();
 	
 	// 사업자 목록 조회
 	ArrayList<Business> selectBusinessList(PageInfo pi);
+	
+	// 사업자 등록 결제 수 조회
+	int selectBusiPayListCount();
+	
+	// 사업자 등록 결제 리스트 조회
+	ArrayList<BusinessPayment> selectBusiPayList(PageInfo pi);
+
 
 
 }

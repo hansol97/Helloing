@@ -192,9 +192,25 @@
 					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 					<div>
-						<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
-						<button id="btn-addwish" onclick="removeWish();">♥️😘♥️</button>
+						<c:choose>
+							<c:when test="${ checkWish eq null }">
+								<input type="hidden" name="checkWish" value="none">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="checkWish" value="${ checkWish.wishDate }">
+							</c:otherwise>
+						</c:choose>
+					
+						<div id="btn-add">
+							<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						</div>
+						<div id="btn-rev" style="display: none;">
+							<button id="btn-removewish" onclick="removeWish();">♥️😘♥️</button>
+						</div>
 					</div>
+
+					
+
 				</div>
 			</div>
 		</div>

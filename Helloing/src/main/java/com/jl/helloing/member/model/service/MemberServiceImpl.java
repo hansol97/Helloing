@@ -171,24 +171,28 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.planDetailView(plannerNo, sqlSession);
 	}
 	
+	//일행이 중복되는 지 판단
+	@Override
+	public int planMemSelect(PlannerMem pm) {
+		return memberDao.planMemSelect(pm, sqlSession);
+	}
+
 	//일행과 함께 여행가기
 	@Override
-	public int planAddMem(PlannerMem p) {
-		return memberDao.planAddMem(p, sqlSession);
+	public int planAddMem(PlannerMem pm) {
+		return memberDao.planAddMem(pm, sqlSession);
 	}
 	
 	//일정 추가 
 	@Override
 	public int insertPlan(Plan p) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.insertPlan(p, sqlSession);
 	}
 
 	//일정 수정 전 조회
 	@Override
 	public Plan selectPlan(int planNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.selectPlan(planNo, sqlSession);
 	}
 	
 	//일정 수정
@@ -211,6 +215,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int addActWish(ActivityWish aw) {
+		return memberDao.addActWish(sqlSession, aw);
+	}
+
+	@Override
+	public int removeActWish(ActivityWish aw) {
+		return memberDao.removeActWish(sqlSession, aw);
+	}
+
 
 
 

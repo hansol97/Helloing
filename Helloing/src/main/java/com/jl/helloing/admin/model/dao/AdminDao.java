@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 
@@ -87,13 +88,33 @@ public class AdminDao {
 	}
 
 	public ArrayList<Business> selectBusinessList(SqlSessionTemplate sqlSession, PageInfo pi) {
-			int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-			return (ArrayList)sqlSession.selectList("adminMapper.selectBusinessList", null, rowBounds);
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectBusinessList", null, rowBounds);
 	}
 
+	
 	public int selectSearchMemListCount(SqlSessionTemplate sqlSession, HashMap map) {
 		return sqlSession.selectOne("adminMapper.selectSearchMemListCount", map);
+	}
+
+	public ArrayList<Member> searchMemList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap map) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchMemList", map, rowBounds);
+	}
+
+	public int selectBusiPayListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectBusiPayListCount");
+	}
+
+	public ArrayList<BusinessPayment> selectBusiPayList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectBusiPayList");
 	}
 
 
