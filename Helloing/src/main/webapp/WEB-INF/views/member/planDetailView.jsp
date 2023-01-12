@@ -426,10 +426,8 @@
 		
 			$.ajax({
 				url : 'selectPlan.hj',
-				data : {planNo : $planNo.siblings('input[name=planNo]').val()
-						, plannerNo : ${list[1].plannerNo} },
+				data : {planNo : $planNo.siblings('input[name=planNo]').val()},
 				success : function(result){
-					
 					let value = '';
 					var planNo = $planNo.siblings('input[name=planNo]').val()
 					

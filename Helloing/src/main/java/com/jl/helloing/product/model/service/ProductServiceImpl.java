@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.dao.ProductDao;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
@@ -44,6 +45,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int insertTicketPayment(List<TicketPayment> list) {
 		return productDao.insertTicketPayment(sqlSession, list);
+	}
+
+	@Override
+	public ActivityWish checkActWish(ActivityWish aw) {
+		return productDao.checkActWish(sqlSession, aw);
 	}
 
 	
