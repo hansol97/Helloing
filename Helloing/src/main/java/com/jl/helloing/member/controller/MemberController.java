@@ -69,7 +69,6 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("loginCompany", loginCompany);
 			mv.setViewName("redirect:/");
-			System.out.println(loginCompany);
 		} else {
 
 			mv.addObject("errorMsg","로그인에 실패 하셨습니다.");
