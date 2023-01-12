@@ -77,10 +77,11 @@ public class BusinessDao {
 	}
 
 
+
 	public ArrayList<BusinessPayment> checkBookDate(SqlSessionTemplate sqlSession, int roomNo) {
 		return (ArrayList)sqlSession.selectList("businessMapper.checkBookDate", roomNo);
 	}
-	
+
 	
 	
 	
