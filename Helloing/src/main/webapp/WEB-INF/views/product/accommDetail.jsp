@@ -137,6 +137,7 @@
 						</div>
 					</div>
 
+					<%--
 					<div class="radio-sort">
 						<input type="radio" name="radio-sort" id="recomm"><label for="recomm">추천순</label>
 						<input type="radio" name="radio-sort" id="manyreview"><label for="manyreview">많은 후기순</label>
@@ -144,6 +145,7 @@
 						<input type="radio" name="radio-sort" id="lowprice"><label for="lowprice">낮은 가격순</label>
 						<input type="radio" name="radio-sort" id="highprice"><label for="highprice">높은 가격순</label>
 					</div>
+					 --%>
 					
 					<div><!-- 리뷰 포문 돌리기 -->
 						<div class="reviewbox">
@@ -184,6 +186,7 @@
 						<hr>
 					</div>
 
+					<%--
 					<div class="page-bar"><!-- 페이징바 리뷰는 3개씩 보여줄거다 -->
 						<ul>
 		                    <li><a href="">&lt;</a></li>
@@ -195,7 +198,7 @@
 		                    <li><a href="">&gt;</a></li>
                 		</ul>
 					</div>
-
+					 --%>
 				</div>
 
 			</div>
