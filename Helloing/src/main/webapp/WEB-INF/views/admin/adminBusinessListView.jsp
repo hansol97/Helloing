@@ -77,7 +77,7 @@
     <jsp:include page="menubar_admin.jsp"/>
     
     <div class="admin-content">
-
+	
         <div class="admin-innerOuter" align="center">
             <br><br><br><br><br><br><br><br>
             <table>
@@ -187,6 +187,63 @@
         </div>
 
     </div>
+    
+     <div class="modal">
+        <div class="modal_body">
+            <div>
+                <div class="modal-title">
+                    <span>사업자 추가정보</span>
+                </div>
+                <div align="center">
+                    <table class="type02">
+                        <tr>
+                            <th>사업자명</th>
+                            <td>사업자2</td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td>서울시 중구</td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td>business@email.com</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+  
+        btnOpenPopup.addEventListener('click', () => {
+          modal.classList.toggle('show');
+  
+          if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+          }
+        });
+  
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.classList.toggle('show');
+  
+            if (!modal.classList.contains('show')) {
+              body.style.overflow = 'auto';
+            }
+          }
+        });
+        
+        $(function(){
+        	$('.plus_btn').click(function(){
+        		console.log($(this).siblings('input').eq(0);
+        	})
+        })
+      </script>
     
 </body>
 </html>

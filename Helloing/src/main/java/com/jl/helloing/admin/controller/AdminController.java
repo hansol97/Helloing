@@ -38,11 +38,6 @@ public class AdminController {
 	public String activityPaymentViewList() {
 		return "admin/activityPaymentListView";
 	}
-
-	@RequestMapping("businessPayList.ad")
-	public String businessPaymentListView() {
-		return "admin/businessPaymentListView";
-	}
 	
 	@RequestMapping("roomPay.ad")
 	public String roomPaymentListView() {
@@ -176,17 +171,21 @@ public class AdminController {
 	
 	// 일반회원 검색
 	@RequestMapping("memListSearch.ad")
-	public String searchMemList(@RequestParam(value="cpage", defaultValue="1")int currentPage
-								,String condition, String keyword) {
+	public ModelAndView searchMemList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+								,String condition, String keyword, ModelAndView mv) {
 		HashMap map = new HashMap();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectSearchMemListCount(map), currentPage, 10, 5);
+		ArrayList<Member> list = adminService.searchMemList(pi, map);
 		
+		mv.addObject("list", list)
+		  .addObject("pi", pi)
+		  .addObject("map", map)
+		  .setViewName("admin/adminMemberListView");
 		
-		
-		return "";
+		return mv;
 	}
 	
 	// 사업자 리스트 조회
@@ -200,7 +199,14 @@ public class AdminController {
 		
 		return "admin/adminBusinessListView";
 	}
-
+	
+	//--------------------- 결제관리 ---------------------
+	@RequestMapping("businessPayList.ad")
+	public String businessPaymentListView(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiPayListCount(), currentPage, 10, 5);
+		
+		return "admin/businessPaymentListView";
+	}
 	
 	
 	
