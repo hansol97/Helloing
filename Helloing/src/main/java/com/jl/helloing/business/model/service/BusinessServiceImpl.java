@@ -43,19 +43,7 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//인호
+	//인호 --------------------------------------------------------------------------------------------
 	// 인서트 숙소 세트 
 	@Override
 	public int insertAccom(Accomm acc) {
@@ -101,7 +89,7 @@ public class BusinessServiceImpl implements BusinessService {
 	// 숙소리스트 조회
 	@Override
 	public ArrayList<Accomm> selectAccommList(String businessNo) {
-		return null;
+		return businessDao.selectAccommList(sqlSession, businessNo);
 	}
 	// 숙소에 딸린 방 리스트 조회
 	@Override
