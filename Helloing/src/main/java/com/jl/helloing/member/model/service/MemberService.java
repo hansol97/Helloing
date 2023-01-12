@@ -101,7 +101,10 @@ public interface MemberService {
 	int deletePlan(int planNo);
 	
 	//가계부 페이지
-	Expense expenseView(int planNo);
+	ArrayList<Expense> expenseView(int planNo);
+	
+	//1/n
+	Expense dutchTreat(int plannerNo);
 	
 	// 액티비티 위시리스트 추가
 	int addActWish(ActivityWish aw);

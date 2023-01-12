@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@
 	/* 버튼들 */
 	#payment-area{
 		height:60px;
-		padding-top: 15px;
+		padding-top: 23px;
 	}
 	
 	#payment-area a{
@@ -86,7 +87,7 @@
 		border-radius: 20px;
 		background-color : navy;
 		color: white;
-		font-size: 25px;
+		font-size: 17px;
 		padding:10px;
 	}
 	#payment-area a:hover{
@@ -136,40 +137,52 @@
 			<h1>가계부</h1>
 			
 	        <div id="payment-area">
-	        	<a href="">1/n</a>
+	        	<input type="hidden" name="plannerNo" value="${plannerNo}">
+	        	<a class="Dutch-treat" href="#ex1" rel="modal:open">1/n</a>
+	        	<a class="addExpense-btn" href="#ex2" rel="modal:open"> + 비용 추가</a>
 	        </div>
         </div>
 			<hr>
-	        <div id="plan">
-    	        <div class="plan-day">
-					<h2>여행준비</h2>	
-					<br>
-		        	<a href="#ex1" rel="modal:open"> 비용수정 </a>
-					<br><br>
-					<div>
-						<div class="expense-amount"><b>사용 금액 :</b> 50,000원</div>
-						<div><b>결제 수단 :</b> 현금</div>
-						<div class="expense-content">내용 : ktx</div>
-						<div>카테고리 : 교통</div>
-					</div>
-				</div>				        	
+	        <div id="plan">			     
+	        <c:forEach var="p" items="${list}">   	
 	        	<div class="plan-day">
-					<h2>day1 : 1.2</h2>	
+					<h2>day : ${p.expenseDate}</h2>	
 					<br>
-		        	<a href="#ex1" rel="modal:open"> + 비용 추가</a>
-					<br><br>
+					<div>
+						<span>사용금액 : </span>
+						<span>${p.amount}</span>
+					</div>
+					<div>
+						<span>결제수단: </span>
+						<span>${p.method}</span>
+					</div>
+					<div>
+						<span>내용: </span>
+						<span>${p.expenseContent}</span>					
+					</div>
+					<div>
+						<span>카테고리 : </span>
+						<span>${p.expenseCategory}</span>					
+					</div>
 	        	</div>
-    	      	<div class="plan-day">
-					<h2>day2 : 1.3</h2>	
-					<br>
-		        	<a href="#ex1" rel="modal:open"> + 비용 추가</a>
-		        	<br><br>
-	        </div>
+	        </c:forEach>
 	        	 
 		
 		</div>
 		
 	    <div id="ex1" class="modal">
+    		<h5 style="font-weight:600;">우리 경비를 1/n로 나누면?</h5>
+			<hr>
+	    	<br>
+	    	<div class="allAmount">
+	    	<!-- 
+				여기에 수정 란 생길 예정
+		    	 -->
+		    </div>
+	 	</div>
+		
+		
+	    <div id="ex2" class="modal">
     		<h5 style="font-weight:600;">비용 추가</h5>
 			<hr>
 			<form action="" method="post">
@@ -203,7 +216,33 @@
 		 	</div>
 		</div>
 	<script>
-
+	$('.Dutch-treat').click(function(){
+		var $this = $(this);
+		
+		var plannerNo = $this.siblings('input[name=plannerNo]').val();
+		
+		$.ajax({
+			url : 'dutchTreat.hj',
+			data : {plannerNo : $this.siblings('input[name=plannerNo]').val()},
+			success : function(result){
+				let value = '';
+				
+				value += '<h3>카테고리 별 금액</h3>'
+					  + '<div> 식사: ' + result.eat + '원</div>'
+					  +	'<div> 숙소: ' + result.accomm + '원</div>'
+					  + '<div> 교통: ' + result.transport + '원</div>'
+					  + '<div> 관광: ' + result.tour + '원</div>'
+					  + '<div> 쇼핑: ' + result.shopping + '원</div>'
+					  + '<div> 기타: ' + result.other + '원</div>'
+					  + '<h2>총 금액 : ' + result.all + '원</div>'
+					  + '<h2> 1/n로 나누면 ' + result.individual + '원입니다. <br> 총무님께 정산해주세요.</h2>'
+			},
+			error : function(){
+				console.log('실패');
+			}
+		})
+		
+	})
 	
 
 	</script>

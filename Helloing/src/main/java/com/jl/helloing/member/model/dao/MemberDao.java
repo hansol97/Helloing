@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
+import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
@@ -119,7 +120,13 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.deletePlan", planNo);
 	}
 	
+	public ArrayList<Expense> expenseView(int planNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.expenseView", planNo);
+	}
 	
+	public Expense dutchTreat(int plannerNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.dutchTreat", plannerNo);
+	}
 	
 	
 	
@@ -143,6 +150,8 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+
+
 
 
 

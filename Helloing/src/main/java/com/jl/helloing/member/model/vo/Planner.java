@@ -10,4 +10,5 @@ public class Planner {
 	private String endDate; // 종료날짜
 	
 	private int memNo;
+	private String memName;
 }
