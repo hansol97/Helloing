@@ -57,9 +57,25 @@
 		text-align: center;
 		font-size : 30px;
 	}
-	.modalBtn a{
+	.modalBtn button{
 		padding-right:10px;
 	}
+	.modal button{
+		float: right;
+	    margin: 10px;
+	    background-color: white;
+	    border: 1px solid gray;
+	    border-radius: 5px;
+	    height: 44px;
+	    width: 70px;
+	}
+	.modal input{
+		width: 120px;
+	    height: 20px;
+	    border: 1px solid gray;
+	    border-radius: 10px;
+	    font-family: 'S-CoreDream-3Light';
+    }
 	#trip-btn{
 		display:flex;
 	}
@@ -213,14 +229,14 @@
 	    <div id="ex1" class="modal">
     		<h5 style="font-weight:600;">일행과 함께 여행가기</h5>
 			<hr>
-			<form action="" method="post">
+			<form action="planAddMem.hj" method="post">
 				<h2>일행의 아이디를 입력해주세요.</h2>
 				<input type="text" name="memId">
-			</form>		 
+				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
 			<div class="modalBtn" style="float:right;">
-				  <a href="#" >추가</a>
-				  <a href="#" rel="modal:close">취소</a>
+				<button type="submit">추가</button>
 		 	</div>
+			</form>		 
 		</div>
 		
 	    <div id="ex2" class="modal">
