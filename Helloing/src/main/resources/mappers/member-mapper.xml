@@ -326,7 +326,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  					, #{ startTime }
 		  					, #{ endTime }
 		  					, #{ planCategory }
-		  					, REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '/')
+		  					, REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '.')
 		  					)
 	</insert>
 	<select id="selectPlan" parameterType="_int" resultType="plan">
@@ -353,7 +353,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				,START_TIME = #{ startTime }
   				,END_TIME = #{ endTime }
   				,PLAN_CATEGORY = #{ planCategory }
-  				,PLAN_DATE = REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '/')
+  				,PLAN_DATE = REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '.')
   	WHERE
   		PLAN_NO = #{ planNo }
 	</update>
