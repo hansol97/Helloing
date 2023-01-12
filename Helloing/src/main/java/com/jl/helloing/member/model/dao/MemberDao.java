@@ -108,10 +108,12 @@ public class MemberDao {
 	}
 	
 	public Plan selectPlan(int planNo, SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("memberMapper.selectPlan", planNo);
 	}
 	
+	public int updatePlan(Plan p, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updatePlan", p);
+	}
 	
 	
 	
@@ -138,5 +140,7 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+
+
 
 }
