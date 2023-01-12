@@ -249,15 +249,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        PLAN_CATEGORY planCategory,
 	        SUBSTR(PLAN_DATE,4,10) planDate,
 	        (WITH MEM AS (
-	            SELECT 
-	                    MEM_NAME memNo 
-	            FROM 
-	                MEMBER 
-	            JOIN 
-	                PLANNER_MEM USING(MEM_NO) 
-	            WHERE 
-	                PLANNER_NO = #{ plannerNo }
-	        )
+				            SELECT 
+				                    MEM_NAME memNo 
+				            FROM 
+				                MEMBER 
+				            JOIN 
+				                PLANNER_MEM USING(MEM_NO) 
+				            WHERE 
+				                PLANNER_NO = #{ plannerNo }
+	        			)
 	        SELECT LISTAGG(memNo, ',') WITHIN GROUP (ORDER BY memNo) FROM MEM)memName
 	      
 			FROM 
@@ -272,7 +272,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    PLANNER_NO = #{ plannerNo }
 			ORDER 
 				BY
-					startDate ASC, planDate ASC
+					planDate ASC, startTime ASC
 					
 	</select>
 	<select id="planMemSelect" parameterType="plannerMem" resultType="_int">
@@ -326,7 +326,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  					, #{ startTime }
 		  					, #{ endTime }
 		  					, #{ planCategory }
-		  					, REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '.')
+		  					, REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '/')
 		  					)
 	</insert>
 	<select id="selectPlan" parameterType="_int" resultType="plan">
@@ -353,7 +353,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				,START_TIME = #{ startTime }
   				,END_TIME = #{ endTime }
   				,PLAN_CATEGORY = #{ planCategory }
-  				,PLAN_DATE = REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '.')
+  				,PLAN_DATE = REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '/')
   	WHERE
   		PLAN_NO = #{ planNo }
 	</update>
