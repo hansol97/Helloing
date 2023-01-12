@@ -133,6 +133,16 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.selectBusiPayList(sqlSession, pi);
 	}
 
+	@Override
+	public int searchBusiPayListCount(String keyword) {
+		return adminDao.searchBusiPayListCount(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<BusinessPayment> searchBusiPayList(PageInfo pi, String keyword) {
+		return adminDao.searchBusiPayList(sqlSession, pi, keyword);
+	}
+
 	
 	
 
