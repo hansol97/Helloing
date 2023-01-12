@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
+import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
@@ -21,11 +22,21 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-
+/*
+	<option value='hotel'>호텔</option>
+    <option value='pension'>펜션</option>
+    <option value='motel'>모텔</option>
+    <option value='house'>민박</option>
+    <option value='guestHouse'>게스트하우스</option>
+*/	
 	// 숙소 메인
 	@RequestMapping("accomm")
-	public String accommMain() {
-		return "product/accommMain";
+	public ModelAndView accommMain(ModelAndView mv) {
+
+		mv.addObject("acList", productService.selectAcList())
+		  .setViewName("product/accommMain");
+		
+		return mv;
 	}
 	
 	// 숙소 검색
@@ -36,8 +47,14 @@ public class ProductController {
 	
 	// 숙소 상세 페이지
 	@RequestMapping("detail.accomm")
-	public String DetailAccomm() {
-		return "product/accommDetail";
+	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
+		
+		mv.addObject("ac", productService.selectAcDetail(accommNo))
+		  .addObject("roomList", productService.selectRoomList(accommNo))
+		  .addObject("acReviewList", productService.selectAcReviewList(accommNo))
+		  .setViewName("product/accommDetail");
+		
+		return mv;
 	}
 	
 	// 숙소 예약(결제) 페이지
@@ -56,23 +73,7 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		ArrayList<Activity> actList = productService.selectActList();
-		
-		/*
-		// 메인 화면에 가격과 후기 갯수도 필요
-		// 후기 갯수, 각 액티비티의 티켓 중 제일 낮은 가격
-		for(int i = 0; i< actList.size(); i++) {
-			// 리뷰 갯수
-			ArrayList<ActivityReview> actReviewList = productService.selectReviewList(actList.get(i).getActivityNo());
-			actList.get(i).setReviewCount(actReviewList.size());
-			
-			// 가장 낮은 가격
-			int price = productService.actTicketRowPrice(actList.get(i).getActivityNo());
-			actList.get(i).setRowPrice(price);
-		}
-		*/
-		
-		mv.addObject("actList", actList)
+		mv.addObject("actList", productService.selectActList())
 		  .setViewName("product/activityMain");
 		
 		return mv;
@@ -90,18 +91,15 @@ public class ProductController {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		Activity act = productService.selectActDetail(activityNo);
-		ArrayList<ActivityReview> actReviewList = productService.selectReviewList(activityNo);
-		
-		if(loginUser != null) {
+		if(loginUser != null) { // 로그인이 되어있을때만 위시리스트 확인하기
 			aw.setMemNo(loginUser.getMemNo());
 			
-			mv.addObject("checkWish", productService.checkActWish(aw)); // 0아니면 1이 오겠지...
+			mv.addObject("checkWish", productService.checkActWish(aw));
 		}
 		
-		mv.addObject("act", act)
+		mv.addObject("act", productService.selectActDetail(activityNo))
 		  .addObject("ticketList", productService.selectTicketList(activityNo))
-		  .addObject("actReviewList", actReviewList)
+		  .addObject("actReviewList", productService.selectReviewList(activityNo))
 		  .setViewName("product/activityDetail");
 		
 		return mv;

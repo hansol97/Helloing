@@ -132,12 +132,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render(); // 달력 화면에 뿌려주는 렌더링함수
     });
+    
+    $(function(){
+    	$.ajax({
+    		url: 'bookedDate.bu'
+			,data: {
+				roomNo : $('#roomNo_input')
+			}
+    		,success : function(result){
+    			console.log(result)
+    		}
+    		,error : function(){
+    			console.log('실패')
+    		}
+    	})
+    })
 
 </script>
 
 
 </head>
 <body>
+	<input id="roomNo_input" type="hidden" value="1" >
     <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     <div class="business-content">

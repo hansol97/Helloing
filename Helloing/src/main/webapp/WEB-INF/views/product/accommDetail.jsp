@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +20,16 @@
 			<div class="main">
 
 				<div class="top-info">
-					<sapn class="accommName">서귀포 퍼스트 호텔</sapn>
+					<sapn class="accommName">${ ac.accommName }</sapn>
 					<button>🗺️ 위치보기</button>
 				</div>
 				<div>
-					<p>4성급<br>
-						⭐⭐⭐⭐⭐ 4.0 (173) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p>${ ac.grade }성급<br>
+						⭐⭐⭐⭐⭐ ${ ac.avg } (${ ac.reviewCount }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 				<div class="middle-info">
-					<div>📌 제주 서귀포시 명동로 46</div>
+					<div>📌 ${ ac.address }</div>
 					<div>🕒 체크인 15:00 ~ 체크아웃 11:00</div>
 				</div>
 				<hr>
@@ -66,66 +67,29 @@
 				</div>
 
 				<div>
-					<div class="accommbox"><!-- 객실 포문 돌리기~ -->
-						<input type="hidden" name="" value="1">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
+					<c:forEach items="${ roomList }" var="r" varStatus="status">
+						<div class="accommbox"><!-- 객실 포문 돌리기~ -->
+							<input type="hidden" name="roomNo" value="${ r.roomNo }">
+							<div class="first">
+								<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+								<p><span>${ r.roomName }</span><br>
+									최대 ${ r.capacity }인</p>
+							</div>
+							<hr>
+							<div class="second">
+								<h1>${ status.count } ${ r.roomName } <br>
+									${ r.price } 원</h1>
+								<button>예약</button>
+							</div>
 						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
-					<div class="accommbox">
-						<div class="first">
-							<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-							<p><span>슈페리어 트윈</span><br>
-								기준 2인 / 최대 2인</p>
-						</div>
-						<hr>
-						<div class="second">
-							<h1>01 슈페리어 트윈 객실 <br>
-								65,000원</h1>
-							<button>예약</button>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 
 				<hr>
 
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+					<div><p>${ ac.accommContent }</p></div>
 				</div>
 				<hr>
 
@@ -136,10 +100,10 @@
 				<hr>
 
 				<div>
-					<h3 class="reviewtitle">후기 173</h3>
+					<h3 class="reviewtitle">후기 ${ ac.reviewCount }</h3>
 					<div class="reviewstar">
 						<div>
-							<p><span>4.3</span><br>
+							<p><span>${ ac.avg }</span><br>
 							⭐⭐⭐⭐⭐</p>
 						</div>
 						<div class="starlist">
