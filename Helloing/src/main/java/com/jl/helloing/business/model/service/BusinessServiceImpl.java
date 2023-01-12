@@ -2,15 +2,14 @@ package com.jl.helloing.business.model.service;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jl.helloing.business.model.dao.BusinessDao;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.Attachment;
-import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
@@ -104,8 +103,11 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	
 	
-	
-	
+	//---------------------------------------------------------------
+	@Override
+	public ArrayList<BusinessPayment> checkBookDate(String roomNo) {
+		return businessDao.checkBookDate(sqlSession, roomNo);
+	}
 	
 	
 	

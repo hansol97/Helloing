@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
@@ -69,7 +70,6 @@ public class BusinessDao {
 	public ArrayList<Accomm> selectAccommList(SqlSessionTemplate sqlSession, String businessNo) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectAccommListBu", businessNo);
 	}
-
 
 	// 숙소에 딸린 방 리스트 뽑아오기
 	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, ArrayList<Integer> accommNoList) {

@@ -11,6 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<result column="ADDRESS" 				property="address" />
   	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
   </resultMap>
+  
+  
+  <resultMap id="roomPaymentResultSet" type="roomPayment">
+  	<result column="START_DATE" property="startDate"/>
+  	<result column="END_DATE" property="endDate"/>
+  </resultMap>
  
 	<select id="loginCompany" parameterType="_int" resultMap="businessResultSet">
 		select
@@ -53,6 +59,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE
 		       BUSINESS_NO = #{ businessNo }
 	</update>
+	
+	<!-- 숙소 객실 예약날짜 확인 -->
+	<select id="checkBookDate" parameterType="string" resultMap="roomPaymentResultSet">
+		SELECT
+		       START_DATE
+		       ,END_DATE
+		       
+		  FROM
+		       ROOM_PAYMENT
+		 WHERE 
+		       ROOM_NO = 1
+	</select>
 	
 
 
