@@ -209,11 +209,15 @@ public class MemberServiceImpl implements MemberService{
 	
 	//가계부 상세페이지
 	@Override
-	public Expense expenseView(int planNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Expense> expenseView(int planNo) {
+		return memberDao.expenseView(planNo, sqlSession);
 	}
-
+	
+	//1/n
+	@Override
+	public Expense dutchTreat(int plannerNo) {
+		return memberDao.dutchTreat(plannerNo, sqlSession);
+	}
 	@Override
 	public int addActWish(ActivityWish aw) {
 		return memberDao.addActWish(sqlSession, aw);
@@ -223,6 +227,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
 
 
 
