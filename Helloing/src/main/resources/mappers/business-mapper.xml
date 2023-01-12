@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 숙소 객실 예약날짜 확인 -->
-	<select id="checkBookDate" parameterType="string" resultType="roomPaymentResultSet">
+	<select id="checkBookDate" parameterType="string" resultMap="roomPaymentResultSet">
 		SELECT
 		       START_DATE
 		       ,END_DATE
