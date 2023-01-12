@@ -45,7 +45,7 @@
                                 </td>
                                 <td>
                                     <div class="text">
-                                        <input type="text" class="admin-input_form" name="keyword">
+                                        <input type="text" id="mem_search_input" class="admin-input_form" name="keyword">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
@@ -181,6 +181,16 @@
                             alert('하나를 선택하세요');
                         }
                     });
+					
+					if('${map.condition}' != ''){
+   						if('${ map.condition }' == "searchId"){
+   							$('select option:eq(0)').prop('selected', true);
+   						}else{
+   							$('select option:eq(1)').prop('selected', true);
+   						};
+    					
+   						$('#mem_search_input').val('${map.keyword}');
+                    }
 				})
 			</script>
             

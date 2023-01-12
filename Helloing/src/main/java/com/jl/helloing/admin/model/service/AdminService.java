@@ -59,6 +59,9 @@ public interface AdminService {
 	
 	// 사업자 목록 조회
 	ArrayList<Business> selectBusinessList(PageInfo pi);
+	
+	// 사업자 등록 결제 수 조회
+	int selectBusiPayListCount();
 
 
 
