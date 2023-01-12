@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,8 @@
 	<div style="height: 70px;"></div>  
 	
 	<div class="inner">  
+	
+		<%--
         <div class="top-content">
             <form action="search.accomm" method="">
                 <h1>어떤 숙소 찾으세요?</h1>
@@ -47,6 +50,9 @@
                 </div>
             </form>
         </div>
+         --%>
+        
+        <%--
         <h3>최근 본 숙소</h3> <!-- 쿠키 사용해서 뿌려줄 것 / 쿠키가 없다면 최근 본 숙소도 없음 -->
                               <!-- N글자 이상이면 ... 하는것도 만들기 -->
         <div class="recentlyAccom">
@@ -79,314 +85,87 @@
             </div>
         </div>
         <hr>
+         --%>
 		
         <h3>인기 호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
-        <div class="left-button">
-            <p>&lt;</p>
-        </div>
         <div class="hot" id="hot-hotel"> 
-            <div class="productbox">
-            	<input type="hidden" name="" value="1"><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-               	 ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox"> 
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-            	<input type="hidden" name="" value=""><!-- 숙소 번호 넣기 -->
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>호텔<br>
-                <span class="accommName">호텔이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
+	        <c:forEach items="${ acList }" var="ac">
+	        	<c:if test="${ ac.category == 'HOTEL' }">
+	        		<div class="productbox">
+		            	<input type="hidden" name="accommNo" value="${ ac.accommNo }">
+		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <p>호텔<br>
+			                <span class="accommName">${ ac.accommName }</span><br>
+			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
+			                ${ ac.rowPrice }원 ~</p>
+		            </div>
+	        	</c:if>
+	        </c:forEach>
+            
         </div>
 
         <h3>인기 펜션</h3>
         <div class="hot" id="hot-pension">
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>펜션<br>
-                <span class="accommName">펜션이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
+        	<c:forEach items="${ acList }" var="ac">
+        		<c:if test="${ ac.category == 'PENSION' }">
+        			<div class="productbox">
+        				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
+		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <p>펜션<br>
+			                <span class="accommName">${ ac.accommName }</span><br>
+			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
+			                ${ ac.rowPrice }원 ~</p>
+		            </div>
+        		</c:if>
+        	</c:forEach>
         </div>
 
-        <h3>인기 풀빌라</h3>
-        <div class="hot" id="hot-poolVilla">
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>풀빌라<br>
-                <span class="accommName">풀빌라이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
+        <h3>인기 모텔</h3>
+        <div class="hot" id="hot-motel">
+            <c:forEach items="${ acList }" var="ac">
+        		<c:if test="${ ac.category == 'MOTEL' }">
+        			<div class="productbox">
+        				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
+		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <p>모텔<br>
+			                <span class="accommName">${ ac.accommName }</span><br>
+			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
+			                ${ ac.rowPrice }원 ~</p>
+		            </div>
+        		</c:if>
+        	</c:forEach>
         </div>
 
         <h3>인기 게스트하우스</h3>
         <div class="hot" id="hot-guestHouse">
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-               	 ⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
-            <div class="productbox">
-                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
-                <p>게스트하우스<br>
-                <span class="accommName">게스트하우스이름</span><br>
-                	⭐ 4.5 (10)<br>
-                86,000원</p>
-            </div>
+            <c:forEach items="${ acList }" var="ac">
+        		<c:if test="${ ac.category == 'GUESTHOUSE' }">
+        			<div class="productbox">
+        				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
+		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <p>게스트하우스<br>
+			                <span class="accommName">${ ac.accommName }</span><br>
+			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
+			                ${ ac.rowPrice }원 ~</p>
+		            </div>
+        		</c:if>
+        	</c:forEach>
+        </div>
+        
+        <h3>인기 민박</h3>
+        <div class="hot" id="hot-guestHouse">
+            <c:forEach items="${ acList }" var="ac">
+        		<c:if test="${ ac.category == 'HOUSE' }">
+        			<div class="productbox">
+        				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
+		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <p>민박<br>
+			                <span class="accommName">${ ac.accommName }</span><br>
+			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
+			                ${ ac.rowPrice }원 ~</p>
+		            </div>
+        		</c:if>
+        	</c:forEach>
         </div>
 		
 	</div>

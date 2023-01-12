@@ -17,6 +17,17 @@ public class Accomm {
 	private String endDate;
 	private String accommContent;
 	private String category;
+	
+	private double avg; // 별점 평균
+	private int reviewCount; // 리뷰 개수
+	private int rowPrice; // 가장 낮은 객실 가격
+	
+	// 별점 각 개수들
+	private int star1;
+	private int star2;
+	private int star3;
+	private int star4;
+	private int star5;
 }
 
 //ACCOMM_NO	NUMBER

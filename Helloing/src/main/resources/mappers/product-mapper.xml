@@ -5,18 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="productMapper">
 
     <resultMap id="AccommResultSet" type="accomm">
-        <result column="ACCOMM_NO"       property="accommNo" />
-        <result column="BUSINESS_NO"   property="businessNo" />
-        <result column="ACCOMM_NAME"  property="accommName" />
-        <result column="ADDRESS"    property="address" />
-        <result column="LAT"    property="lat" />
-        <result column="LNG"    property="lng" />
-        <result column="GRADE"    property="grade" />
-        <result column="REFUND"    property="refund" />
-        <result column="CHECKINOUT"    property="checkInout" />
-        <result column="ENDDATE"    property="endDate" />
-        <result column="ACCOMM_CONTENT"    property="accommContent" />
-        <result column="CATEGORY"    property="category" />
+        <result column="ACCOMM_NO"       	property="accommNo" />
+        <result column="BUSINESS_NO"   		property="businessNo" />
+        <result column="ACCOMM_NAME"  		property="accommName" />
+        <result column="ADDRESS"    		property="address" />
+        <result column="LAT"    			property="lat" />
+        <result column="LNG"    			property="lng" />
+        <result column="GRADE"    			property="grade" />
+        <result column="REFUND"    			property="refund" />
+        <result column="CHECKINOUT"    		property="checkInout" />
+        <result column="ENDDATE"    		property="endDate" />
+        <result column="ACCOMM_CONTENT"		property="accommContent" />
+        <result column="CATEGORY"    		property="category" />
+        <result column="AVG"    			property="avg" />
+        <result column="REVIEWCOUNT"    	property="reviewCount" />
+        <result column="ROWPRICE"    		property="rowPrice" />
+        <result column="STAR1"    			property="star1" />
+        <result column="STAR2"    			property="star2" />
+        <result column="STAR3"    			property="star3" />
+        <result column="STAR4"    			property="star4" />
+        <result column="STAR5"    			property="star5" />
     </resultMap>
 
      <resultMap id="RoomResultSet"  type="room">
@@ -77,6 +85,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="TICKET_NAME"    property="ticketName" />
     </resultMap>
     
+    <resultMap id="AcReviewResultSet"  type="acReview">
+        <result column="REVIEW_NO"       property="reviewNo" />
+        <result column="ACCOMM_NO"   property="accommNo" />
+        <result column="MEM_NO"    property="memNo" />
+        <result column="ROOM_NO"    property="roomNo" />
+        <result column="REVIEW_CONTENT"    property="reviewContent" />
+        <result column="CREATE_DATE"    property="createDate" />
+        <result column="TAG"    property="tag" />
+        <result column="STAR"    property="star" />
+        <result column="MEM_NAME"    property="memName" />
+        <result column="ROOM_NAME"    property="roomName" />
+    </resultMap>
+    
 	<resultMap id="actWishResultSet" type="activitywish">
 		<result column="WISH_DATE"		property="wishDate" />
 		<result column="ACTIVITY_NO" 	property="activityNo" />
@@ -102,9 +123,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               	  	    ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
 		  FROM
 		  	   ACTIVITY A
-          LEFT
-          JOIN 
-          	   ACTIVITY_REVIEW R ON(A.ACTIVITY_NO = R.ACTIVITY_NO)
 	</select>
 
 	<!-- 액티비티 상세 정보 -->
@@ -209,7 +227,84 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</foreach>
 	</insert>
 	
-
+	<!-- 숙소 메인에 뿌려줄 숙소 리스트들 -->
+	<select id="selectAcList" resultMap="AccommResultSet">
+		SELECT 
+			   ACCOMM_NO
+			  ,ACCOMM_NAME
+			  ,CATEGORY
+			  ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
+			  ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
+              ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
+		  FROM
+		  	   ACCOMM A
+	</select>
+	
+	<!-- 숙소 상세 조회 -->
+	<select id="selectAcDetail" resultMap="AccommResultSet" parameterType="_int">
+		SELECT
+			   ACCOMM_NO
+			  ,BUSINESS_NO
+			  ,ACCOMM_NAME
+			  ,ADDRESS
+			  ,LAT
+			  ,LNG
+			  ,GRADE
+			  ,REFUND
+			  ,END_DATE
+			  ,ACCOMM_CONTENT
+			  ,CATEGORY
+			  ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
+			  ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
+			  ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
+			  ,(SELECT COUNT(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = #{ accommNo } AND STAR = 1) AS "STAR1"
+			  ,(SELECT COUNT(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = #{ accommNo } AND STAR = 2) AS "STAR2"
+			  ,(SELECT COUNT(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = #{ accommNo } AND STAR = 3) AS "STAR3"
+			  ,(SELECT COUNT(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = #{ accommNo } AND STAR = 4) AS "STAR4"
+			  ,(SELECT COUNT(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = #{ accommNo } AND STAR = 5) AS "STAR5"
+		  FROM
+		       ACCOMM A
+         WHERE
+         	   ACCOMM_NO = #{ accommNo }
+	</select>
+	<!-- 숙소에 등록된 객실 리스트 조회 -->
+	<select id="selectRoomList" resultMap="RoomResultSet" parameterType="_int">
+		SELECT
+		       ROOM_NO
+		      ,ACCOMM_NO
+		      ,ROOM_NAME
+		      ,CAPACITY
+		      ,PRICE
+		  FROM
+		  	   ROOM
+		 WHERE
+		 	   ACCOMM_NO = #{ accommNo }
+	</select>
+	<!-- 숙소에 등록된 리뷰 조회 -->
+	<select id="selectAcReviewList" resultMap="AcReviewResultSet" parameterType="_int">
+		SELECT
+			   REVIEW_NO
+			  ,AR.ACCOMM_NO
+			  ,substr(MEM_NAME,1,1) || lpad('*',length(MEM_NAME)-2,'*') || substr(MEM_NAME, length(MEM_NAME), 1) AS MEM_NAME
+			  ,AR.ROOM_NO
+			  ,ROOM_NAME
+			  ,REVIEW_CONTENT
+			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
+			  ,TAG
+			  ,STAR
+		  FROM
+		       ACCOMM_REVIEW AR
+		  JOIN
+		  	   MEMBER USING (MEM_NO)
+		  JOIN
+		  	   ROOM R ON (AR.ROOM_NO = R.ROOM_NO)
+		 WHERE
+		 	   AR.ACCOMM_NO = 1
+		 ORDER
+		    BY
+		       REVIEW_NO DESC
+	</select>
+	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
