@@ -61,6 +61,10 @@ public interface BusinessService {
 
 	int insertTicket(Ticket t);
 
+	ArrayList<Accomm> selectAccommList(String businessNo);
+
+	ArrayList<Room> selectRoomList(ArrayList<Integer> accommNoList);
+
 
 	
 	
