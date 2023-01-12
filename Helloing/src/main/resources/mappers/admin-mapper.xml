@@ -30,7 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<resultMap id="businessPayResultSet" type="businessPayment">
-		<
+		<result column="PAYMENT_NO" property="paymentNo" />
+		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="PAYMENT_AMOUNT" property="paymentAmount" />
+		<result column="ACCOMM_NO" property="accommNo" />
+		<result column="ACTIVITY_NO" property="activityNo" />
 	</resultMap>
 	
 	<!-- 챗봇Q 중복 확인 -->
@@ -268,6 +272,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사업자 등록 결제 리스트 -->
 	<select id="selectBusiPayList" resultMap="businessPayResultSet">
-	
+		SELECT
+		       PAYMENT_NO
+		       ,BUSINESS_NAME
+		       ,PAYMENT_AMOUNT
+		       ,ACCOMM_NAME
+		       ,ACTIVITY_NAME
+		  FROM
+		       BUSINESS_PAYMENT
+		  JOIN 
+		       BUSINESS 
+		 USING 
+		       (BUSINESS_NO)
+		  LEFT
+		  JOIN
+		        ACTIVITY 
+		 USING 
+		        (ACTIVITY_NO)
+		  LEFT
+		  JOIN
+		        ACCOMM 
+		 USING
+		        (ACCOMM_NO)		        
 	</select>
 </mapper>
