@@ -90,13 +90,16 @@ height: 30px;
 						<td> 이름  &nbsp;&nbsp;</td>
 						<td><input type="text" name="memName" required></td>
 					</tr>
+					
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
 						<td><input type="email" name="email" id="email" >
+							<!--  
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
 							<input type="text" name="secret" id="secret1" maxlength="6"><span id="secret" width="80"></span> 
 						</td>	 
+						-->
 					</tr>
 						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
 					

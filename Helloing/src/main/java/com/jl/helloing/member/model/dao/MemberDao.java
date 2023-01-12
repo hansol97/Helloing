@@ -11,6 +11,7 @@ import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 @Repository
 public class MemberDao {
@@ -93,8 +94,12 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.planDetailView", plannerNo);
 	}
 
+	public int planAddMem(PlannerMem p, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.planAddMem", p);
+	}
+
+
 	public int addWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.insert("memberMapper.addWish", aw);
 	}
-	
 }

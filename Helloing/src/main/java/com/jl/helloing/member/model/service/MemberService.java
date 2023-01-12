@@ -10,6 +10,7 @@ import com.jl.helloing.member.model.vo.Expense;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
+import com.jl.helloing.member.model.vo.PlannerMem;
 
 public interface MemberService {
 	// 승준
@@ -82,7 +83,7 @@ public interface MemberService {
 	ArrayList<Plan> planDetailView(int plannerNo);
 	
 	//일행과 함께 여행가기
-	int planAddMem(Plan p);
+	int planAddMem(PlannerMem p);
 	
 	//일정 추가 
 	int insertPlan(Plan p);
