@@ -101,7 +101,7 @@ public interface BusinessService {
 	
 	
 	// ---------------------------------------------
-	ArrayList<BusinessPayment> checkBookDate(String roomNo);
+	ArrayList<BusinessPayment> checkBookDate(int roomNo);
 	
 	
 

@@ -105,7 +105,7 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	//---------------------------------------------------------------
 	@Override
-	public ArrayList<BusinessPayment> checkBookDate(String roomNo) {
+	public ArrayList<BusinessPayment> checkBookDate(int roomNo) {
 		return businessDao.checkBookDate(sqlSession, roomNo);
 	}
 	

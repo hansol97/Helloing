@@ -240,7 +240,7 @@ public class BusinessController {
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
-	public String checkBookDate(String roomNo) {
+	public String checkBookDate(int roomNo) {
 	
 		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
 	
