@@ -198,8 +198,7 @@ public class MemberServiceImpl implements MemberService{
 	//일정 수정
 	@Override
 	public int updatePlan(Plan p) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.updatePlan(p, sqlSession);
 	}
 	
 	//일정 삭제 

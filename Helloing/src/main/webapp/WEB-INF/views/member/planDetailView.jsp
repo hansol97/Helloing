@@ -314,6 +314,7 @@
 						    <option>이동</option>
 						    <option>관광</option>
 						    <option>식사</option>
+						    <option>카페</option>
 						    <option>쇼핑</option>
 						    <option>기타</option>
 					    </select>
@@ -331,7 +332,7 @@
 	    <div id="ex3" class="modal">
     		<h5 style="font-weight:600;">일정 수정</h5>
 			<hr>
-			<form action="insertPlan.hj" method="post">
+			<form action="updatePlan.hj" method="post">
 					<ul class="insert-form">
 					<!-- ajax로 담겨질 곳 -->
 					</ul>
@@ -401,6 +402,7 @@
 							    <option>이동</option>
 							    <option>관광</option>
 							    <option>식사</option>
+							    <option>카페</option>
 							    <option>쇼핑</option>
 							    <option>기타</option>
 						    </select>
@@ -409,7 +411,7 @@
 				<input type="hidden" name="plannerNo" value="${list[1].plannerNo}">
 				<div class="modalBtn" style="float:right;">
 					<div class="modalBtn" style="float:right;">
-						<button type="submit">추가</button>
+						<button type="submit">수정</button>
 				 	</div>
 			 	</div>
 			</form>		 
