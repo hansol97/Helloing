@@ -207,6 +207,7 @@ public class AdminController {
 		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiPayListCount(), currentPage, 10, 5);
 		
 		ArrayList<BusinessPayment> list = adminService.selectBusiPayList(pi);
+		m.addAttribute("list", list);
 		
 		return "admin/businessPaymentListView";
 	}

@@ -24,4 +24,6 @@ public class Activity {
 	
 
 	private int allSum;
+	
+	private int memNo; // 액티비티 위시리스트에서 필요
 }

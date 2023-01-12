@@ -1,4 +1,7 @@
 $(function(){
+
+	checkWish();
+
 	// +, - 버튼 클릭 시 티켓 수 바뀌기
 	$(document).on('click', '.btn-minus, .btn-plus', function(){
 		var ticketcount = Number($(this).siblings('.count').text());
@@ -127,3 +130,13 @@ function removeWish(){
 }
 
 // 위시리스트에 추가되어있는지 확인
+function checkWish(){
+	if($('input[name=checkWish]').val() == 'none'){ // 추가 안한 상태
+		$('#btn-add').css('display', 'block');
+		$('#btn-rev').css('display', 'none');
+	}
+	else { // 추가한 상태
+		$('#btn-add').css('display', 'none');
+		$('#btn-rev').css('display', 'block');
+	}
+}

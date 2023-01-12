@@ -131,7 +131,7 @@ public class MemberController {
 		}
 	}
 	
-	
+	// 이메일 보내기
 	@RequestMapping("certButton.me")
 	public String certButton(String email, HttpServletRequest request) throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
@@ -157,7 +157,7 @@ public class MemberController {
 			return "redirect:/";
 		}
 
-	
+	// 이메일 인증번호 설정
 	public String generateSecret() {
 		Random r = new Random();
 		// Math를 사용해도됨
@@ -170,6 +170,7 @@ public class MemberController {
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}
 	
+	// 이메일 인증번호 ajax로 인증
 	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
 	public boolean check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 

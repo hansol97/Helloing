@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Ticket;
@@ -36,5 +37,9 @@ public class ProductDao {
 	
 	public int insertTicketPayment(SqlSessionTemplate sqlSession, List<TicketPayment> list) {
 		return sqlSession.insert("productMapper.insertTicketPayment", list);
+	}
+	
+	public ActivityWish checkActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
+		return sqlSession.selectOne("productMapper.checkActWish", aw);
 	}
 }
