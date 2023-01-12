@@ -7,8 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.jl.helloing.member.model.vo.ActivityWish;
+import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
+import com.jl.helloing.product.model.vo.Room;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -17,10 +20,6 @@ public class ProductDao {
 
 	public ArrayList<Activity> selectActList(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("productMapper.selectActList");
-	}
-	
-	public int actTicketRowPrice(SqlSessionTemplate sqlSession, int activityNo) {
-		return sqlSession.selectOne("productMapper.actTicketRowPrice", activityNo);
 	}
 	
 	public Activity selectActDetail(SqlSessionTemplate sqlSession, int activityNo) {
@@ -41,5 +40,21 @@ public class ProductDao {
 	
 	public ActivityWish checkActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.selectOne("productMapper.checkActWish", aw);
+	}
+	
+	public ArrayList<Accomm> selectAcList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("productMapper.selectAcList");
+	}
+	
+	public Accomm selectAcDetail(SqlSessionTemplate sqlSession, int accommNo) {
+		return sqlSession.selectOne("productMapper.selectAcDetail", accommNo);
+	}
+	
+	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, int accommNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectRoomList", accommNo);
+	}
+	
+	public ArrayList<AccommReview> selectAcReviewList(SqlSessionTemplate sqlSession, int accommNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectAcReviewList", accommNo);
 	}
 }
