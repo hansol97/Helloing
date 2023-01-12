@@ -97,7 +97,8 @@ height: 30px;
 						<td><input type="email" name="email" id="email" >
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
-							<input type="text" name="secret" id="secret1" maxlength="6"><span id="secret" width="200"></span> 
+							<input type="text" name="secret" id="secret1" maxlength="6">
+							<div id="secret" width="200"></div> 
 						</td>	 
 						
 					</tr>
@@ -171,7 +172,7 @@ height: 30px;
 			
 						<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행
-					// 현재 페이지중에 이러한 변화가 일어나면~
+					//document는 현재 페이지중에 이러한 변화가 일어나면~
 					$(document).on('focusout', 'input[name=memId]', function(){
 						
 						$('#checkId').text($('인증인증').val())
