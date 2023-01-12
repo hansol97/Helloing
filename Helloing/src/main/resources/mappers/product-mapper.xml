@@ -323,7 +323,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM
 		  		ACCOMM		
 		 WHERE
-				BUSINESS_NO = #{ businessNo )
+				BUSINESS_NO = #{ businessNo }
 				
 	</select>
 	
