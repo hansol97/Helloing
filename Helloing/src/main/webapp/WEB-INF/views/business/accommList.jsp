@@ -15,6 +15,7 @@
 
 </head>
 <body>
+
     <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     
