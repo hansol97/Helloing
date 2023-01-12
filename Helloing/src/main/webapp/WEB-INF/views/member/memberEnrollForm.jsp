@@ -26,7 +26,7 @@
 	border-radius: 3px;
 }
 button:hover{
-	color: #FFEA24;
+
 	cursor: pointer;
 }
 .emailCheck{
@@ -80,8 +80,9 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" required></td>
-						<td id="checkId" width="80"></td>
+						<td><input type="text" name="memId" maxlength="20" required>
+						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
+						</td>
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
@@ -115,8 +116,24 @@ height: 30px;
 						<td><input type="text" name="phone" placeholder="(-)를포함시켜주세요" required></td>
 					</tr>
 				</table>
-				<button type="submit" class="join-button">회원가입</button>
+				<button id="btn-submit" type="submit" class="join-button">회원가입</button>
 			</form>
+			
+			
+			<script>
+			$(function(){
+				$(document).on('focusout', 'input[name=memId]', function(){
+					$('#checkId').text('ㅇ하하하하')
+				})	
+			})
+
+			</script>
+			
+			
+			
+			
+			
+			
 			
 			
 			<script>
@@ -155,10 +172,14 @@ height: 30px;
 									if(result1){
 										$('#secret').text('일치합니다.')
 										$('#secret').css('color','blue')
+										$('#btn-submit').attr('type', 'submit');
 									}
 									else{
 										$('#secret').text('일치하지 않습니다.')
 										$('#secret').css('color','red')
+										//$('#enroll-form :submit').removeAttr('disabled');
+										$('#btn-submit').css('background-color', 'lightgray');
+										$('#btn-submit').attr('type', 'button');
 									}
 								},
 								error :function(){
@@ -170,7 +191,8 @@ height: 30px;
 				})
 			</script>
 			
-						<script>
+			<!--  
+			<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행
 					//document는 현재 페이지중에 이러한 변화가 일어나면~
 					$(document).on('focusout', 'input[name=memId]', function(){
@@ -179,7 +201,7 @@ height: 30px;
 					})
 				})
 			</script>
-			
+			-->
 			
 
 	</div>

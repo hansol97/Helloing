@@ -306,6 +306,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<!-- 숙소 조회 -->
+	<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
+		SELECT
+				ACCOMM_NO,
+				ACCOMM_NAME,
+				ADDRESS,
+				LAT,
+				LNG,
+				GRADE,
+				REFUND,
+				CHECKINOUT,
+				END_DATE,
+				ACCOMM_CONTENT,
+				CATEGORY
+		  FROM
+		  		ACCOMM		
+		 WHERE
+				BUSINESS_NO = #{businessNo)
+				
+	</select>
+	
+		
+	
+	
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
 		INSERT

@@ -20,7 +20,7 @@
         <div class="row justify-content-center">
           <br><br><br>
           <div class="accommTitle">객실 등록 페이지</div>
-          
+
         <!--등록 폼 박스-->
           <div class="fatherEnrollForm">
             <div class="blog-card enrollform" >
