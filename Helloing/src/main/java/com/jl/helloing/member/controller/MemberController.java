@@ -509,7 +509,7 @@ public class MemberController {
 	
 	
 	
-	/*
+	
 	// 위시리스트 추가
 	@RequestMapping("addWish")
 	public void addWish(HttpSession session,
@@ -523,6 +523,8 @@ public class MemberController {
 			aw.setActivityNo(activityNo);
 			// aw.setActivityName(activityName); // 이게 왜 필요하지?
 			
+			memberService.addWish(aw);
+			
 			System.out.println(aw);
 		} else {
 			
@@ -531,5 +533,5 @@ public class MemberController {
 		
 		
 	}
-	*/
+	
 }

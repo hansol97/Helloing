@@ -93,5 +93,8 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.planDetailView", plannerNo);
 	}
 
-
+	public int addWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
+		return sqlSession.insert("memberMapper.addWish", aw);
+	}
+	
 }

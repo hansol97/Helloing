@@ -99,6 +99,7 @@ public interface MemberService {
 	//가계부 페이지
 	Expense expenseView(int planNo);
 	
-
+	// 위시리스트 추가
+	int addWish(ActivityWish aw);
 	
 }
