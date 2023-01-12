@@ -318,7 +318,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				GRADE,
 				REFUND,
 				CHECKINOUT,
-				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS "END_DATE",
+				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS END_DATE,
 				ACCOMM_CONTENT,
 				CATEGORY
 		  FROM
@@ -327,7 +327,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				BUSINESS_NO = #{ businessNo }
 				
 	</select>
-	
 	
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
