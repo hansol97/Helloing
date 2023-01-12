@@ -94,8 +94,17 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.planDetailView", plannerNo);
 	}
 
-	public int planAddMem(PlannerMem p, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("memberMapper.planAddMem", p);
+	public int planAddMem(PlannerMem pm, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.planAddMem", pm);
+	}
+
+	public int planMemSelect(PlannerMem pm, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.planMemSelect", pm);
+	}
+
+	public int insertPlan(Plan p, SqlSessionTemplate sqlSession) {
+		System.out.println(p);
+		return sqlSession.insert("memberMapper.insertPlan", p);
 	}
 
 

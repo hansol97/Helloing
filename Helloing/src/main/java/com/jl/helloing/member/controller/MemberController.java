@@ -436,30 +436,44 @@ public class MemberController {
 	
 	//일행과 함께 여행가기
 	@RequestMapping("planAddMem.hj")
-	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm) {
+	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm, HttpSession session) {
 		
-			System.out.println(pm);
-		
-		if(memberService.planAddMem(pm)>0) {
-			
+		//조회했을 때 동일한 값이 없을 때만 insert
+		if(memberService.planMemSelect(pm)>0) { //동일한 값 O -> 실패
+			session.setAttribute("alertMsg", "이미 입력한 일행이 존재합니다.");
+			mv.addObject("plannerNo", pm.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
 		}else {
-			
+				if(memberService.planAddMem(pm)>0) { //동일한 값 X, 추가 성공 -> 성공
+					session.setAttribute("alertMsg", "일행 추가에 성공하였습니다.");
+					mv.addObject("plannerNo", pm.getPlannerNo());
+					mv.setViewName("redirect:planDetailView.hj");
+				}else { //insert실패
+					session.setAttribute("alertMsg", "일행 추가에 실패하였습니다.");
+					mv.addObject("plannerNo", pm.getPlannerNo());
+					mv.setViewName("redirect:planDetailView.hj");
+				}
 		}
-		
 		return mv;
-		
 	}
 	
-	
-	
-	
 	//일정 추가
-	
-	
-	
-	
-	
-	
+	@RequestMapping("insertPlan.hj")
+	public ModelAndView insertPlan(ModelAndView mv, Plan p, HttpSession session) {
+		
+		System.out.println(p);
+		
+		if(memberService.insertPlan(p)>0) {
+			session.setAttribute("alertMsg", "일정 추가에 성공하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}
+		return mv;
+	}
 	
 	//일정 수정 전 조회
 	
