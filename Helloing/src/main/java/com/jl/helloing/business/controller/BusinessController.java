@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
@@ -239,15 +240,15 @@ public class BusinessController {
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
-	public void checkBookDate(String roomNo) {
+	public String checkBookDate(String roomNo) {
 	
 		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
 	
 		
-	
-	
 		
 	
+		
+		return new Gson().toJson(arr);
 	}
 	
 	// 숙소 수정하기화면으로 이동
