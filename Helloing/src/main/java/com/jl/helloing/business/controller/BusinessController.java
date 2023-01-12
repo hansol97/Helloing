@@ -370,7 +370,7 @@ public class BusinessController {
 	}
 	// 기업 마이페이지
 	@RequestMapping("mypage.bu")
-	public String selectComMem() {
+	public String selectComMem(HttpSession session) {
 		return "business/mypage";
 	}
 	
@@ -392,16 +392,6 @@ public class BusinessController {
 	@RequestMapping("businessEnrollForm.bu")
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
-	}
-	
-	// 기업 파트너 로그인
-	
-	@RequestMapping("login.bu")
-	public void loginCompany(Business b, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		Business loginCompany = businessService.loginCompany(loginUser.getMemNo());
-		
-		session.setAttribute("loginCompany", loginCompany);
 	}
 	
 	// 기업 파트너 등록
@@ -438,11 +428,11 @@ public class BusinessController {
 	@RequestMapping("updateMember.bu")
 	public String updateBusinessMember(HttpSession session, String address, Model m) {
 		Business loginCompany = (Business)session.getAttribute("loginCompany");
-		if(loginCompany.getAddress().equals(address)) {
+		System.out.println(address);
+		if(loginCompany.getAddress().equals(address) || address.equals("")) {
 			return "business/mypage";
 		}else {
 			loginCompany.setAddress(address);
-			int result = businessService.updateBusinessMember(loginCompany);
 			
 			businessService.updateBusinessMember(loginCompany);
 			session.setAttribute("loginCompany", loginCompany);
