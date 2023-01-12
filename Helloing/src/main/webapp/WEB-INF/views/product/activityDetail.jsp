@@ -31,7 +31,7 @@
 					<p>📆 유효기간 (${ act.endDate }) 내 사용</p>
 				</div>
 				<hr>
-				
+
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
 					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
 					<div class="sub-images">
@@ -192,6 +192,15 @@
 					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 					<div>
+						<c:choose>
+							<c:when test="${ checkWish eq null }">
+								<input type="hidden" name="checkWish" value="none">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="checkWish" value="${ checkWish.wishDate }">
+							</c:otherwise>
+						</c:choose>
+					
 						<div id="btn-add">
 							<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
 						</div>
