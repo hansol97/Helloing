@@ -31,7 +31,7 @@
 					<p>📆 유효기간 (${ act.endDate }) 내 사용</p>
 				</div>
 				<hr>
-
+				
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
 					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
 					<div class="sub-images">
@@ -192,9 +192,16 @@
 					<p><span>${ act.rowPrice }원부터 ~</span></p>
 					<button onclick="selectTicket();">티켓 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 					<div>
-						<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
-						<button id="btn-addwish" onclick="removeWish();">♥️😘♥️</button>
+						<div id="btn-add">
+							<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						</div>
+						<div id="btn-rev" style="display: none;">
+							<button id="btn-removewish" onclick="removeWish();">♥️😘♥️</button>
+						</div>
 					</div>
+
+					
+
 				</div>
 			</div>
 		</div>

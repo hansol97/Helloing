@@ -15,6 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="MEM_ENROLLDATE" property="memEnrollDate" />
 		<result column="REPORT_COUNT" 	property="reportCount" />
 	</resultMap>
+	
+	<resultMap id="actWishResultSet" type="activitywish">
+		<result column="WISH_DATE"		property="wishDate" />
+		<result column="ACTIVITY_NO" 	property="activityNo" />
+		<result column="MEM_NO" 		property="memNo" />
+	</resultMap>
 
  <!-- 여기는 승준 -->
 	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
@@ -280,5 +286,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						, #{ memId }
 					)
 	</insert>
+	
+	<!-- 액티비티 위시리스트 추가 -->
+	<insert id="addActWish" parameterType="activityWish">
+		INSERT
+		  INTO
+		  	   ACTIVITY_WISH
+		  	   (
+		  	    ACTIVITY_NO
+		  	   ,MEM_NO
+		  	   )
+		VALUES
+			   (
+			    #{ activityNo }
+			   ,#{ memNo }
+			   )
+	</insert>
+	
+	<!-- 액티비티 위시리스트 삭제 -->
+	<delete id="removeActWish" parameterType="activityWish">
+		DELETE
+		  FROM
+		  	   ACTIVITY_WISH
+		 WHERE
+	 	       ACTIVITY_NO = #{ activityNo }
+	 	   AND
+	 	   	   MEM_NO = #{ memNo }
+	</delete>
 	
 </mapper>

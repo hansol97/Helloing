@@ -519,28 +519,37 @@ public class MemberController {
 	
 	
 	
-	// 위시리스트 추가
-	@RequestMapping("addWish")
-	public void addWish(HttpSession session,
-						ActivityWish aw,
-					    int activityNo,
-					    String activityName) {
+	// 액티비티 위시리스트 추가
+	@ResponseBody
+	@RequestMapping("addActWish")
+	public String addActWish(HttpSession session, ActivityWish aw) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
 			aw.setMemNo(loginUser.getMemNo());
-			aw.setActivityNo(activityNo);
-			// aw.setActivityName(activityName); // 이게 왜 필요하지?
 			
-			memberService.addWish(aw);
+			if(memberService.addActWish(aw) > 0) return "success";
+			else return "fail";
 			
-			System.out.println(aw);
 		} else {
-			
+			return "login please";
 		}
+	}
+	
+	// 액티비티 위시리스트 삭제
+	@ResponseBody
+	@RequestMapping("removeActWish")
+	public String removeActWish(HttpSession session, ActivityWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		
-		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.removeActWish(aw) > 0) return "success";
+			else return "fail";
+		} else {
+			return "idk";
+		}
 	}
 	
 }
