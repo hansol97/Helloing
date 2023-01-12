@@ -17,13 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
@@ -231,19 +231,19 @@ public class BusinessController {
 		}
 	}
 	
+	// 숙소 객실별 예약된 날짜 확인
+	@ResponseBody
+	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
+	public String checkBookDate(String roomNo) {
+	
+		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
 	
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	}
 	
 	// 숙소 수정하기화면으로 이동
 	@RequestMapping("goUpdateAccom.bu")
@@ -440,6 +440,8 @@ public class BusinessController {
 			return "business/mypage";
 		}
 	}
+	
+
 	
 	
 	
