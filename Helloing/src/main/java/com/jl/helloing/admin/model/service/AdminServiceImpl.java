@@ -117,6 +117,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.selectSearchMemListCount(sqlSession, map);
 	}
 
+	@Override
+	public ArrayList<Member> searchMemList(PageInfo pi, HashMap map) {
+		return adminDao.searchMemList(sqlSession, pi, map);
+	}
+
 	
 	
 

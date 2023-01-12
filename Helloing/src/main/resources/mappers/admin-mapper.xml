@@ -206,6 +206,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	   MEM_ID LIKE '%' || #{keyword} || '%'
 		 </if>
 	</select>
+	
+	<!-- 일반회원 검색 목록 -->
+	<select id="searchMemList" parameterType="hashMap" resultMap="memberResultSet">
+		SELECT
+		       MEM_NO
+		       ,MEM_ID
+		       ,MEM_NAME
+		       ,EMAIL
+		       ,PHONE
+		       ,STATUS
+		       ,MEM_ENROLLDATE
+		  FROM
+		       MEMBER
+		 WHERE
+		 <if test="condition == 'searchId'">
+		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 </if>
+		 <if test="condition == 'searchName'">
+		 	   MEM_ID LIKE '%' || #{keyword} || '%'
+		 </if>
+		 ORDER
+		    BY
+		       (CASE WHEN STATUS='A' THEN 1 ELSE 2 END), MEM_ENROLLDATE DESC   
+	</select>
 	<!-- 사업가 목록 수 -->
 	<select id="selectBusiListCount" resultType="_int">
 		SELECT 

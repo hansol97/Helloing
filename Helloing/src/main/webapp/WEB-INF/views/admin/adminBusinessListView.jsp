@@ -125,6 +125,7 @@
                                 <th width="200">사업자번호</th>
                                 <th width="330">주소</th>
                                 <th width="200">등록일자</th>
+                                <th width="100">기타</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,6 +145,7 @@
 			                                <td>${ b.businessNo }</td>
 			                                <td>${ b.address}</td>
 			                                <td>${ b.businessEnrollDate }</td>
+			                                <td><button>+</button></td>
 			                            </tr>
 			                        </c:forEach>
 			                   </c:otherwise>
@@ -187,6 +189,58 @@
         </div>
 
     </div>
+    
+     <div class="modal">
+        <div class="modal_body">
+            <div>
+                <div class="modal-title">
+                    <span>사업자 추가정보</span>
+                </div>
+                <div align="center">
+                    <table class="type02">
+                        <tr>
+                            <th>사업자명</th>
+                            <td>사업자2</td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td>서울시 중구</td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td>business@email.com</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-open-popup">Modal 띄우기</button>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+  
+        btnOpenPopup.addEventListener('click', () => {
+          modal.classList.toggle('show');
+  
+          if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+          }
+        });
+  
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.classList.toggle('show');
+  
+            if (!modal.classList.contains('show')) {
+              body.style.overflow = 'auto';
+            }
+          }
+        });
+      </script>
     
 </body>
 </html>

@@ -87,13 +87,22 @@ public class AdminDao {
 	}
 
 	public ArrayList<Business> selectBusinessList(SqlSessionTemplate sqlSession, PageInfo pi) {
-			int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-			return (ArrayList)sqlSession.selectList("adminMapper.selectBusinessList", null, rowBounds);
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectBusinessList", null, rowBounds);
 	}
 
+	
 	public int selectSearchMemListCount(SqlSessionTemplate sqlSession, HashMap map) {
 		return sqlSession.selectOne("adminMapper.selectSearchMemListCount", map);
+	}
+
+	public ArrayList<Member> searchMemList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap map) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchMemList", map, rowBounds);
 	}
 
 
