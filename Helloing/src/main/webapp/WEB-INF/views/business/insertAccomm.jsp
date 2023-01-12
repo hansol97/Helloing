@@ -37,7 +37,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="vertical-align: middle;">숙소 주소 :</th>
+						<th style="vertical-align: middle;">숙소 주소</th>
 						<td>
 							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기 클릭 🏠" class="button button--ujarak button--round-s"><br><br>
 							<input type="text" id="sample6_address" placeholder="주소" required>&nbsp;
