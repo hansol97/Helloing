@@ -11,6 +11,7 @@
 #enroll-form table {
    border-collapse: separate;
    border-spacing: 10px 30px;
+
 }
 #enroll-form input{
   height: 25px;
@@ -94,12 +95,11 @@ height: 30px;
 					<tr>
 						<td> 이메일  &nbsp;&nbsp;</td>
 						<td><input type="email" name="email" id="email" >
-							<!--  
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
-							<input type="text" name="secret" id="secret1" maxlength="6"><span id="secret" width="80"></span> 
+							<input type="text" name="secret" id="secret1" maxlength="6"><span id="secret" width="200"></span> 
 						</td>	 
-						-->
+						
 					</tr>
 						<!-- <td><button class="emailCheck" onclick="emailCheck">인증</button></td> -->
 					
@@ -130,7 +130,7 @@ height: 30px;
 						email : $('#email').val()
 					}
 					,success :function(result){
-						console.log(result)
+						console.log()
 					},
 					error :function(){
 						console.log("에러남")
@@ -139,41 +139,45 @@ height: 30px;
 			}
 			
 			</script>
-			
-			
+
 			<script>
 				$(function(){
-					$(document).on('focusout', 'input[name=memId]', 
-					function(){
-						$('#checkId').text($('인증인증').val())
-					})
-				})
-			</script>
-			
-			<script>
-				$(function(){
-					$(document).on('keyup', 'input[name=secret]', function(){
-						if($('input[name=secret]').val().length == 6){
+					$(document).on('focusout', 'input[name=secret]', function(){
 							$.ajax({
 								url : 'check',
 								data : {
 									secret : $('#secret1').val()
 								}
 								,success :function(result1){
-									console.log(result1)
+									//console.log(result1 + "????")
+									
+									if(result1){
+										$('#secret').text('일치합니다.')
+										$('#secret').css('color','blue')
+									}
+									else{
+										$('#secret').text('일치하지 않습니다.')
+										$('#secret').css('color','red')
+									}
 								},
 								error :function(){
 									console.log()
 								}
-								
 							})
-						$('#secret').text($('input[name=secret]').val())
-						}
+						
 					})
 				})
 			</script>
 			
-			
+						<script>
+				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행
+					// 현재 페이지중에 이러한 변화가 일어나면~
+					$(document).on('focusout', 'input[name=memId]', function(){
+						
+						$('#checkId').text($('인증인증').val())
+					})
+				})
+			</script>
 			
 			
 

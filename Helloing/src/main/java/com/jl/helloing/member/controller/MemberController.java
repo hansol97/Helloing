@@ -172,7 +172,7 @@ public class MemberController {
 	
 	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
-	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
+	public boolean check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
 											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없이 써야한다.
 		Cert cert = Cert.builder()
 						.who(request.getRemoteAddr())
@@ -180,10 +180,14 @@ public class MemberController {
 						.build(); // 객체를 만들어주는 역할
 		 // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
 		
+		/*
 		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
+
+			return result;
+		*/	
+		return memberService.validate(cert);
 		
-		return "result : " + result;
-		
+
 	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
