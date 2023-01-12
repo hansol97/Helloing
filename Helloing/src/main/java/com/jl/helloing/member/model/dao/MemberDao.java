@@ -29,12 +29,14 @@ public class MemberDao {
 	}
 	public boolean validate(SqlSessionTemplate sqlSession, Cert cert) {
 		
+		
 		Cert result = sqlSession.selectOne("memberMapper.validate", cert);
+		// 값이 들어왔으면 DB에서 날려야 한다.
 		if(result != null) {
 			sqlSession.delete("memberMapper.remove", cert);
 		}
 		
-		return result != null;// null이 아니면 true, null이면 false
+		return result != null;// true, false를 돌려준다 , null이 아니면 true, null이면 false
 	}
 
 	
@@ -79,8 +81,8 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertPlannerMem", memNo);
 	}
 
-	public Planner selectPlanner(Planner p, SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("memberMapper.selectPlanner", p);
+	public Planner selectPlanner(Planner pl, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectPlanner", pl);
 	}
 
 	public int updatePlanner(Planner pl, SqlSessionTemplate sqlSession) {
