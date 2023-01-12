@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.jl.helloing.admin.model.service.AdminService;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
@@ -202,8 +203,10 @@ public class AdminController {
 	
 	//--------------------- 결제관리 ---------------------
 	@RequestMapping("businessPayList.ad")
-	public String businessPaymentListView(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+	public String selectBusiPayList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
 		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiPayListCount(), currentPage, 10, 5);
+		
+		ArrayList<BusinessPayment> list = adminService.selectBusiPayList(pi);
 		
 		return "admin/businessPaymentListView";
 	}

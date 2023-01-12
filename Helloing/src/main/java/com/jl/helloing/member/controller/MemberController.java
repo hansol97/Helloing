@@ -131,7 +131,7 @@ public class MemberController {
 		}
 	}
 	
-	
+	// 이메일 보내기
 	@RequestMapping("certButton.me")
 	public String certButton(String email, HttpServletRequest request) throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
@@ -157,7 +157,7 @@ public class MemberController {
 			return "redirect:/";
 		}
 
-	
+	// 이메일 인증번호 설정
 	public String generateSecret() {
 		Random r = new Random();
 		// Math를 사용해도됨
@@ -170,9 +170,10 @@ public class MemberController {
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}
 	
+	// 이메일 인증번호 ajax로 인증
 	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
-	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
+	public boolean check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
 											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없이 써야한다.
 		Cert cert = Cert.builder()
 						.who(request.getRemoteAddr())
@@ -180,10 +181,14 @@ public class MemberController {
 						.build(); // 객체를 만들어주는 역할
 		 // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
 		
+		/*
 		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
+
+			return result;
+		*/	
+		return memberService.validate(cert);
 		
-		return "result : " + result;
-		
+
 	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
@@ -438,30 +443,44 @@ public class MemberController {
 	
 	//일행과 함께 여행가기
 	@RequestMapping("planAddMem.hj")
-	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm) {
+	public ModelAndView planAddMem(ModelAndView mv, PlannerMem pm, HttpSession session) {
 		
-			System.out.println(pm);
-		
-		if(memberService.planAddMem(pm)>0) {
-			
+		//조회했을 때 동일한 값이 없을 때만 insert
+		if(memberService.planMemSelect(pm)>0) { //동일한 값 O -> 실패
+			session.setAttribute("alertMsg", "이미 입력한 일행이 존재합니다.");
+			mv.addObject("plannerNo", pm.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
 		}else {
-			
+				if(memberService.planAddMem(pm)>0) { //동일한 값 X, 추가 성공 -> 성공
+					session.setAttribute("alertMsg", "일행 추가에 성공하였습니다.");
+					mv.addObject("plannerNo", pm.getPlannerNo());
+					mv.setViewName("redirect:planDetailView.hj");
+				}else { //insert실패
+					session.setAttribute("alertMsg", "일행 추가에 실패하였습니다.");
+					mv.addObject("plannerNo", pm.getPlannerNo());
+					mv.setViewName("redirect:planDetailView.hj");
+				}
 		}
-		
 		return mv;
-		
 	}
 	
-	
-	
-	
 	//일정 추가
-	
-	
-	
-	
-	
-	
+	@RequestMapping("insertPlan.hj")
+	public ModelAndView insertPlan(ModelAndView mv, Plan p, HttpSession session) {
+		
+		System.out.println(p);
+		
+		if(memberService.insertPlan(p)>0) {
+			session.setAttribute("alertMsg", "일정 추가에 성공하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}else {
+			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
+			mv.addObject("plannerNo", p.getPlannerNo());
+			mv.setViewName("redirect:planDetailView.hj");
+		}
+		return mv;
+	}
 	
 	//일정 수정 전 조회
 	

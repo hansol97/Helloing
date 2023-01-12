@@ -27,7 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	<result column="BUSINESS_NAME" 			property="businessName" />
 	  	<result column="ADDRESS" 				property="address" />
 	  	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
-	  </resultMap>
+	</resultMap>
+	
+	<resultMap id="businessPayResultSet" type="businessPayment">
+		<
+	</resultMap>
 	
 	<!-- 챗봇Q 중복 확인 -->
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
@@ -252,5 +256,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       BUSINESS B
 		 JOIN
 		       MEMBER USING(MEM_NO)
+	</select>
+	
+	<!-- 사업자 등록 결제 수 -->
+	<select id="selectBusiPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BUSINESS_PAYMENT
+	</select>
+	
+	<!-- 사업자 등록 결제 리스트 -->
+	<select id="selectBusiPayList" resultMap="businessPayResultSet">
+	
 	</select>
 </mapper>

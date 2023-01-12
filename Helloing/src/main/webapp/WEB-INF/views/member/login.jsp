@@ -85,7 +85,7 @@ button:hover{
 					<br><br>
 					<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required>
 					<br>
-					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 체크</label>
+					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 저장</label>
 					<br><br>
 					<button type="submit" class="login-button" >로그인</button>
 					<br>

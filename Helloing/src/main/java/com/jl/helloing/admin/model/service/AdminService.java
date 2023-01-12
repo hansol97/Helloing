@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 
@@ -62,6 +63,9 @@ public interface AdminService {
 	
 	// 사업자 등록 결제 수 조회
 	int selectBusiPayListCount();
+	
+	// 사업자 등록 결제 리스트 조회
+	ArrayList<BusinessPayment> selectBusiPayList(PageInfo pi);
 
 
 
