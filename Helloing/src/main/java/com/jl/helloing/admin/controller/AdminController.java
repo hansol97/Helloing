@@ -212,6 +212,20 @@ public class AdminController {
 		return "admin/businessPaymentListView";
 	}
 	
+	@RequestMapping("busiPaySearch.ad")
+	public ModelAndView searhBusinessPay(@RequestParam(value="cpage", defaultValue="1") int currentPage
+								   ,String keyword, ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.searchBusiPayListCount(keyword), currentPage, 10, 5);
+		ArrayList<BusinessPayment> list = adminService.searchBusiPayList(pi, keyword);
+		
+		mv.addObject("list", list)
+		  .addObject("pi", pi)
+		  .addObject("keyword", keyword)
+		  .setViewName("admin/businessPaymentListView");
+		
+		return mv;
+	}
+	
 	
 	
 

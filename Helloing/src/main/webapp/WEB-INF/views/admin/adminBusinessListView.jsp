@@ -238,11 +238,7 @@
           }
         });
         
-        $(function(){
-        	$('.plus_btn').click(function(){
-        		console.log($(this).siblings('input').eq(0);
-        	})
-        })
+        
       </script>
     
 </body>
