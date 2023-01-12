@@ -108,8 +108,7 @@ public class MemberDao {
 	}
 	
 	public Plan selectPlan(int planNo, SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("memberMapper.selectPlan", planNo);
 	}
 	
 	

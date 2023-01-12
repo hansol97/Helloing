@@ -333,14 +333,12 @@
 			<hr>
 			<form action="insertPlan.hj" method="post">
 					<ul class="insert-form">
-						<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요."></li>
-						<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요."></li>
-						<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}">
+					<!-- ajax로 담겨질 곳 -->
 					</ul>
 					<ul>
 						<li>
 							일정 시작 시간
-							<select name = "startTime">
+							<select class="startTime" name = "startTime">
 							    <option>01:00</option>
 							    <option>02:00</option>
 							    <option>03:00</option>
@@ -369,7 +367,7 @@
 						</li>
 						<li>
 							일정 종료 시간
-							<select name = "endTime">
+							<select class="endTime" name = "endTime">
 							    <option>01:00</option>
 							    <option>02:00</option>
 							    <option>03:00</option>
@@ -398,7 +396,7 @@
 						</li>
 						<li>
 							카테고리
-							<select name = "planCategory">
+							<select class="planCategory" name = "planCategory">
 							    <option>숙소</option>
 							    <option>이동</option>
 							    <option>관광</option>
@@ -428,15 +426,25 @@
 				url : 'selectPlan.hj',
 				data : {planNo : $planNo.siblings('input[name=planNo]').val()},
 				success : function(result){
-					let value = '';
-					var planNo = $planNo.siblings('input[name=planNo]').val()
 					
-					value +=  
-							+	'<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value=' + ${result.planName} + '"></li>'
-							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + ${result.planContent} + '"></li>'
-							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + ${result.planDate}  + '">';
+					console.log(result)
+					
+					let value = '';
+					var planName = result.planName;
+					var planContent = result.planContent;
+					var planDate = result.planDate;
+					
+					
+					value +=  '<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value="' + planName + '"></li>'
+							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + planContent + '"></li>'
+							+	'<li>일정 날짜 <input type="date" name="planDate" min="${list[1].startDate}" max="${list[1].endDate}" value="' + planDate  + '">';
 
+							console.log(value)
 							$('.insert-form').html(value);
+							
+					$('.startTime').val(result.startTime).prop("selected", true);
+					$('.endTime').val(result.endTime).prop("selected", true);
+					$('.planCategory').val(result.planCategory).prop("selected", true);
 							
 				},
 				error : function(){
