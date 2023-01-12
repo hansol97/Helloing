@@ -311,13 +311,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 				ACCOMM_NO,
 				ACCOMM_NAME,
+				BUSINESS_NO,
 				ADDRESS,
 				LAT,
 				LNG,
 				GRADE,
 				REFUND,
 				CHECKINOUT,
-				END_DATE,
+				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS "END_DATE",
 				ACCOMM_CONTENT,
 				CATEGORY
 		  FROM
@@ -326,8 +327,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				BUSINESS_NO = #{ businessNo }
 				
 	</select>
-	
-		
 	
 	
 	<!-- 숙소 집어넣기 -->
