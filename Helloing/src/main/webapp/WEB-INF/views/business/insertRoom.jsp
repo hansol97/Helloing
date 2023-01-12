@@ -43,7 +43,7 @@
 					<tr><!--히든인풋들 -->
 						<th>&nbsp;&nbsp;</th>
 						<td>
-                            <!-- <input type="hidden" name="accommNo" id="accommNo" value='1'> -->
+                            <input type="hidden" name="accommNo" id="accommNo" value='${requestScope.accommNo}'>
                             <input type="hidden">
                             <input type="hidden">
                         </td>
@@ -66,8 +66,8 @@
 
 				</table>
 					<div class="titleImg_class1" style="margin-left: 15px;">
-						<br><br><p>🎈객실 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="upfile" /><br><br>
+						<br><br><p>🎈객실 사진을 등록해 주세요 (1개 필수!)</p>	<br><br>
+						<input type="file" name="upfile" required /><br><br>
 						<input type="file" name="upfile" /><br><br>
 						<input type="file" name="upfile" /><br><br><br><br>
 					</div>

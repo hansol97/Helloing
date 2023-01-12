@@ -53,17 +53,19 @@ public class MemberController {
 	public ModelAndView loginMember( Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(m);
-		int memNo = loginUser.getMemNo();
-		Business loginCompany = businessService.loginCompany(memNo);
-		
-		// System.out.println("loginUser :" + loginUser );
-		// System.out.println("memNo:" + memNo);
-		// System.out.println("lc:" + loginCompany);
-		// System.out.println("서비스 돌아온 후 " + loginUser);
-		
-		// System.out.println(loginUser.getMemId());
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			int memNo = loginUser.getMemNo();
+			Business loginCompany = businessService.loginCompany(memNo);
+			
+			// System.out.println("loginUser :" + loginUser );
+			// System.out.println("memNo:" + memNo);
+			// System.out.println("lc:" + loginCompany);
+			// System.out.println("서비스 돌아온 후 " + loginUser);
+			
+			// System.out.println(loginUser.getMemId());
+		
+		
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("loginCompany", loginCompany);
 			mv.setViewName("redirect:/");
@@ -170,7 +172,7 @@ public class MemberController {
 	
 	@ResponseBody // ajax로 사용해서 데이터만 받을꺼니까
 	@RequestMapping("check")
-	public String check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
+	public boolean check(String secret, HttpServletRequest request) { // name속성에서 secret 넘김 
 											   //request를 쓰는데 아이디가 똑같은지 봐야하기때문에 어쩔수없이 써야한다.
 		Cert cert = Cert.builder()
 						.who(request.getRemoteAddr())
@@ -178,10 +180,14 @@ public class MemberController {
 						.build(); // 객체를 만들어주는 역할
 		 // 이걸가지고 이제 DB에가서  똑같은 놈이 썼는지 확인
 		
+		/*
 		boolean result = memberService.validate(cert); // boolean을 받아서 성공/실패만 
+
+			return result;
+		*/	
+		return memberService.validate(cert);
 		
-		return "result : " + result;
-		
+
 	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
@@ -532,27 +538,38 @@ public class MemberController {
 	
 	
 	
-	/*
-	// 위시리스트 추가
-	@RequestMapping("addWish")
-	public void addWish(HttpSession session,
-						ActivityWish aw,
-					    int activityNo,
-					    String activityName) {
+	
+	// 액티비티 위시리스트 추가
+	@ResponseBody
+	@RequestMapping("addActWish")
+	public String addActWish(HttpSession session, ActivityWish aw) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
 			aw.setMemNo(loginUser.getMemNo());
-			aw.setActivityNo(activityNo);
-			// aw.setActivityName(activityName); // 이게 왜 필요하지?
 			
-			System.out.println(aw);
+			if(memberService.addActWish(aw) > 0) return "success";
+			else return "fail";
+			
 		} else {
-			
+			return "login please";
 		}
-		
-		
-		
 	}
-	*/
+	
+	// 액티비티 위시리스트 삭제
+	@ResponseBody
+	@RequestMapping("removeActWish")
+	public String removeActWish(HttpSession session, ActivityWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.removeActWish(aw) > 0) return "success";
+			else return "fail";
+		} else {
+			return "idk";
+		}
+	}
+	
 }

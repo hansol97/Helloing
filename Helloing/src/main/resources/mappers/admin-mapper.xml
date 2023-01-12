@@ -27,7 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	<result column="BUSINESS_NAME" 			property="businessName" />
 	  	<result column="ADDRESS" 				property="address" />
 	  	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
-	  </resultMap>
+	</resultMap>
+	
+	<resultMap id="businessPayResultSet" type="businessPayment">
+		<
+	</resultMap>
 	
 	<!-- 챗봇Q 중복 확인 -->
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
@@ -172,7 +176,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,EMAIL
 		       ,PHONE
 		       ,STATUS
-		       ,MEM_ENROLLDATE
+		       ,TO_CHAR(MEM_ENROLLDATE, 'YYYY-MM-DD') MEM_ENROLLDATE
 		  FROM
 		       MEMBER
 		 ORDER
@@ -203,8 +207,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	   MEM_ID LIKE '%' || #{keyword} || '%'
 		 </if>
 		 <if test="condition == 'searchName'">
+		 	   MEM_NAME LIKE '%' || #{keyword} || '%'
+		 </if>
+	</select>
+	
+	<!-- 일반회원 검색 목록 -->
+	<select id="searchMemList" parameterType="hashMap" resultMap="memberResultSet">
+		SELECT
+		       MEM_NO
+		       ,MEM_ID
+		       ,MEM_NAME
+		       ,EMAIL
+		       ,PHONE
+		       ,STATUS
+		       ,TO_CHAR(MEM_ENROLLDATE, 'YYYY-MM-DD') MEM_ENROLLDATE
+		  FROM
+		       MEMBER
+		 WHERE
+		 <if test="condition == 'searchId'">
 		 	   MEM_ID LIKE '%' || #{keyword} || '%'
 		 </if>
+		 <if test="condition == 'searchName'">
+		 	   MEM_NAME LIKE '%' || #{keyword} || '%'
+		 </if>
+		 ORDER
+		    BY
+		       (CASE WHEN STATUS='A' THEN 1 ELSE 2 END), MEM_ENROLLDATE DESC   
 	</select>
 	<!-- 사업가 목록 수 -->
 	<select id="selectBusiListCount" resultType="_int">
@@ -221,12 +249,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ,MEM_NO
 		       ,BUSINESS_NAME
 		       ,PHONE
-		       ,BUSINESS_ENROLLDATE
+		       ,TO_CHAR(BUSINESS_ENROLLDATE, 'YYYY-MM-DD') BUSINESS_ENROLLDATE
 		       ,ADDRESS
 		       ,EMAIL
 		 FROM
 		       BUSINESS B
 		 JOIN
 		       MEMBER USING(MEM_NO)
+	</select>
+	
+	<!-- 사업자 등록 결제 수 -->
+	<select id="selectBusiPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BUSINESS_PAYMENT
+	</select>
+	
+	<!-- 사업자 등록 결제 리스트 -->
+	<select id="selectBusiPayList" resultMap="businessPayResultSet">
+	
 	</select>
 </mapper>

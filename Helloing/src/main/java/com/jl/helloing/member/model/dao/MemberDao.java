@@ -107,5 +107,11 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertPlan", p);
 	}
 
-
+	public int addActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
+		return sqlSession.insert("memberMapper.addActWish", aw);
+	}
+	
+	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
+		return sqlSession.delete("memberMapper.removeActWish", aw);
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jl.helloing.admin.model.dao.AdminDao;
 import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.vo.Business;
+import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 
@@ -115,6 +116,21 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int selectSearchMemListCount(HashMap map) {
 		return adminDao.selectSearchMemListCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Member> searchMemList(PageInfo pi, HashMap map) {
+		return adminDao.searchMemList(sqlSession, pi, map);
+	}
+
+	@Override
+	public int selectBusiPayListCount() {
+		return adminDao.selectBusiPayListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<BusinessPayment> selectBusiPayList(PageInfo pi) {
+		return adminDao.selectBusiPayList(sqlSession, pi);
 	}
 
 	
