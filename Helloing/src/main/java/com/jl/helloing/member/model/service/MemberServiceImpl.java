@@ -60,14 +60,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member findId(Member m) {
 		
-		return memberDao.findId());
+		return memberDao.findId(sqlSession, m);
 	}
 
-	@Override
-	public Member findPwd(Member m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	//혜진

@@ -27,6 +27,9 @@ public interface MemberService {
 	
 	// 아이디 찾기
 	Member findId(Member m);
+	
+	
+	
 	/*
 	public Cert findPwd(Member m) {
 		
