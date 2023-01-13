@@ -108,6 +108,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_Id = #{ checkId }
 	</select>
 	
+	
+	<select id="findId" parameterType="member" resultMap="memberResultSet" >
+		select
+				mem_id
+		  from
+				member
+	     where
+	     		mem_name = #{ memName}
+	       and
+	       		email =#{ email }
+	       and
+	       		status = 'Y'			  		
+	</select>
+	 
+	
+	
 	<!-- 여기부터 혜진 -->
 	<select id="checkPwd" parameterType="member" resultType="string">
 	SELECT 
