@@ -90,14 +90,21 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//아이디찾기
+	//아이디찾기 폼 이동
 	@RequestMapping("findIdForm.me")
-	public String findId() {
+	public String findIdForm() {
 		return "member/findIdForm";
 	}
+	@RequestMapping("findId.me")
+	public String findId() {
+		return memberService.findId()
+	}
+	
+	
 	// 비밀번호 찾기
 	@RequestMapping("findPwdForm.me")
-	public String findPwd() {
+	public String findPwd(Member m) {
+		//memberService.
 		return "member/findPwdForm";
 	}
 	// 새 비밀번호 (비밀번호 찾기 후)
