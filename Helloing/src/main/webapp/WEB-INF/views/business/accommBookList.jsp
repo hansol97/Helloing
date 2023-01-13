@@ -70,6 +70,8 @@
         font-weight:bold;
         padding-left:0px;
     }
+    
+    
 	
 </style>
 
@@ -137,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     $(function(){
+    	
+    	$('button[title="This month"]').hide();
     	$('#book-info-area').hide();
     	
     	checkBookDate();
@@ -148,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					roomNo : $('#roomNo_input').val()
 				}
 	    		,success : function(dList){
-	    			console.log(dList);
 					for(var i = 0; i < dList.length; i++){
 						
 						var startDate = new Date(dList[i].startDate); // 시작날짜 Date로 형변환
@@ -177,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
     	}
     	
     	 $('button[title="Previous month"], button[title="Next month"]').click(function(){
-    	    	console.log('실행');
     	    	checkBookDate();
     	 });
     	 
