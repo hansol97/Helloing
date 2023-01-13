@@ -103,9 +103,12 @@ public class MemberController {
 		
 		if(m1 != null) {
 		String memId = m1.getMemId();
-		mv.addObject("memId", memId).addObject("alertMsg", "당신의 아이디는 : " + memId + "입니다.").setViewName("member/login");
+		mv.addObject("memId", memId)
+		  .addObject("alertMsg", "당신의 아이디는 : " + memId + "입니다.")
+		  .setViewName("member/login");
 		} else {
-			mv.addObject("alertMsg", "회원가입정보가 없습니다.").setViewName("member/findIdForm");
+			mv.addObject("alertMsg", "회원가입정보가 없습니다.")
+			  .setViewName("member/findIdForm");
 		}
 		return mv;
 
