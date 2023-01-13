@@ -87,8 +87,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		   ,ROOM_NAME
 		       ,MEM_NAME
 		       ,HEAD_COUNT
-		       ,START_DATE
-		       ,RP.END_DATE
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(RP.END_DATE, 'YYYY.MM.DD') END_DATE
 		       ,RP.PRICE
 		  FROM
 		       ROOM_PAYMENT RP
