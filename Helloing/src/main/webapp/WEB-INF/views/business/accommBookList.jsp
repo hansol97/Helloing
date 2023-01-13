@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
         	
         	$.ajax({
-        		url:'bookMemberInfo.bu'
+        		url:'selectBookInfo.bu'
         		,data : {date : info}
         		,success : function(result){
         			console.log(result);

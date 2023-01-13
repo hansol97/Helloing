@@ -30,6 +30,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Controller
@@ -244,14 +245,13 @@ public class BusinessController {
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
 	public String checkBookDate(int roomNo) {
-		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
+		ArrayList<RoomPayment> arr = businessService.checkBookDate(roomNo);
 		return new Gson().toJson(arr);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="selectBookInfo.bu", produces="application/json charset=UTF-8")
-	public String selectBookInfo() {
-		
+	@RequestMapping(value="selectBookInfo.bu", produces="application/json; charset=UTF-8")
+	public String selectBookInfo(String date) {
 		
 		
 		
