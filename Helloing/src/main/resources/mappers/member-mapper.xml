@@ -98,6 +98,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	   		secret = #{secret}
 	</delete>
 	
+	<select id="checkId" parameterType="member">
+		select
+				memId
+		 where
+		 		mem_Id = #{ memId }
+	</select>
 	
 	<!-- 여기부터 혜진 -->
 	<select id="checkPwd" parameterType="member" resultType="string">
