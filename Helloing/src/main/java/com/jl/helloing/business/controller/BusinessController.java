@@ -244,14 +244,19 @@ public class BusinessController {
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
 	public String checkBookDate(int roomNo) {
-	
 		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
-	
-		
-		
-	
-		
 		return new Gson().toJson(arr);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="selectBookInfo.bu", produces="application/json charset=UTF-8")
+	public String selectBookInfo() {
+		
+		
+		
+		
+		
+		return "";
 	}
 	
 	// 숙소 수정하기화면으로 이동
