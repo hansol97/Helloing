@@ -16,10 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <resultMap id="roomPaymentResultSet" type="roomPayment">
   	<result column="START_DATE" property="startDate"/>
   	<result column="END_DATE" property="endDate"/>
-  	<result column="AR_NAME" property="arName"/>
+  	<result column="ACCOMM_NAME" property="accName"/>
+  	<result column="ROOM_NAME" property="roomName"/>
   	<result column="MEM_NAME" property="memName"/>
   	<result column="HEAD_COUNT" property="headCount"/>
   	<result column="PRICE" property="price"/>
+  	<result column="CATEGORY" property="category"/>
   	
   </resultMap>
  
@@ -81,12 +83,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBookInfo" parameterType="roomPayment" resultMap="roomPaymentResultSet">
 		SELECT
 		       CATEGORY
-		       ,ACCOMM_NAME
-		       ,ROOM_NAME
+       		   ,ACCOMM_NAME
+       		   ,ROOM_NAME
 		       ,MEM_NAME
 		       ,HEAD_COUNT
-		       ,START_DATE
-		       ,RP.END_DATE
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(RP.END_DATE, 'YYYY.MM.DD') END_DATE
 		       ,RP.PRICE
 		  FROM
 		       ROOM_PAYMENT RP
@@ -97,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  JOIN 
 		       MEMBER USING(MEM_NO)
 		 WHERE
-		       START_DATE <![CDATA[<=]]> #{chooseDate}
+		       START_DATE <![CDATA[ <= ]]> #{chooseDate}
 		   AND
 		       RP.END_DATE > #{chooseDate}
 		   AND

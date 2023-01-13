@@ -70,6 +70,8 @@
         font-weight:bold;
         padding-left:0px;
     }
+    
+    
 	
 </style>
 
@@ -89,8 +91,23 @@ document.addEventListener('DOMContentLoaded', function() {
 			chooseDate : date
 			,roomNo : $('#roomNo_input').val()
 		}
-		,success : function(result){
-			console.log(result);
+		,success : function(bookInfo){
+			if(bookInfo != null){
+				
+				$('#book-info-area').show();
+				$('#book-info1>p.info_1').text(bookInfo.category);
+				$('#book-info1>p.info_2').text(bookInfo.accName+ '/' + bookInfo.roomName);
+	
+				$('#book-info2>p.info_1').text('예약자명 : ' + bookInfo.memName);
+				$('#book-info2>p.info_2').text('인원 수 : ' + bookInfo.headCount + '명');
+				
+				$('#book-info3>p.info_1').text('이용기간 : ' + bookInfo.startDate + ' ~ ' + bookInfo.endDate);
+				$('#book-info3>p.info_2').text('총 지불금액 : ' + bookInfo.price + '원');
+			}
+			else{
+				$('#book-info-area').hide();
+			}
+			
 		}
 		,error : function(){
 			console.log('실패');
@@ -108,47 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,timeGridWeek,timeGridDay' // 오른쪽 상단 툴바
         },
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
-        	
+        	//$('div.book-info-area').
+        	$('#book-info-date').text(info.dateStr);
         	selectBookInfo(info.dateStr);
         	
         },
-        // select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
-        // alert('selected ' + info.startStr + ' to ' + info.endStr);
-        // },
-        events: [ // 화면에 띄워줄 이벤트 객체 배열
-            // {
-            // title: '종강',
-            // start: '2023-01-25'
-            // },
-            // {
-            // title: '수업시작',
-            // start: '2023-01-06T09:00:00',
-            // },
-            // {
-            // title: '수업끝',
-            // start: '2023-01-06T17:50:00',
-            // },
-            // {
-            // title: '기능구현하기',
-            // start: '2023-01-09',
-            // end: '2023-01-14'
-            // },
-            // {
-            // title: '점심시간',
-            // start: '2023-01-16T12:50:00'
-            // },
-            // {
-            // title: '휴강',
-            // start: '2023-01-18'
-            // },
-            // {
-            // title: 'URL요청??',
-            // url: 'http://google.com/', // a태그 달기
-            // start: '2023-01-20'
-            // }
-        ]
-        
-        
+       
     });
     
     
@@ -158,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     $(function(){
     	
-    	console.log($('button[title="Next month"]')[0]);
+    	$('button[title="This month"]').hide();
+    	$('#book-info-area').hide();
     	
     	checkBookDate();
     	
@@ -169,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					roomNo : $('#roomNo_input').val()
 				}
 	    		,success : function(dList){
-	    			console.log(dList);
 					for(var i = 0; i < dList.length; i++){
 						
 						var startDate = new Date(dList[i].startDate); // 시작날짜 Date로 형변환
@@ -198,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
     	}
     	
     	 $('button[title="Previous month"], button[title="Next month"]').click(function(){
-    	    	console.log('실행');
     	    	checkBookDate();
     	 });
     	 
@@ -228,16 +209,16 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="book-info-area">
                 <p id="book-info-date">2022-08-03</p>
                 <div id="book-info1">
-                    <p>숙소/호텔</p>
-                    <p>서울신라호텔/디럭스 패키지(더블)</p>
+                    <p class="info_1">숙소/호텔</p>
+                    <p class="info_2">서울신라호텔/디럭스 패키지(더블)</p>
                 </div>
                 <div id="book-info2">
-                    <p>예약자명 : 유저2</p>
-                    <p>인원 수 : 3명</p>
+                    <p class="info_1">예약자명 : 유저2</p>
+                    <p class="info_2">인원 수 : 3명</p>
                 </div>
                 <div id="book-info3">
-                    <p>이용기간 : 2022.08.02 ~ 2022.08.04</p>
-                    <p>총 지불금액 : 155,000원</p>
+                    <p class="info_1">이용기간 : 2022.08.02 ~ 2022.08.04</p>
+                    <p class="info_2">총 지불금액 : 155,000원</p>
                 </div>
             </div>
         </div>
