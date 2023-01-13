@@ -253,14 +253,8 @@ public class BusinessController {
 	@ResponseBody
 	@RequestMapping(value="selectBookInfo.bu", produces="application/json; charset=UTF-8")
 	public String selectBookInfo(RoomPayment rp) {
-		System.out.println(rp);
-		
-		//RoomPayment bookInfo = businessService.selectBookInfo(rp);
-		
-		
-		
-		
-		return "";
+		RoomPayment bookInfo = businessService.selectBookInfo(rp);
+		return new Gson().toJson(bookInfo);
 	}
 	
 	// 숙소 수정하기화면으로 이동
