@@ -314,35 +314,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 조회 + 첨부파일 한개 가져오기-->
-<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
-	SELECT
-			ACCOMM_NO,
-			ACCOMM_NAME,
-			BUSINESS_NO,
-			ADDRESS,
-			LAT,
-			LNG,
-			GRADE,
-			REFUND,
-			CHECKINOUT,
-			CASE WHEN 
-						END_DATE > SYSDATE 
-				 THEN 
-				 		TO_CHAR(END_DATE, 'YYYY/MM/DD') 
-				 ELSE 
-				 		'만료일이 지났습니다 (' || TO_CHAR(END_DATE, 'YYYY/MM/DD') || ')'
-				 END AS 
-				 		 "END_DATE",
-			ACCOMM_CONTENT,
-			CATEGORY
-  	  FROM
-			ACCOMM
-	  WHERE
-			BUSINESS_NO = #{ businessNo }
-</select>
+	<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
+		SELECT
+				ACCOMM_NO,
+				ACCOMM_NAME,
+				BUSINESS_NO,
+				ADDRESS,
+				LAT,
+				LNG,
+				GRADE,
+				REFUND,
+				CHECKINOUT,
+				CASE WHEN 
+							END_DATE > SYSDATE 
+					 THEN 
+					 		TO_CHAR(END_DATE, 'YYYY/MM/DD') 
+					 ELSE 
+					 		'만료일이 지났습니다 (' || TO_CHAR(END_DATE, 'YYYY/MM/DD') || ')'
+					 END AS 
+					 		 "END_DATE",
+				ACCOMM_CONTENT,
+				CATEGORY,
+				(
+					SELECT
+					  		FILE_PATH || CHANGE_NAME
+					  FROM 
+							ACCOMM_ATTACHMENT
+					 WHERE
+					 		FILE_NO = (
+										SELECT
+												MIN(FILE_NO)				 		
+							 			  FROM
+							 			  		ACCOMM_ATTACHMENT AT
+							 			 WHERE
+							 			 		AT.ACCOMM_NO = A.ACCOMM_NO
+								 	   )
+				) 
+				AS ATTACHMENT
+	  	  FROM
+				ACCOMM A
+		  WHERE
+				BUSINESS_NO = #{ businessNo }
+	</select>
 
 	<!-- 숙소에 달린 객실 조회 accommNoList : 숙소 번호가 든 리스트-->
-	<select id="selectRoomListBu" parameterType="java.util.List"  resultMap="RoomResultSet">
+	<select id="selectRoomListBu" parameterType="_int"  resultMap="RoomResultSet">
 		SELECT 
 				ROOM_NO, 
 				ACCOMM_NO, 
@@ -352,11 +368,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   FROM 
 		   		ROOM 
 		  WHERE 
-		  		ACCOMM_NO IN 
-    <foreach item="accommNo" index="index" collection="list" open="(" separator="," close=")">
-        #{accommNo}
-    </foreach>
-	
+		  		ACCOMM_NO = #{accommNo}
 	
 	</select>
 	

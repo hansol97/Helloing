@@ -73,11 +73,9 @@ public class BusinessDao {
 	}
 
 	// 숙소에 딸린 방 리스트 뽑아오기
-	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, ArrayList<Integer> accommNoList) {
-		System.out.println("Dao구역에서 보낼 accommNoList 뽑아보기 : " + accommNoList);
-		ArrayList<Room> rl = (ArrayList)sqlSession.selectList("productMapper.selectRoomListBu", accommNoList);
+	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, int accommNo) {
+		ArrayList<Room> rl = (ArrayList)sqlSession.selectList("productMapper.selectRoomListBu", accommNo);
 		System.out.println("Dao 구역에서 몹은 룸리스트 : " +rl);
-//		return null;
 		return rl;
 	}
 

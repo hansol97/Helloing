@@ -93,8 +93,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	// 숙소에 딸린 방 리스트 조회
 	@Override
-	public ArrayList<Room> selectRoomList(ArrayList<Integer> accommNoList) {
-		return businessDao.selectRoomList(sqlSession, accommNoList);
+	public ArrayList<Room> selectRoomList(int accommNo) {
+		return businessDao.selectRoomList(sqlSession, accommNo);
 	}
 
 

@@ -64,7 +64,7 @@ public interface BusinessService {
 
 	ArrayList<Accomm> selectAccommList(String businessNo);
 
-	ArrayList<Room> selectRoomList(ArrayList<Integer> accommNoList);
+	ArrayList<Room> selectRoomList(int accommNo);
 
 
 	
