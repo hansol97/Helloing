@@ -189,13 +189,17 @@ public class MemberController {
 		return memberService.validate(cert);
 	
 	}
-	/*
+	@ResponseBody // 데이터를 return 해서 돌려주고 싶을때는 ResponseBody를 쓴다.
 	@RequestMapping("idCheck.me")
 	public String idCheck(String checkId) {
 		int count = memberService.idCheck(checkId);
-		
+		if(count > 0) { // count가 0보다 높으면 이미 존재하는 아아디
+			return "NNNNN";
+		} else { // 사용가능
+			return "NNNNY";
+		}
 	}
-	*/
+	
 	
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
