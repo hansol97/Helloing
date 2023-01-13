@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService{
 	public boolean validate(Cert cert) {
 		return memberDao.validate(sqlSession, cert) ;
 	}
-	
+	// 아이디 중복확인
 	@Override
 	public int idCheck(String checkId) {
 		return memberDao.idCheck(sqlSession, checkId);
