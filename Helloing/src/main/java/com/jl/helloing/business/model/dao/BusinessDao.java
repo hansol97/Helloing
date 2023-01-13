@@ -73,11 +73,15 @@ public class BusinessDao {
 
 	// 숙소에 딸린 방 리스트 뽑아오기
 	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, ArrayList<Integer> accommNoList) {
-		return null;
+		System.out.println("Dao구역에서 보낼 accommNoList 뽑아보기 : " + accommNoList);
+		ArrayList<Room> rl = (ArrayList)sqlSession.selectList("productMapper.selectRoomListBu", accommNoList);
+		System.out.println("Dao 구역에서 몹은 룸리스트 : " +rl);
+//		return null;
+		return rl;
 	}
 
 
-
+	
 	public ArrayList<BusinessPayment> checkBookDate(SqlSessionTemplate sqlSession, int roomNo) {
 		return (ArrayList)sqlSession.selectList("businessMapper.checkBookDate", roomNo);
 	}
