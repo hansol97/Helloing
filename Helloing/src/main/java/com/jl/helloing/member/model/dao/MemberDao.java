@@ -40,7 +40,10 @@ public class MemberDao {
 		
 		return result != null;// true, false를 돌려준다 , null이 아니면 true, null이면 false
 	}
-
+	
+	public int idCheck(SqlSession sqlSession, String checkId) {
+		return sqlSession.selectOne("memberMapper.")
+	}
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {

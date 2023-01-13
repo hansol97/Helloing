@@ -52,6 +52,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.validate(sqlSession, cert) ;
 	}
 	
+	@Override
+	public int idCheck(String checkId) {
+		return memberDao.idCheck(sqlSession, checkId);
+	}
 	
 	
 	//혜진
@@ -227,6 +231,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
+
 
 
 
