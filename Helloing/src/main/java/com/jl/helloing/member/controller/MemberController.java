@@ -190,10 +190,11 @@ public class MemberController {
 	
 	}
 	
-//	@RequestMapping("idCheck.me")
-//	public String idCheck() {
-//		
-//	}
+	@RequestMapping("idCheck.me")
+	public String idCheck(String checkId) {
+		memberService.idCheck(){
+		
+	}
 	
 	
 

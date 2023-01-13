@@ -208,14 +208,13 @@ height: 30px;
 							//중복체크 요청
 							$.ajax({
 								url : 'idCheck.me',
-							
-								data : { checkId : $idInput.val()}// 전달할 값 
+								data : { checkId : $idInput.val()}// // 객체를 만들어서 객체의 속성명으로 넣는 과정. checkId는 키값$idInput.val()키의 벨류값
 								success : function(result){ //성공했을때 돌아오는 매개변수로 넣는다 result
 									
 								},
 								
 								error : function(){
-									
+									console.log("아이디 중복체크 실패");
 								}
 								
 								
