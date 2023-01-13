@@ -57,6 +57,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.idCheck(sqlSession, checkId);
 	}
 	
+	@Override
+	public Member findId(Member m) {
+		
+		return memberDao.findId());
+	}
+
+	@Override
+	public Member findPwd(Member m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	//혜진
 	
@@ -231,6 +243,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
 
 
 

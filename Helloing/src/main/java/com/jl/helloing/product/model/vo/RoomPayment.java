@@ -17,7 +17,8 @@ public class RoomPayment {
 	private int roomNo; // "ROOM_NO"	NUMBER		NOT NULL,
     private String paymentDate; // "PAYMENT_DATE" DATE DEFAULT SYSDATE,
     private String chooseDate; 
-    private String arName;
+    private String accName; // 숙소이름
+    private String roomName; // 객실이름
     private String memName;
-    
+    private String category;
 }

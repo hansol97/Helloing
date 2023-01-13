@@ -25,6 +25,23 @@ public interface MemberService {
 	// 메인인증번호 대조
 	boolean validate(Cert cert);
 	
+	// 아이디 찾기
+	Member findId(Member m);
+	/*
+	public Cert findPwd(Member m) {
+		
+		askjdfalkds
+		
+		Cert c = memberService.asdfa(m);
+		
+		// 임시 비밀번호를 보내준다. 
+		return c; 
+	}
+	
+	// 비밀번호 찾기
+	Cert
+	Member findPwd(Member m);
+	*/
 	// 아이디체크
 	int idCheck(String checkId);
 	
