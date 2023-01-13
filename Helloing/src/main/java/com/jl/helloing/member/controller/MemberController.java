@@ -96,16 +96,17 @@ public class MemberController {
 		return "member/findIdForm";
 	}
 	
+	// 아이디 찾기
 	@RequestMapping("findId.me")
 	public ModelAndView findId(Member m, ModelAndView mv ) {
 		
 		Member m1 = memberService.findId(m);
 		
 		if(m1 != null) {
-		String memId = m1.getMemId();
-		mv.addObject("memId", memId)
-		  .addObject("alertMsg", "당신의 아이디는 : " + memId + "입니다.")
-		  .setViewName("member/login");
+			String memId = m1.getMemId();
+			mv.addObject("memId", memId)
+			  .addObject("alertMsg", "당신의 아이디는 : " + memId + "입니다.")
+			  .setViewName("member/login");
 		} else {
 			mv.addObject("alertMsg", "회원가입정보가 없습니다.")
 			  .setViewName("member/findIdForm");
@@ -115,19 +116,40 @@ public class MemberController {
 		
 		
 	}
-	
-	
-	// 비밀번호 찾기
+	// 비밀번호 찾기 폼
 	@RequestMapping("findPwdForm.me")
-	public String findPwd(Member m) {
-		//memberService.
+	public String findPwdForm() {
 		return "member/findPwdForm";
 	}
-	// 새 비밀번호 (비밀번호 찾기 후)
-	@RequestMapping("newFindPwd.me")
-	public String updatePwd() {
-		return "member/newFindPwd";
-	}
+	
+	// 비밀번호 찾기
+//	@RequestMapping("findPwd.me")
+//	public String findPwd(Member m) {
+//		
+//		Member m2 = memberService.findPwd(m);
+//		
+//		if(m2 != null) {
+//			System.out.println(m2.getEmail());
+//			System.out.println(m2.getMemNo());
+//			System.out.println(m2.getMemPwd());
+//		} else {
+//			System.out.println("널이야");
+//		}
+//		
+//		
+//		return "member/findPwdForm";
+//		
+//		
+//		
+//		
+//		
+//		
+//	}
+//	// 새 비밀번호 (비밀번호 찾기 후)
+//	@RequestMapping("newFindPwd.me")
+//	public String updatePwd() {
+//		return "member/newFindPwd";
+//	}
 	// 이용약관 (회원가입 전)
 	@RequestMapping("terms.me")
 	public String terms() {

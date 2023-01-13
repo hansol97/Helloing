@@ -63,7 +63,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.findId(sqlSession, m);
 	}
 
-
+	@Override
+	public Member findPwd(Member m) {
+		return memberDao.findPwd(sqlSession, m);
+	}
+	
 	
 	//혜진
 	
@@ -238,6 +242,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
 
 
 
