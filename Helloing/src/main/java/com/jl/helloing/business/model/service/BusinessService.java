@@ -103,6 +103,9 @@ public interface BusinessService {
 	
 	// ---------------------------------------------
 	ArrayList<RoomPayment> checkBookDate(int roomNo);
+
+	RoomPayment selectBookInfo(RoomPayment rp);
+
 	
 	
 

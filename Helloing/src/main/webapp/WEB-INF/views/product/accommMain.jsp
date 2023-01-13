@@ -90,10 +90,10 @@
         <h3>호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
 	        <c:forEach items="${ acList }" var="ac" begin="0" end="6" step="1">
-	        	<c:if test="${ ac.category == 'HOTEL' }">
+	        	<c:if test="${ ac.category == 'hotel' }">
 	        		<div class="productbox">
 		            	<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <img src="${ ac.attachment }" width="150"><br>
 		                <p>호텔<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -107,10 +107,10 @@
         <h3>펜션</h3>
         <div class="hot" id="hot-pension">
         	<c:forEach items="${ acList }" var="ac" begin="0" end="6">
-        		<c:if test="${ ac.category == 'PENSION' }">
+        		<c:if test="${ ac.category == 'pension' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <img src="${ ac.attachment }" width="150"><br>
 		                <p>펜션<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -123,10 +123,10 @@
         <h3>모텔</h3>
         <div class="hot" id="hot-motel">
             <c:forEach items="${ acList }" var="ac" begin="0" end="6">
-        		<c:if test="${ ac.category == 'MOTEL' }">
+        		<c:if test="${ ac.category == 'motel' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <img src="${ ac.attachment }" width="150"><br>
 		                <p>모텔<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -139,10 +139,10 @@
         <h3>게스트하우스</h3>
         <div class="hot" id="hot-guestHouse">
             <c:forEach items="${ acList }" var="ac" begin="0" end="6">
-        		<c:if test="${ ac.category == 'GUESTHOUSE' }">
+        		<c:if test="${ ac.category == 'guestHouse' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <img src="${ ac.attachment }" width="150"><br>
 		                <p>게스트하우스<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -155,10 +155,10 @@
         <h3>민박</h3>
         <div class="hot" id="hot-guestHouse">
             <c:forEach items="${ acList }" var="ac" begin="0" end="6">
-        		<c:if test="${ ac.category == 'HOUSE' }">
+        		<c:if test="${ ac.category == 'house' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="/helloing/resources/img/logo_outline.png" width="150"><br>
+		                <img src="${ ac.attachment }" width="150"><br>
 		                <p>민박<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>

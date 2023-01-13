@@ -33,6 +33,9 @@ public class Accomm {
 
 	// 객실리스트를 추가하기 위한 변수
 	private ArrayList<Room> roomList;
+	
+	//첨부파일
+	private String attachment;
 
 }
 

@@ -81,6 +81,23 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
+	
+	function selectBookInfo(date){
+		 $.ajax({
+		url:'selectBookInfo.bu'
+		,data : {
+			chooseDate : date
+			,roomNo : $('#roomNo_input').val()
+		}
+		,success : function(result){
+			console.log(result);
+		}
+		,error : function(){
+			console.log('실패');
+		}
+	});
+	 }
+	
     var calendarEl = document.getElementById('calendar'); // div요소 선택
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -92,16 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
         	
-        	$.ajax({
-        		url:'selectBookInfo.bu'
-        		,data : {date : info}
-        		,success : function(result){
-        			console.log(result);
-        		}
-        		,error : function(){
-        			console.log('실패');
-        		}
-        	})
+        	selectBookInfo(info.dateStr);
+        	
         },
         // select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
         // alert('selected ' + info.startStr + ' to ' + info.endStr);
@@ -138,7 +147,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // start: '2023-01-20'
             // }
         ]
+        
+        
     });
+    
+    
 
     calendar.render(); // 달력 화면에 뿌려주는 렌더링함수
     });
@@ -188,6 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
     	    	console.log('실행');
     	    	checkBookDate();
     	 });
+    	 
+    	 
+    	 
+    	 
     });
     
     
@@ -199,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </head>
 <body>
-	<input id="roomNo_input" type="hidden" value="1" >
+	<input id="roomNo_input" type="hidden" value="1">
     <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     <div class="business-content">
