@@ -30,6 +30,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Controller
@@ -80,7 +81,7 @@ public class BusinessController {
 //			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
 //		
 //		}
-		System.out.println("포문 돌려서 방 집어넣은 accList : " +accList);
+		System.out.println("포문 돌려서 방 집어넣은 accList : " + accList);
 		
 		mv.addObject("accList", accList)
 		  .setViewName("business/accommList");
@@ -244,14 +245,18 @@ public class BusinessController {
 	@ResponseBody
 	@RequestMapping(value="bookedDate.bu", produces="application/json; charset=UTF-8")
 	public String checkBookDate(int roomNo) {
-	
-		ArrayList<BusinessPayment> arr = businessService.checkBookDate(roomNo);
-	
-		
-		
-	
-		
+		ArrayList<RoomPayment> arr = businessService.checkBookDate(roomNo);
 		return new Gson().toJson(arr);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="selectBookInfo.bu", produces="application/json; charset=UTF-8")
+	public String selectBookInfo(String date) {
+		
+		
+		
+		
+		return "";
 	}
 	
 	// 숙소 수정하기화면으로 이동

@@ -11,6 +11,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Repository
@@ -78,7 +79,7 @@ public class BusinessDao {
 
 
 
-	public ArrayList<BusinessPayment> checkBookDate(SqlSessionTemplate sqlSession, int roomNo) {
+	public ArrayList<RoomPayment> checkBookDate(SqlSessionTemplate sqlSession, int roomNo) {
 		return (ArrayList)sqlSession.selectList("businessMapper.checkBookDate", roomNo);
 	}
 

@@ -99,7 +99,7 @@ height: 30px;
 							<button type="button" onclick="certButton();" >전송</button>
 							<br>
 							<input type="text" name="secret" id="secret1" maxlength="6">
-							<div id="secret" width="200"></div> 
+							<div id="secret" width="200" style="font-size:0.7em;"></div> 
 						</td>	 
 						
 					</tr>
@@ -120,6 +120,8 @@ height: 30px;
 			</form>
 			
 			
+			
+			<!-- 
 			<script>
 			$(function(){
 				$(document).on('focusout', 'input[name=memId]', function(){
@@ -128,7 +130,7 @@ height: 30px;
 			})
 
 			</script>
-			
+			 -->
 			
 			
 			
@@ -170,7 +172,7 @@ height: 30px;
 									//console.log(result1 + "????")
 									
 									if(result1){
-										$('#secret').text('일치합니다.')
+										$('#')
 										$('#secret').css('color','blue')
 										$('#btn-submit').attr('type', 'submit');
 									}
@@ -195,43 +197,46 @@ height: 30px;
 			<script>
 				$(function(){
 					
-					//const $idInput = $('#enroll-form #memId');
+					const $idInput = $('#enroll-form #memId');
 					// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
 						
 					// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
 					$idInput.keyup(function(){
-						console.log($idInput.val());
+						//console.log($idInput.val());
 						
 						// 최소 다섯글자 이상으로 입력할때만 ajax요청
-						if($idInput.val).length >= 5){
+						if($idInput.val().length >= 5){
 						
 							//중복체크 요청
 							$.ajax({
 								url : 'idCheck.me',
-							
-								data : { checkId : $idInput.val()}// 전달할 값 
+								data : {checkId : $idInput.val()},// // 객체를 만들어서 객체의 속성명으로 넣는 과정. checkId는 키값$idInput.val()키의 벨류값
 								success : function(result){ //성공했을때 돌아오는 매개변수로 넣는다 result
+									console.log(result);
 									
+									if(result == 'NNNNN'){
+										$('#checkId').show();
+										$('#checkId').css('color', 'red').text('중복된 아이디가 존재합니다.');
+										$('#enroll-form :submit').removeAttr('disabled', true);
+									}
+									else{
+										$('#checkId').show();
+										$('#checkId').css('color', 'blue').text('사용가능한 아이디 입니다.')
+										$('#enroll-form :submit').removeAttr('disabled');
+									}
+
 								},
-								
 								error : function(){
-									
+									console.log("아이디 중복체크 실패");
 								}
-								
-								
-							})
-						
-						
+							});
+						} 
+						else { // 5글자를 쓰거 지웠는데 버튼이 활성화 될수 있기때문에 막는다.
+							$('#checkId').hide();
+							$('#enroll-form :submit').attr('disabled', true);
 						}
-						
-						
 					})
-					
-					
-					
 				})
-			
-			
 			</script>
 			<!--  
 			<script>

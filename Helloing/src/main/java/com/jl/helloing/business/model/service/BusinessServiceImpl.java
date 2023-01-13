@@ -13,6 +13,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 
 @Service
@@ -105,7 +106,7 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	//---------------------------------------------------------------
 	@Override
-	public ArrayList<BusinessPayment> checkBookDate(int roomNo) {
+	public ArrayList<RoomPayment> checkBookDate(int roomNo) {
 		return businessDao.checkBookDate(sqlSession, roomNo);
 	}
 	

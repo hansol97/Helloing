@@ -70,8 +70,7 @@
         font-weight:bold;
         padding-left:0px;
     }
-
-
+	
 </style>
 
 <meta charset='utf-8' />
@@ -92,7 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,timeGridWeek,timeGridDay' // 오른쪽 상단 툴바
         },
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
-        alert('clicked ' + info.dateStr); 
+        	
+        	$.ajax({
+        		url:'selectBookInfo.bu'
+        		,data : {date : info}
+        		,success : function(result){
+        			console.log(result);
+        		}
+        		,error : function(){
+        			console.log('실패');
+        		}
+        	})
         },
         // select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
         // alert('selected ' + info.startStr + ' to ' + info.endStr);
@@ -135,36 +144,55 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     $(function(){
-    	console.log($('td[data-date="2023-01-02"]')[0])
-    	$.ajax({
-    		url: 'bookedDate.bu'
-			,data: {
-				roomNo : $('#roomNo_input').val()
-			}
-    		,success : function(dList){
-    			console.log(dList);
-				for(var i = 0; i < dList.length; i++){
-					var startDate = new Date(dList[i].startDate);
-					var endDate = new Date(dList[i].endDate);
-					console.log(startDate);
-					console.log(endDate);
-					console.log((endDate-startDate)/(1 * 24 * 60 * 60 * 1000));
-					
-					var nightDate = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000);
-					var $firstDay = $('td[data-date="' + dList[i].startDate + '"]')[0]
-					
-					for(var j = 0; j < nightDate; j++){
-						$($firstDay)
-						console.log($($firstDay).next()[0]);
-						
-					} 
+    	
+    	console.log($('button[title="Next month"]')[0]);
+    	
+    	checkBookDate();
+    	
+    	function checkBookDate(){
+	    	$.ajax({
+	    		url: 'bookedDate.bu'
+				,data: {
+					roomNo : $('#roomNo_input').val()
 				}
-    		}
-    		,error : function(){
-    			console.log('실패')
-    		}
-    	})
-    })
+	    		,success : function(dList){
+	    			console.log(dList);
+					for(var i = 0; i < dList.length; i++){
+						
+						var startDate = new Date(dList[i].startDate); // 시작날짜 Date로 형변환
+						var endDate = new Date(dList[i].endDate); // 끝날짜 Date로 형변환
+						
+						var night = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000); // 숙소에서 자는 날 수
+						
+						
+						for(var j = 0; j < night; j++){ // 자는 날 수 만큼 반복
+							
+							var firstDate = dList[i].startDate; 
+							
+							var firstDay = Number(firstDate.substr(8, 9)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
+							var nextDay = firstDay + j; 
+							
+							var bookDay = firstDate.replace(firstDay, nextDay);
+							$($('td[data-date="'+ bookDay +'"]')[0]).css('background-color', 'lightgrey');
+							
+						} 
+					}
+	    		}
+	    		,error : function(){
+	    			console.log('실패')
+	    		}
+	    	});
+    	}
+    	
+    	 $('button[title="Previous month"], button[title="Next month"]').click(function(){
+    	    	console.log('실행');
+    	    	checkBookDate();
+    	 });
+    });
+    
+    
+   
+    //button[title="Next month"]
 
 </script>
 

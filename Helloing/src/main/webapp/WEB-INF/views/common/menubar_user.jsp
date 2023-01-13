@@ -384,55 +384,45 @@
 		            <a href="loginMove.bu">기업 회원 신청</a>
 		          </li>
 	          	</c:when>
+	          		<c:otherwise>
+	          			<!--로그인 시 보이는 화면-->
 
-				    <c:otherwise>
+						<li style="margin: auto;">${ loginUser.memName }님 반갑소잉👋</li>
 
-		            <!--로그인 시 보이는 화면-->
-		           
-		            <li style="margin: auto;">
-		              ${ loginUser.memName }님 반갑소잉👋
-		            </li>
-		          
-		          <li>
-		          	<a href="logout.me">로그아웃</a>
-		          </li>
-		            
-		          <li>
-		            <a href="businessEnrollForm.bu">기업 회원 신청</a>
-		          </li>
-		
-		              
-		           <li>
-		            <a href="scheduled.hj">마이페이지</a>
-		          </li>
-		          <!--기업회원일 시 보이는 화면-->
-		          <!--사용자 화면일 경우-->
-		          
-		          <li>
-		            <a href="page.bu">기업관리</a>
-		          </li>
-		         
-		          <!--기업관리 화면일 경우-->
-		         
-		          <li>
-		            <a href="memList.ad">관리자페이지</a>
-		          </li>
-		         
-		          <!--관리자일 시 보이는 화면-->
-		         <!--사용자 화면일 경우-->
-		          <!--
+						<li><a href="logout.me">로그아웃</a></li>
+
+						<!-- 기업 회원을 신청하지 않은 회원에게만 보여주기 -->
+						<c:if test="${ empty loginCompany and loginUser.status != 'A' }">
+							<li><a href="businessEnrollForm.bu">기업 회원 신청</a></li>
+						</c:if>
+
+						<li><a href="scheduled.hj">마이페이지</a></li>
+						<!--기업회원일 시 보이는 화면-->
+						<!--사용자 화면일 경우-->
+
+						<!-- 기업 회원에게만 보여주기 -->
+						<c:if test="${ not empty loginCompany }">
+							<li><a href="page.bu">기업관리</a></li>
+						</c:if>
+						<!--기업관리 화면일 경우-->
+						<c:if test="${ loginUser.status == 'A' }" >
+						<li><a href="memList.ad">관리자페이지</a></li>
+						</c:if>
+						<!--관리자일 시 보이는 화면-->
+						<!--사용자 화면일 경우-->
+						<!--
 		          <li>
 		            <a href="#">관리자페이지</a>
 		          </li>
 		          -->
-		          <!--관리자 화면일 경우-->
-		          <!--
+							<!--관리자 화면일 경우-->
+							<!--
 		          <li>
 		            <a href="#">메인페이지</a>
 		          </li>
 		          -->
-		  		  </c:otherwise> 				      
-          </c:choose>
+					</c:otherwise>
+				</c:choose>
         </ul>
         
       </div>
