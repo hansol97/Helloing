@@ -12,9 +12,12 @@ public class RoomPayment {
 	private String startDate; // "START_DATE"	DATE		NOT NULL,
 	private String endDate; // "END_DATE"	DATE		NOT NULL,
 	private int headCount; // "HEAD_COUNT"	NUMBER		NOT NULL,
-	private int place; // "PLACE"	NUMBER		NOT NULL,
+	private int price; // "PLACE"	NUMBER		NOT NULL,
 	private int accommNo; // "ACCOMM_NO"	NUMBER		NOT NULL,
 	private int roomNo; // "ROOM_NO"	NUMBER		NOT NULL,
     private String paymentDate; // "PAYMENT_DATE" DATE DEFAULT SYSDATE,
+    private String chooseDate; 
+    private String arName;
+    private String memName;
     
 }

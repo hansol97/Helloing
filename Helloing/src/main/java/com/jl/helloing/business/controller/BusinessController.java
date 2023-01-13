@@ -249,9 +249,13 @@ public class BusinessController {
 		return new Gson().toJson(arr);
 	}
 	
+	// 숙소 객실 날짜별 예약정보
 	@ResponseBody
 	@RequestMapping(value="selectBookInfo.bu", produces="application/json; charset=UTF-8")
-	public String selectBookInfo(String date) {
+	public String selectBookInfo(RoomPayment rp) {
+		System.out.println(rp);
+		
+		//RoomPayment bookInfo = businessService.selectBookInfo(rp);
 		
 		
 		

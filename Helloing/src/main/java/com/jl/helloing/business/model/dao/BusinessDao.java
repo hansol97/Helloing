@@ -83,6 +83,11 @@ public class BusinessDao {
 		return (ArrayList)sqlSession.selectList("businessMapper.checkBookDate", roomNo);
 	}
 
+
+	public RoomPayment selectBookInfo(SqlSessionTemplate sqlSession, RoomPayment rp) {
+		return sqlSession.selectOne("businessMapper.selectBookInfo", rp);
+	}
+
 	
 	
 	
