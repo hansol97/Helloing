@@ -372,6 +372,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
+	<!-- 액티비티 조회와 거기 딸린 ACTIVITY_ATTACHMENT 붙여오기 -->
 	
 	
 	
@@ -437,12 +438,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	 			<foreach collection="list" item="item"    separator="UNION ALL ">
 						SELECT
-						     #{item.originName} AS ORIGIN_NAME,
-						     #{item.changeName} AS CHANGE_NAME,
-						     #{item.filePath} AS FILE_PATH,
-						     SYSDATE AS UPLOAD_DATE
+							     #{item.originName} AS ORIGIN_NAME,
+							     #{item.changeName} AS CHANGE_NAME,
+							     #{item.filePath} AS FILE_PATH,
+							     SYSDATE AS UPLOAD_DATE
 						   FROM
-			   					DUAL
+			   					 DUAL
 				</foreach>
 						   ) A
 	</insert>

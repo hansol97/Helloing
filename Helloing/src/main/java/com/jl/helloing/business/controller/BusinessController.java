@@ -87,14 +87,42 @@ public class BusinessController {
 		mv.addObject("accList", accList)
 		  .setViewName("business/accommList");
 		
-//		mv.setViewName("business/accommList");
-		
 		return mv;
 	}
 	
 	// 액티비티 조회
 	@RequestMapping("activityList.bu")
 	public String selectActivity() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return "business/activityList";
 	}
 	// 숙소등록화면으로 이동
