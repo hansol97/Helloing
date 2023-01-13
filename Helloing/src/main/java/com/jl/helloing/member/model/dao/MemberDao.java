@@ -49,7 +49,10 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.findId", m);
 	}
 	
-	
+	// 비밀번호 찾기
+	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.findPwd", m);
+	}
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {

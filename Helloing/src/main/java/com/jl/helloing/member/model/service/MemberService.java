@@ -28,7 +28,8 @@ public interface MemberService {
 	// 아이디 찾기
 	Member findId(Member m);
 	
-	
+	// 비밀번호 찾기
+	Member findPwd(Member m);
 	
 	/*
 	public Cert findPwd(Member m) {
@@ -40,11 +41,8 @@ public interface MemberService {
 		// 임시 비밀번호를 보내준다. 
 		return c; 
 	}
-	
-	// 비밀번호 찾기
-	Cert
-	Member findPwd(Member m);
 	*/
+	
 	// 아이디체크
 	int idCheck(String checkId);
 	

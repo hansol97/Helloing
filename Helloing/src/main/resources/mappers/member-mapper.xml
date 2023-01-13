@@ -122,6 +122,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	       		status = 'Y'			  		
 	</select>
 	 
+	<select id="findPwd" parameterType="member" resultMap="memberResultSet">
+		select
+				mem_no,
+				mem_pwd,
+				email
+		  from
+		  		member
+		 where
+		 		mem_name = #{ memName }
+		   and
+		   		mem_id = #{ memId }
+		   and
+		   		email = #{ email }
+		 	
+	</select>
 	
 	
 	<!-- 여기부터 혜진 -->
