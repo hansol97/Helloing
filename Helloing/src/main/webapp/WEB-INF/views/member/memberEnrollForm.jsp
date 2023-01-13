@@ -144,18 +144,25 @@ height: 30px;
 			
 			function certButton() {
 				console.log($('#email').val());
-				$.ajax({
-					url : 'certButton.me',
-					data : {
-						email : $('#email').val()
-					}
-					,success :function(result){
-						console.log()
-					},
-					error :function(){
-						console.log("에러남")
-					}	
-				})
+				
+				if($('#email').val() != ''){
+					$.ajax({
+						url : 'certButton.me',
+						data : {
+							email : $('#email').val()
+						}
+						,success :function(result){
+							alert('인증번호가 전송되었습니다.')
+						},
+						error :function(){
+						}	
+					})
+				}
+				else {
+					alert('이메일을 입력해주세요.');
+				}
+				
+				
 			}
 			
 			</script>
