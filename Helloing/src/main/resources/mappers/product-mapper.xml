@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR3"    			property="star3" />
         <result column="STAR4"    			property="star4" />
         <result column="STAR5"    			property="star5" />
+        <result column="ATTACHMENT"    		property="attachment" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -373,6 +374,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 액티비티 조회와 거기 딸린 ACTIVITY_ATTACHMENT 붙여오기 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 숙소에 달린 객실 조회 accommNoList : 숙소 번호가 든 리스트-->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

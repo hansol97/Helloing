@@ -97,7 +97,15 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.selectRoomList(sqlSession, accommNo);
 	}
 
+	@Override
+	public ArrayList<Activity> selectActivityList(String businessNo) {
+		return businessDao.selectActivityList(sqlSession, businessNo);
+	}
 
+	@Override
+	public ArrayList<Ticket> selectTicketList(int activityNo) {
+		return businessDao.selectTicketList(sqlSession, activityNo);
+	}
 	
 	
 	
@@ -114,6 +122,8 @@ public class BusinessServiceImpl implements BusinessService {
 	public RoomPayment selectBookInfo(RoomPayment rp) {
 		return businessDao.selectBookInfo(sqlSession, rp);
 	}
+
+
 
 	
 	

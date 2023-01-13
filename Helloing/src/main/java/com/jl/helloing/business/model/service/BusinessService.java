@@ -66,7 +66,9 @@ public interface BusinessService {
 
 	ArrayList<Room> selectRoomList(int accommNo);
 
+	ArrayList<Activity> selectActivityList(String businessNo);
 
+	ArrayList<Ticket> selectTicketList(int activityNo);
 	
 	
 	
@@ -105,6 +107,8 @@ public interface BusinessService {
 	ArrayList<RoomPayment> checkBookDate(int roomNo);
 
 	RoomPayment selectBookInfo(RoomPayment rp);
+
+
 
 	
 	

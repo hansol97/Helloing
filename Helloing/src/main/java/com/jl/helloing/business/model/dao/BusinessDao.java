@@ -78,10 +78,26 @@ public class BusinessDao {
 		System.out.println("Dao 구역에서 몹은 룸리스트 : " +rl);
 		return rl;
 	}
+	
+	// 액티비티 리스트 뽑아오기
+	public ArrayList<Activity> selectActivityList(SqlSessionTemplate sqlSession, String businessNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectActivityListBu", businessNo);
+	}
+
+	// 액티비티에 딸린 티켓 리스트 뽑아오기
+	public ArrayList<Ticket> selectTicketList(SqlSessionTemplate sqlSession, int activityNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectTicketListBu", activityNo);
+	}
 
 
 
-
+	
+	
+	
+	
+	
+	
+	
 	public ArrayList<RoomPayment> checkBookDate(SqlSessionTemplate sqlSession, int roomNo) {
 		return (ArrayList)sqlSession.selectList("businessMapper.checkBookDate", roomNo);
 	}
@@ -90,6 +106,8 @@ public class BusinessDao {
 	public RoomPayment selectBookInfo(SqlSessionTemplate sqlSession, RoomPayment rp) {
 		return sqlSession.selectOne("businessMapper.selectBookInfo", rp);
 	}
+
+
 
 	
 	
