@@ -31,8 +31,7 @@
 					<tr>
 						<th width="150px" height="40px"> 액티비티 이름 :</th>
 						<td width="400px">
-							<input id="amName" type="text" name="activityName" height="100px" size="40" required placeholder="아무튼 입력"/>
-						</td>
+							<input id="amName" type="text" name="activityName" height="100px" size="40" required placeholder="아무튼 입력"/></td>
 					</tr>
 
 					<tr>
