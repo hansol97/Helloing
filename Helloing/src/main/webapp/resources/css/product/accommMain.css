@@ -54,7 +54,7 @@
     overflow: hidden;
 }
 
-.productbox{ margin-right: 20px; }
+.productbox{ margin-right: 20px; width: 150px;}
 
 .inner h1{ font-size: 30px;	font-weight: bold; }
 .inner h3{

@@ -22,18 +22,25 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-/*
-	<option value='hotel'>호텔</option>
-    <option value='pension'>펜션</option>
-    <option value='motel'>모텔</option>
-    <option value='house'>민박</option>
-    <option value='guestHouse'>게스트하우스</option>
-*/	
+
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {
+		
+		ArrayList<Accomm> acList = productService.selectAcList();
 
-		mv.addObject("acList", productService.selectAcList())
+		for(int i = 0; i < acList.size(); i++) {
+			if(i+1 != acList.size()) {
+				if(acList.get(i).getAccommNo() == acList.get(i+1).getAccommNo()) {
+					acList.remove(i+1);
+					i--;
+				}
+			} else { 
+				break;
+			}
+		} 
+		
+		mv.addObject("acList", acList)
 		  .setViewName("product/accommMain");
 		
 		return mv;
@@ -48,10 +55,6 @@ public class ProductController {
 	// 숙소 상세 페이지
 	@RequestMapping("detail.accomm")
 	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
-		
-		System.out.println("숙소 상세정보 : " + productService.selectAcDetail(accommNo));
-		System.out.println("객실 리스트 : " + productService.selectRoomList(accommNo));
-		System.out.println("리뷰 리스트 : " + productService.selectAcReviewList(accommNo));
 		
 		mv.addObject("ac", productService.selectAcDetail(accommNo))
 		  .addObject("roomList", productService.selectRoomList(accommNo))
