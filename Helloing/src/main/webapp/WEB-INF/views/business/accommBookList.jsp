@@ -91,7 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,timeGridWeek,timeGridDay' // 오른쪽 상단 툴바
         },
         dateClick: function(info) {// 날짜만 클릭 했을 때 핸들러
-        alert('clicked ' + info.dateStr); 
+        	
+        	$.ajax({
+        		url:'selectBookInfo.bu'
+        		,data : {date : info}
+        		,success : function(result){
+        			console.log(result);
+        		}
+        		,error : function(){
+        			console.log('실패');
+        		}
+        	})
         },
         // select: function(info) { // dateClick + 범위를 선택해서 클릭 했을 때 핸들러
         // alert('selected ' + info.startStr + ' to ' + info.endStr);
@@ -163,8 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							var nextDay = firstDay + j; 
 							
 							var bookDay = firstDate.replace(firstDay, nextDay);
-							
-							$($($('td[data-date="'+ bookDay +'"]')[0]).find('a')[0]).css('color', 'grey');
+							$($('td[data-date="'+ bookDay +'"]')[0]).css('background-color', 'lightgrey');
 							
 						} 
 					}
