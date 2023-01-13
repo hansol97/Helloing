@@ -98,6 +98,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	   		secret = #{secret}
 	</delete>
 	
+	<!-- 아이디 중복체크 -->
+	<select id="idCheck" resultType="_int">
+		select
+				count(*)
+		  from
+		  		member
+		 where
+		 		mem_Id = #{ checkId }
+	</select>
 	
 	<!-- 여기부터 혜진 -->
 	<select id="checkPwd" parameterType="member" resultType="string">

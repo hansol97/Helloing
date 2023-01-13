@@ -8,6 +8,7 @@ import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 
 public interface BusinessService {
@@ -101,7 +102,7 @@ public interface BusinessService {
 	
 	
 	// ---------------------------------------------
-	ArrayList<BusinessPayment> checkBookDate(int roomNo);
+	ArrayList<RoomPayment> checkBookDate(int roomNo);
 	
 	
 

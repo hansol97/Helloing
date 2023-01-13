@@ -19,10 +19,14 @@ public interface MemberService {
 	
 	// 회원가입 서비스(insert)
 	int insertMember(Member m);
-	// 메일인증
+	// 메일인증보내기
 	void sendMail(Cert cert);
 	
+	// 메인인증번호 대조
 	boolean validate(Cert cert);
+	
+	// 아이디체크
+	int idCheck(String checkId);
 	
 	//혜진
 	//예정된 예약 리스트 조회
