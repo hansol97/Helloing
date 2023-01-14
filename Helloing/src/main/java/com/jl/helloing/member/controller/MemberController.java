@@ -616,6 +616,8 @@ public class MemberController {
 		
 		Expense e = memberService.dutchTreat(plannerNo);
 		
+		e.setIndividual(e.);
+		System.out.println(e);
 		return new Gson().toJson(e);
 	}
 	
