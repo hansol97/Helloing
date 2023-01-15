@@ -45,47 +45,51 @@
 					</div>
 				</div>
 
-				<div class="selectoption">
-					<table class="researchtable">
-						<tr>
-							<td width="250">날짜</td>
-							<td width="200">인원</td>
-						</tr>
-						<tr>
-							<td><input type="date"></td>
-							<td>
-								<select> <!-- 나중에 자바스크립트로 포문돌리기 -->
-									<option>2명</option>
-									<option>3명</option>
-									<option>4명</option>
-									<option>5명</option>
-									<option>6명</option>
-									<option>7명</option>
-								</select>
-							</td>
-							<td><button>재검색</button></td>
-						</tr>
-					</table>
-				</div>
-
-				<div>
-					<c:forEach items="${ roomList }" var="r" varStatus="status">
-						<div class="accommbox"><!-- 객실 포문 돌리기~ -->
-							<input type="hidden" name="roomNo" value="${ r.roomNo }">
-							<div class="first">
-								<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-								<p><span>${ r.roomName }</span><br>
-									최대 ${ r.capacity }인</p>
+				<form action="reserve.accomm" method="post">
+					<div class="selectoption">
+						<table class="researchtable">
+							<tr>
+								<td width="250">체크인 날짜</td>
+								<td width="250">체크아웃 날짜</td>
+								<td width="200">인원</td>
+							</tr>
+							<tr>
+								<td><input type="date" name="checkIn"></td>
+								<td><input type="date" name="checkOut"></td>
+								<td>
+									<select name="headCount"> <!-- 나중에 자바스크립트로 포문돌리기 -->
+										<option>2명</option>
+										<option>3명</option>
+										<option>4명</option>
+										<option>5명</option>
+										<option>6명</option>
+										<option>7명</option>
+									</select>
+								</td>
+								<td><button type="button">재검색</button></td> <!-- 에이잭스로 실행... 어떻게 만들지.. 아휴 -->
+							</tr>
+						</table>
+					</div>
+	
+					<div>
+						<c:forEach items="${ roomList }" var="r" varStatus="status">
+							<div class="accommbox"><!-- 객실 포문 돌리기~ -->
+								<input type="hidden" name="roomNo" value="${ r.roomNo }">
+								<div class="first">
+									<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+									<p><span>${ r.roomName }</span><br>
+										최대 ${ r.capacity }인</p>
+								</div>
+								<hr>
+								<div class="second">
+									<h1>${ status.count } ${ r.roomName } <br>
+										${ r.price } 원</h1>
+									<button class="btn-reserve">예약</button>
+								</div>
 							</div>
-							<hr>
-							<div class="second">
-								<h1>${ status.count } ${ r.roomName } <br>
-									${ r.price } 원</h1>
-								<button>예약</button>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
+						</c:forEach>
+					</div>
+				</form>
 
 				<hr>
 
