@@ -233,6 +233,18 @@ public class MemberServiceImpl implements MemberService{
 	public Expense dutchTreat(int plannerNo) {
 		return memberDao.dutchTreat(plannerNo, sqlSession);
 	}
+	
+	//가계부 결제 내역 추가 
+	@Override
+	public int insertExpense(Expense ex) {
+		return memberDao.insertExpense(ex, sqlSession);
+	}
+	
+	//가계부 결제 내역 삭제
+	@Override
+	public int deleteExpense(Expense ex) {
+		return 0;
+	}
 	@Override
 	public int addActWish(ActivityWish aw) {
 		return memberDao.addActWish(sqlSession, aw);
@@ -242,6 +254,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
 
 
 

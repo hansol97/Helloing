@@ -101,6 +101,7 @@
 		border-radius: 10px;
 		margin: 10px;
 		padding: 10px;
+		height: 160px;
 	}
 	#plan .plan-day h2{
 		font-size: 25px;
@@ -160,10 +161,15 @@
 						<span>내용: </span>
 						<span>${p.expenseContent}</span>					
 					</div>
-					<div>
+					<span>
 						<span>카테고리 : </span>
 						<span>${p.expenseCategory}</span>					
-					</div>
+					</span>
+					<span style="float:right; font-size:20px;">
+						<input type="hidden" class="expense" name="expenseNo" value="${p.expenseNo}">	
+						<input type="hidden" class="plannerNo" name="plannerNo" value="${p.plannerNo}">	
+						<a href="#ex3" rel="modal:open" class="deleteBtn">삭제</a>
+					</span>
 	        	</div>
 	        </c:forEach>
 	        	 
@@ -176,7 +182,7 @@
 	    	<br>
 	    	<div class="allAmount">
 	    	<!-- 
-				여기에 수정 란 생길 예정
+				여기에 결과 란 생길 예정
 		    	 -->
 		    </div>
 	 	</div>
@@ -185,36 +191,46 @@
 	    <div id="ex2" class="modal">
     		<h5 style="font-weight:600;">비용 추가</h5>
 			<hr>
-			<form action="" method="post">
+			<form action="insertExpense.hj" method="post">
 				<ul>
-					<li><input type="number" placeholder="금액입력">원</li>
+					<li>결제 날짜 <input type="date" id="expense-date" name="expenseDate"> </li>
+					<li><input type="number" name="amount" placeholder="금액입력">원</li>
 					<li>
 						결제수단  
-						<select name="payment">
-							<option></option>
-							<option></option>
+						<select name="method">
+							<option>현금</option>
+							<option>카드</option>
 						</select>
 					</li>
-					<li>일정 시작 시간 <input type="time" id="start" name="plan-start"> </li>
-					<li>일정 종료 시간 <input type="time" id="end" name="plan-start"> </li>
+					<li>내용 <input type="text" name="expenseContent"></li>
 					<li>
 						카테고리
-						<select name = "category">
+						<select name = "expenseCategory">
 						    <option>숙소</option>
-						    <option>이동</option>
+						    <option>교통</option>
 						    <option>관광</option>
-						    <option>식사</option>
+						    <option>식비</option>
 						    <option>쇼핑</option>
 						    <option>기타</option>
 					    </select>
 					</li>
 				</ul>
-			</form>		 
+			<input type="hidden" name="plannerNo" value="${plannerNo}">
 			<div class="modalBtn" style="float:right;">
-				  <a href="#" >추가</a>
-				  <a href="#" rel="modal:close">취소</a>
+				  <button type="submit">추가</button>
 		 	</div>
+			</form>		 
 		</div>
+		
+   		<div id="ex3" class="modal">
+    		<h5 style="font-weight:600;">비용삭제</h5>
+			<hr>
+	    	<br>
+			<div>
+				<h5>정말 삭제하시겠습니까?</h5>
+			</div>
+				<button class="delete-expense">삭제</button>
+	 	</div>
 	<script>
 	$('.Dutch-treat').click(function(){
 		var $this = $(this);
@@ -228,7 +244,7 @@
 				let value = '';
 				
 				value += '<h3>카테고리 별 금액</h3>'
-					  + '<div> 식사: ' + result.eat + '원</div>'
+					  + '<div> 식비: ' + result.eat + '원</div>'
 					  +	'<div> 숙소: ' + result.accomm + '원</div>'
 					  + '<div> 교통: ' + result.transport + '원</div>'
 					  + '<div> 관광: ' + result.tour + '원</div>'
@@ -245,6 +261,19 @@
 			}
 		})
 		
+	})
+
+	//삭제 버튼 클릭 시 
+		$('.deleteBtn').click(function(){
+	
+		var $this = $(this);
+		var planNo = $this.siblings('input[name=expenseNo]').val();
+		var plannerNo = $this.siblings('input[name=plannerNo]').val();
+		
+		
+		$('.delete-expense').click(function(){
+			location.href="deleteExpense.hj?expenseNo="+ planNo + '&&plannerNo=' + plannerNo;
+		})
 	})
 	
 

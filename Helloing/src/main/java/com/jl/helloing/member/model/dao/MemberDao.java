@@ -140,6 +140,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.dutchTreat", plannerNo);
 	}
 	
+	public int insertExpense(Expense ex, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.insertExpense", ex);
+	}
 	
 	
 	
@@ -162,6 +165,7 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+
 
 
 

@@ -128,6 +128,12 @@ public interface MemberService {
 	//1/n
 	Expense dutchTreat(int plannerNo);
 	
+	//가계부 결제 내역 추가 
+	int insertExpense(Expense ex);
+	
+	//가계부 결제 내역 삭제
+	int deleteExpense(Expense ex);
+	
 	// 액티비티 위시리스트 추가
 	int addActWish(ActivityWish aw);
 	

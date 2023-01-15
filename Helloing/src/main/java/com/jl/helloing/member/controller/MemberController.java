@@ -619,28 +619,39 @@ public class MemberController {
 		e.setIndividual(e.getAll()/e.getMemCount());
 		return new Gson().toJson(e);
 	}
-	
-	
-	
-	
-	
 	//비용 추가
-	
-	
-	
-	
-	
-	
-	
-	//비용 수정 전 조회
-	
-	
-	
-	
-	
-	
+	@RequestMapping("insertExpense.hj")
+	public ModelAndView insertExpense(ModelAndView mv, Expense ex, HttpSession session) {
+		
+		if( memberService.insertExpense(ex)>0) {
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}else {
+			session.setAttribute("alertMsg", "비용추가에 실패하였습니다.");
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}
+		 
+		return mv;
+	}
+
 	//비용삭제
-	
+	@RequestMapping("deleteExpense.hj")
+	public ModelAndView deleteExpense(ModelAndView mv, Expense ex, HttpSession session) {
+		
+		System.out.println(ex);
+		
+		if(memberService.deleteExpense(ex)>0) {
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}else {
+			session.setAttribute("alertMsg", "비용삭제에 실패하였습니다.");
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}
+		
+		return mv;
+	}
 	
 	
 	

@@ -438,58 +438,92 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					
 	</select>
 	<select id="dutchTreat" parameterType="_int" resultType="expense">
+
 	SELECT  DISTINCT
         NVL((SELECT 
                     SUM(AMOUNT)
-                FROM 
-                    EXPENSE),0) "all",
+               FROM 
+                    EXPENSE 
+              WHERE 
+              		PLANNER_NO = #{ plannerNo}),0 ) "all",
          NVL(( SELECT 
                     SUM(AMOUNT) 
                 FROM 
                     EXPENSE
                 WHERE     
-                    EXPENSE_CATEGORY = '숙소'),0) accomm,
+                    EXPENSE_CATEGORY = '숙소' 
+               AND PLANNER_NO = #{ plannerNo}),0 ) "accomm",
          NVL(( SELECT 
                     SUM(AMOUNT)
                 FROM 
                     EXPENSE
                 WHERE
-                    EXPENSE_CATEGORY = '식사'),0) eat,
+                    EXPENSE_CATEGORY = '식비'   
+                AND 
+                	PLANNER_NO = #{ plannerNo}),0) "eat",
          NVL(( SELECT 
                     SUM(AMOUNT)
                 FROM 
                     EXPENSE
                 WHERE
-                    EXPENSE_CATEGORY = '관광'),0) tour,
+                    EXPENSE_CATEGORY = '관광'   
+                AND 
+                	PLANNER_NO = #{ plannerNo}),0) "tour",
          NVL(( SELECT 
                     SUM(AMOUNT)
                 FROM 
                     EXPENSE
                 WHERE 
-                    EXPENSE_CATEGORY = '쇼핑'),0) shopping,
+                    EXPENSE_CATEGORY = '쇼핑'   
+                 AND 
+                 	PLANNER_NO = #{ plannerNo}),0) "shopping",
          NVL(( SELECT 
                     SUM(AMOUNT)
                 FROM 
                     EXPENSE
                 WHERE 
-                    EXPENSE_CATEGORY = '교통'),0) transport,
+                    EXPENSE_CATEGORY = '교통'   
+                AND 
+                	PLANNER_NO = #{ plannerNo}),0) "transport",
          NVL(( SELECT 
                     SUM(AMOUNT)
                 FROM 
                     EXPENSE
                 WHERE 
-                    EXPENSE_CATEGORY = '기타'),0) other,
+                    EXPENSE_CATEGORY = '기타'
+                AND 
+                	PLANNER_NO = #{ plannerNo}),0) "other",
         (SELECT
                 COUNT(*)
             FROM
                 PLANNER_MEM
             WHERE 
-                PLANNER_NO = #{ plannerNo }) memCount
+                PLANNER_NO = #{ plannerNo}) "memCount"
         
 	FROM EXPENSE
-	where planner_no = #{ plannerNo }
 	</select>
-	
+	<insert id="insertExpense" parameterType="expense">
+	INSERT 
+		INTO
+			EXPENSE (
+					EXPENSE_NO
+					, PLANNER_NO
+					, AMOUNT
+					, METHOD
+					, EXPENSE_DATE
+					, EXPENSE_CONTENT
+					, EXPENSE_CATEGORY
+					)
+			VALUES	(
+					SEQ_EXPNO.NEXTVAL
+					, #{ plannerNo }
+					, #{ amount }
+					, #{ method }
+					, #{ expenseDate }
+					, #{ expenseContent }
+					, #{ expenseCategory }
+					)
+	</insert>
 	
 	
 	
