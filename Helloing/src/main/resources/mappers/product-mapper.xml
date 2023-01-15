@@ -106,6 +106,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ACTIVITY_NO" 	property="activityNo" />
 		<result column="MEM_NO" 		property="memNo" />
 	</resultMap>
+	
+	<resultMap id="acWishResultSet" type="accommwish">
+		<result column="WISH_DATE"	property="wishDate" />
+		<result column="ACCOMM_NO" 	property="accommNo" />
+		<result column="MEM_NO" 	property="memNo" />
+	</resultMap>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
@@ -322,6 +328,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ORDER
 		    BY
 		       REVIEW_NO DESC
+	</select>
+	
+	<!-- 위시에 추가한 숙소인지 확인 -->
+	<select id="checkAcWish" resultMap="acWishResultSet" parameterType="accomm">
+		SELECT
+			   ACCOMM_NO
+			  ,MEM_NO
+			  ,WISH_DATE
+		  FROM
+		  	   ACCOMM_WISH
+		 WHERE
+		 	   ACCOMM_NO = #{ accommNo }
+		   AND
+		   	   MEM_NO = #{ memNo }
 	</select>
 	
 

@@ -533,4 +533,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	   	   MEM_NO = #{ memNo }
 	</delete>
 	
+	<!-- 숙소 위시리스트 추가 -->
+	<insert id="addAcWish" parameterType="accommwish">
+		INSERT
+		  INTO
+		  	   ACCOMM_WISH
+		  	   (
+		  	    ACCOMM_NO
+		  	   ,MEM_NO
+		  	   )
+		VALUES
+			   (
+			    #{ accommNo }
+			   ,#{ memNo }
+			   )
+	</insert>
+	
+	<!-- 숙소 위시리스트 삭제 -->
+	<delete id="removeAcWish" parameterType="accommwish">
+		DELETE
+		  FROM
+		  	   ACCOMM_WISH
+		 WHERE
+	 	       ACCOMM_NO = #{ accommNo }
+	 	   AND
+	 	   	   MEM_NO = #{ memNo }
+	</delete>
+	
 </mapper>

@@ -752,4 +752,38 @@ public class MemberController {
 		}
 	}
 	
+	// 숙소 위시리스트 추가
+	@ResponseBody
+	@RequestMapping("addAcWish")
+	public String addAcWish(HttpSession session, AccommWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.addAcWish(aw) > 0) return "success";
+			else return "fail";
+			
+		} else {
+			return "login please";
+		}
+	}
+	
+	// 액티비티 위시리스트 삭제
+	@ResponseBody
+	@RequestMapping("removeAcWish")
+	public String removeAcWish(HttpSession session, AccommWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.removeAcWish(aw) > 0) return "success";
+			else return "fail";
+		} else {
+			return "idk";
+		}
+	}
+	
+	
 }

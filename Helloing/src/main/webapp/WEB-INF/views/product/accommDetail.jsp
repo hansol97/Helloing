@@ -21,6 +21,7 @@
 			<div class="main">
 
 				<div class="top-info">
+					<input name="accommNo" value="${ ac.accommNo }" type="hidden">
 					<sapn class="accommName">${ ac.accommName }</sapn>
 					<button>🗺️ 위치보기</button>
 				</div>
@@ -111,28 +112,28 @@
 							<table>
 								<tr>
 									<td align="right">⭐⭐⭐⭐⭐ </td>
-									<td width="200"><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td width="200"><progress value="${ ac.star5 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star5 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star4 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star4 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star3 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star3 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star2 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star2 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star1 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star1 } 명</td>
 								</tr>
 							</table>
 						</div>
@@ -149,42 +150,20 @@
 					 --%>
 					
 					<div><!-- 리뷰 포문 돌리기 -->
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+						<c:forEach items="${ acReviewList }" var="ar">
+							<div class="reviewbox">
+								<div>
+									<p> ${ ar.memName } | <c:forEach var="i" begin="1" end="${ ar.star }">⭐</c:forEach><br>
+										${ ar.createDate } | ${ ar.roomName }</p>
+									<p class="review-content">
+										${ ar.reviewContent }
+									</p>
+									<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+								</div>
+								<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
 							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
+							<hr>
+						</c:forEach>
 					</div>
 
 					<%--
@@ -208,7 +187,23 @@
 				<div class="accommselectbox">
 					<p>1박 <span>65,000원 ~</span></p>
 					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
-					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
+					<div>
+						<c:choose>
+							<c:when test="${ checkWish eq null }">
+								<input type="hidden" name="checkWish" value="none">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="checkWish" value="${ checkWish.wishDate }">
+							</c:otherwise>
+						</c:choose>
+					
+						<div id="btn-add">
+							<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						</div>
+						<div id="btn-rev" style="display: none;">
+							<button id="btn-removewish" onclick="removeWish();">♥️😘♥️</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
