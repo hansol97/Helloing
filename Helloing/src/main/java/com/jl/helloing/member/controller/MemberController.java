@@ -304,17 +304,30 @@ public class MemberController {
 			return "NNNNY";
 		}
 	}
-	/*
+	
 	// 아이디 저장 (쿠키)
-	@RequestMapping("saveId")
-	public String saveId(Member m, HttpServletResponse response) {
-		String memId= m.getMemId();
+	@RequestMapping("saveId.me")
+	public String saveId(HttpServletResponse response, String memId) {
+
 		Cookie saveId = new Cookie("saveId", memId);
-		saveId.setMaxAge(60 * 60 * 24 * 28);
-		response.addCookie(saveId);
+		saveId.setMaxAge(60 * 60 * 24 * 28); 
+		response.addCookie(saveId); // response객체에 
 		return "member/login"; 
 	}
-	*/
+	
+	@RequestMapping("saveIdDelete.me")
+	public String delete(HttpServletResponse response, String memId) {
+		// 쿠키는 삭제 명령이 따로 없음
+		// 0초로 만료시간을 설정하고 덮어쓰기를 수행
+		
+		
+		Cookie saveId = new Cookie("saveId",memId); //name속성만 같게.
+		saveId.setMaxAge(0); // 그냥 쿠키 유효시간 0 으로 하면된다. 이렇게 해서 만료로.
+		response.addCookie(saveId);
+		
+		return "member/login";
+	}
+	
 	
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
