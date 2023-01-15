@@ -1,5 +1,7 @@
 package com.jl.helloing.product.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
@@ -26,6 +28,12 @@ public class Activity {
 	private int allSum;
 	
 	private int memNo; // 액티비티 위시리스트에서 필요
+
+	// 객실리스트를 추가하기 위한 변수
+	private ArrayList<Ticket> ticketList;
 	
+	//첨부파일
 	private String attachment;
+
+
 }

@@ -93,11 +93,19 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	// 숙소에 딸린 방 리스트 조회
 	@Override
-	public ArrayList<Room> selectRoomList(ArrayList<Integer> accommNoList) {
-		return businessDao.selectRoomList(sqlSession, accommNoList);
+	public ArrayList<Room> selectRoomList(int accommNo) {
+		return businessDao.selectRoomList(sqlSession, accommNo);
 	}
 
+	@Override
+	public ArrayList<Activity> selectActivityList(String businessNo) {
+		return businessDao.selectActivityList(sqlSession, businessNo);
+	}
 
+	@Override
+	public ArrayList<Ticket> selectTicketList(int activityNo) {
+		return businessDao.selectTicketList(sqlSession, activityNo);
+	}
 	
 	
 	
@@ -109,6 +117,15 @@ public class BusinessServiceImpl implements BusinessService {
 	public ArrayList<RoomPayment> checkBookDate(int roomNo) {
 		return businessDao.checkBookDate(sqlSession, roomNo);
 	}
+
+	@Override
+	public RoomPayment selectBookInfo(RoomPayment rp) {
+		return businessDao.selectBookInfo(sqlSession, rp);
+	}
+
+
+
+	
 	
 	
 	

@@ -81,13 +81,13 @@ button:hover{
 		<div class="login-box">
 			<div class="login-innor">
 				<form id="login" action="login.me" method="post" >
-					<input id="memId" type="text" name="memId" placeholder="아이디" required>
+					<input id="memId" type="text" name="memId" placeholder="아이디" required >
 					<br><br>
 					<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required>
 					<br>
 					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 저장</label>
 					<br><br>
-					<button type="submit" class="login-button" >로그인</button>
+					<button type="submit" class="login-button" id="btn-login" onclick="login();">로그인</button>
 					<br>
 					<a href="findIdForm.me" class="findId-button">아이디찾기 </a>
 					&nbsp;/&nbsp;
@@ -99,6 +99,6 @@ button:hover{
 		</div>
 	
 	</div>
-	
+
 </body>
 </html>

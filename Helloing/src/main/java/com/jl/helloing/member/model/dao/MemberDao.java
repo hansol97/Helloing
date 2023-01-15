@@ -40,10 +40,25 @@ public class MemberDao {
 		
 		return result != null;// true, false를 돌려준다 , null이 아니면 true, null이면 false
 	}
-	
+	// 아이디 중복체크
 	public int idCheck(SqlSessionTemplate sqlSession, String checkId) {
 		return sqlSession.selectOne("memberMapper.idCheck", checkId);
 	}
+	// 아이디 찾기
+	public Member findId(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.findId", m);
+	}
+	
+	// 비밀번호 찾기
+	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.findPwd", m);
+	}
+	//
+	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
+	
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {

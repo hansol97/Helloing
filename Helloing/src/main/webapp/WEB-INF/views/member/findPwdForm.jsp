@@ -78,19 +78,22 @@ border: 1px solid black;
 					
 					<br><br><br>
 					
-					<label for="memPwd"> 아이디  </label>        
-					<input type="text" class="findPwd" id="memPwd" name="memPwd" required>
+					<label for="memId"> 아이디  </label>        
+					<input type="text" class="findId" id="memId" name="memId" required>
 					
 					<br><br><br>
 					
 					<label for="email"> 이메일  </label>
 					<input type="email" class="findEmail" id="email" name="email" required>	
 					<br>
+					<!--
 					<input type="text" class="authNum" id="authNum" name="authNum" required placeholder="인증번호">
 					<br>
+					  
 					<button type="button" class="authButton" onclick="authNum();" >인증</button>	
 					<br><br><br><br>
-
+-->
+					<br><br>
 					<button type="submit" class="findButton"> 비밀번호 찾기 </button>
 					
 				</form>

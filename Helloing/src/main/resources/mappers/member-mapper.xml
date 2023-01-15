@@ -108,6 +108,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_Id = #{ checkId }
 	</select>
 	
+	
+	<select id="findId" parameterType="member" resultMap="memberResultSet" >
+		select
+				mem_id
+		  from
+				member
+	     where
+	     		mem_name = #{ memName}
+	       and
+	       		email =#{ email }
+	       and
+	       		status = 'Y'			  		
+	</select>
+	 
+	<select id="findPwd" parameterType="member" resultMap="memberResultSet">
+		select
+				mem_no,
+				mem_pwd,
+				email
+		  from
+		  		member
+		 where
+		 		mem_name = #{ memName }
+		   and
+		   		mem_id = #{ memId }
+		   and
+		   		email = #{ email }
+		 	
+	</select>
+	
+	<update id="updatePwd" parameterType="member">
+		update 
+				member
+		   set
+		   		mem_pwd = #{ memPwd }
+		 where
+		 		mem_id = #{ memId }
+	</update>
+	
+	
 	<!-- 여기부터 혜진 -->
 	<select id="checkPwd" parameterType="member" resultType="string">
 	SELECT 
@@ -407,6 +447,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					
 	</select>
 	<select id="dutchTreat" parameterType="_int" resultType="expense">
+	SELECT  DISTINCT
+        NVL((SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE),0) "all",
+         NVL(( SELECT 
+                    SUM(AMOUNT) 
+                FROM 
+                    EXPENSE
+                WHERE     
+                    EXPENSE_CATEGORY = '숙소'),0) accomm,
+         NVL(( SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE
+                WHERE
+                    EXPENSE_CATEGORY = '식사'),0) eat,
+         NVL(( SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE
+                WHERE
+                    EXPENSE_CATEGORY = '관광'),0) tour,
+         NVL(( SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE
+                WHERE 
+                    EXPENSE_CATEGORY = '쇼핑'),0) shopping,
+         NVL(( SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE
+                WHERE 
+                    EXPENSE_CATEGORY = '교통'),0) transport,
+         NVL(( SELECT 
+                    SUM(AMOUNT)
+                FROM 
+                    EXPENSE
+                WHERE 
+                    EXPENSE_CATEGORY = '기타'),0) other,
+        (SELECT
+                COUNT(*)
+            FROM
+                PLANNER_MEM
+            WHERE 
+                PLANNER_NO = #{ plannerNo }) memCount
+        
+	FROM EXPENSE
+	where planner_no = #{ plannerNo }
 	</select>
 	
 	

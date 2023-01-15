@@ -33,8 +33,7 @@
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>
 						<td width="400px">
-							<input id="amName" type="text" name="accommName" height="100px" size="40" required placeholder="아무튼 입력"/>
-						</td>
+							<input id="amName" type="text" name="accommName" height="100px" size="40" required placeholder="아무튼 입력"/></td>
 					</tr>
 					<tr>
 						<th style="vertical-align: middle;">숙소 주소</th>

@@ -324,8 +324,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       REVIEW_NO DESC
 	</select>
 	
+
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 조회 -->
+
 	<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
 		SELECT
 				ACCOMM_NO,
@@ -337,15 +339,138 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				GRADE,
 				REFUND,
 				CHECKINOUT,
-				TO_CHAR(END_DATE, 'YYYY/MM/DD') AS "END_DATE",
+				CASE WHEN 
+							END_DATE > SYSDATE 
+					 THEN 
+					 		TO_CHAR(END_DATE, 'YYYY/MM/DD') 
+					 ELSE 
+					 		'만료일이 지났습니다 (' || TO_CHAR(END_DATE, 'YYYY/MM/DD') || ')'
+					 END AS 
+					 		 "END_DATE",
 				ACCOMM_CONTENT,
-				CATEGORY
-		  FROM
-		  		ACCOMM		
-		 WHERE
+				CATEGORY,
+				(
+					SELECT
+					  		FILE_PATH || CHANGE_NAME
+					  FROM 
+							ACCOMM_ATTACHMENT
+					 WHERE
+					 		FILE_NO = (
+										SELECT
+												MIN(FILE_NO)				 		
+							 			  FROM
+							 			  		ACCOMM_ATTACHMENT AT
+							 			 WHERE
+							 			 		AT.ACCOMM_NO = A.ACCOMM_NO
+								 	   )
+				) 
+				AS ATTACHMENT
+	  	  FROM
+				ACCOMM A
+		  WHERE
 				BUSINESS_NO = #{ businessNo }
-				
 	</select>
+
+	<!-- 숙소에 달린 객실 조회 accommNoList : 숙소 번호가 든 리스트-->
+	<select id="selectRoomListBu" parameterType="_int"  resultMap="RoomResultSet">
+		SELECT 
+				ROOM_NO, 
+				ACCOMM_NO, 
+				ROOM_NAME, 
+				CAPACITY, 
+				PRICE 
+		   FROM 
+		   		ROOM 
+		  WHERE 
+		  		ACCOMM_NO = #{accommNo}
+	
+	</select>
+	
+	<!-- 액티비티 조회와 거기 딸린 ACTIVITY_ATTACHMENT 붙여오기 -->
+	<select id="selectActivityListBu" parameterType="string" resultMap="ActivityResultSet">
+		SELECT
+				ACTIVITY_NO,
+				ACTIVITY_NAME,
+				BUSINESS_NO,
+				CASE WHEN 
+							END_DATE > SYSDATE 
+					 THEN 
+					 		TO_CHAR(END_DATE, 'YYYY/MM/DD') 
+					 ELSE 
+					 		'만료일이 지났습니다 (' || TO_CHAR(END_DATE, 'YYYY/MM/DD') || ')'
+					 END AS 
+					 		 "END_DATE",
+				ACTIVITY_CONTENT,
+				(
+					SELECT
+					  		FILE_PATH || CHANGE_NAME
+					  FROM 
+							ACTIVITY_ATTACHMENT
+					 WHERE
+					 		FILE_NO = (
+										SELECT
+												MIN(FILE_NO)				 		
+							 			  FROM
+							 			  		ACTIVITY_ATTACHMENT AT
+							 			 WHERE
+							 			 		AT.ACTIVITY_NO = A.ACTIVITY_NO
+								 	   )
+				) 
+				AS ATTACHMENT
+	  	  FROM
+				ACTIVITY A
+		  WHERE
+				BUSINESS_NO = #{ businessNo }
+	</select>
+	
+	
+	
+	<!-- 액티비티에 달린 티켓 조회 actNoList : 액티비티 번호가 든 리스트-->
+	<select id="selectTicketListBu" parameterType="_int"  resultMap="TicketResultSet">
+		SELECT 
+				TICKET_NO, 
+				ACTIVITY_NO, 
+				TICKET_NAME, 
+				CAPACITY, 
+				PRICE,
+				START_DATE,
+				END_DATE
+		   FROM 
+		   		TICKET 
+		  WHERE 
+		  		ACTIVITY_NO = #{activityNo}
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 숙소 집어넣기 -->
 	<insert id="insertAccom" parameterType="accomm">
@@ -404,12 +529,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	 			<foreach collection="list" item="item"    separator="UNION ALL ">
 						SELECT
-						     #{item.originName} AS ORIGIN_NAME,
-						     #{item.changeName} AS CHANGE_NAME,
-						     #{item.filePath} AS FILE_PATH,
-						     SYSDATE AS UPLOAD_DATE
+							     #{item.originName} AS ORIGIN_NAME,
+							     #{item.changeName} AS CHANGE_NAME,
+							     #{item.filePath} AS FILE_PATH,
+							     SYSDATE AS UPLOAD_DATE
 						   FROM
-			   					DUAL
+			   					 DUAL
 				</foreach>
 						   ) A
 	</insert>

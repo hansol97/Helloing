@@ -16,6 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <resultMap id="roomPaymentResultSet" type="roomPayment">
   	<result column="START_DATE" property="startDate"/>
   	<result column="END_DATE" property="endDate"/>
+  	<result column="ACCOMM_NAME" property="accName"/>
+  	<result column="ROOM_NAME" property="roomName"/>
+  	<result column="MEM_NAME" property="memName"/>
+  	<result column="HEAD_COUNT" property="headCount"/>
+  	<result column="PRICE" property="price"/>
+  	<result column="CATEGORY" property="category"/>
+  	
   </resultMap>
  
 	<select id="loginCompany" parameterType="_int" resultMap="businessResultSet">
@@ -72,8 +79,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ROOM_NO = 1
 	</select>
 	
-
-
+	<!-- 숙소 객실 날짜별 예약정보 -->
+	<select id="selectBookInfo" parameterType="roomPayment" resultMap="roomPaymentResultSet">
+		SELECT
+		       CATEGORY
+       		   ,ACCOMM_NAME
+       		   ,ROOM_NAME
+		       ,MEM_NAME
+		       ,HEAD_COUNT
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(RP.END_DATE, 'YYYY.MM.DD') END_DATE
+		       ,RP.PRICE
+		  FROM
+		       ROOM_PAYMENT RP
+		  JOIN
+		       ACCOMM USING(ACCOMM_NO)
+		  JOIN
+		       ROOM USING(ROOM_NO)
+		  JOIN 
+		       MEMBER USING(MEM_NO)
+		 WHERE
+		       START_DATE <![CDATA[ <= ]]> #{chooseDate}
+		   AND
+		       RP.END_DATE > #{chooseDate}
+		   AND
+		       ROOM_NO = #{roomNo}
+	</select>
 
 
 

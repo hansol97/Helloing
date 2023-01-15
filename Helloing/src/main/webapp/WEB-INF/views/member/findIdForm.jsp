@@ -56,8 +56,8 @@ font-weight: 800;
 			<div class="findId-box">
 				<form action="findId.me" method="post">
 					
-					<label for="memId"> 아이디  </label>        
-					<input type="text" class="findId" id="memId" name="memId" required>
+					<label for="memName"> 이름  </label>        
+					<input type="text" class="findId" id="memName" name="memName" required>
 					
 					<br><br><br>
 					

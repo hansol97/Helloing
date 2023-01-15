@@ -25,9 +25,30 @@ public interface MemberService {
 	// 메인인증번호 대조
 	boolean validate(Cert cert);
 	
+	// 아이디 찾기
+	Member findId(Member m);
+	
+	// 비밀번호 찾기
+	Member findPwd(Member m);
+	
+	/*
+	public Cert findPwd(Member m) {
+		
+		askjdfalkds
+		
+		Cert c = memberService.asdfa(m);
+		
+		// 임시 비밀번호를 보내준다. 
+		return c; 
+	}
+	*/
+	// 임시비밀번호 암호화
+	void updatePwd(Member m);
+	
 	// 아이디체크
 	int idCheck(String checkId);
 	
+	//----------------------------------------------------------------------
 	//혜진
 	//예정된 예약 리스트 조회
 	ArrayList<Book> selectScheduled(int memNo);

@@ -235,7 +235,10 @@
 					  + '<div> 쇼핑: ' + result.shopping + '원</div>'
 					  + '<div> 기타: ' + result.other + '원</div>'
 					  + '<h2>총 금액 : ' + result.all + '원</div>'
-					  + '<h2> 1/n로 나누면 ' + result.individual + '원입니다. <br> 총무님께 정산해주세요.</h2>'
+					  + '<h2> 1/n로 나누면 ' + result.individual + '원입니다. <br> 총무님께 정산해주세요.</h2>';
+					  
+					  $('.allAmount').html(value);
+					  
 			},
 			error : function(){
 				console.log('실패');

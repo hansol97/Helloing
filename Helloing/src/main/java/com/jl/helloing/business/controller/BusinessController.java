@@ -61,41 +61,65 @@ public class BusinessController {
 		
 		ArrayList<Accomm> accList = new ArrayList<Accomm>();
 		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
-		System.out.println("loginCompany : " + loginCompany);
 		
 		String businessNo = loginCompany.getBusinessNo();
-		System.out.println("businessNo :" + businessNo);
 		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
-		System.out.println("db다녀온 accList" + accList);
 		
 		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		
-//		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
-//
-//			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
-//
-//			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
-//			roomList = businessService.selectRoomList(accommNoList); //숙소 번호 리스트 보내서 방 리스트 받아오기
-//			System.out.println("포문 돌려 DB나녀온 roomList : " + roomList);
-//			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
-//		
-//		}
-		System.out.println("포문 돌려서 방 집어넣은 accList : " + accList);
-		
+		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
+
+			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
+			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
+			
+			for (int i = 0; i < accommNoList.size(); i++) {
+				roomList = businessService.selectRoomList(accommNo); //숙소 번호 리스트 보내서 방 리스트 받아오기
+				j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
+			}
+		}
 		mv.addObject("accList", accList)
 		  .setViewName("business/accommList");
-		
-		mv.setViewName("business/accommList");
 		
 		return mv;
 	}
 	
-	// 액티비티 조회
+	// 액티비티 조회 + 티켓 조회 후 같이 보내자
 	@RequestMapping("activityList.bu")
-	public String selectActivity() {
-		return "business/activityList";
+	public ModelAndView selectActivity(HttpSession session ,ModelAndView mv) {
+		
+		ArrayList<Activity> actList = new ArrayList<Activity>();
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
+		System.out.println("loginCompany : " + loginCompany);
+		
+		String businessNo = loginCompany.getBusinessNo();
+		System.out.println("businessNo : " + businessNo);
+		actList = businessService.selectActivityList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
+		System.out.println("db다녀온 actList :" + actList);
+		
+		ArrayList<Integer> actNoList = new ArrayList<Integer>();
+		ArrayList<Ticket> ticketList = new ArrayList<Ticket>();
+		
+		for (Activity j : actList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
+
+			int activityNo = j.getActivityNo(); // 액티비티 번호 가져오기
+			actNoList.add(activityNo); // 액티비티 번호 빼내서 번호 리스트 만들기
+			
+			for (int i = 0; i < actNoList.size(); i++) {
+				ticketList = businessService.selectTicketList(activityNo); //숙소 번호 리스트 보내서 방 리스트 받아오기
+				System.out.println("포문 돌려 DB나녀온 ticketList : " + ticketList);
+				j.setTicketList(ticketList); // Activity vo에 받아온 객실들이 담긴 ArrayList 추가 
+			}
+		}
+		System.out.println("포문 돌려서 방 집어넣은 actList : " + actList);
+		
+		mv.addObject("actList", actList)
+		  .setViewName("business/activityList");
+		
+		return mv;
 	}
+	
+	
 	// 숙소등록화면으로 이동
 	@RequestMapping("goInsertAccom.bu")
 	public String goInsertAccom() {
@@ -249,14 +273,12 @@ public class BusinessController {
 		return new Gson().toJson(arr);
 	}
 	
+	// 숙소 객실 날짜별 예약정보
 	@ResponseBody
 	@RequestMapping(value="selectBookInfo.bu", produces="application/json; charset=UTF-8")
-	public String selectBookInfo(String date) {
-		
-		
-		
-		
-		return "";
+	public String selectBookInfo(RoomPayment rp) {
+		RoomPayment bookInfo = businessService.selectBookInfo(rp);
+		return new Gson().toJson(bookInfo);
 	}
 	
 	// 숙소 수정하기화면으로 이동
