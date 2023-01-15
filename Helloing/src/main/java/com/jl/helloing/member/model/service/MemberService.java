@@ -42,10 +42,13 @@ public interface MemberService {
 		return c; 
 	}
 	*/
+	// 임시비밀번호 암호화
+	void updatePwd(Member m);
 	
 	// 아이디체크
 	int idCheck(String checkId);
 	
+	//----------------------------------------------------------------------
 	//혜진
 	//예정된 예약 리스트 조회
 	ArrayList<Book> selectScheduled(int memNo);

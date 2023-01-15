@@ -53,6 +53,12 @@ public class MemberDao {
 	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.findPwd", m);
 	}
+	//
+	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
+	
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {

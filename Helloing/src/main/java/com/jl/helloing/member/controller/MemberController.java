@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -137,21 +138,28 @@ public class MemberController {
 			//System.out.println(m2.getMemPwd());
 			String return_str = generatePassword();
 			
-
-			
-			
-			//System.out.println(return_str);
-			helper.setTo(email); // 인증번호이거라고 보내준다.
-			helper.setSubject("반갑소잉 임시 비밀번호입니다.");
-			helper.setText("임시 비밀번호 : " + return_str +"<br>" + "<h2>새로운 비밀번호를 받으신 후 꼭 비밀번호를 변경해 주세요!</h2" ,true);
-			
-			
-			
 			String url = ServletUriComponentsBuilder //불렀던 주소 입력됨.
 					.fromCurrentContextPath()
 					.port(8066).path("/")
-					.toUriString();		
-			helper.setText("<a href='" + url + "'>반갑소잉 페이이동</a>", true);
+					.toUriString(); 
+
+			
+			
+			ClassPathResource image=new ClassPathResource("spitter_logo_50.png");	
+			//System.out.println(return_str);
+			helper.setTo(email); // 인증번호이거라고 보내준다.
+			helper.setSubject("반갑소잉 임시 비밀번호입니다.");
+			//helper.setText("임시 비밀번호 : " + return_str + "<br>" + "<a href='" + url + "'><img src='" + /helloing/resources/img/logo_outline.png +"'>반갑소잉 페이지로 이동</a>" , true);
+			helper.setText("임시 비밀번호 : " + return_str + "<br><br>" +"<h2>임시 비밀번호입니다.비밀번호 변경을 꼭 해주세요.</h2>" + "<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
+			//"<a href='" + url + "'>반갑소잉 페이지로 이동</a>"
+			//helper.setText("<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
+			//helper.addInline("logo_outline.png",image);
+			//helper.setText("<a href='" + url + "'>여기로오셔요</a>", true);
+			
+			String encPwd = bcryptPasswordEncoder.encode(return_str);
+			m.setMemPwd(encPwd);
+			//System.out.println(m.getMemPwd());
+			memberService.updatePwd(m);
 			
 			sender.send(message);
 			return "redirect:/";
