@@ -68,6 +68,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.findPwd(sqlSession, m);
 	}
 	
+	// 임시 비밀번호 암호화 (DB로 보내기)
+	@Override
+	public void updatePwd(Member m) {
+		memberDao.updatePwd(sqlSession, m);
+
+	}
+	
 	
 	//혜진
 	
@@ -233,6 +240,18 @@ public class MemberServiceImpl implements MemberService{
 	public Expense dutchTreat(int plannerNo) {
 		return memberDao.dutchTreat(plannerNo, sqlSession);
 	}
+	
+	//가계부 결제 내역 추가 
+	@Override
+	public int insertExpense(Expense ex) {
+		return memberDao.insertExpense(ex, sqlSession);
+	}
+	
+	//가계부 결제 내역 삭제
+	@Override
+	public int deleteExpense(Expense ex) {
+		return 0;
+	}
 	@Override
 	public int addActWish(ActivityWish aw) {
 		return memberDao.addActWish(sqlSession, aw);
@@ -242,6 +261,19 @@ public class MemberServiceImpl implements MemberService{
 	public int removeActWish(ActivityWish aw) {
 		return memberDao.removeActWish(sqlSession, aw);
 	}
+
+	@Override
+	public int addAcWish(AccommWish aw) {
+		return memberDao.addAcWish(sqlSession, aw);
+	}
+
+	@Override
+	public int removeAcWish(AccommWish aw) {
+		return memberDao.removeAcWish(sqlSession, aw);
+	}
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,70 +21,75 @@
 			<div class="main">
 
 				<div class="top-info">
+					<input name="accommNo" value="${ ac.accommNo }" type="hidden">
 					<sapn class="accommName">${ ac.accommName }</sapn>
 					<button>🗺️ 위치보기</button>
 				</div>
 				<div>
-					<p>${ ac.grade }성급<br>
+					<p onclick="selectReview();" >${ ac.grade }성급<br>
 						⭐⭐⭐⭐⭐ ${ ac.avg } (${ ac.reviewCount }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 				<div class="middle-info">
 					<div>📌 ${ ac.address }</div>
-					<div>🕒 체크인 15:00 ~ 체크아웃 11:00</div>
+					<div>🕒 체크인 ${ ac.checkIn } ~ 체크아웃 ${ ac.checkOut }</div>
 				</div>
 				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
+					<img src="${ photo[0] }" width="780" height="500">
 					<div class="sub-images">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+						<c:forEach items="${ photo }" var="p" begin="1" varStatus="status">
+							<img src="${ photo[status.index] }" width="250" height="160">
+						</c:forEach>
 					</div>
 				</div>
 
-				<div class="selectoption">
-					<table class="researchtable">
-						<tr>
-							<td width="250">날짜</td>
-							<td width="200">인원</td>
-						</tr>
-						<tr>
-							<td><input type="date"></td>
-							<td>
-								<select> <!-- 나중에 자바스크립트로 포문돌리기 -->
-									<option>2명</option>
-									<option>3명</option>
-									<option>4명</option>
-									<option>5명</option>
-									<option>6명</option>
-									<option>7명</option>
-								</select>
-							</td>
-							<td><button>재검색</button></td>
-						</tr>
-					</table>
-				</div>
-
-				<div>
-					<c:forEach items="${ roomList }" var="r" varStatus="status">
-						<div class="accommbox"><!-- 객실 포문 돌리기~ -->
-							<input type="hidden" name="roomNo" value="${ r.roomNo }">
-							<div class="first">
-								<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-								<p><span>${ r.roomName }</span><br>
-									최대 ${ r.capacity }인</p>
+				<form action="reserve.accomm" method="post">
+					<div class="selectoption">
+						<table class="researchtable">
+							<tr>
+								<td width="250">체크인 날짜</td>
+								<td width="250">체크아웃 날짜</td>
+								<td width="200">인원</td>
+							</tr>
+							<tr>
+								<td><input type="date" name="checkIn"></td>
+								<td><input type="date" name="checkOut"></td>
+								<td>
+									<select name="headCount"> <!-- 나중에 자바스크립트로 포문돌리기 -->
+										<option>2명</option>
+										<option>3명</option>
+										<option>4명</option>
+										<option>5명</option>
+										<option>6명</option>
+										<option>7명</option>
+									</select>
+								</td>
+								<td><button type="button">재검색</button></td> <!-- 에이잭스로 실행... 어떻게 만들지.. 아휴 -->
+							</tr>
+						</table>
+					</div>
+	
+					<div>
+						<c:forEach items="${ roomList }" var="r" varStatus="status">
+							<div class="accommbox"><!-- 객실 포문 돌리기~ -->
+								<input type="hidden" name="roomNo" value="${ r.roomNo }">
+								<div class="first">
+									<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+									<p><span>${ r.roomName }</span><br>
+										최대 ${ r.capacity }인</p>
+								</div>
+								<hr>
+								<div class="second">
+									<h1>${ status.count } ${ r.roomName } <br>
+										${ r.price } 원</h1>
+									<button class="btn-reserve">예약</button>
+								</div>
 							</div>
-							<hr>
-							<div class="second">
-								<h1>${ status.count } ${ r.roomName } <br>
-									${ r.price } 원</h1>
-								<button>예약</button>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
+						</c:forEach>
+					</div>
+				</form>
 
 				<hr>
 
@@ -94,8 +100,8 @@
 				<hr>
 
 				<div class="explanation">
-					<div class="title"><span>이용안내</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+					<div class="title"><span>환불규정</span></div>
+					<div><p>${ ac.refund }</p></div>
 				</div>
 				<hr>
 
@@ -110,28 +116,28 @@
 							<table>
 								<tr>
 									<td align="right">⭐⭐⭐⭐⭐ </td>
-									<td width="200"><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td width="200"><progress value="${ ac.star5 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star5 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star4 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star4 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star3 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star3 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star2 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star2 } 명</td>
 								</tr>
 								<tr>
 									<td align="right">⭐ </td>
-									<td><progress value="130" max="1000"></progress></td>
-									<td>106명</td>
+									<td><progress value="${ ac.star1 }" max="${ fn:length(acReviewList) }"></progress></td>
+									<td>${ ac.star1 } 명</td>
 								</tr>
 							</table>
 						</div>
@@ -148,42 +154,20 @@
 					 --%>
 					
 					<div><!-- 리뷰 포문 돌리기 -->
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+						<c:forEach items="${ acReviewList }" var="ar">
+							<div class="reviewbox">
+								<div>
+									<p> ${ ar.memName } | <c:forEach var="i" begin="1" end="${ ar.star }">⭐</c:forEach><br>
+										${ ar.createDate } | ${ ar.roomName }</p>
+									<p class="review-content">
+										${ ar.reviewContent }
+									</p>
+									<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+								</div>
+								<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
 							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
-						<div class="reviewbox">
-							<div>
-								<p>⭐⭐⭐⭐⭐ 김*미<br>
-									2022.08.08 | 디럭스 패밀리트윈</p>
-								<p class="review-content">너무너무 깨끗하고<br>
-									가성비 최고!<br>
-									이런 곳이 진작 있는 줄 알았다면...</p>
-								<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
-							</div>
-							<div><img src="/helloing/resources/img/logo_outline.png" width="250" height="160"></div>
-						</div>
-						<hr>
+							<hr>
+						</c:forEach>
 					</div>
 
 					<%--
@@ -205,9 +189,25 @@
 
 			<div class="side-bar">
 				<div class="accommselectbox">
-					<p>1박 <span>65,000원 ~</span></p>
-					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
-					<div><button id="btn-wish">♥️ 위시리스트에 담기</button></div>
+					<p>1박 <span>${ ac.rowPrice }원 ~</span></p>
+					<button onclick="selectRoom();">객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<div>
+						<c:choose>
+							<c:when test="${ checkWish eq null }">
+								<input type="hidden" name="checkWish" value="none">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="checkWish" value="${ checkWish.wishDate }">
+							</c:otherwise>
+						</c:choose>
+					
+						<div id="btn-add">
+							<button id="btn-addwish" onclick="addWish();">♥️ 위시리스트에 담기</button>
+						</div>
+						<div id="btn-rev" style="display: none;">
+							<button id="btn-removewish" onclick="removeWish();">♥️😘♥️</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,9 @@ import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
@@ -122,29 +125,86 @@ public class MemberController {
 		return "member/findPwdForm";
 	}
 	
-	// 비밀번호 찾기
-//	@RequestMapping("findPwd.me")
-//	public String findPwd(Member m) {
-//		
-//		Member m2 = memberService.findPwd(m);
-//		
-//		if(m2 != null) {
-//			System.out.println(m2.getEmail());
-//			System.out.println(m2.getMemNo());
-//			System.out.println(m2.getMemPwd());
-//		} else {
-//			System.out.println("널이야");
-//		}
-//		
-//		
-//		return "member/findPwdForm";
-//		
-//		
-//		
-//		
-//		
-//		
-//	}
+	 //비밀번호 찾기
+	@RequestMapping("findPwd.me")
+	public ModelAndView findPwd(Member m, String email, ModelAndView mv) throws MessagingException {
+		
+		Member m2 = memberService.findPwd(m);
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		if(m2 != null) {
+			//System.out.println(m2.getEmail());
+			//System.out.println(m2.getMemNo());
+			//System.out.println(m2.getMemPwd());
+			String return_str = generatePassword();
+			
+			String url = ServletUriComponentsBuilder //불렀던 주소 입력됨.
+					.fromCurrentContextPath()
+					.port(8066).path("/")
+					.toUriString(); 
+
+			//ClassPathResource image=new ClassPathResource("spitter_logo_50.png");	
+			//System.out.println(return_str);
+			helper.setTo(email); // 인증번호이거라고 보내준다.
+			helper.setSubject("반갑소잉 임시 비밀번호입니다.");
+			//helper.setText("임시 비밀번호 : " + return_str + "<br>" + "<a href='" + url + "'><img src='" + /helloing/resources/img/logo_outline.png +"'>반갑소잉 페이지로 이동</a>" , true);
+			helper.setText("<h2>"+ m.getMemId() +" 님 반갑소잉👋 </h2>" + "<br><br><br>"+ "임시 비밀번호 : " + return_str + "<br>" +"<h3 style=color:red;>임시 비밀번호입니다. 비밀번호를 꼭 변경 해주세요.</h3>" +"<br><br>"+ "<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
+			//"<a href='" + url + "'>반갑소잉 페이지로 이동</a>"
+			//helper.setText("<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
+			//helper.addInline("logo_outline.png",image);
+			//helper.setText("<a href='" + url + "'>여기로오셔요</a>", true);
+			
+			String encPwd = bcryptPasswordEncoder.encode(return_str);
+			m.setMemPwd(encPwd);
+			//System.out.println(m.getMemPwd());
+			memberService.updatePwd(m);
+			sender.send(message);
+			mv.addObject("email", email)
+			  .addObject("alertMsg", email +" 이메일로 임시비밀번호를 보냈습니다. 확인 후 비밀번호를 변경해 주십시오.")
+			  .setViewName("member/login");
+		} else {
+			mv.addObject("alertMsg","다시 입력해 주세요.")
+			  .setViewName("member/findPwdForm");
+		}
+		return mv;
+
+	}
+	
+	// 임시 비밀번호 만들기(10자기 대문자,소문자,숫자 랜덤)
+	public String generatePassword() {
+		StringBuffer temp = new StringBuffer(); // 랜덤한 문자열을 담을 StringBuffer // 문자열 연산이 많고 멀티쓰레드 환경일 경우 사용
+		Random rnd = new Random();
+		
+		String return_str ="";
+		
+		for (int i = 0; i < 10; i++) { //10번 돌릴수 있는 루프
+		    int rIndex = rnd.nextInt(3);
+		    switch (rIndex) {
+		    case 0:
+		        // a-z 영문 소문자를 구별할 랜덤
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+		        break;
+		    case 1:
+		        // A-Z 영문 대문자를 구별할 랜덤
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+		        break;
+		    case 2:
+		        // 0-9 숫자를 구별할 랜덤
+		        temp.append((rnd.nextInt(10)));
+		        break;
+//		    case 3:
+//		        // A-Z 특수문자 
+//		        temp.append((char) ((int) (rnd.nextInt(26)) + 33));
+//		        break;
+		        // 정규표현식 생각해보고 넣을지 않넣을지 판단하기
+		    }
+		}
+		return_str = temp.toString();
+		return return_str;
+	}
+	
+	
 //	// 새 비밀번호 (비밀번호 찾기 후)
 //	@RequestMapping("newFindPwd.me")
 //	public String updatePwd() {
@@ -194,8 +254,8 @@ public class MemberController {
 							
 			memberService.sendMail(cert);
 			
-			helper.setTo(email); // 인증번호 이거야~ 보내준다.
-			helper.setSubject("인증을 해주세요");
+			helper.setTo(email); // 인증번호이거라고 보내준다.
+			helper.setSubject("반갑소잉! 이메일 인증을 해주세요");
 			helper.setText("인증번호 : " + secret);
 			sender.send(message);
 			
@@ -243,6 +303,29 @@ public class MemberController {
 		} else { // 사용가능
 			return "NNNNY";
 		}
+	}
+	
+	// 아이디 저장 (쿠키)
+	@RequestMapping("saveId.me")
+	public String saveId(HttpServletResponse response, String memId) {
+
+		Cookie saveId = new Cookie("saveId", memId);
+		saveId.setMaxAge(60 * 60 * 24 * 28); 
+		response.addCookie(saveId); // response객체에 
+		return "member/login"; 
+	}
+	
+	@RequestMapping("saveIdDelete.me")
+	public String delete(HttpServletResponse response, String memId) {
+		// 쿠키는 삭제 명령이 따로 없음
+		// 0초로 만료시간을 설정하고 덮어쓰기를 수행
+		
+		
+		Cookie saveId = new Cookie("saveId",memId); //name속성만 같게.
+		saveId.setMaxAge(0); // 그냥 쿠키 유효시간 0 으로 하면된다. 이렇게 해서 만료로.
+		response.addCookie(saveId);
+		
+		return "member/login";
 	}
 	
 	
@@ -616,30 +699,42 @@ public class MemberController {
 		
 		Expense e = memberService.dutchTreat(plannerNo);
 		
+		e.setIndividual(e.getAll()/e.getMemCount());
 		return new Gson().toJson(e);
 	}
-	
-	
-	
-	
-	
 	//비용 추가
-	
-	
-	
-	
-	
-	
-	
-	//비용 수정 전 조회
-	
-	
-	
-	
-	
-	
+	@RequestMapping("insertExpense.hj")
+	public ModelAndView insertExpense(ModelAndView mv, Expense ex, HttpSession session) {
+		
+		if( memberService.insertExpense(ex)>0) {
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}else {
+			session.setAttribute("alertMsg", "비용추가에 실패하였습니다.");
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}
+		 
+		return mv;
+	}
+
 	//비용삭제
-	
+	@RequestMapping("deleteExpense.hj")
+	public ModelAndView deleteExpense(ModelAndView mv, Expense ex, HttpSession session) {
+		
+		System.out.println(ex);
+		
+		if(memberService.deleteExpense(ex)>0) {
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}else {
+			session.setAttribute("alertMsg", "비용삭제에 실패하였습니다.");
+			mv.addObject("plannerNo", ex.getPlannerNo());
+			mv.setViewName("redirect:expenseView.hj");
+		}
+		
+		return mv;
+	}
 	
 	
 	
@@ -680,5 +775,39 @@ public class MemberController {
 			return "idk";
 		}
 	}
+	
+	// 숙소 위시리스트 추가
+	@ResponseBody
+	@RequestMapping("addAcWish")
+	public String addAcWish(HttpSession session, AccommWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.addAcWish(aw) > 0) return "success";
+			else return "fail";
+			
+		} else {
+			return "login please";
+		}
+	}
+	
+	// 액티비티 위시리스트 삭제
+	@ResponseBody
+	@RequestMapping("removeAcWish")
+	public String removeAcWish(HttpSession session, AccommWish aw) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			aw.setMemNo(loginUser.getMemNo());
+			
+			if(memberService.removeAcWish(aw) > 0) return "success";
+			else return "fail";
+		} else {
+			return "idk";
+		}
+	}
+	
 	
 }

@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.dao.ProductDao;
 import com.jl.helloing.product.model.vo.Accomm;
@@ -73,6 +75,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ArrayList<AccommReview> selectAcReviewList(int accommNo) {
 		return productDao.selectAcReviewList(sqlSession, accommNo);
+	}
+
+	@Override
+	public ArrayList<Attachment> selectPhotoList(int accommNo) {
+		return productDao.selectPhotoList(sqlSession, accommNo);
+	}
+
+	@Override
+	public AccommWish checkAcWish(AccommWish aw) {
+		return productDao.checkAcWish(sqlSession, aw);
 	}
 	
 	

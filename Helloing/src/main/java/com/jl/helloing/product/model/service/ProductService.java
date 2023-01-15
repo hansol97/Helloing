@@ -3,6 +3,8 @@ package com.jl.helloing.product.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.AccommReview;
@@ -34,8 +36,12 @@ public interface ProductService {
 	
 	// 숙소 상세 조회
 	Accomm selectAcDetail(int accommNo);
+	// 첨부파일들 조회
+	ArrayList<Attachment> selectPhotoList(int accommNo);
 	// 객실 조회
 	ArrayList<Room> selectRoomList(int accommNo);
 	// 숙소에 달린 리뷰 조회
 	ArrayList<AccommReview> selectAcReviewList(int accommNo);
+	// 회원이 숙소 위시에 추가한지 확인
+	AccommWish checkAcWish(AccommWish aw);
 }

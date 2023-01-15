@@ -9,12 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
-import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -38,7 +39,7 @@ public class ProductController {
 			} else { 
 				break;
 			}
-		} 
+		}
 		
 		mv.addObject("acList", acList)
 		  .setViewName("product/accommMain");
@@ -54,11 +55,32 @@ public class ProductController {
 	
 	// 숙소 상세 페이지
 	@RequestMapping("detail.accomm")
-	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
+	public ModelAndView DetailAccomm(HttpSession session, int accommNo, ModelAndView mv, AccommWish aw) {
 		
-		mv.addObject("ac", productService.selectAcDetail(accommNo))
-		  .addObject("roomList", productService.selectRoomList(accommNo))
-		  .addObject("acReviewList", productService.selectAcReviewList(accommNo))
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		Accomm ac = productService.selectAcDetail(accommNo);
+		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
+		
+		ArrayList<String> photo = new ArrayList<String>();
+		
+		for(int i = 0; i < at.size(); i++) {
+			photo.add(at.get(i).getAttachment());
+		}
+		
+		ac.setCheckIn(ac.getCheckInout().split(" / ")[0]);
+		ac.setCheckOut(ac.getCheckInout().split(" / ")[1]);
+		
+		if(loginUser != null) { // 로그인이 되어있을때만 위시리스트 확인하기
+			aw.setMemNo(loginUser.getMemNo());
+			
+			mv.addObject("checkWish", productService.checkAcWish(aw));
+		}
+		
+		mv.addObject("ac", ac) // 숙소 정보
+		  .addObject("photo", photo) // 사진 정보
+		  .addObject("roomList", productService.selectRoomList(accommNo)) // 객실 정보
+		  .addObject("acReviewList", productService.selectAcReviewList(accommNo)) // 리뷰 정보
 		  .setViewName("product/accommDetail");
 		
 		return mv;
@@ -80,7 +102,20 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		mv.addObject("actList", productService.selectActList())
+		ArrayList<Activity> actList = productService.selectActList();
+		
+		for(int i = 0; i < actList.size(); i++) {
+			if(i+1 != actList.size()) {
+				if(actList.get(i).getActivityNo() == actList.get(i+1).getActivityNo()) {
+					actList.remove(i+1);
+					i--;
+				}
+			} else { 
+				break;
+			}
+		}
+		
+		mv.addObject("actList", actList)
 		  .setViewName("product/activityMain");
 		
 		return mv;

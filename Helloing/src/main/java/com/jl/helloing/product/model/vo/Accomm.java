@@ -36,6 +36,8 @@ public class Accomm {
 	
 	//첨부파일
 	private String attachment;
+	private String checkIn;
+	private String checkOut;
 
 }
 

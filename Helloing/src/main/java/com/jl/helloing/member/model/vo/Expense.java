@@ -21,5 +21,7 @@ public class Expense {
 	private int other;
 	private double all;
 	private double individual;
+	private int memCount;
+	
 	
 }

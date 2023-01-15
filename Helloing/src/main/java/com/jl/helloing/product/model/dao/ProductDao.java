@@ -6,6 +6,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.AccommReview;
@@ -56,5 +58,13 @@ public class ProductDao {
 	
 	public ArrayList<AccommReview> selectAcReviewList(SqlSessionTemplate sqlSession, int accommNo){
 		return (ArrayList)sqlSession.selectList("productMapper.selectAcReviewList", accommNo);
+	}
+	
+	public ArrayList<Attachment> selectPhotoList(SqlSessionTemplate sqlSession, int accommNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectPhotoList", accommNo);
+	}
+	
+	public AccommWish checkAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
+		return sqlSession.selectOne("productMapper.checkAcWish", aw);
 	}
 }

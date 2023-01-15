@@ -1,6 +1,6 @@
 $(function(){
 
-	checkWish();
+	checkWish(); // 위시리스트에 추가되어있는지 확인하는 함수
 
 	// +, - 버튼 클릭 시 티켓 수 바뀌기
 	$(document).on('click', '.btn-minus, .btn-plus', function(){
@@ -70,7 +70,7 @@ function selectTicket(){
 	var height = $('.ticketlist').offset();
 	// offset : document 안에서 위치값 반환 // 절대 좌표를 반환한다.
 	
-	height.top = 850;
+	height.top = (height.top - 200);
 	// 헤더를 float 해놔서 좌표가 제대로 안먹음 => 객체에 접근해서 해당 값 직접 수정
 	
 	$('html, body').animate({scrollTop : height.top}, 400);
@@ -80,7 +80,7 @@ function selectTicket(){
 function selectReview(){
 	var height = $('.reviewtitle').offset();
 
-	height.top = 1500;
+	height.top = (height.top - 200);
 	$('html, body').animate({scrollTop : height.top}, 400);
 }
 
