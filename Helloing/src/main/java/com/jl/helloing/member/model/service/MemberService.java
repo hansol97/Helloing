@@ -137,4 +137,10 @@ public interface MemberService {
 	// 액티비티 위시리스트 삭제
 	int removeActWish(ActivityWish aw);
 	
+	// 액티비티 위시리스트 추가
+	int addAcWish(AccommWish aw);
+	
+	// 액티비티 위시리스트 삭제
+	int removeAcWish(AccommWish aw);
+	
 }

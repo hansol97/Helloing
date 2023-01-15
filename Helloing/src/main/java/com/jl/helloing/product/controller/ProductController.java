@@ -1,7 +1,6 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
@@ -55,7 +55,9 @@ public class ProductController {
 	
 	// 숙소 상세 페이지
 	@RequestMapping("detail.accomm")
-	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
+	public ModelAndView DetailAccomm(HttpSession session, int accommNo, ModelAndView mv, AccommWish aw) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
 		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
@@ -66,15 +68,21 @@ public class ProductController {
 			photo.add(at.get(i).getAttachment());
 		}
 		
-		System.out.println(photo);
-		
 		ac.setCheckIn(ac.getCheckInout().split(" / ")[0]);
 		ac.setCheckOut(ac.getCheckInout().split(" / ")[1]);
 		
-		mv.addObject("ac", ac)
-		  .addObject("photo", photo)
-		  .addObject("roomList", productService.selectRoomList(accommNo))
-		  .addObject("acReviewList", productService.selectAcReviewList(accommNo))
+		if(loginUser != null) { // 로그인이 되어있을때만 위시리스트 확인하기
+			aw.setMemNo(loginUser.getMemNo());
+			
+			mv.addObject("checkWish", productService.checkAcWish(aw));
+			
+			System.out.println(productService.checkAcWish(aw));
+		}
+		
+		mv.addObject("ac", ac) // 숙소 정보
+		  .addObject("photo", photo) // 사진 정보
+		  .addObject("roomList", productService.selectRoomList(accommNo)) // 객실 정보
+		  .addObject("acReviewList", productService.selectAcReviewList(accommNo)) // 리뷰 정보
 		  .setViewName("product/accommDetail");
 		
 		return mv;

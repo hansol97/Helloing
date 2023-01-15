@@ -168,6 +168,14 @@ public class MemberDao {
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
 	}
+	
+	public int addAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
+		return sqlSession.insert("memberMapper.addAcWish", aw);
+	}
+	
+	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
+		return sqlSession.delete("memberMapper.removeAcWish", aw);
+	}
 
 
 

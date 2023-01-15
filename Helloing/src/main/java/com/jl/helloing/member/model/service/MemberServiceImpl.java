@@ -250,6 +250,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.removeActWish(sqlSession, aw);
 	}
 
+	@Override
+	public int addAcWish(AccommWish aw) {
+		return memberDao.addAcWish(sqlSession, aw);
+	}
+
+	@Override
+	public int removeAcWish(AccommWish aw) {
+		return memberDao.removeAcWish(sqlSession, aw);
+	}
+
 
 
 

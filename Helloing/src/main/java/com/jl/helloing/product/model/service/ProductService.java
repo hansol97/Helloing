@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jl.helloing.common.model.vo.Attachment;
+import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.AccommReview;
@@ -41,4 +42,6 @@ public interface ProductService {
 	ArrayList<Room> selectRoomList(int accommNo);
 	// 숙소에 달린 리뷰 조회
 	ArrayList<AccommReview> selectAcReviewList(int accommNo);
+	// 회원이 숙소 위시에 추가한지 확인
+	AccommWish checkAcWish(AccommWish aw);
 }
