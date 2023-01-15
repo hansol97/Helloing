@@ -100,10 +100,11 @@ button:hover{
 	
 	</div>
 	
+	<!--  
 	<script>
 	$(function(){
 	    /* id 저장 체크박스 기능 추가 */
-	    var userInputId = getCookie("idCheck");//저장된 쿠기값 가져오기
+	    var userInputId = getCookie("userInputId");//저장된 쿠기값 가져오기
 	    $("#manager_id").val(userInputId); 
 
 	    if($("#manager_id").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩
@@ -130,7 +131,7 @@ button:hover{
 	
 	
 	</script>
-	
+	-->
 
 </body>
 </html>
