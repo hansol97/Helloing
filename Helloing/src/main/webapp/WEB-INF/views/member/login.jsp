@@ -121,7 +121,29 @@ button:hover{
 	
 	</div>
 	<script>
+	<%--
+		window.onload = function(){
+			var item = document.getElementsByClassName();
+			for(var i=0; i<item.length; i++){
+				item[i].onclick = function(){
+					
+				}
+			}
+		}
+		$jQuery(document).ready(function){
+			
+		}
+		
 		$(document).ready(function(){
+			
+		})
+		
+		$(function(){
+		$('.idCheck').click(function(){
+		
+		--%>
+		
+		$(document).ready(function(){ // 로딩 다 하고 발생한다.
 			if($(".idCheck").is(":checked")){
 				.ajax({
 					url : 'saveId.me'
