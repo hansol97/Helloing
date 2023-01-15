@@ -87,19 +87,6 @@
 				</div>
 
 				<hr>
-				
-				<script>
-				
-					$(function(){
-						$(':input').each(function(){
-							if($(this).val() == ''){
-								alert('모든 항목을 입력해주세요.');
-								return false;
-							}
-						})
-						$('input[type=sub]')
-					})
-				</script>
 
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
