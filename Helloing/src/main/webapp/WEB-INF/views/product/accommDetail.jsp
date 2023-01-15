@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +31,16 @@
 				<hr>
 				<div class="middle-info">
 					<div>📌 ${ ac.address }</div>
-					<div>🕒 체크인 15:00 ~ 체크아웃 11:00</div>
+					<div>🕒 체크인 ${ ac.checkIn } ~ 체크아웃 ${ ac.checkOut }</div>
 				</div>
 				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
+					<img src="${ photo[0] }" width="780" height="500">
 					<div class="sub-images">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+						<c:forEach items="${ photo }" var="p" begin="1" varStatus="status">
+							<img src="${ photo[status.index] }" width="250" height="160">
+						</c:forEach>
 					</div>
 				</div>
 
@@ -86,6 +87,19 @@
 				</div>
 
 				<hr>
+				
+				<script>
+				
+					$(function(){
+						$(':input').each(function(){
+							if($(this).val() == ''){
+								alert('모든 항목을 입력해주세요.');
+								return false;
+							}
+						})
+						$('input[type=sub]')
+					})
+				</script>
 
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
@@ -94,8 +108,8 @@
 				<hr>
 
 				<div class="explanation">
-					<div class="title"><span>이용안내</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
+					<div class="title"><span>환불규정</span></div>
+					<div><p>${ ac.refund }</p></div>
 				</div>
 				<hr>
 

@@ -1,6 +1,7 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,12 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
-import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -38,7 +39,7 @@ public class ProductController {
 			} else { 
 				break;
 			}
-		} 
+		}
 		
 		mv.addObject("acList", acList)
 		  .setViewName("product/accommMain");
@@ -56,7 +57,22 @@ public class ProductController {
 	@RequestMapping("detail.accomm")
 	public ModelAndView DetailAccomm(int accommNo, ModelAndView mv) {
 		
-		mv.addObject("ac", productService.selectAcDetail(accommNo))
+		Accomm ac = productService.selectAcDetail(accommNo);
+		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
+		
+		ArrayList<String> photo = new ArrayList<String>();
+		
+		for(int i = 0; i < at.size(); i++) {
+			photo.add(at.get(i).getAttachment());
+		}
+		
+		System.out.println(photo);
+		
+		ac.setCheckIn(ac.getCheckInout().split(" / ")[0]);
+		ac.setCheckOut(ac.getCheckInout().split(" / ")[1]);
+		
+		mv.addObject("ac", ac)
+		  .addObject("photo", photo)
 		  .addObject("roomList", productService.selectRoomList(accommNo))
 		  .addObject("acReviewList", productService.selectAcReviewList(accommNo))
 		  .setViewName("product/accommDetail");
@@ -80,7 +96,20 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		mv.addObject("actList", productService.selectActList())
+		ArrayList<Activity> actList = productService.selectActList();
+		
+		for(int i = 0; i < actList.size(); i++) {
+			if(i+1 != actList.size()) {
+				if(actList.get(i).getActivityNo() == actList.get(i+1).getActivityNo()) {
+					actList.remove(i+1);
+					i--;
+				}
+			} else { 
+				break;
+			}
+		}
+		
+		mv.addObject("actList", actList)
 		  .setViewName("product/activityMain");
 		
 		return mv;
