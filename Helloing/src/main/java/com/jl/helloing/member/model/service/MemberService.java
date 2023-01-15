@@ -42,10 +42,13 @@ public interface MemberService {
 		return c; 
 	}
 	*/
+	// 임시비밀번호 암호화
+	void updatePwd(Member m);
 	
 	// 아이디체크
 	int idCheck(String checkId);
 	
+	//----------------------------------------------------------------------
 	//혜진
 	//예정된 예약 리스트 조회
 	ArrayList<Book> selectScheduled(int memNo);
@@ -139,5 +142,11 @@ public interface MemberService {
 	
 	// 액티비티 위시리스트 삭제
 	int removeActWish(ActivityWish aw);
+	
+	// 액티비티 위시리스트 추가
+	int addAcWish(AccommWish aw);
+	
+	// 액티비티 위시리스트 삭제
+	int removeAcWish(AccommWish aw);
 	
 }

@@ -53,6 +53,12 @@ public class MemberDao {
 	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.findPwd", m);
 	}
+	//
+	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
+	
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {
@@ -164,6 +170,14 @@ public class MemberDao {
 	
 	public int removeActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.delete("memberMapper.removeActWish", aw);
+	}
+	
+	public int addAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
+		return sqlSession.insert("memberMapper.addAcWish", aw);
+	}
+	
+	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
+		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
 
 

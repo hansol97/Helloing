@@ -56,7 +56,7 @@
 .middle-info>div{ width: 400px; }
 
 .images{ border: 1px solid gray; }
-.sub-images{ display: flex; justify-content: space-between; }
+.sub-images{ display: flex;}
 
 /* 인원, 날짜 재검색 */
 .selectoption{ margin: 20px 0px; border: 1px solid gray; }

@@ -179,7 +179,7 @@ height: 30px;
 									//console.log(result1 + "????")
 									
 									if(result1){
-										$('#')
+										$('#secret').text('일치합니다.')
 										$('#secret').css('color','blue')
 										$('#btn-submit').attr('type', 'submit');
 									}

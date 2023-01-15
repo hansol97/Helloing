@@ -72,6 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="CHANGE_NAME"    property="changeName" />
         <result column="FILE_PATH"    property="filePath" />
         <result column="UPLOAD_DATE"    property="uploadDate" />
+        <result column="ATTACHMENT"    property="attachment" />
     </resultMap>
     
     <resultMap id="ActReviewResultSet"  type="actReview">
@@ -105,26 +106,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ACTIVITY_NO" 	property="activityNo" />
 		<result column="MEM_NO" 		property="memNo" />
 	</resultMap>
+	
+	<resultMap id="acWishResultSet" type="accommwish">
+		<result column="WISH_DATE"	property="wishDate" />
+		<result column="ACCOMM_NO" 	property="accommNo" />
+		<result column="MEM_NO" 	property="memNo" />
+	</resultMap>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">
 		SELECT
-			   DISTINCT A.ACTIVITY_NO
-			  ,ACTIVITY_NAME
-              ,( SELECT
-              		    COUNT(*)
-                   FROM
-                   	    ACTIVITY_REVIEW
-                  WHERE
-                  	    ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
-              ,( SELECT
-              	        MIN(PRICE)
-              	   FROM
-              	   	    TICKET
-              	  WHERE
-              	  	    ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
+		       A.ACTIVITY_NO
+		      ,ACTIVITY_NAME
+		      ,( SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
+		      ,( SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
+		      ,FILE_PATH || CHANGE_NAME AS ATTACHMENT
 		  FROM
-		  	   ACTIVITY A
+		       ACTIVITY A
+		  JOIN
+		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+		 ORDER
+		    BY
+		       AT.FILE_NO ASC
 	</select>
 
 	<!-- 액티비티 상세 정보 -->
@@ -262,6 +265,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,END_DATE
 			  ,ACCOMM_CONTENT
 			  ,CATEGORY
+			  ,CHECKINOUT
 			  ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
 			  ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
 			  ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
@@ -275,6 +279,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          WHERE
          	   ACCOMM_NO = #{ accommNo }
 	</select>
+	
+	<!-- 숙소에 첨부된 첨부파일 -->
+	<select id="selectPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ACCOMM A
+		  JOIN
+		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+         WHERE
+         	   A.ACCOMM_NO = #{ accommNo }
+	</select>
+	
 	<!-- 숙소에 등록된 객실 리스트 조회 -->
 	<select id="selectRoomList" resultMap="RoomResultSet" parameterType="_int">
 		SELECT
@@ -313,8 +330,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       REVIEW_NO DESC
 	</select>
 	
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ안호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-	<!-- 숙소 조회 + 첨부파일 한개 가져오기-->
+	<!-- 위시에 추가한 숙소인지 확인 -->
+	<select id="checkAcWish" resultMap="acWishResultSet" parameterType="accomm">
+		SELECT
+			   ACCOMM_NO
+			  ,MEM_NO
+			  ,WISH_DATE
+		  FROM
+		  	   ACCOMM_WISH
+		 WHERE
+		 	   ACCOMM_NO = #{ accommNo }
+		   AND
+		   	   MEM_NO = #{ memNo }
+	</select>
+	
+
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<!-- 숙소 조회 -->
+
 	<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
 		SELECT
 				ACCOMM_NO,

@@ -86,7 +86,7 @@
         </div>
         <hr>
          --%>
-		
+        
         <h3>호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
 	        <c:forEach items="${ acList }" var="ac" begin="0" end="6" step="1">

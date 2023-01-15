@@ -20,6 +20,8 @@ public class Attachment {
 	private String changeName;
 	private String filePath;
 	private String uploadDate;
+	
+	private String attachment;
 }
 //FILE_NO	NUMBER
 //ROOM_NO	NUMBER

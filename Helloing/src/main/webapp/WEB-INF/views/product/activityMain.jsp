@@ -29,9 +29,8 @@
         	<c:forEach items="${ actList }" var="a">
         		<div class="productbox">
                     <input type="hidden" name="activityNo" value="${ a.activityNo }">
-	                <img src="/helloing/resources/img/logo_outline.png" width="255" height="200">
-	                <p>가이드 투어<br>
-	                    <span class="activityName">${ a.activityName }</span><br>
+	                <img src="${ a.attachment }" width="255" height="200">
+	                <p><span class="activityName">${ a.activityName }</span><br>
 	                    	⭐⭐⭐⭐⭐ ${ a.reviewCount }<br>
 	                    ${ a.rowPrice }원 ~
 	                </p>
