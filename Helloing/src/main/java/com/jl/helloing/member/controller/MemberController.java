@@ -7,11 +7,12 @@ import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -126,7 +127,7 @@ public class MemberController {
 	
 	 //비밀번호 찾기
 	@RequestMapping("findPwd.me")
-	public String findPwd(Member m, String email) throws MessagingException {
+	public ModelAndView findPwd(Member m, String email, ModelAndView mv) throws MessagingException {
 		
 		Member m2 = memberService.findPwd(m);
 		MimeMessage message = sender.createMimeMessage();
@@ -143,14 +144,12 @@ public class MemberController {
 					.port(8066).path("/")
 					.toUriString(); 
 
-			
-			
-			ClassPathResource image=new ClassPathResource("spitter_logo_50.png");	
+			//ClassPathResource image=new ClassPathResource("spitter_logo_50.png");	
 			//System.out.println(return_str);
 			helper.setTo(email); // 인증번호이거라고 보내준다.
 			helper.setSubject("반갑소잉 임시 비밀번호입니다.");
 			//helper.setText("임시 비밀번호 : " + return_str + "<br>" + "<a href='" + url + "'><img src='" + /helloing/resources/img/logo_outline.png +"'>반갑소잉 페이지로 이동</a>" , true);
-			helper.setText("임시 비밀번호 : " + return_str + "<br><br>" +"<h2>임시 비밀번호입니다.비밀번호 변경을 꼭 해주세요.</h2>" + "<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
+			helper.setText("<h2>"+ m.getMemId() +" 님 반갑소잉👋 </h2>" + "<br><br><br>"+ "임시 비밀번호 : " + return_str + "<br>" +"<h3 style=color:red;>임시 비밀번호입니다. 비밀번호를 꼭 변경 해주세요.</h3>" +"<br><br>"+ "<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
 			//"<a href='" + url + "'>반갑소잉 페이지로 이동</a>"
 			//helper.setText("<a href='" + url + "'>반갑소잉 페이지로 이동</a>",true);
 			//helper.addInline("logo_outline.png",image);
@@ -160,16 +159,15 @@ public class MemberController {
 			m.setMemPwd(encPwd);
 			//System.out.println(m.getMemPwd());
 			memberService.updatePwd(m);
-			
 			sender.send(message);
-			return "redirect:/";
-
+			mv.addObject("email", email)
+			  .addObject("alertMsg", email +" 이메일로 임시비밀번호를 보냈습니다. 확인 후 비밀번호를 변경해 주십시오.")
+			  .setViewName("member/login");
 		} else {
-			System.out.println("실패");
+			mv.addObject("alertMsg","다시 입력해 주세요.")
+			  .setViewName("member/findPwdForm");
 		}
-		
-		
-		return "member/findPwdForm";
+		return mv;
 
 	}
 	
@@ -307,7 +305,15 @@ public class MemberController {
 		}
 	}
 	
-	
+	// 아이디 저장 (쿠키)
+	@RequestMapping("saveId")
+	public String saveId(Member m, HttpServletResponse response) {
+		String memId= m.getMemId();
+		Cookie saveId = new Cookie("saveId", memId);
+		saveId.setMaxAge(60 * 60 * 24 * 28);
+		response.addCookie(saveId);
+		return "member/login"; 
+	}
 	
 	
 
