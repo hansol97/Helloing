@@ -26,7 +26,7 @@
 					<button>🗺️ 위치보기</button>
 				</div>
 				<div>
-					<p>${ ac.grade }성급<br>
+					<p onclick="selectReview();" >${ ac.grade }성급<br>
 						⭐⭐⭐⭐⭐ ${ ac.avg } (${ ac.reviewCount }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
@@ -185,8 +185,8 @@
 
 			<div class="side-bar">
 				<div class="accommselectbox">
-					<p>1박 <span>65,000원 ~</span></p>
-					<button>객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
+					<p>1박 <span>${ ac.rowPrice }원 ~</span></p>
+					<button onclick="selectRoom();">객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
 					<div>
 						<c:choose>
 							<c:when test="${ checkWish eq null }">

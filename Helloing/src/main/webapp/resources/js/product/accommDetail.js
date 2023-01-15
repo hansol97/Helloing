@@ -66,3 +66,24 @@ function checkWish(){
 		$('#btn-rev').css('display', 'block');
 	}
 }
+
+
+// 객실 선택하기 버튼 클릭 시 객실 선택하는 곳으로 스크롤 이동
+function selectRoom(){
+	var height = $('.selectoption').offset();
+	// offset : document 안에서 위치값 반환 // 절대 좌표를 반환한다.
+	
+	height.top = (height.top - 200);
+	// 헤더를 float 해놔서 좌표가 제대로 안먹음 => 객체에 접근해서 해당 값 직접 수정
+	
+	$('html, body').animate({scrollTop : height.top}, 400);
+}
+
+// 별점 클릭 시 후기 목록으로 스크롤 이동
+function selectReview(){
+	var height = $('.reviewtitle').offset();
+
+	height.top = (height.top - 200);
+	
+	$('html, body').animate({scrollTop : height.top}, 400);
+}

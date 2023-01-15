@@ -75,8 +75,6 @@ public class ProductController {
 			aw.setMemNo(loginUser.getMemNo());
 			
 			mv.addObject("checkWish", productService.checkAcWish(aw));
-			
-			System.out.println(productService.checkAcWish(aw));
 		}
 		
 		mv.addObject("ac", ac) // 숙소 정보
