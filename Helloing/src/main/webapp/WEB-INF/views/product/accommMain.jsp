@@ -86,29 +86,7 @@
         </div>
         <hr>
          --%>
-         
-        <script>
-        	$(function(){
-        		$(document).on('click', '#aaa', function(){
-        			console.log($(this).attr('type'));
-        			if($(':input').val() == ''){
-        				$('#aaa').attr('type', 'button');
-        			}
-        			else {
-        				$('#aaa').attr('type', 'submit');
-        			}
-        		})
-        		$(document).on('keyup', ':input', function(){
-        			$('#aaa').attr('type', 'submit');
-        		})
-        		
-        	})
-        </script>
-         
-        <form action="#">
-        	<input type="text" >
-			<input type="button" id="aaa">
-        </form>
+        
         <h3>호텔</h3> <!-- for문 돌릴거임 / 10개까지만 뿌려주자 / outer 밖 요소들은 가리기 어떻게?-->
         <div class="hot" id="hot-hotel"> 
 	        <c:forEach items="${ acList }" var="ac" begin="0" end="6" step="1">
