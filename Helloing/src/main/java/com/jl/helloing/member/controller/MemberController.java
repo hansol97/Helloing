@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
@@ -122,29 +123,82 @@ public class MemberController {
 		return "member/findPwdForm";
 	}
 	
-	// 비밀번호 찾기
-//	@RequestMapping("findPwd.me")
-//	public String findPwd(Member m) {
-//		
-//		Member m2 = memberService.findPwd(m);
-//		
-//		if(m2 != null) {
-//			System.out.println(m2.getEmail());
-//			System.out.println(m2.getMemNo());
-//			System.out.println(m2.getMemPwd());
-//		} else {
-//			System.out.println("널이야");
-//		}
-//		
-//		
-//		return "member/findPwdForm";
-//		
-//		
-//		
-//		
-//		
-//		
-//	}
+	 //비밀번호 찾기
+	@RequestMapping("findPwd.me")
+	public String findPwd(Member m, String email) throws MessagingException {
+		
+		Member m2 = memberService.findPwd(m);
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		if(m2 != null) {
+			//System.out.println(m2.getEmail());
+			//System.out.println(m2.getMemNo());
+			//System.out.println(m2.getMemPwd());
+			String return_str = generatePassword();
+			
+
+			
+			
+			//System.out.println(return_str);
+			helper.setTo(email); // 인증번호이거라고 보내준다.
+			helper.setSubject("반갑소잉 임시 비밀번호입니다.");
+			helper.setText("임시 비밀번호 : " + return_str +"<br>" + "<h2>새로운 비밀번호를 받으신 후 꼭 비밀번호를 변경해 주세요!</h2" ,true);
+			
+			
+			
+			String url = ServletUriComponentsBuilder //불렀던 주소 입력됨.
+					.fromCurrentContextPath()
+					.port(8066).path("/")
+					.toUriString();		
+			helper.setText("<a href='" + url + "'>반갑소잉 페이이동</a>", true);
+			
+			sender.send(message);
+			return "redirect:/";
+
+		} else {
+			System.out.println("실패");
+		}
+		
+		
+		return "member/findPwdForm";
+
+	}
+	
+	// 임시 비밀번호 만들기(10자기 대문자,소문자,숫자 랜덤)
+	public String generatePassword() {
+		StringBuffer temp = new StringBuffer(); // 랜덤한 문자열을 담을 StringBuffer // 문자열 연산이 많고 멀티쓰레드 환경일 경우 사용
+		Random rnd = new Random();
+		
+		String return_str ="";
+		
+		for (int i = 0; i < 10; i++) { //10번 돌릴수 있는 루프
+		    int rIndex = rnd.nextInt(3);
+		    switch (rIndex) {
+		    case 0:
+		        // a-z 영문 소문자를 구별할 랜덤
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+		        break;
+		    case 1:
+		        // A-Z 영문 대문자를 구별할 랜덤
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+		        break;
+		    case 2:
+		        // 0-9 숫자를 구별할 랜덤
+		        temp.append((rnd.nextInt(10)));
+		        break;
+//		    case 3:
+//		        // A-Z 특수문자 
+//		        temp.append((char) ((int) (rnd.nextInt(26)) + 33));
+//		        break;
+		        // 정규표현식 생각해보고 넣을지 않넣을지 판단하기
+		    }
+		}
+		return_str = temp.toString();
+		return return_str;
+	}
+	
+	
 //	// 새 비밀번호 (비밀번호 찾기 후)
 //	@RequestMapping("newFindPwd.me")
 //	public String updatePwd() {
@@ -194,8 +248,8 @@ public class MemberController {
 							
 			memberService.sendMail(cert);
 			
-			helper.setTo(email); // 인증번호 이거야~ 보내준다.
-			helper.setSubject("인증을 해주세요");
+			helper.setTo(email); // 인증번호이거라고 보내준다.
+			helper.setSubject("반갑소잉! 이메일 인증을 해주세요");
 			helper.setText("인증번호 : " + secret);
 			sender.send(message);
 			
@@ -244,6 +298,8 @@ public class MemberController {
 			return "NNNNY";
 		}
 	}
+	
+	
 	
 	
 
