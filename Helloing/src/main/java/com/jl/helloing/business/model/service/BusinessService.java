@@ -70,8 +70,11 @@ public interface BusinessService {
 
 	ArrayList<Ticket> selectTicketList(int activityNo);
 	
+	int updateBusinessPayment(BusinessPayment bp);
+
+	int updateAccommEndDate(int accommNo);
 	
-	
+	int updateActivityEndDate(int activityNo);
 	
 	
 	
@@ -107,6 +110,9 @@ public interface BusinessService {
 	ArrayList<RoomPayment> checkBookDate(int roomNo);
 
 	RoomPayment selectBookInfo(RoomPayment rp);
+
+
+
 
 
 
