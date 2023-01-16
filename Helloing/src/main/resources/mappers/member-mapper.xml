@@ -178,18 +178,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
         		ACCOMM_NO accommNo,
         		ACCOMM_NAME accommName,
-                (SELECT 
-                        FILE_PATH || CHANGE_NAME AS FILEPATH
-                    FROM 
-                        ACCOMM_ATTACHMENT
-                    WHERE 
-                            MEM_NO = #{ memNo }
-                    AND 
-                        ROWNUM = 1) filePath
+                FILEPATH 
+                
 		FROM 
 			ACCOMM_WISH
 		JOIN 
 			ACCOMM USING(ACCOMM_NO)
+        JOIN 
+            (SELECT 
+                    ACCOMM_NO, 
+                    MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+            FROM  
+            	ACCOMM_ATTACHMENT
+            GROUP 
+            	BY 
+            		ACCOMM_NO) USING(ACCOMM_NO)    
 		WHERE 
 			MEM_NO = #{ memNo }
 		ORDER 
