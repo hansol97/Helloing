@@ -12,6 +12,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.RoomPayment;
 
 @Repository
 public class AdminDao {
@@ -126,6 +127,30 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.searchBusiPayList", keyword, rowBounds);
+	}
+
+	public int selectRoomPayListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectRoomPayListCount");
+	}
+
+	public ArrayList<RoomPayment> selectRoomPayList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectRoomPayList", null, rowBounds);
+	}
+
+	public int searchRoomPayListCount(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("adminMapper.searchRoomPayListCount", keyword);
+	}
+
+	public ArrayList<RoomPayment> searchRoomPayList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchRoomPayList", keyword, rowBounds);
 	}
 
 
