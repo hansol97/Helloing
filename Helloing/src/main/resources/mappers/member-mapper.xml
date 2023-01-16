@@ -533,7 +533,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ expenseCategory }
 					)
 	</insert>
-	
+	<delete id="deleteExpense" parameterType="expense">
+	DELETE
+		FROM EXPENSE
+	WHERE 
+		EXPENSE_NO = #{ expenseNo }
+	AND
+		PLANNER_NO = #{ plannerNo }
+	</delete>
 	
 	
 	

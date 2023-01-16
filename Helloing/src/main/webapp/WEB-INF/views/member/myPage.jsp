@@ -42,9 +42,8 @@
 	        <div class="category" id="book">
 		    <h2>나의 예약정보</h2>
 			<ul>
-		        <li><a href="scheduled.hj">예정된 예약</a></li>
-		        <li><a href="last.hj">지난 예약</a></li>
-		        <li><a href="cancelled.hj">취소된 예약</a></li>
+		        <li><a href="accommBook.hj">숙소</a></li>
+		        <li><a href="activitybook.hj">액티비티</a></li>
 		    </ul>
 	        </div>
 	

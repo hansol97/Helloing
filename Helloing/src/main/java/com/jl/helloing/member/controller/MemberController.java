@@ -333,22 +333,16 @@ public class MemberController {
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
-	//예정된 예약
-	@RequestMapping("scheduled.hj")
-	public String selectScheduled() {
-		return "member/reservationScheduled";
+	//숙소 예약 정보
+	@RequestMapping("accommBook.hj")
+	public String accommBook() {
+		return "member/accommBook";
 	}
 	
-	//지난 예약
-	@RequestMapping("last.hj")
-	public String selectLast() {
-		return "member/reservationLast";
-	}
-	
-	//취소된 예약
-	@RequestMapping("cancelled.hj")
-	public String selectCancelled() {
-		return "member/reservationCancelled";
+	//액티비티 구매 정보
+	@RequestMapping("activityBook.hj")
+	public String activityBook() {
+		return "member/activityBook";
 	}
 	
 	//예약 상세 조회
@@ -644,7 +638,6 @@ public class MemberController {
 	@RequestMapping("updatePlan.hj")
 	public ModelAndView updatePlan(Plan p, ModelAndView mv, HttpSession session) {
 		
-		System.out.println(p);
 		if(memberService.updatePlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
