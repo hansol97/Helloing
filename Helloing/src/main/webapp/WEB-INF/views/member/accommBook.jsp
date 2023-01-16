@@ -106,22 +106,24 @@ pageEncoding="UTF-8"%>
 		            <tr>
 		                <td>${a.orderNo}</td>
 		                <td>${a.category }</td>
-		                <td>${a.accName }</td>
+		                <td class="accName">${a.accName }</td>
 		                <td>${a.startDate } ~${a.endDate }</td>
 		                <td>${a.price }원</td>
-		                <c:if test="${a.status eq 'Y'}">
-		                	<c:choose>
-		                		<c:when test="${a.status eq 'R'}">
-		                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
-		            			</c:when>
-		            			<c:when test="${a.status eq 'S'}">
-		            				<td><a href="#ex2" rel="modal:open">후기보기</a></td>
-		            			</c:when>
-		            			<c:otherwise>
-		              				 <td><a href="#ex1" rel="modal:open">예약취소</a></td>
-		            			</c:otherwise>
-		            		</c:choose>
-		            	</c:if>
+	                	<td>${a.paymentDate}</td>
+	                	<c:choose>		                		
+	                		<c:when test="${a.status eq 'R'}">
+	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
+	            			</c:when>
+	            			<c:when test="${a.status eq 'S'}">
+	            				<td><a href="#ex2" rel="modal:open">후기보기</a></td>
+	            			</c:when> 
+	            			<c:when test="${a.status eq 'Y'}">
+	              				 <td><a href="#ex1" rel="modal:open">예약취소</a></td>
+	            			</c:when>
+	            			<c:otherwise>
+	              				 <td>취소된 예약</td>
+	            			</c:otherwise>
+	            		</c:choose>
 		            </tr>
 		            </c:forEach>
 	            </tbody>
@@ -178,7 +180,7 @@ pageEncoding="UTF-8"%>
 		</div>
     <script>
     $(function(){
-    	$('#table td').click(function(){
+    	$('#table .accName').click(function(){
     		location.href ="reservationDetail.hj";
     	})
     })

@@ -150,27 +150,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 여기부터 혜진 -->
 	<select id="accommBook" parameterType="_int" resultType="roomPayment">
-    SELECT 
-            R.ORDER_NO orderNo
-            ,TO_CHAR(R.START_DATE, 'YYYY-MM-DD') startDate
-            ,TO_CHAR(R.END_DATE, 'YYYY-MM-DD') endDate
-            ,R.PRICE price
-            ,A.ACCOMM_NO accommNo
-            ,ROOM_NO roomNo
-            ,TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate
-            ,R.STATUS status
-            ,A.ACCOMM_NAME accName
-            ,A.CATEGORY category
-    FROM 
-        ROOM_PAYMENT R
-    JOIN 
-        ACCOMM A ON(A.ACCOMM_NO=R.ACCOMM_NO)
-    WHERE 
-        MEM_NO = #{ memNo }
-     ORDER 
-     	BY paymentDate DESC
+        SELECT O.*,  
+                (SELECT COUNT(*) 
+                    FROM ACCOMM_REVIEW
+                    WHERE MEM_NO = #{ memNo }
+                    AND ORDER_NO = orderNo) count
+        FROM (                
+                SELECT 
+                        R.ORDER_NO orderNo
+                        ,TO_CHAR(R.START_DATE, 'YYYY-MM-DD') startDate
+                        ,TO_CHAR(R.END_DATE, 'YYYY-MM-DD') endDate
+                        ,R.PRICE price
+                        ,A.ACCOMM_NO accommNo
+                        ,ROOM_NO roomNo
+                        ,TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate
+                        ,R.STATUS status
+                        ,A.ACCOMM_NAME accName
+                        ,A.CATEGORY category
+ 
+                FROM 
+                    ROOM_PAYMENT R
+                JOIN 
+                    ACCOMM A ON(A.ACCOMM_NO=R.ACCOMM_NO)
+                WHERE 
+                    MEM_NO = #{ memNo }
+                 ORDER 
+                    BY paymentDate DESC) O
 	</select>
+	<select id="activityBook">
 	
+	</select>
 	
 	
 	

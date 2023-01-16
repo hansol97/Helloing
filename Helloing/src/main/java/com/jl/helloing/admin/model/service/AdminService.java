@@ -10,6 +10,7 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
 public interface AdminService {
@@ -94,6 +95,9 @@ public interface AdminService {
 	
 	// 액티비티 리스트 조회
 	ArrayList<TicketPayment> selectActPaymentList(PageInfo pi);
+	
+	// 액티비티 결제 티켓 조회
+	ArrayList<Ticket> selectTicketList(int orderNo);
 
 
 
