@@ -239,6 +239,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       A.ACCOMM_NO
 		      ,A.ACCOMM_NAME
 		      ,A.CATEGORY
+		      ,A.ADDRESS
 		      ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
 		      ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
 		      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
@@ -389,9 +390,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  JOIN
 		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
 		 WHERE
-		 	   UPPER(A.ACCOMM_NAME) LIKE UPPER('%' || #{ accommName } || '%')
+		 	   LOWER(A.ACCOMM_NAME) LIKE LOWER('%' || #{ accommName } || '%')
+		<if test="category  != 'all'.toString()">
 		   AND
 		   	   CATEGORY = #{ category }
+		</if>
 		 ORDER
 		    BY
 		       AT.FILE_NO ASC
