@@ -155,6 +155,9 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.deleteExpense", ex);
 	}
 	
+	public ArrayList<RoomPayment> accommBook(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.accommBook", memNo);
+	}
 	
 	
 	
@@ -184,9 +187,6 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
 
-	public ArrayList<RoomPayment> accommBook(int memNo, SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("memberMapper.accommBook", memNo);
-	}
 
 
 
