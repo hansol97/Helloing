@@ -306,11 +306,36 @@ public class BusinessController {
 		return "business/payAccomm";
 	}
 	
+	// 숙소 기업결제하기
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 액티비티 기업결제 화면으로 이동 
 	@RequestMapping("goPayAct.bu")
 	public String goPayActivity() {
 		return "business/payActivity";
 	}
+	
+	// 액티비티 기업결제하기 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 카카오 주소에서 좌표받아오기 컨트롤러
     private static String GEOCODE_URL="http://dapi.kakao.com/v2/local/search/address.json?query=";
