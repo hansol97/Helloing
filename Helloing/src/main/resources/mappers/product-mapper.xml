@@ -445,6 +445,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACCOMM A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+			AND
+				STATUS = 'Y'
 		  ORDER
 		  	 BY
 		  	 	ACCOMM_NO DESC
@@ -462,6 +464,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   		ROOM 
 		  WHERE 
 		  		ACCOMM_NO = #{accommNo}
+			AND
+				STATUS = 'Y'		    
 	
 	</select>
 	
@@ -500,6 +504,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACTIVITY A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+			AND
+				STATUS = 'Y'				
   		  ORDER
 		  	 BY
 		  	 	ACTIVITY_NO DESC
@@ -531,6 +537,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   		TICKET T
 		  WHERE 
 		  		ACTIVITY_NO = #{activityNo}
+			AND
+				STATUS = 'Y'
 	
 	</select>
 	

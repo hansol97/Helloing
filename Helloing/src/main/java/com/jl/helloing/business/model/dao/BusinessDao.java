@@ -103,6 +103,10 @@ public class BusinessDao {
 		return sqlSession.update("businessMapper.updateActivityEndDate", activityNo);
 	}
 
+	// 숙소 지우기 status = n
+	public int deleteAccomm(SqlSessionTemplate sqlSession, int accommNo) {
+		return sqlSession.update("businessMapper.deleteAccomm", accommNo);
+	}
 
 
 	
@@ -120,6 +124,8 @@ public class BusinessDao {
 	public RoomPayment selectBookInfo(SqlSessionTemplate sqlSession, RoomPayment rp) {
 		return sqlSession.selectOne("businessMapper.selectBookInfo", rp);
 	}
+
+
 
 
 

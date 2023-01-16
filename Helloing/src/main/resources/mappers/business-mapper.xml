@@ -12,7 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<result column="BUSINESS_ENROLLDATE" 	property="businessEnrollDate" />
   </resultMap>
   
-  
   <resultMap id="roomPaymentResultSet" type="roomPayment">
   	<result column="START_DATE" property="startDate"/>
   	<result column="END_DATE" property="endDate"/>
@@ -46,7 +45,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  <result column="STAR4"    		property="star4" />
 	  <result column="STAR5"    		property="star5" />
 	  <result column="ATTACHMENT"    	property="attachment" />
+	  <result column="STATUS"    		property="status" />
 	</resultMap>
+     
+    <resultMap id="RoomResultSet"  type="room">
+        <result column="ROOM_NO"        property="roomNo" />
+        <result column="ACCOMM_NO"   	property="accommNo" />
+        <result column="ROOM_NAME"  	property="roomName" />
+        <result column="CAPACITY"   	property="capacity" />
+        <result column="PRICE"  		property="price" />
+        <result column="STATUS"    			property="status" />
+   </resultMap>
 		
 	<resultMap id="ActivityResultSet" type="activity">
         <result column="ACTIVITY_NO"       	property="activityNo" />
@@ -63,8 +72,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR4"    			property="star4" />
         <result column="STAR5"    			property="star5" />
         <result column="ATTACHMENT"    		property="attachment" />
+        <result column="STATUS"    			property="status" />
     </resultMap>
-	
+	    
+    <resultMap id="TicketResultSet" type="ticket">
+        <result column="TICKET_NO"       	property="ticketNo" />
+        <result column="ACTIVITY_NO"    	property="activityNo" />
+        <result column="TICKET_NAME"   		property="ticketName" />
+        <result column="CAPACITY"  			property="capacity" />
+        <result column="PRICE"    			property="price" />
+        <result column="START_DATE"    		property="startDate" />
+        <result column="END_DATE"    		property="endDate" />
+        <result column="COUNT"    			property="count" />
+        <result column="STATUS"    			property="status" />
+    </resultMap>
+    
 	<resultMap id="businessPaymentResultSet" type="businessPayment">
 	  <result column="PAYMENT_NO"       	property="paymentNo" />
 	  <result column="BUSINESS_NO"   		property="businessNo" />
@@ -204,7 +226,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 ACTIVITY_NO = #{ activityNo }
 	</update>
 
-
+	<!-- 숙소 지우기 status = n -->
+	<update id="deleteAccomm" parameterType="_int">
+		UPDATE
+                ACCOMM
+		   SET
+                STATUS = 'N'
+		 WHERE
+                ACCOMM_NO = #{ accommNo }
+	</update>
+	
 
 
 

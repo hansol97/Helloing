@@ -19,6 +19,7 @@ public class Accomm {
 	private String endDate;
 	private String accommContent;
 	private String category;
+	private String status;
 	
 	private double avg; // 별점 평균
 	private int reviewCount; // 리뷰 개수

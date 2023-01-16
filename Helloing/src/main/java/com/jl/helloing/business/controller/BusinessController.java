@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -107,6 +108,7 @@ public class BusinessController {
 		}
 		System.out.println("포문 돌려서 방 집어넣은 actList : " + actList);
 		
+
 		mv.addObject("actList", actList)
 		  .setViewName("business/activityList");
 		
@@ -159,6 +161,36 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+    
+    // 숙소 수정 (UPDATE)
+    
+    
+    // 숙소 삭제 (UPDATE)
+    @RequestMapping("deleteAccomm.bu")
+    public String deleteAccomm(int accommNo, HttpSession session) {
+    	
+    	int result = businessService.deleteAccomm(accommNo);
+    	
+    	if (result > 0) {
+			session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
+		} else {
+			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+		}
+    	return "redirect:accommList.bu";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
 	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
@@ -196,6 +228,15 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+	
+    
+    // 액티비티 수정 (UPDATE)
+    
+    
+    // 액티비티 삭제 (UPDATE)
+	
+	
+	
 	// 객실 등록화면으로 이동
 	@RequestMapping("goInsertRoom.bu")
 	public ModelAndView goInsertRoom(int accommNo, ModelAndView mv) {
@@ -239,6 +280,12 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+	
+    // 객실 수정 (UPDATE)
+    
+    
+    // 객실  삭제 (UPDATE)
+	
 
 	// 티켓 등록 화면으로 이동 
 	@RequestMapping("goInsertTicket.bu")
@@ -262,6 +309,12 @@ public class BusinessController {
 			return "common/errorPage"; 
 		}
 	}
+	
+    // 티켓 수정 (UPDATE)
+    
+    
+    // 티켓 삭제 (UPDATE)
+	
 	
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody

@@ -122,7 +122,10 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.updateActivityEndDate(sqlSession, activityNo);
 	}
 	
-	
+	@Override
+	public int deleteAccomm(int accommNo) {
+		return businessDao.deleteAccomm(sqlSession, accommNo);
+	}
 	
 	
 	
@@ -142,6 +145,8 @@ public class BusinessServiceImpl implements BusinessService {
 	public RoomPayment selectBookInfo(RoomPayment rp) {
 		return businessDao.selectBookInfo(sqlSession, rp);
 	}
+
+
 
 
 

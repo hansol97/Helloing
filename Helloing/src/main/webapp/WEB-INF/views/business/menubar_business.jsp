@@ -145,6 +145,12 @@
   </script>
   <c:remove var="alertMsg" scope="session"/>
 </c:if>
+<c:if test="${not empty errorMsg}">
+  <script>
+  alertify.alert('으악..!', '${errorMsg}', function(){});
+  </script>
+  <c:remove var="errorMsg" scope="session"/>
+</c:if>
   <!--HEADER-->
   <header>
     <div class="inner">
