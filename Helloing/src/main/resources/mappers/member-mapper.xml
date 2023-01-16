@@ -211,13 +211,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT 
         		ACTIVITY_NO activityNo,
         		ACTIVITY_NAME activityName,
-       			FILE_PATH || CHANGE_NAME AS FILEPATH
+       			FILEPATH
 		FROM 
 			ACTIVITY_WISH
 		JOIN 
 			ACTIVITY USING(ACTIVITY_NO)
 		JOIN 
-			ACTIVITY_ATTACHMENT USING(ACTIVITY_NO)
+            (SELECT 
+                    ACTIVITY_NO, 
+                    MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+            FROM  
+            	ACTIVITY_ATTACHMENT
+            GROUP 
+            	BY 
+            		ACTIVITY_NO) USING(ACTIVITY_NO)
 		WHERE 
 			MEM_NO = #{ memNo }
 		ORDER 
