@@ -35,6 +35,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.product.model.vo.RoomPayment;
 
 @Controller
 public class MemberController {
@@ -335,10 +336,20 @@ public class MemberController {
 	//혜진
 	//숙소 예약 정보
 	@RequestMapping("accommBook.hj")
-	public ModelAndView accommBook(ModelAndView mv) {
+	public ModelAndView accommBook(ModelAndView mv, HttpSession session) {
 		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		mv.setViewName("member/accommBook");
+		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("member/accommBook");
+		}else {
+			mv.addObject("errorMsg", "예약 정보 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
 		
 		return mv;
 	}

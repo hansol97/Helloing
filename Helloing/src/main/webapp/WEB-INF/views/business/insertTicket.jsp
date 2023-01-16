@@ -69,7 +69,7 @@
                     <!-- 히든 넣는 곳 -->
 					<tr>
 						<td>
-                            <input type="hidden" name="activityNo" id="" value="1"><!-- 조회하고 나서 리퀘스트에서 빼서 넣자-->
+                            <input type="hidden" name="activityNo" id="" value="${requestScope.activityNo}"><!-- 조회하고 나서 리퀘스트에서 빼서 넣자-->
                         </td>
 					</tr>
 

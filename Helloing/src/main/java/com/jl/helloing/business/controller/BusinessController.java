@@ -68,15 +68,14 @@ public class BusinessController {
 		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		
+		int accommNo;
 		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
 
-			int accommNo = j.getAccommNo(); // 숙소번호 가져오기
+			accommNo = j.getAccommNo(); // 숙소번호 가져오기
 			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
+			roomList = businessService.selectRoomList(accommNo); //숙소 번호  보내서 방 리스트 받아오기
+			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
 			
-			for (int i = 0; i < accommNoList.size(); i++) {
-				roomList = businessService.selectRoomList(accommNo); //숙소 번호 리스트 보내서 방 리스트 받아오기
-				j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
-			}
 		}
 		mv.addObject("accList", accList)
 		  .setViewName("business/accommList");
@@ -90,12 +89,9 @@ public class BusinessController {
 		
 		ArrayList<Activity> actList = new ArrayList<Activity>();
 		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
-		System.out.println("loginCompany : " + loginCompany);
 		
 		String businessNo = loginCompany.getBusinessNo();
-		System.out.println("businessNo : " + businessNo);
 		actList = businessService.selectActivityList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
-		System.out.println("db다녀온 actList :" + actList);
 		
 		ArrayList<Integer> actNoList = new ArrayList<Integer>();
 		ArrayList<Ticket> ticketList = new ArrayList<Ticket>();
@@ -105,11 +101,8 @@ public class BusinessController {
 			int activityNo = j.getActivityNo(); // 액티비티 번호 가져오기
 			actNoList.add(activityNo); // 액티비티 번호 빼내서 번호 리스트 만들기
 			
-			for (int i = 0; i < actNoList.size(); i++) {
-				ticketList = businessService.selectTicketList(activityNo); //숙소 번호 리스트 보내서 방 리스트 받아오기
-				System.out.println("포문 돌려 DB나녀온 ticketList : " + ticketList);
-				j.setTicketList(ticketList); // Activity vo에 받아온 객실들이 담긴 ArrayList 추가 
-			}
+			ticketList = businessService.selectTicketList(activityNo); //숙소 번호 리스트 보내서 방 리스트 받아오기
+			j.setTicketList(ticketList); // Activity vo에 받아온 객실들이 담긴 ArrayList 추가 
 		}
 		System.out.println("포문 돌려서 방 집어넣은 actList : " + actList);
 		
@@ -136,10 +129,6 @@ public class BusinessController {
 		
 		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
 		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
-
-		System.out.println("acc: " + acc);
-
-		System.out.println("숙소등록의 accomm : " + acc);
 
     	ArrayList<Attachment> list = new ArrayList();
     	for (int i = 0; i < upfile.length; i++) {
@@ -250,11 +239,20 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
-	
+
+	// 티켓 등록 화면으로 이동 
+	@RequestMapping("goInsertTicket.bu")
+	public ModelAndView goInsertTicket(int activityNo, ModelAndView mv) {
+		mv.addObject("activityNo", activityNo).setViewName("business/insertTicket");
+		
+		return mv;
+	}
 	// 티켓등록하기
 	@RequestMapping("insertTicket.bu")
-	public String insertTicket(Ticket t, Model m) {
+	public String insertTicket(int activityNo, Ticket t, Model m) {
 		
+		t.setActivityNo(activityNo);
+		System.out.println("actNo : " +activityNo);
 		int result = businessService.insertTicket(t);
 		
 		if (result > 0) { // 티켓 등록 성공! 
@@ -292,11 +290,6 @@ public class BusinessController {
 		return "business/updateActivity";
 	}
 
-	// 티켓 등록 화면으로 이동 
-	@RequestMapping("goInsertTicket.bu")
-	public String goInsertTicket() {
-		return "business/insertTicket";
-	}
 	// 객실 수정화면으로 이동
 	@RequestMapping("goUpdateRoom.bu")
 	public String goUpdateRoom() {
@@ -313,11 +306,36 @@ public class BusinessController {
 		return "business/payAccomm";
 	}
 	
+	// 숙소 기업결제하기
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 액티비티 기업결제 화면으로 이동 
 	@RequestMapping("goPayAct.bu")
 	public String goPayActivity() {
-		return "business/PayActivity";
+		return "business/payActivity";
 	}
+	
+	// 액티비티 기업결제하기 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 카카오 주소에서 좌표받아오기 컨트롤러
     private static String GEOCODE_URL="http://dapi.kakao.com/v2/local/search/address.json?query=";
