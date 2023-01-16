@@ -96,13 +96,9 @@
 }
 /* 객실 상품들 끝 */
 
-.explanation{
-	display: flex;
-	padding: 10px;
-	margin-bottom: 10px;
+.explanation .title {
+	font-size: 20px;
 }
-.title{ width: 300px; }
-.title span{ font-size: 20px; }
 
 /* 리뷰 */
 .reviewtitle{ margin: 20px 0px 10px 0px; font-size: 30px; }

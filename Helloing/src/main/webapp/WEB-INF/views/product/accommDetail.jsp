@@ -99,14 +99,16 @@
 				<hr>
 
 				<div class="explanation">
-					<div class="title"><span>소개</span></div>
-					<div><p>${ ac.accommContent }</p></div>
-				</div>
-				<hr>
-
-				<div class="explanation">
-					<div class="title"><span>환불규정</span></div>
-					<div><p>${ ac.refund }</p></div>
+					<table>
+						<tr>
+							<td class="title" width="100">소개</td>
+							<td>${ ac.accommContent }</td>
+						</tr>
+						<tr>
+							<td class="title">환불규정</td>
+							<td>${ ac.refund }</td>
+						</tr>
+					</table>
 				</div>
 				<hr>
 
