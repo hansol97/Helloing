@@ -21,4 +21,6 @@ public class RoomPayment {
     private String roomName; // 객실이름
     private String memName;
     private String category;
+    private String status;
+    private String filePath;
 }

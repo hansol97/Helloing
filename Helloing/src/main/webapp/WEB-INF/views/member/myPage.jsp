@@ -43,7 +43,7 @@
 		    <h2>나의 예약정보</h2>
 			<ul>
 		        <li><a href="accommBook.hj">숙소</a></li>
-		        <li><a href="activitybook.hj">액티비티</a></li>
+		        <li><a href="activityBook.hj">액티비티</a></li>
 		    </ul>
 	        </div>
 	

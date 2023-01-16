@@ -87,14 +87,14 @@ pageEncoding="UTF-8"%>
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 	    <div id="table">
-		        <h1>예약된 예약</h1>
+		        <h1>숙소 예약리스트</h1>
 				
 		        <table>
 		        <thead>
 		            <tr>
 		                <th>예약 번호</th>
-		                <th>예약 유형</th>
-		                <th>예약명</th>
+		                <th>숙소 유형</th>
+		                <th>숙소명</th>
 		                <th>예약 일자</th>
 		                <th>결제금액</th>
 		                <th></th>
