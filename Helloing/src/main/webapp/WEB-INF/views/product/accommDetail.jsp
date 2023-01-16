@@ -36,7 +36,7 @@
 				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="${ photo[0] }" width="780" height="500">
+					<img id="attachment"  src="${ photo[0] }" width="780" height="500">
 					<div class="sub-images">
 						<c:forEach items="${ photo }" var="p" begin="1" varStatus="status">
 							<img src="${ photo[status.index] }" width="250" height="160">
@@ -53,7 +53,7 @@
 							<td width="200">인원</td>
 						</tr>
 						<tr>
-							<td><input type="date" id="startDate" min="2023-01-16"></td>
+							<td><input type="date" id="startDate"></td>
 							<td><input type="date" id="endDate"></td>
 							<td>
 								<select name="headCount"> <!-- 숙소별 최대 인원 자바스크립트로 뿌려주기 -->
@@ -99,14 +99,16 @@
 				<hr>
 
 				<div class="explanation">
-					<div class="title"><span>소개</span></div>
-					<div><p>${ ac.accommContent }</p></div>
-				</div>
-				<hr>
-
-				<div class="explanation">
-					<div class="title"><span>환불규정</span></div>
-					<div><p>${ ac.refund }</p></div>
+					<table>
+						<tr>
+							<td class="title" width="100">소개</td>
+							<td>${ ac.accommContent }</td>
+						</tr>
+						<tr>
+							<td class="title">환불규정</td>
+							<td>${ ac.refund }</td>
+						</tr>
+					</table>
 				</div>
 				<hr>
 
