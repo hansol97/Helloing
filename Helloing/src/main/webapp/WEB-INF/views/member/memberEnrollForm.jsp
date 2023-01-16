@@ -243,6 +243,7 @@ height: 30px;
 					})
 				})
 			</script>
+			
 			<!--  
 			<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행

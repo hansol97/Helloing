@@ -83,7 +83,7 @@ button:hover{
 				<form id="login" action="login.me" method="post" >
 					
 					<!-- cookie.saveId 쿠키의 네임속성값-->
-					<!-- cookie.saveId.value 쿠키의 네임속성값.value 쿠키의 value를 출력할수있다.  -->
+					<!-- cookie.saveId.value 쿠키의 네임속성값.value 쿠키의 value를 출력할수있다. -->
 					<c:choose>
 						<c:when test="${ not empty cookie.saveId }">
 							<input type="text" id="memId" name="memId" placeholder="아이디" required value="${ cookie.saveId.value }"><br>
@@ -97,7 +97,6 @@ button:hover{
 							<input type="checkbox" name="idCheck" id="idCheck"><label for="idCheck" >아이디 저장</label><br><br>
 						</c:otherwise>
 					</c:choose>
-					
 					
 					<!--  
 					<input id="memId" type="text" name="memId" placeholder="아이디" required >
