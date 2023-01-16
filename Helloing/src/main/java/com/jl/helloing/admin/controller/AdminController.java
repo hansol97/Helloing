@@ -24,6 +24,7 @@ import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
@@ -251,10 +252,24 @@ public class AdminController {
 	
 	// 액티비티 결제 조회
 	@RequestMapping("actPay.ad")
-	public String selectActPaymentList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+	public ModelAndView selectActPaymentList(@RequestParam(value="cpage", defaultValue="1") int currentPage
+									   , ModelAndView mv) {
 		PageInfo pi = Pagination.getPageInfo(adminService.selectActPayListCount(), currentPage, 5, 2);
 		ArrayList<TicketPayment> list = adminService.selectActPaymentList(pi);
-		return "admin/activityPaymentListView";
+		
+		mv.addObject("list", list)
+		  .addObject("pi", pi)
+		  .setViewName("admin/activityPaymentListView");
+		return mv;
+	}
+	
+	// 액티비티 결제 티켓 조회
+	@ResponseBody
+	@RequestMapping(value="ticketList.ad", produces="application/json; charset=UTF-8")
+	public String selectTicketList(int orderNo) {
+		ArrayList<Ticket> tList = adminService.selectTicketList(orderNo);
+		System.out.println(tList);
+		return new Gson().toJson(tList);
 	}
 	
 

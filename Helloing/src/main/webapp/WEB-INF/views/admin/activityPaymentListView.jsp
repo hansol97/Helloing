@@ -39,7 +39,7 @@
     top: 500px;
     left: 50%;
 
-    width: 600px;
+    width: 800px;
     height: 400px;
 
     padding: 40px;
@@ -55,7 +55,7 @@
   }
 
   .modal-title{
-    margin-left:40px;
+    margin-left:30px;
   }
 
   .modal-title span{
@@ -96,7 +96,7 @@
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="600">
+                            <td width="690">
                                 
                             </td>
                         </tr>
@@ -107,6 +107,7 @@
                     <table id="boardList" class="type02" align="center">
                         <thead>
                             <tr>
+                            	<th width="80">주문번호</th>
                                 <th width="110">회원아이디</th>
                                 <th width="350">액티비티명</th>
                                 <th width="120">사업자명</th>
@@ -115,24 +116,65 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>user02</td>
-                                <td>[전남 목포] 목포 해상케이블카 탑승권</td>
-                                <td>사업자1</td>
-                                <td>69,700원</td>
-                                <td>2023.01.01</td>
-                            </tr>
-                            <tr>
-                                <td>user02</td>
-                                <td>[전남 목포] 목포 해상케이블카 탑승권</td>
-                                <td>사업자1</td>
-                                <td>69,700원</td>
-                                <td>2023.01.01</td>
-                            </tr>
+                            <c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="6">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="tp" items="${ list }">
+			                            <tr>
+			                                <td>${tp.orderNo}</td>
+			                                <td>${tp.memId}</td>
+	                            	  	 	<td class="activity_name_td"><input type="hidden" value="${tp.orderNo}" >${tp.activityName}</td>
+			                                <td>${tp.businessName}</td>
+			                                <td>${tp.paymentAmount}</td>
+			                                <td>${tp.paymentDate}</td>
+			                            </tr>
+		                            </c:forEach>
+		                         </c:otherwise>
+		                     </c:choose>
                         </tbody>
                     </table>
                 </tr>
             </table>
+            
+            <script>
+            	$(function(){
+            		$('.activity_name_td').click(function(){
+            			console.log($(this).children().eq(0).val());
+            			$.ajax({
+            				url : 'ticketList.ad'
+            				,data : {orderNo : $(this).children().eq(0).val()}
+            				,success : function(tList){
+            					
+            					var result = '';
+            					
+            					for(var i in tList){
+            						result += '<tr>'
+            								+ 	'<td>' + tList[i].ticketNo + '</td>'
+            								+	'<td>' + tList[i].ticketName + '</td>'
+            								+ 	'<td>' + tList[i].count + '</td>'
+            								+ 	'<td>' + tList[i].price + '</td>' 
+            								+ 	'<td>' + tList[i].startDate + ' ~ ' + tList[i].endDate + '</td>'
+            								+ '</tr>'
+            					}
+            					
+            					$('#ticket_detail_tb tbody').html(result);
+            					
+            					openModal();
+            					
+            				}
+            				,error : function(){
+            					console.log('실패');
+            				}
+            			})
+            		})
+            	})
+            </script>
             
             <br><br>
             
@@ -161,16 +203,16 @@
         <div class="modal_body">
             <div>
                 <div class="modal-title">
-                    <span>액티비티 상세정보</span>
+                    <span>티켓 상세정보</span>
                 </div>
                 <div align="center">
-                    <table class="type02">
+                    <table class="type02" id="ticket_detail_tb">
                         <thead>
-                            <th>티켓번호</th>
-                            <th>티켓명</th>
-                            <th>수량</th>
-                            <th>가격</th>
-                            <th>사용기간</th>
+                            <th width="90">티켓번호</th>
+                            <th width="200">티켓명</th>
+                            <th width="80">수량</th>
+                            <th width="110">가격</th>
+                            <th width="200">사용기간</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -193,30 +235,34 @@
             </div>
         </div>
     </div>
-    <button class="btn-open-popup">Modal 띄우기</button>
 
     <script>
-        const body = document.querySelector('body');
-        const modal = document.querySelector('.modal');
-        const btnOpenPopup = document.querySelector('.btn-open-popup');
-  
-        btnOpenPopup.addEventListener('click', () => {
-          modal.classList.toggle('show');
-  
-          if (modal.classList.contains('show')) {
-            body.style.overflow = 'hidden';
-          }
-        });
-  
-        modal.addEventListener('click', (event) => {
-          if (event.target === modal) {
-            modal.classList.toggle('show');
-  
-            if (!modal.classList.contains('show')) {
-              body.style.overflow = 'auto';
+    
+	    var body = document.querySelector('body');
+	    var modal = document.querySelector('.modal');	
+    
+    	function openModal(){
+    		var body = document.querySelector('body');
+            var modal = document.querySelector('.modal');
+      
+              modal.classList.toggle('show');
+      
+              if (modal.classList.contains('show')) {
+                body.style.overflow = 'hidden';
+              }
+            
+    	}
+    	
+    	modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+              modal.classList.toggle('show');
+    
+              if (!modal.classList.contains('show')) {
+                body.style.overflow = 'auto';
+              }
             }
-          }
-        });
+          });
+        
       </script>
     
     

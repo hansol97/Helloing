@@ -16,6 +16,7 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Service
@@ -173,6 +174,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ArrayList<TicketPayment> selectActPaymentList(PageInfo pi) {
 		return adminDao.selectActPaymentList(sqlSession, pi);
+	}
+
+	@Override
+	public ArrayList<Ticket> selectTicketList(int orderNo) {
+		return adminDao.selectTicketList(sqlSession, orderNo);
 	}
 
 	
