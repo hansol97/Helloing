@@ -53,7 +53,7 @@
 							<td width="200">인원</td>
 						</tr>
 						<tr>
-							<td><input type="date" id="startDate" min="2023-01-16"></td>
+							<td><input type="date" id="startDate"></td>
 							<td><input type="date" id="endDate"></td>
 							<td>
 								<select name="headCount"> <!-- 숙소별 최대 인원 자바스크립트로 뿌려주기 -->
