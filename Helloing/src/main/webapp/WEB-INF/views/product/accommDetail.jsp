@@ -31,12 +31,12 @@
 				<hr>
 				<div class="middle-info">
 					<div>📌 ${ ac.address }</div>
-					<div>🕒 체크인 ${ ac.checkIn } ~ 체크아웃 ${ ac.checkOut }</div>
+					<div>🕒 체크인 <span id="checkIn">${ ac.checkIn }</span> ~ 체크아웃 <span id="checkOut">${ ac.checkOut }</span></div>
 				</div>
 				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="${ photo[0] }" width="780" height="500">
+					<img id="attachment"  src="${ photo[0] }" width="780" height="500">
 					<div class="sub-images">
 						<c:forEach items="${ photo }" var="p" begin="1" varStatus="status">
 							<img src="${ photo[status.index] }" width="250" height="160">
@@ -53,10 +53,10 @@
 							<td width="200">인원</td>
 						</tr>
 						<tr>
-							<td><input type="date" name="startDate"></td>
-							<td><input type="date" name="endDate"></td>
+							<td><input type="date" id="startDate"></td>
+							<td><input type="date" id="endDate"></td>
 							<td>
-								<select name="headCount">
+								<select name="headCount"> <!-- 숙소별 최대 인원 자바스크립트로 뿌려주기 -->
 									<option>2명</option>
 									<option>3명</option>
 									<option>4명</option>
@@ -72,35 +72,43 @@
 
 				<div>
 					<c:forEach items="${ roomList }" var="r" varStatus="status">
-						<div class="accommbox">
-							<input type="hidden" name="roomNo" value="${ r.roomNo }">
-							<input type="hidden" name="price" value="${ r.price }">
-							<div class="first">
-								<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-								<p><span name="roomName">${ r.roomName }</span><br>
-									최대 ${ r.capacity }인</p>
+						<form action="reserve.accomm" method="POST">
+							<div class="accommbox">
+								<input type="hidden" name="roomNo" value="${ r.roomNo }">
+								<input type="hidden" name="price" value="${ r.price }">
+								<div class="first">
+									<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+									<input type="hidden" name="roomName" value="${ r.roomName }">
+									<p><span name="roomName">${ r.roomName }</span><br>
+										최대 ${ r.capacity }인</p>
+								</div>
+								<hr>
+								<div class="second">
+									<h1>${ status.count } ${ r.roomName } <br>
+										${ r.price } 원</h1>
+									<button class="btn-reserve">예약</button>
+								</div>
+								<div id="info">
+
+								</div>
 							</div>
-							<hr>
-							<div class="second">
-								<h1>${ status.count } ${ r.roomName } <br>
-									${ r.price } 원</h1>
-								<button class="btn-reserve">예약</button>
-							</div>
-						</div>
+						</form>
 					</c:forEach>
 				</div>
 
 				<hr>
 
 				<div class="explanation">
-					<div class="title"><span>소개</span></div>
-					<div><p>${ ac.accommContent }</p></div>
-				</div>
-				<hr>
-
-				<div class="explanation">
-					<div class="title"><span>환불규정</span></div>
-					<div><p>${ ac.refund }</p></div>
+					<table>
+						<tr>
+							<td class="title" width="100">소개</td>
+							<td>${ ac.accommContent }</td>
+						</tr>
+						<tr>
+							<td class="title">환불규정</td>
+							<td>${ ac.refund }</td>
+						</tr>
+					</table>
 				</div>
 				<hr>
 

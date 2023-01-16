@@ -23,6 +23,9 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class AdminController {
@@ -33,16 +36,6 @@ public class AdminController {
 	@RequestMapping("page.ad")
 	public String adminPage() {
 		return "admin/menubar_admin";
-	}
-	
-	@RequestMapping("actPay.ad")
-	public String activityPaymentViewList() {
-		return "admin/activityPaymentListView";
-	}
-	
-	@RequestMapping("roomPay.ad")
-	public String roomPaymentListView() {
-		return "admin/roomPaymentListView";
 	}
 	
 	@RequestMapping("QAList.ad")
@@ -82,12 +75,12 @@ public class AdminController {
 	
 	// 챗봇 키워드 수정
 	@RequestMapping("updateChatbot.ad")
-	public String updateChatbot(Chatbot c, HttpSession session) {
+	public String updateChatbot(Chatbot c, HttpSession session, String cpage) {
 		
 		int result = adminService.updateChatbot(c);
 		
 		if(result > 0) {
-			return "redirect:/chatbotList.ad";
+			return "redirect:/chatbotList.ad?cpage=" + cpage;
 		}else {
 			session.setAttribute("adminAlertMsg", "키워드 등록에 실패했습니다");
 			return "redirect:/chatbotList.ad";
@@ -229,7 +222,55 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 숙소 결제 조회
+	@RequestMapping("roomPay.ad")
+	public ModelAndView selectRoomPayList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+									,ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectRoomPayListCount(), currentPage, 10, 2);
+		
+		ArrayList<RoomPayment> list = adminService.selectRoomPayList(pi);
+		mv.addObject("list", list)
+	      .addObject("pi", pi)
+	      .setViewName("admin/roomPaymentListView");
+		
+		return mv;
+	}
 	
+	// 숙소 결제 조회 검색
+	@RequestMapping("searchRoomPay.ad")
+	public ModelAndView searchRoomPayList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+									,String keyword, ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.searchRoomPayListCount(keyword), currentPage, 10, 2);
+		ArrayList<RoomPayment> list = adminService.searchRoomPayList(pi, keyword);
+		mv.addObject("list", list)
+	      .addObject("pi", pi)
+	      .addObject("keyword", keyword)
+	      .setViewName("admin/roomPaymentListView");
+		
+		return mv;
+	}
+	
+	// 액티비티 결제 조회
+	@RequestMapping("actPay.ad")
+	public ModelAndView selectActPaymentList(@RequestParam(value="cpage", defaultValue="1") int currentPage
+									   , ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectActPayListCount(), currentPage, 5, 2);
+		ArrayList<TicketPayment> list = adminService.selectActPaymentList(pi);
+		
+		mv.addObject("list", list)
+		  .addObject("pi", pi)
+		  .setViewName("admin/activityPaymentListView");
+		return mv;
+	}
+	
+	// 액티비티 결제 티켓 조회
+	@ResponseBody
+	@RequestMapping(value="ticketList.ad", produces="application/json; charset=UTF-8")
+	public String selectTicketList(int orderNo) {
+		ArrayList<Ticket> tList = adminService.selectTicketList(orderNo);
+		System.out.println(tList);
+		return new Gson().toJson(tList);
+	}
 	
 
 }

@@ -1,14 +1,12 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +17,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -52,8 +51,30 @@ public class ProductController {
 	
 	// 숙소 검색
 	@RequestMapping("search.accomm")
-	public String searchAccomm() {
-		return "product/accommSearch";
+	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
+		
+		ArrayList<Accomm> list = productService.searchAccomm(ac);
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(i+1 != list.size()) {
+				if(list.get(i).getAccommNo() == list.get(i+1).getAccommNo()) {
+					list.remove(i+1);
+					i--;
+				}
+			} else { 
+				break;
+			}
+		}
+		
+		mv.addObject("accommList", list);
+		
+		if(list.isEmpty()) {
+			mv.addObject("anoList", productService.selectAcList());
+		}
+		
+		mv.setViewName("product/accommSearch");
+		
+		return mv;
 	}
 	
 	// 숙소 상세 페이지
@@ -92,21 +113,33 @@ public class ProductController {
 	// 숙소 예약(결제) 페이지
 	@ResponseBody
 	@RequestMapping(value="reserve.accomm")
-	public String reserveAccomm(HttpSession session, @RequestParam Map<String, Object> map) {
+	public ModelAndView reserveAccomm(HttpSession session, RoomPayment rp, ModelAndView mv) {
 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int roomNo = (int)map.get("roomNo");
 		
-		//if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
-			return "ㅎ..";
-		//} else {
-		//	return "login please";
-		//}
+		if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
+			mv.addObject("rp", rp);
+			mv.setViewName("product/accommReserve");
+			
+		} else {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			mv.setViewName("redirect:loginForm.me");
+		}
+		
+		return mv;
 	}
 	
 	// 숙소 결제 완료
 	@RequestMapping("pay.accomm")
-	public String payAccomm() {
+	public String payAccomm(HttpSession session, RoomPayment rp) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		rp.setMemNo(loginUser.getMemNo());
+		
+		int result = productService.insertRoomPayment(rp);
+		
+		System.out.println(result);
+		
 		return "product/paySuccess";
 	}
 	
@@ -197,7 +230,6 @@ public class ProductController {
 						      TicketCommand tk,
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(tk.getTicketPayment());
 		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
@@ -209,5 +241,6 @@ public class ProductController {
 		
 		return "product/paySuccess";
 	}
+	
 }
 

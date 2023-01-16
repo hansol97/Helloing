@@ -149,6 +149,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 여기부터 혜진 -->
+	<select id="accommBook" parameterType="_int" resultType="roomPayment">
+        SELECT O.*,  
+                (SELECT COUNT(*) 
+                    FROM ACCOMM_REVIEW
+                    WHERE MEM_NO = #{ memNo }
+                    AND ORDER_NO = orderNo) count
+        FROM (                
+                SELECT 
+                        R.ORDER_NO orderNo
+                        ,TO_CHAR(R.START_DATE, 'YYYY-MM-DD') startDate
+                        ,TO_CHAR(R.END_DATE, 'YYYY-MM-DD') endDate
+                        ,R.PRICE price
+                        ,A.ACCOMM_NO accommNo
+                        ,ROOM_NO roomNo
+                        ,TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate
+                        ,R.STATUS status
+                        ,A.ACCOMM_NAME accName
+                        ,A.CATEGORY category
+ 
+                FROM 
+                    ROOM_PAYMENT R
+                JOIN 
+                    ACCOMM A ON(A.ACCOMM_NO=R.ACCOMM_NO)
+                WHERE 
+                    MEM_NO = #{ memNo }
+                 ORDER 
+                    BY paymentDate DESC) O
+	</select>
+	<select id="activityBook">
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 회원정보 수정 전 비밀번호 체크 -->
 	<select id="checkPwd" parameterType="member" resultType="string">
 	SELECT 
 			MEM_PWD
@@ -157,6 +212,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 		MEM_ID = #{ memId }
 	</select>
+	<!-- 비밀번호 변경 -->
 	<update id="memberUpdatePwd" parameterType="member">
 		UPDATE 
 			  MEMBER
@@ -165,6 +221,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
+	<!-- 회원정보수정(이메일, 번호) -->
 	<update id="memberUpdate" parameterType="member">
 		UPDATE 
 			  MEMBER
@@ -174,28 +231,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
+	<!-- 찜한 숙소 조회 -->
 	<select id="wishAccommList" parameterType="_int" resultType="AccommWish">			
 		SELECT 
         		ACCOMM_NO accommNo,
         		ACCOMM_NAME accommName,
-                (SELECT 
-                        FILE_PATH || CHANGE_NAME AS FILEPATH
-                    FROM 
-                        ACCOMM_ATTACHMENT
-                    WHERE 
-                            MEM_NO = #{ memNo }
-                    AND 
-                        ROWNUM = 1) filePath
+                FILEPATH 
+                
 		FROM 
 			ACCOMM_WISH
 		JOIN 
 			ACCOMM USING(ACCOMM_NO)
+        JOIN 
+            (SELECT 
+                    ACCOMM_NO, 
+                    MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+            FROM  
+            	ACCOMM_ATTACHMENT
+            GROUP 
+            	BY 
+            		ACCOMM_NO) USING(ACCOMM_NO)    
 		WHERE 
 			MEM_NO = #{ memNo }
 		ORDER 
 			BY 
 				WISH_DATE DESC
 	</select>
+	<!-- 찜한 숙소 삭제 -->
 	<delete id="deleteWishAccomm"  parameterType="accommwish">
 	DELETE 
 			ACCOMM_WISH 
@@ -204,23 +266,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 			ACCOMM_NO = #{ accommNo }
 	</delete>
+	<!-- 찜한 액티비티 조회 -->
 	<select id="wishActivityList" parameterType="_int" resultType="ActivityWish">
 			SELECT 
         		ACTIVITY_NO activityNo,
         		ACTIVITY_NAME activityName,
-       			FILE_PATH || CHANGE_NAME AS FILEPATH
+       			FILEPATH
 		FROM 
 			ACTIVITY_WISH
 		JOIN 
 			ACTIVITY USING(ACTIVITY_NO)
 		JOIN 
-			ACTIVITY_ATTACHMENT USING(ACTIVITY_NO)
+            (SELECT 
+                    ACTIVITY_NO, 
+                    MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+            FROM  
+            	ACTIVITY_ATTACHMENT
+            GROUP 
+            	BY 
+            		ACTIVITY_NO) USING(ACTIVITY_NO)
 		WHERE 
 			MEM_NO = #{ memNo }
 		ORDER 
 			BY 
 				WISH_DATE DESC
 	</select>
+	<!-- 찜한 액티비티 삭제 -->
 	<delete id="deleteWishActivity" parameterType="activitywish">
 		DELETE 
 			ACTIVITY_WISH 
@@ -229,6 +300,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 			ACTIVITY_NO = #{ activityNo }
 	</delete>
+	<!-- 플래너 리스트 조회 -->
 	<select id="plannerList" parameterType="_int" resultType="planner">
 	SELECT 
 		PLANNER_NO plannerNo, 
@@ -245,6 +317,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		BY 
 			START_DATE DESC
 	</select>
+	<!-- 플래너 생성 -->
 	<insert id="insertPlanner" parameterType="planner">
 		INSERT 
 				INTO 
@@ -256,6 +329,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ endDate }
 					)
 	</insert>
+	<!-- 플래너 생성 시 만든이 plannerMem에 추가 -->
 	<insert id="insertPlannerMem" parameterType="_int">
 		INSERT 
 				INTO
@@ -265,6 +339,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ memNo }
 					)
 	</insert>
+	<!-- 플래너 조회 -->
 	<select id="selectPlanner" parameterType="planner" resultType="planner">
 	SELECT DISTINCT
 			PLANNER_NO plannerNo,
@@ -296,6 +371,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             	AND
             MEM_NO = #{ memNo }
 	</select>
+	<!-- 플래너 수정 -->
 	<update id="updatePlanner" parameterType="planner">
 	UPDATE
 		PLANNER
@@ -306,6 +382,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 		PLANNER_NO = #{ plannerNo }
 	</update>
+	<!-- 플래너 상세페이지 조회 -->
 	<select id="planDetailView" parameterType="_int" resultType="plan">
 	SELECT DISTINCT
 			PLANNER_NO plannerNo,
@@ -346,6 +423,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					planDate ASC, startTime ASC
 					
 	</select>
+	<!-- 함께하는 일행 추가 전 조회(확인용) -->
 	<select id="planMemSelect" parameterType="plannerMem" resultType="_int">
 	SELECT
 			COUNT(*)
@@ -361,6 +439,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					WHERE 
 						MEM_ID = #{ memId })
 	</select>
+	<!-- 함께하는 일행 추가 -->
 	<insert id="planAddMem" parameterType="plannerMem">
 	INSERT 
 		  INTO
@@ -376,6 +455,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								MEM_ID = #{ memId })
 					)
 	</insert>
+	<!-- 일정추가 -->
 	<insert id="insertPlan" parameterType="plan">
 	INSERT 
 		  INTO
@@ -400,6 +480,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  					, REPLACE(SUBSTR(#{ planDate }, 3, 10), '-', '/')
 		  					)
 	</insert>
+	<!-- 일정조회 -->
 	<select id="selectPlan" parameterType="_int" resultType="plan">
 	SELECT 
 		    PLAN_NO planNo,
@@ -415,6 +496,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 	    PLAN_NO = #{ planNo }
 	</select>
+	<!-- 일정 수정 -->
 	<update id="updatePlan" parameterType="plan">
 	UPDATE
 			PLAN
@@ -428,6 +510,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	WHERE
   		PLAN_NO = #{ planNo }
 	</update>
+	<!-- 일정 삭제 -->
 	<delete id="deletePlan">
 	DELETE
 		FROM
@@ -435,6 +518,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE
 		PLAN_NO = #{ planNo }		
 	</delete>
+	<!-- 가계부 조회 -->
 	<select id="expenseView" parameterType="_int" resultType="expense">
 	SELECT EXPENSE_NO expenseNo
 	        ,PLANNER_NO plannerNo
@@ -451,8 +535,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				BY expenseDate ASC
 					
 	</select>
+	<!-- 1/n -->
 	<select id="dutchTreat" parameterType="_int" resultType="expense">
-
 	SELECT  DISTINCT
         NVL((SELECT 
                     SUM(AMOUNT)
@@ -516,6 +600,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         
 	FROM EXPENSE
 	</select>
+	<!-- 가계부 비용추가 -->
 	<insert id="insertExpense" parameterType="expense">
 	INSERT 
 		INTO
@@ -538,6 +623,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ expenseCategory }
 					)
 	</insert>
+	
+	<!-- 가계부 비용 삭제 -->
 	<delete id="deleteExpense" parameterType="expense">
 	DELETE
 		FROM EXPENSE
@@ -546,12 +633,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	AND
 		PLANNER_NO = #{ plannerNo }
 	</delete>
-	
-	
-	
-	
-	
-	
+
 	<!-- 액티비티 위시리스트 추가 -->
 	<insert id="addActWish" parameterType="activityWish">
 		INSERT

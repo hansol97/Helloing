@@ -16,6 +16,7 @@ import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -85,6 +86,21 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public AccommWish checkAcWish(AccommWish aw) {
 		return productDao.checkAcWish(sqlSession, aw);
+	}
+
+	@Override
+	public int insertRoomPayment(RoomPayment rp) {
+		return productDao.insertRoomPayment(sqlSession, rp);
+	}
+
+	@Override
+	public ArrayList<Accomm> searchAccomm(Accomm ac) {
+		return productDao.searchAccomm(sqlSession, ac);
+	}
+
+	@Override
+	public ArrayList<Activity> searchActivity(Activity act) {
+		return null;
 	}
 	
 	

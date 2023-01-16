@@ -16,7 +16,7 @@
     }
 
     /* 객실명 설정 */
-    #adminRoomName{
+    .adminRoomName{
         color:rgb(95, 95, 95);
         font-size:13px;
     }
@@ -43,17 +43,17 @@
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="searchRoomPay.ad" method="get">
                                 <td>
                                     <div class="text">
-                                        <input type="text" placeholder="회원아이디 입력" class="admin-input_form" name="keyword">
+                                        <input id="roomPay_input"type="text" placeholder="회원아이디 입력" class="admin-input_form" name="keyword">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
                                     &nbsp;<button type="submit" class="admin-search_button">검색</button>
                                 </td>
                             </form>
-                            <td width="730">
+                            <td width="825">
                                 
                             </td>
                         </tr>
@@ -73,34 +73,43 @@
                                 <th width="120">가격</th>
                                 <th width="210">예약기간</th>
                                 <th width="110">결제일자</th>
+                                <th width="80">상태</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>user02</td>
-                                <td>
-                                    신라호텔 <br>
-                                    <span id="adminRoomName">- 스위트룸</span>
-                                </td>
-                                <td>3</td>
-                                <td>44,500원</td>
-                                <td>2023.01.06 ~ 2023.01.08</td>
-                                <td>2023.01.01</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>user02</td>
-                                <td>
-                                    신라호텔 <br>
-                                    <span id="adminRoomName">- 스위트룸</span>
-                                </td>
-                                <td>3</td>
-                                <td>44,500원</td>
-                                <td>2023.01.06 ~ 2023.01.08</td>
-                                <td>2023.01.01</td>
-                            </tr>
-                        </tbody>
+                        	<c:choose>
+                            	<c:when test="${ empty list }" >
+                            		<tr>
+										<td colspan="8">
+											조회할 회원이 없습니다.
+										</td>
+                            		</tr>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="rp" items="${ list }">
+			                            <tr>
+			                                <td>${rp.orderNo}</td>
+			                                <td>${rp.memId}</td>
+			                                <td>${rp.accName}<br>
+	                                  			<span class="adminRoomName">- ${rp.roomName}</span>
+	                            	  	 	</td>
+	                            	  	 	<td>${rp.headCount}</td>
+			                                <td>${rp.price}</td>
+			                                <td>${rp.startDate} ~ ${rp.endDate}</td>
+			                                <td>${rp.paymentDate}</td>
+			                                <td>
+			                                	<c:if test="${(rp.status).equals('Y')}">
+			                                		결제
+			                                	</c:if>
+			                                	<c:if test="${(rp.status).equals('N')}">
+			                                		취소
+			                                	</c:if>
+			                                </td>
+			                            </tr>
+		                            </c:forEach>
+		                         </c:otherwise>
+		                     </c:choose>
+                        </tbody>    
                     </table>
                 </tr>
             </table>
@@ -108,17 +117,42 @@
             <br><br>
             
 
-            <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+           <div id="pagingArea">
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="roomPay.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="roomPay.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="roomPay.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
 
             
         </div>
+        
+         <script>
+        	$(function(){
+        		if('${keyword}' != ''){
+					$('#roomPay_input').val('${keyword}')
+                }
+        	})
+        </script>
 
     </div>   
 

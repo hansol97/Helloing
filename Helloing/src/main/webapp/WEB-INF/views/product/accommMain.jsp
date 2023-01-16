@@ -17,40 +17,44 @@
 	
 	<div class="inner">  
 	
-		<%--
+		
         <div class="top-content">
-            <form action="search.accomm" method="">
+            <form action="search.accomm">
                 <h1>어떤 숙소 찾으세요?</h1>
                 <div id="searchbox">
                     <div>
-                        <input type="radio" name="category" id="hotel" checked><label for="hotel">호텔</label>
-                        <input type="radio" name="category" id="pension"><label for="pension">펜션</label>
-                        <input type="radio" name="category" id="poolVilla"><label for="poolVilla">풀빌라</label>
-                        <input type="radio" name="category" id="guestHouse"><label for="guestHouse">게스트하우스</label>
+                        <input type="radio" name="category" id="hotel" value="hotel" checked><label for="hotel">호텔</label>
+                        <input type="radio" name="category" id="pension" value="pension"><label for="pension">펜션</label>
+                        <input type="radio" name="category" id="motel" value="motel"><label for="motel">모텔</label>
+                        <input type="radio" name="category" id="guestHouse" value="guestHouse"><label for="guestHouse">게스트하우스</label>
+                        <input type="radio" name="category" id="house" value="house"><label for="house">민박</label>
                     </div>
                     <hr>
                     <div style="padding: 0px 18px;">
                     	<table>
                     		<tr>
-                    			<td width="300">이름</td>
-                    			<td width="400">날짜</td>
-                    			<td width="200">인원</td>
+                    			<td></td>
+                    			<%--<td width="400">날짜</td>
+                    			<td width="200">인원</td> --%>
                     			
                     		</tr>
                     		<tr height="30">
                     			<!-- 스크립트로 min=오늘날짜, max=오늘+한달후날짜 계산해서 집어넣기 --> 
                     			<!--https://wooncloud.tistory.com/26 : 날짜 여러개 픽하는 플러그인 참고!-->
-                    			<td><input type="text" name="keyword" placeholder="전주"></td>
-                    			<td><input type="date" name="" min="2023-01-03" max="2023-02-01" /></td>
-                    			<td><div><a>-</a>&nbsp&nbsp<span>0</span>&nbsp&nbsp<a>+</a></div></td>
-                    			<td rowspan="2"><button type="submit">검색</button></td>
+                    			<td><input type="text" name="accommName" placeholder="검색하실 숙소 명을 입력해주세요"></td>
+                    			<%--<td><input type="date" name="" min="2023-01-03" max="2023-02-01" /></td>
+                    			<td><div><a>-</a>&nbsp&nbsp<span>0</span>&nbsp&nbsp<a>+</a></div></td> --%>
+                    			<td rowspan="2"><button id="btn-search" type="button" onclick="search();">검색</button></td>
                     		</tr>
                     	</table>
                     </div>
                 </div>
+                <div class="info">
+                
+                </div>
             </form>
         </div>
-         --%>
+        
         
         <%--
         <h3>최근 본 숙소</h3> <!-- 쿠키 사용해서 뿌려줄 것 / 쿠키가 없다면 최근 본 숙소도 없음 -->

@@ -14,6 +14,7 @@ import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -66,5 +67,13 @@ public class ProductDao {
 	
 	public AccommWish checkAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.selectOne("productMapper.checkAcWish", aw);
+	}
+	
+	public int insertRoomPayment(SqlSessionTemplate sqlSession, RoomPayment rp) {
+		return sqlSession.insert("productMapper.insertRoomPayment", rp);
+	}
+	
+	public ArrayList<Accomm> searchAccomm(SqlSessionTemplate sqlSession, Accomm ac){
+		return (ArrayList)sqlSession.selectList("productMapper.searchAccomm", ac);
 	}
 }

@@ -9,6 +9,9 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 public interface AdminService {
 	
@@ -61,6 +64,8 @@ public interface AdminService {
 	// 사업자 목록 조회
 	ArrayList<Business> selectBusinessList(PageInfo pi);
 	
+	//--------------- 결제 관리 ----------------
+	
 	// 사업자 등록 결제 수 조회
 	int selectBusiPayListCount();
 	
@@ -72,6 +77,27 @@ public interface AdminService {
 	
 	// 사업자 등록 결제 검색 리스트 조회
 	ArrayList<BusinessPayment> searchBusiPayList(PageInfo pi, String keyword);
+	
+	// 숙소 결제 수 조회
+	int selectRoomPayListCount();
+	
+	// 숙소 결제 조회
+	ArrayList<RoomPayment> selectRoomPayList(PageInfo pi);
+	
+	// 숙소 결제 검색된 목록 수
+	int searchRoomPayListCount(String keyword);
+	
+	// 숙소 결제 검색된 목록
+	ArrayList<RoomPayment> searchRoomPayList(PageInfo pi, String keyword);
+	
+	// 액티비티 리스트 수 조회
+	int selectActPayListCount();
+	
+	// 액티비티 리스트 조회
+	ArrayList<TicketPayment> selectActPaymentList(PageInfo pi);
+	
+	// 액티비티 결제 티켓 조회
+	ArrayList<Ticket> selectTicketList(int orderNo);
 
 
 

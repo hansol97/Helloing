@@ -37,9 +37,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ACTIVITY_NAME" property="activityName" />
 		<result column="ACT_END_DATE" property="actEndDate" />
 		<result column="ACC_END_DATE" property="accEndDate" />
-		
 	</resultMap>
 	
+	 <resultMap id="roomPaymentResultSet" type="roomPayment">
+	  	<result column="ORDER_NO" property="orderNo"/>
+	  	<result column="MEM_ID" property="memId"/>
+	  	<result column="START_DATE" property="startDate"/>
+	  	<result column="END_DATE" property="endDate"/>
+	  	<result column="HEAD_COUNT" property="headCount"/>
+	  	<result column="PRICE" property="price"/>
+	  	<result column="ACCOMM_NAME" property="accName"/>
+	  	<result column="ROOM_NAME" property="roomName"/>
+	  	<result column="MEM_NAME" property="memName"/>
+	  	<result column="CATEGORY" property="category"/>
+	  	<result column="STATUS" property="status"/>
+  		<result column="PAYMENT_DATE" property="paymentDate"/>
+	  </resultMap>
+	  
+	  <resultMap id="tickeyPaymentResultSet" type="ticketPayment">
+	  	<result column="ORDER_NO" property="orderNo"/>
+	  	<result column="MEM_ID" property="memId"/>
+	  	<result column="ACTIVITY_NAME" property="activityName"/>
+	  	<result column="PAYMENT_AMOUNT" property="paymentAmount"/>
+	  	<result column="PAYMENT_DATE" property="paymentDate"/>
+	  	<result column="BUSINESS_NAME" property="businessName"/>
+	  </resultMap>
+		
+	 <resultMap id="ticketPaymentResultSet" type="ticket">
+	 	<result column="TICKET_NO" property="ticketNo"/>
+	 	<result column="TICKET_NAME" property="ticketName"/>
+	 	<result column="START_DATE" property="startDate"/>
+	 	<result column="END_DATE" property="endDate"/>
+	 	<result column="PRICE" property="price"/>
+	 	<result column="COUNT" property="count"/>
+	 </resultMap>
 	<!-- 챗봇Q 중복 확인 -->
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
 		SELECT 
@@ -341,5 +372,131 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        (ACCOMM_NO)	
 		 WHERE
 		       BUSINESS_NAME LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 숙소 결제 목록 수 조회 -->
+	<select id="selectRoomPayListCount" resultType="_int">
+		SELECT 
+			   COUNT(*)
+	      FROM
+	           ROOM_PAYMENT
+	</select>
+	
+	<!-- 숙소 결제 목록 조회 -->
+	<select id="selectRoomPayList" resultMap="roomPaymentResultSet">
+		SELECT
+		       ORDER_NO
+		       ,MEM_ID
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(RP.END_DATE, 'YYYY.MM.DD') END_DATE
+		       ,HEAD_COUNT
+		       ,RP.PRICE
+		       ,ACCOMM_NAME
+		       ,ROOM_NAME
+		       ,TO_CHAR(PAYMENT_DATE, 'YYYY.MM.DD') PAYMENT_DATE
+		       ,RP.STATUS
+		  FROM
+		       ROOM_PAYMENT RP
+		  JOIN
+		       MEMBER USING(MEM_NO)
+		  JOIN 
+		       ACCOMM USING(ACCOMM_NO)
+		  JOIN 
+		       ROOM USING(ROOM_NO)
+	</select>
+	
+	<!-- 숙소 결제 검색된 목록 수 -->
+	<select id="searchRoomPayListCount" parameterType="string" resultType="_int">
+		SELECT
+			   COUNT(*)
+		  FROM
+		       ROOM_PAYMENT 
+		  JOIN 
+		  	   MEMBER USING(MEM_NO)
+		 WHERE
+		       MEM_ID LIKE '%' || #{keyword} || '%' 
+	</select>
+	
+	<!-- 숙소 결제 검색된 목록 -->
+	<select id="searchRoomPayList" parameterType="string" resultMap="roomPaymentResultSet">
+		SELECT
+		       ORDER_NO
+		       ,MEM_ID
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(RP.END_DATE, 'YYYY.MM.DD') END_DATE
+		       ,HEAD_COUNT
+		       ,RP.PRICE
+		       ,ACCOMM_NAME
+		       ,ROOM_NAME
+		       ,TO_CHAR(PAYMENT_DATE, 'YYYY.MM.DD') PAYMENT_DATE
+		       ,RP.STATUS
+		  FROM
+		       ROOM_PAYMENT RP
+		  JOIN
+		       MEMBER USING(MEM_NO)
+		  JOIN 
+		       ACCOMM USING(ACCOMM_NO)
+		  JOIN 
+		       ROOM USING(ROOM_NO)
+		 WHERE
+		       MEM_ID LIKE '%' || #{keyword} || '%' 
+	</select>
+	
+	<!-- 액티비티 결제 리스트 수 -->
+	<select id="selectActPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       (SELECT
+				       ORDER_NO
+				  FROM
+				       TICKET_PAYMENT
+				 GROUP
+				    BY
+				       ORDER_NO)
+	</select>
+	
+	<!-- 액티비티 결제 리스트 -->
+	<select id="selectActPaymentList" resultMap="tickeyPaymentResultSet">
+		SELECT 
+		       DISTINCT(ORDER_NO)
+		       ,MEM_ID
+		       ,ACTIVITY_NAME
+		       ,PAYMENT_AMOUNT
+		       ,TO_CHAR(PAYMENT_DATE, 'YYYY.MM.DD') PAYMENT_DATE
+               ,BUSINESS_NAME
+		  FROM
+		       TICKET_PAYMENT
+		  JOIN 
+		       MEMBER USING(MEM_NO)
+		  JOIN
+		       TICKET USING(TICKET_NO)
+		  JOIN
+		       ACTIVITY USING(ACTIVITY_NO)
+          JOIN
+               BUSINESS USING(BUSINESS_NO)
+	</select>
+	
+	<!-- 액티비티 결제 티켓 목록 조회 -->
+	<select id="selectTicketList" parameterType="_int" resultMap="ticketPaymentResultSet">
+		SELECT 
+		       TICKET_NO
+		       ,TICKET_NAME
+		       ,TO_CHAR(START_DATE, 'YYYY.MM.DD') START_DATE
+		       ,TO_CHAR(END_DATE, 'YYYY.MM.DD') END_DATE
+		       ,T.PRICE
+		       ,COUNT
+		  FROM
+		       TICKET T
+		  JOIN
+		       TICKET_PAYMENT USING(TICKET_NO)
+		 WHERE
+		       TICKET_NO IN (SELECT 
+		                           TICKET_NO
+		                      FROM
+		                           TICKET_PAYMENT
+		                     WHERE
+		                           ORDER_NO = #{orderNo}
+		                    )
 	</select>
 </mapper>

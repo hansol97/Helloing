@@ -11,6 +11,8 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 public interface MemberService {
 	// 승준
@@ -50,14 +52,12 @@ public interface MemberService {
 	
 	//----------------------------------------------------------------------
 	//혜진
-	//예정된 예약 리스트 조회
-	ArrayList<Book> selectScheduled(int memNo);
+	//숙소 예약 리스트 조회
+	ArrayList<RoomPayment> accommBook(int memNo);
 	
-	//지난 예약 리스트 조회
-	ArrayList<Book> selectLast(int memNo);
+	//액티비티 예약 리스트 조회
+	ArrayList<TicketPayment> activityBook(int memNo);
 	
-	//취소된 예약 리스트 조회
-	ArrayList<Book> selectCancelled(int memNo);
 	
 	//예약 상세조회
 	Book reservationDetail(int memNo, int orderNo);
