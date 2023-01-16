@@ -13,6 +13,7 @@
 
 </head>
 <body id="insertActBody">
+
     <jsp:include page="menubar_business.jsp"/>
     
     

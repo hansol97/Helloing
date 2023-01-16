@@ -48,5 +48,12 @@ public interface ProductService {
 	
 	// 숙소 결제하기
 	int insertRoomPayment(RoomPayment rp);
+	
+	
+	// 숙소 검색
+	ArrayList<Accomm> searchAccomm(Accomm ac);
+	
+	// 액티비티 검색
+	ArrayList<Activity> searchActivity(Activity act);
 
 }

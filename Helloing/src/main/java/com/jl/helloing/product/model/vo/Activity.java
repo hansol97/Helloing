@@ -12,6 +12,8 @@ public class Activity {
 	private String businessNo;
 	private String activityContent;
 	private String endDate;
+	private String status;
+
 	
 	private double avg; // 별점 평균
 	private int reviewCount; // 리뷰 갯수

@@ -107,6 +107,29 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.selectTicketList(sqlSession, activityNo);
 	}
 	
+	@Override
+	public int updateBusinessPayment(BusinessPayment bp) {
+		return businessDao.updateBusinessPayment(sqlSession, bp);
+	}
+	
+	@Override
+	public int updateAccommEndDate(int accommNo) {
+		return businessDao.updateAccommEndDate(sqlSession, accommNo);
+	}
+	
+	@Override
+	public int updateActivityEndDate(int activityNo) {
+		return businessDao.updateActivityEndDate(sqlSession, activityNo);
+	}
+	
+	@Override
+	public int deleteAccomm(int accommNo) {
+		return businessDao.deleteAccomm(sqlSession, accommNo);
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -122,6 +145,11 @@ public class BusinessServiceImpl implements BusinessService {
 	public RoomPayment selectBookInfo(RoomPayment rp) {
 		return businessDao.selectBookInfo(sqlSession, rp);
 	}
+
+
+
+
+
 
 
 
