@@ -335,8 +335,12 @@ public class MemberController {
 	//혜진
 	//숙소 예약 정보
 	@RequestMapping("accommBook.hj")
-	public String accommBook() {
-		return "member/accommBook";
+	public ModelAndView accommBook(ModelAndView mv) {
+		
+		
+		mv.setViewName("member/accommBook");
+		
+		return mv;
 	}
 	
 	//액티비티 구매 정보

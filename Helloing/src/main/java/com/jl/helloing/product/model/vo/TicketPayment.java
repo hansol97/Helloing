@@ -17,5 +17,6 @@ public class TicketPayment {
 	private String activityName;
 	private int ticketSum;
 	private int ticketPrice;
+	private String status;
 }
   
