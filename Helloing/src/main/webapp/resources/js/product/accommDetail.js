@@ -2,6 +2,50 @@ $(function(){
 
 	checkWish(); // 위시리스트에 추가되어있는지 확인하는 함수
 
+	// 예약 버튼 클릭 시 예약하기 페이지로 이동
+	$(document).on('click', '.btn-reserve', function(){
+		var info = $(this).closest('.accommbox');
+
+		console.log(info);
+
+		var rp = {"startDate" : $('input[name=startDate]').val(),
+				  "endDate" : $('input[name=endDate').val(),
+				  "headCount" : $('select[name=headCount]').val(),
+				  "accommNo" : $('input[name=accommNo]').val(),
+				  "accName" : $('input[name=accName]').text(),
+				  "price" : info.find('input[name=price]').val(),
+				  "roomNo" : info.find('input[name=roomNo]').val(),
+				  "roomName" : info.find('[name=roomName]').text()};
+
+		$.ajax({
+			type : 'POST',
+			url : 'reserve.accomm',
+			data : {
+				  "startDate" : $('input[name=startDate]').val(),
+				  "endDate" : $('input[name=endDate').val(),
+				  "headCount" : $('select[name=headCount]').val(),
+				  "accommNo" : $('input[name=accommNo]').val(),
+				  "accName" : $('input[name=accName]').text(),
+				  "price" : info.find('input[name=price]').val(),
+				  "roomNo" : info.find('input[name=roomNo]').val(),
+				  "roomName" : info.find('[name=roomName]').text()
+			},
+			contentType : "application/json; charset=UTF-8",
+			success : function(result){
+				if(result == ''){
+
+				}
+				else if(result == 'login please'){
+					alert('로그인이 필요한 서비스 입니다.');
+				}
+			},
+			error : function(){
+				console.log('알 수 없는 이유로 실패...');
+			}
+		});
+
+	})
+
 })
 
 // 위시리스트에 추가
@@ -81,3 +125,4 @@ function selectReview(){
 
 	$('html, body').animate({scrollTop : height.top}, 400);
 }
+
