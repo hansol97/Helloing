@@ -27,6 +27,7 @@ public class RoomPayment {
     private String checkIn;
     private String checkOut;
     private int day; // 숙박일
+    private String attachment; // 첨부파일.. ㅎ...
 
     private String memId;
 

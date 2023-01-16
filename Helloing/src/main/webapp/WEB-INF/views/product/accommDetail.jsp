@@ -36,7 +36,7 @@
 				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="${ photo[0] }" width="780" height="500">
+					<img id="attachment"  src="${ photo[0] }" width="780" height="500">
 					<div class="sub-images">
 						<c:forEach items="${ photo }" var="p" begin="1" varStatus="status">
 							<img src="${ photo[status.index] }" width="250" height="160">
