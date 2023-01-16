@@ -117,22 +117,22 @@ button:hover{
 		</div>
 	</div>
 	<script>
-	 $(function(){
+	 $(function(){			// change는 이벤트임
 		$(document).on('change', '#idCheck', function(){
-				var $memId = $(this).is(':checked');
-				console.log($memId);
-			if($('#idCheck').prop('checked')){
+				//var $memId = $(this).is(':checked'); // is는 선택한요소가 ()안에 있는 것이 일치하는지 확인하고 ture,false를 나타낸다.
+				//console.log($memId);
+			if($('#idCheck').prop('checked')){ // arrt(), prop()의 차이점...?
 				
 				$.ajax({
 					url : 'saveId.me',
 					data : {
 						memId : $('#memId').val()
-					},
-					success : function(result){
-						//console.log(result);
-					},
-					error : function(){	
 					}
+					//, success : function(result){
+						//console.log(result);
+					//},
+					//error : function(){	
+					//}
 				})
 			}
 			else {
@@ -140,13 +140,13 @@ button:hover{
 					url : 'saveIdDelete.me',
 					data : {
 						memId : $('#memId').val()
-					},
-					success : function(result1){
-						//console.log(result1);
-					},
-					error : function(){
-						
 					}
+					// ,success : function(result1){
+						//console.log(result1);
+					//},
+					//error : function(){
+						
+					//}
 				})
 			}
 		}) 
