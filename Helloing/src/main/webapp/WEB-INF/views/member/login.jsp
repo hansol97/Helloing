@@ -95,7 +95,7 @@ button:hover{
 						<c:otherwise>
 							<input type="text" id="memId" name="memId" placeholder="아이디" required><br>
 							<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required><br>
-							<input type="checkbox" name="idCheck"><label for="idCheck" >아이디 저장</label><br><br>
+							<input type="checkbox" name="idCheck" id="idCheck"><label for="idCheck" >아이디 저장</label><br><br>
 						</c:otherwise>
 					</c:choose>
 					
@@ -115,12 +115,44 @@ button:hover{
 					<a href="findPwdForm.me"> 비밀번호찾기</a>
 				</form>
 			</div>	
-		
-
 		</div>
-	
 	</div>
 	<script>
+	 $(function(){
+		$(document).on('change', '#idCheck', function(){
+				var $memId = $(this).is(':checked');
+				console.log($memId);
+			if($('#idCheck').prop('checked')){
+				
+				$.ajax({
+					url : 'saveId.me',
+					data : {
+						memId : $('#memId').val()
+					},
+					success : function(result){
+						//console.log(result);
+					},
+					error : function(){	
+					}
+				})
+			}
+			else {
+				$.ajax({
+					url : 'saveIdDelete.me',
+					data : {
+						memId : $('#memId').val()
+					},
+					success : function(result1){
+						//console.log(result1);
+					},
+					error : function(){
+						
+					}
+				})
+			}
+		}) 
+	 })
+	
 	<%--
 		window.onload = function(){
 			var item = document.getElementsByClassName();
@@ -142,57 +174,13 @@ button:hover{
 		$('.idCheck').click(function(){
 		
 		--%>
-		
-		$(document).ready(function(){ // 로딩 다 하고 발생한다.
-			if($(".idCheck").is(":checked")){
-				.ajax({
-					url : 'saveId.me'
-				})
-			}
-			else{
-				.ajax({
-					url : 'saveIdDelete.me'
-				})
-			}
-		})
 
-	</script>
-	
-	
-	
-	
-	<!--  
-	<script>
-	$(function(){
-	    /* id 저장 체크박스 기능 추가 */
-	    var userInputId = getCookie("userInputId");//저장된 쿠기값 가져오기
-	    $("#manager_id").val(userInputId); 
-
-	    if($("#manager_id").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩
-	        $("#useCookie").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
-	    }
-
-	    $("#useCookie").change(function(){ // 체크박스에 변화가 발생시
-	        if($("#useCookie").is(":checked")){ // ID 저장하기 체크했을 때,
-	            var userInputId = $("#manager_id").val();
-	            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
-	        }else{ // ID 저장하기 체크 해제 시,
-	            deleteCookie("userInputId");
-	        }
-	    });
-
-	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
-	    $("#manager_id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
-	        if($("#useCookie").is(":checked")){ // ID 저장하기를 체크한 상태라면,
-	            var userInputId = $("#manager_id").val();
-	            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
-	        }
-	    });
-	});
-	
+			
+				
+				
 	
 	</script>
-	-->
+
 
 </body>
 </html>
