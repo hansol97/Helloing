@@ -315,7 +315,7 @@ public class MemberController {
 		response.addCookie(saveId); // response객체에 
 		return "member/login"; 
 	}
-	
+	// 아이디 저장취소 (쿠키)
 	@RequestMapping("saveIdDelete.me")
 	public String delete(HttpServletResponse response, String memId) {
 		// 쿠키는 삭제 명령이 따로 없음
@@ -328,6 +328,12 @@ public class MemberController {
 		
 		return "member/login";
 	}
+	// 1:1문의(사용자)
+	@RequestMapping("QAList.me")
+	public String memberQAListView() {
+		return "member/memberQAListView";
+	}
+	
 	
 	
 
