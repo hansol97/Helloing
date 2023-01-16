@@ -13,6 +13,7 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Repository
 public class AdminDao {
@@ -151,6 +152,18 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("adminMapper.searchRoomPayList", keyword, rowBounds);
+	}
+
+	public int selectActPayListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectActPayListCount");
+	}
+
+	public ArrayList<TicketPayment> selectActPaymentList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectActPaymentList", null, rowBounds);
 	}
 
 

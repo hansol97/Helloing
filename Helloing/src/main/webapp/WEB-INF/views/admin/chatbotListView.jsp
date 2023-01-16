@@ -346,6 +346,7 @@
                 <div align="center">
                     <br>
                     <form action="updateChatbot.ad" method="post">
+                    	<input type="hidden" name="cpage" value="${ pi.currentPage }">
                     	<input id="update_ori_chatbotQ" type="hidden" name="originChatbotQ" >
                         <table>
                             <tr>
