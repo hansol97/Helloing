@@ -1,12 +1,15 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jl.helloing.common.model.vo.Attachment;
@@ -87,9 +90,18 @@ public class ProductController {
 	}
 	
 	// 숙소 예약(결제) 페이지
-	@RequestMapping("reserve.accomm")
-	public String reserveAccomm() {
-		return "product/accommReserve";
+	@ResponseBody
+	@RequestMapping(value="reserve.accomm")
+	public String reserveAccomm(HttpSession session, @RequestParam Map<String, Object> map) {
+
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int roomNo = (int)map.get("roomNo");
+		
+		//if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
+			return "ㅎ..";
+		//} else {
+		//	return "login please";
+		//}
 	}
 	
 	// 숙소 결제 완료

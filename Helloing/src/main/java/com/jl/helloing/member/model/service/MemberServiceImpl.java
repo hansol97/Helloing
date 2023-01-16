@@ -250,7 +250,7 @@ public class MemberServiceImpl implements MemberService{
 	//가계부 결제 내역 삭제
 	@Override
 	public int deleteExpense(Expense ex) {
-		return 0;
+		return memberDao.deleteExpense(ex, sqlSession);
 	}
 	@Override
 	public int addActWish(ActivityWish aw) {

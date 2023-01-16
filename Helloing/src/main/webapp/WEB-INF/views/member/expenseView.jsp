@@ -147,7 +147,7 @@
 	        <div id="plan">			     
 	        <c:forEach var="p" items="${list}">   	
 	        	<div class="plan-day">
-					<h2>day : ${p.expenseDate}</h2>	
+					<h2>${p.expenseDate}</h2>	
 					<br>
 					<div>
 						<span>사용금액 : </span>

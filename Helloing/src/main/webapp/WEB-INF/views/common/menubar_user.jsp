@@ -396,7 +396,7 @@
 							<li><a href="businessEnrollForm.bu">기업 회원 신청</a></li>
 						</c:if>
 
-						<li><a href="scheduled.hj">마이페이지</a></li>
+						<li><a href="accommBook.hj">마이페이지</a></li>
 						<!--기업회원일 시 보이는 화면-->
 						<!--사용자 화면일 경우-->
 

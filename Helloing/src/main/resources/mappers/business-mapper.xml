@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 숙소 객실 예약날짜 확인 -->
-	<select id="checkBookDate" parameterType="string" resultMap="roomPaymentResultSet">
+	<select id="checkBookDate" parameterType="_int" resultMap="roomPaymentResultSet">
 		SELECT
 		       TO_CHAR(START_DATE, 'YYYY-MM-DD') START_DATE
 		       ,TO_CHAR(END_DATE, 'YYYY-MM-DD') END_DATE
@@ -76,7 +76,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM
 		       ROOM_PAYMENT
 		 WHERE 
-		       ROOM_NO = 1
+		       ROOM_NO = #{rooNo}
+		   AND
+		       STATUS = 'Y'
 	</select>
 	
 	<!-- 숙소 객실 날짜별 예약정보 -->
@@ -104,6 +106,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       RP.END_DATE > #{chooseDate}
 		   AND
 		       ROOM_NO = #{roomNo}
+		   AND
+		       RP.STATUS = 'Y'
 	</select>
 
 

@@ -174,17 +174,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
-	<select id="wishAccommList" parameterType="_int" resultType="AccommWish">
+	<select id="wishAccommList" parameterType="_int" resultType="AccommWish">			
 		SELECT 
         		ACCOMM_NO accommNo,
         		ACCOMM_NAME accommName,
-       			FILE_PATH || CHANGE_NAME AS FILEPATH
+                (SELECT 
+                        FILE_PATH || CHANGE_NAME AS FILEPATH
+                    FROM 
+                        ACCOMM_ATTACHMENT
+                    WHERE 
+                            MEM_NO = #{ memNo }
+                    AND 
+                        ROWNUM = 1) filePath
 		FROM 
 			ACCOMM_WISH
 		JOIN 
 			ACCOMM USING(ACCOMM_NO)
-		JOIN 
-			ACCOMM_ATTACHMENT USING(ACCOMM_NO)
 		WHERE 
 			MEM_NO = #{ memNo }
 		ORDER 
@@ -533,7 +538,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					, #{ expenseCategory }
 					)
 	</insert>
-	
+	<delete id="deleteExpense" parameterType="expense">
+	DELETE
+		FROM EXPENSE
+	WHERE 
+		EXPENSE_NO = #{ expenseNo }
+	AND
+		PLANNER_NO = #{ plannerNo }
+	</delete>
 	
 	
 	

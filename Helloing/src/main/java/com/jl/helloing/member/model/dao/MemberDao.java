@@ -150,6 +150,9 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertExpense", ex);
 	}
 	
+	public int deleteExpense(Expense ex, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteExpense", ex);
+	}
 	
 	
 	
@@ -179,6 +182,7 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
 
 
 
