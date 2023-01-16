@@ -4,33 +4,41 @@ $(function(){
 
 	// 예약 버튼 클릭 시 예약하기 페이지로 이동
 	$(document).on('click', '.btn-reserve', function(){
+		var checkIn = $('input[name=startDate]').val();
+		var checkOut = $('input[name=endDate').val();
+
+		// 체크인/아웃 날짜 확인하기
+		if(checkIn == ''){
+			alert('체크인 날짜를 지정해주세요.');
+			return false;
+		}
+		if(checkOut == ''){
+			alert('체크아웃 날짜를 지정해주세요.');
+			return false;
+		}
+		if(checkIn > checkOut){
+			alert('체크인/체크아웃 날짜를 다시 확인해주세요.');
+			return false;
+		}
+
+
+
 		var info = $(this).closest('.accommbox');
 
-		console.log(info);
-
-		var rp = {"startDate" : $('input[name=startDate]').val(),
-				  "endDate" : $('input[name=endDate').val(),
-				  "headCount" : $('select[name=headCount]').val(),
-				  "accommNo" : $('input[name=accommNo]').val(),
-				  "accName" : $('input[name=accName]').text(),
-				  "price" : info.find('input[name=price]').val(),
-				  "roomNo" : info.find('input[name=roomNo]').val(),
-				  "roomName" : info.find('[name=roomName]').text()};
-
+		
 		$.ajax({
 			type : 'POST',
 			url : 'reserve.accomm',
 			data : {
-				  "startDate" : $('input[name=startDate]').val(),
-				  "endDate" : $('input[name=endDate').val(),
-				  "headCount" : $('select[name=headCount]').val(),
+				  "startDate" : checkIn,
+				  "endDate" : checkOut,
+				  "headCount" : $('select[name=headCount] option:selected').val().replace("명",""),
 				  "accommNo" : $('input[name=accommNo]').val(),
-				  "accName" : $('input[name=accName]').text(),
+				  "accName" : $('[name=accName]').text(),
 				  "price" : info.find('input[name=price]').val(),
 				  "roomNo" : info.find('input[name=roomNo]').val(),
 				  "roomName" : info.find('[name=roomName]').text()
 			},
-			contentType : "application/json; charset=UTF-8",
 			success : function(result){
 				if(result == ''){
 

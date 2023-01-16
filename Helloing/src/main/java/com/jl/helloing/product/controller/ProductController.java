@@ -1,14 +1,12 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +17,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketCommand;
 
 @Controller
@@ -92,13 +91,13 @@ public class ProductController {
 	// 숙소 예약(결제) 페이지
 	@ResponseBody
 	@RequestMapping(value="reserve.accomm")
-	public String reserveAccomm(HttpSession session, @RequestParam Map<String, Object> map) {
+	public String reserveAccomm(HttpSession session, RoomPayment rp) {
 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int roomNo = (int)map.get("roomNo");
+		System.out.println(rp);
 		
 		//if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
-			return "ㅎ..";
+			return "tyty..";
 		//} else {
 		//	return "login please";
 		//}
