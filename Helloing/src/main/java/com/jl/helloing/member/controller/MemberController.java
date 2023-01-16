@@ -346,22 +346,27 @@ public class MemberController {
 		
 		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
 		
-		System.out.println(list);
-		
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        String date = dateFormat.format(new Date());
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        int today = Integer.parseInt(dateFormat.format(new Date()));
  
-        Date today = new Date(dateFormat.parse(date).getTime());
         
 		if(list != null) {
 			for(int i=0; i<list.size(); i++) {
-				Date startDate = new Date(dateFormat.parse(list.get(i).getStartDate()).getTime()); 
-				int result = today.compareTo(startDate);
+				int startDate = Integer.parseInt(list.get(i).getStartDate().replace("-", ""));
 				
-				if(result == 0 && result < 0 ) {
-					list.get(i).setStatus("R");
+				System.out.println(startDate);
+				System.out.println("오늘 : " + today);
+				if(list.get(i).getStatus().equals("Y")) {
+					if(today >= startDate) {
+						if(list.get(i).getCount()==0) {
+							list.get(i).setStatus("R");
+						}else {
+							list.get(i).setStatus("S");
+						}
+					}
 				}
 			}
+			System.out.println(list);
 			mv.addObject("list", list);
 			mv.setViewName("member/accommBook");
 		}else {
@@ -381,8 +386,11 @@ public class MemberController {
 	
 	//예약 상세 조회
 	@RequestMapping("reservationDetail.hj")
-	public String reservationDetail() {
-		return "member/reservationDetail";
+	public ModelAndView reservationDetail(ModelAndView mv) {
+		
+		mv.setViewName("member/bookDetail");
+		
+		return mv;
 	}
 	
 	//회원정보 조회 - 비밀번호 확인
