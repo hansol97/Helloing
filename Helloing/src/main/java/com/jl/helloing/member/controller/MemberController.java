@@ -304,38 +304,50 @@ public class MemberController {
 			return "NNNNY";
 		}
 	}
-	/*
+	
 	// 아이디 저장 (쿠키)
-	@RequestMapping("saveId")
-	public String saveId(Member m, HttpServletResponse response) {
-		String memId= m.getMemId();
+	@RequestMapping("saveId.me")
+	public String saveId(HttpServletResponse response, String memId) {
+
 		Cookie saveId = new Cookie("saveId", memId);
-		saveId.setMaxAge(60 * 60 * 24 * 28);
-		response.addCookie(saveId);
+		saveId.setMaxAge(60 * 60 * 24 * 28); 
+		response.addCookie(saveId); // response객체에 
 		return "member/login"; 
 	}
-	*/
+	
+	@RequestMapping("saveIdDelete.me")
+	public String delete(HttpServletResponse response, String memId) {
+		// 쿠키는 삭제 명령이 따로 없음
+		// 0초로 만료시간을 설정하고 덮어쓰기를 수행
+		
+		
+		Cookie saveId = new Cookie("saveId",memId); //name속성만 같게.
+		saveId.setMaxAge(0); // 그냥 쿠키 유효시간 0 으로 하면된다. 이렇게 해서 만료로.
+		response.addCookie(saveId);
+		
+		return "member/login";
+	}
+	
 	
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
-	//예정된 예약
-	@RequestMapping("scheduled.hj")
-	public String selectScheduled() {
-		return "member/reservationScheduled";
+	//숙소 예약 정보
+	@RequestMapping("accommBook.hj")
+	public ModelAndView accommBook(ModelAndView mv) {
+		
+		
+		
+		mv.setViewName("member/accommBook");
+		
+		return mv;
 	}
 	
-	//지난 예약
-	@RequestMapping("last.hj")
-	public String selectLast() {
-		return "member/reservationLast";
-	}
-	
-	//취소된 예약
-	@RequestMapping("cancelled.hj")
-	public String selectCancelled() {
-		return "member/reservationCancelled";
+	//액티비티 구매 정보
+	@RequestMapping("activityBook.hj")
+	public String activityBook() {
+		return "member/activityBook";
 	}
 	
 	//예약 상세 조회
@@ -631,7 +643,6 @@ public class MemberController {
 	@RequestMapping("updatePlan.hj")
 	public ModelAndView updatePlan(Plan p, ModelAndView mv, HttpSession session) {
 		
-		System.out.println(p);
 		if(memberService.updatePlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());

@@ -140,30 +140,28 @@ height: 30px;
 			
 			<script>
 			// 이메일 인증번호
-			
-			
-			function certButton() {
-				console.log($('#email').val());
-				
-				if($('#email').val() != ''){
-					$.ajax({
-						url : 'certButton.me',
-						data : {
-							email : $('#email').val()
-						}
-						,success :function(result){
-							alert('인증번호가 전송되었습니다.')
-						},
-						error :function(){
-						}	
-					})
+				function certButton() {
+					console.log($('#email').val());
+					
+					if($('#email').val() != ''){
+						$.ajax({
+							url : 'certButton.me',
+							data : {
+								email : $('#email').val()
+							}
+							,success :function(result){
+								alert('인증번호가 전송되었습니다.')
+							},
+							error :function(){
+							}	
+						})
+					}
+					else {
+						alert('이메일을 입력해주세요.');
+					}
+					
+					
 				}
-				else {
-					alert('이메일을 입력해주세요.');
-				}
-				
-				
-			}
 			
 			</script>
 

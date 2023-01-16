@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,6 @@ border-radius: 3px;
 
 }
 button:hover{
-	color: #FFEA24;
 	cursor: pointer;
 }
 .findId-button{
@@ -81,12 +81,32 @@ button:hover{
 		<div class="login-box">
 			<div class="login-innor">
 				<form id="login" action="login.me" method="post" >
+					
+					<!-- cookie.saveId 쿠키의 네임속성값-->
+					<!-- cookie.saveId.value 쿠키의 네임속성값.value 쿠키의 value를 출력할수있다.  -->
+					<c:choose>
+						<c:when test="${ not empty cookie.saveId }">
+							<input type="text" id="memId" name="memId" placeholder="아이디" required value="${ cookie.saveId.value }"><br>
+							<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required><br>
+							<input type="checkbox" id="idCheck" class="idCheck" name="idCheck" checked><label for="idCheck" >아이디 저장</label><br><br>
+							<br>
+						</c:when>
+						<c:otherwise>
+							<input type="text" id="memId" name="memId" placeholder="아이디" required><br>
+							<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required><br>
+							<input type="checkbox" name="idCheck" id="idCheck"><label for="idCheck" >아이디 저장</label><br><br>
+						</c:otherwise>
+					</c:choose>
+					
+					
+					<!--  
 					<input id="memId" type="text" name="memId" placeholder="아이디" required >
-					<br><br>
+					<br>
 					<input id="memPwd" type="password" name="memPwd" placeholder="비밀번호" required>
 					<br>
 					<input type="checkBox" id="idCheck">&nbsp;&nbsp;<label for="idCheck" >아이디 저장</label>
 					<br><br>
+					-->
 					<button type="submit" class="login-button" id="btn-login" onclick="login();">로그인</button>
 					<br>
 					<a href="findIdForm.me" class="findId-button">아이디찾기 </a>
@@ -94,44 +114,72 @@ button:hover{
 					<a href="findPwdForm.me"> 비밀번호찾기</a>
 				</form>
 			</div>	
-		
-
 		</div>
-	
 	</div>
-	
-	<!--  
 	<script>
-	$(function(){
-	    /* id 저장 체크박스 기능 추가 */
-	    var userInputId = getCookie("userInputId");//저장된 쿠기값 가져오기
-	    $("#manager_id").val(userInputId); 
-
-	    if($("#manager_id").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩
-	        $("#useCookie").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
-	    }
-
-	    $("#useCookie").change(function(){ // 체크박스에 변화가 발생시
-	        if($("#useCookie").is(":checked")){ // ID 저장하기 체크했을 때,
-	            var userInputId = $("#manager_id").val();
-	            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
-	        }else{ // ID 저장하기 체크 해제 시,
-	            deleteCookie("userInputId");
-	        }
-	    });
-
-	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
-	    $("#manager_id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
-	        if($("#useCookie").is(":checked")){ // ID 저장하기를 체크한 상태라면,
-	            var userInputId = $("#manager_id").val();
-	            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
-	        }
-	    });
-	});
+	 $(function(){			// change는 이벤트임
+		$(document).on('change', '#idCheck', function(){
+				//var $memId = $(this).is(':checked'); // is는 선택한요소가 ()안에 있는 것이 일치하는지 확인하고 ture,false를 나타낸다.
+				//console.log($memId);
+			if($('#idCheck').prop('checked')){ // arrt(), prop()의 차이점...?
+				
+				$.ajax({
+					url : 'saveId.me',
+					data : {
+						memId : $('#memId').val()
+					}
+					//, success : function(result){
+						//console.log(result);
+					//},
+					//error : function(){	
+					//}
+				})
+			}
+			else {
+				$.ajax({
+					url : 'saveIdDelete.me',
+					data : {
+						memId : $('#memId').val()
+					}
+					// ,success : function(result1){
+						//console.log(result1);
+					//},
+					//error : function(){
+						
+					//}
+				})
+			}
+		}) 
+	 })
 	
+	<%--
+		window.onload = function(){
+			var item = document.getElementsByClassName();
+			for(var i=0; i<item.length; i++){
+				item[i].onclick = function(){
+					
+				}
+			}
+		}
+		$jQuery(document).ready(function){
+			
+		}
+		
+		$(document).ready(function(){
+			
+		})
+		
+		$(function(){
+		$('.idCheck').click(function(){
+		
+		--%>
+
+			
+				
+				
 	
 	</script>
-	-->
+
 
 </body>
 </html>

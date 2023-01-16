@@ -205,7 +205,7 @@
 	        <div id="plan">
 		        <c:forEach var="p" items="${list}">
 		        	<div class="plan-day">
-						<h2>day : ${p.planDate}</h2>
+						<h2>${p.planDate}</h2>
 						<input type="hidden" class="plan" name="planNo" value="${p.planNo}">	
 						<div>
 							<div class="plan-time">${p.startTime} ~ ${p.endTime}</div>
