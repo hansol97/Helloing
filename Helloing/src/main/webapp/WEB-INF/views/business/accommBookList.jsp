@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </head>
 <body>
-	<input id="roomNo_input" type="hidden" value="1">
+	<input id="roomNo_input" type="hidden" value="${roomNo}">
     <div class="header"></div>
     <jsp:include page="menubar_business.jsp"/>
     <div class="business-content">

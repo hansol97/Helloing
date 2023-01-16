@@ -202,6 +202,8 @@ public class AdminController {
 	}
 	
 	//--------------------- 결제관리 ---------------------
+	
+	// 사업자등록 목록 조회
 	@RequestMapping("businessPayList.ad")
 	public String selectBusiPayList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
 		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiPayListCount(), currentPage, 10, 5);
@@ -212,6 +214,7 @@ public class AdminController {
 		return "admin/businessPaymentListView";
 	}
 	
+	// 사업자등록 검색
 	@RequestMapping("busiPaySearch.ad")
 	public ModelAndView searhBusinessPay(@RequestParam(value="cpage", defaultValue="1") int currentPage
 								   ,String keyword, ModelAndView mv) {
