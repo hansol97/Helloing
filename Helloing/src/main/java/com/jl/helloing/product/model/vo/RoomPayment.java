@@ -23,5 +23,13 @@ public class RoomPayment {
     private String category;
     private String status;
     private String filePath;
+
     private int count; // 리뷰 수 
+    
+    private String checkIn;
+    private String checkOut;
+    private int day; // 숙박일
+
+    private String memId;
+
 }

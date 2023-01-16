@@ -22,7 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<result column="HEAD_COUNT" property="headCount"/>
   	<result column="PRICE" property="price"/>
   	<result column="CATEGORY" property="category"/>
-  	
   </resultMap>
  
 	<select id="loginCompany" parameterType="_int" resultMap="businessResultSet">

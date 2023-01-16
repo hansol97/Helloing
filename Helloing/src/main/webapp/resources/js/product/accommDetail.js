@@ -1,59 +1,32 @@
 $(function(){
 
 	checkWish(); // 위시리스트에 추가되어있는지 확인하는 함수
+	sysdate(); // 오늘 날짜 이후로만 체크인/체크아웃 가능
 
 	// 예약 버튼 클릭 시 예약하기 페이지로 이동
 	$(document).on('click', '.btn-reserve', function(){
-		var checkIn = $('input[name=startDate]').val();
-		var checkOut = $('input[name=endDate').val();
+		var checkIn = $('#startDate').val();
+		var checkOut = $('#endDate').val();
 
-		// 체크인/아웃 날짜 확인하기
-		if(checkIn == ''){
-			alert('체크인 날짜를 지정해주세요.');
+		if(checkDate(checkIn, checkOut)){// 날짜 체크 제대로 됐는지 확인
+
+			var info = $(this).closest('.accommbox');
+
+			var text = '';
+			text += '<input type="hidden" name="startDate" value="' + checkIn + '">'
+				  + '<input type="hidden" name="endDate" value="' + checkOut + '">'
+				  + '<input type="hidden" name="headCount" value="' + $('select[name=headCount] option:selected').val().replace("명","") + '">'
+				  + '<input type="hidden" name="accommNo" value="' + $('input[name=accommNo]').val() + '">'
+				  + '<input type="hidden" name="accName" value="' + $('[name=accName]').text() + '">'
+				  + '<input type="hidden" name="checkIn" value="' + $('#checkIn').text() + '">'
+				  + '<input type="hidden" name="checkOut" value="' + $('#checkOut').text() + '">'
+				  + '<input type="hidden" name="day" value="' + calDate(checkIn, checkOut) + '">';
+			$('#info').html(text);
+		}
+		else{
 			return false;
 		}
-		if(checkOut == ''){
-			alert('체크아웃 날짜를 지정해주세요.');
-			return false;
-		}
-		if(checkIn > checkOut){
-			alert('체크인/체크아웃 날짜를 다시 확인해주세요.');
-			return false;
-		}
-
-
-
-		var info = $(this).closest('.accommbox');
-
-		
-		$.ajax({
-			type : 'POST',
-			url : 'reserve.accomm',
-			data : {
-				  "startDate" : checkIn,
-				  "endDate" : checkOut,
-				  "headCount" : $('select[name=headCount] option:selected').val().replace("명",""),
-				  "accommNo" : $('input[name=accommNo]').val(),
-				  "accName" : $('[name=accName]').text(),
-				  "price" : info.find('input[name=price]').val(),
-				  "roomNo" : info.find('input[name=roomNo]').val(),
-				  "roomName" : info.find('[name=roomName]').text()
-			},
-			success : function(result){
-				if(result == ''){
-
-				}
-				else if(result == 'login please'){
-					alert('로그인이 필요한 서비스 입니다.');
-				}
-			},
-			error : function(){
-				console.log('알 수 없는 이유로 실패...');
-			}
-		});
-
 	})
-
 })
 
 // 위시리스트에 추가
@@ -132,5 +105,50 @@ function selectReview(){
 	height.top = (height.top - 200);
 
 	$('html, body').animate({scrollTop : height.top}, 400);
+}
+
+// 체크인 날짜에 오늘 날짜 이후 날짜로 뿌려주기
+function sysdate(){
+
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var date = now.getDate();
+
+	if(month < 10) month = '0' + month;
+	if(date < 10) date = '0' + date;
+
+	var sysdate = year + '-' + month + '-' + date;
+
+	$('#startDate').attr('min', sysdate);
+	$('#endDate').attr('min', sysdate);
+}
+
+// 체크인/아웃 날짜 확인하기
+function checkDate(checkIn, checkOut){
+	if(checkIn == ''){
+		alert('체크인 날짜를 지정해주세요.');
+		return false;
+	}
+	if(checkOut == ''){
+		alert('체크아웃 날짜를 지정해주세요.');
+		return false;
+	}
+	if(checkIn >= checkOut){
+		alert('체크인/체크아웃 날짜를 다시 확인해주세요.');
+		return false;
+	}
+	return true;
+}
+
+// 숙박일 계산하는 함수
+function calDate(checkIn, checkOut){
+	var startDate = new Date(checkIn);
+	var endDate = new Date(checkOut);
+
+	var diffMSce = endDate.getTime() - startDate.getTime();
+	var stayDay = diffMSce / (24 * 60 * 60 * 1000);
+
+	return stayDay;
 }
 

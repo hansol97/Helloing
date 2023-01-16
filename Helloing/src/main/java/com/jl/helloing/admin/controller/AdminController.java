@@ -23,6 +23,7 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.RoomPayment;
 
 @Controller
 public class AdminController {
@@ -40,10 +41,7 @@ public class AdminController {
 		return "admin/activityPaymentListView";
 	}
 	
-	@RequestMapping("roomPay.ad")
-	public String roomPaymentListView() {
-		return "admin/roomPaymentListView";
-	}
+	
 	
 	@RequestMapping("QAList.ad")
 	public String adminQAListView() {
@@ -229,7 +227,33 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 숙소 결제 조회
+	@RequestMapping("roomPay.ad")
+	public ModelAndView selectRoomPayList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+									,ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectRoomPayListCount(), currentPage, 10, 2);
+		
+		ArrayList<RoomPayment> list = adminService.selectRoomPayList(pi);
+		mv.addObject("list", list)
+	      .addObject("pi", pi)
+	      .setViewName("admin/roomPaymentListView");
+		
+		return mv;
+	}
 	
+	// 숙소 결제 조회 검색
+	@RequestMapping("searchRoomPay.ad")
+	public ModelAndView searchRoomPayList(@RequestParam(value="cpage", defaultValue="1")int currentPage
+									,String keyword, ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.searchRoomPayListCount(keyword), currentPage, 10, 2);
+		ArrayList<RoomPayment> list = adminService.searchRoomPayList(pi, keyword);
+		mv.addObject("list", list)
+	      .addObject("pi", pi)
+	      .addObject("keyword", keyword)
+	      .setViewName("admin/roomPaymentListView");
+		
+		return mv;
+	}
 	
 
 }
