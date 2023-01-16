@@ -466,7 +466,6 @@ public class BusinessController {
 	@RequestMapping("updateMember.bu")
 	public String updateBusinessMember(HttpSession session, String address, Model m) {
 		Business loginCompany = (Business)session.getAttribute("loginCompany");
-		System.out.println(address);
 		if(loginCompany.getAddress().equals(address) || address.equals("")) {
 			return "business/mypage";
 		}else {

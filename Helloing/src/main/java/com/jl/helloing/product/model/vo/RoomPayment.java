@@ -23,4 +23,5 @@ public class RoomPayment {
     private String category;
     private String status;
     private String filePath;
+    private String memId;
 }
