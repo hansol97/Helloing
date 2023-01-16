@@ -419,7 +419,8 @@ public class BusinessController {
 	
 	// 숙소 예약자 리스트
 	@RequestMapping("accommBookList.bu")
-	public String accommBookList() {
+	public String accommBookList(int roomNo, Model m) {
+		m.addAttribute("roomNo", roomNo);
 		return "business/accommBookList";
 	}
 	
