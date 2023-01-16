@@ -44,4 +44,5 @@ public interface ProductService {
 	ArrayList<AccommReview> selectAcReviewList(int accommNo);
 	// 회원이 숙소 위시에 추가한지 확인
 	AccommWish checkAcWish(AccommWish aw);
+
 }
