@@ -87,9 +87,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<TicketPayment> ticketBook(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TicketPayment> activityBook(int memNo) {
+		return memberDao.activityBook(memNo, sqlSession);
 	}
 	
 	@Override

@@ -40,6 +40,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class MemberController {
@@ -380,8 +381,29 @@ public class MemberController {
 	
 	//액티비티 구매 정보
 	@RequestMapping("activityBook.hj")
-	public String activityBook() {
-		return "member/activityBook";
+	public ModelAndView activityBook(ModelAndView mv, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
+		
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+
+				if(list.get(i).getCount()==0) {
+							list.get(i).setStatus("R");
+				}else {
+					list.get(i).setStatus("S");
+				}
+			}
+			mv.addObject("list", list);
+			mv.setViewName("member/activityBook");
+		}else {
+			mv.addObject("errorMsg", "결제 정보 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
 	}
 	
 	//예약 상세 조회

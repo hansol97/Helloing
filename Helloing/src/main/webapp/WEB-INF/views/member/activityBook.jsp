@@ -96,42 +96,38 @@
 			<jsp:include page="../member/myPage.jsp"/>
 		</div>
 	    <div id="table">
-		        <h1>지난 예약</h1>
+		        <h1>액티비티 결제 리스트</h1>
 				
 		        <table>
 		        <thead>
 		            <tr>
-		                <th>예약 번호</th>
-		                <th>예약 유형</th>
-		                <th>예약명</th>
-		                <th>예약 일자</th>
+		                <th>결제 번호</th>
+		                <th>액티비티명</th>
 		                <th>결제금액</th>
+		                <th>결제일자</th>
 		                <th></th>
 		            </tr>
 		         </thead>
 		         <tbody>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
+		                <td>1</td>
 		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
+		                <td>2023-01-29</td>
 		                <td><a href="#ex1" rel="modal:open">후기 조회</a></td>
 		            </tr>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
+		                <td>2</td>
 		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
+		                <td>2023-01-29</td>
 		                <td><a href="reviewEnrollForm.hj">후기작성</a></td>
 		            </tr>
 		            <tr>
-		                <td>20230103-111111</td>
-		                <td>숙소</td>
+		                <td>3</td>
 		                <td>OO호텔</td>
-		                <td>2023-01-29 ~ 2023-01-29</td>
 		                <td>198,000원</td>
+		                <td>2023-01-29</td>
 		                <td><a href="reviewEnrollForm.hj">예약취소</a></td>
 		            </tr>
 	            </tbody>
