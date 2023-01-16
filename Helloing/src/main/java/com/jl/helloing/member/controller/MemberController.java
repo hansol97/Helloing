@@ -1,8 +1,12 @@
 package com.jl.helloing.member.controller;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -36,6 +40,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class MemberController {
@@ -342,13 +347,33 @@ public class MemberController {
 	//혜진
 	//숙소 예약 정보
 	@RequestMapping("accommBook.hj")
-	public ModelAndView accommBook(ModelAndView mv, HttpSession session) {
+	public ModelAndView accommBook(ModelAndView mv, HttpSession session) throws ParseException {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
 		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
 		
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        int today = Integer.parseInt(dateFormat.format(new Date()));
+ 
+        
 		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+				int startDate = Integer.parseInt(list.get(i).getStartDate().replace("-", ""));
+				
+				System.out.println(startDate);
+				System.out.println("오늘 : " + today);
+				if(list.get(i).getStatus().equals("Y")) {
+					if(today >= startDate) {
+						if(list.get(i).getCount()==0) {
+							list.get(i).setStatus("R");
+						}else {
+							list.get(i).setStatus("S");
+						}
+					}
+				}
+			}
+			System.out.println(list);
 			mv.addObject("list", list);
 			mv.setViewName("member/accommBook");
 		}else {
@@ -362,14 +387,38 @@ public class MemberController {
 	
 	//액티비티 구매 정보
 	@RequestMapping("activityBook.hj")
-	public String activityBook() {
-		return "member/activityBook";
+	public ModelAndView activityBook(ModelAndView mv, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
+		
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+
+				if(list.get(i).getCount()==0) {
+							list.get(i).setStatus("R");
+				}else {
+					list.get(i).setStatus("S");
+				}
+			}
+			mv.addObject("list", list);
+			mv.setViewName("member/activityBook");
+		}else {
+			mv.addObject("errorMsg", "결제 정보 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
 	}
 	
 	//예약 상세 조회
 	@RequestMapping("reservationDetail.hj")
-	public String reservationDetail() {
-		return "member/reservationDetail";
+	public ModelAndView reservationDetail(ModelAndView mv) {
+		
+		mv.setViewName("member/bookDetail");
+		
+		return mv;
 	}
 	
 	//회원정보 조회 - 비밀번호 확인

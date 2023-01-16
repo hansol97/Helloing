@@ -91,21 +91,33 @@ public class ProductController {
 	// 숙소 예약(결제) 페이지
 	@ResponseBody
 	@RequestMapping(value="reserve.accomm")
-	public String reserveAccomm(HttpSession session, RoomPayment rp) {
+	public ModelAndView reserveAccomm(HttpSession session, RoomPayment rp, ModelAndView mv) {
 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(rp);
 		
-		//if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
-			return "tyty..";
-		//} else {
-		//	return "login please";
-		//}
+		if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
+			mv.addObject("rp", rp);
+			mv.setViewName("product/accommReserve");
+			
+		} else {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			mv.setViewName("redirect:loginForm.me");
+		}
+		
+		return mv;
 	}
 	
 	// 숙소 결제 완료
 	@RequestMapping("pay.accomm")
-	public String payAccomm() {
+	public String payAccomm(HttpSession session, RoomPayment rp) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		rp.setMemNo(loginUser.getMemNo());
+		
+		int result = productService.insertRoomPayment(rp);
+		
+		System.out.println(result);
+		
 		return "product/paySuccess";
 	}
 	
@@ -196,7 +208,6 @@ public class ProductController {
 						      TicketCommand tk,
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(tk.getTicketPayment());
 		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());

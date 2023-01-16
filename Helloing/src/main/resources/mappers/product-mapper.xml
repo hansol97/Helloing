@@ -345,6 +345,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   	   MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 숙소 결제 -->
+	<insert id="insertRoomPayment" parameterType="roomPayment">
+		INSERT
+		  INTO
+		  	   ROOM_PAYMENT
+		  	   (
+		  	   ORDER_NO
+		  	  ,MEM_NO
+		  	  ,START_DATE
+		  	  ,END_DATE
+		  	  ,HEAD_COUNT
+		  	  ,PRICE
+		  	  ,ACCOMM_NO
+		  	  ,ROOM_NO
+		  	   )
+		VALUES
+			   (
+			   SEQ_ORDERNO.NEXTVAL
+			  ,#{ memNo }
+			  ,#{ startDate }
+			  ,#{ endDate }
+			  ,#{ headCount }
+			  ,#{ price }
+			  ,#{ accommNo }
+			  ,#{ roomNo}
+			   )
+	</insert>
+	
 
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 조회 -->

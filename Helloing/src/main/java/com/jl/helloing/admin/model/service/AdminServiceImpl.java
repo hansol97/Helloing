@@ -15,6 +15,9 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.Ticket;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -142,6 +145,43 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<BusinessPayment> searchBusiPayList(PageInfo pi, String keyword) {
 		return adminDao.searchBusiPayList(sqlSession, pi, keyword);
 	}
+
+	@Override
+	public int selectRoomPayListCount() {
+		return adminDao.selectRoomPayListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<RoomPayment> selectRoomPayList(PageInfo pi) {
+		return adminDao.selectRoomPayList(sqlSession, pi);
+	}
+
+	@Override
+	public int searchRoomPayListCount(String keyword) {
+		return adminDao.searchRoomPayListCount(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<RoomPayment> searchRoomPayList(PageInfo pi, String keyword) {
+		return adminDao.searchRoomPayList(sqlSession, pi, keyword);
+	}
+
+	@Override
+	public int selectActPayListCount() {
+		return adminDao.selectActPayListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<TicketPayment> selectActPaymentList(PageInfo pi) {
+		return adminDao.selectActPaymentList(sqlSession, pi);
+	}
+
+	@Override
+	public ArrayList<Ticket> selectTicketList(int orderNo) {
+		return adminDao.selectTicketList(sqlSession, orderNo);
+	}
+
+	
 
 	
 	

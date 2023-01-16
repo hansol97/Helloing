@@ -6,6 +6,7 @@ import lombok.Data;
 public class TicketPayment {
 	
 	private int memNo; // "MEM_NO"	NUMBER		NOT NULL,
+	private String memId;
 	private int ticketNo; // "TICKET_NO"	NUMBER		NOT NULL,
 	private int paymentAmount; // "PAYMENT_AMOUNT"	NUMBER		NOT NULL,
 	private String paymentDate;
@@ -18,5 +19,6 @@ public class TicketPayment {
 	private int ticketSum;
 	private int ticketPrice;
 	private String status;
+	private String businessName;
 }
   

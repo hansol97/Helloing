@@ -11,6 +11,7 @@ import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.Room;
+import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.Ticket;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -44,4 +45,8 @@ public interface ProductService {
 	ArrayList<AccommReview> selectAcReviewList(int accommNo);
 	// 회원이 숙소 위시에 추가한지 확인
 	AccommWish checkAcWish(AccommWish aw);
+	
+	// 숙소 결제하기
+	int insertRoomPayment(RoomPayment rp);
+
 }

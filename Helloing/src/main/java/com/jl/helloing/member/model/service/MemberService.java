@@ -56,7 +56,7 @@ public interface MemberService {
 	ArrayList<RoomPayment> accommBook(int memNo);
 	
 	//액티비티 예약 리스트 조회
-	ArrayList<TicketPayment> ticketBook(int memNo);
+	ArrayList<TicketPayment> activityBook(int memNo);
 	
 	
 	//예약 상세조회

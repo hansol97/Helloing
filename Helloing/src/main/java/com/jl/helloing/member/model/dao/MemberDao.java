@@ -14,6 +14,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Repository
 public class MemberDao {
@@ -159,6 +160,9 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.accommBook", memNo);
 	}
 	
+	public ArrayList<TicketPayment> activityBook(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.activityBook", memNo);
+	}
 	
 	
 	
@@ -186,6 +190,7 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
 
 
 
