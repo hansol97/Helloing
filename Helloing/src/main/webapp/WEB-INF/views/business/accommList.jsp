@@ -44,11 +44,10 @@
                     <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                     <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                     <div class="more_buttons">
-                        <button onclick='location.href="goInsertRoom.bu?accommNo=${aL.accommNo}"' class="more_button">객실등록</button>
-                        <!-- <button onclick='location.href="goInsertRoom.bu?accommNo=$"' class="more_button">객실등록</button> -->
-                        <button onclick='location.href="goUpdateAccom.bu?accommNo=${aL.accommNo}"' class="more_button">숙소수정</button>
-                        <button onclick='location.href="deleteAccom.bu?accommNo=${aL.accommNo}"' class="more_button">숙소삭제</button>
-                        <button onclick='location.href="goPayAccom.bu?accommNo=${aL.accommNo}"' class="more_button">추가결제</button>
+                      <button onclick='location.href="goPayAccom.bu?accommNo=${aL.accommNo}"' class="more_button">만료연장</button>
+                      <button onclick='location.href="deleteAccom.bu?accommNo=${aL.accommNo}"' class="more_button">숙소삭제</button>
+                      <button onclick='location.href="goUpdateAccom.bu?accommNo=${aL.accommNo}"' class="more_button">숙소수정</button>
+                      <button onclick='location.href="goInsertRoom.bu?accommNo=${aL.accommNo}"' class="more_button">객실등록</button>
                     </div>
                 </div>
                 <br>
@@ -76,7 +75,7 @@
                   </c:choose>
 
                 <div class="read-more">
-                  <a href="#">숙소 상세보기(사용자 페이지로 이동)</a>
+                  <a href="detail.accomm?accommNo=${rL.accommNo}">숙소 상세보기(사용자 페이지로 이동)</a>
                 </div>
               </div>
             </div>
