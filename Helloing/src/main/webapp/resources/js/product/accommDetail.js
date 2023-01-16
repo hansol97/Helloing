@@ -20,7 +20,8 @@ $(function(){
 				  + '<input type="hidden" name="accName" value="' + $('[name=accName]').text() + '">'
 				  + '<input type="hidden" name="checkIn" value="' + $('#checkIn').text() + '">'
 				  + '<input type="hidden" name="checkOut" value="' + $('#checkOut').text() + '">'
-				  + '<input type="hidden" name="day" value="' + calDate(checkIn, checkOut) + '">';
+				  + '<input type="hidden" name="day" value="' + calDate(checkIn, checkOut) + '">'
+				  + '<input type="hidden" name="attachment" value="' + $('#attachment').attr('src') + '">';
 			$('#info').html(text);
 		}
 		else{

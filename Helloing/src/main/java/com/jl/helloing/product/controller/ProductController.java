@@ -94,7 +94,6 @@ public class ProductController {
 	public ModelAndView reserveAccomm(HttpSession session, RoomPayment rp, ModelAndView mv) {
 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(rp);
 		
 		if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
 			mv.addObject("rp", rp);
@@ -110,7 +109,15 @@ public class ProductController {
 	
 	// 숙소 결제 완료
 	@RequestMapping("pay.accomm")
-	public String payAccomm() {
+	public String payAccomm(HttpSession session, RoomPayment rp) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		rp.setMemNo(loginUser.getMemNo());
+		
+		int result = productService.insertRoomPayment(rp);
+		
+		System.out.println(result);
+		
 		return "product/paySuccess";
 	}
 	
@@ -201,7 +208,6 @@ public class ProductController {
 						      TicketCommand tk,
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(tk.getTicketPayment());
 		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());

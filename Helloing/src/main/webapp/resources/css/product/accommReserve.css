@@ -12,7 +12,8 @@ hr{ margin: 10px 0px; }
 
 /* 상품 정보 */
 .accomm-info{ display: flex; align-items: center; margin-bottom: 20px; }
-.accomm-info span{ font-size: 25px; font-weight: bold; }
+.accomm-info img{ margin-right: 10px; }
+#acInfo{ font-size: 25px; font-weight: bold; }
 .room-info{ 
 	display: flex; 
 	justify-content: space-between; 
