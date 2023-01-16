@@ -1,4 +1,4 @@
-<!--  
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -170,11 +170,22 @@ table.type02 td {
   }
 
   /* 문의 모달 설정 */
-  .modal_body textarea{
+  /*문의제목*/
+  .qnaTitle-text{
+    font-family: 'S-CoreDream-3Light';
+    width:400px;
+    height:20px;
+  }
+  /*문의내용*/
+  .qnaQ-text{
     font-family: 'S-CoreDream-3Light';
     width:400px;
     height:180px;
-    resize: none;
+  }
+   /*문의카테고리*/
+  .modal_body select{
+    font-family: 'S-CoreDream-3Light';
+    border: 0px;
   }
 
   #QA_input{
@@ -299,31 +310,32 @@ table.type02 td {
         <div class="modal_body">
             
             <div class="modal-title">
-                <span>QA 답변 등록</span>
+                <span>QA 문의 하기</span>
             </div>
             <div align="center">
                 <br>
-                <form action="#">
+                <form action="insertQna.me" method="post">
+                    <input type="hidden" name="memNo" id="memNo" value="${ sessionScope.loginUser.memNo }">
+                    <input type="hidden" name="qnaSort" value="${ ss }">
                     <table class="type02">
                         <tr>
+                            <th>카테고리</th>
+                            <td>
+                                <select name="category">
+                                    <option value="accomm">숙소관련</option>
+                                    <option value="activity">상품관련</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th width="80">제목</th>
-                            <td width="300">문의합니다</td>
+                            <td width="300"><input type="text" name="qnaTitle" class="qnaTitle-text" placeholder="제목을 입력하세요"></td>
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td>안녕하세요 숙소관련 문의합니다</td>
+                            <td width="300"><input type="text" name="qnaQ" class="qnaQ-text" placeholder="내용을 입력하세요"></td>
                         </tr>
                         <tr>
-                            <th>카테고리</th>
-                            <td>숙소관련</td>
-                        </tr>
-                        <tr>
-                            <th>구분</th>
-                            <td>일반회원</td>
-                        </tr>
-                        <tr>
-                            <th>답변</th>
-                            <td><textarea name="" id="" placehold="답변을 입력하세요"></textarea></td>
                         </tr>
                     </table>
 
@@ -440,4 +452,3 @@ table.type02 td {
 
 </body>
 </html>
--->

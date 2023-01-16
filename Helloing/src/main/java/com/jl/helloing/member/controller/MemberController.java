@@ -39,6 +39,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -339,6 +340,26 @@ public class MemberController {
 		return "member/memberQAListView";
 	}
 	
+	@RequestMapping("insertQna.me")
+	public ModelAndView insertQna(QNA qna, ModelAndView mv, HttpSession session) {
+		System.out.println(qna.getCategory());
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		qna.setMemNo(memNo);
+		System.out.println(qna);
+		
+		int result = memberService.insertQna(qna);
+		
+		if(result > 0) {
+			mv.addObject("memNo", memNo);
+			session.setAttribute("alertMsg", "1:1문의가 등록되었습니다.");
+			mv.setViewName("redirect:QAList.me");
+		} else {
+			session.setAttribute("alertMsg", "등록이 실패했습니다.");
+			mv.setViewName("redirect:QAList.me");
+		}	
+		return mv;
+	}
+		
 	
 	
 
@@ -351,7 +372,8 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+		//ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+		ArrayList<RoomPayment> list = new ArrayList();
 		
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         int today = Integer.parseInt(dateFormat.format(new Date()));
