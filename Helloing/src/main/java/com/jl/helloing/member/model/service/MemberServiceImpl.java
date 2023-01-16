@@ -16,6 +16,8 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -78,23 +80,18 @@ public class MemberServiceImpl implements MemberService{
 	
 	//혜진
 	
+	//마이페이지 메인 == 숙소 예약 리스트 
 	@Override
-	public ArrayList<Book> selectScheduled(int memNo) {
-		return null;
+	public ArrayList<RoomPayment> accommBook(int memNo) {
+		return memberDao.accommBook(memNo, sqlSession);
 	}
 
 	@Override
-	public ArrayList<Book> selectLast(int memNo) {
+	public ArrayList<TicketPayment> ticketBook(int memNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList<Book> selectCancelled(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public Book reservationDetail(int memNo, int orderNo) {
 		// TODO Auto-generated method stub
@@ -271,6 +268,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
 
 
 
