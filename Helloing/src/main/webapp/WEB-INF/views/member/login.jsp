@@ -51,7 +51,6 @@ border-radius: 3px;
 
 }
 button:hover{
-	color: #FFEA24;
 	cursor: pointer;
 }
 .findId-button{
