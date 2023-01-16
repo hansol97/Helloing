@@ -1,6 +1,6 @@
 package com.jl.helloing.product.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -23,6 +23,8 @@ public class RoomPayment {
     private String category;
     private String status;
     private String filePath;
+
+    private int count; // 리뷰 수 
     
     private String checkIn;
     private String checkOut;

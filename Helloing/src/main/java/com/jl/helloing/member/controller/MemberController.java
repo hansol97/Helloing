@@ -1,8 +1,12 @@
 package com.jl.helloing.member.controller;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -336,13 +340,28 @@ public class MemberController {
 	//혜진
 	//숙소 예약 정보
 	@RequestMapping("accommBook.hj")
-	public ModelAndView accommBook(ModelAndView mv, HttpSession session) {
+	public ModelAndView accommBook(ModelAndView mv, HttpSession session) throws ParseException {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
 		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
 		
+		System.out.println(list);
+		
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        String date = dateFormat.format(new Date());
+ 
+        Date today = new Date(dateFormat.parse(date).getTime());
+        
 		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+				Date startDate = new Date(dateFormat.parse(list.get(i).getStartDate()).getTime()); 
+				int result = today.compareTo(startDate);
+				
+				if(result == 0 && result < 0 ) {
+					list.get(i).setStatus("R");
+				}
+			}
 			mv.addObject("list", list);
 			mv.setViewName("member/accommBook");
 		}else {

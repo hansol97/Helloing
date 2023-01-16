@@ -16,6 +16,7 @@ import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -162,6 +163,16 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ArrayList<RoomPayment> searchRoomPayList(PageInfo pi, String keyword) {
 		return adminDao.searchRoomPayList(sqlSession, pi, keyword);
+	}
+
+	@Override
+	public int selectActPayListCount() {
+		return adminDao.selectActPayListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<TicketPayment> selectActPaymentList(PageInfo pi) {
+		return adminDao.selectActPaymentList(sqlSession, pi);
 	}
 
 	

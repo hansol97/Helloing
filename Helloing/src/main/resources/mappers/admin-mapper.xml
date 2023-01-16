@@ -53,6 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	<result column="STATUS" property="status"/>
   		<result column="PAYMENT_DATE" property="paymentDate"/>
 	  </resultMap>
+	  
+	  <resultMap id="tickeyPaymentResultSet" type="ticketPayment">
+	  </resultMap>
 	
 	<!-- 챗봇Q 중복 확인 -->
 	<select id="selectChatbotQ" parameterType="chatbot" resultType="_int">
@@ -423,5 +426,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ROOM USING(ROOM_NO)
 		 WHERE
 		       MEM_ID LIKE '%' || #{keyword} || '%' 
+	</select>
+	
+	<!-- 액티비티 결제 리스트 수 -->
+	<select id="selectActPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       (SELECT
+				       ORDER_NO
+				  FROM
+				       TICKET_PAYMENT
+				 GROUP
+				    BY
+				       ORDER_NO)
+	</select>
+	
+	<!-- 액티비티 결제 리스트 -->
+	<select id="selectActPaymentList" resultMap="tickeyPaymentResultSet">
 	</select>
 </mapper>

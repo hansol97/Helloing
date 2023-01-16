@@ -24,6 +24,7 @@ import com.jl.helloing.common.model.vo.PageInfo;
 import com.jl.helloing.common.template.Pagination;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class AdminController {
@@ -35,13 +36,6 @@ public class AdminController {
 	public String adminPage() {
 		return "admin/menubar_admin";
 	}
-	
-	@RequestMapping("actPay.ad")
-	public String activityPaymentViewList() {
-		return "admin/activityPaymentListView";
-	}
-	
-	
 	
 	@RequestMapping("QAList.ad")
 	public String adminQAListView() {
@@ -80,12 +74,12 @@ public class AdminController {
 	
 	// 챗봇 키워드 수정
 	@RequestMapping("updateChatbot.ad")
-	public String updateChatbot(Chatbot c, HttpSession session) {
+	public String updateChatbot(Chatbot c, HttpSession session, String cpage) {
 		
 		int result = adminService.updateChatbot(c);
 		
 		if(result > 0) {
-			return "redirect:/chatbotList.ad";
+			return "redirect:/chatbotList.ad?cpage=" + cpage;
 		}else {
 			session.setAttribute("adminAlertMsg", "키워드 등록에 실패했습니다");
 			return "redirect:/chatbotList.ad";
@@ -253,6 +247,14 @@ public class AdminController {
 	      .setViewName("admin/roomPaymentListView");
 		
 		return mv;
+	}
+	
+	// 액티비티 결제 조회
+	@RequestMapping("actPay.ad")
+	public String selectActPaymentList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectActPayListCount(), currentPage, 5, 2);
+		ArrayList<TicketPayment> list = adminService.selectActPaymentList(pi);
+		return "admin/activityPaymentListView";
 	}
 	
 
