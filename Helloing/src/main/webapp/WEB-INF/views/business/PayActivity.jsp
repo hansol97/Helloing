@@ -23,14 +23,14 @@
             <!--등록 폼 박스-->
             <div class="fatherEnrollForm">
                 <div class="blog-card enrollform" >
-                    <form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
+                    <form action="payActivity.bu" method="post" class="innerform">
 
                         <div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;🎡기업결제 - 액티비티 </div>
                         <br><br><br>
                     <div class="billBox">
-                        액티비티 이름 : <span id="accomName"> 남원랜드 </span><br><br>
+                        액티비티 이름 : <span id="accomName"> ${requestScope.activityName} </span><br><br>
                         <!-- 액티 번호 -->
-                        <input type="hidden" name="accomNo">
+                        <input type="hidden" name="activityNo" value="${requestScope.activityNo}">
                     </div>
       
                     <div class="paymentBox">

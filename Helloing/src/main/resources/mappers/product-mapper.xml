@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR4"    			property="star4" />
         <result column="STAR5"    			property="star5" />
         <result column="ATTACHMENT"    		property="attachment" />
+        <result column="STATUS"    			property="status" />
     </resultMap>
 
      <resultMap id="RoomResultSet"  type="room">
@@ -34,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="ROOM_NAME"  	property="roomName" />
         <result column="CAPACITY"   	property="capacity" />
         <result column="PRICE"  		property="price" />
+        <result column="STATUS"    			property="status" />
     </resultMap>	
     
 	<resultMap id="ActivityResultSet" type="activity">
@@ -51,6 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR4"    			property="star4" />
         <result column="STAR5"    			property="star5" />
         <result column="ATTACHMENT"    		property="attachment" />
+        <result column="STATUS"    			property="status" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -62,6 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="START_DATE"    		property="startDate" />
         <result column="END_DATE"    		property="endDate" />
         <result column="COUNT"    			property="count" />
+        <result column="STATUS"    			property="status" />
     </resultMap>
     
      <resultMap id="AttachmentResultSet"  type="attachment">
@@ -444,6 +448,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACCOMM A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+			AND
+				STATUS = 'Y'
 		  ORDER
 		  	 BY
 		  	 	ACCOMM_NO DESC
@@ -461,6 +467,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   		ROOM 
 		  WHERE 
 		  		ACCOMM_NO = #{accommNo}
+			AND
+				STATUS = 'Y'		    
 	
 	</select>
 	
@@ -499,6 +507,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACTIVITY A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+			AND
+				STATUS = 'Y'				
   		  ORDER
 		  	 BY
 		  	 	ACTIVITY_NO DESC
@@ -530,6 +540,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   		TICKET T
 		  WHERE 
 		  		ACTIVITY_NO = #{activityNo}
+			AND
+				STATUS = 'Y'
 	
 	</select>
 	

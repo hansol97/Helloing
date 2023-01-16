@@ -10,5 +10,7 @@ public class Room {
 	 private String roomName; //ROOM_NAME	VARCHAR2(1000 BYTE)
 	 private int capacity;//CAPACITY	NUMBER
 	 private int price;//PRICE	NUMBER
+     private String status;
+
 	
 }

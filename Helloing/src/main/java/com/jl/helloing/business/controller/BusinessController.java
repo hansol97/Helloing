@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.naming.spi.DirStateFactory.Result;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.jl.helloing.business.model.service.BusinessService;
+import com.jl.helloing.business.model.service.BusinessServiceImpl;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.Attachment;
@@ -60,9 +64,8 @@ public class BusinessController {
 	public ModelAndView selectAccom(HttpSession session ,ModelAndView mv) {
 		
 		ArrayList<Accomm> accList = new ArrayList<Accomm>();
-		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
-		
-		String businessNo = loginCompany.getBusinessNo();
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 로그인한 사업자 객체 세션에서 뽑기
+		String businessNo = loginCompany.getBusinessNo();		// 사업자번호 뽑기
 		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
 		
 		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
@@ -88,9 +91,8 @@ public class BusinessController {
 	public ModelAndView selectActivity(HttpSession session ,ModelAndView mv) {
 		
 		ArrayList<Activity> actList = new ArrayList<Activity>();
-		Business loginCompany = (Business) session.getAttribute("loginCompany");// 사업자번호 가져오기
-		
-		String businessNo = loginCompany.getBusinessNo();
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 로그인한 사업자 객체 세션에서 뽑기
+		String businessNo = loginCompany.getBusinessNo();	// 사업자번호 뽑기
 		actList = businessService.selectActivityList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
 		
 		ArrayList<Integer> actNoList = new ArrayList<Integer>();
@@ -106,6 +108,7 @@ public class BusinessController {
 		}
 		System.out.println("포문 돌려서 방 집어넣은 actList : " + actList);
 		
+
 		mv.addObject("actList", actList)
 		  .setViewName("business/activityList");
 		
@@ -158,6 +161,36 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+    
+    // 숙소 수정 (UPDATE)
+    
+    
+    // 숙소 삭제 (UPDATE)
+    @RequestMapping("deleteAccomm.bu")
+    public String deleteAccomm(int accommNo, HttpSession session) {
+    	
+    	int result = businessService.deleteAccomm(accommNo);
+    	
+    	if (result > 0) {
+			session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
+		} else {
+			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+		}
+    	return "redirect:accommList.bu";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
 	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
@@ -195,11 +228,19 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+	
+    
+    // 액티비티 수정 (UPDATE)
+    
+    
+    // 액티비티 삭제 (UPDATE)
+	
+	
+	
 	// 객실 등록화면으로 이동
 	@RequestMapping("goInsertRoom.bu")
 	public ModelAndView goInsertRoom(int accommNo, ModelAndView mv) {
 		mv.addObject("accommNo", accommNo).setViewName("business/insertRoom");
-		
 		return mv;
 	}
 	// 객실등록
@@ -239,6 +280,12 @@ public class BusinessController {
 			return "common/errorPage";
 		}
 	}
+	
+    // 객실 수정 (UPDATE)
+    
+    
+    // 객실  삭제 (UPDATE)
+	
 
 	// 티켓 등록 화면으로 이동 
 	@RequestMapping("goInsertTicket.bu")
@@ -262,6 +309,12 @@ public class BusinessController {
 			return "common/errorPage"; 
 		}
 	}
+	
+    // 티켓 수정 (UPDATE)
+    
+    
+    // 티켓 삭제 (UPDATE)
+	
 	
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody
@@ -300,33 +353,86 @@ public class BusinessController {
 	public String goUpdateTicket() {
 		return "business/updateTicket";
 	}
+	
 	// 숙소 기업결제 화면으로 이동 
 	@RequestMapping("goPayAccom.bu")
-	public String goPayAccom() {
-		return "business/payAccomm";
+	public ModelAndView goPayAccom(int accommNo, String accommName, ModelAndView mv) {
+		mv.addObject("accommNo", accommNo).addObject("accommName", accommName).setViewName("business/payAccomm");
+		return mv;
 	}
-	
 	// 숙소 기업결제하기
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("payAccomm.bu")
+	public String payAccomm(Accomm ac, BusinessPayment bp, HttpSession session, HttpServletRequest request) {
+		
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 로그인한 사업자 객체 세션에서 뽑기
+		String businessNo = loginCompany.getBusinessNo(); // 사업자번호 가져오기
+		int accommNo = Integer.parseInt(request.getParameter("accommNo"));
+		String accommName = request.getParameter("accommName");
+		System.out.println(accommNo);
+		bp.setBusinessNo(businessNo); // BusinessPayment 에 사업자 번호 담기
+		bp.setAccommNo(accommNo); // BusinessPayment 에 숙소 번호 담기
+		
+		// bp 보내서  BUSINESS_PAYMENT테이블 INSERT	- 반환값 int
+		int resultB = businessService.updateBusinessPayment(bp);
+		
+		if ( resultB > 0 ) { // 결제에 성공하면 만료일자 늘려주기 
+			
+			// ac 보내서 ACCOMM 테이블의 만료일자 업데이트 (END_DATE + 1년) - UPDATE - 반환값 int
+			int resultA = businessService.updateAccommEndDate(accommNo);
+			
+			if (resultA > 0) { // 만료일자 늘리기 성공시
+				session.setAttribute("alertMsg", "결제에 성공하셨습니다. 만료일자가 1년 연장됩니다. 감사합니다👍");
+				return "redirect:accommList.bu";
+			} else { 	// 만료일자 늘리기 실패
+				session.setAttribute("alertMsg", "결제에 성공했지만 만료일자가 늘어나지 않았습니다 .1대 1 문의를 이용해 주세요");
+				return "business/accommList";
+			}
+		} else { // 결제 실패
+			session.setAttribute("alertMsg", "결제에 실패하셨습니다. 다시 시도해 주세요");
+			return "business/accommList";
+		}
+	}
 	
 	
 	// 액티비티 기업결제 화면으로 이동 
 	@RequestMapping("goPayAct.bu")
-	public String goPayActivity() {
-		return "business/payActivity";
+	public ModelAndView goPayActivity(int activityNo, String activityName, ModelAndView mv) {
+		mv.addObject("activityNo", activityNo).addObject("activityName", activityName).setViewName("business/payActivity");
+		return mv;
 	}
 	
 	// 액티비티 기업결제하기 
-	
-	
+	@RequestMapping("payActivity.bu")
+	public String payActivity(Activity act, BusinessPayment bp, HttpSession session, HttpServletRequest request) {
+		
+		Business loginCompany = (Business) session.getAttribute("loginCompany");// 로그인한 사업자 객체 세션에서 뽑기
+		String businessNo = loginCompany.getBusinessNo(); // 사업자번호 가져오기
+		int activityNo = Integer.parseInt(request.getParameter("activityNo"));
+		String activityName = request.getParameter("activityName");
+		bp.setBusinessNo(businessNo); // BusinessPayment 에 사업자 번호 담기
+		bp.setActivityNo(activityNo); // BusinessPayment 에 숙소 번호 담기
+		
+		// bp 보내서  BUSINESS_PAYMENT테이블 INSERT	- 반환값 int
+		int resultB = businessService.updateBusinessPayment(bp);
+		
+		if ( resultB > 0 ) { // 결제에 성공하면 만료일자 늘려주기 
+			
+			// ac 보내서 ACCOMM 테이블의 만료일자 업데이트 (END_DATE + 1년) - UPDATE - 반환값 int
+			int resultA = businessService.updateActivityEndDate(activityNo);
+			
+			if (resultA > 0) { // 만료일자 늘리기 성공시
+				session.setAttribute("alertMsg", "결제에 성공하셨습니다. 만료일자가 1년 연장됩니다. 감사합니다👍");
+				return "redirect:activityList.bu";
+			} else { 	// 만료일자 늘리기 실패
+				session.setAttribute("alertMsg", "결제에 성공했지만 만료일자가 늘어나지 않았습니다 .1대 1 문의를 이용해 주세요");
+				return "business/activityList";
+			}
+		} else { // 결제 실패
+			session.setAttribute("alertMsg", "결제에 실패하셨습니다. 다시 시도해 주세요");
+			return "business/activityList";
+		}
+		
+	}
 	
 	
 	

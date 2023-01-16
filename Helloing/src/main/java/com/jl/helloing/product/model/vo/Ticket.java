@@ -13,6 +13,8 @@ public class Ticket {
 	private String startDate;
 	private String endDate;
 	private int count;
+	private String status;
+
 }
 //TICKET_NO	NUMBER
 //ACTIVITY_NO	NUMBER

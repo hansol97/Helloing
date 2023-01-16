@@ -89,6 +89,24 @@ public class BusinessDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectTicketListBu", activityNo);
 	}
 
+	// bp 보내서  BUSINESS_PAYMENT테이블 INSERT	- 반환값 int  / ACCOMM/ACTIVITY 같이쓴다.
+	public int updateBusinessPayment(SqlSessionTemplate sqlSession, BusinessPayment bp) {
+		return sqlSession.update("businessMapper.updateBusinessPayment", bp);
+	}
+
+	// accommNo 보내서 ACCOMM 테이블의 만료일자 업데이트 (END_DATE + 1년) - UPDATE - 반환값 int
+	public int updateAccommEndDate(SqlSessionTemplate sqlSession, int accommNo) {
+		return sqlSession.update("businessMapper.updateAccommEndDate", accommNo);
+	}
+	// activityNo 보내서 ACTIVITY 테이블의 만료일자 업데이트 (END_DATE + 1년) - UPDATE - 반환값 int
+	public int updateActivityEndDate(SqlSessionTemplate sqlSession, int activityNo) {
+		return sqlSession.update("businessMapper.updateActivityEndDate", activityNo);
+	}
+
+	// 숙소 지우기 status = n
+	public int deleteAccomm(SqlSessionTemplate sqlSession, int accommNo) {
+		return sqlSession.update("businessMapper.deleteAccomm", accommNo);
+	}
 
 
 	
@@ -106,6 +124,10 @@ public class BusinessDao {
 	public RoomPayment selectBookInfo(SqlSessionTemplate sqlSession, RoomPayment rp) {
 		return sqlSession.selectOne("businessMapper.selectBookInfo", rp);
 	}
+
+
+
+
 
 
 
