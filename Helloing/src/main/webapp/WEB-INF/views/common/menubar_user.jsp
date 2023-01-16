@@ -402,7 +402,7 @@
 
 						<!-- 기업 회원에게만 보여주기 -->
 						<c:if test="${ not empty loginCompany }">
-							<li><a href="page.bu">기업관리</a></li>
+							<li><a href="accommList.bu">기업관리</a></li>
 						</c:if>
 						<!--기업관리 화면일 경우-->
 						<c:if test="${ loginUser.status == 'A' }" >

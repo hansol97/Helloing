@@ -29,12 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
      <resultMap id="RoomResultSet"  type="room">
-        <result column="ROOM_NO"       property="roomNo" />
-        <result column="ACCOMM_NO"   property="accommNo" />
-        <result column="ROOM_NAME"  property="roomName" />
-        <result column="CAPACITY"    property="capacity" />
-        <result column="PRICE"    property="price" />
-    </resultMap>
+        <result column="ROOM_NO"        property="roomNo" />
+        <result column="ACCOMM_NO"   	property="accommNo" />
+        <result column="ROOM_NAME"  	property="roomName" />
+        <result column="CAPACITY"   	property="capacity" />
+        <result column="PRICE"  		property="price" />
+    </resultMap>	
     
 	<resultMap id="ActivityResultSet" type="activity">
         <result column="ACTIVITY_NO"       	property="activityNo" />
@@ -61,44 +61,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="PRICE"    			property="price" />
         <result column="START_DATE"    		property="startDate" />
         <result column="END_DATE"    		property="endDate" />
+        <result column="COUNT"    			property="count" />
     </resultMap>
     
      <resultMap id="AttachmentResultSet"  type="attachment">
-        <result column="ACCOMM_NO"       property="accommNo" />
-        <result column="ACTIVITY_NO"   property="activityNo" />
-        <result column="ROOM_NO"  property="roomNo" />
-        <result column="FILE_NO"    property="fileNo" />
+        <result column="ACCOMM_NO"      property="accommNo" />
+        <result column="ACTIVITY_NO"   	property="activityNo" />
+        <result column="ROOM_NO"  		property="roomNo" />
+        <result column="FILE_NO"    	property="fileNo" />
         <result column="ORIGIN_NAME"    property="originName" />
         <result column="CHANGE_NAME"    property="changeName" />
-        <result column="FILE_PATH"    property="filePath" />
+        <result column="FILE_PATH"    	property="filePath" />
         <result column="UPLOAD_DATE"    property="uploadDate" />
-        <result column="ATTACHMENT"    property="attachment" />
+        <result column="ATTACHMENT"   	property="attachment" />
     </resultMap>
     
     <resultMap id="ActReviewResultSet"  type="actReview">
         <result column="REVIEW_NO"       property="reviewNo" />
-        <result column="ACTIVITY_NO"   property="activityNo" />
-        <result column="TICKET_NO"  property="ticketNo" />
-        <result column="MEM_NO"    property="memNo" />
-        <result column="REVIEW_CONTENT"    property="reviewContent" />
-        <result column="CREATE_DATE"    property="createDate" />
-        <result column="TAG"    property="tag" />
-        <result column="STAR"    property="star" />
-        <result column="MEM_NAME"    property="memName" />
-        <result column="TICKET_NAME"    property="ticketName" />
+        <result column="ACTIVITY_NO"  	 property="activityNo" />
+        <result column="TICKET_NO"  	 property="ticketNo" />
+        <result column="MEM_NO"    	 	 property="memNo" />
+        <result column="REVIEW_CONTENT"  property="reviewContent" />
+        <result column="CREATE_DATE"     property="createDate" />
+        <result column="TAG"    		 property="tag" />
+        <result column="STAR"    		 property="star" />
+        <result column="MEM_NAME"    	 property="memName" />
+        <result column="TICKET_NAME"     property="ticketName" />
     </resultMap>
     
     <resultMap id="AcReviewResultSet"  type="acReview">
         <result column="REVIEW_NO"       property="reviewNo" />
-        <result column="ACCOMM_NO"   property="accommNo" />
-        <result column="MEM_NO"    property="memNo" />
-        <result column="ROOM_NO"    property="roomNo" />
-        <result column="REVIEW_CONTENT"    property="reviewContent" />
-        <result column="CREATE_DATE"    property="createDate" />
-        <result column="TAG"    property="tag" />
-        <result column="STAR"    property="star" />
-        <result column="MEM_NAME"    property="memName" />
-        <result column="ROOM_NAME"    property="roomName" />
+        <result column="ACCOMM_NO"  	 property="accommNo" />
+        <result column="MEM_NO"    		 property="memNo" />
+        <result column="ROOM_NO"   		 property="roomNo" />
+        <result column="REVIEW_CONTENT"  property="reviewContent" />
+        <result column="CREATE_DATE"     property="createDate" />
+        <result column="TAG"   			 property="tag" />
+        <result column="STAR"    		 property="star" />
+        <result column="MEM_NAME"        property="memName" />
+        <result column="ROOM_NAME"   	 property="roomName" />
     </resultMap>
     
 	<resultMap id="actWishResultSet" type="activitywish">
@@ -389,6 +390,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACCOMM A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+		  ORDER
+		  	 BY
+		  	 	ACCOMM_NO DESC
 	</select>
 
 	<!-- 숙소에 달린 객실 조회 accommNoList : 숙소 번호가 든 리스트-->
@@ -441,11 +445,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACTIVITY A
 		  WHERE
 				BUSINESS_NO = #{ businessNo }
+  		  ORDER
+		  	 BY
+		  	 	ACTIVITY_NO DESC
 	</select>
 	
 	
 	
-	<!-- 액티비티에 달린 티켓 조회 actNoList : 액티비티 번호가 든 리스트-->
+	<!-- 액티비티에 달린 티켓 조회 + 예약자 수 조회 / actNoList : 액티비티 번호가 든 리스트-->
 	<select id="selectTicketListBu" parameterType="_int"  resultMap="TicketResultSet">
 		SELECT 
 				TICKET_NO, 
@@ -454,9 +461,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				CAPACITY, 
 				PRICE,
 				START_DATE,
-				END_DATE
+				END_DATE,
+				(
+					SELECT 	
+							COUNT
+					  FROM
+					  		TICKET_PAYMENT TP
+					 WHERE
+					 		TP.TICKET_NO = T.TICKET_NO
+				
+				) AS COUNT
+				
 		   FROM 
-		   		TICKET 
+		   		TICKET T
 		  WHERE 
 		  		ACTIVITY_NO = #{activityNo}
 	

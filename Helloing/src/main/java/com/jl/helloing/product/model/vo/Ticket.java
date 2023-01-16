@@ -12,6 +12,7 @@ public class Ticket {
 	private int price;
 	private String startDate;
 	private String endDate;
+	private int count;
 }
 //TICKET_NO	NUMBER
 //ACTIVITY_NO	NUMBER
@@ -20,3 +21,4 @@ public class Ticket {
 //PRICE	NUMBER
 //START_DATE	DATE
 //END_DATE	DATE
+//count => 사용자가 결제한 티멧 수량 
