@@ -51,8 +51,30 @@ public class ProductController {
 	
 	// 숙소 검색
 	@RequestMapping("search.accomm")
-	public String searchAccomm() {
-		return "product/accommSearch";
+	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
+		
+		ArrayList<Accomm> list = productService.searchAccomm(ac);
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(i+1 != list.size()) {
+				if(list.get(i).getAccommNo() == list.get(i+1).getAccommNo()) {
+					list.remove(i+1);
+					i--;
+				}
+			} else { 
+				break;
+			}
+		}
+		
+		mv.addObject("accommList", list);
+		
+		if(list.isEmpty()) {
+			mv.addObject("anoList", productService.selectAcList());
+		}
+		
+		mv.setViewName("product/accommSearch");
+		
+		return mv;
 	}
 	
 	// 숙소 상세 페이지
@@ -219,5 +241,6 @@ public class ProductController {
 		
 		return "product/paySuccess";
 	}
+	
 }
 
