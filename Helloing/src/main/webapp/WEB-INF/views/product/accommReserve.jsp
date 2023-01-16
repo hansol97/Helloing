@@ -24,12 +24,12 @@
 
 				<div class="accomm-info">
 					<img src="/helloing/resources/img/logo_outline.png" width="180">
-					<p><span>휘닉스 제주 섭지코지</span><br>
-						23년 1월 06일 (금) 14시 00분 ~ 23년 1월 7일 (토) 11시 00분, 1박</p>
+					<p><span>${ rp.accName }</span><br>
+						${ rp.startDate } ${ rp.checkIn } ~ ${ rp.endDate } ${ rp.checkOut }, ${ rp.day }박</p>
 				</div>
 				<div class="room-info">
-					<span>로얄룸 라운지 이용</span>
-					<span>807,890원</span>
+					<span>${ rp.roomName }</span>
+					<span>${ rp.price }원</span>
 				</div>
 				<div class="price-info">
 					<span>총 상품 금액</span>
@@ -43,16 +43,16 @@
 					<table>
 						<tr>
 							<td width="120">예약자 이름</td>
-							<td width="500" class="user-info" id="bookName">ㅇㅇㅇ</td>
+							<td width="500" class="user-info" id="bookName">${ loginUser.memName }</td>
 						</tr>
 						<tr>
 							<td>이메일 주소</td>
-							<td class="user-info" id="bookEmail">@gmail.com</td>
+							<td class="user-info" id="bookEmail">${ loginUser.email }</td>
 							<td rowspan="3"><button type="button" id="btn-info" onclick="openModal()">정보변경</button></td>
 						</tr>
 						<tr>
 							<td>휴대전화 번호</td>
-							<td class="user-info" id="bookPhone">010-0000-0000</td>
+							<td class="user-info" id="bookPhone">${ loginUser.phone }</td>
 						</tr>
 					</table>
 				</div>
