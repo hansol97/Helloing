@@ -94,18 +94,30 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<RoomPayment> accommBook(int memNo) {
 		return memberDao.accommBook(memNo, sqlSession);
 	}
-
+	
+	//액티비티 예약 리스트 
 	@Override
 	public ArrayList<TicketPayment> activityBook(int memNo) {
 		return memberDao.activityBook(memNo, sqlSession);
 	}
 	
+	//숙소예약디테일
 	@Override
-	public Book reservationDetail(int memNo, int orderNo) {
+	public RoomPayment accommBookDetail(int orderNo) {
+		return memberDao.accommBookDetail(orderNo, sqlSession);
+	}
+	//액티비티예약디테일
+	@Override
+	public TicketPayment activityBookDetail(int orderNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
+	
+	
+	
+	
 	//비밀번호 체크
 	@Override
 	public String checkPwd(Member m) {
@@ -276,6 +288,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+
 
 
 

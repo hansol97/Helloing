@@ -189,7 +189,7 @@ pageEncoding="UTF-8"%>
     		var $this = $(this);
     		var orderNo = $this.siblings('td[class=orderNo]').text();
     		
-    		location.href ="reservationDetail.hj?orderNo="+orderNo;
+    		location.href ="accomBookDetail.hj?orderNo="+orderNo;
     	})
     })
     

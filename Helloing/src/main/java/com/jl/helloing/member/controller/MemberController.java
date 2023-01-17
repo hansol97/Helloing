@@ -409,10 +409,8 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		System.out.println(memNo);
 		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
 		
-		System.out.println(list);
 		if(list != null) {
 			for(int i=0; i<list.size(); i++) {
 
@@ -432,11 +430,28 @@ public class MemberController {
 		return mv;
 	}
 	
-	//예약 상세 조회
-	@RequestMapping("reservationDetail.hj")
-	public ModelAndView reservationDetail(ModelAndView mv) {
+	//숙소 예약 상세 조회
+	@RequestMapping("accomBookDetail.hj")
+	public ModelAndView accommBookDetail(ModelAndView mv, int orderNo) {
 		
-		mv.setViewName("member/bookDetail");
+		RoomPayment rp = memberService.accommBookDetail(orderNo);
+		System.out.println(rp);
+		if(rp!=null) {
+			mv.addObject("rp", rp);
+			mv.setViewName("member/accomBookDetail");
+		}else {
+			mv.addObject("errorMsg", "상세 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	//숙소 예약 상세 조회
+	@RequestMapping("activityBookDetail.hj")
+	public ModelAndView activityBookDetail(ModelAndView mv) {
+		
+		mv.setViewName("member/activityBookDetail");
 		
 		return mv;
 	}
