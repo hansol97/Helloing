@@ -326,7 +326,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     ,ACCOMM_NO accommNo
                     ,ACCOMM_NAME accommName
                     ,MEM_NO memNo
-                    ,ROOM_NO roomNo
+                    ,ROOM_NAME roomNo
                     ,REVIEW_CONTENT reviewContent
                     ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
                     ,TAG tag
