@@ -45,7 +45,11 @@
                   <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                   <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                   <div class="more_buttons">
-                    <button onclick='location.href="goPayAct.bu?activityNo=${aL.activityNo}&activityName=${aL.activityName}"'  class="more_button">만료연장</button><!--결제페이지로-->
+                    <c:url value="goPayAct.bu" var="extendEndUrl">
+                      <c:param name="activityNo" value="${aL.activityNo}" />
+                      <c:param name="activityName" value="${aL.activityName}" />
+                    </c:url>
+                    <button onclick='location.href="${extendEndUrl}"'  class="more_button" id="extendEnd">만료연장</button><!--결제페이지로-->
                     <button onclick='location.href="deleteAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티삭제</button>
                     <button onclick='location.href="goUpdateAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티수정</button>
                     <button onclick='location.href="goInsertTicket.bu?activityNo=${aL.activityNo}"'  class="more_button">티켓등록</button>
