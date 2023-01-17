@@ -102,6 +102,11 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Activity> searchActivity(Activity act) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<Attachment> selectActPhotoList(int activityNo) {
+		return productDao.selectActPhotoList(sqlSession, activityNo);
+	}
 	
 	
 

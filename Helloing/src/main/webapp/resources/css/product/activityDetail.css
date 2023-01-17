@@ -55,7 +55,7 @@ hr{ margin: 15px 0px; }
 }
 
 .images{ border: 1px solid gray; margin-bottom: 20px; }
-.sub-images{ display: flex; justify-content: space-between; }
+.sub-images{ display: flex; }
 
 /* 티켓 선택 */
 .ticketlist{

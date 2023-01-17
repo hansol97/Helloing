@@ -16,13 +16,13 @@
     <div style="height: 70px;"></div>
 
 	<div class="inner">
-	<%--
+	
         <div class="top-content">
             <form action="search.activity" method="">
                 <input type="text" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요"><button>검색</button>
             </form>
         </div>
- --%>
+
         <h3>티켓</h3> <!-- 4개까지만 뿌려주자 / 더 보기로 인기 액티비티 20개정도? 뿌려주기 -->
                            <!-- N글자 이상인 경우 ... 하는거 추가하기 -->
         <div class="hot" id="hot-ticket"> 

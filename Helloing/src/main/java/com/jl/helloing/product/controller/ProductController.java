@@ -179,13 +179,30 @@ public class ProductController {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
+		Activity act = productService.selectActDetail(activityNo);
+		ArrayList<Attachment> photo = productService.selectActPhotoList(activityNo); // 사진 전체
+		ArrayList<Attachment> photoList = new ArrayList();
+		
+		mv.addObject("photo", photo.get(0));
+		
+		if(photo.size() > 1) { // 사진이 두 장 이상이라면
+			photo.remove(0); // 0번째 인덱스를 지우고
+			
+			for(int i = 0; i < photo.size(); i++) { // 새로운 리스트에 추가하기
+				photoList.add(photo.get(i));
+			}
+			
+
+			mv.addObject("photoList", photoList); // mv에 담기
+		}
+		
 		if(loginUser != null) { // 로그인이 되어있을때만 위시리스트 확인하기
 			aw.setMemNo(loginUser.getMemNo());
 			
 			mv.addObject("checkWish", productService.checkActWish(aw));
 		}
 		
-		mv.addObject("act", productService.selectActDetail(activityNo))
+		mv.addObject("act", act)
 		  .addObject("ticketList", productService.selectTicketList(activityNo))
 		  .addObject("actReviewList", productService.selectReviewList(activityNo))
 		  .setViewName("product/activityDetail");
