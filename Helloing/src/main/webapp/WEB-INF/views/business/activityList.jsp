@@ -62,8 +62,8 @@
                   <c:forEach items="${aL.ticketList}" var="tL">
                     <div class="room-area">▶️ ${tL.ticketName} &nbsp; &nbsp;                
                       <button class="button button--ujarak button--border-thin button--text-thick" disabled>예약자수 ${tL.count}명</button>
-                      <button onclick='location.href="goUpdateTicket.bu?${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">수정</button>
-                      <button onclick='location.href="deleteTicket.bu?${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                      <button onclick='location.href="goUpdateTicket.bu?ticketNo=${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                      <button onclick='location.href="deleteTicket.bu?ticketNo=${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                     </div>
                   </c:forEach>
                 </c:when>

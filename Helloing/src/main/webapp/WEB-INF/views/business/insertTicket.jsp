@@ -62,8 +62,8 @@
 					<tr>
                         <th>운영 시작 / 운영 종료일 : </th>
 						<td>
-                            <input type="date" name="startDate" id=""> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="date" name="endDate" id="">
+                            <input type="date" name="startDate" id="" required> &nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="endDate" id="" required> 
                         </td>
 					</tr>
 	

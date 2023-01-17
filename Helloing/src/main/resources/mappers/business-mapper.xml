@@ -236,13 +236,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 ACCOMM_NO = #{ accommNo }
 	</update>
 	
+	<!-- 액티비티 지우기 status = n -->
+	<update id="deleteActivity" parameterType="_int">
+		UPDATE
+                ACTIVITY
+		   SET
+                STATUS = 'N'
+		 WHERE
+                ACTIVITY_NO = #{ activityNo }
+	</update>
 
+	<!-- 방 지우기  status = n   -->
+	<update id="deleteRoom" parameterType="_int">
+		UPDATE
+                ROOM
+		   SET
+                STATUS = 'N'
+		 WHERE
+                ROOM_NO = #{ roomNo }
+	</update>
 
-
-
-
-
-
+	<!-- 티켓 삭제  (UPDATE)status = n -->
+	<update id="deleteTicket" parameterType="_int">
+		UPDATE
+                TICKET
+		   SET
+                STATUS = 'N'
+		 WHERE
+                TICKET_NO = #{ ticketNo }
+	</update> 
 
 
 

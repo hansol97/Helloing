@@ -127,7 +127,20 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteAccomm(sqlSession, accommNo);
 	}
 	
+	@Override
+	public int deleteActivity(int activityNo) {
+		return businessDao.deleteActivity(sqlSession, activityNo);
+	}
 	
+	@Override
+	public int deleteRoom(int roomNo) {
+		return businessDao.deleteRoom(sqlSession, roomNo);
+	}
+	
+	@Override
+	public int deleteTicket(int ticketNo) {
+		return businessDao.deleteTicket(sqlSession, ticketNo);
+	}
 	
 	
 	
@@ -145,6 +158,7 @@ public class BusinessServiceImpl implements BusinessService {
 	public RoomPayment selectBookInfo(RoomPayment rp) {
 		return businessDao.selectBookInfo(sqlSession, rp);
 	}
+
 
 
 
