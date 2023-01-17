@@ -64,16 +64,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	@Transactional
 	public int deleteChatbot(List<String> cbox) {
 		
-		int result = 1;
-		
-		for(int i = 0; i < cbox.size(); i++) {
-			result *= adminDao.deleteChatbot(sqlSession, cbox.get(i));
-		}
-		
-		return result;
+		return adminDao.deleteChatbot(sqlSession, cbox);
 	}
 	
 	@Override

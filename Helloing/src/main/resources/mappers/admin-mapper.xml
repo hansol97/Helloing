@@ -134,12 +134,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 챗봇 삭제 -->
-	<delete id="deleteChatbot" parameterType="string">
+	<delete id="deleteChatbot" parameterType="list">
 		DELETE	
 		  FROM 
 		       CHATBOT
 		 WHERE
-		       CHATBOT_Q = #{chatbotQ}
+		       CHATBOT_Q IN
+		 <foreach collection="list" item="item" index="i" open="(" separator="," close=")">
+		 	#{item}
+		 </foreach>
+		       
 	</delete>
 	
 	<!-- 챗봇 검색된 목록 수 조회 -->
