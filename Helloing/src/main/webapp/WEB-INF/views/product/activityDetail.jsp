@@ -41,6 +41,7 @@
 
 				<div>
 					<form action="reserve.activity" method="post">
+						나는 티켓이다
 						<input type="hidden" name="activityName" value="${ act.activityName }">
 						<input type="hidden" name="endDate" value="${ act.endDate }">
 						<input type="hidden" name="allSum">
@@ -50,12 +51,13 @@
 									<div class="ticket-info">
 										<p><span class="ticketName">${ t.ticketName }</span><br>
 											${ t.startDate } ~ <span id="endDate">${ t.endDate }</span></p>
-										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
-									</div>
-									<div class="ticket-price">
-										<span>${ t.price }원</span>
-									</div>
-									<div class="ticket-count">
+											<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
+										</div>
+										<div class="ticket-price">
+											<span>${ t.price }원</span>
+										</div>
+										<div class="ticket-count">
+										<input type="hidden" name="capacity" value="${ t.capacity }">
 										<button class="btn-minus" type="button">-</button>
 										<span class="count">0</span>
 										<button class="btn-plus" type="button">+</button>

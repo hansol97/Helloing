@@ -8,11 +8,21 @@ $(function(){
 		// Number로 형변환을 해야 +연산을 했을 때 숫자로 인식됨.
 		// (안하면 문자에 더하기 되서 1111 이 되는 참사가 일어난다.)
 
+		var maxCapacity = $(this).siblings('input[name=capacity]').val();
+
+		console.log(maxCapacity);
+		
 		if($(this).text() == '-'){
 			if(ticketcount > 0) $(this).siblings('.count').text(ticketcount - 1);
 		}
-		else{
-			$(this).siblings('.count').text(ticketcount + 1);
+		else{ // + 버튼을 눌렀을 때
+			if($(this).siblings('.count').text() > maxCapacity){
+				alert('최대수량입니다.');
+				$(this).siblings('.count').text(maxCapacity);
+			}
+			else{
+				$(this).siblings('.count').text(ticketcount + 1);
+			}
 		}
 
 		// 결제 정보에 티켓 수량이 0 이상인 티켓 정보들 추가하기
@@ -27,8 +37,6 @@ $(function(){
 				var activityName = $('.activityName').text();
 				var ticketSum = ticketPrice * count;
 				var allSum = $('.point').text().replace("원", "");
-
-				console.log(endDate);
 
 				text += '<div><span class="ticketName">' + ticketName + '</span>'
 					  + '<span>' + count + ' X ' + ticketPrice + '원<span class="text-bold">' + (count * ticketPrice) + '원</span></span></div>'
