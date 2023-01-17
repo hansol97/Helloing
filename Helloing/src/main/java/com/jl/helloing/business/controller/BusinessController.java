@@ -80,8 +80,11 @@ public class BusinessController {
 			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
 			
 		}
-		mv.addObject("accList", accList)
-		  .setViewName("business/accommList");
+		session.setAttribute("accList", accList);
+		
+		mv
+//		.addObject("accList", accList)
+		.setViewName("business/accommList");
 		
 		return mv;
 	}
@@ -108,9 +111,11 @@ public class BusinessController {
 		}
 		System.out.println("포문 돌려서 방 집어넣은 actList : " + actList);
 		
+		session.setAttribute("actList", actList);
 
-		mv.addObject("actList", actList)
-		  .setViewName("business/activityList");
+		mv
+//		.addObject("actList", actList)
+		.setViewName("business/activityList");
 		
 		return mv;
 	}
@@ -167,20 +172,28 @@ public class BusinessController {
     
     // 숙소 삭제 (UPDATE)
     @RequestMapping("deleteAccomm.bu")
-    public String deleteAccomm(int accommNo, HttpSession session) {
+    public String deleteAccomm(int accommNo, HttpSession session, String filePath) {
     	
     	int result = businessService.deleteAccomm(accommNo);
     	
     	if (result > 0) {
-			session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
+    		
+    		
+    		
+    		
+    		
+    		
+//    		if(!filePath.equals("")) {
+//    			new File(session.getServletContext().getRealPath(filePath)).delete();
+//    			
+//    		}
+    		session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
 		} else {
 			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
 		}
     	return "redirect:accommList.bu";
     }
     
-    
-	
 	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
 	public String goInsertAct() {
