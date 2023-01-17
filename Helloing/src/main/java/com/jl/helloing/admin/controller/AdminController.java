@@ -194,6 +194,15 @@ public class AdminController {
 		return "admin/adminBusinessListView";
 	}
 	
+	// 사업자 리스트 검색
+	@RequestMapping("searchBusi.ad")
+	public ModelAndView searchBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage
+										   , ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 5);
+		
+		return mv;
+	}
+	
 	//--------------------- 결제관리 ---------------------
 	
 	// 사업자등록 목록 조회
@@ -268,7 +277,6 @@ public class AdminController {
 	@RequestMapping(value="ticketList.ad", produces="application/json; charset=UTF-8")
 	public String selectTicketList(int orderNo) {
 		ArrayList<Ticket> tList = adminService.selectTicketList(orderNo);
-		System.out.println(tList);
 		return new Gson().toJson(tList);
 	}
 	
