@@ -171,5 +171,17 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectTicketList", orderNo);
 	}
 
+	public int searchBusiListCount(SqlSessionTemplate sqlSession, HashMap map) {
+		return sqlSession.selectOne("adminMapper.searchBusiListCount", map);
+	}
+
+	public ArrayList<Business> searchBusinessList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap map) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchBusinessList", map, rowBounds);
+	}
+
 
 }
