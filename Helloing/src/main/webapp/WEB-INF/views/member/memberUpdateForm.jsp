@@ -93,6 +93,11 @@
 	.pwdForm{
 		padding:10px;
 	}
+	.delete-btn button{
+		text-decoration: underline;
+	    border: none;
+	    background: white;
+	}
 </style>
 <body>
 	
@@ -132,12 +137,14 @@
 					<span class="form-title">이메일</span>
 					<span class="form-input"><input type="text" name="email" value="${loginUser.email}"></span>
 				</div>
-
 				<br>
 				<span id="submit_btn">
 				<button type="submit">수정</button>
 				</span>
 			</form>	
+				<div class="delete-btn">
+					<button class="delete-mem">회원탈퇴하기</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -178,6 +185,18 @@
 					
   			}
   		}
+  		
+  		$(function(){
+  			
+  			$('.delete-mem').click(function(){
+	  			if(confirm('정말 탈퇴하시겠습니까?')){
+	  				location.href="deleteMem.hj";
+	  			}
+  				
+  			})
+
+  		})
+  		
   	
   	</script>
 </body>

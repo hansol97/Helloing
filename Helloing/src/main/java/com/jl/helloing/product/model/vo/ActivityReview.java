@@ -17,6 +17,10 @@ public class ActivityReview {
 	private String memName; // 리뷰 작성자 적어둘 필드 필요
 	private String ticketName;
 	private double avg;
+	private String activityName;
+	
+	private String originName;
+	private String filePath;
 	
 	
 	
