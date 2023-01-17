@@ -493,7 +493,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				REFUND,
 				CHECKINOUT,
 				CASE WHEN 
-							END_DATE > SYSDATE 
+							<![CDATA[SYSDATE < END_DATE]]>
 					 THEN 
 					 		TO_CHAR(END_DATE, 'YYYY/MM/DD') 
 					 ELSE 
@@ -577,7 +577,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							 			 		AT.ACTIVITY_NO = A.ACTIVITY_NO
 								 	   )
 				) 
-				AS ATTACHMENT,
+				AS ATTACHMENT
 	  	  FROM
 				ACTIVITY A
 		  WHERE
@@ -609,7 +609,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 WHERE
 					 		TP.TICKET_NO = T.TICKET_NO
 				
-				) AS COUNT,
+				) AS COUNT
 		   FROM 
 		   		TICKET T
 		  WHERE 
