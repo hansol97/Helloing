@@ -41,6 +41,7 @@ import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.service.ProductService;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -474,6 +475,33 @@ public class MemberController {
 		}
 		return mv;
 	}
+	
+	//예약 취소
+	
+	
+	
+	
+	//후기보기
+	@ResponseBody
+	@RequestMapping(value="selectAccommReview.hj",produces="application/json; charset=UTF-8")
+	public String selectAcommReview(int orderNo) {
+		AccommReview review = memberService.selectAcommReview(orderNo);
+		System.out.println(review);
+
+		return new Gson().toJson(review);
+	}
+	
+	
+	
+	//후기 작성
+	
+	
+	
+	
+	//후기 삭제
+	
+	
+	
 	
 	//회원정보 조회 - 비밀번호 확인
 	@RequestMapping("checkPwdForm.hj")

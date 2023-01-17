@@ -14,6 +14,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -177,6 +178,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.activityBookDetail", orderNo);
 	}
 	
+	public AccommReview selectAccommReview(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectAccommReview", orderNo);
+	}
 	
 	
 	
@@ -200,6 +204,8 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
 
 
 

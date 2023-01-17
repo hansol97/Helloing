@@ -191,6 +191,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 여기부터 혜진 -->
+	<!-- 숙소 예약 리스트 -->
 	<select id="accommBook" parameterType="_int" resultType="roomPayment">
         SELECT O.*,  
                 (SELECT COUNT(*) 
@@ -219,6 +220,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
+	<!-- 액티비티 예약 리스트 -->
 	<select id="activityBook" parameterType="_int" resultType="ticketPayment">
         SELECT DISTINCT
                 O.*
@@ -247,6 +249,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
+	<!-- 숙소 예약 상세 페이지 -->
 	<select id="accommBookDetail" parameterType="_int" resultType="roomPayment">
       SELECT 
       		A.ACCOMM_NO accommNo
@@ -272,6 +275,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    WHERE 
 	        ORDER_NO = #{ orderNo }
 	</select>
+	<!-- 액티비티 예약 상세페이지 -->
 	<select id="activityBookDetail" parameterType="_int" resultType="ticketPayment">
 	          SELECT 
                     DISTINCT
@@ -315,7 +319,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 WHERE 
                     ORDER_NO = #{ orderNo }
 	</select>
-	
+	<!-- 숙소 리뷰 조회 -->
+	<select id="selectAccommReview" parameterType="_int" resultType="acReview">
+            SELECT 
+                    REVIEW_NO reviewNo
+                    ,ACCOMM_NO accommNo
+                    ,ACCOMM_NAME accommName
+                    ,MEM_NO memNo
+                    ,ROOM_NO roomNo
+                    ,REVIEW_CONTENT reviewContent
+                    ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
+                    ,TAG tag
+                    ,STAR star
+            FROM 
+            	ACCOMM_REVIEW
+            WHERE 
+            	ORDER_NO = #{ orderNo }
+	</select>
 	
 	
 	

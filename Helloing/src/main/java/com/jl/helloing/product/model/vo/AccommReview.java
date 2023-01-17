@@ -16,4 +16,5 @@ public class AccommReview {
 	
 	private String memName;
 	private String roomName;
+	private String accommName;
 }

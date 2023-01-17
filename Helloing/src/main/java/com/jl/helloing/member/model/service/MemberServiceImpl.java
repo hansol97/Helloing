@@ -17,6 +17,8 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
+import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -111,6 +113,51 @@ public class MemberServiceImpl implements MemberService{
 	public TicketPayment activityBookDetail(int orderNo) {
 		return memberDao.activityBookDetail(orderNo, sqlSession);
 	}
+	//숙소예약취소
+	@Override
+	public int accommBookDelete(int orderNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	//숙소 리뷰 조회
+	@Override
+	public AccommReview selectAcommReview(int orderNo) {
+		return memberDao.selectAccommReview(orderNo, sqlSession);
+	}
+	//액티비티 리뷰조회
+	@Override
+	public ActivityReview selectActivityReview(int orderNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//숙소 리뷰작성
+	@Override
+	public int insertAccommReview(AccommReview review) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//액티비티 리뷰작성
+	@Override
+	public int insertActivityReview(ActivityReview review) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//숙소리뷰삭제
+	@Override
+	public int deleteAccommReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//액티비티 리뷰 삭제
+	@Override
+	public int deleteActivityReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 	
