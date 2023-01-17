@@ -57,13 +57,20 @@ public class MemberDao {
 	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.findPwd", m);
 	}
-	//
+	// 임시비밀번호 등록
 	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
 		sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
+	
+	// 승준 ----- 1:1 문의 부분 -------- 
+	// 1:1문의 등록
 	public int insertQna(SqlSessionTemplate sqlSession, QNA qna) {
 		return sqlSession.insert("memberMapper.insertQna", qna);
+	}
+	// 1:1문의 리스트
+	public ArrayList<QNA> selectQna(SqlSessionTemplate sqlSession, int memNo){
+		return (ArrayList)sqlSession.selectList("memberMapper.selectQna", memNo);
 	}
 	
 	//-----------------------------------------------------------------

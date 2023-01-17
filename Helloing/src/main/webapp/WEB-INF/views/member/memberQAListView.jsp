@@ -39,7 +39,7 @@
 
 .admin-innerOuter {
 	font-family: 'S-CoreDream-3Light';
-	width: 1200px;
+	width: 800px;
 	margin: auto;
 
 	background-color: white;
@@ -235,7 +235,7 @@ table.type02 td {
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <td width="810">
+                            <td width="590">
                             </td>
                             <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
                             <td><button onclick="openModal(2);" class="admin-grey">수정</button></td>
@@ -251,39 +251,40 @@ table.type02 td {
                                     <input type="checkbox" name="cboxAll" id="checkAll" onclick="checkAll();">
                                 </th>
                                 <th width="80">문의번호</th>
-                                <th width="80">구분</th>
-                                <th width="120">카테고리</th>
+                                <th width="120">문의종류</th>
                                 <th width="250">제목</th>
-                                <th width="110">회원아이디</th>
-                                <th width="120">등록일</th>
+                                <th width="110">등록일</th>
                                 <th width="80">답변여부</th>
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:forEach items="${ list }" var="qna">
                             <tr>
                                 <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
+                                    <input class="cbox" type="checkbox" value="">
                                 </td>
-                                <td>2</td>
-                                <td>일반회원</td>
-                                <td>숙소관련</td>
-                                <td>문의합니다</td>
-                                <td>user01</td>
-                                <td>2022.12.25</td>
-                                <td>완료</td>
+                                <td>${ qna.qnaNo }</td>
+                                <c:choose>
+                                	<c:when test="${ qna.category == 'accomm' }" >
+                                		<td>숙소관련</td>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<td>상품관련</td>
+                                	</c:otherwise>
+                                </c:choose>
+	                                <td>${ qna.qnaTitle }</td>
+	                                <td>${ qna.qnaDate }</td>
+	                            <c:choose>
+	                            	<c:when test="${ qna.ansYn =='N' }">
+	                            		<td>미완료 </td>
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            		<td>완료 </td>
+	                            	</c:otherwise>
+	                                
+	                            </c:choose>
                             </tr>
-                            <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input name="cbox" type="checkbox" value="">
-                                </td>
-                                <td>2</td>
-                                <td>일반회원</td>
-                                <td>상품관련</td>
-                                <td>문의합니다</td>
-                                <td>user01</td>
-                                <td>2022.12.25</td>
-                                <td>완료</td>
-                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </tr>

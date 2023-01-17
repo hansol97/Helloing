@@ -339,12 +339,17 @@ public class MemberController {
 		
 		return "member/login";
 	}
-	// 1:1문의(사용자)
-	@RequestMapping("QAList.me")
-	public String memberQAListView() {
-		return "member/memberQAListView";
-	}
-	// 1:문의 등록
+	
+	
+	// 승준 ----- 1:1 문의 부분 -------- 
+	
+//	// 1:1문의(사용자)
+//	@RequestMapping("QAList.me")
+//	public String memberQAListView() {
+//		return "member/memberQAListView";
+//	}
+	
+	// 1:1 문의 등록
 	@RequestMapping("insertQna.me")
 	public ModelAndView insertQna(QNA qna, ModelAndView mv, HttpSession session) {
 		
@@ -356,17 +361,32 @@ public class MemberController {
 		if(result > 0) {
 			mv.addObject("memNo", memNo);
 			session.setAttribute("alertMsg", "1:1문의가 등록되었습니다.");
-			mv.setViewName("redirect:QAList.me");
+			mv.setViewName("redirect:selectQna.me");
 			
 		} else {
 			session.setAttribute("alertMsg", "등록이 실패했습니다.");
-			mv.setViewName("redirect:QAList.me");
+			mv.setViewName("redirect:selectQna.me");
 		}	
 		return mv;
 	}
+	// 1:1 문의 리스트
+	@RequestMapping("selectQna.me")
+	public ModelAndView selectQna(QNA qna, ModelAndView mv, HttpSession session) {
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<QNA> list = memberService.selectQna(memNo);
 		
-	//
-	
+		if(list != null) {
+			//System.out.println(list);
+			mv.addObject("list", list);
+			mv.setViewName("member/memberQAListView");
+		} else {
+			mv.setViewName("member/memberQAListVieqw");
+		}
+		
+		
+		
+		return mv;
+	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!

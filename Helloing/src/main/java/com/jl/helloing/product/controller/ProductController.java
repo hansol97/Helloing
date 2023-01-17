@@ -181,7 +181,6 @@ public class ProductController {
 			for(int i = 0; i < photo.size(); i++) { // 새로운 리스트에 추가하기
 				photoList.add(photo.get(i));
 			}
-			
 
 			mv.addObject("photoList", photoList); // mv에 담기
 		}
@@ -238,6 +237,8 @@ public class ProductController {
 						      TicketCommand tk,
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		System.out.println(tk.getTicketPayment());
 		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());

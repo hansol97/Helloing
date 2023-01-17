@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_Id = #{ checkId }
 	</select>
 	
-	
+	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="member" resultMap="memberResultSet" >
 		select
 				mem_id
@@ -135,7 +135,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	       and
 	       		status = 'Y'			  		
 	</select>
-	 
+	
+	<!-- 비밀번호 찾기 --> 
 	<select id="findPwd" parameterType="member" resultMap="memberResultSet">
 		select
 				mem_no,
@@ -152,6 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	
 	</select>
 	
+	<!-- 임시비밀번호 등록 -->
 	<update id="updatePwd" parameterType="member">
 		update 
 				member
@@ -161,6 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_id = #{ memId }
 	</update>
 
+	<!-- 1:1문의 등록 -->
 	<insert id="insertQna" parameterType="qna" >
 		insert
 		  into
@@ -187,6 +190,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sysdate
 				)	  		
 	</insert>
+	
+	<!-- 1:1문의 리스트 -->
+	<select id="selectQna" parameterType="_int" resultMap="qnaResultSet" >
+		select
+				qna_No,
+				qna_sort,
+				qna_q,
+				category,
+				qna_title,
+				mem_id,
+				to_char(qna_date, 'YYYY-MM-DD') as "QNA_DATE",
+				qna_date,
+				ans_yn
+		  from
+		  		qna q
+		  join
+		  		member m on(m.mem_no = q.mem_no)
+		 where
+		 		q.mem_no = #{ memNo }
+	</select>
+
+
 
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	

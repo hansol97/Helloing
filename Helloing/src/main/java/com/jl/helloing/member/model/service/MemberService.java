@@ -53,8 +53,12 @@ public interface MemberService {
 	// 아이디체크
 	int idCheck(String checkId);
 	
+	
+	// 승준 ----- 1:1 문의 부분 -------- 
 	//QNA 등록(회원용)
 	int insertQna(QNA qna);
+	
+	ArrayList<QNA> selectQna(int memNo);
 	
 	//----------------------------------------------------------------------
 	//혜진

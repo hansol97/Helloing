@@ -79,13 +79,17 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.updatePwd(sqlSession, m);
 
 	}
+	// 승준 ----- 1:1 문의 부분 -------- 
 	// 1:1문의 등록
 	@Override
 	public int insertQna(QNA qna) {
 		
 		return memberDao.insertQna(sqlSession, qna);
 	}
-	
+	@Override
+	public ArrayList<QNA> selectQna(int memNo) {
+		return memberDao.selectQna(sqlSession, memNo);
+	}
 	
 	//---------------------------------------------------------------------
 	
