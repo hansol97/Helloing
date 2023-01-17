@@ -185,7 +185,7 @@ public class AdminController {
 	// 사업자 리스트 조회
 	@RequestMapping("businessList.ad")
 	public String selectBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
-		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 2);
 
 		ArrayList<Business> list = adminService.selectBusinessList(pi);
 		m.addAttribute("list", list);
@@ -197,8 +197,19 @@ public class AdminController {
 	// 사업자 리스트 검색
 	@RequestMapping("searchBusi.ad")
 	public ModelAndView searchBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage
-										   , ModelAndView mv) {
-		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 5);
+										   ,String condition, String keyword, ModelAndView mv) {
+		HashMap map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.searchBusiListCount(map), currentPage, 10, 2);
+		
+		ArrayList<Business> list = adminService.searchBusinessList(pi, map);
+		
+		mv.addObject("pi", pi)
+		  .addObject("list", list)
+		  .addObject("map", map)
+		  .setViewName("admin/adminBusinessListView");
 		
 		return mv;
 	}

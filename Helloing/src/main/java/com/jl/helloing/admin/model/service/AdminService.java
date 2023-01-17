@@ -64,6 +64,12 @@ public interface AdminService {
 	// 사업자 목록 조회
 	ArrayList<Business> selectBusinessList(PageInfo pi);
 	
+	// 사업자 검색된 목록 수
+	int searchBusiListCount(HashMap map);
+	
+	// 사업자 검색된 목록
+	ArrayList<Business> searchBusinessList(PageInfo pi, HashMap map);
+	
 	//--------------- 결제 관리 ----------------
 	
 	// 사업자 등록 결제 수 조회
@@ -98,6 +104,9 @@ public interface AdminService {
 	
 	// 액티비티 결제 티켓 조회
 	ArrayList<Ticket> selectTicketList(int orderNo);
+
+	
+	
 
 
 

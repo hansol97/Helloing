@@ -296,6 +296,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       MEMBER USING(MEM_NO)
 	</select>
 	
+	<!-- 사업가 검색된 목록 수 -->
+	<select id="searchBusiListCount" parameterType="hashmap" resultType="_int">
+		SELECT 
+		       COUNT(*)
+		  FROM
+		       BUSINESS
+		 WHERE
+		 <if test="condition == 'memNo'">
+		 	   MEM_NO '%' || #{keyword} || '%'
+		 </if>
+		 <if test="condition == 'businessName'">
+		 	   BUSINESS_NAME LIKE'%' || #{keyword} || '%'
+		 </if>
+	</select>
+	
+	<!-- 사업가 검색된 목록 -->
+	<select id="searchBusinessList" resultMap="businessResultSet">
+		SELECT
+		       BUSINESS_NO
+		       ,MEM_NO
+		       ,BUSINESS_NAME
+		       ,PHONE
+		       ,TO_CHAR(BUSINESS_ENROLLDATE, 'YYYY-MM-DD') BUSINESS_ENROLLDATE
+		       ,ADDRESS
+		       ,EMAIL
+		 FROM
+		       BUSINESS B
+		 JOIN
+		       MEMBER USING(MEM_NO)
+		WHERE
+		 <if test="condition == 'memNo'">
+		 	   MEM_NO '%' || #{keyword} || '%'
+		 </if>
+		 <if test="condition == 'businessName'">
+		 	   BUSINESS_NAME LIKE'%' || #{keyword} || '%'
+		 </if>
+	</select>
+	
 	<!-- 사업자 등록 결제 수 -->
 	<select id="selectBusiPayListCount" resultType="_int">
 		SELECT
@@ -499,4 +537,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                           ORDER_NO = #{orderNo}
 		                    )
 	</select>
+	
 </mapper>

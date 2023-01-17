@@ -181,6 +181,16 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.selectTicketList(sqlSession, orderNo);
 	}
 
+	@Override
+	public int searchBusiListCount(HashMap map) {
+		return adminDao.searchBusiListCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Business> searchBusinessList(PageInfo pi, HashMap map) {
+		return adminDao.searchBusinessList(sqlSession, pi, map);
+	}
+
 	
 
 	
