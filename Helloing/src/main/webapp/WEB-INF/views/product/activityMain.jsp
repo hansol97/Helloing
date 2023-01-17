@@ -19,7 +19,8 @@
 	
         <div class="top-content">
             <form action="search.activity">
-                <input type="text" name="keyword" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요"><button>검색</button>
+                <input type="text" name="keyword" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요">
+				<button type="button" id="btn-search" onclick="search();">검색</button>
             </form>
         </div>
 
