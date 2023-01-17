@@ -183,5 +183,17 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.searchBusinessList", map, rowBounds);
 	}
 
+	public int searchActPayListCount(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("adminMapper.searchActPayListCount", keyword);
+	}
+
+	public ArrayList<TicketPayment> searchActPaymentList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.searchActPaymentList", keyword, rowBounds);
+	}
+
 
 }

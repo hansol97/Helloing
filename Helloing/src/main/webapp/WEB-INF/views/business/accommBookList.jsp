@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							var nextDay = firstDay + j; 
 							
 							var bookDay = firstDate.replace(firstDay, nextDay);
-							$($('td[data-date="'+ bookDay +'"]')[0]).css('background-color', 'lightgrey');
+							$('td[data-date="'+ bookDay +'"]').children().eq(0).css('background-color', 'lightgrey');
 							
 						} 
 					}
