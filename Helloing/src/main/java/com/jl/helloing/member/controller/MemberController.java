@@ -40,6 +40,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
+import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -57,6 +58,9 @@ public class MemberController {
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	@Autowired 
+	private ProductService productService;
 	
 	//승준
 	//로그인
@@ -437,8 +441,14 @@ public class MemberController {
 		RoomPayment rp = memberService.accommBookDetail(orderNo);
 		System.out.println(rp);
 		if(rp!=null) {
+			
+			mv.addObject("list", productService.selectPhotoList(rp.getAccommNo()));
+			
+			System.out.println( productService.selectPhotoList(rp.getAccommNo()));
 			mv.addObject("rp", rp);
 			mv.setViewName("member/accomBookDetail");
+			
+			
 		}else {
 			mv.addObject("errorMsg", "상세 페이지요청 실패");
 			mv.setViewName("common/errorPage");
@@ -449,8 +459,9 @@ public class MemberController {
 	
 	//숙소 예약 상세 조회
 	@RequestMapping("activityBookDetail.hj")
-	public ModelAndView activityBookDetail(ModelAndView mv) {
+	public ModelAndView activityBookDetail(ModelAndView mv, int orderNo) {
 		
+		//memberService.activityBookDetail(orderNo);
 		mv.setViewName("member/activityBookDetail");
 		
 		return mv;
