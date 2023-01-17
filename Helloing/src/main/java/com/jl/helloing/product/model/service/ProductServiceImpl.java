@@ -99,8 +99,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ArrayList<Activity> searchActivity(Activity act) {
-		return null;
+	public ArrayList<Activity> searchActivity(String keyword) {
+		return productDao.searchActivity(sqlSession, keyword);
 	}
 
 	@Override

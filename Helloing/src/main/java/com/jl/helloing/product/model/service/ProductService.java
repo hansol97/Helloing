@@ -54,7 +54,8 @@ public interface ProductService {
 	ArrayList<Accomm> searchAccomm(Accomm ac);
 	
 	// 액티비티 검색
-	ArrayList<Activity> searchActivity(Activity act);
+	ArrayList<Activity> searchActivity(String keyword);
+	
 	// 숙소 첨부파일들 조회
 	ArrayList<Attachment> selectActPhotoList(int activityNo);
 
