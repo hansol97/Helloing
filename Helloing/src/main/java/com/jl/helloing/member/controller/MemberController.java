@@ -372,12 +372,8 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-<<<<<<< HEAD
-		//ArrayList<RoomPayment> list = memberService.accommBook(memNo);
-=======
-//		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
->>>>>>> 35c29022082c0f36e4c7316b240c0f19ee6be9a0
-		ArrayList<RoomPayment> list = new ArrayList();
+		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+
 		
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         int today = Integer.parseInt(dateFormat.format(new Date()));
