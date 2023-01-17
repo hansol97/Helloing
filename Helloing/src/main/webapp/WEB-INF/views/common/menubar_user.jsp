@@ -428,14 +428,15 @@
       </div>
 
       <!-- 검색창 -->
+      <%--
           <div class="search">
-            <form action="#" method="get">
+            <form action="search.pd" method="get">
               <input type="text" name="keyword" placeholder="숙소명이나 액티비티명을 입력해주세요.">
               
               <span id="searchImg"><button type="submit" style="cursor: pointer;"><img  src="/helloing/resources/img/search.png"></button></span>
             </form>
           </div>
-
+ --%>
 
       <ul class="main-menu">
       

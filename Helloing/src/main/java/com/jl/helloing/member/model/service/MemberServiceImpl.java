@@ -16,6 +16,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -76,7 +77,15 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.updatePwd(sqlSession, m);
 
 	}
+	// 1:1문의 등록
+	@Override
+	public int insertQna(QNA qna) {
+		
+		return memberDao.insertQna(sqlSession, qna);
+	}
 	
+	
+	//---------------------------------------------------------------------
 	
 	//혜진
 	
@@ -87,9 +96,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<TicketPayment> ticketBook(int memNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TicketPayment> activityBook(int memNo) {
+		return memberDao.activityBook(memNo, sqlSession);
 	}
 	
 	@Override
@@ -268,6 +276,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+
 
 
 

@@ -13,7 +13,9 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Repository
 public class MemberDao {
@@ -59,7 +61,11 @@ public class MemberDao {
 		sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
+	public int insertQna(SqlSessionTemplate sqlSession, QNA qna) {
+		return sqlSession.insert("memberMapper.insertQna", qna);
+	}
 	
+	//-----------------------------------------------------------------
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {
@@ -159,6 +165,9 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.accommBook", memNo);
 	}
 	
+	public ArrayList<TicketPayment> activityBook(int memNo, SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.activityBook", memNo);
+	}
 	
 	
 	
@@ -186,6 +195,7 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
 
 
 

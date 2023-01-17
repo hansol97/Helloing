@@ -92,6 +92,16 @@ public class ProductServiceImpl implements ProductService {
 	public int insertRoomPayment(RoomPayment rp) {
 		return productDao.insertRoomPayment(sqlSession, rp);
 	}
+
+	@Override
+	public ArrayList<Accomm> searchAccomm(Accomm ac) {
+		return productDao.searchAccomm(sqlSession, ac);
+	}
+
+	@Override
+	public ArrayList<Activity> searchActivity(Activity act) {
+		return null;
+	}
 	
 	
 

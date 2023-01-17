@@ -22,14 +22,14 @@
             <!--등록 폼 박스-->
             <div class="fatherEnrollForm">
                 <div class="blog-card enrollform" >
-                    <form action="insertAcomm.bu" method="post" enctype="multipart/form-data" class="innerform">
+                    <form action="payAccomm.bu" method="post" class="innerform">
                     <!-- 피드 등록 내용물 -->
                     <div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;🏠기업결제 - 숙소 </div>
                         <br><br><br>
                     <div class="billBox">
-                        숙소 이름 : <span id="accomName"> 대관령 대박호텔 </span><br><br>
+                        숙소 이름 : <span id="accomName"> ${requestScope.accommName} </span><br><br>
                         <!-- 숙소번호 -->
-                        <input type="hidden" name="accomNo">
+                        <input type="hidden" name="accommNo" value="${requestScope.accommNo}">
                     </div>
       
                     <div class="paymentBox">

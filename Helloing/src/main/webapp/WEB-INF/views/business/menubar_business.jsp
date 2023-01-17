@@ -139,11 +139,17 @@
 </head>
 <body>
 <c:if test="${not empty alertMsg}">
-    <script>
-		alertify.alert('야호!', '${alertMsg}', function(){});
-		//https://alertifyjs.com/alert.html    
-	</script>
-    <c:remove var="alertMsg" scope="session"/>
+  <script>
+  alertify.alert('야호!', '${alertMsg}', function(){});
+  //https://alertifyjs.com/alert.html    
+  </script>
+  <c:remove var="alertMsg" scope="session"/>
+</c:if>
+<c:if test="${not empty errorMsg}">
+  <script>
+  alertify.alert('으악..!', '${errorMsg}', function(){});
+  </script>
+  <c:remove var="errorMsg" scope="session"/>
 </c:if>
   <!--HEADER-->
   <header>

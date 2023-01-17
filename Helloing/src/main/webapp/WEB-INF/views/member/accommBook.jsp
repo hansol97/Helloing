@@ -109,6 +109,7 @@ pageEncoding="UTF-8"%>
 		                <td class="accName">${a.accName }</td>
 		                <td>${a.startDate } ~${a.endDate }</td>
 		                <td>${a.price }원</td>
+	                	<td>${a.paymentDate}</td>
 	                	<c:choose>		                		
 	                		<c:when test="${a.status eq 'R'}">
 	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>

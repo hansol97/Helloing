@@ -45,7 +45,7 @@
                   <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                   <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                   <div class="more_buttons">
-                    <button onclick='location.href="goPayAct.bu?activityNo=${aL.activityNo}"'  class="more_button">만료연장</button><!--결제페이지로-->
+                    <button onclick='location.href="goPayAct.bu?activityNo=${aL.activityNo}&activityName=${aL.activityName}"'  class="more_button">만료연장</button><!--결제페이지로-->
                     <button onclick='location.href="deleteAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티삭제</button>
                     <button onclick='location.href="goUpdateAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티수정</button>
                     <button onclick='location.href="goInsertTicket.bu?activityNo=${aL.activityNo}"'  class="more_button">티켓등록</button>
@@ -62,8 +62,8 @@
                   <c:forEach items="${aL.ticketList}" var="tL">
                     <div class="room-area">▶️ ${tL.ticketName} &nbsp; &nbsp;                
                       <button class="button button--ujarak button--border-thin button--text-thick" disabled>예약자수 ${tL.count}명</button>
-                      <button onclick='location.href="goUpdateTicket.bu?${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">수정</button>
-                      <button onclick='location.href="deleteTicket.bu?${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                      <button onclick='location.href="goUpdateTicket.bu?ticketNo=${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">수정</button>
+                      <button onclick='location.href="deleteTicket.bu?ticketNo=${tL.ticketNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                     </div>
                   </c:forEach>
                 </c:when>

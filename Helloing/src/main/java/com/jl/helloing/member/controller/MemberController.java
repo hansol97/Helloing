@@ -39,7 +39,9 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
+import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Controller
 public class MemberController {
@@ -319,7 +321,7 @@ public class MemberController {
 		response.addCookie(saveId); // response객체에 
 		return "member/login"; 
 	}
-	
+	// 아이디 저장취소 (쿠키)
 	@RequestMapping("saveIdDelete.me")
 	public String delete(HttpServletResponse response, String memId) {
 		// 쿠키는 삭제 명령이 따로 없음
@@ -332,6 +334,32 @@ public class MemberController {
 		
 		return "member/login";
 	}
+	// 1:1문의(사용자)
+	@RequestMapping("QAList.me")
+	public String memberQAListView() {
+		return "member/memberQAListView";
+	}
+	
+	@RequestMapping("insertQna.me")
+	public ModelAndView insertQna(QNA qna, ModelAndView mv, HttpSession session) {
+		System.out.println(qna.getCategory());
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		qna.setMemNo(memNo);
+		System.out.println(qna);
+		
+		int result = memberService.insertQna(qna);
+		
+		if(result > 0) {
+			mv.addObject("memNo", memNo);
+			session.setAttribute("alertMsg", "1:1문의가 등록되었습니다.");
+			mv.setViewName("redirect:QAList.me");
+		} else {
+			session.setAttribute("alertMsg", "등록이 실패했습니다.");
+			mv.setViewName("redirect:QAList.me");
+		}	
+		return mv;
+	}
+		
 	
 	
 
@@ -344,7 +372,12 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+<<<<<<< HEAD
+		//ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+=======
+//		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
+>>>>>>> 35c29022082c0f36e4c7316b240c0f19ee6be9a0
+		ArrayList<RoomPayment> list = new ArrayList();
 		
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         int today = Integer.parseInt(dateFormat.format(new Date()));
@@ -380,8 +413,29 @@ public class MemberController {
 	
 	//액티비티 구매 정보
 	@RequestMapping("activityBook.hj")
-	public String activityBook() {
-		return "member/activityBook";
+	public ModelAndView activityBook(ModelAndView mv, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
+		
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+
+				if(list.get(i).getCount()==0) {
+							list.get(i).setStatus("R");
+				}else {
+					list.get(i).setStatus("S");
+				}
+			}
+			mv.addObject("list", list);
+			mv.setViewName("member/activityBook");
+		}else {
+			mv.addObject("errorMsg", "결제 정보 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
 	}
 	
 	//예약 상세 조회

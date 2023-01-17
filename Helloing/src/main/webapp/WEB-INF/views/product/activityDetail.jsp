@@ -27,10 +27,6 @@
 					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
-				<div>
-					<p>📆 유효기간 (${ act.endDate }) 내 사용</p>
-				</div>
-				<hr>
 
 				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
 					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
