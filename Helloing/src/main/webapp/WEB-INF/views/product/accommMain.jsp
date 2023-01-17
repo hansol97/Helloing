@@ -97,7 +97,7 @@
 	        	<c:if test="${ ac.category == 'hotel' }">
 	        		<div class="productbox">
 		            	<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="${ ac.attachment }" width="150"><br>
+		                <img src="${ ac.filePath }" width="150"><br>
 		                <p>호텔<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -114,7 +114,7 @@
         		<c:if test="${ ac.category == 'pension' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="${ ac.attachment }" width="150"><br>
+		                <img src="${ ac.filePath }" width="150"><br>
 		                <p>펜션<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -130,7 +130,7 @@
         		<c:if test="${ ac.category == 'motel' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="${ ac.attachment }" width="150"><br>
+		                <img src="${ ac.filePath }" width="150"><br>
 		                <p>모텔<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>
@@ -146,7 +146,7 @@
         		<c:if test="${ ac.category == 'guestHouse' }">
         			<div class="productbox">
         				<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-		                <img src="${ ac.attachment }" width="150"><br>
+		                <img src="${ ac.filePath }" width="150"><br>
 		                <p>게스트하우스<br>
 			                <span class="accommName">${ ac.accommName }</span><br>
 			               	 ⭐ ${ ac.avg } (${ ac.reviewCount })<br>

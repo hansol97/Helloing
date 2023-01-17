@@ -138,7 +138,7 @@
   <header>
     <div class="inner">
       <!-- 로고(홈) -->
-      <a href="#" class="logo"><!--/은 현재 index파일로 이동-->
+      <a href="/helloing" class="logo"><!--/은 현재 index파일로 이동-->
         <img src="/helloing/resources/img/admin_logo.png" alt="logo" >
       </a>
 
@@ -148,7 +148,7 @@
 	      	<h4 style="padding : 10px;">반갑소잉 관리자님, 환영합니다.😊</h4>
 	      </li>
           <li>
-            <a href="/">메인페이지로 가기</a>
+            <a href="/helloing">메인페이지로 가기</a>
           </li>
 
         </ul>

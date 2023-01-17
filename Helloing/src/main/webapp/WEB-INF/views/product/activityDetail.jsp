@@ -28,12 +28,14 @@
 				</div>
 				<hr>
 
-				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
+				<div class="images">
+						<img src="${ photo.attachment }" width="780" height="500">
 					<div class="sub-images">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+						<c:if test="${ not empty photoList }">
+							<c:forEach items="${ photoList }" var="i">
+								<img src="${ i.attachment }" width="250" height="160">
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 

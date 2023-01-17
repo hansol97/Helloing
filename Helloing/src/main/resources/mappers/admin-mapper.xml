@@ -134,12 +134,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 챗봇 삭제 -->
-	<delete id="deleteChatbot" parameterType="string">
+	<delete id="deleteChatbot" parameterType="list">
 		DELETE	
 		  FROM 
 		       CHATBOT
 		 WHERE
-		       CHATBOT_Q = #{chatbotQ}
+		       CHATBOT_Q IN
+		 <foreach collection="list" item="item" index="i" open="(" separator="," close=")">
+		 	#{item}
+		 </foreach>
+		       
 	</delete>
 	
 	<!-- 챗봇 검색된 목록 수 조회 -->
@@ -536,6 +540,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                     WHERE
 		                           ORDER_NO = #{orderNo}
 		                    )
+		                
 	</select>
 	
+	<!-- 액티비티 결제 검색된 목록 수 -->
+	<select id="searchActPayListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       (SELECT
+				       ORDER_NO
+				  FROM
+				       TICKET_PAYMENT
+                  JOIN
+                       MEMBER USING(MEM_NO)
+                 WHERE
+                       MEM_ID LIKE '%' || #{keyword} || '%'
+				 GROUP
+				    BY
+				       ORDER_NO)
+	</select>
+	
+	<!-- 액티비티 검색된 결제 리스트 -->
+	<select id="searchActPaymentList" resultMap="tickeyPaymentResultSet">
+		SELECT 
+		       DISTINCT(ORDER_NO)
+		       ,MEM_ID
+		       ,ACTIVITY_NAME
+		       ,PAYMENT_AMOUNT
+		       ,TO_CHAR(PAYMENT_DATE, 'YYYY.MM.DD') PAYMENT_DATE
+               ,BUSINESS_NAME
+		  FROM
+		       TICKET_PAYMENT
+		  JOIN 
+		       MEMBER USING(MEM_NO)
+		  JOIN
+		       TICKET USING(TICKET_NO)
+		  JOIN
+		       ACTIVITY USING(ACTIVITY_NO)
+          JOIN
+               BUSINESS USING(BUSINESS_NO)
+         WHERE
+               MEM_ID LIKE '%' || #{keyword} || '%'
+	</select>
 </mapper>

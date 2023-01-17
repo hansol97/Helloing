@@ -20,3 +20,10 @@ function nameSplit(){
 		}
 	})
 }
+
+// 검색버튼 클릭 시 검색창이 비어있지 않을 때만 검색버튼 -> 서브밋
+function search(){
+	if($('input[name=keyword]').val() != ''){
+		$('#btn-search').attr('type', 'submit');
+	}
+}

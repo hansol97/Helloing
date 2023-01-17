@@ -76,4 +76,12 @@ public class ProductDao {
 	public ArrayList<Accomm> searchAccomm(SqlSessionTemplate sqlSession, Accomm ac){
 		return (ArrayList)sqlSession.selectList("productMapper.searchAccomm", ac);
 	}
+	
+	public ArrayList<Attachment> selectActPhotoList(SqlSessionTemplate sqlSession, int activityNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectActPhotoList", activityNo);
+	}
+	
+	public ArrayList<Activity> searchActivity(SqlSessionTemplate sqlSession, String keyword){
+		return (ArrayList)sqlSession.selectList("productMapper.searchActivity", keyword);
+	}
 }

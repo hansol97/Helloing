@@ -64,16 +64,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	@Transactional
 	public int deleteChatbot(List<String> cbox) {
 		
-		int result = 1;
-		
-		for(int i = 0; i < cbox.size(); i++) {
-			result *= adminDao.deleteChatbot(sqlSession, cbox.get(i));
-		}
-		
-		return result;
+		return adminDao.deleteChatbot(sqlSession, cbox);
 	}
 	
 	@Override
@@ -189,6 +182,16 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ArrayList<Business> searchBusinessList(PageInfo pi, HashMap map) {
 		return adminDao.searchBusinessList(sqlSession, pi, map);
+	}
+
+	@Override
+	public int searchActPayListCount(String keyword) {
+		return adminDao.searchActPayListCount(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<TicketPayment> searchActPaymentList(PageInfo pi, String keyword) {
+		return adminDao.searchActPaymentList(sqlSession, pi, keyword);
 	}
 
 	

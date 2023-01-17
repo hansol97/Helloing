@@ -36,6 +36,7 @@ public class Activity {
 	
 	//첨부파일
 	private String attachment;
+	private String filePath;
 
 
 }

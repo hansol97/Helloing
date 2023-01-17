@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +16,14 @@
 	
 	<div class="inner">
         <div class="top-content">
-                <h1>'ㅇㅇ' 검색 결과</h1>
+            <form action="search.activity">
+                <input type="text" name="keyword" value="${ keyword }">
+				<button id="btn-search" type="button" onclick="search();">검색</button>
+            </form>
         </div>
         
         <div class="middle-content">
+        <%--
             <div class="side-bar">
                 <span>필터</span>
                 <span id="reset">전체 초기화</span>
@@ -39,9 +45,19 @@
                 <hr>
 
             </div>
-            <div class="main">
-                <h4>총 ㅇ개</h4>
-                <div class="radio-sort">
+             --%>
+            
+			<div class="main">
+            	<c:choose>
+            		<c:when test="${ not empty searchList }">
+            			<h4>'${ keyword }' 검색 결과 | 총 ${ fn:length(searchList) }개</h4>
+            		</c:when>
+            		<c:otherwise>
+            			<h4>'${ keyword }' 검색 결과가 없습니다.🥲<br>다른 액티비티는 어떠세요?</h4>
+            		</c:otherwise>
+            	</c:choose>
+            	
+            	<div class="radio-sort">
                     <input type="radio" name="radio-sort" id="recomm"><label for="recomm">추천순</label>
                     <input type="radio" name="radio-sort" id="manyreview"><label for="manyreview">많은 후기순</label>
                     <input type="radio" name="radio-sort" id="highstar"><label for="highstar">높은 평점순</label>
@@ -49,51 +65,38 @@
                     <input type="radio" name="radio-sort" id="highprice"><label for="highprice">높은 가격순</label>
                 </div>
                 <div class="product-list">
-                    <div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
-                        <div>
-                            <p><span>[강원 춘천]</span>엘리시안 강촌 스키 전일권/주중권 & 장비렌탈<br> <!-- N 글자 넘어가면 ... 만들기 -->
-                            ⭐ 5.0 (2)<br>
-                            97,000원</p>
-                        </div>
-                    </div>
-                    <div class="productbox">
-                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
-                        <div>
-                            <p><span>[강원 춘천]</span>엘리시안 강촌 스키 전일권/주중권 & 장비렌탈<br>
-                            ⭐ 5.0 (2)<br>
-                            97,000원</p>
-                        </div>
-                    </div>
-                    <div class="productbox">
-                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
-                        <div>
-                            <p><span>[강원 춘천]</span>엘리시안 강촌 스키 전일권/주중권 & 장비렌탈<br>
-                            ⭐ 5.0 (2)<br>
-                            97,000원</p>
-                        </div>
-                    </div>
-                    <div class="productbox">
-                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
-                        <div>
-                            <p><span>[강원 춘천]</span>엘리시안 강촌 스키 전일권/주중권 & 장비렌탈<br>
-                            ⭐ 5.0 (2)<br>
-                            97,000원</p>
-                        </div>
-                    </div>
-                    <div class="productbox">
-                        <img src="/helloing/resources/img/logo_outline.png" width="250" height="250"><br>
-                        <div>
-                            <p><span>[강원 춘천]</span>엘리시안 강촌 스키 전일권/주중권 & 장비렌탈<br>
-                            ⭐ 5.0 (2)<br>
-                            97,000원</p>
-                        </div>
-                    </div>
-                </div>
+	            	<c:choose>
+	            		<c:when test="${ not empty searchList }">
+	            			<c:forEach items="${ searchList }" var="sl">
+			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
+			                        <img src="${ sl.filePath }" width="250" height="250"><br>
+			                        <div>
+			                            <p>${ sl.activityName }<br>
+			                            	⭐${ sl.avg } (${ sl.reviewCount })<br>
+			                            ${ sl.rowPrice }원</p>
+			                        </div>
+			                    </div>
+	            			</c:forEach>
+	            		</c:when>
+	            		<c:otherwise>
+	            			<c:forEach items="${ activityList }" var="al">
+			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
+			                        <img src="${ al.filePath }" width="250" height="250"><br>
+			                        <div>
+			                            <p>${ al.activityName }<br>
+			                            	⭐ ${ al.avg } (${ al.reviewCount })<br>
+			                            ${ al.rowPrice }원</p>
+			                        </div>
+			                    </div>
+	            			</c:forEach>
+	            		</c:otherwise>
+	            	</c:choose>
+            	</div>
+                
             </div>
         </div>
 		
 	</div>
-
+	<script type="text/javascript" src="resources/js/product/activitySearch.js"></script>
 </body>
 </html>
