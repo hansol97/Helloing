@@ -120,7 +120,7 @@ button:hover{
 		$(document).on('change', '#idCheck', function(){
 				//var $memId = $(this).is(':checked'); // is는 선택한요소가 ()안에 있는 것이 일치하는지 확인하고 ture,false를 나타낸다.
 				//console.log($memId);
-			if($('#idCheck').prop('checked')){ // arrt(), prop()의 차이점...?
+			if($('#idCheck').prop('checked')){ // attr(), prop()의 차이점...?
 				
 				$.ajax({
 					url : 'saveId.me',

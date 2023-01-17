@@ -58,7 +58,13 @@ public interface MemberService {
 	//QNA 등록(회원용)
 	int insertQna(QNA qna);
 	
+	//QNA리스트
 	ArrayList<QNA> selectQna(int memNo);
+	
+	//
+	int deleteQna(int qnaNo);
+	
+	
 	
 	//----------------------------------------------------------------------
 	//혜진

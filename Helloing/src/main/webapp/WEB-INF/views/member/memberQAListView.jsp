@@ -239,7 +239,7 @@ table.type02 td {
                             </td>
                             <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
                             <td><button onclick="openModal(2);" class="admin-grey">수정</button></td>
-                            <td><button class="admin-grey">삭제</button></td>
+                            <td><button onclick="btnDelete()" id="btnDelete" class="admin-grey">삭제</button></td>
                         </tr>
                     </table>
                 </tr>
@@ -248,7 +248,7 @@ table.type02 td {
                         <thead>
                             <tr>
                                 <th width="30">
-                                    <input type="checkbox" name="cboxAll" id="checkAll" onclick="checkAll();">
+                                   <!--  <input type="checkbox" name="cboxAll" id="checkAll" onclick="checkAll();">  -->
                                 </th>
                                 <th width="80">문의번호</th>
                                 <th width="120">문의종류</th>
@@ -260,10 +260,10 @@ table.type02 td {
                         <tbody>
                         	<c:forEach items="${ list }" var="qna">
                             <tr>
-                                <td onclick="event.stopPropagation()">
-                                    <input class="cbox" type="checkbox" value="">
+                                <td>
+                                    <input class="cbox" type="checkbox" name="checkbox" value="">
                                 </td>
-                                <td>${ qna.qnaNo }</td>
+                                <td class="qnaNo">${ qna.qnaNo }</td>
                                 <c:choose>
                                 	<c:when test="${ qna.category == 'accomm' }" >
                                 		<td>숙소관련</td>
@@ -412,6 +412,8 @@ table.type02 td {
             let modal = document.querySelector('.modal'+ num);
             const btnCancel = document.getElementById('#QA_cancel'+ num);
             modal.classList.remove('show');
+            
+            body.style.overflow = 'auto';
         };
 
         function openModal(num){
@@ -426,21 +428,21 @@ table.type02 td {
             
         };
 
-        let modal = document.querySelector('.modal');
+       /*  let modal = document.querySelector('.modal');
             modal.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.classList.toggle('show');
 
-                if (!modal.classList.contains('show')) {
-                body.style.overflow = 'auto';
+                
                 }
             }
-        });
+        }); */
         
   
       </script>
       
       	<script>
+      	
 		$(document).ready(function() {
 			$("#checkAll").click(function() {
 				if($("#checkAll").is(":checked")) $("input[name=cbox]").prop("checked", true);
@@ -456,7 +458,70 @@ table.type02 td {
 			});
 		});
 	</script>
-
+	<!--  
+	<script>
+	function btnDelete(){
+		var chekBoxArr =[];
+		$("input:checkbox[name='checkbox']:checked").eack(function() {
+			checkBoxArr.push($(this).val());
+			console.log(checkBoxArr);
+		})
+	}
+	
+	
+	
+	
+	
+	
+	
+	<%--
+	$(#.btnDelete).click(function() {
+		
+	}
+		
+	
+	
+	
+	
+	
+	$(function() {
+		$(document).on('change','.cbox', function(){
+			if($(this).prop('checked')){
+				
+				$.ajax({
+					url : 'deleteQna.me',
+					data : {
+						qnaNo : $('#qnaNo').val()
+					},
+					success : function(result){
+						consol.log(result);
+					}
+				}) //delete버튼을 누르면 실행해야하는 ajax
+			}
+		}
+	}
+	-->
+	
+	//.parent().sibling(0)
+	
+	
+	
+	
+	<%--
+	$(function(){
+		$(document).on('change', '.cbox', function(){
+			if($('.cbox').prop('checked')){
+				
+			}
+		})
+	})
+	--%>	
+		
+		
+	
+	
+	</script>
+-->
 
 </body>
 </html>

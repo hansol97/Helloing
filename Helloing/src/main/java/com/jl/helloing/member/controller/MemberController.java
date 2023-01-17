@@ -382,12 +382,25 @@ public class MemberController {
 		} else {
 			mv.setViewName("member/memberQAListVieqw");
 		}
-		
-		
-		
+
 		return mv;
 	}
-
+	
+	@RequestMapping("deleteQna.me")
+	public ModelAndView deleteQna(ModelAndView mv,HttpSession session,int qnaNo) {
+		if(memberService.deleteQna(qnaNo) > 0) {
+			session.setAttribute("alertMsg", "삭제에 성공 하셨습니다.");
+			mv.addObject("redirect:selectQna.me");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패 하셧습니다.");
+			mv.addObject("redirect:selectQna.me");
+		}
+		
+		
+	return mv;
+	}
+	
+	
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
