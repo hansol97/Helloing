@@ -61,7 +61,7 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
-		
+		System.out.println(ac);
 		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
 		ArrayList<String> photo = new ArrayList<String>();
 
