@@ -79,6 +79,10 @@ pageEncoding="UTF-8"%>
 		cursor : pointer;
 		text-decoration : underline;
 	}
+	.review-accomm-name{
+	    font-size: 20px;
+    	font-weight: 600;
+    }
 	
 </style>
 </head>
@@ -189,20 +193,25 @@ pageEncoding="UTF-8"%>
     
     $('.select-review').click(function(){
 		
-    	console.log($(this));
-    	
 		$.ajax({
 			url : 'selectAccommReview.hj',
 			data : {orderNo : $(this).siblings('input[name=orderNo]').val()},
 			success : function(result){
+				
+				let star = '';
+				for(var i = 0; i<result.star; i++){
+					star += '⭐'
+				}
+				
 				let value = '';
 				
 				console.log(result);
 				value += '<h5 style="font-weight:600; font-size:25px;">내 후기</h5>'
 		    		  + '<hr>'
-		    		  + '<li><h3>' + result.accommName + '</h3></li>'
+		    		  + '<li><h3 class="review-accomm-name">' + result.accommName + '</h3></li>'
 		    		  + '<li style="font-size: 15px;">' + result.createDate + '|' +  result.roomName + '</li>'
-		    		  + '<li style="padding:10px;">' + result.content + '</li>'
+		    		  + '<li>' + star + '</li>'
+		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
 		    		  + '<li>' + result.tag + '</li>'
 		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
 					

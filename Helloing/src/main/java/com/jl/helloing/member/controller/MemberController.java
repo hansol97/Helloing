@@ -488,6 +488,8 @@ public class MemberController {
 		AccommReview review = memberService.selectAcommReview(orderNo);
 		System.out.println(review);
 
+		review.setTag(review.getTag().replace(",", "|"));
+		
 		return new Gson().toJson(review);
 	}
 	

@@ -12,9 +12,12 @@ public class AccommReview {
 	private String reviewContent; //REVIEW_CONTENT	VARCHAR2(1000 BYTE)
 	private String createDate; //CREATE_DATE	DATE
 	private String tag; //TAG	VARCHAR2(1000 BYTE)
-	private int Star; //STAR	NUMBER
+	private int star; //STAR	NUMBER
 	
 	private String memName;
 	private String roomName;
 	private String accommName;
+	
+	private String originName;
+	private String filePath;
 }
