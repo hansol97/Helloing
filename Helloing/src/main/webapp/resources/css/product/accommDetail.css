@@ -80,6 +80,7 @@
 	margin-bottom: 10px;
 }
 .first{ display: flex; align-items: center; }
+.first p{ padding: 10px; }
 .second{
 	display: flex;
 	align-items: center;
