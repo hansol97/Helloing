@@ -110,6 +110,7 @@ public class AdminController {
 		
 		mv.addObject("list", list)
 		  .addObject("map", map)
+		  .addObject("pi", pi)
 		  .setViewName("admin/chatbotListView");
 		
 		return mv;

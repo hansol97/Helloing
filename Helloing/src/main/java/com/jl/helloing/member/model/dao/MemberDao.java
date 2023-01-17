@@ -14,6 +14,7 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -56,13 +57,20 @@ public class MemberDao {
 	public Member findPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.findPwd", m);
 	}
-	//
+	// 임시비밀번호 등록
 	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
 		sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
+	
+	// 승준 ----- 1:1 문의 부분 -------- 
+	// 1:1문의 등록
 	public int insertQna(SqlSessionTemplate sqlSession, QNA qna) {
 		return sqlSession.insert("memberMapper.insertQna", qna);
+	}
+	// 1:1문의 리스트
+	public ArrayList<QNA> selectQna(SqlSessionTemplate sqlSession, int memNo){
+		return (ArrayList)sqlSession.selectList("memberMapper.selectQna", memNo);
 	}
 	
 	//-----------------------------------------------------------------
@@ -177,6 +185,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.activityBookDetail", orderNo);
 	}
 	
+	public AccommReview selectAccommReview(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectAccommReview", orderNo);
+	}
 	
 	
 	
@@ -200,6 +211,8 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
 
 
 

@@ -22,7 +22,7 @@
     left: 0;
 
     width: 100%;
-    height: 100%;
+    height: 200%;
 
     display: none;
 
@@ -277,7 +277,7 @@
                 		<a href="chatbotList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
                 	</c:otherwise>
                 </c:choose>
-					
+				
 				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
 					<a href="chatbotList.ad?cpage=${ p }">${ p }</a> 
 				</c:forEach>              
@@ -389,6 +389,7 @@
             let modal = document.querySelector('.modal'+ num);
             const btnCancel = document.getElementById('#keyword_cancel'+ num);
             modal.classList.remove('show');
+            body.style.overflow = 'auto';
         };
 
         function openModal(num){
