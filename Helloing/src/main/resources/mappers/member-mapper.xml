@@ -171,7 +171,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		qna_title,
 		  		qna_q,
 		  		category,
-		  		ans_yn
+		  		ans_yn,
+		  		qna_sort
 		  		)
 		values
 				(
@@ -179,7 +180,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{ memNo },
 				#{ qnaTitle },
 				#{ qnaQ },
-				#{ category }
+				#{ category },
+				#{ ansYn },
+				#{ qnaSort }
 				)	  		
 	</insert>
 
@@ -214,8 +217,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
-	<select id="activityBook">
-	
+	<select id="activityBook" parameterType="_int" resultType="ticketPayment">
+        SELECT DISTINCT
+                O.*
+                ,(SELECT COUNT(*) 
+                    FROM ACTIVITY_REVIEW
+                    WHERE MEM_NO = #{ memNo }
+                    AND ORDER_NO = orderNo) count
+                ,  (SELECT SUM(PAYMENT_AMOUNT)
+                    FROM TICKET_PAYMENT
+                    WHERE ORDER_NO = orderNo) paymentAmount
+        FROM (                
+                SELECT 
+                        T.ORDER_NO orderNo
+                        ,A.ACTIVITY_NO activityNo
+                        ,TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate
+                        ,T.STATUS status
+                        ,A.ACTIVITY_NAME activityName
+                FROM 
+                    TICKET_PAYMENT "T"
+                JOIN 
+                    TICKET TI ON(TI.TICKET_NO = T.TICKET_NO)
+                JOIN 
+                    ACTIVITY "A" ON(A.ACTIVITY_NO=TI.ACTIVITY_NO)
+                WHERE 
+                    MEM_NO = #{ memNo }
+                 ORDER 
+                    BY paymentDate DESC) O;	
 	</select>
 	
 	

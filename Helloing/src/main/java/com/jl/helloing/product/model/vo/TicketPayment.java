@@ -15,6 +15,7 @@ public class TicketPayment {
 	
 	private String ticketName;
 	private String endDate;
+	private int activityNo;
 	private String activityName;
 	private int ticketSum;
 	private int ticketPrice;

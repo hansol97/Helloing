@@ -92,11 +92,11 @@
                 <tr>
                     <table id="admin-search_table" >
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="searchBusi.ad" method="post">
                                 <td>
-                                    <select class="admin-search_form" name="" id="">
-                                        <option value="">사업자명</option>
-                                        <option value="">회원번호</option>
+                                    <select class="admin-search_form" name="condition" id="">
+                                        <option value="businessName">사업자명</option>
+                                        <option value="memNo">회원번호</option>
                                     </select>
                                 </td>
                                 <td>

@@ -185,13 +185,33 @@ public class AdminController {
 	// 사업자 리스트 조회
 	@RequestMapping("businessList.ad")
 	public String selectBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model m) {
-		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBusiListCount(), currentPage, 10, 2);
 
 		ArrayList<Business> list = adminService.selectBusinessList(pi);
 		m.addAttribute("list", list);
 		m.addAttribute("pi", pi);
 		
 		return "admin/adminBusinessListView";
+	}
+	
+	// 사업자 리스트 검색
+	@RequestMapping("searchBusi.ad")
+	public ModelAndView searchBusinessList(@RequestParam(value="cpage", defaultValue="1") int currentPage
+										   ,String condition, String keyword, ModelAndView mv) {
+		HashMap map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.searchBusiListCount(map), currentPage, 10, 2);
+		
+		ArrayList<Business> list = adminService.searchBusinessList(pi, map);
+		
+		mv.addObject("pi", pi)
+		  .addObject("list", list)
+		  .addObject("map", map)
+		  .setViewName("admin/adminBusinessListView");
+		
+		return mv;
 	}
 	
 	//--------------------- 결제관리 ---------------------
@@ -268,7 +288,6 @@ public class AdminController {
 	@RequestMapping(value="ticketList.ad", produces="application/json; charset=UTF-8")
 	public String selectTicketList(int orderNo) {
 		ArrayList<Ticket> tList = adminService.selectTicketList(orderNo);
-		System.out.println(tList);
 		return new Gson().toJson(tList);
 	}
 	

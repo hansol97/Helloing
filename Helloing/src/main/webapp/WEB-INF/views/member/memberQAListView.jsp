@@ -316,7 +316,14 @@ table.type02 td {
                 <br>
                 <form action="insertQna.me" method="post">
                     <input type="hidden" name="memNo" id="memNo" value="${ sessionScope.loginUser.memNo }">
-                    <input type="hidden" name="qnaSort" value="${ ss }">
+                   	<c:choose>
+                   		<c:when test="${ not empty sessionScope.loginCompany.businessNo }">
+                    		<input type="hidden" name="qnaSort" value="기업회원">
+                   		</c:when>
+                   		<c:otherwise>
+                   			<input type="hidden" name="qnaSort" value="일반회원">
+                   		</c:otherwise>
+                   	</c:choose>
                     <table class="type02">
                         <tr>
                             <th>카테고리</th>

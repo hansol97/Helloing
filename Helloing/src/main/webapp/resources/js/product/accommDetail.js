@@ -1,5 +1,5 @@
 $(function(){
-
+	console.log($('select[name=headCount]').val());
 	checkWish(); // 위시리스트에 추가되어있는지 확인하는 함수
 	sysdate(); // 오늘 날짜 이후로만 체크인/체크아웃 가능
 
