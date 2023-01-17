@@ -35,7 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="ROOM_NAME"  	property="roomName" />
         <result column="CAPACITY"   	property="capacity" />
         <result column="PRICE"  		property="price" />
-        <result column="STATUS"    			property="status" />
+        <result column="STATUS"    		property="status" />
+        <result column="ATTACHMENT"    	property="attachment" />
     </resultMap>	
     
 	<resultMap id="ActivityResultSet" type="activity">
@@ -130,6 +131,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ACTIVITY A
 		  JOIN
 		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+		 WHERE
+		       <![CDATA[SYSDATE < END_DATE]]> 
 		 ORDER
 		    BY
 		       AT.FILE_NO ASC
@@ -138,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 액티비티 상세 정보 -->
 	<select id="selectActDetail" resultMap="ActivityResultSet" parameterType="_int">
 		SELECT
-			   ACTIVITY_NO
+			   A.ACTIVITY_NO
 			  ,ACTIVITY_NAME
 			  ,BUSINESS_NO
 			  ,ACTIVITY_CONTENT
@@ -153,7 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM
 		  	   ACTIVITY A
 		 WHERE
-		 	   ACTIVITY_NO = #{ activityNo }
+		 	   A.ACTIVITY_NO = #{ activityNo }
 	</select>
 	
 	<!-- 해당 액티비티에 딸린 티켓들 -->
@@ -298,18 +301,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          	   A.ACCOMM_NO = #{ accommNo }
 	</select>
 	
+	<!-- 액티비티에 첨부된 첨부파일 -->
+	<select id="selectActPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ACTIVITY A
+		  JOIN
+		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+         WHERE
+         	   A.ACTIVITY_NO = #{ activityNo }
+         ORDER
+            BY
+               FILE_NO
+	</select>
+	
 	<!-- 숙소에 등록된 객실 리스트 조회 -->
 	<select id="selectRoomList" resultMap="RoomResultSet" parameterType="_int">
 		SELECT
-		       ROOM_NO
-		      ,ACCOMM_NO
-		      ,ROOM_NAME
-		      ,CAPACITY
-		      ,PRICE
+		       R.ROOM_NO
+		      ,R.ACCOMM_NO
+		      ,R.ROOM_NAME
+		      ,R.CAPACITY
+		      ,R.PRICE
+		      ,RT.FILE_PATH || RT.CHANGE_NAME AS ATTACHMENT
 		  FROM
-		  	   ROOM
+		  	   ROOM R
+		  JOIN
+		       ROOM_ATTACHMENT RT ON (RT.ROOM_NO = R.ROOM_NO)
 		 WHERE
-		 	   ACCOMM_NO = #{ accommNo }
+		 	   R.ACCOMM_NO = #{ accommNo }
 	</select>
 	<!-- 숙소에 등록된 리뷰 조회 -->
 	<select id="selectAcReviewList" resultMap="AcReviewResultSet" parameterType="_int">

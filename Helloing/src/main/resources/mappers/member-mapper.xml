@@ -172,7 +172,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		qna_q,
 		  		category,
 		  		ans_yn,
-		  		qna_sort
+		  		qna_sort,
+		  		qna_date
 		  		)
 		values
 				(
@@ -181,8 +182,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{ qnaTitle },
 				#{ qnaQ },
 				#{ category },
-				#{ ansYn },
-				#{ qnaSort }
+				'N',
+				#{ qnaSort },
+				sysdate
 				)	  		
 	</insert>
 

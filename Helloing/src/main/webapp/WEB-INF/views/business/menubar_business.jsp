@@ -162,7 +162,7 @@
       <div class="sub-menu">
         <ul class="menu">
           <li>
-            <a href="#">메인페이지로 가기</a>
+            <a href="/helloing">메인페이지로 가기</a>
           </li>
 
         </ul>
