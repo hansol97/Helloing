@@ -131,6 +131,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ACTIVITY A
 		  JOIN
 		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+		 WHERE
+		       <![CDATA[SYSDATE < END_DATE]]> 
 		 ORDER
 		    BY
 		       AT.FILE_NO ASC
@@ -151,18 +153,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 3) AS "STAR3"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 4) AS "STAR4"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 5) AS "STAR5"
-              ,FILEPATH
 		  FROM
 		  	   ACTIVITY A
-          JOIN 
-              (SELECT 
-                      ACTIVITY_NO, 
-                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
-                 FROM  
-                      ACTIVITY_ATTACHMENT
-                GROUP 
-                   BY 
-                      ACTIVITY_NO) B ON (A.ACTIVITY_NO = B.ACTIVITY_NO)
 		 WHERE
 		 	   A.ACTIVITY_NO = #{ activityNo }
 	</select>
@@ -307,6 +299,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
          WHERE
          	   A.ACCOMM_NO = #{ accommNo }
+	</select>
+	
+	<!-- 액티비티에 첨부된 첨부파일 -->
+	<select id="selectActPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ACTIVITY A
+		  JOIN
+		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+         WHERE
+         	   A.ACTIVITY_NO = #{ activityNo }
+         ORDER
+            BY
+               FILE_NO
 	</select>
 	
 	<!-- 숙소에 등록된 객실 리스트 조회 -->
