@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.jl.helloing.member.model.vo.Plan" 			alias="plan" />
     	<typeAlias type="com.jl.helloing.member.model.vo.PlannerMem" 	alias="plannerMem" />
     	<typeAlias type="com.jl.helloing.member.model.vo.Expense" 		alias="expense" />
+    	<typeAlias type="com.jl.helloing.member.model.vo.QNA" 		alias="qna" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Activity" 	alias="activity" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Ticket" 		alias="ticket" />
     	<typeAlias type="com.jl.helloing.product.model.vo.Accomm" 		alias="accomm" />

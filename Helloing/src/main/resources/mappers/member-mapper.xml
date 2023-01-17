@@ -15,6 +15,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="MEM_ENROLLDATE" property="memEnrollDate" />
 		<result column="REPORT_COUNT" 	property="reportCount" />
 	</resultMap>
+	
+	<resultMap id="qnaResultSet" type="qna">
+		<result column="QNA_NO" 		property="qnaNo" />
+		<result column="MEM_NO" 		property="memNo" />
+		<result column="QNA_TITLE" 		property="qnaTitle" />
+		<result column="QNA_Q" 			property="qnaQ" />
+		<result column="QNA_SORT" 		property="qnaSort" />
+		<result column="CATEGORY" 		property="category" />
+		<result column="QNA_DATE" 		property="qnaDate" />
+		<result column="ANS_YN" 		property="ansYn" />
+		<result column="ANS_DATE" 		property="ansDate" />
+		<result column="QNA_A" 			property="qnaA" />
+	
+	</resultMap>
 
  <!-- 여기는 승준 -->
 	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
@@ -146,7 +160,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where
 		 		mem_id = #{ memId }
 	</update>
-	
+
+	<insert id="insertQna" parameterType="qna" >
+		insert
+		  into
+		  		qna
+		  		(
+		  		qna_no,
+		  		mem_no,
+		  		qna_title,
+		  		qna_q,
+		  		category,
+		  		ans_yn
+		  		)
+		values
+				(
+				seq_qmem.nextval,
+				#{ memNo },
+				#{ qnaTitle },
+				#{ qnaQ },
+				#{ category }
+				)	  		
+	</insert>
+
+	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 여기부터 혜진 -->
 	<select id="accommBook" parameterType="_int" resultType="roomPayment">
