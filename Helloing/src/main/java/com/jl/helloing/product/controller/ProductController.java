@@ -25,35 +25,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-
-	// 숙소 메인
-	@RequestMapping("accomm")
-	public ModelAndView accommMain(ModelAndView mv) {
-		
-		ArrayList<Accomm> acList = productService.selectAcList();
-
-		for(int i = 0; i < acList.size(); i++) {
-			if(i+1 != acList.size()) {
-				if(acList.get(i).getAccommNo() == acList.get(i+1).getAccommNo()) {
-					acList.remove(i+1);
-					i--;
-				}
-			} else { 
-				break;
-			}
-		}
-		
-		mv.addObject("acList", acList)
-		  .setViewName("product/accommMain");
-		
-		return mv;
-	}
 	
-	// 숙소 검색
-	@RequestMapping("search.accomm")
-	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
-		
-		ArrayList<Accomm> list = productService.searchAccomm(ac);
+	// 숙소 리스트 사진 중복 제거용 메소드
+	public ArrayList<Accomm> removeAcArray(ArrayList<Accomm> list) {
 		
 		for(int i = 0; i < list.size(); i++) {
 			if(i+1 != list.size()) {
@@ -66,13 +40,40 @@ public class ProductController {
 			}
 		}
 		
-		mv.addObject("accommList", list);
+		return list;
+	}
+
+	// 숙소 메인
+	@RequestMapping("accomm")
+	public ModelAndView accommMain(ModelAndView mv) {
 		
-		if(list.isEmpty()) {
-			mv.addObject("anoList", productService.selectAcList());
+		ArrayList<Accomm> acList = removeAcArray(productService.selectAcList());
+		
+		mv.addObject("acList", acList)
+		  .setViewName("product/accommMain");
+		
+		return mv;
+	}
+	
+	// 숙소 검색
+	@RequestMapping("search.accomm")
+	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
+		System.out.println("카테고리 : " + ac.getCategory());
+		System.out.println("검색어 : " + ac.getAccommName());
+		
+		ArrayList<Accomm> list = removeAcArray(productService.searchAccomm(ac));
+		
+		System.out.println(list);
+		
+		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
+			ArrayList<Accomm> anoList = removeAcArray(productService.selectAcList());
+			mv.addObject("anoList", anoList);
+		} else {
+			mv.addObject("accommList", list);
 		}
 		
-		mv.setViewName("product/accommSearch");
+		mv.addObject("keyword", ac.getAccommName())
+		  .setViewName("product/accommSearch");
 		
 		return mv;
 	}

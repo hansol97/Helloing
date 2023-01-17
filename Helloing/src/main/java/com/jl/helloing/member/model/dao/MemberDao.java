@@ -13,6 +13,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -60,7 +61,11 @@ public class MemberDao {
 		sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
+	public int insertQna(SqlSessionTemplate sqlSession, QNA qna) {
+		return sqlSession.insert("memberMapper.insertQna", qna);
+	}
 	
+	//-----------------------------------------------------------------
 	
 	//혜진
 	public String checkPwd(Member m, SqlSessionTemplate sqlSession) {

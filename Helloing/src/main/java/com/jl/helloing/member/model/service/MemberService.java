@@ -11,6 +11,7 @@ import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
+import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -49,6 +50,9 @@ public interface MemberService {
 	
 	// 아이디체크
 	int idCheck(String checkId);
+	
+	//QNA 등록(회원용)
+	int insertQna(QNA qna);
 	
 	//----------------------------------------------------------------------
 	//혜진

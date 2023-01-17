@@ -66,7 +66,7 @@
 	        <div class="category" id="cs">
 	            <h2>고객센터</h2>
 	            <ul>
-	                <li><a href="">1:1 문의 내역</a></li>
+	                <li><a href="QAList.me">1:1 문의 내역</a></li>
 	            </ul>
 	        </div>
 	    </div>
