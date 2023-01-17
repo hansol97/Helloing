@@ -26,30 +26,11 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	// 숙소 리스트 사진 중복 제거용 메소드
-	public ArrayList<Accomm> removeAcArray(ArrayList<Accomm> list) {
-		
-		for(int i = 0; i < list.size(); i++) {
-			if(i+1 != list.size()) {
-				if(list.get(i).getAccommNo() == list.get(i+1).getAccommNo()) {
-					list.remove(i+1);
-					i--;
-				}
-			} else { 
-				break;
-			}
-		}
-		
-		return list;
-	}
-
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {
 		
-		ArrayList<Accomm> acList = removeAcArray(productService.selectAcList());
-		
-		mv.addObject("acList", acList)
+		mv.addObject("acList", productService.selectAcList())
 		  .setViewName("product/accommMain");
 		
 		return mv;
@@ -58,16 +39,11 @@ public class ProductController {
 	// 숙소 검색
 	@RequestMapping("search.accomm")
 	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
-		System.out.println("카테고리 : " + ac.getCategory());
-		System.out.println("검색어 : " + ac.getAccommName());
 		
-		ArrayList<Accomm> list = removeAcArray(productService.searchAccomm(ac));
-		
-		System.out.println(list);
+		ArrayList<Accomm> list = productService.searchAccomm(ac);
 		
 		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
-			ArrayList<Accomm> anoList = removeAcArray(productService.selectAcList());
-			mv.addObject("anoList", anoList);
+			mv.addObject("anoList", productService.selectAcList());
 		} else {
 			mv.addObject("accommList", list);
 		}
@@ -85,10 +61,10 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
+		System.out.println(ac);
 		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
-		
 		ArrayList<String> photo = new ArrayList<String>();
-		
+
 		for(int i = 0; i < at.size(); i++) {
 			photo.add(at.get(i).getAttachment());
 		}
@@ -148,8 +124,9 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		ArrayList<Activity> actList = productService.selectActList();
+		//ArrayList<Activity> actList = productService.selectActList();
 		
+		/*
 		for(int i = 0; i < actList.size(); i++) {
 			if(i+1 != actList.size()) {
 				if(actList.get(i).getActivityNo() == actList.get(i+1).getActivityNo()) {
@@ -160,8 +137,9 @@ public class ProductController {
 				break;
 			}
 		}
+		*/
 		
-		mv.addObject("actList", actList)
+		mv.addObject("actList", productService.selectActList())
 		  .setViewName("product/activityMain");
 		
 		return mv;
@@ -169,8 +147,20 @@ public class ProductController {
 	
 	// 액티비티 검색
 	@RequestMapping("search.activity")
-	public String searchActivity() {
-		return "product/activitySearch";
+	public ModelAndView searchActivity(String keyword, ModelAndView mv) {
+		
+		ArrayList<Activity> searchList = productService.searchActivity(keyword);
+		
+		if(searchList.isEmpty()) { // 리스트가 비어있다면 다른 리스트 불러오기 
+			mv.addObject("activityList", productService.selectActList());
+		} else {
+			mv.addObject("searchList", searchList);
+		}
+		
+		mv.addObject("keyword", keyword)
+		  .setViewName("product/activitySearch");
+		
+		return mv;
 	}
 	
 	// 액티비티 상세 페이지
@@ -181,7 +171,7 @@ public class ProductController {
 		
 		Activity act = productService.selectActDetail(activityNo);
 		ArrayList<Attachment> photo = productService.selectActPhotoList(activityNo); // 사진 전체
-		ArrayList<Attachment> photoList = new ArrayList();
+		ArrayList<Attachment> photoList = new ArrayList<Attachment>();
 		
 		mv.addObject("photo", photo.get(0));
 		
@@ -256,7 +246,9 @@ public class ProductController {
 		// ticket payment 테이블에 행추가
 		int result = productService.insertTicketPayment(tk.getTicketPayment());
 		// ticket 테이블에 티켓 카운트 -1
-		//productService.decreaseCount(tk.getTicketPayment());
+		if(result > 0) {
+			int resultcount = productService.decreaseCount(tk.getTicketPayment());
+		}
 		
 		System.out.println(result);
 		

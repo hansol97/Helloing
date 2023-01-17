@@ -116,7 +116,7 @@
 		         <tbody>
 		         <c:forEach var="a" items="${list}">
 		            <tr>
-		                <td>${a.orderNo }</td>
+		                <td class="orderNo">${a.orderNo }</td>
 		                <td class="actName">${a.activityName }</td>
 		                <td>${a.ticketSum }원</td>
 		                <td>${a.paymentDate }</td>
@@ -159,5 +159,17 @@
 		</div>
 
     </div>
+    <script>
+    $(function(){
+    	$('#table .actName').click(function(){
+    		
+    		var $this = $(this);
+    		var orderNo = $this.siblings('td[class=orderNo]').text();
+    		
+    		location.href ="activityBookDetail.hj?orderNo="+orderNo;
+    	})
+    })
+    
+    </script>
 </body>
 </html>

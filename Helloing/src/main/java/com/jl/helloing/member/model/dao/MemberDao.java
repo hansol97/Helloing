@@ -169,8 +169,13 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.activityBook", memNo);
 	}
 	
+	public RoomPayment accommBookDetail(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.accommBookDetail", orderNo);
+	}
 	
-	
+	public TicketPayment activityBookDetail(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.activityBookDetail", orderNo);
+	}
 	
 	
 	
@@ -195,6 +200,10 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
+
+
 
 
 

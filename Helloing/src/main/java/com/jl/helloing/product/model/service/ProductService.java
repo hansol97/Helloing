@@ -31,6 +31,8 @@ public interface ProductService {
 	
 	// 티켓 구매하기
 	int insertTicketPayment(List<TicketPayment> list);
+	// 티켓 카운트 - 구매수량 하기
+	int decreaseCount(List<TicketPayment> list);
 	
 	// 숙소 전체 조회(메인페이지)
 	ArrayList<Accomm> selectAcList();
@@ -54,7 +56,8 @@ public interface ProductService {
 	ArrayList<Accomm> searchAccomm(Accomm ac);
 	
 	// 액티비티 검색
-	ArrayList<Activity> searchActivity(Activity act);
+	ArrayList<Activity> searchActivity(String keyword);
+	
 	// 숙소 첨부파일들 조회
 	ArrayList<Attachment> selectActPhotoList(int activityNo);
 

@@ -86,7 +86,7 @@
 						<c:forEach items="${ accommList }" var="ac">
 							<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
 								<input type="hidden" name="accommNo" value="${ ac.accommNo }">
-			                    <div><img src="${ ac.attachment }" width="250" height="250"></div>
+			                    <div><img src="${ ac.filePath }" width="250" height="250"></div>
 			                    <div>
 			                        <p><span class="accommName">${ ac.accommName }</span><br><br>
 			                            	⭐${ ac.avg }(${ ac.reviewCount }) · ${ ac.address }<br><br><br>
@@ -102,7 +102,7 @@
 						    <c:forEach items="${ anoList }" var="an" end="3">
 								<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
 									<input type="hidden" name="accommNo" value="${ an.accommNo }">
-				                    <div><img src="${ an.attachment }" width="250" height="250"></div>
+				                    <div><img src="${ an.filePath }" width="250" height="250"></div>
 				                    <div>
 				                        <p><span class="accommName">${ an.accommName }</span><br><br>
 				                            	⭐${ an.avg }(${ an.reviewCount }) · ${ an.address }<br><br><br>

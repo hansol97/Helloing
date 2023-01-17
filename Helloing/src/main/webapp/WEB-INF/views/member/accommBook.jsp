@@ -119,7 +119,7 @@ pageEncoding="UTF-8"%>
 	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
 	            			</c:when>
 	            			<c:when test="${a.status eq 'S'}">
-	            				<td><a href="#ex2" rel="modal:open">후기보기</a></td>
+	            				<td><a class="select-review" href="#ex2" rel="modal:open">후기보기</a></td>
 	            			</c:when> 
 	            			<c:when test="${a.status eq 'Y'}">
 	              				 <td><a href="#ex1" rel="modal:open">예약취소</a></td>
@@ -164,7 +164,7 @@ pageEncoding="UTF-8"%>
     
 		 <div id="ex2" class="modal">
 		    	<br>
-			    <ul>
+			    <ul class="review-area">
 		    		<h5 style="font-weight:600; font-size:25px;">내 후기</h5>
 		    		<hr>
 		    		<li><h3>[팔로우미투어]가우디투어</h3></li>
@@ -189,8 +189,36 @@ pageEncoding="UTF-8"%>
     		var $this = $(this);
     		var orderNo = $this.siblings('td[class=orderNo]').text();
     		
-    		location.href ="reservationDetail.hj?orderNo="+orderNo;
+    		location.href ="accomBookDetail.hj?orderNo="+orderNo;
     	})
+    })
+    
+    $('.select-review').click(function(){
+		var $this = $(this);
+		
+		$.ajax({
+			url : 'selectReview.hj',
+			data : {orderNo : $this.siblings('td[class=orderNo]').text()},
+			success : function(result){
+				let value = '';
+				
+				value += '<h5 style="font-weight:600; font-size:25px;">내 후기</h5>'
+		    		  + '<hr>'
+		    		  + '<li><h3>' + result.activityName + '</h3></li>'
+		    		  + '<li>' + for(var i = 0; i<result.grade; i++){⭐ }  + '<li>'
+		    		  + '<li style="font-size: 15px;">' + result.createDate + '|' +  result.roomName + '</li>'
+		    		  + '<li style="padding:10px;">' + result.content + '</li>'
+		    		  + '<li>' + result.tag + '</li>'
+		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
+					
+					
+					  $('.review-area').html(value);
+					  
+			},
+			error : function(){
+				console.log('실패');
+			}
+		})
     })
     
     </script>

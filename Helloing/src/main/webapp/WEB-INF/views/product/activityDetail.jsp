@@ -101,12 +101,6 @@
 				</div>
 				<hr>
 
-				<div class="explanation">
-					<div class="title"><span>이용안내</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
-				</div>
-				<hr>
-
 				<div>
 					<h3 class="reviewtitle">후기 ${ fn:length(actReviewList) }</h3>
 					<div class="reviewstar">

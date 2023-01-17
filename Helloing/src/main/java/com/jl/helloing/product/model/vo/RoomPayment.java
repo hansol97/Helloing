@@ -32,5 +32,10 @@ public class RoomPayment {
     private String attachment; // 첨부파일.. ㅎ...
 
     private String memId;
+    
+    private int dday; //startDate-sysdate
+    
+    private String phone;
+    private String email;
 
 }
