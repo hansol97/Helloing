@@ -220,6 +220,7 @@ public class BusinessController {
 	
     
     // 액티비티 수정 (UPDATE)
+	
     
     
     // 액티비티 삭제 (UPDATE)
@@ -361,7 +362,7 @@ public class BusinessController {
 	public String goUpdateAccom() {
 		return "business/updateAccomm";
 	}
-	// 액티비티 수정하기
+	// 액티비티 수정하기화면으로 이동
 	@RequestMapping("goUpdateAct.bu")
 	public String goUpdateActivity() {
 		return "business/updateActivity";
@@ -457,15 +458,6 @@ public class BusinessController {
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// 카카오 주소에서 좌표받아오기 컨트롤러
     private static String GEOCODE_URL="http://dapi.kakao.com/v2/local/search/address.json?query=";

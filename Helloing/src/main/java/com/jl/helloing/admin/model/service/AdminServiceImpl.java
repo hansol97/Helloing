@@ -191,6 +191,16 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.searchBusinessList(sqlSession, pi, map);
 	}
 
+	@Override
+	public int searchActPayListCount(String keyword) {
+		return adminDao.searchActPayListCount(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<TicketPayment> searchActPaymentList(PageInfo pi, String keyword) {
+		return adminDao.searchActPaymentList(sqlSession, pi, keyword);
+	}
+
 	
 
 	

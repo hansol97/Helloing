@@ -318,10 +318,10 @@ table.type02 td {
                     <input type="hidden" name="memNo" id="memNo" value="${ sessionScope.loginUser.memNo }">
                    	<c:choose>
                    		<c:when test="${ not empty sessionScope.loginCompany.businessNo }">
-                    		<input type="hidden" name="qnaSort" value="기업회원">
+                    		<input type="hidden" name="qnaSort" value="기업">
                    		</c:when>
                    		<c:otherwise>
-                   			<input type="hidden" name="qnaSort" value="일반회원">
+                   			<input type="hidden" name="qnaSort" value="일반">
                    		</c:otherwise>
                    	</c:choose>
                     <table class="type02">
