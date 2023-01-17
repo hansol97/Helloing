@@ -372,12 +372,7 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-<<<<<<< HEAD
-		//ArrayList<RoomPayment> list = memberService.accommBook(memNo);
-=======
-//		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
->>>>>>> 35c29022082c0f36e4c7316b240c0f19ee6be9a0
-		ArrayList<RoomPayment> list = new ArrayList();
+		ArrayList<RoomPayment> list = memberService.accommBook(memNo);
 		
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         int today = Integer.parseInt(dateFormat.format(new Date()));
@@ -387,8 +382,6 @@ public class MemberController {
 			for(int i=0; i<list.size(); i++) {
 				int startDate = Integer.parseInt(list.get(i).getStartDate().replace("-", ""));
 				
-				System.out.println(startDate);
-				System.out.println("오늘 : " + today);
 				if(list.get(i).getStatus().equals("Y")) {
 					if(today >= startDate) {
 						if(list.get(i).getCount()==0) {
@@ -399,7 +392,6 @@ public class MemberController {
 					}
 				}
 			}
-			System.out.println(list);
 			mv.addObject("list", list);
 			mv.setViewName("member/accommBook");
 		}else {
@@ -417,6 +409,7 @@ public class MemberController {
 		
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
+		System.out.println(memNo);
 		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
 		
 		if(list != null) {
