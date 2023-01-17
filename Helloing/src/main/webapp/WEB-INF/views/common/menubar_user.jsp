@@ -204,6 +204,7 @@
     height: 400px;
 
     padding: 40px;
+    z-index: 100;
 
     
     /* text-align: center; */
