@@ -68,7 +68,7 @@
 	            		<c:when test="${ not empty searchList }">
 	            			<c:forEach items="${ searchList }" var="sl">
 			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-			                        <img src="${ sl.attachment }" width="250" height="250"><br>
+			                        <img src="${ sl.filePath }" width="250" height="250"><br>
 			                        <div>
 			                            <p>${ sl.activityName }<br>
 			                            	⭐${ sl.avg } (${ sl.reviewCount })<br>
@@ -80,7 +80,7 @@
 	            		<c:otherwise>
 	            			<c:forEach items="${ activityList }" var="al">
 			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-			                        <img src="${ al.attachment }" width="250" height="250"><br>
+			                        <img src="${ al.filePath }" width="250" height="250"><br>
 			                        <div>
 			                            <p>${ al.activityName }<br>
 			                            	⭐ ${ al.avg } (${ al.reviewCount })<br>

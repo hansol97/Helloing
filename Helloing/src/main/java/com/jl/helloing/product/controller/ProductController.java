@@ -26,30 +26,11 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	// 숙소 리스트 사진 중복 제거용 메소드
-	public ArrayList<Accomm> removeAcArray(ArrayList<Accomm> list) {
-		
-		for(int i = 0; i < list.size(); i++) {
-			if(i+1 != list.size()) {
-				if(list.get(i).getAccommNo() == list.get(i+1).getAccommNo()) {
-					list.remove(i+1);
-					i--;
-				}
-			} else { 
-				break;
-			}
-		}
-		
-		return list;
-	}
-
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {
 		
-		ArrayList<Accomm> acList = removeAcArray(productService.selectAcList());
-		
-		mv.addObject("acList", acList)
+		mv.addObject("acList", productService.selectAcList())
 		  .setViewName("product/accommMain");
 		
 		return mv;
@@ -59,11 +40,10 @@ public class ProductController {
 	@RequestMapping("search.accomm")
 	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
 		
-		ArrayList<Accomm> list = removeAcArray(productService.searchAccomm(ac));
+		ArrayList<Accomm> list = productService.searchAccomm(ac);
 		
 		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
-			ArrayList<Accomm> anoList = removeAcArray(productService.selectAcList());
-			mv.addObject("anoList", anoList);
+			mv.addObject("anoList", productService.selectAcList());
 		} else {
 			mv.addObject("accommList", list);
 		}
@@ -144,8 +124,9 @@ public class ProductController {
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
 		
-		ArrayList<Activity> actList = productService.selectActList();
+		//ArrayList<Activity> actList = productService.selectActList();
 		
+		/*
 		for(int i = 0; i < actList.size(); i++) {
 			if(i+1 != actList.size()) {
 				if(actList.get(i).getActivityNo() == actList.get(i+1).getActivityNo()) {
@@ -156,8 +137,9 @@ public class ProductController {
 				break;
 			}
 		}
+		*/
 		
-		mv.addObject("actList", actList)
+		mv.addObject("actList", productService.selectActList())
 		  .setViewName("product/activityMain");
 		
 		return mv;
@@ -166,7 +148,6 @@ public class ProductController {
 	// 액티비티 검색
 	@RequestMapping("search.activity")
 	public ModelAndView searchActivity(String keyword, ModelAndView mv) {
-		System.out.println(keyword);
 		
 		ArrayList<Activity> searchList = productService.searchActivity(keyword);
 		
@@ -190,7 +171,7 @@ public class ProductController {
 		
 		Activity act = productService.selectActDetail(activityNo);
 		ArrayList<Attachment> photo = productService.selectActPhotoList(activityNo); // 사진 전체
-		ArrayList<Attachment> photoList = new ArrayList();
+		ArrayList<Attachment> photoList = new ArrayList<Attachment>();
 		
 		mv.addObject("photo", photo.get(0));
 		

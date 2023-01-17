@@ -30,7 +30,7 @@
         	<c:forEach items="${ actList }" var="a">
         		<div class="productbox">
                     <input type="hidden" name="activityNo" value="${ a.activityNo }">
-	                <img src="${ a.attachment }" width="240" height="200">
+	                <img src="${ a.filePath }" width="240" height="200">
 	                <p><span class="activityName">${ a.activityName }</span><br>
 	                    	⭐⭐⭐⭐⭐ ${ a.reviewCount }<br>
 	                    ${ a.rowPrice }원 ~
