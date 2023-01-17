@@ -77,7 +77,7 @@
 								<input type="hidden" name="roomNo" value="${ r.roomNo }">
 								<input type="hidden" name="price" value="${ r.price }">
 								<div class="first">
-									<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+									<img src="${ r.attachment }" width="250" height="160">
 									<input type="hidden" name="roomName" value="${ r.roomName }">
 									<p><span name="roomName">${ r.roomName }</span><br>
 										최대 ${ r.capacity }인</p>

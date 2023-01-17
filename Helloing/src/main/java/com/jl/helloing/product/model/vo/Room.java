@@ -12,5 +12,5 @@ public class Room {
 	 private int price;//PRICE	NUMBER
      private String status;
 
-	
+	 private String attachment;
 }
