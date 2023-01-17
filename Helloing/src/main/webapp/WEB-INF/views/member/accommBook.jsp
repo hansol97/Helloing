@@ -75,6 +75,10 @@ pageEncoding="UTF-8"%>
 	.modalBtn a{
 		padding : 10px;
 	}
+	#table .accName:hover{
+		cursor : pointer;
+		text-decoration : underline;
+	}
 	
 </style>
 </head>

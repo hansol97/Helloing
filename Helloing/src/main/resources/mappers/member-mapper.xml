@@ -226,7 +226,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     AND ORDER_NO = orderNo) count
                 ,  (SELECT SUM(PAYMENT_AMOUNT)
                     FROM TICKET_PAYMENT
-                    WHERE ORDER_NO = orderNo) paymentAmount
+                    WHERE ORDER_NO = orderNo) ticketSum
         FROM (                
                 SELECT 
                         T.ORDER_NO orderNo
@@ -243,7 +243,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 WHERE 
                     MEM_NO = #{ memNo }
                  ORDER 
-                    BY paymentDate DESC) O;	
+                    BY paymentDate DESC) O
 	</select>
 	
 	

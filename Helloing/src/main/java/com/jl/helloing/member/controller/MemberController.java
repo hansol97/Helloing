@@ -412,6 +412,7 @@ public class MemberController {
 		System.out.println(memNo);
 		ArrayList<TicketPayment> list = memberService.activityBook(memNo);
 		
+		System.out.println(list);
 		if(list != null) {
 			for(int i=0; i<list.size(); i++) {
 
