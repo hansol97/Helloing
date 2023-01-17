@@ -109,8 +109,7 @@ public class MemberServiceImpl implements MemberService{
 	//액티비티예약디테일
 	@Override
 	public TicketPayment activityBookDetail(int orderNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.activityBookDetail(orderNo, sqlSession);
 	}
 	
 	

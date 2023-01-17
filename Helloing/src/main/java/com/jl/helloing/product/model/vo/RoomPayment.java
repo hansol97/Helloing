@@ -34,5 +34,8 @@ public class RoomPayment {
     private String memId;
     
     private int dday; //startDate-sysdate
+    
+    private String phone;
+    private String email;
 
 }
