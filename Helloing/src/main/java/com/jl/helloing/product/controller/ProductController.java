@@ -58,12 +58,8 @@ public class ProductController {
 	// 숙소 검색
 	@RequestMapping("search.accomm")
 	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
-		System.out.println("카테고리 : " + ac.getCategory());
-		System.out.println("검색어 : " + ac.getAccommName());
 		
 		ArrayList<Accomm> list = removeAcArray(productService.searchAccomm(ac));
-		
-		System.out.println(list);
 		
 		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
 			ArrayList<Accomm> anoList = removeAcArray(productService.selectAcList());
@@ -169,8 +165,21 @@ public class ProductController {
 	
 	// 액티비티 검색
 	@RequestMapping("search.activity")
-	public String searchActivity() {
-		return "product/activitySearch";
+	public ModelAndView searchActivity(String keyword, ModelAndView mv) {
+		System.out.println(keyword);
+		
+		ArrayList<Activity> searchList = productService.searchActivity(keyword);
+		
+		if(searchList.isEmpty()) { // 리스트가 비어있다면 다른 리스트 불러오기 
+			mv.addObject("activityList", productService.selectActList());
+		} else {
+			mv.addObject("searchList", searchList);
+		}
+		
+		mv.addObject("keyword", keyword)
+		  .setViewName("product/activitySearch");
+		
+		return mv;
 	}
 	
 	// 액티비티 상세 페이지
