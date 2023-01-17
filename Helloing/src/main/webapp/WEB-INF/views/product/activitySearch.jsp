@@ -17,14 +17,15 @@
 	<div class="inner">
         <div class="top-content">
             <form action="search.activity">
-                <input type="text" name="keyword" value="${ keyword }"><button>검색</button>
+                <input type="text" name="keyword" value="${ keyword }">
+				<button id="btn-search" type="button" onclick="search();">검색</button>
             </form>
         </div>
         
         <div class="middle-content">
-        
+        <%--
             <div class="side-bar">
-                <%--<span>필터</span>
+                <span>필터</span>
                 <span id="reset">전체 초기화</span>
 
                 <hr>
@@ -41,18 +42,18 @@
                     <input type="radio" name="star" id="5star"><label for="5star">5점만</label><br>
                 </div>
 
-                <hr>--%>
+                <hr>
 
             </div>
-             
+             --%>
             
-            <div class="main">
+			<div class="main">
             	<c:choose>
             		<c:when test="${ not empty searchList }">
             			<h4>'${ keyword }' 검색 결과 | 총 ${ fn:length(searchList) }개</h4>
             		</c:when>
             		<c:otherwise>
-            			<h4>검색된 결과가 없습니다.🥲<br>다른 액티비티는 어떠세요?</h4>
+            			<h4>'${ keyword }' 검색 결과가 없습니다.🥲<br>다른 액티비티는 어떠세요?</h4>
             		</c:otherwise>
             	</c:choose>
             	
@@ -68,7 +69,7 @@
 	            		<c:when test="${ not empty searchList }">
 	            			<c:forEach items="${ searchList }" var="sl">
 			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-			                        <img src="${ sl.attachment }" width="250" height="250"><br>
+			                        <img src="${ sl.filePath }" width="250" height="250"><br>
 			                        <div>
 			                            <p>${ sl.activityName }<br>
 			                            	⭐${ sl.avg } (${ sl.reviewCount })<br>
@@ -80,7 +81,7 @@
 	            		<c:otherwise>
 	            			<c:forEach items="${ activityList }" var="al">
 			            		<div class="productbox"> <!-- for문 사용해서 계속 뿌려줄거임 페이징바 X -->
-			                        <img src="${ al.attachment }" width="250" height="250"><br>
+			                        <img src="${ al.filePath }" width="250" height="250"><br>
 			                        <div>
 			                            <p>${ al.activityName }<br>
 			                            	⭐ ${ al.avg } (${ al.reviewCount })<br>
@@ -96,6 +97,6 @@
         </div>
 		
 	</div>
-
+	<script type="text/javascript" src="resources/js/product/activitySearch.js"></script>
 </body>
 </html>

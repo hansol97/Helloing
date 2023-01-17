@@ -19,7 +19,8 @@
 	
         <div class="top-content">
             <form action="search.activity">
-                <input type="text" name="keyword" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요"><button>검색</button>
+                <input type="text" name="keyword" placeholder="&nbsp&nbsp&nbsp🔍&nbsp 상품을 검색해보세요">
+				<button type="button" id="btn-search" onclick="search();">검색</button>
             </form>
         </div>
 
@@ -30,7 +31,7 @@
         	<c:forEach items="${ actList }" var="a">
         		<div class="productbox">
                     <input type="hidden" name="activityNo" value="${ a.activityNo }">
-	                <img src="${ a.attachment }" width="240" height="200">
+	                <img src="${ a.filePath }" width="240" height="200">
 	                <p><span class="activityName">${ a.activityName }</span><br>
 	                    	⭐⭐⭐⭐⭐ ${ a.reviewCount }<br>
 	                    ${ a.rowPrice }원 ~
