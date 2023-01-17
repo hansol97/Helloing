@@ -18,7 +18,7 @@ public class ActivityReview {
 	private String ticketName;
 	private double avg;
 	
-	
-	
-	
+	// 첨부파일
+	private String originName; // 원본파일 이름
+	private String filePath; // filePath + changeName 
 }
