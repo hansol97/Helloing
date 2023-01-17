@@ -457,13 +457,21 @@ public class MemberController {
 		return mv;
 	}
 	
-	//숙소 예약 상세 조회
+	//엑티비티 예약 상세 조회
 	@RequestMapping("activityBookDetail.hj")
 	public ModelAndView activityBookDetail(ModelAndView mv, int orderNo) {
 		
-		//memberService.activityBookDetail(orderNo);
-		mv.setViewName("member/activityBookDetail");
+		TicketPayment tp = memberService.activityBookDetail(orderNo);
 		
+		if(tp!=null) {
+			mv.addObject("list", productService.selectActPhotoList(tp.getActivityNo()));
+			System.out.println(productService.selectActPhotoList(tp.getActivityNo()));
+			mv.addObject("tp", tp);
+			mv.setViewName("member/activityBookDetail");
+		}else {
+			mv.addObject("errorMsg", "상세 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
 		return mv;
 	}
 	
