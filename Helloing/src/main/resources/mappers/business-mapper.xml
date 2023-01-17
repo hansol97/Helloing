@@ -266,7 +266,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 TICKET_NO = #{ ticketNo }
 	</update> 
 
-
+	<!-- 숙소 수정 -->
+	<!-- 객실 수정 -->
+	<!-- 액티비티 수정 -->
+	<!-- 티켓 수정 -->
 
 
 
