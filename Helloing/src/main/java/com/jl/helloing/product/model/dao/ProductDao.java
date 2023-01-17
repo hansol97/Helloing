@@ -41,6 +41,10 @@ public class ProductDao {
 		return sqlSession.insert("productMapper.insertTicketPayment", list);
 	}
 	
+	public int decreaseCount(SqlSessionTemplate sqlSession, List<TicketPayment> list) {
+		return sqlSession.update("productMapper.decreaseCount", list);
+	}
+	
 	public ActivityWish checkActWish(SqlSessionTemplate sqlSession, ActivityWish aw) {
 		return sqlSession.selectOne("productMapper.checkActWish", aw);
 	}

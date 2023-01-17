@@ -246,7 +246,9 @@ public class ProductController {
 		// ticket payment 테이블에 행추가
 		int result = productService.insertTicketPayment(tk.getTicketPayment());
 		// ticket 테이블에 티켓 카운트 -1
-		//productService.decreaseCount(tk.getTicketPayment());
+		if(result > 0) {
+			int resultcount = productService.decreaseCount(tk.getTicketPayment());
+		}
 		
 		System.out.println(result);
 		
