@@ -16,7 +16,7 @@ $(function(){
 			if(ticketcount > 0) $(this).siblings('.count').text(ticketcount - 1);
 		}
 		else{ // + 버튼을 눌렀을 때
-			if($(this).siblings('.count').text() > maxCapacity){
+			if($(this).siblings('.count').text() == maxCapacity){
 				alert('최대수량입니다.');
 				$(this).siblings('.count').text(maxCapacity);
 			}
