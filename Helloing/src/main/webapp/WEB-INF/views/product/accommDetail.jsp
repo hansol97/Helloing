@@ -22,7 +22,6 @@
 				<div class="top-info">
 					<input name="accommNo" value="${ ac.accommNo }" type="hidden">
 					<sapn class="accommName" name="accName">${ ac.accommName }</sapn>
-					<button>🗺️ 위치보기</button>
 				</div>
 				<div>
 					<p onclick="selectReview();" >${ ac.grade }성급<br>
@@ -195,6 +194,9 @@
 			</div>
 
 			<div class="side-bar">
+				<div id="map">
+
+				</div>
 				<div class="accommselectbox">
 					<p>1박 <span>${ ac.rowPrice }원 ~</span></p>
 					<button onclick="selectRoom();">객실 선택하기</button> <!-- 버튼 누르면 객실 선택하는 div로 이동 -->
@@ -219,9 +221,38 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=845d6f2d0a76ec3940c1f29877d83414"></script>
+	
 
 	<div style="height: 300px;"></div>
 	
+	
+
+
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = { 
+				center: new kakao.maps.LatLng(${ ac.lat }, ${ ac.lng }), // 지도의 중심좌표
+				draggable: false,
+				level: 3 // 지도의 확대 레벨
+			};
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(${ ac.lat }, ${ ac.lng }); 
+		
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position: markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+		// marker.setMap(null);    
+	</script>
 	<script type="text/javascript" src="resources/js/product/accommDetail.js"></script>
 </body>
 </html>

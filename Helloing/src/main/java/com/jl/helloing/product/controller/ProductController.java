@@ -61,10 +61,10 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
+		
 		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
-		
 		ArrayList<String> photo = new ArrayList<String>();
-		
+
 		for(int i = 0; i < at.size(); i++) {
 			photo.add(at.get(i).getAttachment());
 		}
