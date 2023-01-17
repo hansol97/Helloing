@@ -21,5 +21,9 @@ public class TicketPayment {
 	private int ticketPrice;
 	private String status;
 	private String businessName;
+	
+	private String memName;
+	private String phone;
+	private String email;
 }
   

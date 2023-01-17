@@ -181,6 +181,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	   TICKET
 		 WHERE
 		 	   ACTIVITY_NO = #{ activityNo }
+		   AND
+		       <![CDATA[CAPACITY > 0]]>
 	</select>
 	
 	<!-- 액티비티에 달린 리뷰들 -->
@@ -247,6 +249,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				   )
 		</foreach>
 	</insert>
+	
+	<!-- 티켓 카운트 감소 -->
+	<update id="decreaseCount" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" index="index" open="DECLARE BEGIN" close=";END;">
+			UPDATE 
+			       TICKET
+			   SET
+			   	   CAPACITY = CAPACITY - #{ item.count }
+			 WHERE
+			 	   TICKET_NO = #{ item.ticketNo }
+		</foreach>
+	</update>
 	
 	<!-- 숙소 메인에 뿌려줄 숙소 리스트들 --> <!-- 첨부파일도 넣어줘야함 -->
 	<select id="selectAcList" resultMap="AccommResultSet">
@@ -360,6 +374,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
 			  ,TAG
 			  ,STAR
+			  ,FILEPATH
 		  FROM
 		       ACCOMM_REVIEW AR
 		  JOIN

@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_Id = #{ checkId }
 	</select>
 	
-	
+	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="member" resultMap="memberResultSet" >
 		select
 				mem_id
@@ -135,7 +135,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	       and
 	       		status = 'Y'			  		
 	</select>
-	 
+	
+	<!-- 비밀번호 찾기 --> 
 	<select id="findPwd" parameterType="member" resultMap="memberResultSet">
 		select
 				mem_no,
@@ -152,6 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	
 	</select>
 	
+	<!-- 임시비밀번호 등록 -->
 	<update id="updatePwd" parameterType="member">
 		update 
 				member
@@ -161,6 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		mem_id = #{ memId }
 	</update>
 
+	<!-- 1:1문의 등록 -->
 	<insert id="insertQna" parameterType="qna" >
 		insert
 		  into
@@ -187,10 +190,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sysdate
 				)	  		
 	</insert>
+	
+	<!-- 1:1문의 리스트 -->
+	<select id="selectQna" parameterType="_int" resultMap="qnaResultSet" >
+		select
+				qna_No,
+				qna_sort,
+				qna_q,
+				category,
+				qna_title,
+				mem_id,
+				to_char(qna_date, 'YYYY-MM-DD') as "QNA_DATE",
+				qna_date,
+				ans_yn
+		  from
+		  		qna q
+		  join
+		  		member m on(m.mem_no = q.mem_no)
+		 where
+		 		q.mem_no = #{ memNo }
+	</select>
+
+
 
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 여기부터 혜진 -->
+	<!-- 숙소 예약 리스트 -->
 	<select id="accommBook" parameterType="_int" resultType="roomPayment">
         SELECT O.*,  
                 (SELECT COUNT(*) 
@@ -219,6 +245,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
+	<!-- 액티비티 예약 리스트 -->
 	<select id="activityBook" parameterType="_int" resultType="ticketPayment">
         SELECT DISTINCT
                 O.*
@@ -247,6 +274,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
+	<!-- 숙소 예약 상세 페이지 -->
 	<select id="accommBookDetail" parameterType="_int" resultType="roomPayment">
       SELECT 
       		A.ACCOMM_NO accommNo
@@ -272,9 +300,112 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    WHERE 
 	        ORDER_NO = #{ orderNo }
 	</select>
-	
-	
-	
+	<!-- 액티비티 예약 상세페이지 -->
+	<select id="activityBookDetail" parameterType="_int" resultType="ticketPayment">
+	          SELECT 
+                    DISTINCT
+                    A.ACTIVITY_NO activityNo
+                    , ACTIVITY_NAME activityName
+                    , ORDER_NO orderNo
+                    , (WITH TIC AS (
+                                        SELECT 
+                                                TICKET_NAME ticketName 
+                                        FROM 
+                                           TICKET
+                                        JOIN 
+                                            TICKET_PAYMENT USING(TICKET_NO) 
+                                        WHERE 
+                                            ORDER_NO =#{ orderNo }
+                                    )
+                        SELECT LISTAGG(ticketName, ',') WITHIN GROUP (ORDER BY ticketName) FROM TIC)ticketName
+                      ,	( SELECT 
+                                  COUNT(*)
+                          FROM 
+                                 TICKET
+                          JOIN 
+                               TICKET_PAYMENT USING(TICKET_NO) 
+                           WHERE 
+                                ORDER_NO = #{ orderNo }) count
+                    , M.MEM_NAME memName
+                    , M.PHONE phone
+                    , M.EMAIL email
+                    ,  (SELECT SUM(PAYMENT_AMOUNT)
+                        FROM TICKET_PAYMENT
+                        WHERE ORDER_NO =#{ orderNo }) ticketSum	
+                    , TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate        
+                FROM 
+                    MEMBER M
+                JOIN
+                    TICKET_PAYMENT TP ON(M.MEM_NO=TP.MEM_NO)
+                JOIN
+                    TICKET T ON(TP.TICKET_NO=T.TICKET_NO)
+                JOIN
+                    ACTIVITY A ON(T.ACTIVITY_NO = A.ACTIVITY_NO)
+                WHERE 
+                    ORDER_NO = #{ orderNo }
+	</select>
+	<!-- 숙소 리뷰 조회 -->
+	<select id="selectAccommReview" parameterType="_int" resultType="acReview">
+            
+     SELECT   A.*, 
+            (SELECT 
+                    ROOM_NAME
+                FROM 
+                    ROOM
+                WHERE 
+                    ROOM_NO = roomNo)roomName
+        FROM(    
+                SELECT DISTINCT
+                        REVIEW_NO reviewNo
+                        ,ACCOMM_NAME accommName
+                        ,MEM_NO memNo
+                        ,AR.ROOM_NO roomNo
+                        ,REVIEW_CONTENT reviewContent
+                        ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
+                        ,TAG tag
+                        ,STAR star
+                        ,FILE_PATH filePath
+                        ,ORIGIN_NAME originName
+                FROM 
+                    ACCOMM_REVIEW AR
+                JOIN 
+                    ACCOMM A USING(ACCOMM_NO)
+                JOIN 
+                    ROOM R USING(ACCOMM_NO)
+                WHERE ORDER_NO = #{ orderNo }) A
+	</select>
+	<select id="selectActivityReview" parameterType="_int" resultType="actReview">
+     SELECT   A.*, 
+             (WITH TIC AS (
+                            SELECT 
+                                    TICKET_NAME ticketName 
+                            FROM 
+                               TICKET
+                            JOIN 
+                                TICKET_PAYMENT USING(TICKET_NO) 
+                            WHERE 
+                                ORDER_NO =  #{ orderNo }
+                             )
+                SELECT LISTAGG(ticketName, ',') WITHIN GROUP (ORDER BY ticketName) FROM TIC)ticketName
+        FROM(    
+                SELECT DISTINCT
+                        REVIEW_NO reviewNo
+                        ,ACTIVITY_NAME activityName
+                        ,MEM_NO memNo
+                        ,REVIEW_CONTENT reviewContent
+                        ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
+                        ,TAG tag
+                        ,STAR star
+                        ,FILE_PATH filePath
+                        ,ORIGIN_NAME originName
+                FROM 
+                    ACTIVITY_REVIEW AR
+                JOIN 
+                    ACTIVITY A USING(ACTIVITY_NO)
+                JOIN 
+                    TICKET T USING(ACTIVITY_NO)
+                WHERE ORDER_NO = #{ orderNo }) A
+	</select>
 	
 	
 	
@@ -322,6 +453,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
+	<!-- 회원탈퇴 -->
+	<update id="memberDelete" parameterType="_int">
+	UPDATE
+		MEMBER
+	SET
+		STATUS = 'N'
+	WHERE 
+		MEM_NO = #{ memNo }
+	</update>
+	
 	<!-- 찜한 숙소 조회 -->
 	<select id="wishAccommList" parameterType="_int" resultType="AccommWish">			
 		SELECT 

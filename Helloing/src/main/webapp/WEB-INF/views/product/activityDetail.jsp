@@ -50,12 +50,13 @@
 									<div class="ticket-info">
 										<p><span class="ticketName">${ t.ticketName }</span><br>
 											${ t.startDate } ~ <span id="endDate">${ t.endDate }</span></p>
-										<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
-									</div>
-									<div class="ticket-price">
-										<span>${ t.price }원</span>
-									</div>
-									<div class="ticket-count">
+											<input type="hidden" name="ticketNo" value="${ t.ticketNo}">
+										</div>
+										<div class="ticket-price">
+											<span>${ t.price }원</span>
+										</div>
+										<div class="ticket-count">
+										<input type="hidden" name="capacity" value="${ t.capacity }">
 										<button class="btn-minus" type="button">-</button>
 										<span class="count">0</span>
 										<button class="btn-plus" type="button">+</button>
@@ -98,12 +99,6 @@
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
 					<div><p>${ act.activityContent }</p></div>
-				</div>
-				<hr>
-
-				<div class="explanation">
-					<div class="title"><span>이용안내</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
 				</div>
 				<hr>
 

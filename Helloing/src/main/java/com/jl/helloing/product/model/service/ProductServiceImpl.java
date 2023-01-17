@@ -52,6 +52,10 @@ public class ProductServiceImpl implements ProductService {
 	public int insertTicketPayment(List<TicketPayment> list) {
 		return productDao.insertTicketPayment(sqlSession, list);
 	}
+	
+	public int decreaseCount(List<TicketPayment> list) {
+		return productDao.decreaseCount(sqlSession, list);
+	}
 
 	@Override
 	public ActivityWish checkActWish(ActivityWish aw) {

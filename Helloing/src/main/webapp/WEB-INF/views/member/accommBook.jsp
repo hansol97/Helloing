@@ -79,6 +79,10 @@ pageEncoding="UTF-8"%>
 		cursor : pointer;
 		text-decoration : underline;
 	}
+	.review-accomm-name{
+	    font-size: 20px;
+    	font-weight: 600;
+    }
 	
 </style>
 </head>
@@ -119,7 +123,10 @@ pageEncoding="UTF-8"%>
 	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
 	            			</c:when>
 	            			<c:when test="${a.status eq 'S'}">
-	            				<td><a href="#ex2" rel="modal:open">후기보기</a></td>
+	            				<td>
+		            				<a class="select-review" href="#ex2" rel="modal:open">후기보기</a>
+		            				<input type="hidden" name="orderNo" value="${a.orderNo }">
+	            				</td>
 	            			</c:when> 
 	            			<c:when test="${a.status eq 'Y'}">
 	              				 <td><a href="#ex1" rel="modal:open">예약취소</a></td>
@@ -164,17 +171,8 @@ pageEncoding="UTF-8"%>
     
 		 <div id="ex2" class="modal">
 		    	<br>
-			    <ul>
-		    		<h5 style="font-weight:600; font-size:25px;">내 후기</h5>
-		    		<hr>
-		    		<li><h3>[팔로우미투어]가우디투어</h3></li>
-		    		<li>⭐⭐⭐⭐⭐<li>
-		    		<li style="font-size: 15px;">2023-01-01 | 성인 2매</li>
-		    		<li style="padding:10px;">가이드분이 친절하셨어요~</li>
-		    		<li><span>친절해요</span><span>위치가 찾기 쉬워요</span></li>
-		    		<li style="display:flex;"><img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
-		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px">
-		    		<img src="/helloing/resources/img/logo_outline.png" alt="" width="100px"></li>
+			    <ul class="review-area">
+		    	
 		    	</ul>
 		    	<br>
 
@@ -191,6 +189,40 @@ pageEncoding="UTF-8"%>
     		
     		location.href ="accomBookDetail.hj?orderNo="+orderNo;
     	})
+    })
+    
+    $('.select-review').click(function(){
+		
+		$.ajax({
+			url : 'selectAccommReview.hj',
+			data : {orderNo : $(this).siblings('input[name=orderNo]').val()},
+			success : function(result){
+				
+				let star = '';
+				for(var i = 0; i<result.star; i++){
+					star += '⭐'
+				}
+				
+				let value = '';
+				
+				console.log(result);
+				value += '<h5 style="font-weight:600; font-size:25px;">내 후기</h5>'
+		    		  + '<hr>'
+		    		  + '<li><h3 class="review-accomm-name">' + result.accommName + '</h3></li>'
+		    		  + '<li style="font-size: 15px;">' + result.createDate + '|' +  result.roomName + '</li>'
+		    		  + '<li>' + star + '</li>'
+		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
+		    		  + '<li>' + result.tag + '</li>'
+		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
+					
+					
+					  $('#ex2 .review-area').html(value);
+					  
+			},
+			error : function(){
+				console.log('실패');
+			}
+		})
     })
     
     </script>

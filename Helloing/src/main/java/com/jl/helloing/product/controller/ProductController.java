@@ -61,10 +61,10 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
+		System.out.println(ac);
 		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
-		
 		ArrayList<String> photo = new ArrayList<String>();
-		
+
 		for(int i = 0; i < at.size(); i++) {
 			photo.add(at.get(i).getAttachment());
 		}
@@ -181,7 +181,6 @@ public class ProductController {
 			for(int i = 0; i < photo.size(); i++) { // 새로운 리스트에 추가하기
 				photoList.add(photo.get(i));
 			}
-			
 
 			mv.addObject("photoList", photoList); // mv에 담기
 		}
@@ -239,6 +238,8 @@ public class ProductController {
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
+		System.out.println(tk.getTicketPayment());
+		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
 		}
@@ -246,7 +247,9 @@ public class ProductController {
 		// ticket payment 테이블에 행추가
 		int result = productService.insertTicketPayment(tk.getTicketPayment());
 		// ticket 테이블에 티켓 카운트 -1
-		//productService.decreaseCount(tk.getTicketPayment());
+		if(result > 0) {
+			int resultcount = productService.decreaseCount(tk.getTicketPayment());
+		}
 		
 		System.out.println(result);
 		

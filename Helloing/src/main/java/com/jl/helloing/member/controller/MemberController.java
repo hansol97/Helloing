@@ -41,6 +41,8 @@ import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.service.ProductService;
+import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -338,12 +340,17 @@ public class MemberController {
 		
 		return "member/login";
 	}
-	// 1:1문의(사용자)
-	@RequestMapping("QAList.me")
-	public String memberQAListView() {
-		return "member/memberQAListView";
-	}
-	// 1:문의 등록
+	
+	
+	// 승준 ----- 1:1 문의 부분 -------- 
+	
+//	// 1:1문의(사용자)
+//	@RequestMapping("QAList.me")
+//	public String memberQAListView() {
+//		return "member/memberQAListView";
+//	}
+	
+	// 1:1 문의 등록
 	@RequestMapping("insertQna.me")
 	public ModelAndView insertQna(QNA qna, ModelAndView mv, HttpSession session) {
 		
@@ -355,17 +362,32 @@ public class MemberController {
 		if(result > 0) {
 			mv.addObject("memNo", memNo);
 			session.setAttribute("alertMsg", "1:1문의가 등록되었습니다.");
-			mv.setViewName("redirect:QAList.me");
+			mv.setViewName("redirect:selectQna.me");
 			
 		} else {
 			session.setAttribute("alertMsg", "등록이 실패했습니다.");
-			mv.setViewName("redirect:QAList.me");
+			mv.setViewName("redirect:selectQna.me");
 		}	
 		return mv;
 	}
+	// 1:1 문의 리스트
+	@RequestMapping("selectQna.me")
+	public ModelAndView selectQna(QNA qna, ModelAndView mv, HttpSession session) {
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		ArrayList<QNA> list = memberService.selectQna(memNo);
 		
-	//
-	
+		if(list != null) {
+			//System.out.println(list);
+			mv.addObject("list", list);
+			mv.setViewName("member/memberQAListView");
+		} else {
+			mv.setViewName("member/memberQAListVieqw");
+		}
+		
+		
+		
+		return mv;
+	}
 
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
@@ -457,15 +479,63 @@ public class MemberController {
 		return mv;
 	}
 	
-	//숙소 예약 상세 조회
+	//엑티비티 예약 상세 조회
 	@RequestMapping("activityBookDetail.hj")
 	public ModelAndView activityBookDetail(ModelAndView mv, int orderNo) {
 		
-		//memberService.activityBookDetail(orderNo);
-		mv.setViewName("member/activityBookDetail");
+		TicketPayment tp = memberService.activityBookDetail(orderNo);
 		
+		if(tp!=null) {
+			mv.addObject("list", productService.selectActPhotoList(tp.getActivityNo()));
+			System.out.println(productService.selectActPhotoList(tp.getActivityNo()));
+			mv.addObject("tp", tp);
+			mv.setViewName("member/activityBookDetail");
+		}else {
+			mv.addObject("errorMsg", "상세 페이지요청 실패");
+			mv.setViewName("common/errorPage");
+		}
 		return mv;
 	}
+	
+	//예약 취소
+	
+	
+	
+	
+	//숙소 후기보기
+	@ResponseBody
+	@RequestMapping(value="selectAccommReview.hj",produces="application/json; charset=UTF-8")
+	public String selectAcommReview(int orderNo) {
+		AccommReview review = memberService.selectAcommReview(orderNo);
+		System.out.println(review);
+
+		review.setTag(review.getTag().replace(",", "|"));
+		
+		return new Gson().toJson(review);
+	}
+	
+	//액티비티 후기보기
+	@ResponseBody
+	@RequestMapping(value="selectActivityReview.hj",produces="application/json; charset=UTF-8")
+	public String selectActivityReview(int orderNo) {
+		ActivityReview review = memberService.selectActivityReview(orderNo);
+		System.out.println(review);
+
+		review.setTag(review.getTag().replace(",", "|"));
+		
+		return new Gson().toJson(review);
+	}
+	
+	
+	//후기 작성
+	
+	
+	
+	
+	//후기 삭제
+	
+	
+	
 	
 	//회원정보 조회 - 비밀번호 확인
 	@RequestMapping("checkPwdForm.hj")
@@ -528,6 +598,20 @@ public class MemberController {
 		}else {
 			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
 			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+
+	//회원탈퇴
+	@RequestMapping("deleteMem.hj")
+	public ModelAndView deleteMem(HttpSession session, ModelAndView mv) {
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		if(memberService.memberDelete(memNo)>0) {
+            session.removeAttribute("loginUser");
+            mv.setViewName("redirect:/");
+		}else {
+            mv.addObject("errorMsg", "회원탈퇴실패");
+            mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}
