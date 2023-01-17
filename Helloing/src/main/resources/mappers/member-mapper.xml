@@ -247,7 +247,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
-	
+	<select id="accommBookDetail" parameterType="_int" resultType="roomPayment">
+	SELECT 
+	        ACCOMM_NAME accommName
+	        , TRUNC(START_DATE-SYSDATE)dday
+	        , ORDER_NO orderNo
+	        , (WITH TIC AS (
+					            SELECT 
+					                    TICKET_NAME ticketName 
+					            FROM 
+					               TICKET
+					            JOIN 
+					                TICKET_PAYMENT USING(TICKET_NO) 
+					            WHERE 
+					                ORDER_NO = #{ orderNo }		
+		        			)
+		        SELECT LISTAGG(ticketName, ',') WITHIN GROUP (ORDER BY ticketName) FROM TIC)ticketName
+		      ,	( SELECT 
+					      COUNT(*)
+				  FROM 
+	                     TICKET
+				  JOIN 
+					   TICKET_PAYMENT USING(TICKET_NO) 
+				   WHERE 
+	                    ORDER_NO = #{ orderNo }) count
+	        , TO_CHAR(RP.START_DATE,  'YYYY-MM-DD') startDate
+	        , TO_CHAR(RP.END_DATE,  'YYYY-MM-DD') endDate
+	        , M.MEM_NAME memName
+	        , M.PHONE phone
+	        , M.EMAIL email
+            ,  (SELECT SUM(PRICE)
+                FROM ROOM_PAYMENT
+                WHERE ORDER_NO =#{ orderNo }) ticketSum	
+            , TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate        
+	    FROM 
+	        MEMBER M
+	    JOIN
+	        ROOM_PAYMENT RP ON(M.MEM_NO=RP.MEM_NO)
+	    JOIN
+	        ROOM R ON(RP.ROOM_NO=R.ROOM_NO)
+	    JOIN
+	        ACCOMM A ON(R.ACCOMM_NO = A.ACCOMM_NO)
+	    WHERE 
+	        ORDER_NO = #{ orderNo }		
+	</select>
 	
 	
 	

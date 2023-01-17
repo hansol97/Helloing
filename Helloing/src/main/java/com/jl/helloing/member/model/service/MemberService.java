@@ -62,10 +62,19 @@ public interface MemberService {
 	//액티비티 예약 리스트 조회
 	ArrayList<TicketPayment> activityBook(int memNo);
 	
+	//숙소 예약 상세페이지 조회
+	RoomPayment accommBookDetail(int orderNo);
 	
-	//예약 상세조회
-	Book reservationDetail(int memNo, int orderNo);
-
+	//액티비티 예약 상세페이지 조회
+	TicketPayment activityBookDetail(int orderNo);
+	
+	
+	
+	
+	
+	
+	
+	
 	//비밀번호확인
 	String checkPwd(Member m);
 	
