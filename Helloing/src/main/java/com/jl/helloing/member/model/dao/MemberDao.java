@@ -15,6 +15,7 @@ import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -91,6 +92,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.memberUpdate", m);
 	}
 	
+	public int memberDelete(int memNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.memberDelete", memNo);
+	}
+	
 	public ArrayList<AccommWish> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("memberMapper.wishAccommList", memNo);
 	}
@@ -140,7 +145,6 @@ public class MemberDao {
 	}
 
 	public int insertPlan(Plan p, SqlSessionTemplate sqlSession) {
-		System.out.println(p);
 		return sqlSession.insert("memberMapper.insertPlan", p);
 	}
 	
@@ -192,6 +196,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.selectAccommReview", orderNo);
 	}
 	
+	public ActivityReview selectActivityReview(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectActivityReview", orderNo);
+	}
 	
 	
 	
@@ -214,6 +221,10 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
+
+
 
 
 

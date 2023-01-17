@@ -31,6 +31,7 @@ import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.business.model.vo.BusinessPayment;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.Member;
+import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.Room;
@@ -43,8 +44,9 @@ public class BusinessController {
 	@Autowired
 	private BusinessService businessService;
 
+	@Autowired
+	private ProductService productService;
 
-	
 	
 	
 	
@@ -66,7 +68,7 @@ public class BusinessController {
 		ArrayList<Accomm> accList = new ArrayList<Accomm>();
 		Business loginCompany = (Business) session.getAttribute("loginCompany");// 로그인한 사업자 객체 세션에서 뽑기
 		String businessNo = loginCompany.getBusinessNo();		// 사업자번호 뽑기
-		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 객실 리스트 가져오기
+		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 숙소 리스트 가져오기
 		
 		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
 		ArrayList<Room> roomList = new ArrayList<Room>();
@@ -172,21 +174,40 @@ public class BusinessController {
     
     // 숙소 삭제 (UPDATE)
     @RequestMapping("deleteAccomm.bu")
-    public String deleteAccomm(int accommNo, HttpSession session, String filePath) {
+    public String deleteAccomm(int accommNo, HttpSession session) {
     	
     	int result = businessService.deleteAccomm(accommNo);
     	
-    	if (result > 0) {
+				
+ 
+    	if (result > 0) { // 숙소삭제 성공시  - 숙소 파일 삭제하기
     		
+    		ArrayList<Attachment> atList = productService.selectPhotoList(accommNo);
     		
+    		ArrayList<String> filePathList = new ArrayList<String>();
     		
+    		// attachment 필드들 가져와서 리스트에 집어넣기
+    		for(int i = 0; i < atList.size(); i++) {
+    			filePathList.add( atList.get(i).getAttachment() );
+    		}
+    		for (int j = 0; j < filePathList.size(); j++) {
+				
+    			String filePath = filePathList.get(j); // filePath를 얻었다. 지우자.
+    			
+    			if (!filePath.equals("")) { // 파일이 있으면 지우자
+					new File(session.getServletContext().getRealPath(filePath)).delete();
+				}
+			}
+    		// 숙소에 딸린 방 지우기
+    		int result2 = businessService.deleteRoomA(accommNo); 
     		
+    		if (result2 > 0) { // 방 지워졌으면 방 파일 지우기
+    			
+    			
+    			
+				
+			}
     		
-    		
-//    		if(!filePath.equals("")) {
-//    			new File(session.getServletContext().getRealPath(filePath)).delete();
-//    			
-//    		}
     		session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
 		} else {
 			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
@@ -263,7 +284,7 @@ public class BusinessController {
 	public String InsertRoom(int accommNo ,Room room, MultipartFile[] upfile, HttpSession session, Model model) {
 //		int accommNo = room.getAccommNo();  
 //		int accommNo = 3;   // 이거 만지세요~!
-		room.setAccommNo(accommNo);// 다 하고 되면 빼고 돌려보자.
+//		room.setAccommNo(accommNo);// 다 하고 되면 빼고 돌려보자.
 		System.out.println("accommNo : " + accommNo);
     	System.out.println("upfile : " + upfile);
     	System.out.println("upfile[0] : " + upfile[0]);

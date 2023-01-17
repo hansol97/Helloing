@@ -42,6 +42,7 @@ import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -514,16 +515,29 @@ public class MemberController {
 	
 	
 	
-	//후기보기
+	//숙소 후기보기
 	@ResponseBody
 	@RequestMapping(value="selectAccommReview.hj",produces="application/json; charset=UTF-8")
 	public String selectAcommReview(int orderNo) {
 		AccommReview review = memberService.selectAcommReview(orderNo);
 		System.out.println(review);
 
+		review.setTag(review.getTag().replace(",", "|"));
+		
 		return new Gson().toJson(review);
 	}
 	
+	//액티비티 후기보기
+	@ResponseBody
+	@RequestMapping(value="selectActivityReview.hj",produces="application/json; charset=UTF-8")
+	public String selectActivityReview(int orderNo) {
+		ActivityReview review = memberService.selectActivityReview(orderNo);
+		System.out.println(review);
+
+		review.setTag(review.getTag().replace(",", "|"));
+		
+		return new Gson().toJson(review);
+	}
 	
 	
 	//후기 작성
@@ -597,6 +611,20 @@ public class MemberController {
 		}else {
 			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
 			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+
+	//회원탈퇴
+	@RequestMapping("deleteMem.hj")
+	public ModelAndView deleteMem(HttpSession session, ModelAndView mv) {
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		if(memberService.memberDelete(memNo)>0) {
+            session.removeAttribute("loginUser");
+            mv.setViewName("redirect:/");
+		}else {
+            mv.addObject("errorMsg", "회원탈퇴실패");
+            mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}

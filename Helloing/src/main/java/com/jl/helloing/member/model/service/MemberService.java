@@ -110,6 +110,9 @@ public interface MemberService {
 	//회원 정보 수정
 	int memberUpdate(Member m);
 	
+	//회원 탈퇴
+	int memberDelete(int memNo);
+	
 	//찜한 숙소 조회
 	ArrayList<AccommWish> wishAccommList(int memNo);
 	

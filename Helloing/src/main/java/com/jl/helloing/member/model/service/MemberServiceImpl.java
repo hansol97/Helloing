@@ -137,8 +137,7 @@ public class MemberServiceImpl implements MemberService{
 	//액티비티 리뷰조회
 	@Override
 	public ActivityReview selectActivityReview(int orderNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.selectActivityReview(orderNo, sqlSession);
 	}
 	//숙소 리뷰작성
 	@Override
@@ -192,6 +191,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberUpdate(m, sqlSession);
 	}
 
+	//회원탈퇴
+	@Override
+	public int memberDelete(int memNo) {
+		return memberDao.memberDelete(memNo, sqlSession);
+	}
+	
 	//찜한 숙소 리스트 조회
 	@Override
 	public ArrayList<AccommWish> wishAccommList(int memNo) {
@@ -346,6 +351,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	
+
+
 
 
 
