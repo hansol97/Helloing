@@ -62,7 +62,7 @@
                         <div class="room-area">▶️ 객실명 :  ${rL.roomName} &nbsp; &nbsp;
                           <button onclick='location.href="accommBookList.bu?roomNo=${rL.roomNo}"' class="button button--ujarak button--border-thin button--text-thick">예약자 확인</button>
                           <button onclick='location.href="goUpdateRoom.bu?roomNo=${rL.roomNo}"' class="button button--ujarak button--border-thin button--text-thick" >수정</button>
-                          <button onclick='location.href="accommBookList.bu?roomNo=${rL.roomNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
+                          <button onclick='location.href="deleteRoom.bu?roomNo=${rL.roomNo}"' class="button button--ujarak button--border-thin button--text-thick">삭제</button>
                         </div>
                       </c:forEach>
                     </c:when>

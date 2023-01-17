@@ -180,17 +180,6 @@ public class BusinessController {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 	
 	// 액티비티 등록 화면으로 이동
 	@RequestMapping("goInsertAct.bu")
@@ -234,7 +223,19 @@ public class BusinessController {
     
     
     // 액티비티 삭제 (UPDATE)
-	
+    @RequestMapping("deleteAct.bu")
+    public String deleteActivity(int activityNo, HttpSession session) {
+    	
+    	int result = businessService.deleteActivity(activityNo);
+    	
+    	if (result > 0) {
+			session.setAttribute("alertMsg", "액티비티를 삭제하였습니다.");
+		} else {
+			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+		}
+    	return "redirect:activityList.bu";
+    }
+    
 	
 	
 	// 객실 등록화면으로 이동
@@ -285,6 +286,18 @@ public class BusinessController {
     
     
     // 객실  삭제 (UPDATE)
+	@RequestMapping("deleteRoom.bu")
+    public String deleteRoom(int roomNo, HttpSession session) {
+    	
+    	int result = businessService.deleteRoom(roomNo);
+    	
+    	if (result > 0) {
+			session.setAttribute("alertMsg", "객실를 삭제하였습니다.");
+		} else {
+			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+		}
+    	return "redirect:accommList.bu";
+    }
 	
 
 	// 티켓 등록 화면으로 이동 
@@ -314,7 +327,18 @@ public class BusinessController {
     
     
     // 티켓 삭제 (UPDATE)
-	
+	@RequestMapping("deleteTicket.bu")
+    public String deleteTicket(int ticketNo, HttpSession session) {
+    	
+    	int result = businessService.deleteTicket(ticketNo);
+    	
+    	if (result > 0) {
+			session.setAttribute("alertMsg", "티켓을 삭제하였습니다.");
+		} else {
+			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+		}
+    	return "redirect:activityList.bu";
+    }
 	
 	// 숙소 객실별 예약된 날짜 확인
 	@ResponseBody
