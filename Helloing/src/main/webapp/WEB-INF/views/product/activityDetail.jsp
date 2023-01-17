@@ -41,7 +41,6 @@
 
 				<div>
 					<form action="reserve.activity" method="post">
-						나는 티켓이다
 						<input type="hidden" name="activityName" value="${ act.activityName }">
 						<input type="hidden" name="endDate" value="${ act.endDate }">
 						<input type="hidden" name="allSum">

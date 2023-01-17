@@ -22,7 +22,7 @@ public class ActivityReview {
 	private String originName;
 	private String filePath;
 	
-	
-	
-	
+	// 첨부파일
+	private String originName; // 원본파일 이름
+	private String filePath; // filePath + changeName 
 }
