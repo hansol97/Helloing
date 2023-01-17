@@ -73,7 +73,10 @@ public class MemberDao {
 	public ArrayList<QNA> selectQna(SqlSessionTemplate sqlSession, int memNo){
 		return (ArrayList)sqlSession.selectList("memberMapper.selectQna", memNo);
 	}
-	
+	// 1:1문의 삭제
+	public int delectQna(SqlSessionTemplate sqlSession, int qnaNo) {
+		return sqlSession.delete("memberMapper.deleteQna", qnaNo);
+	}
 	//-----------------------------------------------------------------
 	
 	//혜진
