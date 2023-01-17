@@ -5,12 +5,18 @@
 .main { width: 800px; }
 
 /* 사이드바 */
+#map {
+	height: 250px;
+	width: 270px;	
+}
+
 .accommselectbox{
 	border: 1px solid gray;
 	text-align: center;
 	padding: 10px;
 
 	position: fixed;
+	top: 470px;
 }
 .accommselectbox button{
 	width: 250px;

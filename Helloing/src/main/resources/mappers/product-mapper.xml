@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR4"    			property="star4" />
         <result column="STAR5"    			property="star5" />
         <result column="ATTACHMENT"    		property="attachment" />
+        <result column="FILEPATH"    		property="filePath" />
         <result column="STATUS"    			property="status" />
     </resultMap>
 
@@ -55,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR5"    			property="star5" />
         <result column="ATTACHMENT"    		property="attachment" />
         <result column="STATUS"    			property="status" />
+        <result column="FILEPATH"    		property="filePath" />
     </resultMap>
     
     <resultMap id="TicketResultSet" type="ticket">
@@ -126,14 +128,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      ,ACTIVITY_NAME
 		      ,( SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
 		      ,( SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
-		      ,FILE_PATH || CHANGE_NAME AS ATTACHMENT
+              ,FILEPATH
 		  FROM
 		       ACTIVITY A
-		  JOIN
-		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
-		 ORDER
-		    BY
-		       AT.FILE_NO ASC
+          JOIN 
+              (SELECT 
+                      ACTIVITY_NO, 
+                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+                 FROM  
+            	      ACTIVITY_ATTACHMENT
+                GROUP 
+            	   BY 
+            		  ACTIVITY_NO) AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+		 WHERE
+		       <![CDATA[SYSDATE < END_DATE]]> 
+		   AND
+		   	   STATUS = 'Y'
 	</select>
 
 	<!-- 액티비티 상세 정보 -->
@@ -151,18 +161,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 3) AS "STAR3"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 4) AS "STAR4"
 			  ,(SELECT COUNT(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = #{ activityNo } AND STAR = 5) AS "STAR5"
-              ,FILEPATH
 		  FROM
 		  	   ACTIVITY A
-          JOIN 
-              (SELECT 
-                      ACTIVITY_NO, 
-                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
-                 FROM  
-                      ACTIVITY_ATTACHMENT
-                GROUP 
-                   BY 
-                      ACTIVITY_NO) B ON (A.ACTIVITY_NO = B.ACTIVITY_NO)
 		 WHERE
 		 	   A.ACTIVITY_NO = #{ activityNo }
 	</select>
@@ -181,6 +181,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	   TICKET
 		 WHERE
 		 	   ACTIVITY_NO = #{ activityNo }
+		   AND
+		       <![CDATA[CAPACITY > 0]]>
 	</select>
 	
 	<!-- 액티비티에 달린 리뷰들 -->
@@ -248,6 +250,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</foreach>
 	</insert>
 	
+	<!-- 티켓 카운트 감소 -->
+	<update id="decreaseCount" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator="" index="index" open="" close="">
+			UPDATE 
+			       TICKET
+			   SET
+			   	   CAPACITY = CAPACITY - #{ item.count }
+			 WHERE
+			 	   TICKET_NO = #{ item.ticketNo }
+		</foreach>
+	</update>
+	
 	<!-- 숙소 메인에 뿌려줄 숙소 리스트들 --> <!-- 첨부파일도 넣어줘야함 -->
 	<select id="selectAcList" resultMap="AccommResultSet">
 		SELECT
@@ -258,14 +272,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
 		      ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
 		      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
-		      ,FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		      ,FILEPATH
 		  FROM
 		       ACCOMM A
 		  JOIN
-		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
-		 ORDER
-		    BY
-		       AT.FILE_NO ASC
+		       (SELECT 
+                      ACCOMM_NO, 
+                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+                 FROM  
+            	      ACCOMM_ATTACHMENT
+                GROUP 
+            	   BY 
+            		  ACCOMM_NO) AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+		  WHERE
+		       <![CDATA[SYSDATE < END_DATE]]> 
+		   AND
+		   	   STATUS = 'Y'
 	</select>
 	
 	<!-- 숙소 상세 조회 -->
@@ -307,6 +329,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
          WHERE
          	   A.ACCOMM_NO = #{ accommNo }
+	</select>
+	
+	<!-- 액티비티에 첨부된 첨부파일 -->
+	<select id="selectActPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ACTIVITY A
+		  JOIN
+		       ACTIVITY_ATTACHMENT AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+         WHERE
+         	   A.ACTIVITY_NO = #{ activityNo }
+         ORDER
+            BY
+               FILE_NO
 	</select>
 	
 	<!-- 숙소에 등록된 객실 리스트 조회 -->
@@ -402,21 +439,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
 		      ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
 		      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG
-		      ,FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		      ,FILEPATH
 		  FROM
 		       ACCOMM A
 		  JOIN
-		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+		       (SELECT 
+                      ACCOMM_NO, 
+                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+                 FROM  
+            	      ACCOMM_ATTACHMENT
+                GROUP 
+            	   BY 
+            		  ACCOMM_NO) AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
 		 WHERE
 		 	   LOWER(A.ACCOMM_NAME) LIKE LOWER('%' || #{ accommName } || '%')
+		   AND
+		       <![CDATA[SYSDATE < END_DATE]]> 
+		   AND
+		   	   STATUS = 'Y'
 		<if test="category  != 'all'.toString()">
 		   AND
 		   	   CATEGORY = #{ category }
 		</if>
-		 ORDER
-		    BY
-		       AT.FILE_NO ASC
 	</select>
+	
+	<!-- 액티비티 검색 -->
+	<select id="searchActivity" resultMap="ActivityResultSet" parameterType="string">
+		SELECT
+			   A.ACTIVITY_NO
+		      ,A.ACTIVITY_NAME
+		      ,(SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS REVIEWCOUNT
+		      ,(SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
+		      ,(SELECT AVG(STAR) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS AVG
+		      ,FILEPATH
+		  FROM
+		       ACTIVITY A
+		  JOIN
+		       (SELECT 
+                      ACTIVITY_NO, 
+                      MIN(FILE_PATH||CHANGE_NAME) AS FILEPATH
+                 FROM  
+            	      ACTIVITY_ATTACHMENT
+                GROUP 
+            	   BY 
+            		  ACTIVITY_NO) AT ON (AT.ACTIVITY_NO = A.ACTIVITY_NO)
+		 WHERE
+		 	   LOWER(A.ACTIVITY_NAME) LIKE LOWER('%' || #{ keyword } || '%')
+		   AND
+		       <![CDATA[SYSDATE < END_DATE]]> 
+		   AND
+		   	   STATUS = 'Y'
+	</select>
+	
 
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 조회 -->
@@ -476,7 +550,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ACCOMM_NO, 
 				ROOM_NAME, 
 				CAPACITY, 
-				PRICE 
+				PRICE,
+				STATUS
 		   FROM 
 		   		ROOM 
 		  WHERE 
@@ -516,7 +591,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							 			 		AT.ACTIVITY_NO = A.ACTIVITY_NO
 								 	   )
 				) 
-				AS ATTACHMENT
+				AS ATTACHMENT,
 	  	  FROM
 				ACTIVITY A
 		  WHERE
@@ -548,8 +623,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 WHERE
 					 		TP.TICKET_NO = T.TICKET_NO
 				
-				) AS COUNT
-				
+				) AS COUNT,
 		   FROM 
 		   		TICKET T
 		  WHERE 

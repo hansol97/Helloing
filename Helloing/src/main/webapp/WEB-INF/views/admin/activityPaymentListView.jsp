@@ -86,10 +86,10 @@
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <form id="searchForm" action="" method="get">
+                            <form id="searchForm" action="searchActPay.ad" method="post">
                                 <td>
                                     <div class="text">
-                                        <input type="text" placeholder="회원아이디 입력" class="admin-input_form" name="keyword">
+                                        <input id="actPay_input" type="text" placeholder="회원아이디 입력" class="admin-input_form" name="keyword">
                                     </div>        
                                 </td>
                                 <td class="td_search_button">
@@ -180,11 +180,28 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="actPay.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="actPay.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="actPay.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
 
@@ -262,6 +279,12 @@
               }
             }
           });
+    	
+    	$(function(){
+    		if('${keyword}' != ''){
+				$('#actPay_input').val('${keyword}')
+            }
+    	})
         
       </script>
     

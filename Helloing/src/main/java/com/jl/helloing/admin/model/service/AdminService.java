@@ -104,6 +104,12 @@ public interface AdminService {
 	
 	// 액티비티 결제 티켓 조회
 	ArrayList<Ticket> selectTicketList(int orderNo);
+	
+	// 액티비티 결제 검색 목록 수
+	int searchActPayListCount(String keyword);
+	
+	// 액티비티 결제 검색 목록 조회
+	ArrayList<TicketPayment> searchActPaymentList(PageInfo pi, String keyword);
 
 	
 	

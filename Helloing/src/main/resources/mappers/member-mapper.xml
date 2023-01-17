@@ -216,6 +216,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 여기부터 혜진 -->
+	<!-- 숙소 예약 리스트 -->
 	<select id="accommBook" parameterType="_int" resultType="roomPayment">
         SELECT O.*,  
                 (SELECT COUNT(*) 
@@ -244,6 +245,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER 
                     BY paymentDate DESC) O
 	</select>
+	<!-- 액티비티 예약 리스트 -->
 	<select id="activityBook" parameterType="_int" resultType="ticketPayment">
         SELECT DISTINCT
                 O.*
@@ -253,7 +255,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     AND ORDER_NO = orderNo) count
                 ,  (SELECT SUM(PAYMENT_AMOUNT)
                     FROM TICKET_PAYMENT
-                    WHERE ORDER_NO = orderNo) paymentAmount
+                    WHERE ORDER_NO = orderNo) ticketSum
         FROM (                
                 SELECT 
                         T.ORDER_NO orderNo
@@ -270,11 +272,95 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 WHERE 
                     MEM_NO = #{ memNo }
                  ORDER 
-                    BY paymentDate DESC) O;	
+                    BY paymentDate DESC) O
 	</select>
-	
-	
-	
+	<!-- 숙소 예약 상세 페이지 -->
+	<select id="accommBookDetail" parameterType="_int" resultType="roomPayment">
+      SELECT 
+      		A.ACCOMM_NO accommNo
+	        , A.ACCOMM_NAME accName
+	        , TRUNC(RP.START_DATE-SYSDATE) dday
+	        , RP.ORDER_NO orderNo
+	        , R.ROOM_NAME roomName
+	        , TO_CHAR(RP.START_DATE,  'YYYY-MM-DD') startDate
+	        , TO_CHAR(RP.END_DATE,  'YYYY-MM-DD') endDate
+	        , M.MEM_NAME memName
+	        , M.PHONE phone
+	        , M.EMAIL email
+            , RP.PRICE price
+            , TO_CHAR(RP.PAYMENT_DATE, 'YYYY-MM-DD') paymentDate        
+	    FROM 
+	        MEMBER M
+	    JOIN
+	        ROOM_PAYMENT RP ON(M.MEM_NO=RP.MEM_NO)
+	    JOIN
+	        ROOM R ON(RP.ROOM_NO=R.ROOM_NO)
+	    JOIN
+	        ACCOMM A ON(R.ACCOMM_NO = A.ACCOMM_NO)
+	    WHERE 
+	        ORDER_NO = #{ orderNo }
+	</select>
+	<!-- 액티비티 예약 상세페이지 -->
+	<select id="activityBookDetail" parameterType="_int" resultType="ticketPayment">
+	          SELECT 
+                    DISTINCT
+                    A.ACTIVITY_NO activityNo
+                    , ACTIVITY_NAME activityName
+                    , ORDER_NO orderNo
+                    , (WITH TIC AS (
+                                        SELECT 
+                                                TICKET_NAME ticketName 
+                                        FROM 
+                                           TICKET
+                                        JOIN 
+                                            TICKET_PAYMENT USING(TICKET_NO) 
+                                        WHERE 
+                                            ORDER_NO =#{ orderNo }
+                                    )
+                        SELECT LISTAGG(ticketName, ',') WITHIN GROUP (ORDER BY ticketName) FROM TIC)ticketName
+                      ,	( SELECT 
+                                  COUNT(*)
+                          FROM 
+                                 TICKET
+                          JOIN 
+                               TICKET_PAYMENT USING(TICKET_NO) 
+                           WHERE 
+                                ORDER_NO = #{ orderNo }) count
+                    , M.MEM_NAME memName
+                    , M.PHONE phone
+                    , M.EMAIL email
+                    ,  (SELECT SUM(PAYMENT_AMOUNT)
+                        FROM TICKET_PAYMENT
+                        WHERE ORDER_NO =#{ orderNo }) ticketSum	
+                    , TO_CHAR(PAYMENT_DATE, 'YYYY-MM-DD') paymentDate        
+                FROM 
+                    MEMBER M
+                JOIN
+                    TICKET_PAYMENT TP ON(M.MEM_NO=TP.MEM_NO)
+                JOIN
+                    TICKET T ON(TP.TICKET_NO=T.TICKET_NO)
+                JOIN
+                    ACTIVITY A ON(T.ACTIVITY_NO = A.ACTIVITY_NO)
+                WHERE 
+                    ORDER_NO = #{ orderNo }
+	</select>
+	<!-- 숙소 리뷰 조회 -->
+	<select id="selectAccommReview" parameterType="_int" resultType="acReview">
+            SELECT 
+                    REVIEW_NO reviewNo
+                    ,ACCOMM_NO accommNo
+                    ,ACCOMM_NAME accommName
+                    ,MEM_NO memNo
+                    ,ROOM_NAME roomNo
+                    ,REVIEW_CONTENT reviewContent
+                    ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
+                    ,TAG tag
+                    ,STAR star
+            FROM 
+            	ACCOMM_REVIEW
+            WHERE 
+            	ORDER_NO = #{ orderNo }
+	</select>
 	
 	
 	

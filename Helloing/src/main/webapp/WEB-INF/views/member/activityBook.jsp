@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,6 +85,10 @@
 	#ex1 li img{
 		padding:10px;
 	}
+	#table .actName:hover{
+		cursor : pointer;
+		text-decoration : underline;
+	}
 </style>
 </head>
 <body>
@@ -109,27 +114,25 @@
 		            </tr>
 		         </thead>
 		         <tbody>
+		         <c:forEach var="a" items="${list}">
 		            <tr>
-		                <td>1</td>
-		                <td>OO호텔</td>
-		                <td>198,000원</td>
-		                <td>2023-01-29</td>
-		                <td><a href="#ex1" rel="modal:open">후기 조회</a></td>
-		            </tr>
-		            <tr>
-		                <td>2</td>
-		                <td>OO호텔</td>
-		                <td>198,000원</td>
-		                <td>2023-01-29</td>
-		                <td><a href="reviewEnrollForm.hj">후기작성</a></td>
-		            </tr>
-		            <tr>
-		                <td>3</td>
-		                <td>OO호텔</td>
-		                <td>198,000원</td>
-		                <td>2023-01-29</td>
-		                <td><a href="reviewEnrollForm.hj">예약취소</a></td>
-		            </tr>
+		                <td class="orderNo">${a.orderNo }</td>
+		                <td class="actName">${a.activityName }</td>
+		                <td>${a.ticketSum }원</td>
+		                <td>${a.paymentDate }</td>
+	                	<c:choose>		                		
+	                		<c:when test="${a.status eq 'R'}">
+	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
+	            			</c:when>
+	            			<c:when test="${a.status eq 'S'}">
+	            				<td><a href="#ex2" rel="modal:open">후기보기</a></td>
+	            			</c:when> 
+	            			<c:otherwise>
+	            			<td></td>
+	            			</c:otherwise>
+	            		</c:choose>		            
+            		</tr>
+		         </c:forEach>
 	            </tbody>
 		        </table>
 		       
@@ -156,5 +159,17 @@
 		</div>
 
     </div>
+    <script>
+    $(function(){
+    	$('#table .actName').click(function(){
+    		
+    		var $this = $(this);
+    		var orderNo = $this.siblings('td[class=orderNo]').text();
+    		
+    		location.href ="activityBookDetail.hj?orderNo="+orderNo;
+    	})
+    })
+    
+    </script>
 </body>
 </html>

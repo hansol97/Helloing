@@ -31,7 +31,7 @@
       <button class="button button--ujarak button--border-thin button--text-thick enrollBtn" onclick="location.href='goInsertAct.bu';">액티비티 등록</button>
 
 
-      <c:forEach items="${requestScope.actList}" var="aL">
+      <c:forEach items="${sessionScope.actList}" var="aL">
         <!-- 한 뭉치 반복 시작 -->
         <div class="col-lg-4 col-md-6 d-flex">
           <div class="blog-card w-100">

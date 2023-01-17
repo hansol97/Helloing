@@ -39,6 +39,7 @@ public class Accomm {
 	private String attachment;
 	private String checkIn;
 	private String checkOut;
+	private String filePath;
 
 }
 

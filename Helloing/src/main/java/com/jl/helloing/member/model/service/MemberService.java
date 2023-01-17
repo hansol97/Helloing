@@ -12,6 +12,8 @@ import com.jl.helloing.member.model.vo.Plan;
 import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
+import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -66,10 +68,33 @@ public interface MemberService {
 	//액티비티 예약 리스트 조회
 	ArrayList<TicketPayment> activityBook(int memNo);
 	
+	//숙소 예약 상세페이지 조회
+	RoomPayment accommBookDetail(int orderNo);
 	
-	//예약 상세조회
-	Book reservationDetail(int memNo, int orderNo);
-
+	//액티비티 예약 상세페이지 조회
+	TicketPayment activityBookDetail(int orderNo);
+	
+	//숙소 예약 취소
+	int accommBookDelete(int orderNo);
+	
+	//숙소후기조회
+	AccommReview selectAcommReview(int orderNo);
+	
+	//액티비티 후기 조회
+	ActivityReview selectActivityReview(int orderNo);
+	
+	//숙소 후기 작성
+	int insertAccommReview(AccommReview review);
+	
+	//액티비티 후기 작성
+	int insertActivityReview(ActivityReview review);
+	
+	//숙소 후기 삭제
+	int deleteAccommReview(int reviewNo);
+	
+	//액티비티 후기 삭제
+	int deleteActivityReview(int reviewNo);
+	
 	//비밀번호확인
 	String checkPwd(Member m);
 	

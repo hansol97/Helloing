@@ -110,6 +110,7 @@ public class AdminController {
 		
 		mv.addObject("list", list)
 		  .addObject("map", map)
+		  .addObject("pi", pi)
 		  .setViewName("admin/chatbotListView");
 		
 		return mv;
@@ -291,5 +292,20 @@ public class AdminController {
 		return new Gson().toJson(tList);
 	}
 	
+	// 액티비티 결제 검색
+	@RequestMapping("searchActPay.ad")
+	public ModelAndView searchActPayList(@RequestParam(value="cpage", defaultValue="1") int currentPage
+								   , String keyword, ModelAndView mv) {
+		PageInfo pi = Pagination.getPageInfo(adminService.searchActPayListCount(keyword), currentPage, 5, 2);
+	
+		ArrayList<TicketPayment> list = adminService.searchActPaymentList(pi, keyword);
+		
+		mv.addObject("list", list)
+		  .addObject("pi", pi)
+		  .addObject("keyword", keyword)
+		  .setViewName("admin/activityPaymentListView");
+		
+		return mv;
+	}
 
 }

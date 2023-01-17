@@ -2,7 +2,27 @@
 
 .middle-content{ display: flex; justify-content: space-between; }
 .side-bar{ width: 280px; padding: 0px 5px; }
-.main{ width: 800px; }
+/* .main{ width: 800px; } */
+.main{ width: 1200px;}
+
+/* 검색창 */
+.top-content{ text-align: center; margin-bottom: 50px; }
+.top-content input{
+    height: 40px;
+    width: 400px;
+    border-radius: 3px;
+    border: 1px solid rgb(154, 154, 154);
+}
+.top-content button{
+    height: 44px;
+    width: 60px;
+    margin: 0px 10px;
+    border: 0;
+    background-color: #053E99;
+    color: white;
+    border-radius: 3px;
+}
+/* 검색창 끝 */
 
 /* 사이드바 */
 .side-bar span{
@@ -42,6 +62,7 @@ input[name=star]{ margin: 10px; }
     height: 400px;
     margin-bottom: 20px;
     margin-right: 10px;
+    border: 1px solid lightgray;
 }
 .productbox>div{ padding: 10px; }
 .productbox img{ border-radius: 5px; }

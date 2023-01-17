@@ -28,12 +28,14 @@
 				</div>
 				<hr>
 
-				<div class="images"> <!-- 이미지 클릭 시 모달창?으로 이미지 크게 띄우기 -->
-					<img src="/helloing/resources/img/logo_outline.png" width="780" height="500">
+				<div class="images">
+						<img src="${ photo.attachment }" width="780" height="500">
 					<div class="sub-images">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
-						<img src="/helloing/resources/img/logo_outline.png" width="250" height="160">
+						<c:if test="${ not empty photoList }">
+							<c:forEach items="${ photoList }" var="i">
+								<img src="${ i.attachment }" width="250" height="160">
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 
@@ -96,12 +98,6 @@
 				<div class="explanation">
 					<div class="title"><span>소개</span></div>
 					<div><p>${ act.activityContent }</p></div>
-				</div>
-				<hr>
-
-				<div class="explanation">
-					<div class="title"><span>이용안내</span></div>
-					<div><p>무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을</p></div>
 				</div>
 				<hr>
 
