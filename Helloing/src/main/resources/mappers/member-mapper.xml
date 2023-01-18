@@ -685,6 +685,17 @@ INSERT
 	WHERE 
 		PLANNER_NO = #{ plannerNo }
 	</update>
+	<!-- 플래너 속 명단 삭제 -->
+	<delete id="deletePlanMem" parameterType="plannerMem">
+	DELETE
+		FROM
+			PLANNER_MEM
+	WHERE
+		MEM_NO = #{ memNo }
+	AND
+		PLANNER_NO = #{ plannerNo }
+	</delete>
+	
 	<!-- 플래너 삭제 전 일정 존재 조회 -->
 	<select id="selectPlanYN" parameterType="_int" resultType="_int">
 	SELECT

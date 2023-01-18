@@ -221,6 +221,10 @@ public class MemberDao {
 	}
 	
 
+	public int deletePlanMem(Planner pl, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deletePlanMem", pl);
+	}
+
 	public int selectPlanYN(int plannerNo, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("memberMapper.selectPlanYN", plannerNo);
 	}
@@ -252,6 +256,7 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
 
 
 
