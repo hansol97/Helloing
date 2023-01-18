@@ -178,9 +178,7 @@ pageEncoding="UTF-8"%>
 		    	
 		    	</ul>
 		    	<br>
-				<div class="modalBtn" style="float:right;">
-					<a class="review-delete">삭제</a>
-				</div>
+				<a class="review-delete">삭제</a>
 
 
 		</div>
@@ -218,8 +216,8 @@ pageEncoding="UTF-8"%>
 		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
 		    		  + '<li>' + result.tag + '</li>'
 		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>'
-		    		  + '<input type="hidden" name="reviewNo" value="' + result.reviewNo +  '">'
-		    		  + '<input type="hidden" name="filePath" value="' + result.filePath + '">';
+		    		  + '<input type="hidden" class="reviewNo" name="reviewNo" value="' + result.reviewNo +  '">'
+		    		  + '<input type="hidden" class="filePath" name="filePath" value="' + result.filePath + '">';
 
 
 					
@@ -244,9 +242,10 @@ pageEncoding="UTF-8"%>
     	$('.review-delete').click(function(){
     		var $this = $(this);
     		
-    		var reviewNo = $this.siblings('.review-area').children('input[name="reviewNo"]').val();
-    		
-    		console.log(reviewNo);
+    		var reviewNo = $this.siblings('.review-area').children('.reviewNo').val();
+    		var filePath = $this.siblings('.review-area').children('.filePath').val();
+			
+    		location.href="deleteAccommReview.hj?reviewNo="+reviewNo+ "&filePath=" + filePath
     		
     	})
     })

@@ -619,6 +619,9 @@ public class MemberController {
 		
 		System.out.println(review);
 		
+		String changeName = review.getFilePath().substring(32);
+		System.out.println(changeName);
+		
 		return mv;
 	}
 	
