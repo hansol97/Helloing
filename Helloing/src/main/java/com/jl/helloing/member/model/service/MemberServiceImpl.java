@@ -242,18 +242,22 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updatePlanner(pl, sqlSession);
 	}
 	
+	//플래너 삭제 전 조회
+	@Override
+	public int selectPlanYN(int plannerNo) {
+		return memberDao.selectPlanYN(plannerNo, sqlSession);
+	}
+	
 	//플래너 속 플랜 삭제
 	@Override
-	public int deletePlan(Planner pl) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteInPlan(int plannerNo) {
+		return memberDao.deleteInPlan(plannerNo, sqlSession);
 	}
 
 	//플래너 삭제
 	@Override
-	public int deletePlanner(Planner pl) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deletePlanner(int plannerNo) {
+		return memberDao.deletePlanner(plannerNo, sqlSession);
 	}
 	
 	//플래너 상세페이지
@@ -340,6 +344,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+
 
 
 

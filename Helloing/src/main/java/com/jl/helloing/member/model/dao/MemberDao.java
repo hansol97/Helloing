@@ -220,6 +220,20 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.bookCancel", orderNo);
 	}
 	
+
+	public int selectPlanYN(int plannerNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectPlanYN", plannerNo);
+	}
+	
+	public int deleteInPlan(int plannerNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteInPlan", plannerNo);
+	}
+
+	public int deletePlanner(int plannerNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deletePlanner", plannerNo);
+	}
+	
+	
 	
 	//혜진 끝
 
@@ -238,6 +252,10 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
+
+	
 
 
 

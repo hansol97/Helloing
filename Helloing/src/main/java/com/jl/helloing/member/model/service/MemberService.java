@@ -74,7 +74,6 @@ public interface MemberService {
 	//액티비티 예약 리스트 조회
 	ArrayList<TicketPayment> activityBook(int memNo);
 	
-	
 	//숙소예약취소
 	int bookCancel(int orderNo);
 	
@@ -141,11 +140,14 @@ public interface MemberService {
 	//플래너 수정
 	int updatePlanner(Planner pl);
 	
+	//플래너 삭제 전 조회
+	int selectPlanYN(int plannerNo);
+	
 	//플래너 삭제 - 플래너 속 플랜 삭제
-	int deletePlan(Planner pl);
+	int deleteInPlan(int plannerNo);
 	
 	//플래너 삭제
-	int deletePlanner(Planner pl);
+	int deletePlanner(int plannerNo);
 	
 	//플랜 상세 페이지
 	ArrayList<Plan> planDetailView(int plannerNo);
