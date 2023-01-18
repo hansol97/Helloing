@@ -374,7 +374,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
 			  ,TAG
 			  ,STAR
-			  ,FILEPATH
 		  FROM
 		       ACCOMM_REVIEW AR
 		  JOIN
