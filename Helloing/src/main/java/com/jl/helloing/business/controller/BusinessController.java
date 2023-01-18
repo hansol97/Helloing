@@ -193,7 +193,7 @@ public class BusinessController {
     		for (int j = 0; j < filePathList.size(); j++) {
 				
     			String filePath = filePathList.get(j); // filePath를 얻었다. 지우자.
-    			
+    			System.out.println(filePath);
     			if (!filePath.equals("")) { // 파일이 있으면 지우자
 					new File(session.getServletContext().getRealPath(filePath)).delete();
 				}

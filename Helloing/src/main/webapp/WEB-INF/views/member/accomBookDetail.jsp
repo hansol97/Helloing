@@ -190,7 +190,6 @@
 		<br>
 		<div id="btn">
 			<button id="list_btn">목록으로</button>
-			<button id="cancel_btn">예약취소</button>
 		</div>	
 
 		</div>

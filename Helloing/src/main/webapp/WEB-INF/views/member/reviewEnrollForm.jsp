@@ -107,16 +107,7 @@
 	}
 
 	/* 태그 */
-	#tag-area input[name=tag] {
-		display: none;
-	}
-	#tag-area span{
-		border: 1px solid gray;
-		background-color: white;
-		border-radius: 5px;
-		padding: 5px;
-		color: black;
-	}
+
 	#tag-area h3{
 		padding : 10px;
 		text-align: center;
@@ -217,6 +208,15 @@
 			overflow: initial;
 		}
 		}
+		.tag-opt{
+		    height: 50px;
+		    width: 200px;
+		    font-size: 16px;
+		    border-radius: 10px;
+		    border: 1px solid rgb(193 193 193);
+		    font-family: 'S-CoreDream-3Light';
+		    
+		}
 </style>
 </head>
 <body>
@@ -283,54 +283,20 @@
 				<h3>어떤 점이 특히 좋았나요?</h3>
 				<br>
 				
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="위치가 찾기 쉬워요" id="rate1" checked>
-					<span>🧭위치가 찾기 쉬워요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="관광지와 가까워요" id="rate1" checked>
-					<span>🏝️관광지와 가까워요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="방문하기 편해요" id="rate1" checked>
-					<span>🚗방문하기 편해요</span>
-				</label>
-
-				<br><br>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="즐길 거리가 많아요" id="rate1" checked>
-					<span>🗽즐길 거리가 많아요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="관리가 잘 되어있어요" id="rate1" checked>
-					<span>🧹관리가 잘 되어있어요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="사진과 동일해요" id="rate1" checked>
-					<span>🖼️사진과 동일해요</span>
-				</label>
-
-				<br><br>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="친절해요" id="rate1" checked>
-					<span>😊친절해요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="전문적이에요" id="rate1" checked>
-					<span>💻전문적이에요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="응답이 빨라요" id="rate1" checked>
-					<span>✉️응답이 빨라요</span>
-				</label>
+				 <select name="tag" class="tag-opt">
+					<option value="위치가 찾기 쉬워요">🧭위치가 찾기 쉬워요</option>
+					<option value="관광지와 가까워요">🏝️관광지와 가까워요</option>
+					<option value="방문하기 편해요">🚗방문하기 편해요</option>
+					<option value="즐길 거리가 많아요">🗽즐길 거리가 많아요</option>
+					<option value="관리가 잘 되어있어요">🧹관리가 잘 되어있어요</option>
+					<option value="사진과 동일해요">🖼️사진과 동일해요</option>
+					<option value="친절해요">😊친절해요</option>
+					<option value="전문적이에요">💻전문적이에요</option>
+					<option value="응답이 빨라요">✉️응답이 빨라요</option>
+				</select>
+                    <span id="tag-zone"></span>
+                    <a id="tag-add" style="cursor:pointer;"> ➕ </a>
+                    <a id="tag-minus" style="cursor:pointer;"> ➖ </a>
 			</div>
 
 			<hr>
@@ -383,19 +349,23 @@ $('input[name=reviewStar]').click(function(){
 		$('#text-area').keyup(function(){
             $('#count').text($(this).val().length);
 
-        })
+        });
 //태그
-	$('#input[name=tag]').click(function(){
-		
-		$(this).children('span').css({color: 'white', background:'gray'});
-		//$('#tag-area input[name=tag]').each(function(){
-			// if($(this).prop('checked') == true){
-			// } else {
-			// 	$(this).css({color: 'black', background:'none'});
-			// }
+                $('#tag-add').click(function(){
+                    if($('.tag-opt').length <= 2){
+                        $('#tag-zone').append($('.tag-opt').first().clone(true));
+                    } else {
+                        alert('최대 입력 수를 초과하셨습니다.');
+                    }
+                });
 
-	});
-	//});
+                $('#tag-minus').click(function(){
+                        if($('.tag-opt').length > 1){
+                            $('.tag-opt').last().remove();
+                        } else {
+                            alert('최대 삭제수를 초과하셨습니다.');
+                       }
+                });  
 
 	//사진업로드
 	function DropFile(dropAreaId, fileListId) {
