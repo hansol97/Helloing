@@ -211,7 +211,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		q.mem_no = #{ memNo }
 	</select>
 
-
+	<delete id="deleteQna" parameterType="qna" >
+		delete
+		  from
+		  		qna
+		 where
+		 		qna_no = #{ qnaNo }
+	
+	
+	</delete>
 
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
@@ -374,8 +382,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     ROOM R USING(ACCOMM_NO)
                 WHERE ORDER_NO = #{ orderNo }) A
 	</select>
-	
-	
+	<select id="selectActivityReview" parameterType="_int" resultType="actReview">
+     SELECT   A.*, 
+             (WITH TIC AS (
+                            SELECT 
+                                    TICKET_NAME ticketName 
+                            FROM 
+                               TICKET
+                            JOIN 
+                                TICKET_PAYMENT USING(TICKET_NO) 
+                            WHERE 
+                                ORDER_NO =  #{ orderNo }
+                             )
+                SELECT LISTAGG(ticketName, ',') WITHIN GROUP (ORDER BY ticketName) FROM TIC)ticketName
+        FROM(    
+                SELECT DISTINCT
+                        REVIEW_NO reviewNo
+                        ,ACTIVITY_NAME activityName
+                        ,MEM_NO memNo
+                        ,REVIEW_CONTENT reviewContent
+                        ,TO_CHAR(CREATE_DATE, 'YY-MM-DD') createDate
+                        ,TAG tag
+                        ,STAR star
+                        ,FILE_PATH filePath
+                        ,ORIGIN_NAME originName
+                FROM 
+                    ACTIVITY_REVIEW AR
+                JOIN 
+                    ACTIVITY A USING(ACTIVITY_NO)
+                JOIN 
+                    TICKET T USING(ACTIVITY_NO)
+                WHERE ORDER_NO = #{ orderNo }) A
+	</select>
+	<insert id="insertAccommReview" parameterType="acReview">
+INSERT 
+		INTO 
+			ACCOMM_REVIEW(
+							REVIEW_NO, 
+							ACCOMM_NO, 
+							MEM_NO, 
+							ROOM_NO, 
+							REVIEW_CONTENT, 
+							TAG, 
+							STAR, 
+							ORDER_NO, 
+							ORIGIN_NAME, 
+							FILE_PATH
+							) 
+		VALUES(
+				SEQ_ACCRNO.NEXTVAL
+				, ( SELECT ACCOMM_NO FROM ROOM_PAYMENT WHERE ORDER_NO = #{ orderNo })
+				, #{ memNo }
+				, ( SELECT ROOM_NO FROM ROOM_PAYMENT WHERE ORDER_NO = #{ orderNo })
+				, #{ reviewContent }
+				, #{ tag }
+				, #{ star }
+				, #{ orderNo }
+				, #{ originName }
+				, #{ filePath }
+				)
+	</insert>
 	
 	
 	
@@ -422,6 +488,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			MEM_ID = #{ memId }
 	</update>
+	<!-- 회원탈퇴 -->
+	<update id="memberDelete" parameterType="_int">
+	UPDATE
+		MEMBER
+	SET
+		STATUS = 'N'
+	WHERE 
+		MEM_NO = #{ memNo }
+	</update>
+	
 	<!-- 찜한 숙소 조회 -->
 	<select id="wishAccommList" parameterType="_int" resultType="AccommWish">			
 		SELECT 

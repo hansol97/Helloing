@@ -1,11 +1,14 @@
 package com.jl.helloing.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -24,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -42,6 +46,7 @@ import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -382,12 +387,25 @@ public class MemberController {
 		} else {
 			mv.setViewName("member/memberQAListVieqw");
 		}
-		
-		
-		
+
 		return mv;
 	}
-
+	
+	@RequestMapping("deleteQna.me")
+	public ModelAndView deleteQna(ModelAndView mv,HttpSession session,int qnaNo) {
+		if(memberService.deleteQna(qnaNo) > 0) {
+			session.setAttribute("alertMsg", "삭제에 성공 하셨습니다.");
+			mv.addObject("redirect:selectQna.me");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패 하셧습니다.");
+			mv.addObject("redirect:selectQna.me");
+		}
+		
+		
+	return mv;
+	}
+	
+	
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!
 	//혜진
@@ -501,7 +519,7 @@ public class MemberController {
 	
 	
 	
-	//후기보기
+	//숙소 후기보기
 	@ResponseBody
 	@RequestMapping(value="selectAccommReview.hj",produces="application/json; charset=UTF-8")
 	public String selectAcommReview(int orderNo) {
@@ -513,14 +531,129 @@ public class MemberController {
 		return new Gson().toJson(review);
 	}
 	
+	//액티비티 후기보기
+	@ResponseBody
+	@RequestMapping(value="selectActivityReview.hj",produces="application/json; charset=UTF-8")
+	public String selectActivityReview(int orderNo) {
+		ActivityReview review = memberService.selectActivityReview(orderNo);
+		System.out.println(review);
+
+		review.setTag(review.getTag().replace(",", "|"));
+		
+		return new Gson().toJson(review);
+	}
 	
 	
-	//후기 작성
+	//숙소 후기 작성 페이지 
+	@RequestMapping("reviewAccommEnrollForm.hj")
+	public ModelAndView reviewAccommEnrollForm(ModelAndView mv, int orderNo) {
+	
+		mv.addObject("orderNo", orderNo);
+		mv.setViewName("member/reviewAccommEnrollForm");
+		
+		return mv;
+	}
+	
+	//후기 작성(숙소)
+	@RequestMapping("insertAccommReview.hj")
+	public ModelAndView insertAccommReview(ModelAndView mv, AccommReview review, MultipartFile upfile, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		//작성자
+		review.setMemNo(memNo);
+		
+		//태그
+		review.setTag(String.join(",",review.getTagArr()));
+		
+		if(!upfile.getOriginalFilename().equals("")) { 
+			
+			review.setOriginName(upfile.getOriginalFilename());
+			review.setFilePath("/helloing/resources/uploadFiles/"+saveFile(upfile, session));
+		}
+		
+		if(memberService.insertAccommReview(review)>0) {
+			mv.setViewName("redirect:accommBook.hj");
+			
+		}else {
+			mv.addObject("errorMsg", "후기등록에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	   
+    // 파일 리네임 saveFile() 
+	public String saveFile(MultipartFile upfile, HttpSession session) {// 실제 넘어온 파일의 이름을 변경해서 서버에 업로드하는 역할
+		// 파일명 수정작업 후 서버에 업로드 시키기("image.png" => 20221238123123.png)
+		String originName = upfile.getOriginalFilename();
+		
+		// "20221226103530"(년월일시분초)
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());//util타입 Date가 아니면 simpleDateFormat이 받을 수가 없다
+		
+		//12321(5자리 랜덤값)
+		int ranNum = (int)(Math.random() * 90000 + 10000);
+		
+		// 확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = "helloing_" + currentTime + "_" +ranNum + ext;
+		
+		// 업로드 시키고자 하는 폴더의 물리적인 경로 알아내기
+		// 세션 만들고 getServletContext()이용해서 application에 접근하고, 파일 경로 알아내기
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		
+		try {												// transferTo() => 서버에 파일을 업로드해주는 메소드
+			upfile.transferTo(new File(savePath, changeName));//파일 객체를 만들 때는 경로와 파일명을 넣어서..
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return changeName;
+	}
+	
+	
+	//후기 삭제(숙소)
+	@RequestMapping("deleteAccommReview.hj")
+	public ModelAndView deleteAccommReview(ModelAndView mv, AccommReview review ){
+		
+		System.out.println(review);
+		
+		return mv;
+	}
+	
+	//////////////////////////////////////
+	//후기 작성(액티비티)
+	@RequestMapping("insertActivityReview.hj")
+	public ModelAndView insertActivityReview(ModelAndView mv, ActivityReview review, MultipartFile upfile, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		//작성자
+		review.setMemNo(memNo);
+		
+		//태그
+		review.setTag(String.join(",",review.getTagArr()));
+		
+		if(!upfile.getOriginalFilename().equals("")) { 
+			
+			review.setOriginName(upfile.getOriginalFilename());
+			review.setFilePath("/helloing/resources/uploadFiles/"+saveFile(upfile, session));
+		}
+		
+		if(memberService.insertActivityReview(review)>0) {
+			mv.setViewName("redirect:activityBook.hj");
+			
+		}else {
+			mv.addObject("errorMsg", "후기등록에 실패했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
 	
 	
 	
-	
-	//후기 삭제
 	
 	
 	
@@ -589,6 +722,20 @@ public class MemberController {
 		}
 		return mv;
 	}
+
+	//회원탈퇴
+	@RequestMapping("deleteMem.hj")
+	public ModelAndView deleteMem(HttpSession session, ModelAndView mv) {
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		if(memberService.memberDelete(memNo)>0) {
+            session.removeAttribute("loginUser");
+            mv.setViewName("redirect:/");
+		}else {
+            mv.addObject("errorMsg", "회원탈퇴실패");
+            mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	
 	//찜한 숙소 조회
 	@RequestMapping("wishAccommList.hj")
@@ -650,12 +797,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//후기 작성 페이지 
-	@RequestMapping("reviewEnrollForm.hj")
-	public String reviewEnrollForm() {
-		return "member/reviewEnrollForm";
-	}
-	
+
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
 	public ModelAndView plannerList(ModelAndView mv, HttpSession session) {

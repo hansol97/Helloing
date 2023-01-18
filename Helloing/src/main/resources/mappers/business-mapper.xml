@@ -255,6 +255,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE
                 ROOM_NO = #{ roomNo }
 	</update>
+	
+	<!-- 숙소 지울 때 방 지우기  status = n   -->
+	<update id="deleteRoomA" parameterType="_int">
+		UPDATE
+                ROOM
+		   SET
+                STATUS = 'N'
+		 WHERE
+		 		ACCOMM_NO = #{ accommNo }
+	</update>
 
 	<!-- 티켓 삭제  (UPDATE)status = n -->
 	<update id="deleteTicket" parameterType="_int">

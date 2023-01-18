@@ -89,6 +89,10 @@
 		cursor : pointer;
 		text-decoration : underline;
 	}
+		.review-accomm-name{
+	    font-size: 20px;
+    	font-weight: 600;
+    }
 </style>
 </head>
 <body>
@@ -140,7 +144,7 @@
 		        </table>
 		       
 		    </div>
-		    <div id="ex1" class="modal">
+		    <div id="ex2" class="modal">
 		    	<br>
 			    <ul class="review-area">
 		   
@@ -181,7 +185,7 @@
 				console.log(result);
 				value += '<h5 style="font-weight:600; font-size:25px;">내 후기</h5>'
 		    		  + '<hr>'
-		    		  + '<li><h3 class="review-accomm-name">' + result.acivityName + '</h3></li>'
+		    		  + '<li><h3 class="review-accomm-name">' + result.activityName + '</h3></li>'
 		    		  + '<li style="font-size: 15px;">' + result.createDate + '|' +  result.ticketName + '</li>'
 		    		  + '<li>' + star + '</li>'
 		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
@@ -189,7 +193,7 @@
 		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
 					
 					
-					  $('#ex1 .review-area').html(value);
+					  $('#ex2 .review-area').html(value);
 					  
 			},
 			error : function(){

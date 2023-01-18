@@ -120,12 +120,15 @@ pageEncoding="UTF-8"%>
 	                	<td>${a.paymentDate}</td>
 	                	<c:choose>		                		
 	                		<c:when test="${a.status eq 'R'}">
-	                			 <td><a href="reviewEnrollForm.hj">후기작성</a></td>
+	                			 <td>
+	                			 	<a class="reviewEnrollForm">후기작성</a>
+	                			 	<input type="hidden" name="orderNo" value="${a.orderNo }" class="orderNo">
+	                			 </td>
 	            			</c:when>
 	            			<c:when test="${a.status eq 'S'}">
 	            				<td>
 		            				<a class="select-review" href="#ex2" rel="modal:open">후기보기</a>
-		            				<input type="hidden" name="orderNo" value="${a.orderNo }">
+		            				<input type="hidden" name="orderNo" value="${a.orderNo }" class="orderNo">
 	            				</td>
 	            			</c:when> 
 	            			<c:when test="${a.status eq 'Y'}">
@@ -175,10 +178,11 @@ pageEncoding="UTF-8"%>
 		    	
 		    	</ul>
 		    	<br>
+				<div class="modalBtn" style="float:right;">
+					<a class="review-delete">삭제</a>
+				</div>
 
-			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >수정</a>
-			  </div>
+
 		</div>
     <script>
     $(function(){
@@ -213,8 +217,11 @@ pageEncoding="UTF-8"%>
 		    		  + '<li>' + star + '</li>'
 		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
 		    		  + '<li>' + result.tag + '</li>'
-		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
-					
+		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>'
+		    		  + '<input type="hidden" name="reviewNo" value="' + result.reviewNo +  '">'
+		    		  + '<input type="hidden" name="filePath" value="' + result.filePath + '">';
+
+
 					
 					  $('#ex2 .review-area').html(value);
 					  
@@ -225,6 +232,27 @@ pageEncoding="UTF-8"%>
 		})
     })
     
+    $('.reviewEnrollForm').click(function(){
+		
+		var $this = $(this);
+		var orderNo = $this.siblings('input[name=orderNo]').val();
+		
+		location.href="reviewAccommEnrollForm.hj?orderNo="+orderNo;
+    })
+    
+    $(function(){
+    	$('.review-delete').click(function(){
+    		var $this = $(this);
+    		
+    		var reviewNo = $this.siblings('.review-area').children('input[name="reviewNo"]').val();
+    		
+    		console.log(reviewNo);
+    		
+    	})
+    })
+    
+    
+</script>
     </script>
 </body>
 </html>

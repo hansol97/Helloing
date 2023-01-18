@@ -15,6 +15,7 @@ import com.jl.helloing.member.model.vo.Planner;
 import com.jl.helloing.member.model.vo.PlannerMem;
 import com.jl.helloing.member.model.vo.QNA;
 import com.jl.helloing.product.model.vo.AccommReview;
+import com.jl.helloing.product.model.vo.ActivityReview;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketPayment;
 
@@ -72,7 +73,10 @@ public class MemberDao {
 	public ArrayList<QNA> selectQna(SqlSessionTemplate sqlSession, int memNo){
 		return (ArrayList)sqlSession.selectList("memberMapper.selectQna", memNo);
 	}
-	
+	// 1:1문의 삭제
+	public int delectQna(SqlSessionTemplate sqlSession, int qnaNo) {
+		return sqlSession.delete("memberMapper.deleteQna", qnaNo);
+	}
 	//-----------------------------------------------------------------
 	
 	//혜진
@@ -86,6 +90,10 @@ public class MemberDao {
 
 	public int memberUpdate(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.update("memberMapper.memberUpdate", m);
+	}
+	
+	public int memberDelete(int memNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.memberDelete", memNo);
 	}
 	
 	public ArrayList<AccommWish> wishAccommList(int memNo, SqlSessionTemplate sqlSession){
@@ -137,7 +145,6 @@ public class MemberDao {
 	}
 
 	public int insertPlan(Plan p, SqlSessionTemplate sqlSession) {
-		System.out.println(p);
 		return sqlSession.insert("memberMapper.insertPlan", p);
 	}
 	
@@ -189,7 +196,14 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.selectAccommReview", orderNo);
 	}
 	
+	public ActivityReview selectActivityReview(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectActivityReview", orderNo);
+	}
 	
+	public int insertAccommReview(AccommReview review, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.insertAccommReview", review);
+	}
+
 	
 	
 	
@@ -211,6 +225,11 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
+
+
+
 
 
 

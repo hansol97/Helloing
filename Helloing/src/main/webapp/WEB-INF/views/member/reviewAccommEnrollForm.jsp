@@ -90,7 +90,7 @@
         display: inline-block;
     }
 
-    #star-area input[name=reviewStar] {
+    #star-area input[name=star] {
         display: none;
     }
 
@@ -107,16 +107,7 @@
 	}
 
 	/* 태그 */
-	#tag-area input[name=tag] {
-		display: none;
-	}
-	#tag-area span{
-		border: 1px solid gray;
-		background-color: white;
-		border-radius: 5px;
-		padding: 5px;
-		color: black;
-	}
+
 	#tag-area h3{
 		padding : 10px;
 		text-align: center;
@@ -217,6 +208,15 @@
 			overflow: initial;
 		}
 		}
+		.tag-opt{
+		    height: 50px;
+		    width: 200px;
+		    font-size: 16px;
+		    border-radius: 10px;
+		    border: 1px solid rgb(193 193 193);
+		    font-family: 'S-CoreDream-3Light';
+		    
+		}
 </style>
 </head>
 <body>
@@ -232,32 +232,32 @@
 		<div id="detail">
 		<br><br>
 		<h1>리뷰 작성 페이지</h1><br>
-		<form action="" method="post">
-			<a href="detail.accomm">[빠른전송] 2023 스위스패스 연속 E-티켓 + 특전</a>
+		<form action="insertAccommReview.hj" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="orderNo" value="${orderNo}">
 			<hr>
 			<div id="star-area">
 				<label for="rate1">
-					<input type="radio" name="reviewStar" value="1" id="rate1" checked>
+					<input type="radio" name="star" value="1" id="rate1" checked>
 					<img src="/helloing/resources/img/star1.png" width="50" height="50" alt="">
 				</label>
 
 				<label for="rate2">
-					<input type="radio" name="reviewStar" value="2" id="rate2">
+					<input type="radio" name="star" value="2" id="rate2">
 					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
 				</label>
 
 				<label for="rate3">
-					<input type="radio" name="reviewStar" value="3" id="rate3">
+					<input type="radio" name="star" value="3" id="rate3">
 					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
 				</label>
 
 				<label for="rate4">
-					<input type="radio" name="reviewStar" value="4" id="rate4">
+					<input type="radio" name="star" value="4" id="rate4">
 					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
 				</label>
 				
 				<label for="rate5">
-					<input type="radio" name="reviewStar" value="5" id="rate5">
+					<input type="radio" name="star" value="5" id="rate5">
 					<img src="/helloing/resources/img/star2.png" width="50" height="50" alt="">
 				</label>
 			</div>
@@ -265,7 +265,7 @@
 			
 			<div id="content">
 				<h3>구체적으로 어떤 경험이었나요?</h3>
-				<textarea name="content" id="text-area"cols="110px" rows="10px" placeholder="이용하기 전 알기 어려운 사실이나 꿀팁을 알려주세요."></textarea>
+				<textarea name="reviewContent" id="text-area"cols="110px" rows="10px" placeholder="이용하기 전 알기 어려운 사실이나 꿀팁을 알려주세요."></textarea>
 				<span id="count">0</span> / 150
 				
 				<p>
@@ -283,54 +283,20 @@
 				<h3>어떤 점이 특히 좋았나요?</h3>
 				<br>
 				
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="위치가 찾기 쉬워요" id="rate1" checked>
-					<span>🧭위치가 찾기 쉬워요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="관광지와 가까워요" id="rate1" checked>
-					<span>🏝️관광지와 가까워요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="방문하기 편해요" id="rate1" checked>
-					<span>🚗방문하기 편해요</span>
-				</label>
-
-				<br><br>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="즐길 거리가 많아요" id="rate1" checked>
-					<span>🗽즐길 거리가 많아요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="관리가 잘 되어있어요" id="rate1" checked>
-					<span>🧹관리가 잘 되어있어요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="사진과 동일해요" id="rate1" checked>
-					<span>🖼️사진과 동일해요</span>
-				</label>
-
-				<br><br>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="친절해요" id="rate1" checked>
-					<span>😊친절해요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="전문적이에요" id="rate1" checked>
-					<span>💻전문적이에요</span>
-				</label>
-
-				<label for="rate1">
-					<input type="checkbox" name="tag" value="응답이 빨라요" id="rate1" checked>
-					<span>✉️응답이 빨라요</span>
-				</label>
+				 <select name="tagArr" class="tag-opt">
+					<option value="위치가 찾기 쉬워요">🧭위치가 찾기 쉬워요</option>
+					<option value="관광지와 가까워요">🏝️관광지와 가까워요</option>
+					<option value="방문하기 편해요">🚗방문하기 편해요</option>
+					<option value="즐길 거리가 많아요">🗽즐길 거리가 많아요</option>
+					<option value="관리가 잘 되어있어요">🧹관리가 잘 되어있어요</option>
+					<option value="사진과 동일해요">🖼️사진과 동일해요</option>
+					<option value="친절해요">😊친절해요</option>
+					<option value="전문적이에요">💻전문적이에요</option>
+					<option value="응답이 빨라요">✉️응답이 빨라요</option>
+				</select>
+                    <span id="tag-zone"></span>
+                    <a id="tag-add" style="cursor:pointer;"> ➕ </a>
+                    <a id="tag-minus" style="cursor:pointer;"> ➖ </a>
 			</div>
 
 			<hr>
@@ -346,13 +312,11 @@
 						<img src="" alt="미리보기 이미지" class="preview">
 						</div>
 						<label class="file-label" for="chooseFile">사진 선택하기</label>
-						<input class="file" id="chooseFile" type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+						<input name="upfile" class="file form-control-file border" id="chooseFile" type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
 					</div>
 					</div>
 				</div>
 			</div>
-
-
 
 			<br>
 			<div id="btn">
@@ -365,37 +329,41 @@
 
 <script>
 //리뷰 별 
-$('input[name=reviewStar]').click(function(){
-
-    var $num = $(this).val();
-
-    $('input[name=reviewStar]').each(function(){
-
-        if($(this).val() <= $num){
-            $(this).next().attr('src','/helloing/resources/img/star1.png');
-        } else {
-            $(this).next().attr('src','/helloing/resources/img/star2.png');
-        }
-    })
-});
+	$('input[name=star]').click(function(){
+	
+	    var $num = $(this).val();
+	
+	    $('input[name=star]').each(function(){
+	
+	        if($(this).val() <= $num){
+	            $(this).next().attr('src','/helloing/resources/img/star1.png');
+	        } else {
+	            $(this).next().attr('src','/helloing/resources/img/star2.png');
+	        }
+	    })
+	});
 
 //글자 수
-		$('#text-area').keyup(function(){
-            $('#count').text($(this).val().length);
+	$('#text-area').keyup(function(){
+           $('#count').text($(this).val().length);
 
-        })
+       });
 //태그
-	$('#input[name=tag]').click(function(){
-		
-		$(this).children('span').css({color: 'white', background:'gray'});
-		//$('#tag-area input[name=tag]').each(function(){
-			// if($(this).prop('checked') == true){
-			// } else {
-			// 	$(this).css({color: 'black', background:'none'});
-			// }
+       $('#tag-add').click(function(){
+           if($('.tag-opt').length <= 2){
+               $('#tag-zone').append($('.tag-opt').first().clone(true));
+           } else {
+               alert('최대 입력 수를 초과하셨습니다.');
+           }
+       });
 
-	});
-	//});
+       $('#tag-minus').click(function(){
+               if($('.tag-opt').length > 1){
+                   $('.tag-opt').last().remove();
+               } else {
+                   alert('최대 삭제수를 초과하셨습니다.');
+              }
+       });  
 
 	//사진업로드
 	function DropFile(dropAreaId, fileListId) {
