@@ -19,8 +19,6 @@ public class ActivityReview {
 	private double avg;
 	private String activityName;
 	
-	private String originName;
-	private String filePath;
 	
 	// 첨부파일
 	private String originName; // 원본파일 이름
