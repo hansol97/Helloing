@@ -414,7 +414,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     TICKET T USING(ACTIVITY_NO)
                 WHERE ORDER_NO = #{ orderNo }) A
 	</select>
-	
+	<insert id="insertAccommReview" parameterType="acReview">
+INSERT 
+		INTO 
+			ACCOMM_REVIEW(
+							REVIEW_NO, 
+							ACCOMM_NO, 
+							MEM_NO, 
+							ROOM_NO, 
+							REVIEW_CONTENT, 
+							TAG, 
+							STAR, 
+							ORDER_NO, 
+							ORIGIN_NAME, 
+							FILE_PATH
+							) 
+		VALUES(
+				SEQ_ACCRNO.NEXTVAL
+				, ( SELECT ACCOMM_NO FROM ROOM_PAYMENT WHERE ORDER_NO = #{ orderNo })
+				, #{ memNo }
+				, ( SELECT ROOM_NO FROM ROOM_PAYMENT WHERE ORDER_NO = #{ orderNo })
+				, #{ reviewContent }
+				, #{ tag }
+				, #{ star }
+				, #{ orderNo }
+				, #{ originName }
+				, #{ filePath }
+				)
+	</insert>
 	
 	
 	

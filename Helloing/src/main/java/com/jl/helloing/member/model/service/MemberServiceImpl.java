@@ -142,8 +142,7 @@ public class MemberServiceImpl implements MemberService{
 	//숙소 리뷰작성
 	@Override
 	public int insertAccommReview(AccommReview review) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.insertAccommReview(review, sqlSession);
 	}
 
 	//액티비티 리뷰작성

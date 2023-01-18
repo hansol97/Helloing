@@ -178,10 +178,11 @@ pageEncoding="UTF-8"%>
 		    	
 		    	</ul>
 		    	<br>
+				<div class="modalBtn" style="float:right;">
+					<a class="review-delete">삭제</a>
+				</div>
 
-			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >수정</a>
-			  </div>
+
 		</div>
     <script>
     $(function(){
@@ -216,8 +217,11 @@ pageEncoding="UTF-8"%>
 		    		  + '<li>' + star + '</li>'
 		    		  + '<li style="padding:10px;">' + result.reviewContent + '</li>'
 		    		  + '<li>' + result.tag + '</li>'
-		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>';
-					
+		    		  + '<li style="display:flex;"><img src="' + result.filePath + '"width="100px"></li>'
+		    		  + '<input type="hidden" name="reviewNo" value="' + result.reviewNo +  '">'
+		    		  + '<input type="hidden" name="filePath" value="' + result.filePath + '">';
+
+
 					
 					  $('#ex2 .review-area').html(value);
 					  
@@ -236,6 +240,19 @@ pageEncoding="UTF-8"%>
 		location.href="reviewAccommEnrollForm.hj?orderNo="+orderNo;
     })
     
+    $(function(){
+    	$('.review-delete').click(function(){
+    		var $this = $(this);
+    		
+    		var reviewNo = $this.siblings('.review-area').children('input[name="reviewNo"]').val();
+    		
+    		console.log(reviewNo);
+    		
+    	})
+    })
+    
+    
+</script>
     </script>
 </body>
 </html>

@@ -200,6 +200,10 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.selectActivityReview", orderNo);
 	}
 	
+	public int insertAccommReview(AccommReview review, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.insertAccommReview", review);
+	}
+
 	
 	
 	
@@ -221,6 +225,7 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
 
 
 
