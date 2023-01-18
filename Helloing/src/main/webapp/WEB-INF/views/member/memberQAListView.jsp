@@ -511,7 +511,6 @@ table.type02 td {
 	$(function(){
 		$(document).on('change', '.cbox', function(){
 			if($('.cbox').prop('checked')){
-				
 			}
 		})
 	})
