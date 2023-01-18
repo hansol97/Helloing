@@ -236,7 +236,7 @@ public class BusinessController {
 					list.add(at);
 	    		}
 		}
-
+//sdsd    	
 		if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
 
 			if(businessService.InsertActPhoto(list)>0) {
