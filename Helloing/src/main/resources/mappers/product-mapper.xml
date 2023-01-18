@@ -196,6 +196,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
 			  ,TAG
 			  ,STAR
+			  ,FILE_PATH
 		  FROM
 		  	   ACTIVITY_REVIEW AR
 		  JOIN
@@ -374,6 +375,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS CREATE_DATE
 			  ,TAG
 			  ,STAR
+              ,ORIGIN_NAME
+              ,FILE_PATH
 		  FROM
 		       ACCOMM_REVIEW AR
 		  JOIN
@@ -381,7 +384,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  JOIN
 		  	   ROOM R ON (AR.ROOM_NO = R.ROOM_NO)
 		 WHERE
-		 	   AR.ACCOMM_NO = 1
+		 	   AR.ACCOMM_NO = #{ accommNo }
 		 ORDER
 		    BY
 		       REVIEW_NO DESC
@@ -436,6 +439,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      ,A.ACCOMM_NAME
 		      ,A.CATEGORY
 		      ,A.ADDRESS
+		      ,LAT
+		      ,LNG
 		      ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS REVIEWCOUNT
 		      ,(SELECT MIN(PRICE) FROM ROOM WHERE ACCOMM_NO = A.ACCOMM_NO) AS ROWPRICE
 		      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE ACCOMM_NO = A.ACCOMM_NO) AS AVG

@@ -40,6 +40,8 @@ public class ProductController {
 	@RequestMapping("search.accomm")
 	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
 		
+		System.out.println("일반 검색 : " + ac.getAccommName());
+		
 		ArrayList<Accomm> list = productService.searchAccomm(ac);
 		
 		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
@@ -48,7 +50,7 @@ public class ProductController {
 			mv.addObject("accommList", list);
 		}
 		
-		mv.addObject("keyword", ac.getAccommName())
+		mv.addObject("keyword", ac.getAccommName()) 
 		  .setViewName("product/accommSearch");
 		
 		return mv;
@@ -254,6 +256,27 @@ public class ProductController {
 		System.out.println(result);
 		
 		return "product/paySuccess";
+	}
+	
+	// 검색된 숙소들 지도에 보여주기
+	@RequestMapping("accomm.map")
+	public ModelAndView mapAccomm(Accomm ac, ModelAndView mv) {
+		
+		ac.setCategory("all"); // 카테고리가 비어있어서 list가 뜨지 않았다...
+
+		ArrayList<Accomm> list = productService.searchAccomm(ac);
+		
+		mv.addObject("keyword", ac.getAccommName());
+		
+		if(list.isEmpty()) { // 검색 리스트가 비어있다면 지도 안보여줄거다
+			mv.addObject("alertMsg", "검색된 결과가 없어 지도를 보여줄 수 없습니다;;;")
+			  .setViewName("product/accommSearch");
+		} else {
+			mv.addObject("accommList", list)
+			  .setViewName("product/accommMap");
+		}
+		
+		return mv;
 	}
 	
 }

@@ -15,7 +15,7 @@
 	<div style="height: 70px;"></div>
 	
 	<div class="inner">
-	<form action="search.accomm">
+	<form action="search.accomm" method="get">
         <div class="top-content">
                <div id="searchbox">
                    <div style="padding: 0px 18px;">
@@ -32,7 +32,7 @@
         
         <div class="middle-content">
             <div class="side-bar">
-                <button id="btn-map">🗺️지도로 보기</button> <!-- 검색해서 나온 시설들 지도에 띄워주기 -->
+                <button id="btn-map" onclick="showMap();" type="button">🗺️지도로 보기</button> <!-- 검색해서 나온 시설들 지도에 띄워주기 -->
                 <div>
                     <h4>종류</h4>
                     <input type="radio" name="category" id="all" value="all" checked><label for="all">전체</label><br>
@@ -74,7 +74,7 @@
             <div class="main">
 				<c:choose>
 					<c:when test="${ not empty accommList }">
-						<h4>검색된 숙소 ${ fn:length(accommList) }개</h4>
+						<h4>'<span id="keyword">${ keyword }</span>' 검색된 숙소 ${ fn:length(accommList) }개</h4>
 		                <div class="radio-sort">
 		                    <input type="radio" name="radio-sort" id="recomm"><label for="recomm">추천순</label>
 		                    <input type="radio" name="radio-sort" id="manyreview"><label for="manyreview">많은 후기순</label>
