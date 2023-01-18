@@ -458,6 +458,21 @@ table.type02 td {
 			});
 		});
 	</script>
+	
+	<script>
+		function btnDelete(){
+			var 
+			
+			
+			
+			
+			
+		}
+		
+	</script>
+	
+	
+	
 	<!--  
 	<script>
 	function btnDelete(){
