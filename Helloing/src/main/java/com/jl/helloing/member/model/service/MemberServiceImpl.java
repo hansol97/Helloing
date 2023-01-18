@@ -113,6 +113,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.activityBook(memNo, sqlSession);
 	}
 	
+	//숙소 예약 취소
+	@Override
+	public int bookCancel(int orderNo) {
+		return memberDao.bookCancel(orderNo, sqlSession);
+	}
+	
 	//숙소예약디테일
 	@Override
 	public RoomPayment accommBookDetail(int orderNo) {
@@ -123,12 +129,7 @@ public class MemberServiceImpl implements MemberService{
 	public TicketPayment activityBookDetail(int orderNo) {
 		return memberDao.activityBookDetail(orderNo, sqlSession);
 	}
-	//숙소예약취소
-	@Override
-	public int accommBookDelete(int orderNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 	//숙소 리뷰 조회
 	@Override
 	public AccommReview selectAcommReview(int orderNo) {
@@ -148,30 +149,21 @@ public class MemberServiceImpl implements MemberService{
 	//액티비티 리뷰작성
 	@Override
 	public int insertActivityReview(ActivityReview review) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.insertActivityReview(review, sqlSession);
 	}
 
 	//숙소리뷰삭제
 	@Override
 	public int deleteAccommReview(int reviewNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.deleteAccommReview(reviewNo, sqlSession);
 	}
 
 	//액티비티 리뷰 삭제
 	@Override
 	public int deleteActivityReview(int reviewNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.deleteActivityReview(reviewNo, sqlSession);
 	}
 
-	
-	
-	
-	
-	
-	
 	//비밀번호 체크
 	@Override
 	public String checkPwd(Member m) {
@@ -348,6 +340,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+
 
 	
 

@@ -203,9 +203,22 @@ public class MemberDao {
 	public int insertAccommReview(AccommReview review, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("memberMapper.insertAccommReview", review);
 	}
+	
+	public int deleteAccommReview(int reviewNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteAccommReview", reviewNo);
+	}
 
+	public int insertActivityReview(ActivityReview review, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("memberMapper.insertActivityReview", review);
+	}
 	
+	public int deleteActivityReview(int reviewNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.delete("memberMapper.deleteActivityReview", reviewNo);
+	}
 	
+	public int bookCancel(int orderNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.bookCancel", orderNo);
+	}
 	
 	
 	//혜진 끝
@@ -225,6 +238,13 @@ public class MemberDao {
 	public int removeAcWish(SqlSessionTemplate sqlSession, AccommWish aw) {
 		return sqlSession.delete("memberMapper.removeAcWish", aw);
 	}
+
+
+
+
+
+
+
 
 
 

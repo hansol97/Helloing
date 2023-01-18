@@ -442,11 +442,59 @@ INSERT
 				, #{ filePath }
 				)
 	</insert>
+	<!-- 액티비티 리뷰 등록 -->
+	<insert id="insertActivityReview" parameterType="actReview">
+	INSERT 
+			INTO 
+				ACTIVITY_REVIEW(
+								REVIEW_NO, 
+								ACTIVITY_NO, 
+								MEM_NO, 
+								TICKET_NO, 
+								REVIEW_CONTENT, 
+								TAG, 
+								STAR, 
+								ORDER_NO, 
+								ORIGIN_NAME, 
+								FILE_PATH
+								) 
+			VALUES(
+					SEQ_ACTRNO.NEXTVAL
+					, (SELECT ACTIVITY_NO FROM TICKET WHERE TICKET_NO = ( SELECT TICKET_NO FROM TICKET_PAYMENT WHERE ORDER_NO =#{ orderNo } AND ROWNUM=1))
+					, #{ memNo }
+					, ( SELECT TICKET_NO FROM TICKET_PAYMENT WHERE ORDER_NO = #{ orderNo })
+					, #{ reviewContent }
+					, #{ tag }
+					, #{ star }
+					, #{ orderNo }
+					, #{ originName }
+					, #{ filePath }
+					)	
+	</insert>
+	<!-- 숙소리뷰 삭제 -->
+	<delete id="deleteAccommReview" parameterType="_int">
+	DELETE 
+		FROM ACCOMM_REVIEW
+	WHERE 
+		REVIEW_NO = #{ reviewNo }
+	</delete>
 	
-	
-	
-	
-	
+	<!-- 액티비티 리뷰 삭제 -->
+	<delete id="deleteActivityReview" parameterType="_int">
+	DELETE 
+		FROM ACTIVITY_REVIEW
+	WHERE 
+		REVIEW_NO = #{ reviewNo }
+	</delete>
+	<!-- 예약취소 -->
+	<update id="bookCancel" parameterType="_int">
+	UPDATE
+		ROOM_PAYMENT
+	SET
+		STATUS = 'N'
+	WHERE 
+		ORDER_NO = #{ orderNo }
+	</update>
 	
 	
 	
