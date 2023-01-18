@@ -22,4 +22,6 @@ public class AccommReview {
 	private String originName; // 원본파일 이름
 	private String filePath; // filePath + changeName 
 
+	private String[] tagArr;
+	private int orderNo;
 }

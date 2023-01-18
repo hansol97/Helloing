@@ -1,5 +1,7 @@
 package com.jl.helloing.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
@@ -24,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -689,11 +692,63 @@ public class MemberController {
 		return mv;
 	}
 	
-	//후기 작성 페이지 
-	@RequestMapping("reviewEnrollForm.hj")
-	public String reviewEnrollForm() {
-		return "member/reviewEnrollForm";
+	//숙소 후기 작성 페이지 
+	@RequestMapping("reviewAccommEnrollForm.hj")
+	public ModelAndView reviewAccommEnrollForm(ModelAndView mv, int orderNo) {
+	
+		mv.addObject("orderNo", orderNo);
+		mv.setViewName("member/reviewAccommEnrollForm");
+		
+		return mv;
 	}
+	
+	//후기 작성
+	@RequestMapping("insertAccommReview.hj")
+	public ModelAndView insertAccommReview(ModelAndView mv, AccommReview review, MultipartFile upfile, HttpSession session) {
+		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		//작성자
+		review.setMemNo(memNo);
+		
+		if(!upfile.getOriginalFilename().equals("")) { 
+			
+			review.setOriginName(upfile.getOriginalFilename());
+			review.setFilePath("/helloing/resources/uploadFiles/"+saveFile(upfile, session));
+		}
+		return mv;
+	}
+	
+	   
+    // 파일 리네임 saveFile() 
+	public String saveFile(MultipartFile upfile, HttpSession session) {// 실제 넘어온 파일의 이름을 변경해서 서버에 업로드하는 역할
+		// 파일명 수정작업 후 서버에 업로드 시키기("image.png" => 20221238123123.png)
+		String originName = upfile.getOriginalFilename();
+		
+		// "20221226103530"(년월일시분초)
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());//util타입 Date가 아니면 simpleDateFormat이 받을 수가 없다
+		
+		//12321(5자리 랜덤값)
+		int ranNum = (int)(Math.random() * 90000 + 10000);
+		
+		// 확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = "helloing_" + currentTime + "_" +ranNum + ext;
+		
+		// 업로드 시키고자 하는 폴더의 물리적인 경로 알아내기
+		// 세션 만들고 getServletContext()이용해서 application에 접근하고, 파일 경로 알아내기
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		
+		try {												// transferTo() => 서버에 파일을 업로드해주는 메소드
+			upfile.transferTo(new File(savePath, changeName));//파일 객체를 만들 때는 경로와 파일명을 넣어서..
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return changeName;
+	}
+	
+	
 	
 	//플래너 메인페이지
 	@RequestMapping("plannerMain.hj")
