@@ -80,7 +80,7 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" id="memId" required>
+						<td><input type="text" name="memId" maxlength="20" id="memId"  onkeyup="chk(event)" required>
 						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
 						</td>
 					</tr>
@@ -88,6 +88,12 @@ height: 30px;
 						<td> 비밀번호 &nbsp;&nbsp;</td>
 						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" required></td>
 					</tr>
+					
+					<tr>
+						<td> 비밀번호 확인 &nbsp;&nbsp;</td>
+						<td><input type="password" name="checkPwd" id="checkPwd" maxlength="20" required></td>
+					</tr>
+					
 					<tr>
 						<td> 이름  &nbsp;&nbsp;</td>
 						<td><input type="text" name="memName" required></td>
@@ -113,7 +119,7 @@ height: 30px;
 					-->
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
-						<td><input type="text" name="phone" placeholder="(-)를포함시켜주세요" required></td>
+						<td><input type="text" id="phone" name="phone" placeholder="(-)를포함시켜주세요" style="ime-mode:disabled" required></td>
 					</tr>
 				</table>
 				<button id="btn-submit" type="submit" class="join-button">회원가입</button>
@@ -240,43 +246,94 @@ height: 30px;
 							$('#checkId').hide();
 							$('#enroll-form :submit').attr('disabled', true);
 						}
-					})
+					});
+					
+					
+					$(document).on('focusout','input[name=memPwd]',function(){
+						var memPwd = $("#memPwd").val();
+						var memId = $("#memId").val();
+							
+						var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+						var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+						
+						if(false === reg.test(memPwd)) {
+							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+						}else if(memPwd.search(memId) > -1){
+						 	alert("비밀번호에 아이디가 포함되었습니다.");
+						 return false;
+						}else if(memPwd.search(/\s/) != -1){
+						 	alert("비밀번호는 공백 없이 입력해주세요.");
+						return false;
+						}else if(hangulCheck.test(memPwd)){
+						 	alert("비밀번호에 한글을 사용 할 수 없습니다."); 
+						}else {
+						 	console.log("통과");
+						}
+
+						})
+						
+						
+						$(document).on('keyup','input[name=phone]', function () {
+						    $(this).val($(this).val().replace(/[^0-9]/g, ""));
+			
+						});
+					
+					
+					
+					
 				})
+				
+				
+				
+				
+				
 			</script>
 			
 			
 			<script>
 			$(function(){
-				$(document).on('focusout','input[name=memPwd]',function(){
-				var memPwd = $("#memPwd").val();
-				var memId = $("#memId").val();
-					
-				var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-				var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 				
-				if(false === reg.test(memPwd)) {
-					alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
-				}else if(memPwd.search(memId) > -1){
-				 	alert("비밀번호에 아이디가 포함되었습니다.");
-				 return false;
-				}else if(memPwd.search(/\s/) != -1){
-				 	alert("비밀번호는 공백 없이 입력해주세요.");
-				return false;
-				}else if(hangulCheck.test(memPwd)){
-				 	alert("비밀번호에 한글을 사용 할 수 없습니다."); 
-				}else {
-				 	console.log("통과");
-				}
-
-				})
 			});
 			
 			
 			</script>
 			
 			
+			<script>
 			<%--
+			$("#phone").keyup(function(event){
+			    var inputVal = $(this).val();
+			    $(this).val(inputVal.replace(/[^0-9]/gi,''));
+			});
+			--%>
 			
+			
+			
+			<%--
+			let idInput = /^[a-z]+[a-z0-9]{5,19}$/g; 	
+    		if( !idInput.test( $("input[name=memId]").val() ) ) {
+
+       	 		alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+       	 	
+    		}else{
+    			alert("사용 가능한 아이디입니다.")
+    		}
+			--%>
+			
+			<%--
+			$(function())
+			chk(event) {
+				  const regExp = /[^0-9a-zA-Z]/g;
+				  const ele = event.target;
+				  if (regExp.test(ele.value)) {
+				    ele.value = ele.value.replace(regExp, '');
+				  }
+				};
+			--%>
+			</script>
+			
+			
+			<%--
 				$(function(){
 					$(document).on('focusout','input[name=memPwd]',function(){
 						var reg = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
@@ -285,7 +342,7 @@ height: 30px;
 				})
 				--%>
 			
-			<!-- 
+		
 			<script>
 			function $idInput(asValue) {
 
@@ -295,29 +352,14 @@ height: 30px;
 
 				}
 			</script>
-			
-			
+			<!--
 			<script>
-			$(function(){
-				let idInput = /^[a-z]+[a-z0-9]{5,19}$/g; 	
-	        		if( !idInput.test( $("input[name=memId]").val() ) ) {
-
-	           	 		alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
-	           	 	
-	        		}else{
-	        			alert("사용 가능한 아이디입니다.")
-	        		}
-	        		})
+				$('input[name=checkPwd]').focusout(function(){
+					var $memPwd
+				})
 			</script>
-			 -->
 			
-			
-			
-			
-			
-			
-			
-			<!--  
+			  
 			<script>
 				$(function(){		//input name=memId 인 곳에 focusout 이벤트가 일어나면 function() 안의 함수 실행
 					//document는 현재 페이지중에 이러한 변화가 일어나면~
