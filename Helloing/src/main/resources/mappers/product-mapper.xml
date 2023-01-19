@@ -107,6 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR"    		 property="star" />
         <result column="MEM_NAME"        property="memName" />
         <result column="ROOM_NAME"   	 property="roomName" />
+        <result column="FILE_PATH"   	 property="filePath" />
     </resultMap>
     
 	<resultMap id="actWishResultSet" type="activitywish">
@@ -332,6 +333,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          	   A.ACCOMM_NO = #{ accommNo }
 	</select>
 	
+	<!-- 객실에 첨부된 첨부파일 -->
+	<select id="selectRoomPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ROOM R
+		  JOIN
+		       ROOM_ATTACHMENT RT ON (R.ROOM_NO = RT.ROOM_NO)
+         WHERE
+         	   RT.ROOM_NO = #{ roomNo }
+	</select>
+	
 	<!-- 액티비티에 첨부된 첨부파일 -->
 	<select id="selectActPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
 		SELECT
@@ -497,9 +510,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ인호 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 숙소 조회 -->
-
 	<select id="selectAccommListBu" parameterType="string" resultMap="AccommResultSet">
 		SELECT
 				ACCOMM_NO,
