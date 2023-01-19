@@ -50,7 +50,7 @@ public class ProductController {
 			mv.addObject("accommList", list);
 		}
 		
-		mv.addObject("keyword", ac.getAccommName()) 
+		mv.addObject("keyword", ac.getAccommName())
 		  .setViewName("product/accommSearch");
 		
 		return mv;

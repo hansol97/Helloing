@@ -92,7 +92,7 @@
 				<div class="black_bg2"></div>
 				<br><br>
 				
-				<button onclick="check();" class="termsButton"> 동의하기 </button>
+				<button onclick="check();" class="termsButton"> 동의하고 가입하기 </button>
 			</div>
 			<label id="check">&nbsp;</label>
 			

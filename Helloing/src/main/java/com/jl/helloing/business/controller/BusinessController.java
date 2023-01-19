@@ -70,14 +70,14 @@ public class BusinessController {
 		String businessNo = loginCompany.getBusinessNo();		// 사업자번호 뽑기
 		accList = businessService.selectAccommList(businessNo); // 사업자 번호 보내서 숙소 리스트 가져오기
 		
-		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
+//		ArrayList<Integer> accommNoList = new ArrayList<Integer>();
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		
 		int accommNo;
 		for (Accomm j : accList) { // 가져온 객실 리스트 각각의 Accomm VO에 방 리스트 넣어두기 
 
 			accommNo = j.getAccommNo(); // 숙소번호 가져오기
-			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
+//			accommNoList.add(accommNo); // 숙소 번호 빼내서 번호 리스트 만들기
 			roomList = businessService.selectRoomList(accommNo); //숙소 번호  보내서 방 리스트 받아오기
 			j.setRoomList(roomList); // Accomm vo에 받아온 객실들이 담긴 ArrayList 추가 
 			
@@ -679,13 +679,13 @@ public class BusinessController {
 	
 	// 승준
 	// 기업 파트너 등록 폼
-	@RequestMapping("businessEnrollForm.bu")
+	@RequestMapping("businessEnrollForm.hj")
 	public String businessEnrollForm() {
 		return "member/businessEnrollForm";
 	}
 	
 	// 기업 파트너 등록
-	@RequestMapping("insertCompany.bu")
+	@RequestMapping("insertCompany.hj")
 	public String insertCompany(HttpSession session, Business b) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		

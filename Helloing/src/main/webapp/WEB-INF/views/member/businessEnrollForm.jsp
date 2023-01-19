@@ -49,7 +49,7 @@ button:hover {
 		<br><br>
 		
 		<div class="enroll-form">
-			<form action="insertCompany.bu" method="post" id="enroll-form">
+			<form action="insertCompany.hj" method="post" id="enroll-form">
 				<table>
 					<tr>
 						<td>파트너 이름 &nbsp;&nbsp;</td>

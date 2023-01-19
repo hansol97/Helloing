@@ -25,5 +25,7 @@ public class TicketPayment {
 	private String memName;
 	private String phone;
 	private String email;
+	
+	
 }
   

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.jl.helloing.member.model.vo.Member;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class AdminInterceptor extends HandlerInterceptorAdapter{
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -20,8 +20,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         
         // 현재 요청을 보낸 사람이 로그인이 되어있을 경우 => Controller 실행
         HttpSession session = request.getSession();
+        Member loginUser = (Member)session.getAttribute("loginUser");
         
-        if(session.getAttribute("loginUser") != null) {
+        
+        if(loginUser.getStatus().equals("A")) {
             return true;
         } else {
             
@@ -30,18 +32,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             
             return false;
         }
-        
-        /*
-        if(((Member)session.getAttribute("loginUser")).getStatus().equals("A")) {
-            return true;
-        } else {
-            
-            session.setAttribute("alertMsg", "로그인을 하세여. 콱씨👊");
-            response.sendRedirect(request.getContextPath());
-            
-            return false;
-        }
-        */
     }
 
 
