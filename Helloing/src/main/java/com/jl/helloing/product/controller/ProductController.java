@@ -1,6 +1,7 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketCommand;
@@ -80,10 +82,17 @@ public class ProductController {
 			mv.addObject("checkWish", productService.checkAcWish(aw));
 		}
 		
+		ArrayList<AccommReview> reviewList = productService.selectAcReviewList(accommNo);
+		
+		for(int i = 0; i < reviewList.size(); i++) { // 리뷰에 달린 태그를 tagArr 배열에 담아줌.
+			String[] arr = reviewList.get(i).getTag().split(",");
+			reviewList.get(i).setTagArr(arr);
+		}
+		
 		mv.addObject("ac", ac) // 숙소 정보
 		  .addObject("photo", photo) // 사진 정보
 		  .addObject("roomList", productService.selectRoomList(accommNo)) // 객실 정보
-		  .addObject("acReviewList", productService.selectAcReviewList(accommNo)) // 리뷰 정보
+		  .addObject("acReviewList", reviewList) // 리뷰 정보
 		  .setViewName("product/accommDetail");
 		
 		return mv;

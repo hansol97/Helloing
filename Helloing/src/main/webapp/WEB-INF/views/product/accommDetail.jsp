@@ -168,7 +168,9 @@
 									<p class="review-content">
 										${ ar.reviewContent }
 									</p>
-									<span class="tag">객실이 깨끗해요</span><span class="tag">친절해요</span>
+									<c:forEach items="${ ar.tagArr }" var="tag" varStatus="status">
+										<span class="tag">${ tag }</span>
+									</c:forEach>
 								</div>
 								<div><img src="${ ar.filePath }" width="250" height="160"></div>
 							</div>
