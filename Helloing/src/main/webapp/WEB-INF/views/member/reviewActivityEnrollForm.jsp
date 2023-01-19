@@ -232,7 +232,7 @@
 		<div id="detail">
 		<br><br>
 		<h1>리뷰 작성 페이지</h1><br>
-		<form action="insertAccommReview.hj" method="post" enctype="multipart/form-data">
+		<form action="insertActivityReview.hj" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="orderNo" value="${orderNo}">
 			<hr>
 			<div id="star-area">
@@ -431,9 +431,11 @@
 
 	const dropFile = new DropFile("drop-file", "files");
 
+	
 	$('#list_btn').clilk(function(){
-		location.href="accommBook.hj";
+		location.href="activityBook.hj";
 	})
+	
 </script>
 
 </body>

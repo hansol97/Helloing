@@ -275,6 +275,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE
                 TICKET_NO = #{ ticketNo }
 	</update> 
+	
+	<!-- 액티비티 지울 때 티켓 삭제 -->
+	<update id="deleteTicketA" parameterType="_int">
+		UPDATE
+                TICKET
+		   SET
+                STATUS = 'N'
+		 WHERE
+                ACTIVITY_NO = #{ activityNo }
+	</update> 
 
 	<!-- 숙소 수정 -->
 	<!-- 객실 수정 -->

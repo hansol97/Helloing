@@ -25,4 +25,6 @@ public class ActivityReview {
 	private String filePath; // filePath + changeName 
 	
 	private String[] tagArr;
+	private int orderNo;
+
 }

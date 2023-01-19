@@ -107,23 +107,27 @@ public class BusinessDao {
 	public int deleteAccomm(SqlSessionTemplate sqlSession, int accommNo) {
 		return sqlSession.update("businessMapper.deleteAccomm", accommNo);
 	}
-    // 액티비티 삭제 (UPDATE)status = n
-	public int deleteActivity(SqlSessionTemplate sqlSession, int activityNo) {
-		return sqlSession.update("businessMapper.deleteActivity", activityNo);
-	}
 	// 방 삭제   (UPDATE)status = n
 	public int deleteRoom(SqlSessionTemplate sqlSession, int roomNo) {
 		return sqlSession.update("businessMapper.deleteRoom", roomNo);
-	}
-	// 티켓 삭제  (UPDATE)status = n
-	public int deleteTicket(SqlSessionTemplate sqlSession, int ticketNo) {
-		return sqlSession.update("businessMapper.deleteTicket", ticketNo);
 	}
 	// 숙소 지울 때 방 지우기
 	public int deleteRoomA(SqlSessionTemplate sqlSession, int accommNo) {
 		return sqlSession.update("businessMapper.deleteRoomA", accommNo);
 	}
 	
+    // 액티비티 삭제 (UPDATE)status = n
+	public int deleteActivity(SqlSessionTemplate sqlSession, int activityNo) {
+		return sqlSession.update("businessMapper.deleteActivity", activityNo);
+	}
+	// 티켓 삭제  (UPDATE)status = n
+	public int deleteTicket(SqlSessionTemplate sqlSession, int ticketNo) {
+		return sqlSession.update("businessMapper.deleteTicket", ticketNo);
+	}
+	// 액티비티 지울 때 티켓 삭제
+	public int deleteTicketA(SqlSessionTemplate sqlSession, int activityNo) {
+		return sqlSession.update("businessMapper.deleteTicketA", activityNo);
+	}	
 	
 	
 	
@@ -136,6 +140,9 @@ public class BusinessDao {
 	public RoomPayment selectBookInfo(SqlSessionTemplate sqlSession, RoomPayment rp) {
 		return sqlSession.selectOne("businessMapper.selectBookInfo", rp);
 	}
+
+
+
 
 
 

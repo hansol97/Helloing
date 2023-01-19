@@ -515,7 +515,19 @@ public class MemberController {
 	}
 	
 	//예약 취소
-	
+	@RequestMapping("bookCancel.hj")
+	public ModelAndView bookCancel(HttpSession session, ModelAndView mv, int orderNo) {
+		
+		if(memberService.bookCancel(orderNo)>0) {
+			session.setAttribute("alertMsg", "취소에 성공하였습니다.");
+			mv.setViewName("redirect:accommBook.hj");
+		}else {
+			session.setAttribute("alertMsg", "취소에 실패하였습니다.");
+			mv.setViewName("redirect:accommBook.hj");
+		}
+		
+		return mv;
+	}
 	
 	
 	
@@ -550,6 +562,16 @@ public class MemberController {
 	
 		mv.addObject("orderNo", orderNo);
 		mv.setViewName("member/reviewAccommEnrollForm");
+		
+		return mv;
+	}
+	
+	//액티비티 후기 작성 페이지 
+	@RequestMapping("reviewActivityEnrollForm.hj")
+	public ModelAndView reviewActivityEnrollForm(ModelAndView mv, int orderNo) {
+	
+		mv.addObject("orderNo", orderNo);
+		mv.setViewName("member/reviewActivityEnrollForm");
 		
 		return mv;
 	}
@@ -615,13 +637,16 @@ public class MemberController {
 	
 	//후기 삭제(숙소)
 	@RequestMapping("deleteAccommReview.hj")
-	public ModelAndView deleteAccommReview(ModelAndView mv, AccommReview review ){
+	public ModelAndView deleteAccommReview(ModelAndView mv, AccommReview review, HttpSession session){
 		
-		System.out.println(review);
-		
-		String changeName = review.getFilePath().substring(32);
-		System.out.println(changeName);
-		
+		if(memberService.deleteAccommReview(review.getReviewNo())>0) {
+			 	new File(session.getServletContext().getRealPath(review.getFilePath())).delete();
+				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+				mv.setViewName("redirect:accommBook.hj");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
+			mv.setViewName("redirect:accommBook.hj");
+		}
 		return mv;
 	}
 	
@@ -655,11 +680,20 @@ public class MemberController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
+	//후기 삭제(액티비티)
+	@RequestMapping("deleteActivityReview.hj")
+	public ModelAndView deleteActivityReview(ModelAndView mv, ActivityReview review, HttpSession session){
+		
+		if(memberService.deleteActivityReview(review.getReviewNo())>0) {
+			 	new File(session.getServletContext().getRealPath(review.getFilePath())).delete();
+				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+				mv.setViewName("redirect:activityBook.hj");
+		}else {
+			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
+			mv.setViewName("redirect:activityBook.hj");
+		}
+		return mv;
+	}
 	
 	//회원정보 조회 - 비밀번호 확인
 	@RequestMapping("checkPwdForm.hj")
@@ -870,9 +904,43 @@ public class MemberController {
 	
 		//플래너 번호에 해당하는 플랜 삭제
 		
+		//case1. 플래너 O 일정 O
+		//case2. 플래너 O 일정 X
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		Planner pl = new Planner();
+		pl.setMemNo(memNo);
+		pl.setPlannerNo(plannerNo);
+		
+		System.out.println(plannerNo);
 		
 		//플래너 삭제
-		
+			if(memberService.deletePlanMem(pl)>0) {
+				if(memberService.selectPlanYN(plannerNo)>0) { //플래너 속 일정이 있을 때, 
+					
+					if(memberService.deleteInPlan(plannerNo)>0) { //case1 성공
+						if(memberService.deletePlanner(plannerNo)>0) { //성공
+							session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+						}else {//실패
+							session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+						}
+					}else { //실패
+						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+					}
+					
+				}else {
+					if(memberService.deletePlanner(plannerNo)>0) { //성공
+						session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+					}else {//실패
+						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+					}
+				}
+			}else {
+				session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+			}
+			
+			mv.setViewName("redirect:plannerMain.hj");
+			
 		return mv;
 	}
 	

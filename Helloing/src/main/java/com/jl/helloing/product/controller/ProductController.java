@@ -1,6 +1,7 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import com.jl.helloing.member.model.vo.ActivityWish;
 import com.jl.helloing.member.model.vo.Member;
 import com.jl.helloing.product.model.service.ProductService;
 import com.jl.helloing.product.model.vo.Accomm;
+import com.jl.helloing.product.model.vo.AccommReview;
 import com.jl.helloing.product.model.vo.Activity;
 import com.jl.helloing.product.model.vo.RoomPayment;
 import com.jl.helloing.product.model.vo.TicketCommand;
@@ -40,8 +42,6 @@ public class ProductController {
 	@RequestMapping("search.accomm")
 	public ModelAndView searchAccomm(Accomm ac, ModelAndView mv) {
 		
-		System.out.println("일반 검색 : " + ac.getAccommName());
-		
 		ArrayList<Accomm> list = productService.searchAccomm(ac);
 		
 		if(list.isEmpty()) { // 검색 리스트가 비어있다면 다른 추천 리스트 보여주기
@@ -63,14 +63,16 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Accomm ac = productService.selectAcDetail(accommNo);
-		System.out.println(ac);
-		ArrayList<Attachment> at = productService.selectPhotoList(accommNo);
-		ArrayList<String> photo = new ArrayList<String>();
 
-		for(int i = 0; i < at.size(); i++) {
+		ArrayList<Attachment> at = productService.selectPhotoList(accommNo); // 사진 리스트 받아오기
+		ArrayList<String> photo = new ArrayList<String>(); // 빈 배열 생성
+
+		for(int i = 0; i < at.size(); i++) { // 빈 배열에 attachment만 각각 담아주기
 			photo.add(at.get(i).getAttachment());
 		}
 		
+		// DB에 체크인체크아웃이 10:00 / 14:00 으로 되있다.
+		// 스플릿 메소드을 통해서 체크인체크아웃 시간을 각각 담아줬다.
 		ac.setCheckIn(ac.getCheckInout().split(" / ")[0]);
 		ac.setCheckOut(ac.getCheckInout().split(" / ")[1]);
 		
@@ -80,10 +82,17 @@ public class ProductController {
 			mv.addObject("checkWish", productService.checkAcWish(aw));
 		}
 		
+		ArrayList<AccommReview> reviewList = productService.selectAcReviewList(accommNo);
+		
+		for(int i = 0; i < reviewList.size(); i++) { // 리뷰에 달린 태그를 tagArr 배열에 담아줌.
+			String[] arr = reviewList.get(i).getTag().split(",");
+			reviewList.get(i).setTagArr(arr);
+		}
+		
 		mv.addObject("ac", ac) // 숙소 정보
 		  .addObject("photo", photo) // 사진 정보
 		  .addObject("roomList", productService.selectRoomList(accommNo)) // 객실 정보
-		  .addObject("acReviewList", productService.selectAcReviewList(accommNo)) // 리뷰 정보
+		  .addObject("acReviewList", reviewList) // 리뷰 정보
 		  .setViewName("product/accommDetail");
 		
 		return mv;
@@ -99,10 +108,9 @@ public class ProductController {
 		if(loginUser != null) { // 로그인이 되어있는 상태에서만 결제 가능
 			mv.addObject("rp", rp);
 			mv.setViewName("product/accommReserve");
-			
-		} else {
+		} else { // 로그인이 되어있지 않으면 로그인 폼으로 보내버리기
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
-			mv.setViewName("redirect:loginForm.me");
+			mv.setViewName("redirect:loginForm.me"); 
 		}
 		
 		return mv;
@@ -115,9 +123,7 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		rp.setMemNo(loginUser.getMemNo());
 		
-		int result = productService.insertRoomPayment(rp);
-		
-		System.out.println(result);
+		productService.insertRoomPayment(rp);
 		
 		return "product/paySuccess";
 	}
@@ -125,21 +131,6 @@ public class ProductController {
 	// 액티비티 메인
 	@RequestMapping("activity")
 	public ModelAndView activityMain(ModelAndView mv) {
-		
-		//ArrayList<Activity> actList = productService.selectActList();
-		
-		/*
-		for(int i = 0; i < actList.size(); i++) {
-			if(i+1 != actList.size()) {
-				if(actList.get(i).getActivityNo() == actList.get(i+1).getActivityNo()) {
-					actList.remove(i+1);
-					i--;
-				}
-			} else { 
-				break;
-			}
-		}
-		*/
 		
 		mv.addObject("actList", productService.selectActList())
 		  .setViewName("product/activityMain");
@@ -172,6 +163,7 @@ public class ProductController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Activity act = productService.selectActDetail(activityNo);
+		
 		ArrayList<Attachment> photo = productService.selectActPhotoList(activityNo); // 사진 전체
 		ArrayList<Attachment> photoList = new ArrayList<Attachment>();
 		
@@ -225,7 +217,7 @@ public class ProductController {
 			  .addObject("act", act)
 			  .setViewName("product/activityReserve");
 			
-		} else {
+		} else { // 로그인 안한 유저는 로그인 폼으로 넘기기
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			mv.setViewName("redirect:loginForm.me");
 		}
@@ -240,20 +232,13 @@ public class ProductController {
 						      ModelAndView mv) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		System.out.println(tk.getTicketPayment());
-		
 		for(int i = 0; i < tk.getTicketPayment().size(); i++) {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
 		}
 		
-		// ticket payment 테이블에 행추가
-		int result = productService.insertTicketPayment(tk.getTicketPayment());
-		// ticket 테이블에 티켓 카운트 -1
-		if(result > 0) {
-			int resultcount = productService.decreaseCount(tk.getTicketPayment());
+		if(productService.insertTicketPayment(tk.getTicketPayment()) > 0){ // ticket payment 테이블에 행추가
+			productService.decreaseCount(tk.getTicketPayment());// ticket 테이블에 capacity -1
 		}
-		
-		System.out.println(result);
 		
 		return "product/paySuccess";
 	}
@@ -264,7 +249,7 @@ public class ProductController {
 		
 		ac.setCategory("all"); // 카테고리가 비어있어서 list가 뜨지 않았다...
 
-		ArrayList<Accomm> list = productService.searchAccomm(ac);
+		ArrayList<Accomm> list = productService.searchAccomm(ac); // 검색하는 sql 재활용 ㅎ
 		
 		mv.addObject("keyword", ac.getAccommName());
 		

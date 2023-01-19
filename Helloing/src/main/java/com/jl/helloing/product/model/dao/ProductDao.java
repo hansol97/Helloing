@@ -88,4 +88,8 @@ public class ProductDao {
 	public ArrayList<Activity> searchActivity(SqlSessionTemplate sqlSession, String keyword){
 		return (ArrayList)sqlSession.selectList("productMapper.searchActivity", keyword);
 	}
+
+	public ArrayList<Attachment> selectRoomPhotoList(SqlSessionTemplate sqlSession, int roomNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectRoomPhotoList", roomNo);
+	}
 }
