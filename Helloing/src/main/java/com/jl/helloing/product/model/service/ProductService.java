@@ -61,4 +61,7 @@ public interface ProductService {
 	// 숙소 첨부파일들 조회
 	ArrayList<Attachment> selectActPhotoList(int activityNo);
 
+	// 객실 첨부파일 조회
+	ArrayList<Attachment> selectRoomPhotoList(int roomNo);
+
 }

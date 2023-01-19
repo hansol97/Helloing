@@ -183,8 +183,10 @@ public class BusinessController {
     	if (result > 0) { // 숙소삭제 성공시  - 숙소 파일 삭제하기
     		
     		ArrayList<Attachment> atList = productService.selectPhotoList(accommNo);
-    		
     		ArrayList<String> filePathList = new ArrayList<String>();
+    		ArrayList<Accomm> accList = (ArrayList<Accomm>)session.getAttribute("accList");
+
+
     		
     		// attachment 필드들 가져와서 리스트에 집어넣기
     		for(int i = 0; i < atList.size(); i++) {
@@ -193,7 +195,7 @@ public class BusinessController {
     		for (int j = 0; j < filePathList.size(); j++) {
 				
     			String filePath = filePathList.get(j); // filePath를 얻었다. 지우자.
-    			System.out.println(filePath);
+    			System.out.println("숙소 파일패스 : " + filePath);
     			if (!filePath.equals("")) { // 파일이 있으면 지우자
 					new File(session.getServletContext().getRealPath(filePath)).delete();
 				}
@@ -203,11 +205,43 @@ public class BusinessController {
     		
     		if (result2 > 0) { // 방 지워졌으면 방 파일 지우기
     			
-    			
-    			
-				
+    			ArrayList<Room> roomList = new ArrayList<Room>();
+        		ArrayList<Attachment> roomAtList = new ArrayList<Attachment>();
+        		ArrayList<String> roomFilePathList = new ArrayList<String>();
+        		ArrayList<Integer> roomNoList = new ArrayList<Integer>();
+        		String filePath ="";
+    			for (int j = 0; j < accList.size(); j++) {
+    				if (accList.get(j).getAccommNo() == accommNo) {
+						roomList = accList.get(j).getRoomList(); // 방 두개면 방 두개 들어가 있음.
+					} 
+				}
+    			System.out.println("roomList : " + roomList);
+    			if (roomList != null) { // 방이 있으면
+    				
+    				for (int i = 0; i < roomList.size(); i++) { // roomNo 찾아와서 파일 지워야 함
+    					int roomNo = roomList.get(i).getRoomNo();
+    					//름넘버 가져가서 ATTACHMENT 가져와서 ATTACHMENT리스트 에 담기
+    					roomAtList = productService.selectRoomPhotoList(roomNo); // roomFilePath(filePath + changeName)
+    					// 한 방번호당 여러개의 AtList 생성 -> 여기서는 방번호 하나당 roomAtList두개 생성될것. 
+    					// 그럼 두번 돌려서 roomFilePathList 두개 씩 두번 
+    					for (int j = 0; j < roomAtList.size(); j++) {
+							String path1 = roomAtList.get(j).getAttachment(); // 파일패스(문자열) 1개 얻어서 파일패스 리스트에 집어넣기
+							roomFilePathList.add( path1 ); 
+						} // 이 for문이 한번 끝나면  roomFilePathList 1개 경로 추가됨. 태스트때는 두번 도니까 두개의 경로가 추가
+    					System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
+    				}
+    				System.out.println("roomFilePathList : 4개 예상 : " + roomFilePathList);
+    				
+    				// 파일패스 4개 얻었으니 roomFilePathList의 크기인 4번 돌면서 파일을 지워주자
+    				for (int i = 0; i < roomFilePathList.size(); i++) {
+    					String path = roomFilePathList.get(i); 
+    					if (!path.equals("")) { // 파일이 있으면 지우자
+    						new File(session.getServletContext().getRealPath(path)).delete();
+    					}
+    					System.out.println("지워진 " + i + "번째  파일의 경로 : " + path );
+					}
+    			}
 			}
-    		
     		session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
 		} else {
 			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
@@ -236,8 +270,8 @@ public class BusinessController {
 					list.add(at);
 	    		}
 		}
-//sdsd    	
-		if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
+
+    	if (businessService.InsertAct(act) > 0) { // 성공 => 게시글 리스트 페이지
 
 			if(businessService.InsertActPhoto(list)>0) {
 				session.setAttribute("alertMsg", "액티비티 등록 성공!");
@@ -282,12 +316,6 @@ public class BusinessController {
 	// 객실등록
 	@RequestMapping("insertRoom.bu")
 	public String InsertRoom(int accommNo ,Room room, MultipartFile[] upfile, HttpSession session, Model model) {
-//		int accommNo = room.getAccommNo();  
-//		int accommNo = 3;   // 이거 만지세요~!
-//		room.setAccommNo(accommNo);// 다 하고 되면 빼고 돌려보자.
-		System.out.println("accommNo : " + accommNo);
-    	System.out.println("upfile : " + upfile);
-    	System.out.println("upfile[0] : " + upfile[0]);
 
     	ArrayList<Attachment> list = new ArrayList();
     	for (int i = 0; i < upfile.length; i++) {
