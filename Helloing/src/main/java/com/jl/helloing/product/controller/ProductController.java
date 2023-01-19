@@ -28,6 +28,18 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	// 메인페이지 인기 숙소
+	@ResponseBody
+	@RequestMapping("hot.accomm")
+	public String hotAccomm() {
+		
+		ArrayList<Accomm> accommList = productService.hotAccomm();
+		
+		System.out.println(accommList);
+		
+		return "";
+	}
+	
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {

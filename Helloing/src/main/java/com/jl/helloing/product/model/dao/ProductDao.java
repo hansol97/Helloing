@@ -20,6 +20,10 @@ import com.jl.helloing.product.model.vo.TicketPayment;
 
 @Repository
 public class ProductDao {
+	
+	public ArrayList<Accomm> hotAccomm(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("productMapper.hotAccomm");
+	}
 
 	public ArrayList<Activity> selectActList(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("productMapper.selectActList");

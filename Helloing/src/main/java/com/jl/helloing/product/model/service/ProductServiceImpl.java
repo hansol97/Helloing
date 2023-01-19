@@ -28,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public ArrayList<Accomm> hotAccomm(){
+		return productDao.hotAccomm(sqlSession);
+	}
 
 	@Override
 	public ArrayList<Activity> selectActList() {

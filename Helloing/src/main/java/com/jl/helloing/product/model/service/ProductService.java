@@ -17,6 +17,9 @@ import com.jl.helloing.product.model.vo.TicketPayment;
 
 public interface ProductService {
 	
+	// 리얼 메인페이지 인기 숙소 조회
+	ArrayList<Accomm> hotAccomm();
+	
 	// 액티비티 전체 조회(메인페이지)
 	ArrayList<Activity> selectActList();
 	
