@@ -132,7 +132,10 @@ pageEncoding="UTF-8"%>
 	            				</td>
 	            			</c:when> 
 	            			<c:when test="${a.status eq 'Y'}">
-	              				 <td><a href="#ex1" rel="modal:open">예약취소</a></td>
+	              				 <td>
+	              				 	<a class="bookCancel">예약취소</a>
+	              					<input type="hidden" name="orderNo" value="${a.orderNo }" class="orderNo">
+	              				</td>
 	            			</c:when>
 	            			<c:otherwise>
 	              				 <td>취소된 예약</td>
@@ -144,31 +147,7 @@ pageEncoding="UTF-8"%>
 		        </table>
 		       
 		    </div>
-		    <div id="ex1" class="modal">
-		    	<ul>
-		    		<h5 style="font-weight:600;">취소 시 환불금액</h5>
-		    		<li style="font-size:20px;">190,000원</li>
-		    	</ul>
-		    	<br>
-			    <ul>
-		    		<h5 style="font-weight:600;">환불규정</h5>
-		    		<li>
-		    		<p>
-		    		- 체크인 3일 전 : 무료 취소 <br>
-					- 체크인 2일 전 ~ 당일 : 취소 환불 불가  <br>
-					- 취소요청 이후에는 취소의 철회가 불가능합니다.  <br>
-					- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.  <br>
-					</p>
-					</li>
-		    	</ul>
-		    	<br>
-			  <p style="font-size:25px; font-weight:600;">동의하시겠습니까?</p>
-			 
-			 <div class="modalBtn" style="float:right;">
-			  <a href="#" >넹</a>
-			  <a href="#" rel="modal:close">아니용</a>
-			  </div>
-		</div>
+		 
 
     </div>
     
@@ -250,8 +229,18 @@ pageEncoding="UTF-8"%>
     	})
     })
     
+    //예약취소
+    $('.bookCancel').click(function(){
+		var $this = $(this);
+		var orderNo = $this.siblings('input[name=orderNo]').val();
+		
+		if(confirm('- 취소요청 이후에는 취소의 철회가 불가능합니다.- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.')){
+			location.href="bookCancel.hj?orderNo="+orderNo;
+		}
+    })
+    
+    
     
 </script>
-    </script>
 </body>
 </html>

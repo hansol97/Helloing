@@ -86,7 +86,7 @@ height: 30px;
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
-						<td><input type="password" name="memPwd" maxlength="20" required></td>
+						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" required></td>
 					</tr>
 					<tr>
 						<td> 이름  &nbsp;&nbsp;</td>
@@ -202,7 +202,8 @@ height: 30px;
 			<script>
 				$(function(){
 					
-					const $idInput = $('#enroll-form #memId');
+					let $idInput = $('#enroll-form #memId');
+			
 					// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
 						
 					// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
@@ -211,7 +212,6 @@ height: 30px;
 						
 						// 최소 다섯글자 이상으로 입력할때만 ajax요청
 						if($idInput.val().length >= 5){
-						
 							//중복체크 요청
 							$.ajax({
 								url : 'idCheck.me',
@@ -243,6 +243,79 @@ height: 30px;
 					})
 				})
 			</script>
+			
+			
+			<script>
+			$(function(){
+				$(document).on('focusout','input[name=memPwd]',function(){
+				var memPwd = $("#memPwd").val();
+				var memId = $("#memId").val();
+					
+				var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+				var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+				
+				if(false === reg.test(memPwd)) {
+					alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+				}else if(memPwd.search(memId) > -1){
+				 	alert("비밀번호에 아이디가 포함되었습니다.");
+				 return false;
+				}else if(memPwd.search(/\s/) != -1){
+				 	alert("비밀번호는 공백 없이 입력해주세요.");
+				return false;
+				}else if(hangulCheck.test(memPwd)){
+				 	alert("비밀번호에 한글을 사용 할 수 없습니다."); 
+				}else {
+				 	console.log("통과");
+				}
+
+				})
+			});
+			
+			
+			</script>
+			
+			
+			<%--
+			
+				$(function(){
+					$(document).on('focusout','input[name=memPwd]',function(){
+						var reg = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
+						var '
+					})
+				})
+				--%>
+			
+			<!-- 
+			<script>
+			function $idInput(asValue) {
+
+				var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+
+				return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+
+				}
+			</script>
+			
+			
+			<script>
+			$(function(){
+				let idInput = /^[a-z]+[a-z0-9]{5,19}$/g; 	
+	        		if( !idInput.test( $("input[name=memId]").val() ) ) {
+
+	           	 		alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+	           	 	
+	        		}else{
+	        			alert("사용 가능한 아이디입니다.")
+	        		}
+	        		})
+			</script>
+			 -->
+			
+			
+			
+			
+			
+			
 			
 			<!--  
 			<script>
