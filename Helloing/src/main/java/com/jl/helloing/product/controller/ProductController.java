@@ -236,9 +236,8 @@ public class ProductController {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
 		}
 		
-		if(productService.insertTicketPayment(tk.getTicketPayment()) > 0){ // ticket payment 테이블에 행추가
-			productService.decreaseCount(tk.getTicketPayment());// ticket 테이블에 capacity -1
-		}
+		productService.insertTicketPayment(tk.getTicketPayment()); // ticket payment 테이블에 행추가
+		
 		
 		return "product/paySuccess";
 	}

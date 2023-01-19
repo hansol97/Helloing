@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.AccommWish;
@@ -48,15 +49,12 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectReviewList(sqlSession, activityNo);
 	}
 
+	@Transactional
 	@Override
 	public int insertTicketPayment(List<TicketPayment> list) {
-		return productDao.insertTicketPayment(sqlSession, list);
+		return productDao.insertTicketPayment(sqlSession, list) * productDao.decreaseCount(sqlSession, list);
 	}
 	
-	public int decreaseCount(List<TicketPayment> list) {
-		return productDao.decreaseCount(sqlSession, list);
-	}
-
 	@Override
 	public ActivityWish checkActWish(ActivityWish aw) {
 		return productDao.checkActWish(sqlSession, aw);
