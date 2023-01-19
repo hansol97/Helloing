@@ -177,16 +177,12 @@ public class BusinessController {
     public String deleteAccomm(int accommNo, HttpSession session) {
     	
     	int result = businessService.deleteAccomm(accommNo);
-    	
-				
  
     	if (result > 0) { // 숙소삭제 성공시  - 숙소 파일 삭제하기
     		
     		ArrayList<Attachment> atList = productService.selectPhotoList(accommNo);
     		ArrayList<String> filePathList = new ArrayList<String>();
     		ArrayList<Accomm> accList = (ArrayList<Accomm>)session.getAttribute("accList");
-
-
     		
     		// attachment 필드들 가져와서 리스트에 집어넣기
     		for(int i = 0; i < atList.size(); i++) {
@@ -208,8 +204,6 @@ public class BusinessController {
     			ArrayList<Room> roomList = new ArrayList<Room>();
         		ArrayList<Attachment> roomAtList = new ArrayList<Attachment>();
         		ArrayList<String> roomFilePathList = new ArrayList<String>();
-        		ArrayList<Integer> roomNoList = new ArrayList<Integer>();
-        		String filePath ="";
     			for (int j = 0; j < accList.size(); j++) {
     				if (accList.get(j).getAccommNo() == accommNo) {
 						roomList = accList.get(j).getRoomList(); // 방 두개면 방 두개 들어가 있음.
@@ -292,18 +286,74 @@ public class BusinessController {
     
     
     // 액티비티 삭제 (UPDATE)
+//    @RequestMapping("deleteAct.bu")
+//    public String deleteActivity(int activityNo, HttpSession session) {
+//    	
+//    	int result = businessService.deleteActivity(activityNo); //액티비티 삭제
+//    	
+//    	if (result > 0) {// 액티 삭제 성공시  - 액티 사진 파일 삭제하기
+//    		
+//    		ArrayList<Attachment> atList = productService.selectActPhotoList(activityNo);
+//    		ArrayList<String> filePathList = new ArrayList<String>();
+//    		ArrayList<Activity> actList = (ArrayList<Activity>)session.getAttribute("actList");
+//    		
+//    		// attachment 필드들 가져와서 리스트에 집어넣기
+//    		for(int i = 0; i < atList.size(); i++) {
+//    			filePathList.add( atList.get(i).getAttachment() );
+//    		}
+//    		for (int j = 0; j < filePathList.size(); j++) {
+//				
+//    			String filePath = filePathList.get(j); // 숙소 filePath를 얻었다. 지우자.
+//    			System.out.println("액티 파일패스 : " + filePath);
+//    			if (!filePath.equals("")) { // 파일이 있으면 지우자
+//					new File(session.getServletContext().getRealPath(filePath)).delete();
+//				}
+//			}
+//    		// 액티 에 딸린 티켓 지우기
+//    		int result2 = businessService.deleteTicketA(activityNo); 
+//    		
+//    		if (result2 > 0) { // 티켓은 사진이 없다....
+//    			session.setAttribute("alertMsg", "액티비티와 티켓을  삭제하였습니다.");
+//			}
+//		} else {
+//			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
+//		}
+//    	return "redirect:activityList.bu";
+//    }
+	
+    // 불린으로 받을 경우. 
     @RequestMapping("deleteAct.bu")
     public String deleteActivity(int activityNo, HttpSession session) {
-    	
-    	int result = businessService.deleteActivity(activityNo);
-    	
-    	if (result > 0) {
-			session.setAttribute("alertMsg", "액티비티를 삭제하였습니다.");
-		} else {
-			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
-		}
-    	return "redirect:activityList.bu";
+        boolean isDeleted;
+        
+        if (businessService.deleteActivity(activityNo) == 1) isDeleted = true;
+		else	isDeleted = false;
+        businessService.deleteActivity(activityNo);
+        
+        if (isDeleted) {
+            deleteRelatedPhotos(activityNo, session);
+            boolean isTicketDeleted;
+
+            if (businessService.deleteTicketA(activityNo)==1) isTicketDeleted = true ;
+            else isTicketDeleted = false;
+            if (isTicketDeleted) session.setAttribute("alertMsg", "액티비티와 티켓이 성공적으로 삭제되었음.음.");
+            
+        } else {
+            session.setAttribute("errorMsg", "액티비티 삭제 실패.");
+        }
+        return "redirect:activityList.bu";
     }
+    
+    private void deleteRelatedPhotos(int activityNo, HttpSession session) {
+        ArrayList<Attachment> attachments = productService.selectActPhotoList(activityNo);
+        for (Attachment attachment : attachments) {
+            String filePath = attachment.getAttachment();
+            if (!filePath.isEmpty()) {
+                new File(session.getServletContext().getRealPath(filePath)).delete();
+            }
+        }
+    }
+     
     
 	
 	
