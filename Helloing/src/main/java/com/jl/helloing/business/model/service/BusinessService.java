@@ -86,6 +86,7 @@ public interface BusinessService {
 	
 	int deleteRoomA(int accommNo);
 	
+	int deleteTicketA(int activityNo);
 	
 	
 
@@ -120,6 +121,7 @@ public interface BusinessService {
 	ArrayList<RoomPayment> checkBookDate(int roomNo);
 
 	RoomPayment selectBookInfo(RoomPayment rp);
+
 
 
 
