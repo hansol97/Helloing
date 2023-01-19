@@ -119,7 +119,7 @@ height: 30px;
 					-->
 					<tr>
 						<td> 핸드폰번호  &nbsp;&nbsp;</td>
-						<td><input type="text" id="phone" name="phone" placeholder="(-)를포함시켜주세요" style="ime-mode:disabled" required></td>
+						<td><input type="text" id="phone" name="phone" placeholder="숫자만 입력해주세요"  required></td>
 					</tr>
 				</table>
 				<button id="btn-submit" type="submit" class="join-button">회원가입</button>
@@ -342,7 +342,7 @@ height: 30px;
 				})
 				--%>
 			
-		
+	
 			<script>
 			function $idInput(asValue) {
 
@@ -352,6 +352,7 @@ height: 30px;
 
 				}
 			</script>
+			
 			<!--
 			<script>
 				$('input[name=checkPwd]').focusout(function(){
