@@ -119,7 +119,7 @@ public class AdminController {
 	//------------------------ 챗봇(메뉴바) ------------------------
 	
 	@ResponseBody
-	@RequestMapping(value="adminInfo.ch", produces="application/json; charset=UTF-8")
+	@RequestMapping(value="selectQ.ch", produces="application/json; charset=UTF-8")
 	public String selectadminInfo(String chatbotKeyword) {
 		String[] keywords = chatbotKeyword.split("\\s");
 		

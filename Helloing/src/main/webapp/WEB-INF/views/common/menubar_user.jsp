@@ -482,7 +482,7 @@
               </div>
               <div id="chat_input">
                   <input id="chatbot_user_input" type="text">
-                  <button onclick="addUserChat(); return false;">📄</button>
+                  <button onclick="addUserChat();">📄</button>
               </div>
           </div>
       </div>
@@ -490,37 +490,17 @@
   </chatbot>
 
   <script>
-    const cbBody = document.querySelector('body');
-    const chatModal = document.querySelector('.chat_modal');
-    const chatBtnOpen = document.querySelector('.chat-btn-open');
-
-    chatBtnOpen.addEventListener('click', () => {
-      chatModal.classList.toggle('show');
-
-    });
-
-    chatModal.addEventListener('click', (event) => {
-      if (event.target === chatModal) {
-        chatModal.classList.toggle('show');
-
-      }
-    });
-
-
-
     var $chatBody = $('#chat_view')
 
     $(function(){
       $('#chatbot_btn').click(function(){
         $chatBody.children().remove('');
         $.ajax({
-          url:'adminInfo.ch'
+          url:'selectQ.ch'
           ,data : {
             chatbotKeyword : '[admin]안내메세지'
           }
           ,success: function(c){
-            console.log(c[0].chatbotA);
-
             $chatBody.append('<div class="admin_chat">' + c[0].chatbotA + '</div>');
           }
           ,error : function(){
@@ -536,7 +516,7 @@
     function addUserChat(){
       $chatBody.append('<div class="wrap_user_chat"><div class="user_chat"><p>' + $userInput.val() + '</p></div></div>');
       $.ajax({
-        url : 'adminInfo.ch'
+        url : 'selectQ.ch'
         ,data : {
           chatbotKeyword : $userInput.val()
         }
@@ -562,6 +542,24 @@
       $chatBody.append('<div class="admin_chat">' + chatbotList[num].chatbotA + '</div>')
       $chatBody.scrollTop($chatBody[0].scrollHeight);
       }
+    
+    
+    const cbBody = document.querySelector('body');
+    const chatModal = document.querySelector('.chat_modal');
+    const chatBtnOpen = document.querySelector('.chat-btn-open');
+
+    chatBtnOpen.addEventListener('click', () => {
+      chatModal.classList.toggle('show');
+
+    });
+
+    chatModal.addEventListener('click', (event) => {
+      if (event.target === chatModal) {
+        chatModal.classList.toggle('show');
+
+      }
+    });
+
     
     
   </script>

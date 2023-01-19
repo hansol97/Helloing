@@ -906,25 +906,41 @@ public class MemberController {
 		
 		//case1. 플래너 O 일정 O
 		//case2. 플래너 O 일정 X
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		if(memberService.deletePlanner(plannerNo)>0) { 
-			if(memberService.selectPlanYN(plannerNo)>0) {
-				if(memberService.deleteInPlan(plannerNo)>0) { //case1
-					session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-				}else { //플랜삭제 실패
-					session.setAttribute("alertMsg", "일정 삭제에 실패하였습니다.");
-				}
-			}else { //case2
-				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-			}
-		}else { //플래너 삭제실패
-			session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
-		}
-			
-			mv.setViewName("redirect:plannerMain.hj");
+		Planner pl = new Planner();
+		pl.setMemNo(memNo);
+		pl.setPlannerNo(plannerNo);
+		
+		System.out.println(plannerNo);
 		
 		//플래너 삭제
-		
+			if(memberService.deletePlanMem(pl)>0) {
+				if(memberService.selectPlanYN(plannerNo)>0) { //플래너 속 일정이 있을 때, 
+					
+					if(memberService.deleteInPlan(plannerNo)>0) { //case1 성공
+						if(memberService.deletePlanner(plannerNo)>0) { //성공
+							session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+						}else {//실패
+							session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+						}
+					}else { //실패
+						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+					}
+					
+				}else {
+					if(memberService.deletePlanner(plannerNo)>0) { //성공
+						session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+					}else {//실패
+						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+					}
+				}
+			}else {
+				session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
+			}
+			
+			mv.setViewName("redirect:plannerMain.hj");
+			
 		return mv;
 	}
 	

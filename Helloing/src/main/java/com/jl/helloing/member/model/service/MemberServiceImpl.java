@@ -242,6 +242,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updatePlanner(pl, sqlSession);
 	}
 	
+	//플래너 멤버 삭제
+	@Override
+	public int deletePlanMem(Planner pl) {
+		return memberDao.deletePlanMem(pl, sqlSession);
+	}
+	
+	
 	//플래너 삭제 전 조회
 	@Override
 	public int selectPlanYN(int plannerNo) {
@@ -344,6 +351,8 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+
 
 
 

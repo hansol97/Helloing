@@ -140,6 +140,9 @@ public interface MemberService {
 	//플래너 수정
 	int updatePlanner(Planner pl);
 	
+	//플래너 멤버 삭제
+	int deletePlanMem(Planner pl);
+	
 	//플래너 삭제 전 조회
 	int selectPlanYN(int plannerNo);
 	
@@ -193,5 +196,7 @@ public interface MemberService {
 	
 	// 액티비티 위시리스트 삭제
 	int removeAcWish(AccommWish aw);
+
+	
 	
 }
