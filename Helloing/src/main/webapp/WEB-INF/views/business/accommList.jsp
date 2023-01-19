@@ -87,13 +87,7 @@
 
         <!-- 반복 끝 -->
       </c:forEach>
-        
-       
 
-                    
-            
-
-        
       <br><br><br>
       <div class="nomore">더 이상 숙소가 없습니다 <br><br>
           <a class="scrollToTop" href="">🔝맨 위로 이동🔝</a>
@@ -111,11 +105,6 @@
 		
 
       </script>
-        
-
-      
-
-
 
 
 
