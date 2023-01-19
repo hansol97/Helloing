@@ -10,7 +10,7 @@
 
 <style>
 	.inner h1{ font-size: 30px;	font-weight: bold; }
-	#map { height: 600px;	}
+	#map { height: 600px; margin-top: 30px;	}
 </style>
 
 </head>
