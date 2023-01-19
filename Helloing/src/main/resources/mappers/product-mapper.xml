@@ -107,6 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="STAR"    		 property="star" />
         <result column="MEM_NAME"        property="memName" />
         <result column="ROOM_NAME"   	 property="roomName" />
+        <result column="FILE_PATH"   	 property="filePath" />
     </resultMap>
     
 	<resultMap id="actWishResultSet" type="activitywish">
