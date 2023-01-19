@@ -153,9 +153,9 @@
                             if($('input[type=checkbox]:checked').length == 1){
                                 list.each(function(index, value){
                                     if($(value).prop('checked')){
-                                        $('#update_chatbotQ').val($(value).parents('td').next()[0].outerText);
-                                        $('#update_chatbotA').val($(value).parents('td').next().next()[0].outerText);
-                                        $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].outerText);
+                                        $('#update_chatbotQ').val($(value).parents('td').next()[0].innerText);
+                                        $('#update_chatbotA').val($(value).parents('td').next().next()[0].innerText);
+                                        $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].innerText);
                                         openModal(2)
                                     }
                                 })
