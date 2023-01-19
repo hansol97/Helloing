@@ -86,34 +86,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	function selectBookInfo(date){
 		 $.ajax({
-		url:'selectBookInfo.bu'
-		,data : {
-			chooseDate : date
-			,roomNo : $('#roomNo_input').val()
-		}
-		,success : function(bookInfo){
-			if(bookInfo != null){
-				
-				$('#book-info-area').show();
-				$('#book-info1>p.info_1').text(bookInfo.category);
-				$('#book-info1>p.info_2').text(bookInfo.accName+ '/' + bookInfo.roomName);
-	
-				$('#book-info2>p.info_1').text('예약자명 : ' + bookInfo.memName);
-				$('#book-info2>p.info_2').text('인원 수 : ' + bookInfo.headCount + '명');
-				
-				$('#book-info3>p.info_1').text('이용기간 : ' + bookInfo.startDate + ' ~ ' + bookInfo.endDate);
-				$('#book-info3>p.info_2').text('총 지불금액 : ' + bookInfo.price + '원');
+			url:'selectBookInfo.bu'
+			,data : {
+				chooseDate : date
+				,roomNo : $('#roomNo_input').val()
 			}
-			else{
-				$('#book-info-area').hide();
+			,success : function(bookInfo){
+				if(bookInfo != null){
+					
+					$('#book-info-area').show();
+					$('#book-info1>p.info_1').text(bookInfo.category);
+					$('#book-info1>p.info_2').text(bookInfo.accName+ '/' + bookInfo.roomName);
+		
+					$('#book-info2>p.info_1').text('예약자명 : ' + bookInfo.memName);
+					$('#book-info2>p.info_2').text('인원 수 : ' + bookInfo.headCount + '명');
+					
+					$('#book-info3>p.info_1').text('이용기간 : ' + bookInfo.startDate + ' ~ ' + bookInfo.endDate);
+					$('#book-info3>p.info_2').text('총 지불금액 : ' + bookInfo.price + '원');
+				}
+				else{
+					$('#book-info-area').hide();
+				}
+				
 			}
-			
-		}
-		,error : function(){
-			console.log('실패');
-		}
-	});
-	 }
+			,error : function(){
+				console.log('실패');
+			}
+		});
+	}
 	
     var calendarEl = document.getElementById('calendar'); // div요소 선택
 
