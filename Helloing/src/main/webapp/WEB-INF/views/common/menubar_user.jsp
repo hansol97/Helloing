@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-     //치환 변수 선언합니다.
-      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
-      pageContext.setAttribute("br", "<br/>"); //br 태그
-%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -382,7 +378,7 @@
 
 		          
 		          <li>
-		            <a href="loginMove.bu">기업 회원 신청</a>
+		            <a href="loginMove.hj">기업 회원 신청</a>
 		          </li>
 	          	</c:when>
 	          		<c:otherwise>
