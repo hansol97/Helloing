@@ -182,7 +182,7 @@ public class BusinessController {
     		for (int j = 0; j < filePathList.size(); j++) {
 				
     			String filePath = filePathList.get(j); // filePath를 얻었다. 지우자.
-//    			System.out.println("숙소 파일패스 : " + filePath);
+    			// System.out.println("숙소 파일패스 : " + filePath);
     			if (!filePath.equals("")) { // 파일이 있으면 지우자
 					new File(session.getServletContext().getRealPath(filePath)).delete();
 				}
@@ -200,7 +200,7 @@ public class BusinessController {
 						roomList = accList.get(j).getRoomList(); // 방 두개면 방 두개 들어가 있음.
 					} 
 				}
-//    			System.out.println("roomList : " + roomList);
+    			// System.out.println("roomList : " + roomList);
     			if (roomList != null) { // 방이 있으면
     				
     				for (int i = 0; i < roomList.size(); i++) { // roomNo 찾아와서 파일 지워야 함
@@ -213,9 +213,9 @@ public class BusinessController {
 							String path1 = roomAtList.get(j).getAttachment(); // 파일패스(문자열) 1개 얻어서 파일패스 리스트에 집어넣기
 							roomFilePathList.add( path1 ); 
 						} // 이 for문이 한번 끝나면  roomFilePathList 1개 경로 추가됨. 태스트때는 두번 도니까 두개의 경로가 추가
-//    					System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
+    					  // System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
     				}
-//    				System.out.println("roomFilePathList : 4개 예상 : " + roomFilePathList);
+    				// System.out.println("roomFilePathList : 4개 예상 : " + roomFilePathList);
     				
     				// 파일패스 4개 얻었으니 roomFilePathList의 크기인 4번 돌면서 파일을 지워주자
     				for (int i = 0; i < roomFilePathList.size(); i++) {
@@ -223,7 +223,8 @@ public class BusinessController {
     					if (!path.equals("")) { // 파일이 있으면 지우자
     						new File(session.getServletContext().getRealPath(path)).delete();
     						if ( path.equals("") ) session.setAttribute("alertMsg", "숙소와 파일을 삭제하였습니다.");
-    						else  				   session.setAttribute("alertMsg", "숙소는 삭제되었지만 파일이 삭제되지 않았습니다.");   					}
+    						else  				   session.setAttribute("alertMsg", "숙소는 삭제되었지만 파일이 삭제되지 않았습니다.");   					
+    					}
 					}
     			}
 			}
@@ -476,8 +477,16 @@ public class BusinessController {
 	
 	// 숙소 수정하기화면으로 이동
 	@RequestMapping("goUpdateAccom.bu")
-	public String goUpdateAccom() {
-		return "business/updateAccomm";
+	public ModelAndView goUpdateAccom(int accommNo, Accomm acc, HttpSession session, ModelAndView mv) {
+		
+		// 조회하러 DB안가고  숙소 번호로 세션에 있는 객체 뽑아오기
+		ArrayList<Accomm> accList = (ArrayList<Accomm>) session.getAttribute("accList");
+		for (Accomm accomm : accList) { // 
+			if (accomm.getAccommNo() == accommNo) { acc = accomm; } 
+			else { System.out.println("숙소번호의 숙소가 매치가 안되는 문제 발생");		}
+		}
+		mv.addObject("acc", acc).setViewName("business/updateAccomm");
+		return mv;
 	}
 	// 액티비티 수정하기화면으로 이동
 	@RequestMapping("goUpdateAct.bu")

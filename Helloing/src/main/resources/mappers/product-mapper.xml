@@ -125,18 +125,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 메인페이지용 인기 숙소 -->
 	<select id="hotAccomm" resultMap="AccommResultSet">
 		SELECT
-		      COUNT(*),
-		      ACCOMM_NO
-		 FROM 
-		      ROOM_PAYMENT RP
+			   *
+		  FROM(
+			    SELECT
+				       COUNT(*)
+				      ,A.ACCOMM_NO
+		              ,(SELECT ACCOMM_NAME FROM ACCOMM WHERE A.ACCOMM_NO = ACCOMM_NO) AS ACCOMM_NAME
+				      ,(SELECT CATEGORY FROM ACCOMM WHERE A.ACCOMM_NO = ACCOMM_NO) AS CATEGORY
+				      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE A.ACCOMM_NO = ACCOMM_NO) AS AVG
+				      ,(SELECT MIN(PRICE) FROM ROOM WHERE A.ACCOMM_NO = ACCOMM_NO) AS ROWPRICE
+				      ,FILEPATH
+				  FROM 
+				       ROOM_PAYMENT RP
+				  JOIN
+				       ROOM R ON (R.ROOM_NO = RP.ROOM_NO)
+				  JOIN 
+				       ACCOMM A ON (A.ACCOMM_NO = R.ACCOMM_NO)
+				  JOIN
+				      (SELECT
+				              ACCOMM_NO
+				             ,MIN(FILE_PATH || CHANGE_NAME) AS FILEPATH
+				         FROM
+				              ACCOMM_ATTACHMENT
+				        GROUP
+				           BY
+				              ACCOMM_NO) AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+				 WHERE
+				       <![CDATA[SYSDATE < A.END_DATE]]> 
+				 GROUP 
+				    BY 
+				       A.ACCOMM_NO, FILEPATH
+				 ORDER 
+				    BY   
+				       COUNT(*) DESC)
 		 WHERE
-		       ROWNUM BETWEEN 1 AND 5
-		 GROUP 
+			   ROWNUM BETWEEN 1 AND 4
+	</select>
+	
+	<!-- 메인페이지용 인기 액티비티 -->
+	<select id="hotActivity" resultMap="ActivityResultSet">
+		SELECT
+		       SUM(COUNT)
+		      ,A.ACTIVITY_NO
+		      ,(SELECT ACTIVITY_NAME FROM ACTIVITY WHERE A.ACTIVITY_NO = ACTIVITY_NO) AS ACTIVITY_NAME
+		      ,(SELECT AVG(STAR) FROM ACTIVITY_REVIEW WHERE A.ACTIVITY_NO = ACTIVITY_NO) AS AVG
+		      ,(SELECT MIN(PRICE) FROM TICKET WHERE A.ACTIVITY_NO = ACTIVITY_NO) AS ROWPRICE
+		      ,(SELECT MIN(FILE_PATH || CHANGE_NAME) AS FILEPATH FROM  ACTIVITY_ATTACHMENT WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS FILEPATH
+		  FROM
+		       TICKET_PAYMENT TP
+		  JOIN
+		       TICKET T ON (T.TICKET_NO = TP.TICKET_NO)
+		  JOIN
+		       ACTIVITY A ON (A.ACTIVITY_NO = T.ACTIVITY_NO)
+		  JOIN
+		       ACTIVITY_ATTACHMENT AT ON (A.ACTIVITY_NO = AT.ACTIVITY_NO) 
+		 WHERE
+		       <![CDATA[SYSDATE < A.END_DATE]]> 
+		 GROUP
+		    BY
+		       A.ACTIVITY_NO
+		 ORDER
 		    BY 
-		       ACCOMM_NO
-		 ORDER 
-		    BY   
-		       COUNT(*) DESC
+		      SUM(COUNT) DESC
 	</select>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
@@ -144,6 +194,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 		       A.ACTIVITY_NO
 		      ,ACTIVITY_NAME
+		      ,( SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
 		      ,( SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
 		      ,( SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
               ,FILEPATH
