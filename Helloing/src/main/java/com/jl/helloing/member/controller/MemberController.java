@@ -311,6 +311,7 @@ public class MemberController {
 		return memberService.validate(cert);
 	
 	}
+	// 아이디 체크
 	@ResponseBody // 데이터를 return 해서 돌려주고 싶을때는 ResponseBody를 쓴다.
 	@RequestMapping("idCheck.me")
 	public String idCheck(String checkId) {

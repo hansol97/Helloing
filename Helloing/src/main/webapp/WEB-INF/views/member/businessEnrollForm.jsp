@@ -27,7 +27,7 @@
 }
 
 button:hover {
-	color: #FFEA24;
+
 	cursor: pointer;
 }
 
@@ -68,7 +68,9 @@ button:hover {
 					</tr>
 					<tr>
 						<td>사업자번호 &nbsp;&nbsp;</td>
-						<td><input type="text" name="businessNo" placeholder="(-)없이 번호만 입력해주세요" required></td>
+						<td><input type="text" name="businessNo" id="businessNo" placeholder="(-)없이 번호만 입력해주세요" required>
+						<div id="businessNoCheck" width="80" style="font-size:0.7em; display:none;" ></div>
+						</td>
 					</tr>
 					<tr>
 						<td>사업자주소 &nbsp;&nbsp;</td><input type="hidden" id="address" name="address">
@@ -84,7 +86,7 @@ button:hover {
 					</tr>
 
 				</table>
-				<button type="submit" class="join-button">파트너 등록</button>
+				<button type="submit" id="btn-submit" disabled class="join-button">파트너 등록</button>
 			</form>
 
 		</div>
@@ -151,8 +153,55 @@ button:hover {
 			$("#address").val(fullAddress);
 		});
 	</script>
+	
+	<!-- 비즈니스 중복체크 -->
+	<script>
+	$(function(){
+		
+		let $busNoInput = $('#enroll-form #businessNo');
 
+		// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
+			
+		// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
+		$busNoInput.keyup(function(){
+			//console.log($idInput.val());
+			
+			// 최소 다섯글자 이상으로 입력할때만 ajax요청
+			if($busNoInput.val().length >= 10){
+				//중복체크 요청
+				$.ajax({
+					url : 'busNoCheck.sj',
+					data : {checkBusNo : $busNoInput.val()},// // 객체를 만들어서 객체의 속성명으로 넣는 과정.
+					success : function(result){ //성공했을때 돌아오는 매개변수로 넣는다 result
+						console.log(result);
+						
+						if(result == 'NNNNNNNNNN'){
+							$('#businessNoCheck').show();
+							$('#businessNoCheck').css('color', 'red').text('중복된 사업자번호가가 존재합니다.');
+							$('#btn-submit').attr('disabled', true);
+							$('#btn-submit').css('background-color', 'lightgray');	
+						}
+						else{
+							$('#businessNoCheck').show();
+							$('#businessNoCheck').css('color', 'blue').text('사용가능한 사업자번호입니다.')
+							$('#btn-submit').attr('disabled', false);
+							$('#btn-submit').css('background-color', '#053E99');
+						}
 
+					},
+					error : function(){
+						console.log("사업자번호 중복체크 실패");
+					}
+				});
+			} 
+			else { // 5글자를 쓰거 지웠는데 버튼이 활성화 될수 있기때문에 막는다.
+				$('#businessNoCheck').hide();
+				$('#btn-submit').attr('disabled', true);
+			}
+		})
+	})
+	
+	</script>
 
 
 </body>

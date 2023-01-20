@@ -33,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Accomm> hotAccomm(){
 		return productDao.hotAccomm(sqlSession);
 	}
+	
+	@Override
+	public ArrayList<Activity> hotActivity(){
+		return productDao.hotActivity(sqlSession);
+	}
 
 	@Override
 	public ArrayList<Activity> selectActList() {

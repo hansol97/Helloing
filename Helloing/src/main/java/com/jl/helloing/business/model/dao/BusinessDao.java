@@ -20,6 +20,10 @@ public class BusinessDao {
 	public int insertCompany(Business b, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("businessMapper.insertCompany", b);
 	}
+	// 사업자번호 체크
+	public int busNoCheck(String businessNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("businessMapper.busNoCheck", businessNo);
+	}
 
 	
 	// 숙소 등록ih

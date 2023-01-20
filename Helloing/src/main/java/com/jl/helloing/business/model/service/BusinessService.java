@@ -17,7 +17,9 @@ public interface BusinessService {
 	
 	Business loginCompany(int memNo);
 	
-
+	int busNoCheck(String businessNo);
+	
+	
 
 	
 	

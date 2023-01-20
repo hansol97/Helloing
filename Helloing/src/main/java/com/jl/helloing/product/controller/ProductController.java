@@ -35,13 +35,19 @@ public class ProductController {
 		return new Gson().toJson(productService.hotAccomm());
 	}
 	
+	// 메인페이지 인기 액티비티
+	@ResponseBody
+	@RequestMapping(value="hot.activity", produces="application/json; charset=UTF-8")
+	public String hotActivity() {
+		return new Gson().toJson(productService.hotActivity());
+	}
+	
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {
 		
 		mv.addObject("acList", productService.selectAcList())
 		  .setViewName("product/accommMain");
-		System.out.println(productService.selectAcList());
 		return mv;
 	}
 	

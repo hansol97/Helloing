@@ -703,7 +703,7 @@ public class BusinessController {
 	
 	// 기업 파트너 등록
 	@RequestMapping("insertCompany.hj")
-	public String insertCompany(HttpSession session, Business b) {
+	public String insertCompany(HttpSession session, Business b, Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int memNo = loginUser.getMemNo();
@@ -716,17 +716,19 @@ public class BusinessController {
 		int result = businessService.insertCompany(b);
 		
 		if( result >0) {
+			Business loginCompany = businessService.loginCompany(memNo); // 세션에 있는 memNo를 다시 loginCompany에 넣는다.
 			
+			session.setAttribute("loginCompany" , loginCompany);
 			return "redirect:/";
 		} else {
-
+			model.addAttribute("errorMsg","등록에 실패 하셨습니다.");
 			return "member/businessEnrollForm";
 		}
 	}
 	
 	
 	// 기업파트너등록 전 알림페이지
-	@RequestMapping("loginMove.bu")
+	@RequestMapping("loginMove.sj")
 	public String loginMove() {
 		return "member/loginMove";
 	}
@@ -745,8 +747,18 @@ public class BusinessController {
 			return "business/mypage";
 		}
 	}
-	
-
+	// 승준
+	// 비즈니스 중복체크
+	@ResponseBody // 데이터를 return 해서 돌려주고 싶을때는 ResponseBody를 쓴다.
+	@RequestMapping("busNoCheck.sj")
+	public String busNoCheck(String checkBusNo) {
+		int count = businessService.busNoCheck(checkBusNo);
+		if(count > 0) { // count가 0보다 높으면 이미 존재하는 비즈니스넘버
+			return "NNNNNNNNNN";
+		} else { // 사용가능
+			return "NNNNNNNNNY";
+		}
+	}
 	
 	
 	

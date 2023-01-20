@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <style>
-.accomm{
+.accomm, .activity {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -25,7 +25,11 @@
 .inner h3{ 
 	font-size: 30px;
 	font-weight: bold;
-	margin-top: 30px;	
+	margin-top: 40px;	
+	margin-bottom : 10px;
+}
+.main-img>img{
+	width: 100%;
 }
 </style>
 
@@ -48,23 +52,27 @@
         </div>
         
         <h3>🔥지금 가장 핫한 액티비티🔥</h3>
-        <div class="hot" id="hot-ticket"> 
-        	<c:forEach items="${ actList }" var="a">
-        		<div class="productbox">
-                    <input type="hidden" name="activityNo" value="${ a.activityNo }">
-	                <img src="${ a.filePath }" width="240" height="200">
-	                <p><span class="activityName">${ a.activityName }</span><br>
-	                    	⭐⭐⭐⭐⭐ ${ a.reviewCount }<br>
-	                    ${ a.rowPrice }원 ~
-	                </p>
-	            </div>
-        	</c:forEach>
+        <div class="activity"> 
+        	
         </div>
 	</div>
 	
 	<script>
 		$(function(){
 			loadAccomm();
+			loadActivity();
+			
+			
+			$(document).on('click', '.productbox', function(){
+				var num = $(this).children().eq(0).val();
+				
+				if($(this).parent('.activity').length == 1){
+					location.href = 'detail.activity?activityNo=' + num;
+				}
+				else if($(this).parent('.accomm').length == 1){
+					location.href = 'detail.accomm?accommNo=' + num;
+				}
+			})
 		})
 		
 		// 인기 숙소 불러오기
@@ -92,6 +100,32 @@
 				}
 			})
 		}
+		
+		// 인기 액티비티 불러오기
+		function loadActivity(){
+			$.ajax({
+				url : "hot.activity",
+				success : function(result){
+					let text = '';
+					
+					for (let i in result) {
+						text += '<div class="productbox">'
+						      + '<input type="hidden" name="activityNo" value="' + result[i].activityNo + '">'
+						      + '<img src="' + result[i].filePath + '" width="240" height="200">'
+						      + '<p><span class="activityName">' + result[i].activityName + '</span><br>'
+						      + '⭐⭐⭐⭐⭐ ' + result[i].reviewCount + '<br>'
+						      + result[i].rowPrice + '원 ~</p>'
+						      + '</div>';
+					}
+					
+					$('.activity').html(text);
+				},
+				error : function(){
+					console.log('통신 실패');
+				}
+			})
+		}
+		
 	
 	</script>
 </body>
