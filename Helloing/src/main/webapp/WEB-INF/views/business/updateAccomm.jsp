@@ -112,10 +112,24 @@
 					<input type="hidden" class="hidden" name="userNo" value="${requestScope.acc.businessNo}"/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" required/><br><br>
-						<input type="file" name="accommPhoto2" /><br><br>
-						<input type="file" name="accommPhoto3" /><br><br><br><br>
+						<input type="file" name="accommPhoto1" value="" required/><span></span><br><br>
+						<input type="file" name="accommPhoto2" value="" /><br><br>
+						<input type="file" name="accommPhoto3" value="" /><br><br><br><br>
+						// 히든에다가 넣어놓고 뭐기시하라고 한다.
 					</div>
+					<script>
+						$(function(){
+							var photoList = '${photoList}';
+							for (var i = 0; i < photoList.length; i++) {
+								var fileUrl = photoList[i].attachment;
+								$("input[name=accommPhoto" + (i + 1) + "]").val(fileUrl);
+								// var originFileName = photoList[i].originName;
+								// $("input[name=accommPhoto" + (i + 1) + "]").next().text(originFileName);
+    						}
+							// 바뀐 파일의 originName 넣기... 지가 알아서 되나?
+						})
+
+					</script>
 
 			<div class="feed_modal_btns" align="center">
 				<br>
