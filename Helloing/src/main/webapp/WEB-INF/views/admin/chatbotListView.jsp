@@ -156,9 +156,9 @@
                                         $('#update_chatbotQ').val($(value).parents('td').next()[0].innerText);
                                         $('#update_chatbotA').val($(value).parents('td').next().next()[0].innerText);
                                         $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].innerText);
-                                        openModal(2)
+                                        openModal(2);
                                     }
-                                })
+                                });
                             }
                             else{
                                 alert('하나를 선택하세요');
@@ -254,7 +254,8 @@
 			                                    <input class="cbox" name="originChatbotQ" type="checkbox" value="${ c.chatbotQ }">
 			                                </td>
 			                                <td>${ c.chatbotQ }</td>
-			                                <td>${fn:replace(c.chatbotA, crcn, br)}</td>
+			                                <td>${c.chatbotA}</td>
+			                                
 			                            </tr>
 			                        </c:forEach>
                             	</c:otherwise>
