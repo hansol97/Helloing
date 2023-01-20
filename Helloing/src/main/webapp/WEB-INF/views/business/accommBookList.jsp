@@ -174,9 +174,9 @@ document.addEventListener('DOMContentLoaded', function() {
 							if(nextDay < 10){
 								nextDay = '0' + nextDay;
 							}
-							console.log('날짜 있는지 :' + $('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length);
+							//console.log('날짜 있는지 :' + $('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length);
 							var thisMonth = firstDate.substr(5, 2);
-							console.log('이번달며칠' + thisMonth + nextDay);
+							//console.log('이번달며칠' + thisMonth + nextDay);
 							if((nextDay=='32')
 							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length == 0 && nextDay=='31')
 							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-30' + '"]').length == 0 && nextDay=='30')
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
 									else{
 										$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '1'});
 									}
-									console.log('k : ' + bookDay);
+									//console.log('k : ' + bookDay);
 								}
 									break;
 								
