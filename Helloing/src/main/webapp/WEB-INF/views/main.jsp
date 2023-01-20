@@ -61,8 +61,18 @@
 		$(function(){
 			loadAccomm();
 			loadActivity();
-			accommNameSplit();
-			activityNameSplit();
+			
+			
+			$(document).on('click', '.productbox', function(){
+				var num = $(this).children().eq(0).val();
+				
+				if($(this).parent('.activity').length == 1){
+					location.href = 'detail.activity?activityNo=' + num;
+				}
+				else if($(this).parent('.accomm').length == 1){
+					location.href = 'detail.accomm?accommNo=' + num;
+				}
+			})
 		})
 		
 		// 인기 숙소 불러오기
@@ -116,27 +126,6 @@
 			})
 		}
 		
-		// 숙소 이름이 14글자 이상이면 뒤에 .. 붙이기
-		function accommNameSplit(){
-			$('.productbox').each(function(){
-				if($(this).find('.accommName').text().length >= 14){
-					var newName = $(this).find('.accommName').text().substr(0, 14) + "...";
-
-					$(this).find('.accommName').text(newName);
-				}
-			})
-		}
-		
-		// 숙소 이름이 23글자 이상이면 뒤에 .. 붙이기
-		function activityNameSplit(){
-			$('.productbox').each(function(){
-				if($(this).find('.activityName').text().length >= 23){
-					var newName = $(this).find('.activityName').text().substr(0, 23) + "...";
-
-					$(this).find('.activityName').text(newName);
-				}
-			})
-		}
 	
 	</script>
 </body>
