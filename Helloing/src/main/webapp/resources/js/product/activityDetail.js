@@ -1,15 +1,5 @@
 $(function(){
 
-	while(true){
-		location.href = location.href;
-	}
-
-
-
-
-
-
-	
 	checkWish(); // 위시리스트에 추가되어있는지 확인하는 함수
 
 	// +, - 버튼 클릭 시 티켓 수 바뀌기
