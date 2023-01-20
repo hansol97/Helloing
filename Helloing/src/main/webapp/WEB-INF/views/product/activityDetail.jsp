@@ -24,7 +24,7 @@
 					<input type="hidden" name="activityNo" value="${ act.activityNo}">
 				</div>
 				<div>
-					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) ∨</p> <!-- 클릭 시 후기 div로 이동 -->
+					<p onclick="selectReview();">⭐⭐⭐⭐⭐ ${ act.avg } (${ fn:length(actReviewList) }) 👆</p> <!-- 클릭 시 후기 div로 이동 -->
 				</div>
 				<hr>
 
