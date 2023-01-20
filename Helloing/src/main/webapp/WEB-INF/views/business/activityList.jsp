@@ -50,9 +50,20 @@
                       <c:param name="activityName" value="${aL.activityName}" />
                     </c:url>
                     <button onclick='location.href="${extendEndUrl}"'  class="more_button" id="extendEnd">만료연장</button><!--결제페이지로-->
+                   
                     <button onclick='location.href="deleteAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티삭제</button>
-                    <button onclick='location.href="goUpdateAct.bu?activityNo=${aL.activityNo}"'  class="more_button">액티수정</button>
-                    <button onclick='location.href="goInsertTicket.bu?activityNo=${aL.activityNo}"'  class="more_button">티켓등록</button>
+
+                    <c:url value="goUpdateAct.bu" var="goUpdateAct">
+                      <c:param name="activityNo" value="${aL.activityNo}" />
+                      <c:param name="activityName" value="${aL.activityName}" />
+                    </c:url>
+                    <button onclick='location.href="${goUpdateAct}"'  class="more_button">액티수정</button>
+                    
+                    <c:url value="goInsertTicket.bu" var="goInsertTicket">
+                      <c:param name="activityNo" value="${aL.activityNo}" />
+                      <c:param name="activityName" value="${aL.activityName}" />
+                    </c:url>
+                    <button onclick='location.href="${goInsertTicket}"'  class="more_button">티켓등록</button>
                   </div>
               </div>
               <br>
@@ -73,7 +84,7 @@
                 </c:when>
                 <c:otherwise>
                   <div class="room-area">▶️ 등록된 티켓이 없습니다. 등록 해주세요!🙋‍♀️🙋‍♀️ &nbsp; &nbsp;
-                    <button onclick='location.href="goInsertTicket.bu?activityNo=${aL.activityNo}"' class="button button--ujarak button--border-thin button--text-thick">티켓등록</button>
+                    <button  onclick='location.href="${goInsertTicket}"' class="button button--ujarak button--border-thin button--text-thick">티켓등록</button>
                   </div>
                 </c:otherwise>
               </c:choose>
