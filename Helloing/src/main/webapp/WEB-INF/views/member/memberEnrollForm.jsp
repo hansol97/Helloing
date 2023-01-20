@@ -173,7 +173,8 @@ height: 30px;
 
 			<script>
 				$(function(){
-					$(document).on('focusout', 'input[name=secret]', function(){
+					$(document).on('change', 'input[name=secret]', function(){
+						console.log($('#secret1').val());
 							$.ajax({
 								url : 'check',
 								data : {
@@ -188,6 +189,7 @@ height: 30px;
 										$('#btn-submit').attr('disabled' , false);
 										//$('#btn-submit').attr('type', 'submit');
 										$('#btn-submit').css('background-color', '#053E99');
+										$('#secret1').attr('readonly', true);
 									}
 									else{
 										$('#secret').text('일치하지 않습니다.')
@@ -255,7 +257,7 @@ height: 30px;
 					});
 					
 					
-					$(document).on('focusout','input[name=memPwd]',function(){
+					$(document).on('change','input[name=memPwd]',function(){
 						var memPwd = $("#memPwd").val();
 						var memId = $("#memId").val();
 							
@@ -264,11 +266,16 @@ height: 30px;
 						
 						if(false === reg.test(memPwd)) {
 							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+							$('#btn-submit').attr('disabled', true);
+							$("#memPwd").val('');
 						 return false; // 기본 속성을 무시한다.
 						}else if(memPwd.search(memId) > -1){
+						 	$('#btn-submit').attr('disabled', true);
+						 	$("#memPwd").val('');
 						 	alert("비밀번호에 아이디가 포함되었습니다.");
 						 return false;
 						}else {
+							$('#btn-submit').attr('disabled', false);
 						 	console.log("통과");
 						}
 

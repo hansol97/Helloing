@@ -1,7 +1,6 @@
 package com.jl.helloing.product.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.jl.helloing.common.model.vo.Attachment;
 import com.jl.helloing.member.model.vo.AccommWish;
 import com.jl.helloing.member.model.vo.ActivityWish;
@@ -30,14 +30,9 @@ public class ProductController {
 	
 	// 메인페이지 인기 숙소
 	@ResponseBody
-	@RequestMapping("hot.accomm")
+	@RequestMapping(value="hot.accomm", produces="application/json; charset=UTF-8")
 	public String hotAccomm() {
-		
-		ArrayList<Accomm> accommList = productService.hotAccomm();
-		
-		System.out.println(accommList);
-		
-		return "";
+		return new Gson().toJson(productService.hotAccomm());
 	}
 	
 	// 숙소 메인
@@ -46,7 +41,7 @@ public class ProductController {
 		
 		mv.addObject("acList", productService.selectAcList())
 		  .setViewName("product/accommMain");
-		
+		System.out.println(productService.selectAcList());
 		return mv;
 	}
 	
