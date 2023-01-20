@@ -182,7 +182,7 @@ public class BusinessController {
     		for (int j = 0; j < filePathList.size(); j++) {
 				
     			String filePath = filePathList.get(j); // filePath를 얻었다. 지우자.
-    			System.out.println("숙소 파일패스 : " + filePath);
+//    			System.out.println("숙소 파일패스 : " + filePath);
     			if (!filePath.equals("")) { // 파일이 있으면 지우자
 					new File(session.getServletContext().getRealPath(filePath)).delete();
 				}
@@ -200,7 +200,7 @@ public class BusinessController {
 						roomList = accList.get(j).getRoomList(); // 방 두개면 방 두개 들어가 있음.
 					} 
 				}
-    			System.out.println("roomList : " + roomList);
+//    			System.out.println("roomList : " + roomList);
     			if (roomList != null) { // 방이 있으면
     				
     				for (int i = 0; i < roomList.size(); i++) { // roomNo 찾아와서 파일 지워야 함
@@ -213,21 +213,20 @@ public class BusinessController {
 							String path1 = roomAtList.get(j).getAttachment(); // 파일패스(문자열) 1개 얻어서 파일패스 리스트에 집어넣기
 							roomFilePathList.add( path1 ); 
 						} // 이 for문이 한번 끝나면  roomFilePathList 1개 경로 추가됨. 태스트때는 두번 도니까 두개의 경로가 추가
-    					System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
+//    					System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
     				}
-    				System.out.println("roomFilePathList : 4개 예상 : " + roomFilePathList);
+//    				System.out.println("roomFilePathList : 4개 예상 : " + roomFilePathList);
     				
     				// 파일패스 4개 얻었으니 roomFilePathList의 크기인 4번 돌면서 파일을 지워주자
     				for (int i = 0; i < roomFilePathList.size(); i++) {
     					String path = roomFilePathList.get(i); 
     					if (!path.equals("")) { // 파일이 있으면 지우자
     						new File(session.getServletContext().getRealPath(path)).delete();
-    					}
-    					System.out.println("지워진 " + i + "번째  파일의 경로 : " + path );
+    						if ( path.equals("") ) session.setAttribute("alertMsg", "숙소와 파일을 삭제하였습니다.");
+    						else  				   session.setAttribute("alertMsg", "숙소는 삭제되었지만 파일이 삭제되지 않았습니다.");   					}
 					}
     			}
 			}
-    		session.setAttribute("alertMsg", "숙소를 삭제하였습니다.");
 		} else {
 			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
 		}
@@ -393,6 +392,24 @@ public class BusinessController {
     	int result = businessService.deleteRoom(roomNo);
     	
     	if (result > 0) {
+    		
+			ArrayList<Attachment> roomAtList = productService.selectRoomPhotoList(roomNo); // roomFilePath(filePath + changeName)
+			ArrayList<String> roomFilePathList = new ArrayList<String>();
+			// 한 방번호당 여러개의 AtList 생성 -> 여기서는 방번호 하나당 roomAtList두개 생성될것. 
+			// 그럼 두번 돌려서 roomFilePathList 두개 씩 두번 
+			for (int j = 0; j < roomAtList.size(); j++) {
+				String path1 = roomAtList.get(j).getAttachment(); // 파일패스(문자열) 1개 얻어서 파일패스 리스트에 집어넣기
+				roomFilePathList.add( path1 ); 
+			} // 이 for문이 한번 끝나면  roomFilePathList 1개 경로 추가됨. 태스트때는 두번 도니까 두개의 경로가 추가
+			System.out.println("roomFilePathList : 2개 예상  : " + roomFilePathList);
+
+			for (int i = 0; i < roomFilePathList.size(); i++) {
+				String path = roomFilePathList.get(i); 
+				if (!path.equals("")) { // 파일이 있으면 지우자
+					new File(session.getServletContext().getRealPath(path)).delete();
+				}
+				System.out.println("지워진 " + i + "번째  파일의 경로 : " + path );
+			}
 			session.setAttribute("alertMsg", "객실를 삭제하였습니다.");
 		} else {
 			session.setAttribute("errorMsg", "아.. 삭제에 실패하였습니다....");
