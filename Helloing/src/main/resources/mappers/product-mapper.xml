@@ -125,18 +125,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 메인페이지용 인기 숙소 -->
 	<select id="hotAccomm" resultMap="AccommResultSet">
 		SELECT
-		      COUNT(*),
-		      ACCOMM_NO
-		 FROM 
-		      ROOM_PAYMENT RP
+			   *
+		  FROM(
+			    SELECT
+				       COUNT(*)
+				      ,A.ACCOMM_NO
+		              ,(SELECT ACCOMM_NAME FROM ACCOMM WHERE A.ACCOMM_NO = ACCOMM_NO) AS ACCOMM_NAME
+				      ,(SELECT CATEGORY FROM ACCOMM WHERE A.ACCOMM_NO = ACCOMM_NO) AS CATEGORY
+				      ,(SELECT AVG(STAR) FROM ACCOMM_REVIEW WHERE A.ACCOMM_NO = ACCOMM_NO) AS AVG
+				      ,(SELECT MIN(PRICE) FROM ROOM WHERE A.ACCOMM_NO = ACCOMM_NO) AS ROWPRICE
+				      ,FILEPATH
+				  FROM 
+				       ROOM_PAYMENT RP
+				  JOIN
+				       ROOM R ON (R.ROOM_NO = RP.ROOM_NO)
+				  JOIN 
+				       ACCOMM A ON (A.ACCOMM_NO = R.ACCOMM_NO)
+				  JOIN
+				      (SELECT
+				              ACCOMM_NO
+				             ,MIN(FILE_PATH || CHANGE_NAME) AS FILEPATH
+				         FROM
+				              ACCOMM_ATTACHMENT
+				        GROUP
+				           BY
+				              ACCOMM_NO) AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+				 WHERE
+				       <![CDATA[SYSDATE < A.END_DATE]]> 
+				 GROUP 
+				    BY 
+				       A.ACCOMM_NO, FILEPATH
+				 ORDER 
+				    BY   
+				       COUNT(*) DESC)
 		 WHERE
-		       ROWNUM BETWEEN 1 AND 5
-		 GROUP 
-		    BY 
-		       ACCOMM_NO
-		 ORDER 
-		    BY   
-		       COUNT(*) DESC
+			   ROWNUM BETWEEN 1 AND 4
 	</select>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
@@ -146,6 +169,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      ,ACTIVITY_NAME
 		      ,( SELECT COUNT(*) FROM ACTIVITY_REVIEW WHERE ACTIVITY_NO = A.ACTIVITY_NO ) AS REVIEWCOUNT
 		      ,( SELECT MIN(PRICE) FROM TICKET WHERE ACTIVITY_NO = A.ACTIVITY_NO) AS ROWPRICE
+		      ,(SELECT COUNT(*) FROM ACCOMM_REVIEW WHERE A.ACCOMM_NO = ACCOMM_NO) AS REVIEWCOUNT
               ,FILEPATH
 		  FROM
 		       ACTIVITY A
