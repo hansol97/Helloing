@@ -44,14 +44,19 @@
                     <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                     <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                     <div class="more_buttons">
-                      <c:url value="goPayAccom.bu" var="extendEndUrl">
+                      <c:url value="goPayAccom.bu" var="extendEndUrl"><!--대괄호를 인코딩 하기 위한 코드-->
                         <c:param name="accommNo" value="${aL.accommNo}" />
                         <c:param name="accommName" value="${aL.accommName}" />
                       </c:url>
                       <button onclick='location.href="${extendEndUrl}"' class="more_button">만료연장</button>
                       <button onclick='location.href="deleteAccomm.bu?accommNo=${aL.accommNo}"' class="more_button">숙소삭제</button>
                       <button onclick='location.href="goUpdateAccom.bu?accommNo=${aL.accommNo}"' class="more_button">숙소수정</button>
-                      <button onclick='location.href="goInsertRoom.bu?accommNo=${aL.accommNo}"' class="more_button">객실등록</button>
+                      
+                      <c:url value="goInsertRoom.bu" var="goInsertRoom"><!--대괄호를 인코딩 하기 위한 코드-->
+                        <c:param name="accommNo" value="${aL.accommNo}" />
+                        <c:param name="accommName" value="${aL.accommName}" />
+                      </c:url>
+                      <button onclick='location.href="${goInsertRoom}"' class="more_button">객실등록</button>
                     </div>
                 </div>
                 <br>
@@ -72,7 +77,7 @@
                     </c:when>
                     <c:otherwise>
                       <div class="room-area">▶️ 등록된 객실이 없습니다. 등록 해주세요!🙋‍♀️🙋‍♀️ &nbsp; &nbsp;
-                        <button onclick='location.href="goInsertRoom.bu?accommNo=${aL.accommNo}"' class="button button--ujarak button--border-thin button--text-thick">객실등록</button>
+                        <button onclick='location.href="${goInsertRoom}"' class="button button--ujarak button--border-thin button--text-thick">객실등록</button>
                       </div>
                     </c:otherwise>
 

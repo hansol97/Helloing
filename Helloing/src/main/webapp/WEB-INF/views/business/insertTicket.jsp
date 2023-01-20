@@ -32,7 +32,7 @@
 					<tr>
 						<th width="330px" height="40px"> 액티비티 이름 :</th>
 						<td width="500px">
-							<h1>정말로 재밌는 남원랜드</h1>
+							<h1><span id="accomName"> ${requestScope.activityName} </span></h1>
 						</td>
 					</tr>
 					<tr>

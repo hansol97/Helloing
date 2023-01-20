@@ -42,7 +42,7 @@
                     <div class="feed_modal_btns" align="center">
                         <br>
                         <button type="submit" class="button--ujarak button" id="red_btn2"> 결제하기 </button>
-                        <button type="reset" class="button--ujarak button">취소하기</button>
+                        <button type="button" onclick="location.href='activityList.bu'" class="button--ujarak button">취소하기</button>
 
                     </div>
                     </form>

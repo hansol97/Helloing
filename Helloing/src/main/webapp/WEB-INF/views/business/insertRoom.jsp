@@ -31,7 +31,7 @@
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>
 						<td width="400px">
-							<h1> 정말로 잠 잘오는 숙소</h1>
+							<h1> <span id="accomName"> ${requestScope.accommName} </span></h1>
 						</td>
 					</tr>
 					<tr>
