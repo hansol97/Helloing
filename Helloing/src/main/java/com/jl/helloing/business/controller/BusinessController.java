@@ -481,11 +481,14 @@ public class BusinessController {
 		
 		// 조회하러 DB안가고  숙소 번호로 세션에 있는 객체 뽑아오기
 		ArrayList<Accomm> accList = (ArrayList<Accomm>) session.getAttribute("accList");
+		ArrayList<Attachment> photoList = productService.selectPhotoList(accommNo);
 		for (Accomm accomm : accList) { // 
 			if (accomm.getAccommNo() == accommNo) { acc = accomm; } 
-			else { System.out.println("숙소번호의 숙소가 매치가 안되는 문제 발생");		}
 		}
-		mv.addObject("acc", acc).setViewName("business/updateAccomm");
+		
+		mv.addObject("acc", acc)
+		  .addObject("photoList", photoList)
+		  .setViewName("business/updateAccomm");
 		return mv;
 	}
 	// 액티비티 수정하기화면으로 이동
