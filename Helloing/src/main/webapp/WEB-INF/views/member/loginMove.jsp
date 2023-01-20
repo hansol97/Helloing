@@ -37,7 +37,7 @@ a:hover{
 			<h3>로그인 페이지로 이동해 주세요</h3>
 			<br>
 			<div class="loginPage-button">
-				<a href="loginForm.me">로그인 이동</a>
+				<a href="loginForm.me">로그인 이동</a> <a href="terms.me">회원가입 이동</a>
 			</div>
 		</div>
 	</div>

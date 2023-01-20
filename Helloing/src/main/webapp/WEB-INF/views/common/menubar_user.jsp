@@ -378,7 +378,7 @@
 
 		          
 		          <li>
-		            <a href="loginMove.hj">기업 회원 신청</a>
+		            <a href="loginMove.sj">기업 회원 신청</a>
 		          </li>
 	          	</c:when>
 	          		<c:otherwise>

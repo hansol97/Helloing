@@ -25,7 +25,7 @@ public class BusinessInterceptor extends HandlerInterceptorAdapter{
             return true;
         } else {
             
-            //session.setAttribute("alertMsg", "기업회원이 아닙니다;;");
+            // session.setAttribute("alertMsg", "기업회원이 아닙니다;;");
             response.sendRedirect(request.getContextPath());
             
             return false;

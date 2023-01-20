@@ -99,6 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  <result column="ACT_END_DATE"    		property="actEndDate" />
 	</resultMap>
  
+ <!-- 승준 -->
 	<select id="loginCompany" parameterType="_int" resultMap="businessResultSet">
 		select
 				business_no,
@@ -131,6 +132,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		#{ address }
 		 		)
 	</insert>
+	
+	<select id="busNoCheck" resultType="_int">
+
+		select
+				count(*)
+		  from
+		  		business
+		 where
+		 		business_no = #{ businessNo }
+	</select>
+<!-- 승준 끝 -->	
 	
 	<update id="updateBusinessMember" parameterType="business">
 		UPDATE

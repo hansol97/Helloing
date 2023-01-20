@@ -37,8 +37,12 @@ public class BusinessServiceImpl implements BusinessService {
 	public Business loginCompany(int memNo) {
 		return businessDao.loginCompany(memNo, sqlSession);
 	}
-
-	
+	// 사업자번호 중복체크
+	@Override
+	public int busNoCheck(String businessNo) {
+		
+		return businessDao.busNoCheck(businessNo, sqlSession);
+	}
 	
 	
 	
@@ -165,6 +169,8 @@ public class BusinessServiceImpl implements BusinessService {
 	public RoomPayment selectBookInfo(RoomPayment rp) {
 		return businessDao.selectBookInfo(sqlSession, rp);
 	}
+
+	
 
 
 

@@ -165,8 +165,6 @@ height: 30px;
 					else {
 						alert('이메일을 입력해주세요.');
 					}
-					
-					
 				}
 			
 			</script>
@@ -215,7 +213,7 @@ height: 30px;
 				$(function(){
 					
 					let $idInput = $('#enroll-form #memId');
-			
+					
 					// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
 						
 					// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
@@ -263,7 +261,7 @@ height: 30px;
 							
 						var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 						var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-						
+							
 						if(false === reg.test(memPwd)) {
 							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
 							$('#btn-submit').attr('disabled', true);
@@ -340,7 +338,7 @@ height: 30px;
 				})
 				--%>
 			
-	
+		<!--  
 			<script>
 			function $idInput(asValue) {
 
@@ -350,7 +348,7 @@ height: 30px;
 
 				}
 			</script>
-			
+			-->
 			<!--
 			<script>
 				$('input[name=checkPwd]').focusout(function(){
