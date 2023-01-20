@@ -46,7 +46,7 @@ public class ProductController {
 		
 		mv.addObject("acList", productService.selectAcList())
 		  .setViewName("product/accommMain");
-		
+		System.out.println(productService.selectAcList());
 		return mv;
 	}
 	
