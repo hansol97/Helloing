@@ -51,7 +51,7 @@
 					<tr>
 						<th>수용 인원 수 : </th>
 						<td>
-							<input type="number" name="capacity" id="" placeholder="1"> 명
+							<input type="number" name="capacity" id="" placeholder="숫자만 입력해 주세요" required> 명
 						</td>
 					</tr>
 					<tr>
@@ -60,7 +60,7 @@
 					<tr>
 						<th>객실 가격 :</th>
 						<td>
-							<input type="number" name="price" id="" placeholder="10000"> 원
+							<input type="number" name="price" id="" placeholder="숫자만 입력해 주세요" required> 원
 						</td>
 					</tr>
 

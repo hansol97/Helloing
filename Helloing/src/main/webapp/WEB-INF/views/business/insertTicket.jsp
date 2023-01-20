@@ -50,13 +50,13 @@
                     <tr>
                         <th>티켓 가격 :</th>
                         <td>
-                            <input type="number" name="price" id="" placeholder="10000"> 원
+                            <input type="number" name="price" id="" placeholder="숫자만 입력해 주세요" required> 원
                         </td>
                     </tr>
 					<tr>
 						<th>총 티켓 수량 : </th>
 						<td>
-							<input type="number" name="capacity" id="" placeholder="1"> 장
+							<input type="number" name="capacity" id="" placeholder="숫자만 입력해 주세요" required> 장
 						</td>
 					</tr>
 					<tr>
