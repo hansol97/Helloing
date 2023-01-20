@@ -164,23 +164,23 @@ document.addEventListener('DOMContentLoaded', function() {
 						
 						var sDate = dList[i].startDate;
 						var firstDate = sDate;  
-						var bookMonth = dList[i].startDate.substr(5, 2); // 예약한 날짜의 달
+						
+						var bookMonth = dList[i].startDate.substr(5, 2); // 예약한 날짜의 달 : css줄 때 이용
 						var firstDay = Number(firstDate.substr(8, 2)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
 						
 							
 						for(var j = 0; j < night; j++){ // 자는 날 수 만큼 반복
 							
 							var nextDay = firstDay + j; 
+						
 							if(nextDay < 10){
 								nextDay = '0' + nextDay;
 							}
-							//console.log('날짜 있는지 :' + $('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length);
 							var thisMonth = firstDate.substr(5, 2);
-							//console.log('이번달며칠' + thisMonth + nextDay);
 							if((nextDay=='32')
-							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length == 0 && nextDay=='31')
-							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-30' + '"]').length == 0 && nextDay=='30')
-							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-29' + '"]').length == 0 && nextDay=='29')){
+							   || ($('td[data-date="'+ firstDate.substr(0,8) + '31' + '"]').length == 0 && nextDay=='31')
+							   || ($('td[data-date="'+ firstDate.substr(0,8) + '30' + '"]').length == 0 && nextDay=='30')
+							   || ($('td[data-date="'+ firstDate.substr(0,8) + '29' + '"]').length == 0 && nextDay=='29')){
 								
 								for(var k = 0; k < night - j; k++){
 									var nextMonth = Number(sDate.substr(5,2)) + 1;
@@ -204,18 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
 									//console.log('k : ' + bookDay);
 								}
 									break;
-								
-								
-								
-								
 							} 
 							else{
 								bookDay = firstDate.substr(0,8) + nextDay;
 							}
-							//console.log(bookDay);
-							//console.log($('td[data-date="'+ firstDate.substr(0,8) + '31' + '"]'));
-							console.log('j : ' + bookDay);
-							if(bookMonth != $month){
+							if(bookMonth != $month){ // 캘린더 페이지의 월, 객체의 월 비교
 								$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '0.5'});
 							}
 							else{
