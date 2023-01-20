@@ -80,7 +80,7 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" id="memId"  onkeyup="chk(event)" required>
+						<td><input type="text" name="memId" maxlength="20" id="memId" required>
 						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
 						</td>
 					</tr>
@@ -280,28 +280,17 @@ height: 30px;
 			
 						});
 					
-					
-					
-					
 				})
-				
-				
-				
-				
-				
 			</script>
 			
-			
 			<script>
-			$(function(){
 				
-			});
-			
 			
 			</script>
+
 			
 			
-			<script>
+			
 			<%--
 			$("#phone").keyup(function(event){
 			    var inputVal = $(this).val();
@@ -332,7 +321,7 @@ height: 30px;
 				  }
 				};
 			--%>
-			</script>
+
 			
 			
 			<%--
