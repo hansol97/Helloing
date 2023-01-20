@@ -28,6 +28,18 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	// 메인페이지 인기 숙소
+	@ResponseBody
+	@RequestMapping("hot.accomm")
+	public String hotAccomm() {
+		
+		ArrayList<Accomm> accommList = productService.hotAccomm();
+		
+		System.out.println(accommList);
+		
+		return "";
+	}
+	
 	// 숙소 메인
 	@RequestMapping("accomm")
 	public ModelAndView accommMain(ModelAndView mv) {
@@ -50,7 +62,7 @@ public class ProductController {
 			mv.addObject("accommList", list);
 		}
 		
-		mv.addObject("keyword", ac.getAccommName()) 
+		mv.addObject("keyword", ac.getAccommName())
 		  .setViewName("product/accommSearch");
 		
 		return mv;
@@ -236,9 +248,8 @@ public class ProductController {
 			tk.getTicketPayment().get(i).setMemNo(loginUser.getMemNo());
 		}
 		
-		if(productService.insertTicketPayment(tk.getTicketPayment()) > 0){ // ticket payment 테이블에 행추가
-			productService.decreaseCount(tk.getTicketPayment());// ticket 테이블에 capacity -1
-		}
+		productService.insertTicketPayment(tk.getTicketPayment()); // ticket payment 테이블에 행추가
+		
 		
 		return "product/paySuccess";
 	}

@@ -394,7 +394,7 @@
 
 						<!-- 기업 회원을 신청하지 않은 회원에게만 보여주기 -->
 						<c:if test="${ empty loginCompany and loginUser.status != 'A' }">
-							<li><a href="businessEnrollForm.bu">기업 회원 신청</a></li>
+							<li><a href="businessEnrollForm.hj">기업 회원 신청</a></li>
 						</c:if>
 
 						<li><a href="accommBook.hj">마이페이지</a></li>

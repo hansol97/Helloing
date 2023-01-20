@@ -121,6 +121,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ACCOMM_NO" 	property="accommNo" />
 		<result column="MEM_NO" 	property="memNo" />
 	</resultMap>
+	
+	<!-- 메인페이지용 인기 숙소 -->
+	<select id="hotAccomm" resultMap="AccommResultSet">
+		SELECT
+		      COUNT(*),
+		      ACCOMM_NO
+		 FROM 
+		      ROOM_PAYMENT RP
+		 WHERE
+		       ROWNUM BETWEEN 1 AND 5
+		 GROUP 
+		    BY 
+		       ACCOMM_NO
+		 ORDER 
+		    BY   
+		       COUNT(*) DESC
+	</select>
 
 	<!-- 액티비티 메인에 쀼려줄 액티비티 리스트들 -->
 	<select id="selectActList" resultMap="ActivityResultSet">

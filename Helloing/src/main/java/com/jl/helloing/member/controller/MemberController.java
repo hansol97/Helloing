@@ -383,11 +383,8 @@ public class MemberController {
 		if(list != null) {
 			//System.out.println(list);
 			mv.addObject("list", list);
-			mv.setViewName("member/memberQAListView");
-		} else {
-			mv.setViewName("member/memberQAListVieqw");
 		}
-
+			mv.setViewName("member/memberQAListView");
 		return mv;
 	}
 	

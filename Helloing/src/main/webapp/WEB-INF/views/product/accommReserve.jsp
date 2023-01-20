@@ -77,7 +77,7 @@
 							<input type="checkbox"> 개인정보 제공 동의 (필수)<br>
 						</div>
 						<label id="check">&nbsp;</label>
-						<button type="button" id="btn-pay" onclick="check();">683,211원 결제하기</button>
+						<button type="button" id="btn-pay" onclick="check();"><span class="price total-price"></span>원 결제하기</button>
 					</div>
 				</div>
 			</div>

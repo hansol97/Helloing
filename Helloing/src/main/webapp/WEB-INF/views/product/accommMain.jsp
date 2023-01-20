@@ -23,7 +23,8 @@
                 <h1>어떤 숙소 찾으세요?</h1>
                 <div id="searchbox">
                     <div>
-                        <input type="radio" name="category" id="hotel" value="hotel" checked><label for="hotel">호텔</label>
+                        <input type="radio" name="category" id="all" value="all" checked><label for="all">전체</label>
+                        <input type="radio" name="category" id="hotel" value="hotel"><label for="hotel">호텔</label>
                         <input type="radio" name="category" id="pension" value="pension"><label for="pension">펜션</label>
                         <input type="radio" name="category" id="motel" value="motel"><label for="motel">모텔</label>
                         <input type="radio" name="category" id="guestHouse" value="guestHouse"><label for="guestHouse">게스트하우스</label>

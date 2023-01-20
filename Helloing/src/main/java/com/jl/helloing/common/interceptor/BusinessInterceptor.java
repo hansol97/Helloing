@@ -10,7 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.jl.helloing.member.model.vo.Member;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class BusinessInterceptor extends HandlerInterceptorAdapter{
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -21,11 +21,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         // 현재 요청을 보낸 사람이 로그인이 되어있을 경우 => Controller 실행
         HttpSession session = request.getSession();
         
-        if(session.getAttribute("loginUser") != null) {
+        if(session.getAttribute("loginCompany") != null) {
             return true;
         } else {
             
-            session.setAttribute("alertMsg", "로그인을 하세여. 콱씨👊");
+            session.setAttribute("alertMsg", "기업회원이 아닙니다;;");
             response.sendRedirect(request.getContextPath());
             
             return false;

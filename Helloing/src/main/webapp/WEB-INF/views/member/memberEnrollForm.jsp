@@ -80,7 +80,7 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" id="memId"  onkeyup="chk(event)" required>
+						<td><input type="text" name="memId" maxlength="20" id="memId" required>
 						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
 						</td>
 					</tr>
@@ -228,7 +228,7 @@ height: 30px;
 									if(result == 'NNNNN'){
 										$('#checkId').show();
 										$('#checkId').css('color', 'red').text('중복된 아이디가 존재합니다.');
-										$('#enroll-form :submit').removeAttr('disabled', true);
+										$('#enroll-form :submit').attr('disabled');
 									}
 									else{
 										$('#checkId').show();
@@ -258,6 +258,7 @@ height: 30px;
 						
 						if(false === reg.test(memPwd)) {
 							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+							return false;
 						}else if(memPwd.search(memId) > -1){
 						 	alert("비밀번호에 아이디가 포함되었습니다.");
 						 return false;
@@ -266,6 +267,7 @@ height: 30px;
 						return false;
 						}else if(hangulCheck.test(memPwd)){
 						 	alert("비밀번호에 한글을 사용 할 수 없습니다."); 
+						 	return false;
 						}else {
 						 	console.log("통과");
 						}
@@ -278,28 +280,17 @@ height: 30px;
 			
 						});
 					
-					
-					
-					
 				})
-				
-				
-				
-				
-				
 			</script>
 			
-			
 			<script>
-			$(function(){
 				
-			});
-			
 			
 			</script>
+
 			
 			
-			<script>
+			
 			<%--
 			$("#phone").keyup(function(event){
 			    var inputVal = $(this).val();
@@ -330,7 +321,7 @@ height: 30px;
 				  }
 				};
 			--%>
-			</script>
+
 			
 			
 			<%--
