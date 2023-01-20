@@ -238,7 +238,7 @@ table.type02 td {
                             <td width="590">
                             </td>
                             <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
-                            <td><button onclick="openModal(2);" class="admin-grey">수정</button></td>
+                            <td><button onclick="openModal(2);" id="updateQAList" class="admin-grey">수정</button></td>
                             <td><button onclick="btnDelete()" id="btnDelete" class="admin-grey">삭제</button></td>
                         </tr>
                     </table>
@@ -261,7 +261,7 @@ table.type02 td {
                         	<c:forEach items="${ list }" var="qna">
                             <tr>
                                 <td>
-                                    <input class="cbox" type="checkbox" name="checkbox" value="">
+                                    <input id="boxbox" class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
                                 </td>
                                 <td class="qnaNo">${ qna.qnaNo }</td>
                                 <c:choose>
@@ -368,6 +368,8 @@ table.type02 td {
                 <br>
                 <form action="#">
                     <table class="type02">
+                    
+                    	<input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }">
                         <tr>
                             <th width="80">제목</th>
                             <td width="300">문의합니다</td>
@@ -404,42 +406,7 @@ table.type02 td {
 		</div>
 
 	</div>
-	<script>
-        const body = document.querySelector('body');
-        
 
-        function QACancel(num){
-            let modal = document.querySelector('.modal'+ num);
-            const btnCancel = document.getElementById('#QA_cancel'+ num);
-            modal.classList.remove('show');
-            
-            body.style.overflow = 'auto';
-        };
-
-        function openModal(num){
-            let modal = document.querySelector('.modal'+num);
-            modal.classList.toggle('show');
-            
-  
-            if (modal.classList.contains('show')) {
-            body.style.overflow = 'hidden';
-            }
-
-            
-        };
-
-       /*  let modal = document.querySelector('.modal');
-            modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.classList.toggle('show');
-
-                
-                }
-            }
-        }); */
-        
-  
-      </script>
       
       	<script>
       	
@@ -460,19 +427,49 @@ table.type02 td {
 	</script>
 	
 	<script>
-		function btnDelete(){
-			var 
-			
-			
-			
-			
-			
-		}
+		$(function(){
+	        $('#updateQAList').click(function(){
+	            var list = $(".cbox");
+	            if($('input[type=checkbox]:checked').length == 1){
+	                list.each(function(index, value){
+	                    if($(value).prop('checked')){
+	                        $('#updateMemNo').val($(value).parents('td').next()[0].innerText);
+	                        $('#update_chatbotA').val($(value).parents('td').next().next()[0].innerText);
+	                        $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].innerText);
+	                        openModal(2);
+	                    }
+	                });
+	            }
+	            else{
+	                alert('하나를 선택하세요');
+	            }
+	        });
+	        
+	        if('${map.condition}' != ''){
+					if('${ map.condition }' == "chatbotName"){
+						$('select option:eq(0)').prop('selected', true);
+					}else{
+						$('select option:eq(1)').prop('selected', true);
+					};
+				
+					$('#chatbot_search_input').val('${map.keyword}');
+	        }
+				
+		});      
 		
+		function delConfirm(){
+			if(confirm("삭제하시겠습니까?")){
+				deleteChatbot();			
+			}
+			else{
+				return false;
+			}
+		}
+	
+	
 	</script>
 	
-	
-	
+
 	<!--  
 	<script>
 	function btnDelete(){
@@ -536,6 +533,43 @@ table.type02 td {
 	
 	</script>
 -->
+
+	<script>
+        const body = document.querySelector('body');
+        
+
+        function QACancel(num){
+            let modal = document.querySelector('.modal'+ num);
+            const btnCancel = document.getElementById('#QA_cancel'+ num);
+            modal.classList.remove('show');
+            
+            body.style.overflow = 'auto';
+        };
+
+        function openModal(num){
+            let modal = document.querySelector('.modal'+num);
+            modal.classList.toggle('show');
+            
+  
+            if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+            }
+
+            
+        };
+
+       /*  let modal = document.querySelector('.modal');
+            modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.toggle('show');
+
+                
+                }
+            }
+        }); */
+        
+  
+      </script>
 
 </body>
 </html>
