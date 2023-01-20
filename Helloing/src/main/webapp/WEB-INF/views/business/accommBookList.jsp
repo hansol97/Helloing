@@ -163,9 +163,9 @@ document.addEventListener('DOMContentLoaded', function() {
 						var night = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000); // 숙소에서 자는 날 수
 						
 						var sDate = dList[i].startDate;
-							var firstDate = sDate; 
-							var bookMonth = dList[i].startDate.substr(5, 2); // 예약한 날짜의 달
-							var firstDay = Number(firstDate.substr(8, 2)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
+						var firstDate = sDate;  
+						var bookMonth = dList[i].startDate.substr(5, 2); // 예약한 날짜의 달
+						var firstDay = Number(firstDate.substr(8, 2)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
 						
 							
 						for(var j = 0; j < night; j++){ // 자는 날 수 만큼 반복
@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
 									bookDay = firstDate.substr(0,5) + nextMonth + '-' + nextMonthDay;
 									if(nextMonth != $month){
 										$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '0.5'});
+										
 									}
 									else{
 										$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '1'});
