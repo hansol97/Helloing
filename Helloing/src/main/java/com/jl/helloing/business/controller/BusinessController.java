@@ -346,8 +346,8 @@ public class BusinessController {
 	
 	// 객실 등록화면으로 이동
 	@RequestMapping("goInsertRoom.bu")
-	public ModelAndView goInsertRoom(int accommNo, ModelAndView mv) {
-		mv.addObject("accommNo", accommNo).setViewName("business/insertRoom");
+	public ModelAndView goInsertRoom(int accommNo, String accommName, ModelAndView mv) {
+		mv.addObject("accommNo", accommNo).addObject("accommName", accommName).setViewName("business/insertRoom");
 		return mv;
 	}
 	// 객실등록
@@ -420,8 +420,8 @@ public class BusinessController {
 
 	// 티켓 등록 화면으로 이동 
 	@RequestMapping("goInsertTicket.bu")
-	public ModelAndView goInsertTicket(int activityNo, ModelAndView mv) {
-		mv.addObject("activityNo", activityNo).setViewName("business/insertTicket");
+	public ModelAndView goInsertTicket(int activityNo,String activityName, ModelAndView mv) {
+		mv.addObject("activityNo", activityNo).addObject("activityName", activityName).setViewName("business/insertTicket");
 		
 		return mv;
 	}

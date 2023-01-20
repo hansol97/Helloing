@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	checkBookDate();
     	
     	function checkBookDate(){
+    		
 	    	$.ajax({
 	    		url: 'bookedDate.bu'
 				,data: {
@@ -159,16 +160,42 @@ document.addEventListener('DOMContentLoaded', function() {
 						
 						var night = (endDate-startDate)/(1 * 24 * 60 * 60 * 1000); // 숙소에서 자는 날 수
 						
+						var sDate = dList[i].startDate;
 						
 						for(var j = 0; j < night; j++){ // 자는 날 수 만큼 반복
 							
-							var firstDate = dList[i].startDate; 
+							var firstDate = sDate; 
+							var bookMonth = dList[i].startDate.substr(5, 2); // 예약한 날짜의 달
 							
-							var firstDay = Number(firstDate.substr(8, 9)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
+							var firstDay = Number(firstDate.substr(8, 2)); // 시작날짜 yyyy-mm-dd에서 dd만 추출
+							
 							var nextDay = firstDay + j; 
+							if(nextDay < 10){
+								nextDay = '0' + nextDay;
+							}
 							
-							var bookDay = firstDate.replace(firstDay, nextDay);
-							$('td[data-date="'+ bookDay +'"]').children().eq(0).css('background-color', 'lightgrey');
+							var $month = $('table.fc-scrollgrid-sync-table > tbody').children('tr').eq(2).children('td').eq(0).data('date').substr(5,2);
+							var bookDay = firstDate.substr(0,8) + nextDay;
+							//console.log($('td[data-date="'+ firstDate.substr(0,8) + '31' + '"]'));
+							if((nextDay == '28' && $('td[data-date="'+ firstDate.substr(0,8) + '29' + '"]').length == 0)
+							   || (nextDay == '29' && $('td[data-date="'+ firstDate.substr(0,8) + '30' + '"]').length == 0)
+							   || (nextDay == '30' && $('td[data-date="'+ firstDate.substr(0,8) + '31' + '"]').length == 0)
+							   || (nextDay == '31')){
+								 var nextMonth = (Num(firstDate.substr(5,2)) + 1);
+								 if(nextMonth < 10){
+									 nextMonth = '0' + nextMonth;
+									 bookDay = firstDate.substr(0,5) + nextMonth + '-01';
+								 }else{
+									 bookDay = firstDate.substr(0,5) + nextMonth + '-01';
+								 }
+							}
+							
+							if(bookMonth != $month){
+								$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '0.5'});
+							}
+							else{
+								$('td[data-date="'+ bookDay +'"]').children().eq(0).css({'background-color' : 'lightgrey','opacity' : '1'});
+							}
 							
 						} 
 					}
@@ -182,8 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	 $('button[title="Previous month"], button[title="Next month"]').click(function(){
     	    	checkBookDate();
     	 });
-    	 
-    	 
+     
     	 
     	 
     });
