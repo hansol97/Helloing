@@ -82,18 +82,18 @@
 			                                <td>${ bp.businessNo }</td>
 			                                <td>${ bp.paymentAmount }</td>
 			                                <td>
-				                                <c:if test="${ !bp.accommName.equals('null')}" >
+				                                <c:if test="${ !bp.accommName.equals('0')}" >
 				                                	${ bp.accommName } 
 				                                </c:if> 
-				                                <c:if test="${ !bp.activityName.equals('null')}" >
+				                                <c:if test="${ !bp.activityName.equals('0')}" >
 				                                	${ bp.activityName }
 				                                </c:if> 
 			                                </td>
 			                                <td>
-			                                <c:if test="${ !bp.actEndDate.equals('null')}" >
+			                                <c:if test="${ !bp.actEndDate.equals('0')}" >
 			                                	${ bp.actEndDate }
 			                                </c:if> 
-			                                <c:if test="${ !bp.accEndDate.equals('null')}" >
+			                                <c:if test="${ !bp.accEndDate.equals('0')}" >
 			                                	${ bp.accEndDate }
 			                                </c:if> 
 			                                </td>
@@ -110,11 +110,28 @@
             
 
             <div id="pagingArea">
-                <a>&lt;</a>
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>&gt;</a>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage eq 1 }">
+                		<a disabled onclick="return false;">&lt;</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="businessPayList.ad?cpage=${ pi.currentPage - 1 }">&lt;</a>
+                	</c:otherwise>
+                </c:choose>
+					
+				<c:forEach var="p" begin="${ pi.startPage }"  end="${ pi.endPage }" >
+					<a href="businessPayList.ad?cpage=${ p }">${ p }</a> 
+				</c:forEach>              
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+						<a didsabled onclick="return false;">&gt;</a>
+					</c:when>
+					<c:otherwise>
+						<a href="businessPayList.ad?cpage=${ pi.currentPage + 1 }">&gt;</a>
+					</c:otherwise>
+				</c:choose>
             </div>
             <br><br>
             

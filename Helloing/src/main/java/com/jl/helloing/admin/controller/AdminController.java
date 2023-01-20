@@ -224,6 +224,7 @@ public class AdminController {
 		
 		ArrayList<BusinessPayment> list = adminService.selectBusiPayList(pi);
 		m.addAttribute("list", list);
+		m.addAttribute("pi", pi);
 		
 		return "admin/businessPaymentListView";
 	}
