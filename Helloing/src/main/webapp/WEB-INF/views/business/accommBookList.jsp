@@ -180,8 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							if((nextDay=='32')
 							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-31' + '"]').length == 0 && nextDay=='31')
 							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-30' + '"]').length == 0 && nextDay=='30')
-							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-29' + '"]').length == 0 && nextDay=='29')
-							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-28' + '"]').length == 0 && nextDay=='28')){
+							   || ($('td[data-date="'+ firstDate.substr(0,5) + thisMonth + '-29' + '"]').length == 0 && nextDay=='29')){
 								
 								for(var k = 0; k < night - j; k++){
 									var nextMonth = Number(sDate.substr(5,2)) + 1;
