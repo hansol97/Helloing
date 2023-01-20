@@ -122,7 +122,7 @@ height: 30px;
 						<td><input type="text" id="phone" name="phone" placeholder="숫자만 입력해주세요"  required></td>
 					</tr>
 				</table>
-				<button id="btn-submit" type="submit" class="join-button">회원가입</button>
+				<button id="btn-submit"  disabled type="submit" class="join-button">회원가입</button>
 			</form>
 			
 			
@@ -180,19 +180,23 @@ height: 30px;
 									secret : $('#secret1').val()
 								}
 								,success :function(result1){
-									//console.log(result1 + "????")
+									console.log(result1 + "????")
 									
 									if(result1){
 										$('#secret').text('일치합니다.')
 										$('#secret').css('color','blue')
-										$('#btn-submit').attr('type', 'submit');
+										$('#btn-submit').attr('disabled' , false);
+										//$('#btn-submit').attr('type', 'submit');
+										$('#btn-submit').css('background-color', '#053E99');
 									}
 									else{
 										$('#secret').text('일치하지 않습니다.')
 										$('#secret').css('color','red')
+										$('#btn-submit').attr('disabled', true);
 										//$('#enroll-form :submit').removeAttr('disabled');
+										//$('#btn-submit').css('background-color', 'lightgray');
+										//$('#btn-submit').attr('type', 'button');
 										$('#btn-submit').css('background-color', 'lightgray');
-										$('#btn-submit').attr('type', 'button');
 									}
 								},
 								error :function(){
@@ -228,12 +232,14 @@ height: 30px;
 									if(result == 'NNNNN'){
 										$('#checkId').show();
 										$('#checkId').css('color', 'red').text('중복된 아이디가 존재합니다.');
-										$('#enroll-form :submit').attr('disabled');
+										$('#btn-submit').attr('disabled', true);
+										$('#btn-submit').css('background-color', 'lightgray');	
 									}
 									else{
 										$('#checkId').show();
 										$('#checkId').css('color', 'blue').text('사용가능한 아이디 입니다.')
-										$('#enroll-form :submit').removeAttr('disabled');
+										$('#btn-submit').attr('disabled', false);
+										$('#btn-submit').css('background-color', '#053E99');
 									}
 
 								},
@@ -244,7 +250,7 @@ height: 30px;
 						} 
 						else { // 5글자를 쓰거 지웠는데 버튼이 활성화 될수 있기때문에 막는다.
 							$('#checkId').hide();
-							$('#enroll-form :submit').attr('disabled', true);
+							$('#btn-submit').attr('disabled', true);
 						}
 					});
 					
@@ -258,16 +264,10 @@ height: 30px;
 						
 						if(false === reg.test(memPwd)) {
 							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
-							return false;
+						 return false; // 기본 속성을 무시한다.
 						}else if(memPwd.search(memId) > -1){
 						 	alert("비밀번호에 아이디가 포함되었습니다.");
 						 return false;
-						}else if(memPwd.search(/\s/) != -1){
-						 	alert("비밀번호는 공백 없이 입력해주세요.");
-						return false;
-						}else if(hangulCheck.test(memPwd)){
-						 	alert("비밀번호에 한글을 사용 할 수 없습니다."); 
-						 	return false;
 						}else {
 						 	console.log("통과");
 						}
