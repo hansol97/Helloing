@@ -49,15 +49,6 @@ public class BusinessController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 인호 시작---------------------------------------------------------------------------------------------
 
 
@@ -320,7 +311,6 @@ public class BusinessController {
 //		}
 //    	return "redirect:activityList.bu";
 //    }
-	
     // 불린으로 받을 경우. 
     @RequestMapping("deleteAct.bu")
     public String deleteActivity(int activityNo, HttpSession session) {
@@ -354,8 +344,6 @@ public class BusinessController {
         }
     }
      
-    
-	
 	
 	// 객실 등록화면으로 이동
 	@RequestMapping("goInsertRoom.bu")
