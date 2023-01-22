@@ -389,6 +389,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 1:1 문의 삭제
 	@RequestMapping("deleteQna.me")
 	public ModelAndView deleteQna(ModelAndView mv,HttpSession session,int qnaNo) {
 		if(memberService.deleteQna(qnaNo) > 0) {

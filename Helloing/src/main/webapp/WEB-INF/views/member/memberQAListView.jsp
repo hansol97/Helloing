@@ -368,7 +368,6 @@ table.type02 td {
                 <br>
                 <form action="#">
                     <table class="type02">
-                    
                     	<input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }">
                         <tr>
                             <th width="80">제목</th>
@@ -434,8 +433,7 @@ table.type02 td {
 	                list.each(function(index, value){
 	                    if($(value).prop('checked')){
 	                        $('#updateMemNo').val($(value).parents('td').next()[0].innerText);
-	                        $('#update_chatbotA').val($(value).parents('td').next().next()[0].innerText);
-	                        $('#update_ori_chatbotQ').val($(value).parents('td').next()[0].innerText);
+	                   
 	                        openModal(2);
 	                    }
 	                });
@@ -457,15 +455,41 @@ table.type02 td {
 				
 		});      
 		
-		function delConfirm(){
+		function btnDelete(){
 			if(confirm("삭제하시겠습니까?")){
-				deleteChatbot();			
+				deleteQA();			
 			}
 			else{
 				return false;
 			}
 		}
-	
+		
+		function deleteQA(){
+			var cArr = new Array();
+			var list = $(".cbox");
+			for(var i = 0; i < list.length; i++){
+				if(list[i].checked){
+					cArr.push(list[i].value);
+				}
+			}
+			console.log(cArr);
+			
+			$.ajax({
+				url : "deleteQna.me"
+				,data : {
+					cbox : cArr
+				}
+				,success : function(result){
+					if(result > 0){
+						location.href = "selectQna.me"
+					} else{
+						alert("삭제 실패");
+					}
+				}
+			})
+			
+			
+		}
 	
 	</script>
 	
