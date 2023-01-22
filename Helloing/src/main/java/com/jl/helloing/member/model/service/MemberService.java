@@ -63,7 +63,12 @@ public interface MemberService {
 	ArrayList<QNA> selectQna(int memNo);
 	
 	// QNA삭제
-	int deleteQna(List<String> cbox);;
+	int deleteQna(List<String> cbox);
+	
+	QNA selectQnaUpdate(int qnaNo);
+	
+	int updateQna(QNA qna);
+	
 	
 	
 	

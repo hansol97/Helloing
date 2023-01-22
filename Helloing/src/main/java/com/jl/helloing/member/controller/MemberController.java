@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.google.gson.Gson;
+import com.jl.helloing.admin.model.vo.Chatbot;
 import com.jl.helloing.business.model.service.BusinessService;
 import com.jl.helloing.business.model.vo.Business;
 import com.jl.helloing.common.model.vo.Cert;
@@ -390,10 +391,6 @@ public class MemberController {
 			mv.setViewName("member/memberQAListView");
 		return mv;
 	}
-	
-	// 1:1 문의 수정
-	
-	
 	// 1:1 문의 삭제
 	@ResponseBody
 	@RequestMapping("deleteQna.me")
@@ -417,6 +414,35 @@ public class MemberController {
 	return mv;
 	}
 	*/
+	// 1:1문의 
+	@ResponseBody
+	@RequestMapping(value="selectQnaUpdate.me", produces ="application/json; charset=UTF-8")
+	public String selectQnaUpdate(int qnaNo) {
+		QNA qna = memberService.selectQnaUpdate(qnaNo);
+		System.out.println(qna.getQnaNo());
+		return new Gson().toJson(qna);
+	}
+	
+	@RequestMapping("updateQna.me")
+	public ModelAndView updateQna(QNA qna, ModelAndView mv, HttpSession session) {
+		//System.out.println("제목 : " + qna.getQnaTitle());
+		System.out.println(qna);
+		
+		int result = memberService.updateQna(qna);
+		if(result > 0) {
+			System.out.println(qna);
+			System.out.println(memberService.updateQna(qna));
+			session.setAttribute("alertMsg", "문의 내용이 수정되었습니다.");
+			mv.setViewName("redirect:selectQna.me");
+		} else {
+			session.setAttribute("alertMsg", "문의 내용 수정이 실패했습니다.");
+			mv.setViewName("redirect:selectQna.me");
+		}
+		return mv;
+	}
+	
+	
+	// 1:1 문의 수정
 	
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!

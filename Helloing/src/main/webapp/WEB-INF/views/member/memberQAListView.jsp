@@ -39,7 +39,7 @@
 
 .admin-innerOuter {
 	font-family: 'S-CoreDream-3Light';
-	width: 800px;
+	width: 900px;
 	margin: auto;
 
 	background-color: white;
@@ -88,7 +88,7 @@
 	margin-left: 10px;
 }
 
-/* 테이블 스타일 */
+/* 테이블 스타일2 */
 table.type02 {
 	border-collapse: separate;
 	border-spacing: 0;
@@ -108,6 +108,30 @@ table.type02 th {
 }
 
 table.type02 td {
+	padding: 7px;
+	vertical-align: top;
+	border: 1px solid rgb(236, 236, 236);
+}
+/* 테이블 스타일3 */
+table.type03 {
+	border-collapse: separate;
+	border-spacing: 0;
+	line-height: 1.5;
+	border: 1px solid rgb(236, 236, 236);
+	margin: 20px 10px;
+	text-align: center;
+}
+
+table.type03 th {
+	font-weight: 600;
+	color: rgb(24, 24, 24);
+	padding: 5px;
+	vertical-align: top;
+	border: 1px solid rgb(236, 236, 236);
+	background: #d3d3d3;
+}
+
+table.type03 td {
 	padding: 7px;
 	vertical-align: top;
 	border: 1px solid rgb(236, 236, 236);
@@ -207,6 +231,11 @@ table.type02 td {
     border-radius: 3px;
     border:1px solid rgb(150, 150, 150);
   }
+  .btn-update{
+  	border:none;
+
+  }
+
 </style>
 
 </head>
@@ -237,8 +266,8 @@ table.type02 td {
                         <tr>
                             <td width="590">
                             </td>
-                            <td><button onclick="openModal(1);" class="admin-grey">등록</button></td>
-                            <td><button onclick="openModal(2);" id="updateQAList" class="admin-grey">수정</button></td>
+                            <td><button onclick="openModal1();" class="admin-grey">등록</button></td>
+                            <!-- <td><button onclick="openModal(2);" id="updateQAList" class="admin-grey">수정</button></td>  -->
                             <td><button onclick="btnDelete()" id="btnDelete" class="admin-grey">삭제</button></td>
                         </tr>
                     </table>
@@ -255,15 +284,17 @@ table.type02 td {
                                 <th width="250">제목</th>
                                 <th width="110">등록일</th>
                                 <th width="80">답변여부</th>
+                                <th width="50">수정</th>
+                                <th width="80">상세보기</th>
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach items="${ list }" var="qna">
+                        	<c:forEach items="${ list }" var="qna"> 
                             <tr>
                                 <td>
-                                    <input id="boxbox" class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
+                                    <input class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
                                 </td>
-                                <td class="qnaNo">${ qna.qnaNo }</td>
+                                <td id="qnaNo">${ qna.qnaNo }</td>
                                 <c:choose>
                                 	<c:when test="${ qna.category == 'accomm' }" >
                                 		<td>숙소관련</td>
@@ -281,8 +312,9 @@ table.type02 td {
 	                            	<c:otherwise>
 	                            		<td>완료 </td>
 	                            	</c:otherwise>
-	                                
 	                            </c:choose>
+	                            	<td><button onclick="openModal2()"  id="updateQAList"  class="btn-update">수정</button></td>
+	                            	<td><button onclick="openModal3()"  id="detailQAList"  class="btn-update">상세보기</button></td>
                             </tr>
                             </c:forEach>
                         </tbody>
@@ -342,6 +374,7 @@ table.type02 td {
                         <tr>
                             <th>내용</th>
                             <td width="300"><input type="text" name="qnaQ" class="qnaQ-text" placeholder="내용을 입력하세요"></td>
+                            <!-- <textarea style="resize: none;" rows="4" cols="50" name="qnaQ" class="qnaQ-text" ></textarea> -->
                         </tr>
                         <tr>
                         </tr>
@@ -349,7 +382,7 @@ table.type02 td {
 
                     <div id="QA_enroll_btn">
                         <button type="submit">등록</button>
-                        <button id="QA_cancel QA_cancel1" type="button" onclick="QACancel(1);">취소</button>
+                        <button id="QA_cancel QA_cancel1" type="button" onclick="QACancel1();">취소</button>
                     </div>
                 </form>
                 
@@ -362,16 +395,20 @@ table.type02 td {
         <div class="modal_body">
             
             <div class="modal-title">
-                <span>QA 답변 수정</span>
+                <span>QA 수정</span>
             </div>
             <div align="center">
                 <br>
-                <form action="#">
-                    <table class="type02">
-                    	<input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }">
+                <form action="updateQna.me">
+                    <table class="type03">
+                    
+                    	<!--  <input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }"> -->
+                       	
+                       <!--  	
                         <tr>
                             <th width="80">제목</th>
-                            <td width="300">문의합니다</td>
+                            <td width="300"><input type="text" name="qnaTitle" maxlength="20"
+							value="${ qna.qnaTitle }"></td>
                         </tr>
                         <tr>
                             <th>내용</th>
@@ -389,24 +426,109 @@ table.type02 td {
                             <th>답변</th>
                             <td><textarea name="" id="" placehold="답변을 입력하세요">답변입니다</textarea></td>
                         </tr>
+                       -->
                     </table>
 
                     <div id="QA_enroll_btn">
                         <button type="submit">수정</button>
-                        <button id="QA_cancel QA_cancel2" type="button" onclick="QACancel(2);">취소</button>
+                        <button id="QA_cancel QA_cancel2" type="button" onclick="QACancel2();">취소</button>
                     </div>
                 </form>
                 
             </div>
             
         </div>
-    </div>
+    	</div>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	<div id="QA_enroll_page" class="modal modal3">
+        <div class="modal_body">
+            
+            <div class="modal-title">
+                <span>상세보기</span>
+            </div>
+            <div align="center">
+                <br>
+                <form action="#">
+                    <table class="type04">
+                    
+                    	<!--  <input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }"> -->
+                       	
+                       <!--  	
+                        <tr>
+                            <th width="80">제목</th>
+                            <td width="300"><input type="text" name="qnaTitle" maxlength="20"
+							value="${ qna.qnaTitle }"></td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>안녕하세요 숙소관련 문의합니다</td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>숙소관련</td>
+                        </tr>
+                        <tr>
+                            <th>구분</th>
+                            <td>일반회원</td>
+                        </tr>
+                        <tr>
+                            <th>답변</th>
+                            <td><textarea name="" id="" placehold="답변을 입력하세요">답변입니다</textarea></td>
+                        </tr>
+                       -->
+                    </table>
+
+                    <div id="QA_enroll_btn">
+                        <button type="submit">수정</button>
+                        <button id="QA_cancel QA_cancel3" type="button" onclick="QACancel3();">취소</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+        </div>
+    	</div>
 
 		</div>
 
 	</div>
 
-      
+<!-- 
+		<script>
+		$(function(){
+			$('#updateQAList').click(function(){     
+				$.ajax({
+					url : 'selectQna1.sj',
+					data : {qnaNo:$('#qnaNo').val()}, 
+					success : function(result){
+						console.log(result);
+						
+						value += '<tr>'
+                        		+ '<th>내용</th>'
+                        		+ '<td>안녕하세요 숙소관련 문의합니다</td>'
+                    			+  '</tr>';
+						$('.type02').html(value);
+						
+					},
+					error:function(){
+						console.log('통신실패')
+					}
+				});
+			});			
+
+		})
+	</script>
+ -->
+
       	<script>
       	
 		$(document).ready(function() {
@@ -426,14 +548,15 @@ table.type02 td {
 	</script>
 	
 	<script>
+	<%--
 		$(function(){
+			
 	        $('#updateQAList').click(function(){
 	            var list = $(".cbox");
 	            if($('input[type=checkbox]:checked').length == 1){
 	                list.each(function(index, value){
 	                    if($(value).prop('checked')){
 	                        $('#updateMemNo').val($(value).parents('td').next()[0].innerText);
-	                   
 	                        openModal(2);
 	                    }
 	                });
@@ -442,19 +565,9 @@ table.type02 td {
 	                alert('하나를 선택하세요');
 	            }
 	        });
-	        
-	        if('${map.condition}' != ''){
-					if('${ map.condition }' == "chatbotName"){
-						$('select option:eq(0)').prop('selected', true);
-					}else{
-						$('select option:eq(1)').prop('selected', true);
-					};
-				
-					$('#chatbot_search_input').val('${map.keyword}');
-	        }
-				
+	
 		});      
-		
+		--%>
 		function btnDelete(){
 			if(confirm("삭제하시겠습니까?")){
 				deleteQA();			
@@ -492,8 +605,30 @@ table.type02 td {
 		}
 	
 	</script>
-	
-
+	<!--  
+	<script>
+		function updateQAList(){
+			$.ajax({
+				url : 'updateQna.me',
+				data : {
+					qnaNo : $('#qnaNo').text()
+				},
+				success : function(qna){
+					console.log(qna)
+					value += '<tr>'
+                           	+ '<th width="80">제목</th>'
+                           	+ '<td width="300"><input type="text" name="qnaTitle" maxlength="20"value="' + qna.qnaTitle + '"></td>'
+                    		+ '</tr>';
+                    $('.type02').html(value);    		
+				},
+				error:function(){
+					console.log('실패')
+				}
+			})
+			
+		}	
+	</script>
+	-->
 	<!--  
 	<script>
 	function btnDelete(){
@@ -562,6 +697,88 @@ table.type02 td {
         const body = document.querySelector('body');
         
 
+        function QACancel1(){
+            let modal = document.querySelector('.modal1');
+            const btnCancel = document.getElementById('#QA_cancel1');
+            modal.classList.remove('show');
+            
+            body.style.overflow = 'auto';
+        };
+
+        function openModal1(){
+            let modal = document.querySelector('.modal1');
+            modal.classList.toggle('show');
+            
+  
+            if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+            } 
+        };
+        
+        function QACancel2(){
+            let modal = document.querySelector('.modal2');
+            const btnCancel = document.getElementById('#QA_cancel2');
+            modal.classList.remove('show');
+            
+            body.style.overflow = 'auto';
+        };
+
+        function openModal2(){
+            let modal = document.querySelector('.modal2');
+            modal.classList.toggle('show');
+            
+            $.ajax({
+				url : 'selectQnaUpdate.me',
+				data : {
+					qnaNo : $('#qnaNo').text()
+				},
+				success : function(qna){
+					console.log(qna)
+					let value =  '<tr>'
+	                           	+ '<th width="80">제목</th>'
+	                           	+ '<td width="300"><input type="text" name="qnaTitle" class="qnaTitle-text"  maxlength="20"value="' + qna.qnaTitle + '"></td>'
+	                    		+ '</tr>'
+	                    		+ '<tr>'
+                    			+ '<th>내용</th>'
+                            	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
+                            	+ '</tr>'
+                            	+ '<input type="hidden" name="qnaNo" value="' + qna.qnaNo + '">'
+                    $('.type03').html(value);    		
+				},
+				error:function(){
+					console.log('실패')
+				}
+			})
+			
+ 
+        };
+        
+        // 1:1 문의 상세보기
+        function QACancel3(){
+            let modal = document.querySelector('.modal3');
+            const btnCancel = document.getElementById('#QA_cancel3');
+            modal.classList.remove('show');
+            
+            body.style.overflow = 'auto';
+        };
+
+        function openModal3(){
+            let modal = document.querySelector('.modal3');
+            modal.classList.toggle('show');
+            
+  
+            if (modal.classList.contains('show')) {
+            body.style.overflow = 'hidden';
+            } 
+        };
+
+       
+        
+       
+        
+        /*
+
+  
         function QACancel(num){
             let modal = document.querySelector('.modal'+ num);
             const btnCancel = document.getElementById('#QA_cancel'+ num);
@@ -577,10 +794,10 @@ table.type02 td {
   
             if (modal.classList.contains('show')) {
             body.style.overflow = 'hidden';
-            }
-
-            
+            } 
         };
+        
+        */
 
        /*  let modal = document.querySelector('.modal');
             modal.addEventListener('click', (event) => {
@@ -591,8 +808,20 @@ table.type02 td {
                 }
             }
         }); */
-        
-  
+
+      </script>
+      <script>
+      $(function(){
+  		$('#boardList>tbody>tr').click(function(){
+  			//location.href = 'detail.bo?bno=' + $(this).children('.bno').text() // .eq(0)  // this현재 내가 선택한
+  					
+  					
+  					
+  					
+  		})
+  		
+  		
+  	})
       </script>
 
 </body>

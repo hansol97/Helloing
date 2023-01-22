@@ -98,6 +98,18 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteQna(List<String> cbox) {
 		return memberDao.deleteQna(sqlSession,cbox);
 	}
+	
+	// 1:1 문의 수정
+	@Override
+	public int updateQna(QNA qna) {
+		return memberDao.updateQna(sqlSession, qna);
+	}
+	
+	@Override
+	public QNA selectQnaUpdate(int qnaNo) {
+		return memberDao.selectQnaUpdate(sqlSession, qnaNo);
+	}
+
 
 	/*
 	@Override
@@ -359,6 +371,11 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
+	
+
+	
+
 
 
 

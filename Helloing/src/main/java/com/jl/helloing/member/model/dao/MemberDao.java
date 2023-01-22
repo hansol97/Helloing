@@ -78,6 +78,17 @@ public class MemberDao {
 	public int deleteQna(SqlSessionTemplate sqlSession, List<String> cbox) {
 		return sqlSession.delete("memberMapper.deleteQna", cbox);
 	}
+	
+	// 1:1 문의 수정(수정 전)
+	public QNA selectQnaUpdate(SqlSessionTemplate sqlSession, int qnaNo) {
+		return sqlSession.selectOne("memberMapper.selectQnaUpdate", qnaNo);
+	}
+	// 1:1 문의 수정(수정 후 )
+	public int updateQna(SqlSessionTemplate sqlSession, QNA qna) {
+		return sqlSession.update("memberMapper.updateQna", qna);
+	}
+	
+	
 	//-----------------------------------------------------------------
 	
 	//혜진

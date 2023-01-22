@@ -224,6 +224,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	</delete>
+	
+	<!-- 1:1 문의 수정(수정 전) -->
+		<select id="selectQnaUpdate" parameterType="_int" resultMap="qnaResultSet" >
+		select
+				qna_no,
+				qna_sort,
+				qna_q,
+				category,
+				qna_title,
+				mem_id,
+				to_char(qna_date, 'YYYY-MM-DD') as "QNA_DATE",
+				qna_date,
+				ans_yn
+		  from
+		  		qna q
+		  join
+		  		member m on(m.mem_no = q.mem_no)
+		 where
+		 		qna_no = #{ qnaNo }
+	</select>
+	
+	<!-- 1:1 문의 수정(수정 후) -->
+	<update id="updateQna" parameterType="qna">
+		update
+				qna
+		   set
+		   		qna_title = #{qnaTitle},
+		   		qna_q = #{qnaQ}
+	     where
+				qna_no = #{qnaNo}
+	</update>
+	<!-- 1:1문의 수정 
+	<select id="updateQna" parameterType="_int" resultType="qna">
+		select
+		   		
+		   
+		   		qna_title = #{qnaTitle},
+		   		qna_q = #{qnaQ},
+		 where
+		 		qna_no = #{qnaNo}
+	</update>-->
 
 	<!-- //////////////////////////////////////////////////////////////////////////// -->
 	
