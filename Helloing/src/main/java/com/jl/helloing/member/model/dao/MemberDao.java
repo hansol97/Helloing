@@ -1,6 +1,7 @@
 package com.jl.helloing.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -74,8 +75,8 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectQna", memNo);
 	}
 	// 1:1문의 삭제
-	public int delectQna(SqlSessionTemplate sqlSession, int qnaNo) {
-		return sqlSession.delete("memberMapper.deleteQna", qnaNo);
+	public int deleteQna(SqlSessionTemplate sqlSession, List<String> cbox) {
+		return sqlSession.delete("memberMapper.deleteQna", cbox);
 	}
 	//-----------------------------------------------------------------
 	

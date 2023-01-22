@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -26,6 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -389,7 +391,18 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 1:1 문의 수정
+	
+	
 	// 1:1 문의 삭제
+	@ResponseBody
+	@RequestMapping("deleteQna.me")
+	public int deleteQna(@RequestParam(value="cbox[]")List<String> cbox) {
+		return memberService.deleteQna(cbox);
+	}
+	
+	
+	/*
 	@RequestMapping("deleteQna.me")
 	public ModelAndView deleteQna(ModelAndView mv,HttpSession session,int qnaNo) {
 		if(memberService.deleteQna(qnaNo) > 0) {
@@ -403,7 +416,7 @@ public class MemberController {
 		
 	return mv;
 	}
-	
+	*/
 	
 	// 혜진씨 퐈이팅!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(당신은 사랑받기위해 태어난사람 당신의 삶속에서 그사랑 받고있지요)-승준-
 	// 감솨함닷 승준님도 화이팅!!!!!!!!!!!!!!!!!!!!

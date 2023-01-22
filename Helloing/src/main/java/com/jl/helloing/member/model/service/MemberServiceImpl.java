@@ -1,6 +1,7 @@
 package com.jl.helloing.member.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,11 +93,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectQna(sqlSession, memNo);
 	}
 	// 1:1문의 삭제
+	
+	@Override
+	public int deleteQna(List<String> cbox) {
+		return memberDao.deleteQna(sqlSession,cbox);
+	}
+
+	/*
 	@Override
 	public int deleteQna(int qnaNo) {
 		return memberDao.delectQna(sqlSession, qnaNo);
 	}
-	
+	*/
 	//---------------------------------------------------------------------
 	
 	//혜진
@@ -351,6 +359,7 @@ public class MemberServiceImpl implements MemberService{
 	public int removeAcWish(AccommWish aw) {
 		return memberDao.removeAcWish(sqlSession, aw);
 	}
+
 
 
 

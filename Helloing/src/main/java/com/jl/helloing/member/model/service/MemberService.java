@@ -1,6 +1,7 @@
 package com.jl.helloing.member.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jl.helloing.common.model.vo.Cert;
 import com.jl.helloing.member.model.vo.AccommWish;
@@ -61,8 +62,8 @@ public interface MemberService {
 	//QNA리스트
 	ArrayList<QNA> selectQna(int memNo);
 	
-	//
-	int deleteQna(int qnaNo);
+	// QNA삭제
+	int deleteQna(List<String> cbox);;
 	
 	
 	

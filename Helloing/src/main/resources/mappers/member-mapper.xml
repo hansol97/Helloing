@@ -210,13 +210,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where
 		 		q.mem_no = #{ memNo }
 	</select>
-
-	<delete id="deleteQna" parameterType="qna" >
+	
+	<!-- 1:1문의 삭제 -->
+	<delete id="deleteQna" parameterType="list" >
 		delete
 		  from
 		  		qna
 		 where
-		 		qna_no = #{ qnaNo }
+		 		qna_no in
+		 <foreach collection="list" item="item" index="i" open="(" separator="," close=")">
+		 	#{item}
+		 </foreach>		
 	
 	
 	</delete>
