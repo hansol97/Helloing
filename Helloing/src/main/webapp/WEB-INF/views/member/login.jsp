@@ -48,14 +48,24 @@ color: white;
 background-color: #053E99;
 border: 0;
 border-radius: 3px;
+ font-family: 'S-CoreDream-3Light';
+ font-weight: normal;
+     font-style: normal;
 
 }
 button:hover{
 	cursor: pointer;
+	
 }
 .findId-button{
 	margin-left: 20px;
 }
+.enroll-Form input{
+ font-family: 'S-CoreDream-3Light';
+ margin: 5px;
+
+}
+#idCheck {}
 
 </style>
 </head>
@@ -80,7 +90,7 @@ button:hover{
 		</div>
 		<div class="login-box">
 			<div class="login-innor">
-				<form id="login" action="login.me" method="post" >
+				<form id="login" class="enroll-Form" action="login.me" method="post" >
 					
 					<!-- cookie.saveId 쿠키의 네임속성값-->
 					<!-- cookie.saveId.value 쿠키의 네임속성값.value 쿠키의 value를 출력할수있다. -->

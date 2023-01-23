@@ -289,13 +289,13 @@ table.type03 td {
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach items="${ list }" var="qna" varStatus="status">
-                        	<!-- [${status.index}]: ${list[status.index]} -->
+                        	<c:forEach items="${ list }" var="qna" >
+                        	<!--varStatus="status" [${status.index}]: ${list[status.index]} -->
                             <tr>
                                 <td>
                                     <input class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
                                 </td>
-                                <td id="qnaNo">${ qna.qnaNo }</td>
+                                <td class="qnaNo">${ qna.qnaNo }</td>
                                 <c:choose>
                                 	<c:when test="${ qna.category == 'accomm' }" >
                                 		<td>숙소관련</td>
@@ -314,7 +314,7 @@ table.type03 td {
 	                            		<td>완료 </td>
 	                            	</c:otherwise>
 	                            </c:choose>
-	                            	<td><button class="btnnn" onclick="openModal2()"  id="updateQAList"  class="btn-update">수정</button></td>
+	                            	<td><button class="btnnn" onclick="openModal2('${qna.qnaNo}')"  id="updateQAList"  class="btn-update">수정</button></td>
 	                            	<td><button onclick="openModal3()"  id="detailQAList"  class="btn-update">상세보기</button></td>
                             </tr>
                             </c:forEach>
@@ -724,15 +724,17 @@ table.type03 td {
             body.style.overflow = 'auto';
         };
 
-        function openModal2(){
+        function openModal2(intNo){
             let modal = document.querySelector('.modal2');
             modal.classList.toggle('show');
-            console.log(this)
+            //console.log(intNo);
+            //var qnaNo = into //$(this).parent().siblings('.qnaNo').text()
+            //console.log(qnaNo);
             
             $.ajax({
 				url : 'selectQnaUpdate.me',
 				data : {
-					qnaNo : $('#qnaNo').text()
+					qnaNo : intNo
 				},
 				success : function(qna){
 					//console.log(qna)
@@ -744,7 +746,7 @@ table.type03 td {
                     			+ '<th>내용</th>'
                             	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
                             	+ '</tr>'
-                            	+ '<input type="hidden" name="qnaNo" class="qnaNo" value="' + qna.qnaNo + '">'
+                            	+ '<input type="hidden"   value="' + qna.qnaNo + '">'
                     $('.type03').html(value);    		
 				},
 				error:function(){

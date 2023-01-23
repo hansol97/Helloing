@@ -33,11 +33,13 @@ font-weight: 800;
 padding-right: 50px;
 }
 .findPwd-form input{
-font-weight: 800;
+width: 180px;
+height: 25px;
+font-family: 'S-CoreDream-3Light';
+font-weight: normal;
+font-style: normal;
 
 }
-
-
 .authNum{
 margin-top: 10px;
 margin-left: 110px;

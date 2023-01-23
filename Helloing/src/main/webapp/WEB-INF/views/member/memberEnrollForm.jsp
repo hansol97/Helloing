@@ -15,6 +15,9 @@
 }
 #enroll-form input{
   height: 25px;
+   font-family: 'S-CoreDream-3Light';
+   font-weight: normal;
+     font-style: normal;
 }
 .join-button{
 	width: 200px;
@@ -86,7 +89,7 @@ height: 30px;
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
-						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" required></td>
+						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" placeholder="8자 이상 입력해주세요" required></td>
 					</tr>
 					
 					<tr>
@@ -96,7 +99,7 @@ height: 30px;
 					
 					<tr>
 						<td> 이름  &nbsp;&nbsp;</td>
-						<td><input type="text" name="memName" required></td>
+						<td><input type="text" name="memName" id="memName" required></td>
 					</tr>
 					
 					<tr>
@@ -263,7 +266,7 @@ height: 30px;
 						var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 							
 						if(false === reg.test(memPwd)) {
-							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자를 입력해주세여.');
 							$('#btn-submit').attr('disabled', true);
 							$("#memPwd").val('');
 						 return false; // 기본 속성을 무시한다.
@@ -280,10 +283,48 @@ height: 30px;
 						})
 						
 						
+							
+						
+							
+						
+						$(document).on('change','input[name=email]', function(){
+							var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+							
+							if(false === regEmail.test(email)) {
+								alert('이메일 양식을 지켜주세요.');
+								$('#btn-submit').attr('disabled', true);
+								$("#email").val('');
+								return false;
+							} else {
+								$('#btn-submit').attr('disabled', false);
+							 	console.log("통과");
+							}
+							
+						})
+						
+						
 						$(document).on('keyup','input[name=phone]', function () {
 						    $(this).val($(this).val().replace(/[^0-9]/g, ""));
 			
 						});
+					
+					
+					$(document).on('change', 'input[name=checkPwd]', function() {
+						var memPwd = $("#memPwd").val();
+						var checkPwd = $("#checkPwd").val();
+						
+						if(memPwd != checkPwd){
+							alert('비밀번호를 확인해주세요')
+							$('#btn-submit').attr('disabled', true);
+							$("#checkPwd").val('');
+							return false;
+						} else {
+							$('#btn-submit').attr('disabled', false);
+						 	console.log("통과");
+						}
+						
+					})
+					
 					
 				})
 			</script>
