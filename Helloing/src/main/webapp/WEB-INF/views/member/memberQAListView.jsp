@@ -315,7 +315,7 @@ table.type03 td {
 	                            	</c:otherwise>
 	                            </c:choose>
 	                            	<td><button class="btnnn" onclick="openModal2('${qna.qnaNo}')"  id="updateQAList"  class="btn-update">수정</button></td>
-	                            	<td><button onclick="openModal3()"  id="detailQAList"  class="btn-update">상세보기</button></td>
+	                            	<td><button onclick="openModal3('${qna.qnaNo}')"  id="detailQAList"  class="btn-update">상세보기</button></td>
                             </tr>
                             </c:forEach>
                         </tbody>
@@ -458,10 +458,14 @@ table.type03 td {
             </div>
             <div align="center">
                 <br>
-                <form action="#">
+                <form action="selectQnaUpdate.me">
                     <table class="type04">
                     
-                    	<!--  <input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }"> -->
+                    	
+                    
+                    
+                    
+                    	
                        	
                        <!--  	
                         <tr>
@@ -731,6 +735,13 @@ table.type03 td {
             //var qnaNo = into //$(this).parent().siblings('.qnaNo').text()
             //console.log(qnaNo);
             
+            /*
+            $(document).on("click", "#updateQAList", function(){
+            var qnaNo = $(this).closest("tr").find(".qnaNo1").text();
+            console.log(qnaNo);
+        	});
+            */
+            
             $.ajax({
 				url : 'selectQnaUpdate.me',
 				data : {
@@ -766,9 +777,32 @@ table.type03 td {
             body.style.overflow = 'auto';
         };
 
-        function openModal3(){
+        function openModal3(intNo){
             let modal = document.querySelector('.modal3');
             modal.classList.toggle('show');
+            
+            $.ajax({
+				url : 'selectQnaUpdate.me',
+				data : {
+					qnaNo : intNo
+				},
+				success : function(qna){
+					console.log(qna)
+					let value =  '<tr>'
+	                           	+ '<th width="80">제목</th>'
+	                           	+ '<td width="300">' + qna.qnaTitle + '></td>'
+	                    		+ '</tr>'
+	                    		+ '<tr>'
+                    			+ '<th>내용</th>'
+                            	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
+                            	+ '</tr>'
+                            	+ '<input type="hidden" class="qnaNo" name="qnaNo"  value="' + qna.qnaNo + '">'
+                    $('.type04').html(value);    		
+				},
+				error:function(){
+					console.log('실패')
+				}
+			})
             
   
             if (modal.classList.contains('show')) {
