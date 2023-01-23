@@ -314,7 +314,7 @@ table.type03 td {
 	                            		<td>완료 </td>
 	                            	</c:otherwise>
 	                            </c:choose>
-	                            	<td><button onclick="openModal2()"  id="updateQAList"  class="btn-update">수정</button></td>
+	                            	<td><button class="btnnn" onclick="openModal2()"  id="updateQAList"  class="btn-update">수정</button></td>
 	                            	<td><button onclick="openModal3()"  id="detailQAList"  class="btn-update">상세보기</button></td>
                             </tr>
                             </c:forEach>
@@ -727,6 +727,7 @@ table.type03 td {
         function openModal2(){
             let modal = document.querySelector('.modal2');
             modal.classList.toggle('show');
+            console.log(this)
             
             $.ajax({
 				url : 'selectQnaUpdate.me',
@@ -734,7 +735,7 @@ table.type03 td {
 					qnaNo : $('#qnaNo').text()
 				},
 				success : function(qna){
-					console.log(qna)
+					//console.log(qna)
 					let value =  '<tr>'
 	                           	+ '<th width="80">제목</th>'
 	                           	+ '<td width="300"><input type="text" name="qnaTitle" class="qnaTitle-text"  maxlength="20"value="' + qna.qnaTitle + '"></td>'
@@ -816,7 +817,9 @@ table.type03 td {
   		$('#boardList>tbody>tr').click(function(){
   			//location.href = 'detail.bo?bno=' + $(this).children('.bno').text() // .eq(0)  // this현재 내가 선택한
   					
-  					
+  		//$('.btnn').click(function({
+  			
+  				
   					
   					
   		})
