@@ -737,7 +737,7 @@ table.type03 td {
 					qnaNo : intNo
 				},
 				success : function(qna){
-					//console.log(qna)
+					console.log(qna)
 					let value =  '<tr>'
 	                           	+ '<th width="80">제목</th>'
 	                           	+ '<td width="300"><input type="text" name="qnaTitle" class="qnaTitle-text"  maxlength="20"value="' + qna.qnaTitle + '"></td>'
@@ -746,7 +746,7 @@ table.type03 td {
                     			+ '<th>내용</th>'
                             	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
                             	+ '</tr>'
-                            	+ '<input type="hidden"   value="' + qna.qnaNo + '">'
+                            	+ '<input type="hidden" class="qnaNo" name="qnaNo"  value="' + qna.qnaNo + '">'
                     $('.type03').html(value);    		
 				},
 				error:function(){
