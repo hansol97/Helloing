@@ -289,7 +289,8 @@ table.type03 td {
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach items="${ list }" var="qna"> 
+                        	<c:forEach items="${ list }" var="qna" varStatus="status">
+                        	<!-- [${status.index}]: ${list[status.index]} -->
                             <tr>
                                 <td>
                                     <input class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
@@ -742,7 +743,7 @@ table.type03 td {
                     			+ '<th>내용</th>'
                             	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
                             	+ '</tr>'
-                            	+ '<input type="hidden" name="qnaNo" value="' + qna.qnaNo + '">'
+                            	+ '<input type="hidden" name="qnaNo" class="qnaNo" value="' + qna.qnaNo + '">'
                     $('.type03').html(value);    		
 				},
 				error:function(){
