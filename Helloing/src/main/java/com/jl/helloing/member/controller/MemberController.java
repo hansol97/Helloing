@@ -558,12 +558,10 @@ public class MemberController {
 		
 		if(memberService.bookCancel(orderNo)>0) {
 			session.setAttribute("alertMsg", "취소에 성공하였습니다.");
-			mv.setViewName("redirect:accommBook.hj");
 		}else {
 			session.setAttribute("alertMsg", "취소에 실패하였습니다.");
-			mv.setViewName("redirect:accommBook.hj");
 		}
-		
+		mv.setViewName("redirect:accommBook.hj");
 		return mv;
 	}
 	
@@ -574,8 +572,6 @@ public class MemberController {
 	@RequestMapping(value="selectAccommReview.hj",produces="application/json; charset=UTF-8")
 	public String selectAcommReview(int orderNo) {
 		AccommReview review = memberService.selectAcommReview(orderNo);
-		System.out.println(review);
-
 		review.setTag(review.getTag().replace(",", "|"));
 		
 		return new Gson().toJson(review);
@@ -586,7 +582,6 @@ public class MemberController {
 	@RequestMapping(value="selectActivityReview.hj",produces="application/json; charset=UTF-8")
 	public String selectActivityReview(int orderNo) {
 		ActivityReview review = memberService.selectActivityReview(orderNo);
-		System.out.println(review);
 
 		review.setTag(review.getTag().replace(",", "|"));
 		
@@ -680,11 +675,10 @@ public class MemberController {
 		if(memberService.deleteAccommReview(review.getReviewNo())>0) {
 			 	new File(session.getServletContext().getRealPath(review.getFilePath())).delete();
 				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-				mv.setViewName("redirect:accommBook.hj");
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:accommBook.hj");
 		}
+		mv.setViewName("redirect:accommBook.hj");
 		return mv;
 	}
 	
@@ -725,11 +719,10 @@ public class MemberController {
 		if(memberService.deleteActivityReview(review.getReviewNo())>0) {
 			 	new File(session.getServletContext().getRealPath(review.getFilePath())).delete();
 				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-				mv.setViewName("redirect:activityBook.hj");
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:activityBook.hj");
 		}
+		mv.setViewName("redirect:activityBook.hj");
 		return mv;
 	}
 	

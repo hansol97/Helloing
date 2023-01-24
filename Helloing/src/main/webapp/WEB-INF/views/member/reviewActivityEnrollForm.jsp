@@ -265,7 +265,7 @@
 			
 			<div id="content">
 				<h3>구체적으로 어떤 경험이었나요?</h3>
-				<textarea name="reviewContent" id="text-area"cols="110px" rows="10px" placeholder="이용하기 전 알기 어려운 사실이나 꿀팁을 알려주세요."></textarea>
+				<textarea name="reviewContent" id="text-area"cols="110px" rows="10px" placeholder="이용하기 전 알기 어려운 사실이나 꿀팁을 알려주세요." required></textarea>
 				<span id="count">0</span> / 150
 				
 				<p>
@@ -283,7 +283,7 @@
 				<h3>어떤 점이 특히 좋았나요?</h3>
 				<br>
 				
-				 <select name="tagArr" class="tag-opt">
+				 <select name="tagArr" class="tag-opt" required>
 					<option value="위치가 찾기 쉬워요">🧭위치가 찾기 쉬워요</option>
 					<option value="관광지와 가까워요">🏝️관광지와 가까워요</option>
 					<option value="방문하기 편해요">🚗방문하기 편해요</option>
@@ -312,7 +312,7 @@
 						<img src="" alt="미리보기 이미지" class="preview">
 						</div>
 						<label class="file-label" for="chooseFile">사진 선택하기</label>
-						<input name="upfile" class="file form-control-file border" id="chooseFile" type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+						<input name="upfile" class="file form-control-file border" id="chooseFile" type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif" required>
 					</div>
 					</div>
 				</div>

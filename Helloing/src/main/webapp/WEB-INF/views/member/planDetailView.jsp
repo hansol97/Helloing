@@ -260,7 +260,7 @@
 					</li>
 					<li>
 						일정 종료 시간
-						<select name = "endTime">
+						<select name = "endTime" required>
 							<c:forEach var="i" begin="0" end="24">
 							    <option>${i}:00</option>
 						    </c:forEach>
@@ -268,7 +268,7 @@
 					</li>
 					<li>
 						카테고리
-						<select name = "planCategory">
+						<select name = "planCategory" required>
 						    <option>숙소</option>
 						    <option>이동</option>
 						    <option>관광</option>
@@ -298,23 +298,23 @@
 					<ul>
 						<li>
 							일정 시작 시간
-							<select class="startTime" name = "startTime">
-							<c:forEach var="i" begin="0" end="24">
-							    <option>${i}:00</option>
-						    </c:forEach>
+							<select class="startTime" name = "startTime" required>
+								<c:forEach var="i" begin="0" end="24">
+								    <option>${i}:00</option>
+							    </c:forEach>
 						    </select>
 						</li>
 						<li>
 							일정 종료 시간
-							<select class="endTime" name = "endTime">
-							<c:forEach var="i" begin="0" end="24">
-							    <option>${i}:00</option>
-						    </c:forEach>
+							<select class="endTime" name = "endTime" required>
+								<c:forEach var="i" begin="0" end="24">
+								    <option>${i}:00</option>
+							    </c:forEach>
 						    </select>
 						</li>
 						<li>
 							카테고리
-							<select class="planCategory" name = "planCategory">
+							<select class="planCategory" name = "planCategory" required>
 							    <option>숙소</option>
 							    <option>이동</option>
 							    <option>관광</option>
@@ -363,9 +363,9 @@
 					var planDate = result.planDate;
 					var planNo = result.planNo;
 					
-					value +=  '<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value="' + planName + '"></li>'
-							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + planContent + '"></li>'
-							+	'<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}" value="' + planDate  + '">'
+					value +=  '<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." value="' + planName + '" required></li>'
+							+	'<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." value="' + planContent + '" required></li>'
+							+	'<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}" value="' + planDate  + '" required>'
 							+ 	'<li><input type="hidden" name="planNo" value="' + planNo + '">';
 							
 							console.log(value)
