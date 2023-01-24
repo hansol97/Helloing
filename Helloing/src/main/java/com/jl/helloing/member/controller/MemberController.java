@@ -517,7 +517,6 @@ public class MemberController {
 	public ModelAndView accommBookDetail(ModelAndView mv, int orderNo) {
 		
 		RoomPayment rp = memberService.accommBookDetail(orderNo);
-		System.out.println(rp);
 		if(rp!=null) {
 			
 			mv.addObject("list", productService.selectPhotoList(rp.getAccommNo()));
@@ -752,8 +751,10 @@ public class MemberController {
 	@RequestMapping("memberUpdatePwd.hj")
 	public ModelAndView memberUpdatePwd(Member m, String memNewPwd, HttpSession session, ModelAndView mv) {
 		
+		
+		
 		//비밀번호 일치하는지 확인
-		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+		if(!bcryptPasswordEncoder.matches(m.getMemPwd(), ((Member)session.getAttribute("loginUser")).getMemPwd())) {
 			//비밀번호 불일치
 			
 			mv.addObject("errorMsg", "비밀번호 불일치");
