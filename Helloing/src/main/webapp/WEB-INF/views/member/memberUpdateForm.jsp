@@ -131,11 +131,11 @@
 				</div>	
 				<div class="form-group">
 					<span class="form-title">핸드폰번호</span>
-					<span class="form-input"><input type="text" name="phone" value="${loginUser.phone}"></span>
+					<span class="form-input"><input type="text" name="phone" value="${loginUser.phone}" required></span>
 				</div>	
 				<div class="form-group">
 					<span class="form-title">이메일</span>
-					<span class="form-input"><input type="text" name="email" value="${loginUser.email}"></span>
+					<span class="form-input"><input type="text" name="email" value="${loginUser.email}" required></span>
 				</div>
 				<br>
 				<span id="submit_btn">

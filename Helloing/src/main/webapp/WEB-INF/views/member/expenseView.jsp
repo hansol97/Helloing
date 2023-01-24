@@ -193,19 +193,19 @@
 			<hr>
 			<form action="insertExpense.hj" method="post">
 				<ul>
-					<li>결제 날짜 <input type="date" id="expense-date" name="expenseDate"> </li>
-					<li><input type="number" name="amount" placeholder="금액입력">원</li>
+					<li>결제 날짜 <input type="date" id="expense-date" name="expenseDate" required> </li>
+					<li><input type="number" name="amount" placeholder="금액입력" required>원</li>
 					<li>
 						결제수단  
-						<select name="method">
+						<select name="method" required>
 							<option>현금</option>
 							<option>카드</option>
 						</select>
 					</li>
-					<li>내용 <input type="text" name="expenseContent"></li>
+					<li>내용 <input type="text" name="expenseContent" required></li>
 					<li>
 						카테고리
-						<select name = "expenseCategory">
+						<select name = "expenseCategory" required>
 						    <option>숙소</option>
 						    <option>교통</option>
 						    <option>관광</option>

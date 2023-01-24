@@ -234,7 +234,7 @@
 			<hr>
 			<form action="planAddMem.hj" method="post">
 				<h2>일행의 아이디를 입력해주세요.</h2>
-				<input type="text" name="memId">
+				<input type="text" name="memId" required>
 				<input type="hidden" name="plannerNo" value="${pl.plannerNo}">
 				<div class="modalBtn" style="float:right;">
 					<button type="submit">추가</button>
@@ -247,65 +247,23 @@
 			<hr>
 			<form action="insertPlan.hj" method="post">
 				<ul>
-					<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요."></li>
-					<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요."></li>
-					<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}">
+					<li>일정명  <input type="text" name="planName" placeholder="내용을 입력해주세요." required></li>
+					<li>일정 설명  <input type="text" name="planContent" placeholder="내용을 입력해주세요." required></li>
+					<li>일정 날짜 <input type="date" name="planDate" min="${pl.startDate}" max="${pl.endDate}" required></li>
 					<li>
 						일정 시작 시간
-						<select name = "startTime">
-						    <option>01:00</option>
-						    <option>02:00</option>
-						    <option>03:00</option>
-						    <option>04:00</option>
-						    <option>05:00</option>
-						    <option>06:00</option>
-						    <option>07:00</option>
-						    <option>08:00</option>
-						    <option>09:00</option>
-						    <option>10:00</option>
-						    <option>11:00</option>
-						    <option>12:00</option>
-						    <option>13:00</option>
-						    <option>14:00</option>
-						    <option>15:00</option>
-						    <option>16:00</option>
-						    <option>17:00</option>
-						    <option>18:00</option>
-						    <option>19:00</option>
-						    <option>20:00</option>
-						    <option>21:00</option>
-						    <option>22:00</option>
-						    <option>23:00</option>
-						    <option>24:00</option>
+						<select name = "startTime" required>
+							<c:forEach var="i" begin="0" end="24">
+							    <option>${i}:00</option>
+						    </c:forEach>
 					    </select>
 					</li>
 					<li>
 						일정 종료 시간
 						<select name = "endTime">
-						    <option>01:00</option>
-						    <option>02:00</option>
-						    <option>03:00</option>
-						    <option>04:00</option>
-						    <option>05:00</option>
-						    <option>06:00</option>
-						    <option>07:00</option>
-						    <option>08:00</option>
-						    <option>09:00</option>
-						    <option>10:00</option>
-						    <option>11:00</option>
-						    <option>12:00</option>
-						    <option>13:00</option>
-						    <option>14:00</option>
-						    <option>15:00</option>
-						    <option>16:00</option>
-						    <option>17:00</option>
-						    <option>18:00</option>
-						    <option>19:00</option>
-						    <option>20:00</option>
-						    <option>21:00</option>
-						    <option>22:00</option>
-						    <option>23:00</option>
-						    <option>24:00</option>
+							<c:forEach var="i" begin="0" end="24">
+							    <option>${i}:00</option>
+						    </c:forEach>
 					    </select>
 					</li>
 					<li>
@@ -341,59 +299,17 @@
 						<li>
 							일정 시작 시간
 							<select class="startTime" name = "startTime">
-							    <option>01:00</option>
-							    <option>02:00</option>
-							    <option>03:00</option>
-							    <option>04:00</option>
-							    <option>05:00</option>
-							    <option>06:00</option>
-							    <option>07:00</option>
-							    <option>08:00</option>
-							    <option>09:00</option>
-							    <option>10:00</option>
-							    <option>11:00</option>
-							    <option>12:00</option>
-							    <option>13:00</option>
-							    <option>14:00</option>
-							    <option>15:00</option>
-							    <option>16:00</option>
-							    <option>17:00</option>
-							    <option>18:00</option>
-							    <option>19:00</option>
-							    <option>20:00</option>
-							    <option>21:00</option>
-							    <option>22:00</option>
-							    <option>23:00</option>
-							    <option>24:00</option>
+							<c:forEach var="i" begin="0" end="24">
+							    <option>${i}:00</option>
+						    </c:forEach>
 						    </select>
 						</li>
 						<li>
 							일정 종료 시간
 							<select class="endTime" name = "endTime">
-							    <option>01:00</option>
-							    <option>02:00</option>
-							    <option>03:00</option>
-							    <option>04:00</option>
-							    <option>05:00</option>
-							    <option>06:00</option>
-							    <option>07:00</option>
-							    <option>08:00</option>
-							    <option>09:00</option>
-							    <option>10:00</option>
-							    <option>11:00</option>
-							    <option>12:00</option>
-							    <option>13:00</option>
-							    <option>14:00</option>
-							    <option>15:00</option>
-							    <option>16:00</option>
-							    <option>17:00</option>
-							    <option>18:00</option>
-							    <option>19:00</option>
-							    <option>20:00</option>
-							    <option>21:00</option>
-							    <option>22:00</option>
-							    <option>23:00</option>
-							    <option>24:00</option>
+							<c:forEach var="i" begin="0" end="24">
+							    <option>${i}:00</option>
+						    </c:forEach>
 						    </select>
 						</li>
 						<li>
