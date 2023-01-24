@@ -105,6 +105,10 @@ public class BusinessDao {
 	public int updateActivityEndDate(SqlSessionTemplate sqlSession, int activityNo) {
 		return sqlSession.update("businessMapper.updateActivityEndDate", activityNo);
 	}
+	// 숙소 수정
+	public int updateAccomm(SqlSessionTemplate sqlSession, Accomm acc) {
+		return sqlSession.update("businessMapper.updateAccomm", acc);
+	}
 
 	// 숙소 지우기 status = n
 	public int deleteAccomm(SqlSessionTemplate sqlSession, int accommNo) {
@@ -131,7 +135,6 @@ public class BusinessDao {
 	public int deleteTicketA(SqlSessionTemplate sqlSession, int activityNo) {
 		return sqlSession.update("businessMapper.deleteTicketA", activityNo);
 	}	
-	
 	
 	
 	

@@ -299,6 +299,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update> 
 
 	<!-- 숙소 수정 -->
+	<update id="updateAccomm" parameterType="accomm">
+		UPDATE
+				ACCOMM
+		   SET
+		  		GRADE = #{grade},
+		        REFUND = #{refund},
+		        CHECKINOUT = #{checkInout},
+		        ACCOMM_CONTENT = #{accommContent},
+		        CATEGORY = #{category}
+		 WHERE
+		 		ACCOMM_NO = #{ accommNo }
+	
+	</update>
+	
+	
+	
 	<!-- 객실 수정 -->
 	<!-- 액티비티 수정 -->
 	<!-- 티켓 수정 -->

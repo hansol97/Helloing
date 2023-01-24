@@ -90,6 +90,7 @@ public interface BusinessService {
 	
 	int deleteTicketA(int activityNo);
 	
+	int updateAccomm(Accomm acc);
 	
 
 	//인호 ---------------------------------------------------------------------------
@@ -123,6 +124,7 @@ public interface BusinessService {
 	ArrayList<RoomPayment> checkBookDate(int roomNo);
 
 	RoomPayment selectBookInfo(RoomPayment rp);
+
 
 
 

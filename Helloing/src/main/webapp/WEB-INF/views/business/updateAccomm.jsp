@@ -35,34 +35,35 @@
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>
 						<td width="600px">
-							<input id="amName" type="text" name="title" height="100px" size="40" required placeholder="아무튼 입력" value="${requestScope.acc.accommName}"/>
+							<input id="amName" type="text" name="accommName" height="100px" size="40" required placeholder="아무튼 입력" value="${requestScope.acc.accommName}" disabled/>
 						</td>
 					</tr>
 					<tr>
 						<th style="vertical-align: middle;">숙소 주소 :</th>
 						<td height="40px">
-							<textarea name="amDescription" rows="2" style="resize: none; width: 70%;" required placeholder="아무튼 입력">${requestScope.acc.address}</textarea>
+							<textarea name="address" rows="2" style="resize: none; width: 70%;" required placeholder="아무튼 입력" disabled>${requestScope.acc.address}</textarea>
 						</td>
 
 					</tr>
 					<tr>
 						<th style="vertical-align: middle;">숙소 설명 :</th>
 						<td height="40px">
-							<textarea name="amDescription" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력">${requestScope.acc.accommContent} </textarea>
+							<textarea name="accommContent" rows="10" style="resize: none; width: 70%;" required placeholder="아무튼 입력">${requestScope.acc.accommContent} </textarea>
 						</td>
 					</tr>
 					<tr>
 						<th>&nbsp;&nbsp;</th>
 						<td>
-                            <input type="hidden" name="사업자번호" value="${requestScope.acc.businessNo}">
-                            <input type="hidden" name="위도" value="${requestScope.acc.lat}">
-                            <input type="hidden" name="경도" value="${requestScope.acc.lng}">
+                            <input type="hidden" name="businessNo" value="${requestScope.acc.businessNo}">
+                            <input type="hidden" name="accommNo" value="${accommNo}">
+                            <input type="hidden" name="lat" value="${requestScope.acc.lat}">
+                            <input type="hidden" name="lng" value="${requestScope.acc.lng}">
                         </td>
 					</tr>
 					<tr>
 						<th>등급 선택 :</th>
 						<td>
-							<select name="rating" id="rating" value="${requestScope.acc.grade}" required>
+							<select name="grade" id="rating" value="${requestScope.acc.grade}" required>
 								<option value='1'>1 등급</option>
 								<option value='2'>2 등급</option>
 								<option value='3'>3 등급</option>
@@ -101,28 +102,40 @@
 						<td>
 							<input type="time" name="checkIn" id="checkIn" value="" required/>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
 							<input type="time" name="checkOut" id="checkOut" value="" required/>
+							<script>
+								$(function(){
+									var chekInout =  $('#checkOut').val() + " / " + $('#checkIn').val() 
+									$("input[name=checkInout]").val(chekInout);
+									
+									$('#checkOut').focusout(function(){
+										var chekInout =  $('#checkOut').val() + " / " + $('#checkIn').val() 
+										$("input[name=checkInout]").val(chekInout);
+									});
+							
+								})
+							</script>
+							<input type="hidden" name="checkInout">
 						</td>
 					</tr>
 					<tr>
 						<th style="vertical-align: middle;">환불 규정 : </th>
 						<td>
-							<textarea name="refundDescription" rows="5" style="resize: none; width: 70%;" required placeholder="아무튼 입력">${requestScope.acc.refund}</textarea>
+							<textarea name="refund" rows="5" style="resize: none; width: 70%;" required placeholder="아무튼 입력">${requestScope.acc.refund}</textarea>
 						</td>
 					</tr>
 
 				</table>
-					<input type="hidden" class="hidden" name="userNo" value="${requestScope.acc.businessNo}"/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
 						
-						<input type="file" name="upfile" id="up1" value="${photoList[0].attachment}" required /><br><br>
-						<input type="file" name="upfile" id="up2"/><br><br>
-						<input type="file" name="upfile" id="up3"/><br><br><br><br>
+						<input type="file" name="reUpfile" id="up1"/><br><br>
+						<input type="file" name="reUpfile" id="up2"/><br><br>
+						<input type="file" name="reUpfile" id="up3"/><br><br><br><br>
 
 						<c:forEach items="${photoList}" var="pL" varStatus="count">
 							<input type="hidden" class="hiddenPhoto" name="hiddenPhoto${count.index + 1}" value="${pL.attachment}">
 							
-							현재 업로드된 파일 ${count.index + 1} : 
+							이전에 업로드 한 파일 ${count.index + 1} : 
 							<a href="${pL.attachment}" download="${pL.originName }">${pL.originName }</a>
 							<input type="hidden" name="originName" value="${pL.originName }"><br>
 							<input type="hidden" name="changeName" value="${pL.changeName }">

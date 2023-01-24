@@ -132,7 +132,7 @@ public class BusinessController {
 		// 전달된 파일이 있을 경우 => 파일명 수정 작업 후 서버 업로드
 		// => 원본명, 서버에 업로드된 경로를 b에 이어서 담기(파일이 존재할 경우에만)
 
-    	ArrayList<Attachment> list = new ArrayList();
+    	ArrayList<Attachment> list = new ArrayList<Attachment>();
     	for (int i = 0; i < upfile.length; i++) {
 			
 	    		if (!upfile[i].getOriginalFilename().equals("") ) { // getOriginalFileName == filename필드의 값을 반환함.
@@ -162,7 +162,42 @@ public class BusinessController {
 	}
     
     // 숙소 수정 (UPDATE)
-    
+    @RequestMapping("updateAccomm.bu")
+    public ModelAndView updateAccomm(Accomm acc, Attachment at, MultipartFile[] reUpfile, HttpSession session, ModelAndView mv) {
+    	
+    	ArrayList<Attachment> list = new ArrayList<Attachment>();
+    	
+    	// 파일 관리
+    	for (int i = 0; i < reUpfile.length; i++) { 
+			
+			if (!reUpfile[i].getOriginalFilename().equals("")) { // 새로운 첨부파일이 있다.
+				
+				//기존 첨부파일이 있었을 경우 ? => 기존 첨부파일을 삭제 
+				if(at.getOriginName() != null) {
+					new File(session.getServletContext().getRealPath(at.getAttachment())).delete();
+				}
+				// 새로 넘어온 첨부파일 서버 업로드 시키기
+				// 만들어놓은 saveFile()호출해서 첨부파일을 업로드
+				at.setOriginName( reUpfile[i].getOriginalFilename());
+				at.setChangeName( saveFile(reUpfile[i], session) );
+				at.setFilePath( "resources/uploadFiles/"  );
+				list.add(at);
+				
+			} 
+    	}
+    	
+		if (businessService.updateAccomm(acc) > 0) {
+			if (businessService.insertAccomPhoto(list)>0) {
+				session.setAttribute("alertMsg", "수정 성공");
+			}
+		} else {
+			session.setAttribute("alertMsg", "망했어~~~");
+		}
+//		mv.setViewName("business/accommList");
+		mv.setViewName("redirect:accommList.bu");
+    	
+    	return mv;
+    }
     
     // 숙소 삭제 (UPDATE)
     @RequestMapping("deleteAccomm.bu")
@@ -385,7 +420,7 @@ public class BusinessController {
 	}
 	
     // 객실 수정 (UPDATE)
-    
+
     
     // 객실  삭제 (UPDATE)
 	@RequestMapping("deleteRoom.bu")
