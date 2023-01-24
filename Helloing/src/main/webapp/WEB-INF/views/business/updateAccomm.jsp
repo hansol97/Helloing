@@ -29,8 +29,8 @@
 
 			<form action="updateAccomm.bu" method="post" enctype="multipart/form-data" class="innerform">
 
-			<!-- 피드 등록 내용물 -->
-			<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉수정하실 🏠숙소 항목을 ✏️변경해 주세요👍 </div>
+				<!-- 피드 등록 내용물 -->
+				<div style="font-size: 30px; display:inline; text-align: center; margin-left: 8%;"> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉수정하실 🏠숙소 항목을 ✏️변경해 주세요👍 </div>
 				<table class="accommFormTable" cellpadding="10" cellspacing="10" style="width: 100%; margin-top: 50px; text-align: left;"  >
 					<tr>
 						<th width="200px" height="40px"> 숙소 이름 :</th>
@@ -133,23 +133,22 @@
 						<input type="file" name="reUpfile" id="up3"/><br><br><br><br>
 
 						<c:forEach items="${photoList}" var="pL" varStatus="count">
-							<input type="hidden" class="hiddenPhoto" name="hiddenPhoto${count.index + 1}" value="${pL.attachment}">
+							<!-- <input type="hidden" class="hiddenPhoto" name="hiddenPhoto${count.index + 1}" value="${pL.attachment}"> -->
 							
 							이전에 업로드 한 파일 ${count.index + 1} : 
 							<a href="${pL.attachment}" download="${pL.originName }">${pL.originName }</a>
 							<input type="hidden" name="originName" value="${pL.originName }"><br>
 							<input type="hidden" name="changeName" value="${pL.changeName }">
+							<br>
 						</c:forEach>
 					</div>
 
+				<div class="feed_modal_btns" align="center">
+					<br>
+					<button type="submit" class="button--ujarak button" id="red_btn2"> 수정 완료 </button>
+					<button type="button" onclick="location.href='accommList.bu'" class="button--ujarak button">취소하기</button>
 
-
-			<div class="feed_modal_btns" align="center">
-				<br>
-				<button type="submit" class="button--ujarak button" id="red_btn2"> 수정 완료 </button>
-				<button type="button" onclick="location.href='accommList.bu'" class="button--ujarak button">취소하기</button>
-
-			</div>
+				</div>
 			</form>
 
 

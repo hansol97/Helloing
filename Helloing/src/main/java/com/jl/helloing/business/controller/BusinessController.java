@@ -163,7 +163,7 @@ public class BusinessController {
     
     // 숙소 수정 (UPDATE)
     @RequestMapping("updateAccomm.bu")
-    public ModelAndView updateAccomm(Accomm acc, Attachment at, MultipartFile[] reUpfile, HttpSession session, ModelAndView mv) {
+    public String updateAccomm(Accomm acc, Attachment at, MultipartFile[] reUpfile, HttpSession session) {
     	
     	ArrayList<Attachment> list = new ArrayList<Attachment>();
     	
@@ -193,10 +193,8 @@ public class BusinessController {
 		} else {
 			session.setAttribute("alertMsg", "망했어~~~");
 		}
-//		mv.setViewName("business/accommList");
-		mv.setViewName("redirect:accommList.bu");
     	
-    	return mv;
+		return "redirect:accommList.bu";
     }
     
     // 숙소 삭제 (UPDATE)
