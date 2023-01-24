@@ -121,10 +121,10 @@
 	    	<br>
 	    	<form action="insertPlanner.hj" method="post">
 	    		<div>
-	    			여행명 <input type="text" name="plannerName">
+	    			여행명 <input type="text" name="plannerName" required>
 	    		</div>
 		    	<div>
-		    		여행 시작 <input type="date" id="start" name="startDate"> ~ 여행 종료  <input type="date" name="endDate">
+		    		여행 시작 <input type="date" id="start" name="startDate" required> ~ 여행 종료  <input type="date" name="endDate" required>
 		    	</div>
    				<input type="hidden" name="memNo" value="${loginUser.memNo}">
 				<button type="submit">등록</button>
@@ -184,11 +184,11 @@
 					var endDate = (result.endDate).substring(0,10);
 					
 					value += '<div class="update-title">'
-						  + '여행명 <input type="text" name="plannerName" value="'+ result.plannerName +'">'
+						  + '여행명 <input type="text" name="plannerName" value="'+ result.plannerName +'" required>'
 		    			  + '</div>'
 		    			  +	'<div>'
-			    		  + '여행 시작 <input id="ddt" type="date" class="update-start" name="startDate" value="'+ startDate +'">' 
-		    			  + '~ 여행 종료  <input type="date" class="update-end" name="endDate" value="'+ endDate +'">' 
+			    		  + '여행 시작 <input id="ddt" type="date" class="update-start" name="startDate" value="'+ startDate +'" required>' 
+		    			  + '~ 여행 종료  <input type="date" class="update-end" name="endDate" value="'+ endDate +'" required>' 
 			    		  + '</div>'
 			    		  + '<input type="hidden" name="plannerNo" value="' + plannerNo + '">';
 			    		  
