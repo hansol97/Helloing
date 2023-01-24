@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>숙소수정페이지</title>
 <link rel="stylesheet" type="text/css" href="resources/css/accommList.css">
+
 <style>
     
 </style>
@@ -112,24 +114,22 @@
 					<input type="hidden" class="hidden" name="userNo" value="${requestScope.acc.businessNo}"/><!-- 사업자번호 히든 -->
 					<div class="titleImg_class1" style="margin-left: 15px;">
 						<br><br><p>🎈 숙소의 외관이나 부대시설 사진을 등록해 주세요</p>	<br><br>
-						<input type="file" name="accommPhoto1" value="" required/><span></span><br><br>
-						<input type="file" name="accommPhoto2" value="" /><br><br>
-						<input type="file" name="accommPhoto3" value="" /><br><br><br><br>
-						// 히든에다가 넣어놓고 뭐기시하라고 한다.
-					</div>
-					<script>
-						$(function(){
-							var photoList = '${photoList}';
-							for (var i = 0; i < photoList.length; i++) {
-								var fileUrl = photoList[i].attachment;
-								$("input[name=accommPhoto" + (i + 1) + "]").val(fileUrl);
-								// var originFileName = photoList[i].originName;
-								// $("input[name=accommPhoto" + (i + 1) + "]").next().text(originFileName);
-    						}
-							// 바뀐 파일의 originName 넣기... 지가 알아서 되나?
-						})
+						
+						<input type="file" name="upfile" id="up1" value="${photoList[0].attachment}" required /><br><br>
+						<input type="file" name="upfile" id="up2"/><br><br>
+						<input type="file" name="upfile" id="up3"/><br><br><br><br>
 
-					</script>
+						<c:forEach items="${photoList}" var="pL" varStatus="count">
+							<input type="hidden" class="hiddenPhoto" name="hiddenPhoto${count.index + 1}" value="${pL.attachment}">
+							
+							현재 업로드된 파일 ${count.index + 1} : 
+							<a href="${pL.attachment}" download="${pL.originName }">${pL.originName }</a>
+							<input type="hidden" name="originName" value="${pL.originName }"><br>
+							<input type="hidden" name="changeName" value="${pL.changeName }">
+						</c:forEach>
+					</div>
+
+
 
 			<div class="feed_modal_btns" align="center">
 				<br>

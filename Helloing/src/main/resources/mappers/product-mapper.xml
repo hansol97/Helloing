@@ -401,6 +401,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          	   A.ACCOMM_NO = #{ accommNo }
 	</select>
 	
+	<!-- 숙소에 첨부된 첨부파일 상세 -->
+	<select id="selectAccommAttachmentList" resultMap="AttachmentResultSet" parameterType="_int">
+		SELECT
+			  FILE_NO,
+			  ORIGIN_NAME,
+			  CHANGE_NAME,
+			  FILE_PATH || CHANGE_NAME AS ATTACHMENT
+		  FROM
+		       ACCOMM A
+		  JOIN
+		       ACCOMM_ATTACHMENT AT ON (AT.ACCOMM_NO = A.ACCOMM_NO)
+         WHERE
+         	   A.ACCOMM_NO = #{ accommNo }
+	</select>
+
+
 	<!-- 객실에 첨부된 첨부파일 -->
 	<select id="selectRoomPhotoList" resultMap="AttachmentResultSet" parameterType="_int">
 		SELECT

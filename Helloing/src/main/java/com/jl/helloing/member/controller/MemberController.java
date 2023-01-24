@@ -419,6 +419,7 @@ public class MemberController {
 	@RequestMapping(value="selectQnaUpdate.me", produces ="application/json; charset=UTF-8")
 	public String selectQnaUpdate(int qnaNo) {
 		QNA qna = memberService.selectQnaUpdate(qnaNo);
+		System.out.println("qna : " +qna);
 		System.out.println(qna.getQnaNo());
 		return new Gson().toJson(qna);
 	}

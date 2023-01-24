@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
@@ -481,14 +482,18 @@ public class BusinessController {
 		
 		// 조회하러 DB안가고  숙소 번호로 세션에 있는 객체 뽑아오기
 		ArrayList<Accomm> accList = (ArrayList<Accomm>) session.getAttribute("accList");
-		ArrayList<Attachment> photoList = productService.selectPhotoList(accommNo);
+		ArrayList<Attachment> photoList = productService.selectAccommAttachmentList(accommNo); 
+
 		for (Accomm accomm : accList) { // 
 			if (accomm.getAccommNo() == accommNo) { acc = accomm; } 
 		}
+
+		System.out.println("photoList : " + photoList);
 		
 		mv.addObject("acc", acc)
 		  .addObject("photoList", photoList)
 		  .setViewName("business/updateAccomm");
+		
 		return mv;
 	}
 	// 액티비티 수정하기화면으로 이동
