@@ -107,9 +107,6 @@ public interface MemberService {
 	//액티비티 후기 삭제
 	int deleteActivityReview(int reviewNo);
 	
-	//비밀번호확인
-	String checkPwd(Member m);
-	
 	//비밀번호 변경
 	int memberUpdatePwd(Member m);
 	
@@ -148,15 +145,6 @@ public interface MemberService {
 	
 	//플래너 멤버 삭제
 	int deletePlanMem(Planner pl);
-	
-	//플래너 삭제 전 조회
-	int selectPlanYN(int plannerNo);
-	
-	//플래너 삭제 - 플래너 속 플랜 삭제
-	int deleteInPlan(int plannerNo);
-	
-	//플래너 삭제
-	int deletePlanner(int plannerNo);
 	
 	//플랜 상세 페이지
 	ArrayList<Plan> planDetailView(int plannerNo);

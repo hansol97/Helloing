@@ -15,6 +15,9 @@
 }
 #enroll-form input{
   height: 25px;
+   font-family: 'S-CoreDream-3Light';
+   font-weight: normal;
+     font-style: normal;
 }
 .join-button{
 	width: 200px;
@@ -80,13 +83,13 @@ height: 30px;
 				<table>
 					<tr>
 						<td> 아이디 &nbsp;&nbsp;</td>
-						<td><input type="text" name="memId" maxlength="20" id="memId" required>
+						<td><input type="text" name="memId" maxlength="20" id="memId"  placeholder="5자리 이상입력 해주세요" required>
 						<div id="checkId" width="80" style="font-size:0.7em; display:none;" ></div>
 						</td>
 					</tr>
 					<tr>
 						<td> 비밀번호 &nbsp;&nbsp;</td>
-						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" required></td>
+						<td><input type="password" name="memPwd" id="memPwd" maxlength="20" placeholder="8자 이상 입력해주세요" required></td>
 					</tr>
 					
 					<tr>
@@ -96,7 +99,7 @@ height: 30px;
 					
 					<tr>
 						<td> 이름  &nbsp;&nbsp;</td>
-						<td><input type="text" name="memName" required></td>
+						<td><input type="text" name="memName" id="memName" required></td>
 					</tr>
 					
 					<tr>
@@ -124,9 +127,7 @@ height: 30px;
 				</table>
 				<button id="btn-submit"  disabled type="submit" class="join-button">회원가입</button>
 			</form>
-			
-			
-			
+	
 			<!-- 
 			<script>
 			$(function(){
@@ -137,13 +138,6 @@ height: 30px;
 
 			</script>
 			 -->
-			
-			
-			
-			
-			
-			
-			
 			<script>
 			// 이메일 인증번호
 				function certButton() {
@@ -203,19 +197,14 @@ height: 30px;
 									console.log()
 								}
 							})
-						
 					})
 				})
 			</script>
-			
-			
 			<script>
 				$(function(){
 					
 					let $idInput = $('#enroll-form #memId');
-					
-					// 제이쿼리를 사용할때는 맞춰준다. 제이퀄리를 사용해서 변수를 사용하면 자바스크립트에서 못쓸때가 있다. 
-						
+
 					// 사용자가 input태그에 뭐 쓸때 이벤트가 생긴다.
 					$idInput.keyup(function(){
 						//console.log($idInput.val());
@@ -226,7 +215,7 @@ height: 30px;
 							$.ajax({
 								url : 'idCheck.me',
 								data : {checkId : $idInput.val()},// // 객체를 만들어서 객체의 속성명으로 넣는 과정. checkId는 키값$idInput.val()키의 벨류값
-								success : function(result){ //성공했을때 돌아오는 매개변수로 넣는다 result
+								success : function(result){ 	
 									console.log(result);
 									
 									if(result == 'NNNNN'){
@@ -254,20 +243,20 @@ height: 30px;
 						}
 					});
 					
-					
+					// 비밀번호 정규식
 					$(document).on('change','input[name=memPwd]',function(){
 						var memPwd = $("#memPwd").val();
 						var memId = $("#memId").val();
 							
-						var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-						var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+						var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //대/소문자 + 숫자 , 8자리 이상 정규표현식
+						//var hangulCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 							
-						if(false === reg.test(memPwd)) {
-							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자.');
+						if(false === reg.test(memPwd)) { // === 자료형 변환 없이 두 피연산자가 엄격히 같은지 판별
+							alert('비밀번호는 8자 이상이어야 하며, 숫자, 대/소문자를 입력해주세여.');
 							$('#btn-submit').attr('disabled', true);
-							$("#memPwd").val('');
-						 return false; // 기본 속성을 무시한다.
-						}else if(memPwd.search(memId) > -1){
+							$("#memPwd").val(''); // 빈문자 넣기
+						 return false; // 기본 속성을 무시한다. false값을 반환해 동작을 중지, 호출한 곳에서 값을 받는곳이 있으면 true, false 없으면 그냥 return만 사용
+						}else if(memPwd.search(memId) > -1){ // 일치하는게  없을는 -1
 						 	$('#btn-submit').attr('disabled', true);
 						 	$("#memPwd").val('');
 						 	alert("비밀번호에 아이디가 포함되었습니다.");
@@ -276,26 +265,51 @@ height: 30px;
 							$('#btn-submit').attr('disabled', false);
 						 	console.log("통과");
 						}
-
+	
 						})
-						
-						
-						$(document).on('keyup','input[name=phone]', function () {
-						    $(this).val($(this).val().replace(/[^0-9]/g, ""));
-			
-						});
 					
+					<%-- 
+					$(document).on('change','input[name=email]', function(){
+						var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+						
+						if(false === regEmail.test(email)) {
+							alert('이메일 양식을 지켜주세요.');
+							$('#btn-submit').attr('disabled', true);
+							$("#email").val('');
+							return false;
+						} else {
+							$('#btn-submit').attr('disabled', false);
+						 	console.log("통과");
+						}
+						
+					})
+					--%>
+					
+					$(document).on('keyup','input[name=phone]', function () {
+					    $(this).val($(this).val().replace(/[^0-9]/g, ""));
+		
+					});
+					
+					
+					// 
+					$(document).on('change', 'input[name=checkPwd]', function() {
+						var memPwd = $("#memPwd").val();
+						var checkPwd = $("#checkPwd").val();
+						
+						if(memPwd != checkPwd){
+							alert('비밀번호를 확인해주세요')
+							$('#btn-submit').attr('disabled', true);
+							$("#checkPwd").val('');
+							return false;
+						} else {
+							$('#btn-submit').attr('disabled', false);
+						 	console.log("통과");
+						}
+						
+					})
 				})
 			</script>
-			
-			<script>
-				
-			
-			</script>
-
-			
-			
-			
+	
 			<%--
 			$("#phone").keyup(function(event){
 			    var inputVal = $(this).val();
@@ -367,8 +381,7 @@ height: 30px;
 				})
 			</script>
 			-->
-			
-
+	
 	</div>
 </body>
 </html>

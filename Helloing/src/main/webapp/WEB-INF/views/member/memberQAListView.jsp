@@ -136,6 +136,32 @@ table.type03 td {
 	vertical-align: top;
 	border: 1px solid rgb(236, 236, 236);
 }
+table.type04 {
+	border-collapse: separate;
+	border-spacing: 0;
+	line-height: 1.5;
+	border: 5px solid rgb(236, 236, 236);
+	margin: 20px 10px;
+	text-align: center;
+}
+
+table.type04 th {
+	font-weight: 600;
+	color: rgb(24, 24, 24);
+	padding: 5px;
+	vertical-align: top;
+	border: 1px solid rgb(236, 236, 236);
+	background: #d3d3d3;
+}
+
+table.type04 td {
+	padding: 7px;
+	vertical-align: top;
+	border: 1px solid rgb(236, 236, 236);
+}
+table.type04 .qnaQ1{
+	height: 95px;
+}
 
 /* 두글자 연회색 버튼 */
 .admin-grey, #reportMemDelete, #admin-delete {
@@ -235,6 +261,9 @@ table.type03 td {
   	border:none;
 
   }
+  .btn-update:hover {
+	cursor: pointer;
+}
 
 </style>
 
@@ -264,7 +293,7 @@ table.type03 td {
                 <tr>
                     <table id="admin-search_table">
                         <tr>
-                            <td width="590">
+                            <td width="780">
                             </td>
                             <td><button onclick="openModal1();" class="admin-grey">등록</button></td>
                             <!-- <td><button onclick="openModal(2);" id="updateQAList" class="admin-grey">수정</button></td>  -->
@@ -289,13 +318,13 @@ table.type03 td {
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach items="${ list }" var="qna" varStatus="status">
-                        	<!-- [${status.index}]: ${list[status.index]} -->
+                        	<c:forEach items="${ list }" var="qna" >
+                        	<!--varStatus="status" [${status.index}]: ${list[status.index]} -->
                             <tr>
                                 <td>
                                     <input class="cbox" type="checkbox" name="checkbox" value="${ qna.qnaNo }">
                                 </td>
-                                <td id="qnaNo">${ qna.qnaNo }</td>
+                                <td class="qnaNo">${ qna.qnaNo }</td>
                                 <c:choose>
                                 	<c:when test="${ qna.category == 'accomm' }" >
                                 		<td>숙소관련</td>
@@ -314,8 +343,8 @@ table.type03 td {
 	                            		<td>완료 </td>
 	                            	</c:otherwise>
 	                            </c:choose>
-	                            	<td><button onclick="openModal2()"  id="updateQAList"  class="btn-update">수정</button></td>
-	                            	<td><button onclick="openModal3()"  id="detailQAList"  class="btn-update">상세보기</button></td>
+	                            	<td><button onclick="openModal2('${qna.qnaNo}')"  id="updateQAList"  class="btn-update">수정</button></td>
+	                            	<td><button onclick="openModal3('${qna.qnaNo}')"  id="detailQAList"  class="btn-update">상세보기</button></td>
                             </tr>
                             </c:forEach>
                         </tbody>
@@ -440,16 +469,7 @@ table.type03 td {
             
         </div>
     	</div>
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+
     	<div id="QA_enroll_page" class="modal modal3">
         <div class="modal_body">
             
@@ -458,38 +478,10 @@ table.type03 td {
             </div>
             <div align="center">
                 <br>
-                <form action="#">
+                <form action="selectQnaUpdate.me">
                     <table class="type04">
-                    
-                    	<!--  <input type="hidden" name="memNo" id="updateMemNo" value="${ sessionScope.loginUser.memNo }"> -->
-                       	
-                       <!--  	
-                        <tr>
-                            <th width="80">제목</th>
-                            <td width="300"><input type="text" name="qnaTitle" maxlength="20"
-							value="${ qna.qnaTitle }"></td>
-                        </tr>
-                        <tr>
-                            <th>내용</th>
-                            <td>안녕하세요 숙소관련 문의합니다</td>
-                        </tr>
-                        <tr>
-                            <th>카테고리</th>
-                            <td>숙소관련</td>
-                        </tr>
-                        <tr>
-                            <th>구분</th>
-                            <td>일반회원</td>
-                        </tr>
-                        <tr>
-                            <th>답변</th>
-                            <td><textarea name="" id="" placehold="답변을 입력하세요">답변입니다</textarea></td>
-                        </tr>
-                       -->
                     </table>
-
                     <div id="QA_enroll_btn">
-                        <button type="submit">수정</button>
                         <button id="QA_cancel QA_cancel3" type="button" onclick="QACancel3();">취소</button>
                     </div>
                 </form>
@@ -724,14 +716,24 @@ table.type03 td {
             body.style.overflow = 'auto';
         };
 
-        function openModal2(){
+        function openModal2(intNo){
             let modal = document.querySelector('.modal2');
             modal.classList.toggle('show');
+            //console.log(intNo);
+            //var qnaNo = into //$(this).parent().siblings('.qnaNo').text()
+            //console.log(qnaNo);
+            
+            /*
+            $(document).on("click", "#updateQAList", function(){
+            var qnaNo = $(this).closest("tr").find(".qnaNo1").text();
+            console.log(qnaNo);
+        	});
+            */
             
             $.ajax({
 				url : 'selectQnaUpdate.me',
 				data : {
-					qnaNo : $('#qnaNo').text()
+					qnaNo : intNo
 				},
 				success : function(qna){
 					console.log(qna)
@@ -743,7 +745,7 @@ table.type03 td {
                     			+ '<th>내용</th>'
                             	+ '<td width="300"><input type="text" name="qnaQ" class="qnaQ-text" value="'+ qna.qnaQ +'"</td>'
                             	+ '</tr>'
-                            	+ '<input type="hidden" name="qnaNo" class="qnaNo" value="' + qna.qnaNo + '">'
+                            	+ '<input type="hidden" class="qnaNo" name="qnaNo"  value="' + qna.qnaNo + '">'
                     $('.type03').html(value);    		
 				},
 				error:function(){
@@ -763,9 +765,48 @@ table.type03 td {
             body.style.overflow = 'auto';
         };
 
-        function openModal3(){
+        function openModal3(intNo){
             let modal = document.querySelector('.modal3');
             modal.classList.toggle('show');
+            
+            $.ajax({
+				url : 'selectQnaUpdate.me',
+				data : {
+					qnaNo : intNo
+				},
+				success : function(qna){
+					console.log(qna)
+					let value =  '<tr>'
+								+ '<th width="80">문의번호</th>'
+		                       	+ '<td width="300">' + qna.qnaNo + '</td>'
+		                       	+ '</tr>'
+		                       	+ '<tr>'
+	                           	+ '<th width="80">카테고리</th>'
+	                           	+ '<td width="300">' + qna.category + '</td>'
+	                    		+ '</tr>'
+		                       	+ '<tr>'
+	                           	+ '<th width="80">제목</th>'
+	                           	+ '<td width="300">' + qna.qnaTitle + '</td>'
+	                    		+ '</tr>'
+	                    		+ '<tr>'
+                    			+ '<th class="qnaQ1">내용</th>'
+                            	+ '<td width="300" >'+ qna.qnaQ +'</td>'
+                            	+ '</tr>'
+	                    		+ '<tr>'
+	                           	+ '<th class="qnaQ1">답변</th>'
+	                           	+ '<td width="300">' + qna.qnaA + '</td>'
+	                    		+ '</tr>'
+                            	+ '<tr>'
+	                           	+ '<th width="80">등록일</th>'
+	                           	+ '<td width="300">' + qna.qnaDate + '</td>'
+	                    		+ '</tr>'
+                            	
+                    $('.type04').html(value);    		
+				},
+				error:function(){
+					console.log('실패')
+				}
+			})
             
   
             if (modal.classList.contains('show')) {
@@ -816,7 +857,9 @@ table.type03 td {
   		$('#boardList>tbody>tr').click(function(){
   			//location.href = 'detail.bo?bno=' + $(this).children('.bno').text() // .eq(0)  // this현재 내가 선택한
   					
-  					
+  		//$('.btnn').click(function({
+  			
+  				
   					
   					
   		})

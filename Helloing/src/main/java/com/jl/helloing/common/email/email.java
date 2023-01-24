@@ -6,7 +6,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 public class email {
 	
-	public static JavaMailSenderImpl sender;
+	public static JavaMailSenderImpl sender; 
+	//요청이 왔을때 JavaMailSenderImpl를가지고 메일을 보내야한다.
+	//xml방식으로 bean 등록해야한다 빈등록은 root-context에다가 해준다.
 	
 	public static void main(String[] args) {
 			
@@ -16,7 +18,7 @@ public class email {
 			impl.setHost("smtp.gmail.com"); 			// 메일을 보내는 곳(google) 설정
 			impl.setPort(587);							// 포트번호
 			impl.setUsername("winjun9191@gmail.com");	// 보내는이
-			impl.setPassword("zgggozlujryamapz");			// 비밀번호
+			impl.setPassword("zgggozlujryamapz");		// 비밀번호
 			
 			// - 옵션설정
 			Properties prop = new Properties(); 			// Map<Object, Object> 형태

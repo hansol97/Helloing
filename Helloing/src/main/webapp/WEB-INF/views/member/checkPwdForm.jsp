@@ -101,7 +101,7 @@
 				<form action="memberUpdateForm.hj" method="post">
 					<h6>비밀번호</h6> 
 					<input type="hidden" name="memId" value="${loginUser.memId}">
-					<input type="password" name="memPwd" placeholder="비밀번호를 입력해주세요.">
+					<input type="password" name="memPwd" placeholder="비밀번호를 입력해주세요." required>
 					<button id="btn" type="submit">확인</button>
 				</form>
 			</div>
