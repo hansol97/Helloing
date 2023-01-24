@@ -149,15 +149,6 @@ public interface MemberService {
 	//플래너 멤버 삭제
 	int deletePlanMem(Planner pl);
 	
-	//플래너 삭제 전 조회
-	int selectPlanYN(int plannerNo);
-	
-	//플래너 삭제 - 플래너 속 플랜 삭제
-	int deleteInPlan(int plannerNo);
-	
-	//플래너 삭제
-	int deletePlanner(int plannerNo);
-	
 	//플랜 상세 페이지
 	ArrayList<Plan> planDetailView(int plannerNo);
 	

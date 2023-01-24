@@ -237,18 +237,6 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.deletePlanMem", pl);
 	}
 
-	public int selectPlanYN(int plannerNo, SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("memberMapper.selectPlanYN", plannerNo);
-	}
-	
-	public int deleteInPlan(int plannerNo, SqlSessionTemplate sqlSession) {
-		return sqlSession.delete("memberMapper.deleteInPlan", plannerNo);
-	}
-
-	public int deletePlanner(int plannerNo, SqlSessionTemplate sqlSession) {
-		return sqlSession.delete("memberMapper.deletePlanner", plannerNo);
-	}
-	
 	
 	
 	//혜진 끝

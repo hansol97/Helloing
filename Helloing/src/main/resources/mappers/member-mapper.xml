@@ -741,35 +741,6 @@ INSERT
 		PLANNER_NO = #{ plannerNo }
 	</delete>
 	
-	<!-- 플래너 삭제 전 일정 존재 조회 -->
-	<select id="selectPlanYN" parameterType="_int" resultType="_int">
-	SELECT
-		COUNT(*)
-	FROM 
-		PLAN
-	WHERE
-		PLANNER_NO = #{ plannerNo }
-	</select>
-	
-	<!-- 플래너 내 일정삭제  -->
-	<delete id="deleteInPlan" parameterType="_int">
-	DELETE
-		FROM 
-			PLAN
-	WHERE
-		PLANNER_NO = #{ plannerNo }
-	
-	</delete>
-	<!-- 플래너 삭제 -->
-	<delete id="deletePlanner" parameterType="_int">
-	DELETE
-		FROM 
-			PLANNER
-	WHERE
-		PLANNER_NO =#{ plannerNo }
-	</delete>
-	
-	
 	<!-- 플래너 상세페이지 조회 -->
 	<select id="planDetailView" parameterType="_int" resultType="plan">
 	SELECT DISTINCT

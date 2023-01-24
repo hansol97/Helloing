@@ -826,12 +826,10 @@ public class MemberController {
 	@RequestMapping("deleteWishAccount.hj")
 	public ModelAndView deleteWishAccomm(HttpSession session, AccommWish aw, ModelAndView mv) {
 		
-		if(memberService.deleteWishAccomm(aw)>0) {
-			mv.setViewName("redirect:wishAccommList.hj");
-		}else {
+		if(memberService.deleteWishAccomm(aw)<=0) {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:wishAccommList.hj");
 		}
+		mv.setViewName("redirect:wishAccommList.hj");
 		
 		return mv;
 	}
@@ -856,12 +854,10 @@ public class MemberController {
 	//찜한 액티비티 삭제 
 	@RequestMapping("deleteWishActivity.hj")
 	public ModelAndView deleteWishActivity(HttpSession session, ActivityWish aw, ModelAndView mv) {
-		if(memberService.deleteWishActivity(aw)>0) {
-			mv.setViewName("redirect:wishActivityList.hj");
-		}else {
+		if(memberService.deleteWishActivity(aw)<=0) {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:wishActivityList.hj");
 		}
+		mv.setViewName("redirect:wishActivityList.hj");
 		
 		return mv;
 	}
@@ -888,14 +884,10 @@ public class MemberController {
 	@RequestMapping("insertPlanner.hj")
 	public ModelAndView insertPlanner(ModelAndView mv, HttpSession session, Planner pl) {
 		
-		System.out.println(pl);
-		
-		if(memberService.insertPlanner(pl)>0 && memberService.insertPlannerMem(pl.getMemNo())>0) {
-			mv.setViewName("redirect:plannerMain.hj");
-		}else {
+		if(!(memberService.insertPlanner(pl)>0 && memberService.insertPlannerMem(pl.getMemNo())>0)) {
 			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
-			mv.setViewName("redirect:plannerMain.hj");
 		}
+		mv.setViewName("redirect:plannerMain.hj");
 		return mv;
 	}
 	
@@ -921,11 +913,10 @@ public class MemberController {
 		
 		if(memberService.updatePlanner(pl)>0) {
 			session.setAttribute("alertMsg", "수정에 성공 하였습니다.");
-			mv.setViewName("redirect:plannerMain.hj");
 		}else {
 			session.setAttribute("alertMsg", "일정 수정에 실패하였습니다.");
-			mv.setViewName("redirect:plannerMain.hj");
 		}
+		mv.setViewName("redirect:plannerMain.hj");
 		
 		return mv;
 	}
@@ -934,39 +925,16 @@ public class MemberController {
 	@RequestMapping("deletePlanner.hj")
 	public ModelAndView deletePlanner(ModelAndView mv, HttpSession session, int plannerNo) {
 	
-		//플래너 번호에 해당하는 플랜 삭제
+		//플래너 멤버 테이블에서 플래너 번호에 해당하는 멤버 삭제 
 		
-		//case1. 플래너 O 일정 O
-		//case2. 플래너 O 일정 X
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
 		Planner pl = new Planner();
 		pl.setMemNo(memNo);
 		pl.setPlannerNo(plannerNo);
 		
-		System.out.println(plannerNo);
-		
-		//플래너 삭제
 			if(memberService.deletePlanMem(pl)>0) {
-				if(memberService.selectPlanYN(plannerNo)>0) { //플래너 속 일정이 있을 때, 
-					
-					if(memberService.deleteInPlan(plannerNo)>0) { //case1 성공
-						if(memberService.deletePlanner(plannerNo)>0) { //성공
-							session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-						}else {//실패
-							session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
-						}
-					}else { //실패
-						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
-					}
-					
-				}else {
-					if(memberService.deletePlanner(plannerNo)>0) { //성공
-						session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
-					}else {//실패
-						session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
-					}
-				}
+				session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
 			}else {
 				session.setAttribute("alertMsg", "플래너 삭제에 실패하였습니다.");
 			}
@@ -1012,18 +980,16 @@ public class MemberController {
 		if(memberService.planMemSelect(pm)>0) { //동일한 값 O -> 실패
 			session.setAttribute("alertMsg", "이미 입력한 일행이 존재합니다.");
 			mv.addObject("plannerNo", pm.getPlannerNo());
-			mv.setViewName("redirect:planDetailView.hj");
 		}else {
 				if(memberService.planAddMem(pm)>0) { //동일한 값 X, 추가 성공 -> 성공
 					session.setAttribute("alertMsg", "일행 추가에 성공하였습니다.");
 					mv.addObject("plannerNo", pm.getPlannerNo());
-					mv.setViewName("redirect:planDetailView.hj");
 				}else { //insert실패
 					session.setAttribute("alertMsg", "일행 추가에 실패하였습니다.");
 					mv.addObject("plannerNo", pm.getPlannerNo());
-					mv.setViewName("redirect:planDetailView.hj");
 				}
 		}
+		mv.setViewName("redirect:planDetailView.hj");
 		return mv;
 	}
 	
@@ -1034,12 +1000,11 @@ public class MemberController {
 		if(memberService.insertPlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 추가에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
-			mv.setViewName("redirect:planDetailView.hj");
 		}else {
 			session.setAttribute("alertMsg", "일정 추가에 실패하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
-			mv.setViewName("redirect:planDetailView.hj");
 		}
+		mv.setViewName("redirect:planDetailView.hj");
 		return mv;
 	}
 	
@@ -1060,12 +1025,11 @@ public class MemberController {
 		if(memberService.updatePlan(p)>0) {
 			session.setAttribute("alertMsg", "일정 수정에 성공하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
-			mv.setViewName("redirect:planDetailView.hj");
 		}else {
 			session.setAttribute("alertMsg", "일정 수정에 실패하였습니다.");
 			mv.addObject("plannerNo", p.getPlannerNo());
-			mv.setViewName("redirect:planDetailView.hj");
 		}
+		mv.setViewName("redirect:planDetailView.hj");
 		
 		return mv;
 	}
@@ -1076,12 +1040,11 @@ public class MemberController {
 		if(memberService.deletePlan(planNo)>0) {
 			session.setAttribute("alertMsg", "일정 삭제에 성공하였습니다.");
 			mv.addObject("plannerNo", plannerNo);
-			mv.setViewName("redirect:planDetailView.hj");
 		}else {
 			session.setAttribute("alertMsg", "일정 삭제에 실패하였습니다.");
 			mv.addObject("plannerNo", plannerNo);
-			mv.setViewName("redirect:planDetailView.hj");
 		}
+		mv.setViewName("redirect:planDetailView.hj");
 		return mv;
 	}
 	//가계부 페이지
@@ -1120,13 +1083,12 @@ public class MemberController {
 		
 		if( memberService.insertExpense(ex)>0) {
 			mv.addObject("plannerNo", ex.getPlannerNo());
-			mv.setViewName("redirect:expenseView.hj");
 		}else {
 			session.setAttribute("alertMsg", "비용추가에 실패하였습니다.");
 			mv.addObject("plannerNo", ex.getPlannerNo());
-			mv.setViewName("redirect:expenseView.hj");
 		}
 		 
+		mv.setViewName("redirect:expenseView.hj");
 		return mv;
 	}
 
@@ -1138,22 +1100,14 @@ public class MemberController {
 		
 		if(memberService.deleteExpense(ex)>0) {
 			mv.addObject("plannerNo", ex.getPlannerNo());
-			mv.setViewName("redirect:expenseView.hj");
 		}else {
 			session.setAttribute("alertMsg", "비용삭제에 실패하였습니다.");
 			mv.addObject("plannerNo", ex.getPlannerNo());
-			mv.setViewName("redirect:expenseView.hj");
 		}
+		mv.setViewName("redirect:expenseView.hj");
 		
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	// 액티비티 위시리스트 추가
 	@ResponseBody

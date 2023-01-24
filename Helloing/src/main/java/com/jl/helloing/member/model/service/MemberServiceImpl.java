@@ -267,25 +267,7 @@ public class MemberServiceImpl implements MemberService{
 	public int deletePlanMem(Planner pl) {
 		return memberDao.deletePlanMem(pl, sqlSession);
 	}
-	
-	
-	//플래너 삭제 전 조회
-	@Override
-	public int selectPlanYN(int plannerNo) {
-		return memberDao.selectPlanYN(plannerNo, sqlSession);
-	}
-	
-	//플래너 속 플랜 삭제
-	@Override
-	public int deleteInPlan(int plannerNo) {
-		return memberDao.deleteInPlan(plannerNo, sqlSession);
-	}
 
-	//플래너 삭제
-	@Override
-	public int deletePlanner(int plannerNo) {
-		return memberDao.deletePlanner(plannerNo, sqlSession);
-	}
 	
 	//플래너 상세페이지
 	@Override
