@@ -107,9 +107,6 @@ public interface MemberService {
 	//액티비티 후기 삭제
 	int deleteActivityReview(int reviewNo);
 	
-	//비밀번호확인
-	String checkPwd(Member m);
-	
 	//비밀번호 변경
 	int memberUpdatePwd(Member m);
 	

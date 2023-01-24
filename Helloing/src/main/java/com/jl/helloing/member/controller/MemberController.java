@@ -734,10 +734,10 @@ public class MemberController {
 	
 	//회원정보 조회 - 수정 페이지
 	@RequestMapping("memberUpdateForm.hj")
-	public ModelAndView memberUpdateForm(Member m, ModelAndView mv) {
+	public ModelAndView memberUpdateForm(Member m, ModelAndView mv, HttpSession session) {
 		
 		//유저에게 받은 비밀번호(평문)과 DB속 암호문 비교
-		if(bcryptPasswordEncoder.matches(m.getMemPwd(), memberService.checkPwd(m))) {
+		if(bcryptPasswordEncoder.matches(m.getMemPwd(), ((Member)session.getAttribute("loginUser")).getMemPwd())) {
 			
 			mv.setViewName("member/memberUpdateForm");
 		}else {
@@ -750,7 +750,6 @@ public class MemberController {
 	//회원정보 조회 - 수정:비밀번호 변경
 	@RequestMapping("memberUpdatePwd.hj")
 	public ModelAndView memberUpdatePwd(Member m, String memNewPwd, HttpSession session, ModelAndView mv) {
-		
 		
 		
 		//비밀번호 일치하는지 확인

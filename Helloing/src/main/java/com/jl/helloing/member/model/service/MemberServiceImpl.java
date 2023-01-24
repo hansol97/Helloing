@@ -183,12 +183,6 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteActivityReview(int reviewNo) {
 		return memberDao.deleteActivityReview(reviewNo, sqlSession);
 	}
-
-	//비밀번호 체크
-	@Override
-	public String checkPwd(Member m) {
-		return memberDao.checkPwd(m, sqlSession);
-	}
 	
 	//비밀번호 변경
 	@Override

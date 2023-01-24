@@ -540,16 +540,7 @@ INSERT
 	WHERE 
 		ORDER_NO = #{ orderNo }
 	</update>
-	
-	<!-- 회원정보 수정 전 비밀번호 체크 -->
-	<select id="checkPwd" parameterType="member" resultType="string">
-	SELECT 
-			MEM_PWD
-	FROM
-		MEMBER
-	WHERE 
-		MEM_ID = #{ memId }
-	</select>
+
 	<!-- 비밀번호 변경 -->
 	<update id="memberUpdatePwd" parameterType="member">
 		UPDATE 
