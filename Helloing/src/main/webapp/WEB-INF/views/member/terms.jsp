@@ -115,7 +115,7 @@
 	
 <script>	
 function check(){
-	if($('input[type=checkbox]').length == $('input[type=checkbox]:checked').length){
+	if($('input[type=checkbox]').length == $('input[type=checkbox]:checked').length){ //체크된 수가 같을때 실행
 		location.href="memberEnrollForm.me";
 	}
 	else{
@@ -252,12 +252,16 @@ function check(){
 
 	<script>
 		$(document).ready(function() {
-			$("#cbx_chkAll").click(function() {
-				if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-				else $("input[name=chk]").prop("checked", false);
+			$("#cbx_chkAll").click(function() { // 모두체크를 눌뤘을때
+				if($("#cbx_chkAll").is(":checked")){ // 모두체크가 ckecked 이면 
+					$("input[name=chk]").prop("checked", true); // name값이 chk는 모두 체크하게 
+				}
+				else{
+					$("input[name=chk]").prop("checked", false); // 그반대
+				}
 			});
 			
-			$("input[name=chk]").click(function() {
+			$("input[name=chk]").click(function() { // 체크올을  안눌러도 모두 체크가 되면 체크올 체크드됨
 				var total = $("input[name=chk]").length;
 				var checked = $("input[name=chk]:checked").length;
 				

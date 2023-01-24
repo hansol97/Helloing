@@ -258,12 +258,13 @@ public class MemberController {
 	
 	// 이메일 보내기
 	@RequestMapping("certButton.me")
-	public String certButton(String email, HttpServletRequest request) throws MessagingException {
-		MimeMessage message = sender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+	public String certButton(String email, HttpServletRequest request) throws MessagingException { //ip를 받아와야하는데 그럼 request가 필요함
+		MimeMessage message = sender.createMimeMessage(); // 전송도구(sender)를 가지고 MimeMessage를 만든다.
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8"); // 기본생성자는 못만든다. 무조건 매개변수가 있어야한다.
 		//System.out.println(email);
+		// 메일을 보내면서 
 		String ip = request.getRemoteAddr(); //getRemoteAddr ip주소를 준다.
-		String secret = generateSecret();
+		String secret = generateSecret(); 
 		//build 를 사용
 			// 필드명만 가지고 setter 처럼 사용 가능
 			// 기본생성자랑 setter랑 합친것이다.
@@ -283,14 +284,14 @@ public class MemberController {
 		}
 
 	// 이메일 인증번호 설정
-	public String generateSecret() {
-		Random r = new Random();
+	public String generateSecret() { //인증번를 만들기 위해 
+		Random r = new Random(); 
 		// Math를 사용해도됨
 		int n =r.nextInt(100000); //nextInt MathRandom이랑 똑같이 만들수 있다. 
 		// 단, 이렇게 하면 숫자 6자리 중에 앞에 0이 들어가야하는데 0인 안들어간다. 그래서 맨앞에 문자를 사용해줘야하는데 그럴때 Format을 사용
-		
 		Format f = new DecimalFormat("000000");
-		String secret = f.format(n); // 정수를 넣어서 문자로 받아준다.
+		
+		String secret = f.format(n); // 내가만든정수를 넣어서 문자로 받아준다.
 		
 		return secret; // 이 메소드를 호출하면 이렇게 만들어진 문자를 넘겨줌
 	}

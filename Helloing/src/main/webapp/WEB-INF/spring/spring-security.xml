@@ -8,3 +8,4 @@
     <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="bcryptPasswordEncoder" />
 
 </beans>
+<!-- 시큐리티 사용할수있게 빈등록  -->
