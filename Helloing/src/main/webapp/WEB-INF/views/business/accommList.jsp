@@ -84,7 +84,7 @@
                   </c:choose>
 
                 <div class="read-more">
-                  <a href="detail.accomm?accommNo=${rL.accommNo}">숙소 상세보기(사용자 페이지로 이동)</a>
+                  <a href="detail.accomm?accommNo=${aL.accommNo}">숙소 상세보기(사용자 페이지로 이동)</a>
                 </div>
               </div>
             </div>

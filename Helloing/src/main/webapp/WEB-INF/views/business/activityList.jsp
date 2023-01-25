@@ -45,7 +45,7 @@
                   <img class="more" src="resources/img/IHimg/more.png" alt="더보기">
                   <!-- 여기 이미지를 클릭하면 리스트가 펴져서 팔로우, 신고, 수정, 삭제 버튼 뜨게 -->
                   <div class="more_buttons">
-                    <c:url value="goPayAct.bu" var="extendEndUrl">
+                    <c:url value="goPayAct.bu" var="extendEndUrl"><!--대괄호를 인코딩 하기 위한 코드-->
                       <c:param name="activityNo" value="${aL.activityNo}" />
                       <c:param name="activityName" value="${aL.activityName}" />
                     </c:url>
