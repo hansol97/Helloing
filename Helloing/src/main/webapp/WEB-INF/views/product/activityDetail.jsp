@@ -44,7 +44,7 @@
 						<input type="hidden" name="activityName" value="${ act.activityName }">
 						<input type="hidden" name="endDate" value="${ act.endDate }">
 						<input type="hidden" name="allSum">
-						<div class="ticketlist"><!-- 티켓 박스 div 포문 돌리기~ -->
+						<div class="ticketlist">
 							<c:forEach items="${ ticketList }" var="t">
 								<div class="ticketbox">
 									<div class="ticket-info">
@@ -63,23 +63,6 @@
 									</div>
 								</div>
 							</c:forEach>
-							<!-- 
-								<div class="ticketbox">
-									<div class="ticket-info">
-										<p><span class="ticketName">종일 종합이용권 1인</span><br>
-											* 주중/주말 공통<br>
-											* 롯데월드파크 + 민속박물관 모두 이용가능</p>
-									</div>
-									<div class="ticket-price">
-										<span>38,600원</span>
-									</div>
-									<div class="ticket-count">
-										<button class="btn-minus" type="button">-</button>
-										<span class="count">0</span>
-										<button class="btn-plus" type="button">+</button>
-									</div>
-								</div>
-							 -->
 							<div class="order-info"> <!-- 자바스크립트로 쿠폰 수량을 늘렸을때만 아래 코드 나오기 -->
 								
 							</div>
