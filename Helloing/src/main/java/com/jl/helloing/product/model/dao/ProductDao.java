@@ -100,4 +100,8 @@ public class ProductDao {
 	public ArrayList<Attachment> selectRoomPhotoList(SqlSessionTemplate sqlSession, int roomNo) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectRoomPhotoList", roomNo);
 	}
+
+	public ArrayList<Attachment> selectAccommAttachmentList(SqlSessionTemplate sqlSession, int accommNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectAccommAttachmentList", accommNo);
+	}
 }

@@ -124,6 +124,11 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Attachment> selectRoomPhotoList(int roomNo) {
 		return productDao.selectRoomPhotoList(sqlSession, roomNo);
 	}
+
+	@Override
+	public ArrayList<Attachment> selectAccommAttachmentList(int accommNo) {
+		return productDao.selectAccommAttachmentList(sqlSession, accommNo);
+	}
 	
 	
 

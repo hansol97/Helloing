@@ -44,6 +44,7 @@ public interface ProductService {
 	Accomm selectAcDetail(int accommNo);
 	// 첨부파일들 조회
 	ArrayList<Attachment> selectPhotoList(int accommNo);
+	ArrayList<Attachment> selectAccommAttachmentList(int accommNo);
 	// 객실 조회
 	ArrayList<Room> selectRoomList(int accommNo);
 	// 숙소에 달린 리뷰 조회
@@ -61,7 +62,7 @@ public interface ProductService {
 	// 액티비티 검색
 	ArrayList<Activity> searchActivity(String keyword);
 	
-	// 숙소 첨부파일들 조회
+	// 액티 첨부파일들 조회
 	ArrayList<Attachment> selectActPhotoList(int activityNo);
 
 	// 객실 첨부파일 조회

@@ -79,7 +79,6 @@ public class BusinessDao {
 	// 숙소에 딸린 방 리스트 뽑아오기
 	public ArrayList<Room> selectRoomList(SqlSessionTemplate sqlSession, int accommNo) {
 		ArrayList<Room> rl = (ArrayList)sqlSession.selectList("productMapper.selectRoomListBu", accommNo);
-		System.out.println("Dao 구역에서 몹은 룸리스트 : " +rl);
 		return rl;
 	}
 	
@@ -105,6 +104,10 @@ public class BusinessDao {
 	// activityNo 보내서 ACTIVITY 테이블의 만료일자 업데이트 (END_DATE + 1년) - UPDATE - 반환값 int
 	public int updateActivityEndDate(SqlSessionTemplate sqlSession, int activityNo) {
 		return sqlSession.update("businessMapper.updateActivityEndDate", activityNo);
+	}
+	// 숙소 수정
+	public int updateAccomm(SqlSessionTemplate sqlSession, Accomm acc) {
+		return sqlSession.update("businessMapper.updateAccomm", acc);
 	}
 
 	// 숙소 지우기 status = n
@@ -132,7 +135,6 @@ public class BusinessDao {
 	public int deleteTicketA(SqlSessionTemplate sqlSession, int activityNo) {
 		return sqlSession.update("businessMapper.deleteTicketA", activityNo);
 	}	
-	
 	
 	
 	
